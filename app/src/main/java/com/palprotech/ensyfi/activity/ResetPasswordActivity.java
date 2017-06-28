@@ -40,6 +40,7 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
     private ProgressDialogHelper progressDialogHelper;
     private ServiceHelper serviceHelper;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
