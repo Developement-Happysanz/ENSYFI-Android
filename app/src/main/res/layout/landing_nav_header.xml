@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:background="@color/appColor"
+    android:orientation="vertical">
+
+
+    <com.palprotech.ensyfi.customview.CircleImageView
+        android:id="@+id/img_profile_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/profile_pic" />
+
+
+    <TextView
+        android:id="@+id/user_profile_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="sans-serif"
+        android:singleLine="true"
+        android:text="Name"
+        android:textColor="@android:color/white"
+        android:textSize="21dp"
+        android:textStyle="bold" />
+
+</LinearLayout>
