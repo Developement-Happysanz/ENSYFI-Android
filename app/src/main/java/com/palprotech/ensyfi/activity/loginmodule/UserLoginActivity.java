@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 
 import com.palprotech.ensyfi.R;
+import com.palprotech.ensyfi.activity.parentsmodule.StudentInfoActivity;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
@@ -189,26 +190,19 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                 int userType = Integer.parseInt(userData.getString("user_type"));
 
                 if (userType == 1) {
+                    saveUserData(userData);
                 } else if (userType == 2) {
-
+                    saveUserData(userData);
                 } else if (userType == 3) {
-
+                    saveUserData(userData);
                 } else {
-
-                    //User Data
-                    String Name ="";
-                    String UserName = "";
-                    String UserImage = "";
-                    String UserPicUrl = "";
-                    String UserType = "";
-                    String UserTypeName = "";
-                    String forgotPasswordStatus = "";
+                    saveUserData(userData);
 
                     //Father Details
-                    String FatherId ="";
-                    String FatherName ="";
+                    String FatherId = "";
+                    String FatherName = "";
                     String FatherPhone = "";
-                    String Address = "";
+                    String FatherAddress = "";
                     String FatherMail = "";
                     String FatherOccupation = "";
                     String FatherIncome = "";
@@ -219,8 +213,8 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     String FatherPic = "";
 
                     //Mother Details
-                    String MotherId ="";
-                    String MotherName ="";
+                    String MotherId = "";
+                    String MotherName = "";
                     String MotherPhone = "";
                     String MotherAddress = "";
                     String MotherMail = "";
@@ -233,8 +227,8 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     String MotherPic = "";
 
                     //Guardian Details
-                    String GuardianId ="";
-                    String GuardianName ="";
+                    String GuardianId = "";
+                    String GuardianName = "";
                     String GuardianPhone = "";
                     String GuardianAddress = "";
                     String GuardianMail = "";
@@ -247,89 +241,36 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     String GuardianPic = "";
 
                     //Student Detail
-                    String StudentPreferenceEnrollId ="";
-                    String StudentPreferenceAdmissionId ="";
+                    String StudentPreferenceEnrollId = "";
+                    String StudentPreferenceAdmissionId = "";
                     String StudentPreferenceAdmissionNo = "";
                     String StudentPreferenceClassId = "";
                     String StudentPreferenceName = "";
                     String StudentPreferenceClassName = "";
                     String StudentPreferenceSectionName = "";
 
+                    JSONObject getParentData = response.getJSONObject("parentProfile");
+                    JSONObject fatherData = getParentData.getJSONObject("fatherProfile");
+                    JSONObject motherData = getParentData.getJSONObject("motherProfile");
+                    JSONObject guardianData = getParentData.getJSONObject("guardianProfile");
 
+                    FatherPhone = fatherData.getString("home_phone");
+                    FatherMail = fatherData.getString("email");
+                    FatherAddress = fatherData.getString("address");
 
-                    Log.d(TAG, "userData dictionary" + userData.toString());
-                    if (userData != null) {
-                        user_id = userData.getString("user_id") + "";
+                    // Parents Preference - Father's Phone
+                    if ((FatherPhone != null) && !(FatherPhone.isEmpty()) && !FatherPhone.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveHomePhone(this, FatherPhone);
+                    }
 
-                        PreferenceStorage.saveUserId(this, user_id);
+                    // Parents Preference - Father's Mail
+                    if ((FatherMail != null) && !(FatherMail.isEmpty()) && !FatherMail.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveEmail(this, FatherMail);
+                    }
 
-                        Log.d(TAG, "created user id" + user_id);
-
-                        //need to re do this
-                        Log.d(TAG, "sign in response is" + response.toString());
-
-                        Name = userData.getString("name");
-                        UserName = userData.getString("user_name");
-                        UserImage = userData.getString("user_pic");
-                        UserPicUrl = PreferenceStorage.getUserDynamicAPI(this) + EnsyfiConstants.USER_IMAGE_API_PARENTS + UserImage;
-                        UserType = userData.getString("user_type");
-                        UserTypeName = userData.getString("user_type_name");
-                        forgotPasswordStatus = userData.getString("password_status");
-
-                        // User Preference - Name
-                        if ((Name != null) && !(Name.isEmpty()) && !Name.equalsIgnoreCase("null")) {
-                            PreferenceStorage.saveName(this, Name);
-                        }
-
-                        // User Preference - Username
-                        if ((UserName != null) && !(UserName.isEmpty()) && !UserName.equalsIgnoreCase("null")) {
-                            PreferenceStorage.saveUserName(this, UserName);
-                        }
-
-                        // User Preference - ProfilePic
-                        if ((UserPicUrl != null) && !(UserPicUrl.isEmpty()) && !UserPicUrl.equalsIgnoreCase("null")) {
-                            PreferenceStorage.saveUserPicture(this, UserPicUrl);
-                        }
-
-                        // User Preference - Usertype
-                        if ((UserType != null) && !(UserType.isEmpty()) && !UserType.equalsIgnoreCase("null")) {
-                            PreferenceStorage.saveUserType(this, UserType);
-                        }
-
-                        // User Preference - UsertypeName
-                        if ((UserTypeName != null) && !(UserTypeName.isEmpty()) && !UserTypeName.equalsIgnoreCase("null")) {
-                            PreferenceStorage.saveUserTypeName(this, UserTypeName);
-                        }
-
-                        // Forgot Password Reset Status
-                        if ((forgotPasswordStatus != null) && !(forgotPasswordStatus.isEmpty()) && !forgotPasswordStatus.equalsIgnoreCase("null")) {
-                            PreferenceStorage.saveForgotPasswordStatus(this, forgotPasswordStatus);
-                        }
-
-                        JSONObject getParentData = response.getJSONObject("parentProfile");
-                        JSONObject fatherData = getParentData.getJSONObject("fatherProfile");
-                        JSONObject motherData = getParentData.getJSONObject("motherProfile");
-                        JSONObject guardianData = getParentData.getJSONObject("guardianProfile");
-
-                        FatherPhone = fatherData.getString("home_phone");
-                        FatherMail = fatherData.getString("email");
-                        Address = fatherData.getString("address");
-
-                        // Parents Preference - Father's Phone
-                        if ((FatherPhone != null) && !(FatherPhone.isEmpty()) && !FatherPhone.equalsIgnoreCase("null")) {
-                            PreferenceStorage.saveHomePhone(this, FatherPhone);
-                        }
-
-                        // Parents Preference - Father's Mail
-                        if ((FatherMail != null) && !(FatherMail.isEmpty()) && !FatherMail.equalsIgnoreCase("null")) {
-                            PreferenceStorage.saveEmail(this, FatherMail);
-                        }
-
-                        // Parents Preference - Address
-                        if ((Address != null) && !(Address.isEmpty()) && !Address.equalsIgnoreCase("null")) {
-                            PreferenceStorage.saveAddress(this, Address);
-                        }
-
+                    // Parents Preference - Address
+                    if ((FatherAddress != null) && !(FatherAddress.isEmpty()) && !FatherAddress.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveAddress(this, FatherAddress);
                     }
 
                     JSONArray getStudentData = response.getJSONArray("registeredDetails");
@@ -374,9 +315,7 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     StudentPreferenceSectionName = studentData.getString("sec_name");
 
                     ////
-
 ////
-
 //                    // Student Preference - EnrollId
 //                    if ((StudentPreferenceEnrollId != null) && !(StudentPreferenceEnrollId.isEmpty()) && !StudentPreferenceEnrollId.equalsIgnoreCase("null")) {
 //                        PreferenceStorage.saveStudentEnrollIdPreference(this, StudentPreferenceEnrollId);
@@ -419,10 +358,10 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
             }
 
             if (PreferenceStorage.getForgotPasswordStatus(getApplicationContext()).contentEquals("1")) {
-//                Intent intent = new Intent(this, StudentInfoActivity.class);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                startActivity(intent);
-//                finish();
+                Intent intent = new Intent(this, StudentInfoActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
             } else {
                 Intent intent = new Intent(this, ResetPasswordActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -432,6 +371,81 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
 
         } else {
             Log.d(TAG, "Error while sign In");
+        }
+    }
+
+    private void saveUserData(JSONObject userData) {
+        Log.d(TAG, "userData dictionary" + userData.toString());
+        //User Data
+        String Name = "";
+        String UserName = "";
+        String UserImage = "";
+        String UserPicUrl = "";
+        String UserType = "";
+        String UserTypeName = "";
+        String forgotPasswordStatus = "";
+        try {
+            String user_id = null;
+            if (userData != null) {
+                user_id = userData.getString("user_id") + "";
+
+                PreferenceStorage.saveUserId(this, user_id);
+
+                Log.d(TAG, "created user id" + user_id);
+
+                //need to re do this
+//                Log.d(TAG, "sign in response is" + response.toString());
+
+                Name = userData.getString("name");
+                UserName = userData.getString("user_name");
+                UserImage = userData.getString("user_pic");
+                int userType = Integer.parseInt(userData.getString("user_type"));
+                String imageURL = "";
+                if (userType == 1) {
+                    imageURL = EnsyfiConstants.USER_IMAGE_API_ADMIN;
+                } else if (userType == 2) {
+                    imageURL = EnsyfiConstants.USER_IMAGE_API_TEACHERS;
+                } else if (userType == 3) {
+                    imageURL = EnsyfiConstants.USER_IMAGE_API_STUDENTS;
+                } else {
+                    imageURL = EnsyfiConstants.USER_IMAGE_API_PARENTS;
+                }
+                UserPicUrl = PreferenceStorage.getUserDynamicAPI(this) + imageURL + UserImage;
+                UserType = userData.getString("user_type");
+                UserTypeName = userData.getString("user_type_name");
+                forgotPasswordStatus = userData.getString("password_status");
+
+                // User Preference - Name
+                if ((Name != null) && !(Name.isEmpty()) && !Name.equalsIgnoreCase("null")) {
+                    PreferenceStorage.saveName(this, Name);
+                }
+
+                // User Preference - Username
+                if ((UserName != null) && !(UserName.isEmpty()) && !UserName.equalsIgnoreCase("null")) {
+                    PreferenceStorage.saveUserName(this, UserName);
+                }
+
+                // User Preference - ProfilePic
+                if ((UserPicUrl != null) && !(UserPicUrl.isEmpty()) && !UserPicUrl.equalsIgnoreCase("null")) {
+                    PreferenceStorage.saveUserPicture(this, UserPicUrl);
+                }
+
+                // User Preference - Usertype
+                if ((UserType != null) && !(UserType.isEmpty()) && !UserType.equalsIgnoreCase("null")) {
+                    PreferenceStorage.saveUserType(this, UserType);
+                }
+
+                // User Preference - UsertypeName
+                if ((UserTypeName != null) && !(UserTypeName.isEmpty()) && !UserTypeName.equalsIgnoreCase("null")) {
+                    PreferenceStorage.saveUserTypeName(this, UserTypeName);
+                }
+
+                // Forgot Password Reset Status
+                if ((forgotPasswordStatus != null) && !(forgotPasswordStatus.isEmpty()) && !forgotPasswordStatus.equalsIgnoreCase("null")) {
+                    PreferenceStorage.saveForgotPasswordStatus(this, forgotPasswordStatus);
+                }
+            }
+        } catch (Exception ex) {
         }
     }
 
