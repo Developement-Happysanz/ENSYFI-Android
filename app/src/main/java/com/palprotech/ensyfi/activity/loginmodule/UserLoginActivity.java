@@ -195,6 +195,68 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
 
                 } else {
 
+                    //User Data
+                    String Name ="";
+                    String UserName = "";
+                    String UserImage = "";
+                    String UserPicUrl = "";
+                    String UserType = "";
+                    String UserTypeName = "";
+                    String forgotPasswordStatus = "";
+
+                    //Father Details
+                    String FatherId ="";
+                    String FatherName ="";
+                    String FatherPhone = "";
+                    String Address = "";
+                    String FatherMail = "";
+                    String FatherOccupation = "";
+                    String FatherIncome = "";
+                    String FatherMobile = "";
+                    String FatherHomePhone = "";
+                    String FatherOfficePhone = "";
+                    String FatherRelationship = "";
+                    String FatherPic = "";
+
+                    //Mother Details
+                    String MotherId ="";
+                    String MotherName ="";
+                    String MotherPhone = "";
+                    String MotherAddress = "";
+                    String MotherMail = "";
+                    String MotherOccupation = "";
+                    String MotherIncome = "";
+                    String MotherMobile = "";
+                    String MotherHomePhone = "";
+                    String MotherOfficePhone = "";
+                    String MotherRelationship = "";
+                    String MotherPic = "";
+
+                    //Guardian Details
+                    String GuardianId ="";
+                    String GuardianName ="";
+                    String GuardianPhone = "";
+                    String GuardianAddress = "";
+                    String GuardianMail = "";
+                    String GuardianOccupation = "";
+                    String GuardianIncome = "";
+                    String GuardianMobile = "";
+                    String GuardianHomePhone = "";
+                    String GuardianOfficePhone = "";
+                    String GuardianRelationship = "";
+                    String GuardianPic = "";
+
+                    //Student Detail
+                    String StudentPreferenceEnrollId ="";
+                    String StudentPreferenceAdmissionId ="";
+                    String StudentPreferenceAdmissionNo = "";
+                    String StudentPreferenceClassId = "";
+                    String StudentPreferenceName = "";
+                    String StudentPreferenceClassName = "";
+                    String StudentPreferenceSectionName = "";
+
+
+
                     Log.d(TAG, "userData dictionary" + userData.toString());
                     if (userData != null) {
                         user_id = userData.getString("user_id") + "";
@@ -206,13 +268,13 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                         //need to re do this
                         Log.d(TAG, "sign in response is" + response.toString());
 
-                        String Name = userData.getString("name");
-                        String UserName = userData.getString("user_name");
-                        String UserImage = userData.getString("user_pic");
-                        String UserPicUrl = PreferenceStorage.getUserDynamicAPI(this) + EnsyfiConstants.USER_IMAGE_API_PARENTS + UserImage;
-                        String UserType = userData.getString("user_type");
-                        String UserTypeName = userData.getString("user_type_name");
-                        String forgotPasswordStatus = userData.getString("password_status");
+                        Name = userData.getString("name");
+                        UserName = userData.getString("user_name");
+                        UserImage = userData.getString("user_pic");
+                        UserPicUrl = PreferenceStorage.getUserDynamicAPI(this) + EnsyfiConstants.USER_IMAGE_API_PARENTS + UserImage;
+                        UserType = userData.getString("user_type");
+                        UserTypeName = userData.getString("user_type_name");
+                        forgotPasswordStatus = userData.getString("password_status");
 
 
                         JSONObject getParentData = response.getJSONObject("parentProfile");
@@ -220,9 +282,9 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                         JSONObject motherData = getParentData.getJSONObject("motherProfile");
                         JSONObject guardianData = getParentData.getJSONObject("guardianProfile");
 
-                        String FatherPhone = fatherData.getString("home_phone");
-                        String FatherMail = fatherData.getString("email");
-                        String Address = fatherData.getString("address");
+                        FatherPhone = fatherData.getString("home_phone");
+                        FatherMail = fatherData.getString("email");
+                        Address = fatherData.getString("address");
 
                         // Parents Preference - Father's Phone
                         if ((FatherPhone != null) && !(FatherPhone.isEmpty()) && !FatherPhone.equalsIgnoreCase("null")) {
@@ -274,16 +336,18 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                         ex.printStackTrace();
                     }
 
-                    String StudentPreferenceEnrollId = studentData.getString("enroll_id");
-                    String StudentPreferenceAdmissionId = studentData.getString("admission_id");
-                    String StudentPreferenceAdmissionNo = studentData.getString("admisn_no");
-                    String StudentPreferenceClassId = studentData.getString("class_id");
-                    String StudentPreferenceName = studentData.getString("name");
-                    String StudentPreferenceClassName = studentData.getString("class_name");
-                    String StudentPreferenceSectionName = studentData.getString("sec_name");
+                    StudentPreferenceEnrollId = studentData.getString("enroll_id");
+                    StudentPreferenceAdmissionId = studentData.getString("admission_id");
+                    StudentPreferenceAdmissionNo = studentData.getString("admisn_no");
+                    StudentPreferenceClassId = studentData.getString("class_id");
+                    StudentPreferenceName = studentData.getString("name");
+                    StudentPreferenceClassName = studentData.getString("class_name");
+                    StudentPreferenceSectionName = studentData.getString("sec_name");
 
                     ////
+
 ////
+
 //                    // Student Preference - EnrollId
 //                    if ((StudentPreferenceEnrollId != null) && !(StudentPreferenceEnrollId.isEmpty()) && !StudentPreferenceEnrollId.equalsIgnoreCase("null")) {
 //                        PreferenceStorage.saveStudentEnrollIdPreference(this, StudentPreferenceEnrollId);
