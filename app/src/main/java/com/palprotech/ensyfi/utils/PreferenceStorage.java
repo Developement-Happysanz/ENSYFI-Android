@@ -293,7 +293,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.KEY_STUDENT_SECTION_NAME_PREFERENCES, studentPrefSectionName);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentSectionNamePreference(Context context) {

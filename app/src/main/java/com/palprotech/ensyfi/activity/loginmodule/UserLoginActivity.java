@@ -19,6 +19,7 @@ import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
 import com.palprotech.ensyfi.servicehelpers.ServiceHelper;
 import com.palprotech.ensyfi.serviceinterfaces.IServiceListener;
+import com.palprotech.ensyfi.utils.AppValidator;
 import com.palprotech.ensyfi.utils.CommonUtils;
 import com.palprotech.ensyfi.utils.EnsyfiConstants;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
@@ -81,26 +82,25 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
-
     @Override
-
     public void onClick(View v) {
 
         if (CommonUtils.isNetworkAvailable(this)) {
             if (v == btnLogin) {
+                if (validateFields()) {
+                    JSONObject jsonObject = new JSONObject();
+                    try {
+                        jsonObject.put(EnsyfiConstants.PARAMS_USER_NAME, inputUsername.getText().toString());
+                        jsonObject.put(EnsyfiConstants.PARAMS_PASSWORD, inputPassword.getText().toString());
 
-                JSONObject jsonObject = new JSONObject();
-                try {
-                    jsonObject.put(EnsyfiConstants.PARAMS_USER_NAME, inputUsername.getText().toString());
-                    jsonObject.put(EnsyfiConstants.PARAMS_PASSWORD, inputPassword.getText().toString());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+                    String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.USER_LOGIN_API;
+                    serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
                 }
-
-                progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-                String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.USER_LOGIN_API;
-                serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
             }
             if (v == txtForgotPassword) {
                 Intent intent = new Intent(this, ForgotPasswordActivity.class);
@@ -110,6 +110,18 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
 
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
+        }
+    }
+
+    private boolean validateFields() {
+        if (!AppValidator.checkNullString(this.inputUsername.getText().toString().trim())) {
+            AlertDialogHelper.showSimpleAlertDialog(getApplicationContext(), this.getResources().getString(R.string.enter_user_name));
+            return false;
+        } else if (!AppValidator.checkNullString(this.inputPassword.getText().toString())) {
+            AlertDialogHelper.showSimpleAlertDialog(getApplicationContext(), this.getResources().getString(R.string.enter_password));
+            return false;
+        } else {
+            return true;
         }
     }
 
@@ -166,9 +178,8 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
         progressDialogHelper.hideProgressDialog();
         if (validateSignInResponse(response)) {
 
-            String repo = response.toString();
-
-            longInfo(repo);
+//            String repo = response.toString();
+//            longInfo(repo);
 
             try {
 //                JSONArray getData = response.getJSONArray("userData");
@@ -184,11 +195,6 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
 
                 } else {
 
-                    JSONObject getParentData = response.getJSONObject("parentProfile");
-                    JSONObject fatherData = getParentData.getJSONObject("fatherProfile");
-                    JSONObject motherData = getParentData.getJSONObject("motherProfile");
-                    JSONObject guardianData = getParentData.getJSONObject("guardianProfile");
-                    String news = "";
                     Log.d(TAG, "userData dictionary" + userData.toString());
                     if (userData != null) {
                         user_id = userData.getString("user_id") + "";
@@ -209,76 +215,15 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                         String forgotPasswordStatus = userData.getString("password_status");
 
 
+                        JSONObject getParentData = response.getJSONObject("parentProfile");
+                        JSONObject fatherData = getParentData.getJSONObject("fatherProfile");
+                        JSONObject motherData = getParentData.getJSONObject("motherProfile");
+                        JSONObject guardianData = getParentData.getJSONObject("guardianProfile");
+
                         String FatherPhone = fatherData.getString("home_phone");
                         String FatherMail = fatherData.getString("email");
                         String Address = fatherData.getString("address");
 
-                        // User Preference - Name
-                        if ((Name != null) && !(Name.isEmpty()) && !Name.equalsIgnoreCase("null")) {
-                            PreferenceStorage.saveName(this, Name);
-                        }
-
-                        // User Preference - Username
-                        if ((UserName != null) && !(UserName.isEmpty()) && !UserName.equalsIgnoreCase("null")) {
-                            PreferenceStorage.saveUserName(this, UserName);
-                        }
-
-                        // User Preference - ProfilePic
-                        if ((UserPicUrl != null) && !(UserPicUrl.isEmpty()) && !UserPicUrl.equalsIgnoreCase("null")) {
-                            PreferenceStorage.saveUserPicture(this, UserPicUrl);
-                        }
-
-                        // User Preference - Usertype
-                        if ((UserType != null) && !(UserType.isEmpty()) && !UserType.equalsIgnoreCase("null")) {
-                            PreferenceStorage.saveUserType(this, UserType);
-                        }
-
-                        // User Preference - UsertypeName
-                        if ((UserTypeName != null) && !(UserTypeName.isEmpty()) && !UserTypeName.equalsIgnoreCase("null")) {
-                            PreferenceStorage.saveUserTypeName(this, UserTypeName);
-                        }
-
-                        // Forgot Password Reset Status
-                        if ((forgotPasswordStatus != null) && !(forgotPasswordStatus.isEmpty()) && !forgotPasswordStatus.equalsIgnoreCase("null")) {
-                            PreferenceStorage.saveForgotPasswordStatus(this, forgotPasswordStatus);
-                        }
-////
-////
-//                    // Student Preference - EnrollId
-//                    if ((StudentPreferenceEnrollId != null) && !(StudentPreferenceEnrollId.isEmpty()) && !StudentPreferenceEnrollId.equalsIgnoreCase("null")) {
-//                        PreferenceStorage.saveStudentEnrollIdPreference(this, StudentPreferenceEnrollId);
-//                    }
-//                    // Student Preference - AdmissionId
-//                    if ((StudentPreferenceAdmissionId != null) && !(StudentPreferenceAdmissionId.isEmpty()) && !StudentPreferenceAdmissionId.equalsIgnoreCase("null")) {
-//                        PreferenceStorage.saveStudentAdmissionIdPreference(this, StudentPreferenceAdmissionId);
-//                    }
-//
-//                    // Student Preference - AdmissionNo
-//                    if ((StudentPreferenceAdmissionNo != null) && !(StudentPreferenceAdmissionNo.isEmpty()) && !StudentPreferenceAdmissionNo.equalsIgnoreCase("null")) {
-//                        PreferenceStorage.saveStudentAdmissionNoPreference(this, StudentPreferenceAdmissionNo);
-//                    }
-//
-//                    // Student Preference - ClassId
-//                    if ((StudentPreferenceClassId != null) && !(StudentPreferenceClassId.isEmpty()) && !StudentPreferenceClassId.equalsIgnoreCase("null")) {
-//                        PreferenceStorage.saveStudentClassIdPreference(this, StudentPreferenceClassId);
-//                    }
-//
-//                    // Student Preference - Name
-//                    if ((StudentPreferenceName != null) && !(StudentPreferenceName.isEmpty()) && !StudentPreferenceName.equalsIgnoreCase("null")) {
-//                        PreferenceStorage.saveStudentNamePreference(this, StudentPreferenceName);
-//                    }
-//
-//                    // Student Preference - ClassName
-//                    if ((StudentPreferenceClassName != null) && !(StudentPreferenceClassName.isEmpty()) && !StudentPreferenceClassName.equalsIgnoreCase("null")) {
-//                        PreferenceStorage.saveStudentClassNamePreference(this, StudentPreferenceClassName);
-//                    }
-//
-//                    // Student Preference - SectionName
-//                    if ((StudentPreferenceSectionName != null) && !(StudentPreferenceSectionName.isEmpty()) && !StudentPreferenceSectionName.equalsIgnoreCase("null")) {
-//                        PreferenceStorage.saveStudentSectionNamePreference(this, StudentPreferenceSectionName);
-//                    }
-////
-////
                         // Parents Preference - Father's Phone
                         if ((FatherPhone != null) && !(FatherPhone.isEmpty()) && !FatherPhone.equalsIgnoreCase("null")) {
                             PreferenceStorage.saveHomePhone(this, FatherPhone);
@@ -293,13 +238,13 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                         if ((Address != null) && !(Address.isEmpty()) && !Address.equalsIgnoreCase("null")) {
                             PreferenceStorage.saveAddress(this, Address);
                         }
+
                     }
 
                     JSONArray getStudentData = response.getJSONArray("registeredDetails");
                     JSONObject studentData = getStudentData.getJSONObject(0);
 
                     try {
-//                    JSONArray json = new JSONArray(getStudentData);
                         database.deleteLocal();
 
                         for (int i = 0; i < getStudentData.length(); i++) {
@@ -336,6 +281,44 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     String StudentPreferenceName = studentData.getString("name");
                     String StudentPreferenceClassName = studentData.getString("class_name");
                     String StudentPreferenceSectionName = studentData.getString("sec_name");
+
+                    ////
+////
+//                    // Student Preference - EnrollId
+//                    if ((StudentPreferenceEnrollId != null) && !(StudentPreferenceEnrollId.isEmpty()) && !StudentPreferenceEnrollId.equalsIgnoreCase("null")) {
+//                        PreferenceStorage.saveStudentEnrollIdPreference(this, StudentPreferenceEnrollId);
+//                    }
+//                    // Student Preference - AdmissionId
+//                    if ((StudentPreferenceAdmissionId != null) && !(StudentPreferenceAdmissionId.isEmpty()) && !StudentPreferenceAdmissionId.equalsIgnoreCase("null")) {
+//                        PreferenceStorage.saveStudentAdmissionIdPreference(this, StudentPreferenceAdmissionId);
+//                    }
+//
+//                    // Student Preference - AdmissionNo
+//                    if ((StudentPreferenceAdmissionNo != null) && !(StudentPreferenceAdmissionNo.isEmpty()) && !StudentPreferenceAdmissionNo.equalsIgnoreCase("null")) {
+//                        PreferenceStorage.saveStudentAdmissionNoPreference(this, StudentPreferenceAdmissionNo);
+//                    }
+//
+//                    // Student Preference - ClassId
+//                    if ((StudentPreferenceClassId != null) && !(StudentPreferenceClassId.isEmpty()) && !StudentPreferenceClassId.equalsIgnoreCase("null")) {
+//                        PreferenceStorage.saveStudentClassIdPreference(this, StudentPreferenceClassId);
+//                    }
+//
+//                    // Student Preference - Name
+//                    if ((StudentPreferenceName != null) && !(StudentPreferenceName.isEmpty()) && !StudentPreferenceName.equalsIgnoreCase("null")) {
+//                        PreferenceStorage.saveStudentNamePreference(this, StudentPreferenceName);
+//                    }
+//
+//                    // Student Preference - ClassName
+//                    if ((StudentPreferenceClassName != null) && !(StudentPreferenceClassName.isEmpty()) && !StudentPreferenceClassName.equalsIgnoreCase("null")) {
+//                        PreferenceStorage.saveStudentClassNamePreference(this, StudentPreferenceClassName);
+//                    }
+//
+//                    // Student Preference - SectionName
+//                    if ((StudentPreferenceSectionName != null) && !(StudentPreferenceSectionName.isEmpty()) && !StudentPreferenceSectionName.equalsIgnoreCase("null")) {
+//                        PreferenceStorage.saveStudentSectionNamePreference(this, StudentPreferenceSectionName);
+//                    }
+////
+////
                 }
 
             } catch (JSONException e) {
