@@ -214,6 +214,35 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                         String UserTypeName = userData.getString("user_type_name");
                         String forgotPasswordStatus = userData.getString("password_status");
 
+                        // User Preference - Name
+                        if ((Name != null) && !(Name.isEmpty()) && !Name.equalsIgnoreCase("null")) {
+                            PreferenceStorage.saveName(this, Name);
+                        }
+
+                        // User Preference - Username
+                        if ((UserName != null) && !(UserName.isEmpty()) && !UserName.equalsIgnoreCase("null")) {
+                            PreferenceStorage.saveUserName(this, UserName);
+                        }
+
+                        // User Preference - ProfilePic
+                        if ((UserPicUrl != null) && !(UserPicUrl.isEmpty()) && !UserPicUrl.equalsIgnoreCase("null")) {
+                            PreferenceStorage.saveUserPicture(this, UserPicUrl);
+                        }
+
+                        // User Preference - Usertype
+                        if ((UserType != null) && !(UserType.isEmpty()) && !UserType.equalsIgnoreCase("null")) {
+                            PreferenceStorage.saveUserType(this, UserType);
+                        }
+
+                        // User Preference - UsertypeName
+                        if ((UserTypeName != null) && !(UserTypeName.isEmpty()) && !UserTypeName.equalsIgnoreCase("null")) {
+                            PreferenceStorage.saveUserTypeName(this, UserTypeName);
+                        }
+
+                        // Forgot Password Reset Status
+                        if ((forgotPasswordStatus != null) && !(forgotPasswordStatus.isEmpty()) && !forgotPasswordStatus.equalsIgnoreCase("null")) {
+                            PreferenceStorage.saveForgotPasswordStatus(this, forgotPasswordStatus);
+                        }
 
                         JSONObject getParentData = response.getJSONObject("parentProfile");
                         JSONObject fatherData = getParentData.getJSONObject("fatherProfile");
