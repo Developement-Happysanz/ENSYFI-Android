@@ -1,4 +1,4 @@
-package com.palprotech.ensyfi.activity;
+package com.palprotech.ensyfi.activity.loginmodule;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -74,9 +74,7 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
 
         String url = PreferenceStorage.getInstituteLogoPicUrl(this);
         if ((url == null) || (url.isEmpty())) {
-           /* if ((loginMode == 1) || (loginMode == 3)) {
-                url = PreferenceStorage.getSocialNetworkProfileUrl(this);
-            } */
+
         }
         if (((url != null) && !(url.isEmpty()))) {
             Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(mProfileImage);
@@ -102,7 +100,7 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
 
                 progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
                 String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.USER_LOGIN_API;
-                serviceHelper.makeGetServiceCall(jsonObject.toString(),url);
+                serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
             }
             if (v == txtForgotPassword) {
                 Intent intent = new Intent(this, ForgotPasswordActivity.class);
@@ -173,107 +171,77 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
             longInfo(repo);
 
             try {
-                JSONArray getData = response.getJSONArray("userData");
-                JSONObject userData = getData.getJSONObject(0);
+//                JSONArray getData = response.getJSONArray("userData");
+                JSONObject userData = response.getJSONObject("userData");
                 String user_id = null;
 
-                JSONArray getStudentData = response.getJSONArray("enrollDetails");
-                JSONObject studentData = getStudentData.getJSONObject(0);
+                int userType = Integer.parseInt(userData.getString("user_type"));
 
-                try {
-//                    JSONArray json = new JSONArray(getStudentData);
-                    database.deleteLocal();
+                if (userType == 1) {
+                } else if (userType == 2) {
 
-                    for (int i = 0; i < getStudentData.length(); i++) {
-                        HashMap<String, String> map = new HashMap<String, String>();
-                        JSONObject jsonobj = getStudentData.getJSONObject(i);
+                } else if (userType == 3) {
+
+                } else {
+
+                    JSONObject getParentData = response.getJSONObject("parentProfile");
+                    JSONObject fatherData = getParentData.getJSONObject("fatherProfile");
+                    JSONObject motherData = getParentData.getJSONObject("motherProfile");
+                    JSONObject guardianData = getParentData.getJSONObject("guardianProfile");
+                    String news = "";
+                    Log.d(TAG, "userData dictionary" + userData.toString());
+                    if (userData != null) {
+                        user_id = userData.getString("user_id") + "";
+
+                        PreferenceStorage.saveUserId(this, user_id);
+
+                        Log.d(TAG, "created user id" + user_id);
+
+                        //need to re do this
+                        Log.d(TAG, "sign in response is" + response.toString());
+
+                        String Name = userData.getString("name");
+                        String UserName = userData.getString("user_name");
+                        String UserImage = userData.getString("user_pic");
+                        String UserPicUrl = PreferenceStorage.getUserDynamicAPI(this) + EnsyfiConstants.USER_IMAGE_API_PARENTS + UserImage;
+                        String UserType = userData.getString("user_type");
+                        String UserTypeName = userData.getString("user_type_name");
+                        String forgotPasswordStatus = userData.getString("password_status");
 
 
-                        System.out.println("enroll_id : " + i + " = " + jsonobj.getString("enroll_id"));
-                        System.out.println("admission_id : " + i + " = " + jsonobj.getString("admission_id"));
-                        System.out.println("admisn_no : " + i + " = " + jsonobj.getString("admisn_no"));
-                        System.out.println("class_id : " + i + " = " + jsonobj.getString("class_id"));
-                        System.out.println("name : " + i + " = " + jsonobj.getString("name"));
-                        System.out.println("class_name : " + i + " = " + jsonobj.getString("class_name"));
-                        System.out.println("sec_name : " + i + " = " + jsonobj.getString("sec_name"));
+                        String FatherPhone = fatherData.getString("home_phone");
+                        String FatherMail = fatherData.getString("email");
+                        String Address = fatherData.getString("address");
 
-                        String v1 = jsonobj.getString("enroll_id"),
-                                v2 = jsonobj.getString("admission_id"),
-                                v3 = jsonobj.getString("admisn_no"),
-                                v4 = jsonobj.getString("class_id"),
-                                v5 = jsonobj.getString("name"),
-                                v6 = jsonobj.getString("class_name"),
-                                v7 = jsonobj.getString("sec_name");
+                        // User Preference - Name
+                        if ((Name != null) && !(Name.isEmpty()) && !Name.equalsIgnoreCase("null")) {
+                            PreferenceStorage.saveName(this, Name);
+                        }
 
-                        database.student_details_insert(v1, v2, v3, v4, v5, v6, v7);
-                    }
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+                        // User Preference - Username
+                        if ((UserName != null) && !(UserName.isEmpty()) && !UserName.equalsIgnoreCase("null")) {
+                            PreferenceStorage.saveUserName(this, UserName);
+                        }
 
-                JSONArray getParentData = response.getJSONArray("parentProfile");
-                JSONObject parentData = getParentData.getJSONObject(0);
+                        // User Preference - ProfilePic
+                        if ((UserPicUrl != null) && !(UserPicUrl.isEmpty()) && !UserPicUrl.equalsIgnoreCase("null")) {
+                            PreferenceStorage.saveUserPicture(this, UserPicUrl);
+                        }
 
-                Log.d(TAG, "userData dictionary" + userData.toString());
-                if (userData != null) {
-                    user_id = userData.getString("user_id") + "";
+                        // User Preference - Usertype
+                        if ((UserType != null) && !(UserType.isEmpty()) && !UserType.equalsIgnoreCase("null")) {
+                            PreferenceStorage.saveUserType(this, UserType);
+                        }
 
-                    PreferenceStorage.saveUserId(this, user_id);
+                        // User Preference - UsertypeName
+                        if ((UserTypeName != null) && !(UserTypeName.isEmpty()) && !UserTypeName.equalsIgnoreCase("null")) {
+                            PreferenceStorage.saveUserTypeName(this, UserTypeName);
+                        }
 
-                    Log.d(TAG, "created user id" + user_id);
-
-                    //need to re do this
-                    Log.d(TAG, "sign in response is" + response.toString());
-
-                    String Name = userData.getString("name");
-                    String UserName = userData.getString("user_name");
-                    String UserImage = userData.getString("user_pic");
-                    String UserPicUrl = PreferenceStorage.getUserDynamicAPI(this) + EnsyfiConstants.USER_IMAGE_API + UserImage;
-                    String UserType = userData.getString("user_type");
-                    String UserTypeName = userData.getString("user_type_name");
-                    String forgotPasswordStatus = userData.getString("password_status");
-
-                    String StudentPreferenceEnrollId = studentData.getString("enroll_id");
-                    String StudentPreferenceAdmissionId = studentData.getString("admission_id");
-                    String StudentPreferenceAdmissionNo = studentData.getString("admisn_no");
-                    String StudentPreferenceClassId = studentData.getString("class_id");
-                    String StudentPreferenceName = studentData.getString("name");
-                    String StudentPreferenceClassName = studentData.getString("class_name");
-                    String StudentPreferenceSectionName = studentData.getString("sec_name");
-
-                    String FatherPhone = parentData.getString("home_phone");
-                    String FatherMail = parentData.getString("email");
-                    String Address = parentData.getString("address");
-
-                    // User Preference - Name
-                    if ((Name != null) && !(Name.isEmpty()) && !Name.equalsIgnoreCase("null")) {
-                        PreferenceStorage.saveName(this, Name);
-                    }
-
-                    // User Preference - Username
-                    if ((UserName != null) && !(UserName.isEmpty()) && !UserName.equalsIgnoreCase("null")) {
-                        PreferenceStorage.saveUserName(this, UserName);
-                    }
-
-                    // User Preference - ProfilePic
-                    if ((UserPicUrl != null) && !(UserPicUrl.isEmpty()) && !UserPicUrl.equalsIgnoreCase("null")) {
-                        PreferenceStorage.saveUserPicture(this, UserPicUrl);
-                    }
-
-                    // User Preference - Usertype
-                    if ((UserType != null) && !(UserType.isEmpty()) && !UserType.equalsIgnoreCase("null")) {
-                        PreferenceStorage.saveUserType(this, UserType);
-                    }
-
-                    // User Preference - UsertypeName
-                    if ((UserTypeName != null) && !(UserTypeName.isEmpty()) && !UserTypeName.equalsIgnoreCase("null")) {
-                        PreferenceStorage.saveUserTypeName(this, UserTypeName);
-                    }
-
-                    // Forgot Password Reset Status
-                    if ((forgotPasswordStatus != null) && !(forgotPasswordStatus.isEmpty()) && !forgotPasswordStatus.equalsIgnoreCase("null")) {
-                        PreferenceStorage.saveForgotPasswordStatus(this, forgotPasswordStatus);
-                    }
+                        // Forgot Password Reset Status
+                        if ((forgotPasswordStatus != null) && !(forgotPasswordStatus.isEmpty()) && !forgotPasswordStatus.equalsIgnoreCase("null")) {
+                            PreferenceStorage.saveForgotPasswordStatus(this, forgotPasswordStatus);
+                        }
 ////
 ////
 //                    // Student Preference - EnrollId
@@ -311,21 +279,65 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
 //                    }
 ////
 ////
-                    // Parents Preference - Father's Phone
-                    if ((FatherPhone != null) && !(FatherPhone.isEmpty()) && !FatherPhone.equalsIgnoreCase("null")) {
-                        PreferenceStorage.saveHomePhone(this, FatherPhone);
+                        // Parents Preference - Father's Phone
+                        if ((FatherPhone != null) && !(FatherPhone.isEmpty()) && !FatherPhone.equalsIgnoreCase("null")) {
+                            PreferenceStorage.saveHomePhone(this, FatherPhone);
+                        }
+
+                        // Parents Preference - Father's Mail
+                        if ((FatherMail != null) && !(FatherMail.isEmpty()) && !FatherMail.equalsIgnoreCase("null")) {
+                            PreferenceStorage.saveEmail(this, FatherMail);
+                        }
+
+                        // Parents Preference - Address
+                        if ((Address != null) && !(Address.isEmpty()) && !Address.equalsIgnoreCase("null")) {
+                            PreferenceStorage.saveAddress(this, Address);
+                        }
                     }
 
-                    // Parents Preference - Father's Mail
-                    if ((FatherMail != null) && !(FatherMail.isEmpty()) && !FatherMail.equalsIgnoreCase("null")) {
-                        PreferenceStorage.saveEmail(this, FatherMail);
+                    JSONArray getStudentData = response.getJSONArray("registeredDetails");
+                    JSONObject studentData = getStudentData.getJSONObject(0);
+
+                    try {
+//                    JSONArray json = new JSONArray(getStudentData);
+                        database.deleteLocal();
+
+                        for (int i = 0; i < getStudentData.length(); i++) {
+                            HashMap<String, String> map = new HashMap<String, String>();
+                            JSONObject jsonobj = getStudentData.getJSONObject(i);
+
+
+                            System.out.println("enroll_id : " + i + " = " + jsonobj.getString("enroll_id"));
+                            System.out.println("admission_id : " + i + " = " + jsonobj.getString("admission_id"));
+                            System.out.println("admisn_no : " + i + " = " + jsonobj.getString("admisn_no"));
+                            System.out.println("class_id : " + i + " = " + jsonobj.getString("class_id"));
+                            System.out.println("name : " + i + " = " + jsonobj.getString("name"));
+                            System.out.println("class_name : " + i + " = " + jsonobj.getString("class_name"));
+                            System.out.println("sec_name : " + i + " = " + jsonobj.getString("sec_name"));
+
+                            String v1 = jsonobj.getString("enroll_id"),
+                                    v2 = jsonobj.getString("admission_id"),
+                                    v3 = jsonobj.getString("admisn_no"),
+                                    v4 = jsonobj.getString("class_id"),
+                                    v5 = jsonobj.getString("name"),
+                                    v6 = jsonobj.getString("class_name"),
+                                    v7 = jsonobj.getString("sec_name");
+
+                            database.student_details_insert(v1, v2, v3, v4, v5, v6, v7);
+                        }
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
                     }
 
-                    // Parents Preference - Address
-                    if ((Address != null) && !(Address.isEmpty()) && !Address.equalsIgnoreCase("null")) {
-                        PreferenceStorage.saveAddress(this, Address);
-                    }
+                    String StudentPreferenceEnrollId = studentData.getString("enroll_id");
+                    String StudentPreferenceAdmissionId = studentData.getString("admission_id");
+                    String StudentPreferenceAdmissionNo = studentData.getString("admisn_no");
+                    String StudentPreferenceClassId = studentData.getString("class_id");
+                    String StudentPreferenceName = studentData.getString("name");
+                    String StudentPreferenceClassName = studentData.getString("class_name");
+                    String StudentPreferenceSectionName = studentData.getString("sec_name");
                 }
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }

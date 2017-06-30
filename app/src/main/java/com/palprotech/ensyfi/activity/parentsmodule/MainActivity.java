@@ -1,4 +1,4 @@
-package com.palprotech.ensyfi.activity;
+package com.palprotech.ensyfi.activity.parentsmodule;
 
 import android.content.Context;
 import android.content.Intent;
@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
+import com.palprotech.ensyfi.activity.loginmodule.SplashScreenActivity;
 import com.palprotech.ensyfi.adapter.NavDrawerAdapter;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
 import com.palprotech.ensyfi.utils.PreferenceStorage;

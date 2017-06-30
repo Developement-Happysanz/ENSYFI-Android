@@ -7,7 +7,7 @@
     android:fitsSystemWindows="true"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".activity.UserLoginActivity">
+    tools:context=".activity.loginmodule.UserLoginActivity">
 
     <include
         android:id="@+id/profile_layout"

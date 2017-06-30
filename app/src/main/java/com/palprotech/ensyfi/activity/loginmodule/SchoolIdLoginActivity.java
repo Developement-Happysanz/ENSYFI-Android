@@ -1,4 +1,4 @@
-package com.palprotech.ensyfi.activity;
+package com.palprotech.ensyfi.activity.loginmodule;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -100,14 +100,12 @@ public class SchoolIdLoginActivity extends AppCompatActivity implements View.OnC
 
                     } else {
                         signInsuccess = true;
-
                     }
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
-
         return signInsuccess;
     }
 
@@ -148,12 +146,10 @@ public class SchoolIdLoginActivity extends AppCompatActivity implements View.OnC
                     if ((userDynamicAPI != null) && !(userDynamicAPI.isEmpty()) && !userDynamicAPI.equalsIgnoreCase("null")) {
                         PreferenceStorage.saveUserDynamicAPI(this, userDynamicAPI);
                     }
-
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
 
             Intent intent = new Intent(this, UserLoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);

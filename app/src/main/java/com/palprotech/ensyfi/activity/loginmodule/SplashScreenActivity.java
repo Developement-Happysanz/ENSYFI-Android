@@ -1,4 +1,4 @@
-package com.palprotech.ensyfi.activity;
+package com.palprotech.ensyfi.activity.loginmodule;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,10 +6,16 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
+import android.webkit.WebView;
 
 import com.palprotech.ensyfi.R;
+import com.palprotech.ensyfi.activity.parentsmodule.MainActivity;
 import com.palprotech.ensyfi.utils.AppValidator;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
+
+import static com.palprotech.ensyfi.R.string.view;
 
 
 /**
@@ -18,13 +24,25 @@ import com.palprotech.ensyfi.utils.PreferenceStorage;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
-    private static int SPLASH_TIME_OUT = 2000;
+    private static int SPLASH_TIME_OUT = 3900;
     private static final String TAG = SplashScreenActivity.class.getName();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
+        WebView wView = (WebView)findViewById(R.id.web);
+        wView.loadUrl("file:///android_asset/ensyfi_logo.gif");
+        // disable scroll on touch
+        wView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return (event.getAction() == MotionEvent.ACTION_MOVE);
+            }
+        });
+
+
         new Handler().postDelayed(new Runnable() {
 
             @Override
@@ -40,13 +58,11 @@ public class SplashScreenActivity extends AppCompatActivity {
                         Intent intent = new Intent(getApplicationContext(), ResetPasswordActivity.class);
                         startActivity(intent);
                         finish();
-                    }
-                    else if (AppValidator.checkNullString(userName) && AppValidator.checkNullString(instituteName)) {
+                    } else if (AppValidator.checkNullString(userName) && AppValidator.checkNullString(instituteName)) {
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
                         finish();
-                    }
-                    else if (AppValidator.checkNullString(instituteName)) {
+                    } else if (AppValidator.checkNullString(instituteName)) {
                         Log.d(TAG, "No institute name yet, show user activity activity");
 
                         Intent intent = new Intent(getApplicationContext(), UserLoginActivity.class);
@@ -54,8 +70,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                         startActivity(intent);
                         finish();
 
-                    }
-                    else if (AppValidator.checkNullString(userName)) {
+                    } else if (AppValidator.checkNullString(userName)) {
                         Log.d(TAG, "No preferences, so launch preferences activity");
                         Intent intent = new Intent(getApplicationContext(), UserLoginActivity.class);
                         //intent.putExtra("selectedCity", userName);

@@ -2,13 +2,13 @@
 <resources>
 
     <!--App Base Colors-->
-    <color name="colorPrimary">#6a2268</color>
+    <color name="colorPrimary">#663366</color>
     <color name="colorPrimaryDark">#481747</color>
     <color name="colorAccent">#9E9E9E</color>
     <!---->
 
     <!--Support Colors-->
-    <color name="appColor">#6a2268</color>
+    <color name="appColor">#663366</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="light_font">#85f4f4f4</color>

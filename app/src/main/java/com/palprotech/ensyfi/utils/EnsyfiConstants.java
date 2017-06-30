@@ -18,7 +18,10 @@ public class EnsyfiConstants {
 
     // USERS URL
     public static final String USER_LOGIN_API = "/apimain/login/";
-    public static final String USER_IMAGE_API = "/assets/parents/profile/";
+    public static final String USER_IMAGE_API_PARENTS = "/assets/parents/profile/";
+    public static final String USER_IMAGE_API_STUDENTS = "/assets/student/profile/";
+    public static final String USER_IMAGE_API_TEACHERS = "/assets/teachers/profile/";
+    public static final String USER_IMAGE_API_ADMIN = "/assets/admin/profile/";
 
     //FORGOT PASSWORD URL
     public static final String FORGOT_PASSWORD = "/api/forgot_password/";

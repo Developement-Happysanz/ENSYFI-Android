@@ -1,4 +1,4 @@
-package com.palprotech.ensyfi.activity;
+package com.palprotech.ensyfi.activity.loginmodule;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;

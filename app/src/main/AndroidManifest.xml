@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.SplashScreenActivity"
+            android:name=".activity.loginmodule.SplashScreenActivity"
             android:theme="@style/AppFullScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,13 +27,13 @@
         <!--Login Portion-->
 
         <activity
-            android:name=".activity.SchoolIdLoginActivity"
+            android:name=".activity.loginmodule.SchoolIdLoginActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarEventDetails" />
 
         <activity
-            android:name=".activity.UserLoginActivity"
+            android:name=".activity.loginmodule.UserLoginActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarGrey" />
@@ -43,7 +43,7 @@
         <!--Dashboard-->
 
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".activity.parentsmodule.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarGrey" />
@@ -51,13 +51,13 @@
         <!--End-->
         <!---->
         <activity
-            android:name=".activity.ForgotPasswordActivity"
+            android:name=".activity.loginmodule.ForgotPasswordActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarGrey" />
 
         <activity
-            android:name=".activity.ResetPasswordActivity"
+            android:name=".activity.loginmodule.ResetPasswordActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarGrey" />
