@@ -19,12 +19,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String TAG = "SQLiteHelper.java";
 
     private static final String DATABASE_NAME = "ENSYFI.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     String table_create_student = "Create table studentInfo(_id integer primary key autoincrement,"
-            + "enroll_id text,"
+            + "registered_id text,"
             + "admission_id text,"
-            + "admisn_no text,"
+            + "admission_no text,"
             + "class_id text,"
             + "name text,"
             + "class_name text,"
@@ -54,9 +54,9 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public long student_details_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues initialValues = new ContentValues();
-        initialValues.put("enroll_id", val1);
+        initialValues.put("registered_id", val1);
         initialValues.put("admission_id", val2);
-        initialValues.put("admisn_no", val3);
+        initialValues.put("admission_no", val3);
         initialValues.put("class_id", val4);
         initialValues.put("name", val5);
         initialValues.put("class_name", val6);
@@ -68,7 +68,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     public Cursor selectStudent() throws SQLException {
         SQLiteDatabase db = this.getWritableDatabase();
-        String fetch = "Select enroll_id,admission_id,admisn_no,class_id,name,class_name,sec_name from studentInfo order by name;";
+        String fetch = "Select registered_id,admission_id,admission_no,class_id,name,class_name,sec_name from studentInfo order by name;";
         Cursor c = db.rawQuery(fetch, null);
         if (c != null) {
             c.moveToFirst();
@@ -78,7 +78,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     public Cursor selectStudentDtls(String studentname) throws SQLException {
         SQLiteDatabase db = this.getWritableDatabase();
-        String fetch = "Select enroll_id,admission_id,admisn_no,class_id,name,class_name,sec_name from studentInfo where name ='"
+        String fetch = "Select registered_id,admission_id,admission_no,class_id,name,class_name,sec_name from studentInfo where name ='"
                 + studentname + "';";
         Cursor c = db.rawQuery(fetch, null);
         if (c != null) {

@@ -67,6 +67,7 @@ public class StudentInfoActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
 
@@ -76,7 +77,7 @@ public class StudentInfoActivity extends AppCompatActivity {
                 //
                 // Student Preference - EnrollId
                 if ((StudentId != null) && !(StudentId.isEmpty()) && !StudentId.equalsIgnoreCase("null")) {
-                    PreferenceStorage.saveStudentEnrollIdPreference(getApplicationContext(), StudentId);
+                    PreferenceStorage.saveStudentRegisteredIdPreference(getApplicationContext(), StudentId);
                 }
                 // Student Preference - AdmissionId
                 if ((AdmissionId != null) && !(AdmissionId.isEmpty()) && !AdmissionId.equalsIgnoreCase("null")) {
@@ -115,7 +116,6 @@ public class StudentInfoActivity extends AppCompatActivity {
                 finish();
             }
         });
-
     }
 
     private void GetStudentDetails(String studentname) {

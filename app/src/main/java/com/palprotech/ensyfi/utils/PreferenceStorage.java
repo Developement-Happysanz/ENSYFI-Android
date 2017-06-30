@@ -192,7 +192,7 @@ public class PreferenceStorage {
 
     // Student Preference Data
     // Get Student Enroll Id
-    public static void saveStudentEnrollIdPreference(Context context, String studentPrefEnrollID) {
+    public static void saveStudentRegisteredIdPreference(Context context, String studentPrefEnrollID) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -200,7 +200,7 @@ public class PreferenceStorage {
         editor.commit();
     }
 
-    public static String getStudentEnrollIdPreference(Context context) {
+    public static String getStudentRegistereddPreference(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
         String studentPrefEnrollID = sharedPreferences.getString(EnsyfiConstants.KEY_STUDENT_ENROLL_ID_PREFERENCES, "");

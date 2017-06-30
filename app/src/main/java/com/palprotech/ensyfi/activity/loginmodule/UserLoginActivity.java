@@ -240,15 +240,6 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     String GuardianRelationship = "";
                     String GuardianPic = "";
 
-                    //Student Detail
-                    String StudentPreferenceEnrollId = "";
-                    String StudentPreferenceAdmissionId = "";
-                    String StudentPreferenceAdmissionNo = "";
-                    String StudentPreferenceClassId = "";
-                    String StudentPreferenceName = "";
-                    String StudentPreferenceClassName = "";
-                    String StudentPreferenceSectionName = "";
-
                     JSONObject getParentData = response.getJSONObject("parentProfile");
                     JSONObject fatherData = getParentData.getJSONObject("fatherProfile");
                     JSONObject motherData = getParentData.getJSONObject("motherProfile");
@@ -256,7 +247,7 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
 
                     FatherPhone = fatherData.getString("home_phone");
                     FatherMail = fatherData.getString("email");
-                    FatherAddress = fatherData.getString("address");
+                    FatherAddress = fatherData.getString("home_address");
 
                     // Parents Preference - Father's Phone
                     if ((FatherPhone != null) && !(FatherPhone.isEmpty()) && !FatherPhone.equalsIgnoreCase("null")) {
@@ -284,17 +275,17 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                             JSONObject jsonobj = getStudentData.getJSONObject(i);
 
 
-                            System.out.println("enroll_id : " + i + " = " + jsonobj.getString("enroll_id"));
+                            System.out.println("registered_id : " + i + " = " + jsonobj.getString("registered_id"));
                             System.out.println("admission_id : " + i + " = " + jsonobj.getString("admission_id"));
-                            System.out.println("admisn_no : " + i + " = " + jsonobj.getString("admisn_no"));
+                            System.out.println("admission_no : " + i + " = " + jsonobj.getString("admission_no"));
                             System.out.println("class_id : " + i + " = " + jsonobj.getString("class_id"));
                             System.out.println("name : " + i + " = " + jsonobj.getString("name"));
                             System.out.println("class_name : " + i + " = " + jsonobj.getString("class_name"));
                             System.out.println("sec_name : " + i + " = " + jsonobj.getString("sec_name"));
 
-                            String v1 = jsonobj.getString("enroll_id"),
+                            String v1 = jsonobj.getString("registered_id"),
                                     v2 = jsonobj.getString("admission_id"),
-                                    v3 = jsonobj.getString("admisn_no"),
+                                    v3 = jsonobj.getString("admission_no"),
                                     v4 = jsonobj.getString("class_id"),
                                     v5 = jsonobj.getString("name"),
                                     v6 = jsonobj.getString("class_name"),
@@ -305,52 +296,6 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
-
-                    StudentPreferenceEnrollId = studentData.getString("enroll_id");
-                    StudentPreferenceAdmissionId = studentData.getString("admission_id");
-                    StudentPreferenceAdmissionNo = studentData.getString("admisn_no");
-                    StudentPreferenceClassId = studentData.getString("class_id");
-                    StudentPreferenceName = studentData.getString("name");
-                    StudentPreferenceClassName = studentData.getString("class_name");
-                    StudentPreferenceSectionName = studentData.getString("sec_name");
-
-                    ////
-////
-//                    // Student Preference - EnrollId
-//                    if ((StudentPreferenceEnrollId != null) && !(StudentPreferenceEnrollId.isEmpty()) && !StudentPreferenceEnrollId.equalsIgnoreCase("null")) {
-//                        PreferenceStorage.saveStudentEnrollIdPreference(this, StudentPreferenceEnrollId);
-//                    }
-//                    // Student Preference - AdmissionId
-//                    if ((StudentPreferenceAdmissionId != null) && !(StudentPreferenceAdmissionId.isEmpty()) && !StudentPreferenceAdmissionId.equalsIgnoreCase("null")) {
-//                        PreferenceStorage.saveStudentAdmissionIdPreference(this, StudentPreferenceAdmissionId);
-//                    }
-//
-//                    // Student Preference - AdmissionNo
-//                    if ((StudentPreferenceAdmissionNo != null) && !(StudentPreferenceAdmissionNo.isEmpty()) && !StudentPreferenceAdmissionNo.equalsIgnoreCase("null")) {
-//                        PreferenceStorage.saveStudentAdmissionNoPreference(this, StudentPreferenceAdmissionNo);
-//                    }
-//
-//                    // Student Preference - ClassId
-//                    if ((StudentPreferenceClassId != null) && !(StudentPreferenceClassId.isEmpty()) && !StudentPreferenceClassId.equalsIgnoreCase("null")) {
-//                        PreferenceStorage.saveStudentClassIdPreference(this, StudentPreferenceClassId);
-//                    }
-//
-//                    // Student Preference - Name
-//                    if ((StudentPreferenceName != null) && !(StudentPreferenceName.isEmpty()) && !StudentPreferenceName.equalsIgnoreCase("null")) {
-//                        PreferenceStorage.saveStudentNamePreference(this, StudentPreferenceName);
-//                    }
-//
-//                    // Student Preference - ClassName
-//                    if ((StudentPreferenceClassName != null) && !(StudentPreferenceClassName.isEmpty()) && !StudentPreferenceClassName.equalsIgnoreCase("null")) {
-//                        PreferenceStorage.saveStudentClassNamePreference(this, StudentPreferenceClassName);
-//                    }
-//
-//                    // Student Preference - SectionName
-//                    if ((StudentPreferenceSectionName != null) && !(StudentPreferenceSectionName.isEmpty()) && !StudentPreferenceSectionName.equalsIgnoreCase("null")) {
-//                        PreferenceStorage.saveStudentSectionNamePreference(this, StudentPreferenceSectionName);
-//                    }
-////
-////
                 }
 
             } catch (JSONException e) {
@@ -374,9 +319,10 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
+    // Globally save userData using this method
     private void saveUserData(JSONObject userData) {
         Log.d(TAG, "userData dictionary" + userData.toString());
-        //User Data
+        //User Data variables
         String Name = "";
         String UserName = "";
         String UserImage = "";
@@ -384,6 +330,7 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
         String UserType = "";
         String UserTypeName = "";
         String forgotPasswordStatus = "";
+
         try {
             String user_id = null;
             if (userData != null) {
@@ -396,24 +343,24 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                 //need to re do this
 //                Log.d(TAG, "sign in response is" + response.toString());
 
-                Name = userData.getString("name");
-                UserName = userData.getString("user_name");
-                UserImage = userData.getString("user_pic");
-                int userType = Integer.parseInt(userData.getString("user_type"));
+                Name = userData.getString("name"); //Get user's name
+                UserName = userData.getString("user_name"); //Get userName
+                UserImage = userData.getString("user_pic"); //Get user image
+                int userType = Integer.parseInt(userData.getString("user_type")); //Get userType for generate user image url
                 String imageURL = "";
                 if (userType == 1) {
-                    imageURL = EnsyfiConstants.USER_IMAGE_API_ADMIN;
+                    imageURL = EnsyfiConstants.USER_IMAGE_API_ADMIN; // Admin user image url
                 } else if (userType == 2) {
-                    imageURL = EnsyfiConstants.USER_IMAGE_API_TEACHERS;
+                    imageURL = EnsyfiConstants.USER_IMAGE_API_TEACHERS; // Teacher user image url
                 } else if (userType == 3) {
-                    imageURL = EnsyfiConstants.USER_IMAGE_API_STUDENTS;
+                    imageURL = EnsyfiConstants.USER_IMAGE_API_STUDENTS; // Student user image url
                 } else {
-                    imageURL = EnsyfiConstants.USER_IMAGE_API_PARENTS;
+                    imageURL = EnsyfiConstants.USER_IMAGE_API_PARENTS; // Parents user image url
                 }
-                UserPicUrl = PreferenceStorage.getUserDynamicAPI(this) + imageURL + UserImage;
-                UserType = userData.getString("user_type");
-                UserTypeName = userData.getString("user_type_name");
-                forgotPasswordStatus = userData.getString("password_status");
+                UserPicUrl = PreferenceStorage.getUserDynamicAPI(this) + imageURL + UserImage; // Generate user image url
+                UserType = userData.getString("user_type"); // Get userType
+                UserTypeName = userData.getString("user_type_name"); // Get userTypeName
+                forgotPasswordStatus = userData.getString("password_status"); // Get password status
 
                 // User Preference - Name
                 if ((Name != null) && !(Name.isEmpty()) && !Name.equalsIgnoreCase("null")) {
