@@ -66,6 +66,25 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         return l;
     }
 
+    public long student_info_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7,
+                                    String val8, String val9, String val10, String val11, String val12, String val13, String val14,
+                                    String val15, String val16, String val17, String val18, String val19, String val20, String val21,
+                                    String val22, String val23, String val24, String val25, String val26, String val27, String val28,
+                                    String val29, String val30, String val31) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues initialValues = new ContentValues();
+        initialValues.put("registered_id", val1);
+        initialValues.put("admission_id", val2);
+        initialValues.put("admission_no", val3);
+        initialValues.put("class_id", val4);
+        initialValues.put("name", val5);
+        initialValues.put("class_name", val6);
+        initialValues.put("sec_name", val7);
+        long l = db.insert("studentInfo", null, initialValues);
+        db.close();
+        return l;
+    }
+
     public Cursor selectStudent() throws SQLException {
         SQLiteDatabase db = this.getWritableDatabase();
         String fetch = "Select registered_id,admission_id,admission_no,class_id,name,class_name,sec_name from studentInfo order by name;";

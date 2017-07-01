@@ -195,20 +195,11 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     saveUserData(userData);
                 } else if (userType == 3) {
                     saveUserData(userData);
-                    JSONObject getStudentData = response.getJSONObject("studentProfile");
-                    JSONObject getParentData = response.getJSONObject("parentProfile");
-                    JSONObject fatherData = getParentData.getJSONObject("fatherProfile");
-                    JSONObject motherData = getParentData.getJSONObject("motherProfile");
-                    JSONObject guardianData = getParentData.getJSONObject("guardianProfile");
-
-
-                } else {
-                    saveUserData(userData);
-
+                    JSONObject getStudentInfo = response.getJSONObject("studentProfile");
+                    JSONObject getStudentProfile = getStudentInfo.getJSONObject("0");
                     //Father Details
                     String FatherId = "";
                     String FatherName = "";
-                    String FatherPhone = "";
                     String FatherAddress = "";
                     String FatherMail = "";
                     String FatherOccupation = "";
@@ -222,7 +213,6 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     //Mother Details
                     String MotherId = "";
                     String MotherName = "";
-                    String MotherPhone = "";
                     String MotherAddress = "";
                     String MotherMail = "";
                     String MotherOccupation = "";
@@ -236,7 +226,6 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     //Guardian Details
                     String GuardianId = "";
                     String GuardianName = "";
-                    String GuardianPhone = "";
                     String GuardianAddress = "";
                     String GuardianMail = "";
                     String GuardianOccupation = "";
@@ -254,16 +243,17 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
 
                     FatherId = fatherData.getString("id");
                     FatherName = fatherData.getString("name");
-                    FatherPhone = fatherData.getString("home_phone");
+                    FatherHomePhone = fatherData.getString("home_phone");
                     FatherMail = fatherData.getString("email");
                     FatherAddress = fatherData.getString("home_address");
                     FatherOccupation = fatherData.getString("occupation");
                     FatherIncome = fatherData.getString("income");
                     FatherMobile = fatherData.getString("mobile");
-                    FatherHomePhone = fatherData.getString("home_phone");
                     FatherOfficePhone = fatherData.getString("office_phone");
                     FatherRelationship = fatherData.getString("relationship");
                     FatherPic = fatherData.getString("user_pic");
+
+                    ///////////     FATHER      //////////
 
                     // Parents Preference - Father's Id
                     if ((FatherId != null) && !(FatherId.isEmpty()) && !FatherId.equalsIgnoreCase("null")) {
@@ -273,11 +263,6 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     // Parents Preference - Father's Name
                     if ((FatherName != null) && !(FatherName.isEmpty()) && !FatherName.equalsIgnoreCase("null")) {
                         PreferenceStorage.saveFatherName(this, FatherAddress);
-                    }
-
-                    // Parents Preference - Father's Phone
-                    if ((FatherPhone != null) && !(FatherPhone.isEmpty()) && !FatherPhone.equalsIgnoreCase("null")) {
-                        PreferenceStorage.saveFatherHomePhone(this, FatherPhone);
                     }
 
                     // Parents Preference - Father's Mail
@@ -298,6 +283,448 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     // Parents Preference - Father's Income
                     if ((FatherIncome != null) && !(FatherIncome.isEmpty()) && !FatherIncome.equalsIgnoreCase("null")) {
                         PreferenceStorage.saveFatherIncome(this, FatherIncome);
+                    }
+
+                    // Parents Preference - Father's Home Phone
+                    if ((FatherHomePhone != null) && !(FatherHomePhone.isEmpty()) && !FatherHomePhone.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveFatherHomePhone(this, FatherHomePhone);
+                    }
+
+                    // Parents Preference - Father's Mobile
+                    if ((FatherMobile != null) && !(FatherMobile.isEmpty()) && !FatherMobile.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveFatherMobile(this, FatherMobile);
+                    }
+
+                    // Parents Preference - Father's Office Phone
+                    if ((FatherOfficePhone != null) && !(FatherOfficePhone.isEmpty()) && !FatherOfficePhone.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveFatherOfficePhone(this, FatherOfficePhone);
+                    }
+
+                    // Parents Preference - Father's Relationship
+                    if ((FatherRelationship!= null) && !(FatherRelationship.isEmpty()) && !FatherRelationship.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveFatherRelationship(this, FatherRelationship);
+                    }
+
+                    // Parents Preference - Father's Pic
+                    if ((FatherPic!= null) && !(FatherPic.isEmpty()) && !FatherPic.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveFatherImg(this, FatherPic);
+                    }
+
+                    ///////////     MOTHER      //////////
+
+                    MotherId = motherData.getString("id");
+                    MotherName = motherData.getString("name");
+                    MotherHomePhone = motherData.getString("home_phone");
+                    MotherMail = motherData.getString("email");
+                    MotherAddress = motherData.getString("home_address");
+                    MotherOccupation = motherData.getString("occupation");
+                    MotherIncome = motherData.getString("income");
+                    MotherMobile = motherData.getString("mobile");
+                    MotherOfficePhone = motherData.getString("office_phone");
+                    MotherRelationship = motherData.getString("relationship");
+                    MotherPic = motherData.getString("user_pic");
+
+
+                    // Parents Preference - Mother's Id
+                    if ((MotherId != null) && !(MotherId.isEmpty()) && !MotherId.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveMotherID(this, MotherId);
+                    }
+
+                    // Parents Preference - Mother's Name
+                    if ((MotherName != null) && !(MotherName.isEmpty()) && !MotherName.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveMotherName(this, MotherName);
+                    }
+
+                    // Parents Preference - Mother's Phone
+                    if ((MotherHomePhone != null) && !(MotherHomePhone.isEmpty()) && !MotherHomePhone.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveMotherHomePhone(this, MotherHomePhone);
+                    }
+
+                    // Parents Preference - Mother's Mail
+                    if ((MotherMail != null) && !(MotherMail.isEmpty()) && !MotherMail.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveMotherEmail(this, MotherMail);
+                    }
+
+                    // Parents Preference - Address
+                    if ((MotherAddress != null) && !(MotherAddress.isEmpty()) && !MotherAddress.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveMotherAddress(this, MotherAddress);
+                    }
+
+                    // Parents Preference - Mother's Occupation
+                    if ((MotherOccupation != null) && !(MotherOccupation.isEmpty()) && !MotherOccupation.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveFatherOccupation(this, MotherOccupation);
+                    }
+
+                    // Parents Preference - Mother's Income
+                    if ((MotherIncome != null) && !(MotherIncome.isEmpty()) && !MotherIncome.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveMotherIncome(this, MotherIncome);
+                    }
+
+                    // Parents Preference - Mother's Home Phone
+                    if ((MotherHomePhone != null) && !(MotherHomePhone.isEmpty()) && !MotherHomePhone.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveMotherHomePhone(this, MotherHomePhone);
+                    }
+
+                    // Parents Preference - Mother's Mobile
+                    if ((MotherMobile != null) && !(MotherMobile.isEmpty()) && !MotherMobile.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveMotherMobile(this, MotherMobile);
+                    }
+
+                    // Parents Preference - Mother's Office Phone
+                    if ((MotherOfficePhone != null) && !(MotherOfficePhone.isEmpty()) && !MotherOfficePhone.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveMotherOfficePhone(this, MotherOfficePhone);
+                    }
+
+                    // Parents Preference - Mother's Relationship
+                    if ((MotherRelationship!= null) && !(MotherRelationship.isEmpty()) && !MotherRelationship.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveMotherRelationship(this, MotherRelationship);
+                    }
+
+                    // Parents Preference - Mother's Pic
+                    if ((MotherPic!= null) && !(MotherPic.isEmpty()) && !MotherPic.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveMotherImg(this, MotherPic);
+                    }
+
+                    ///////////     GUARDIAN      //////////
+
+                    GuardianId = guardianData.getString("id");
+                    GuardianName = guardianData.getString("name");
+                    GuardianHomePhone = guardianData.getString("home_phone");
+                    GuardianMail = guardianData.getString("email");
+                    GuardianAddress = guardianData.getString("home_address");
+                    GuardianOccupation = guardianData.getString("occupation");
+                    GuardianIncome = guardianData.getString("income");
+                    GuardianMobile = guardianData.getString("mobile");
+                    GuardianOfficePhone = guardianData.getString("office_phone");
+                    GuardianRelationship = guardianData.getString("relationship");
+                    GuardianPic = guardianData.getString("user_pic");
+
+
+                    // Parents Preference - Guardian's Id
+                    if ((GuardianId != null) && !(GuardianId.isEmpty()) && !GuardianId.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveGuardianID(this, GuardianId);
+                    }
+
+                    // Parents Preference - Guardian's Name
+                    if ((GuardianName != null) && !(GuardianName.isEmpty()) && !GuardianName.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveGuardianName(this, GuardianName);
+                    }
+
+                    // Parents Preference - Guardian's Phone
+                    if ((GuardianHomePhone != null) && !(GuardianHomePhone.isEmpty()) && !GuardianHomePhone.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveGuardianHomePhone(this, GuardianHomePhone);
+                    }
+
+                    // Parents Preference - Guardian's Mail
+                    if ((GuardianMail != null) && !(GuardianMail.isEmpty()) && !GuardianMail.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveGuardianEmail(this, GuardianMail);
+                    }
+
+                    // Parents Preference - Address
+                    if ((GuardianAddress != null) && !(GuardianAddress.isEmpty()) && !GuardianAddress.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveGuardianAddress(this, GuardianAddress);
+                    }
+
+                    // Parents Preference - Guardian's Occupation
+                    if ((GuardianOccupation != null) && !(GuardianOccupation.isEmpty()) && !GuardianOccupation.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveGuardianOccupation(this, GuardianOccupation);
+                    }
+
+                    // Parents Preference - Guardian's Income
+                    if ((GuardianIncome != null) && !(GuardianIncome.isEmpty()) && !GuardianIncome.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveGuardianIncome(this, GuardianIncome);
+                    }
+
+                    // Parents Preference - Guardian's Home Phone
+                    if ((GuardianHomePhone != null) && !(GuardianHomePhone.isEmpty()) && !GuardianHomePhone.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveGuardianHomePhone(this, GuardianHomePhone);
+                    }
+
+                    // Parents Preference - Guardian's Mobile
+                    if ((GuardianMobile != null) && !(GuardianMobile.isEmpty()) && !GuardianMobile.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveGuardianMobile(this, GuardianMobile);
+                    }
+
+                    // Parents Preference - Guardian's Office Phone
+                    if ((GuardianOfficePhone != null) && !(GuardianOfficePhone.isEmpty()) && !GuardianOfficePhone.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveGuardianOfficePhone(this, GuardianOfficePhone);
+                    }
+
+                    // Parents Preference - Guardian's Relationship
+                    if ((GuardianRelationship!= null) && !(GuardianRelationship.isEmpty()) && !GuardianRelationship.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveGuardianRelationship(this, GuardianRelationship);
+                    }
+
+                    // Parents Preference - Guardian's Pic
+                    if ((GuardianPic!= null) && !(GuardianPic.isEmpty()) && !GuardianPic.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveGuardianImg(this, GuardianPic);
+                    }
+
+
+                } else {
+                    saveUserData(userData);
+
+                    //Father Details
+                    String FatherId = "";
+                    String FatherName = "";
+                    String FatherAddress = "";
+                    String FatherMail = "";
+                    String FatherOccupation = "";
+                    String FatherIncome = "";
+                    String FatherMobile = "";
+                    String FatherHomePhone = "";
+                    String FatherOfficePhone = "";
+                    String FatherRelationship = "";
+                    String FatherPic = "";
+
+                    //Mother Details
+                    String MotherId = "";
+                    String MotherName = "";
+                    String MotherAddress = "";
+                    String MotherMail = "";
+                    String MotherOccupation = "";
+                    String MotherIncome = "";
+                    String MotherMobile = "";
+                    String MotherHomePhone = "";
+                    String MotherOfficePhone = "";
+                    String MotherRelationship = "";
+                    String MotherPic = "";
+
+                    //Guardian Details
+                    String GuardianId = "";
+                    String GuardianName = "";
+                    String GuardianAddress = "";
+                    String GuardianMail = "";
+                    String GuardianOccupation = "";
+                    String GuardianIncome = "";
+                    String GuardianMobile = "";
+                    String GuardianHomePhone = "";
+                    String GuardianOfficePhone = "";
+                    String GuardianRelationship = "";
+                    String GuardianPic = "";
+
+                    JSONObject getParentData = response.getJSONObject("parentProfile");
+                    JSONObject fatherData = getParentData.getJSONObject("fatherProfile");
+                    JSONObject motherData = getParentData.getJSONObject("motherProfile");
+                    JSONObject guardianData = getParentData.getJSONObject("guardianProfile");
+
+                    FatherId = fatherData.getString("id");
+                    FatherName = fatherData.getString("name");
+                    FatherHomePhone = fatherData.getString("home_phone");
+                    FatherMail = fatherData.getString("email");
+                    FatherAddress = fatherData.getString("home_address");
+                    FatherOccupation = fatherData.getString("occupation");
+                    FatherIncome = fatherData.getString("income");
+                    FatherMobile = fatherData.getString("mobile");
+                    FatherOfficePhone = fatherData.getString("office_phone");
+                    FatherRelationship = fatherData.getString("relationship");
+                    FatherPic = fatherData.getString("user_pic");
+
+                    ///////////     FATHER      //////////
+
+                    // Parents Preference - Father's Id
+                    if ((FatherId != null) && !(FatherId.isEmpty()) && !FatherId.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveFatherID(this, FatherId);
+                    }
+
+                    // Parents Preference - Father's Name
+                    if ((FatherName != null) && !(FatherName.isEmpty()) && !FatherName.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveFatherName(this, FatherAddress);
+                    }
+
+                    // Parents Preference - Father's Mail
+                    if ((FatherMail != null) && !(FatherMail.isEmpty()) && !FatherMail.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveFatherEmail(this, FatherMail);
+                    }
+
+                    // Parents Preference - Address
+                    if ((FatherAddress != null) && !(FatherAddress.isEmpty()) && !FatherAddress.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveFatherAddress(this, FatherAddress);
+                    }
+
+                    // Parents Preference - Father's Occupation
+                    if ((FatherOccupation != null) && !(FatherOccupation.isEmpty()) && !FatherOccupation.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveFatherOccupation(this, FatherOccupation);
+                    }
+
+                    // Parents Preference - Father's Income
+                    if ((FatherIncome != null) && !(FatherIncome.isEmpty()) && !FatherIncome.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveFatherIncome(this, FatherIncome);
+                    }
+
+                    // Parents Preference - Father's Home Phone
+                    if ((FatherHomePhone != null) && !(FatherHomePhone.isEmpty()) && !FatherHomePhone.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveFatherHomePhone(this, FatherHomePhone);
+                    }
+
+                    // Parents Preference - Father's Mobile
+                    if ((FatherMobile != null) && !(FatherMobile.isEmpty()) && !FatherMobile.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveFatherMobile(this, FatherMobile);
+                    }
+
+                    // Parents Preference - Father's Office Phone
+                    if ((FatherOfficePhone != null) && !(FatherOfficePhone.isEmpty()) && !FatherOfficePhone.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveFatherOfficePhone(this, FatherOfficePhone);
+                    }
+
+                    // Parents Preference - Father's Relationship
+                    if ((FatherRelationship!= null) && !(FatherRelationship.isEmpty()) && !FatherRelationship.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveFatherRelationship(this, FatherRelationship);
+                    }
+
+                    // Parents Preference - Father's Pic
+                    if ((FatherPic!= null) && !(FatherPic.isEmpty()) && !FatherPic.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveFatherImg(this, FatherPic);
+                    }
+
+                    ///////////     MOTHER      //////////
+
+                    MotherId = motherData.getString("id");
+                    MotherName = motherData.getString("name");
+                    MotherHomePhone = motherData.getString("home_phone");
+                    MotherMail = motherData.getString("email");
+                    MotherAddress = motherData.getString("home_address");
+                    MotherOccupation = motherData.getString("occupation");
+                    MotherIncome = motherData.getString("income");
+                    MotherMobile = motherData.getString("mobile");
+                    MotherOfficePhone = motherData.getString("office_phone");
+                    MotherRelationship = motherData.getString("relationship");
+                    MotherPic = motherData.getString("user_pic");
+
+
+                    // Parents Preference - Mother's Id
+                    if ((MotherId != null) && !(MotherId.isEmpty()) && !MotherId.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveMotherID(this, MotherId);
+                    }
+
+                    // Parents Preference - Mother's Name
+                    if ((MotherName != null) && !(MotherName.isEmpty()) && !MotherName.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveMotherName(this, MotherName);
+                    }
+
+                    // Parents Preference - Mother's Phone
+                    if ((MotherHomePhone != null) && !(MotherHomePhone.isEmpty()) && !MotherHomePhone.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveMotherHomePhone(this, MotherHomePhone);
+                    }
+
+                    // Parents Preference - Mother's Mail
+                    if ((MotherMail != null) && !(MotherMail.isEmpty()) && !MotherMail.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveMotherEmail(this, MotherMail);
+                    }
+
+                    // Parents Preference - Address
+                    if ((MotherAddress != null) && !(MotherAddress.isEmpty()) && !MotherAddress.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveMotherAddress(this, MotherAddress);
+                    }
+
+                    // Parents Preference - Mother's Occupation
+                    if ((MotherOccupation != null) && !(MotherOccupation.isEmpty()) && !MotherOccupation.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveFatherOccupation(this, MotherOccupation);
+                    }
+
+                    // Parents Preference - Mother's Income
+                    if ((MotherIncome != null) && !(MotherIncome.isEmpty()) && !MotherIncome.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveMotherIncome(this, MotherIncome);
+                    }
+
+                    // Parents Preference - Mother's Home Phone
+                    if ((MotherHomePhone != null) && !(MotherHomePhone.isEmpty()) && !MotherHomePhone.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveMotherHomePhone(this, MotherHomePhone);
+                    }
+
+                    // Parents Preference - Mother's Mobile
+                    if ((MotherMobile != null) && !(MotherMobile.isEmpty()) && !MotherMobile.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveMotherMobile(this, MotherMobile);
+                    }
+
+                    // Parents Preference - Mother's Office Phone
+                    if ((MotherOfficePhone != null) && !(MotherOfficePhone.isEmpty()) && !MotherOfficePhone.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveMotherOfficePhone(this, MotherOfficePhone);
+                    }
+
+                    // Parents Preference - Mother's Relationship
+                    if ((MotherRelationship!= null) && !(MotherRelationship.isEmpty()) && !MotherRelationship.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveMotherRelationship(this, MotherRelationship);
+                    }
+
+                    // Parents Preference - Mother's Pic
+                    if ((MotherPic!= null) && !(MotherPic.isEmpty()) && !MotherPic.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveMotherImg(this, MotherPic);
+                    }
+
+                    ///////////     GUARDIAN      //////////
+
+                    GuardianId = guardianData.getString("id");
+                    GuardianName = guardianData.getString("name");
+                    GuardianHomePhone = guardianData.getString("home_phone");
+                    GuardianMail = guardianData.getString("email");
+                    GuardianAddress = guardianData.getString("home_address");
+                    GuardianOccupation = guardianData.getString("occupation");
+                    GuardianIncome = guardianData.getString("income");
+                    GuardianMobile = guardianData.getString("mobile");
+                    GuardianOfficePhone = guardianData.getString("office_phone");
+                    GuardianRelationship = guardianData.getString("relationship");
+                    GuardianPic = guardianData.getString("user_pic");
+
+
+                    // Parents Preference - Guardian's Id
+                    if ((GuardianId != null) && !(GuardianId.isEmpty()) && !GuardianId.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveGuardianID(this, GuardianId);
+                    }
+
+                    // Parents Preference - Guardian's Name
+                    if ((GuardianName != null) && !(GuardianName.isEmpty()) && !GuardianName.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveGuardianName(this, GuardianName);
+                    }
+
+                    // Parents Preference - Guardian's Phone
+                    if ((GuardianHomePhone != null) && !(GuardianHomePhone.isEmpty()) && !GuardianHomePhone.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveGuardianHomePhone(this, GuardianHomePhone);
+                    }
+
+                    // Parents Preference - Guardian's Mail
+                    if ((GuardianMail != null) && !(GuardianMail.isEmpty()) && !GuardianMail.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveGuardianEmail(this, GuardianMail);
+                    }
+
+                    // Parents Preference - Address
+                    if ((GuardianAddress != null) && !(GuardianAddress.isEmpty()) && !GuardianAddress.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveGuardianAddress(this, GuardianAddress);
+                    }
+
+                    // Parents Preference - Guardian's Occupation
+                    if ((GuardianOccupation != null) && !(GuardianOccupation.isEmpty()) && !GuardianOccupation.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveGuardianOccupation(this, GuardianOccupation);
+                    }
+
+                    // Parents Preference - Guardian's Income
+                    if ((GuardianIncome != null) && !(GuardianIncome.isEmpty()) && !GuardianIncome.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveGuardianIncome(this, GuardianIncome);
+                    }
+
+                    // Parents Preference - Guardian's Home Phone
+                    if ((GuardianHomePhone != null) && !(GuardianHomePhone.isEmpty()) && !GuardianHomePhone.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveGuardianHomePhone(this, GuardianHomePhone);
+                    }
+
+                    // Parents Preference - Guardian's Mobile
+                    if ((GuardianMobile != null) && !(GuardianMobile.isEmpty()) && !GuardianMobile.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveGuardianMobile(this, GuardianMobile);
+                    }
+
+                    // Parents Preference - Guardian's Office Phone
+                    if ((GuardianOfficePhone != null) && !(GuardianOfficePhone.isEmpty()) && !GuardianOfficePhone.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveGuardianOfficePhone(this, GuardianOfficePhone);
+                    }
+
+                    // Parents Preference - Guardian's Relationship
+                    if ((GuardianRelationship!= null) && !(GuardianRelationship.isEmpty()) && !GuardianRelationship.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveGuardianRelationship(this, GuardianRelationship);
+                    }
+
+                    // Parents Preference - Guardian's Pic
+                    if ((GuardianPic!= null) && !(GuardianPic.isEmpty()) && !GuardianPic.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveGuardianImg(this, GuardianPic);
                     }
 
                     JSONArray getStudentData = response.getJSONArray("registeredDetails");

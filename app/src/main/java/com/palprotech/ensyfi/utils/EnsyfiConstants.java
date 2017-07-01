@@ -111,6 +111,39 @@ public class EnsyfiConstants {
 
 
     //User Profile details
+
+    //Student Details
+    public static final String STUDENT_ADMISSION_ID = "admission_id";
+    public static final String STUDENT_ADMISSION_YEAR = "admisn_year";
+    public static final String STUDENT_ADMISSION_NUMBER = "admisn_no";
+    public static final String STUDENT_EMSI_NUMBER = "emsi_num";
+    public static final String STUDENT_ADMISSION_DATE = "admisn_date";
+    public static final String STUDENT_NAME = "name";
+    public static final String STUDENT_GENDER = "sex";
+    public static final String STUDENT_DATE_OF_BIRTH = "dob";
+    public static final String STUDENT_AGE = "age";
+    public static final String STUDENT_NATIONALITY = "nationality";
+    public static final String STUDENT_RELIGION = "religion";
+    public static final String STUDENT_CASTE = "community_class";
+    public static final String STUDENT_COMMUNITY = "community";
+    public static final String STUDENT_PARENT_OR_GUARDIAN= "parnt_guardn";
+    public static final String STUDENT_PARENT_OR_GUARDIAN_ID = "parnt_guardn_id";
+    public static final String STUDENT_MOTHER_TONGUE = "mother_tongue";
+    public static final String STUDENT_LANGUAGE = "language";
+    public static final String STUDENT_MOBILE = "mobile";
+    public static final String STUDENT_SECONDARY_MOBILE = "sec_mobile";
+    public static final String STUDENT_MAIL = "email";
+    public static final String STUDENT_SECONDAR_MAIL = "sec_email";
+    public static final String STUDENT_IMAGE = "student_pic";
+    public static final String STUDENT_PREVIOUS_SCHOOL = "last_sch_name";
+    public static final String STUDENT_PREVIOUS_CLASS = "last_studied";
+    public static final String STUDENT_PROMOTION_STATUS = "qualified_promotion";
+    public static final String STUDENT_TRANSFER_CERTIFICATE = "transfer_certificate";
+    public static final String STUDENT_RECORD_SHEET = "record_sheet";
+    public static final String STUDENT_STATUS = "status";
+    public static final String STUDENT_PARENT_STATUS = "parents_status";
+    public static final String STUDENT_REGISTERED = "enrollment";
+
     //Father Details
     public static final String FATHER_ID = "id";
     public static final String FATHER_NAME = "name";
@@ -136,7 +169,6 @@ public class EnsyfiConstants {
     public static final String MOTHER_MOBILE = "mobile";
     public static final String MOTHER_RELATIONSHIP = "relationship";
     public static final String MOTHER_IMAGE = "user_pic";
-
 
 
     //Guardian details
