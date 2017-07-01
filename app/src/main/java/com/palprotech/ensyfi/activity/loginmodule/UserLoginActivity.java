@@ -195,6 +195,13 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     saveUserData(userData);
                 } else if (userType == 3) {
                     saveUserData(userData);
+                    JSONObject getStudentData = response.getJSONObject("studentProfile");
+                    JSONObject getParentData = response.getJSONObject("parentProfile");
+                    JSONObject fatherData = getParentData.getJSONObject("fatherProfile");
+                    JSONObject motherData = getParentData.getJSONObject("motherProfile");
+                    JSONObject guardianData = getParentData.getJSONObject("guardianProfile");
+
+
                 } else {
                     saveUserData(userData);
 
@@ -245,23 +252,52 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     JSONObject motherData = getParentData.getJSONObject("motherProfile");
                     JSONObject guardianData = getParentData.getJSONObject("guardianProfile");
 
+                    FatherId = fatherData.getString("id");
+                    FatherName = fatherData.getString("name");
                     FatherPhone = fatherData.getString("home_phone");
                     FatherMail = fatherData.getString("email");
                     FatherAddress = fatherData.getString("home_address");
+                    FatherOccupation = fatherData.getString("occupation");
+                    FatherIncome = fatherData.getString("income");
+                    FatherMobile = fatherData.getString("mobile");
+                    FatherHomePhone = fatherData.getString("home_phone");
+                    FatherOfficePhone = fatherData.getString("office_phone");
+                    FatherRelationship = fatherData.getString("relationship");
+                    FatherPic = fatherData.getString("user_pic");
+
+                    // Parents Preference - Father's Id
+                    if ((FatherId != null) && !(FatherId.isEmpty()) && !FatherId.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveFatherID(this, FatherId);
+                    }
+
+                    // Parents Preference - Father's Name
+                    if ((FatherName != null) && !(FatherName.isEmpty()) && !FatherName.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveFatherName(this, FatherAddress);
+                    }
 
                     // Parents Preference - Father's Phone
                     if ((FatherPhone != null) && !(FatherPhone.isEmpty()) && !FatherPhone.equalsIgnoreCase("null")) {
-                        PreferenceStorage.saveHomePhone(this, FatherPhone);
+                        PreferenceStorage.saveFatherHomePhone(this, FatherPhone);
                     }
 
                     // Parents Preference - Father's Mail
                     if ((FatherMail != null) && !(FatherMail.isEmpty()) && !FatherMail.equalsIgnoreCase("null")) {
-                        PreferenceStorage.saveEmail(this, FatherMail);
+                        PreferenceStorage.saveFatherEmail(this, FatherMail);
                     }
 
                     // Parents Preference - Address
                     if ((FatherAddress != null) && !(FatherAddress.isEmpty()) && !FatherAddress.equalsIgnoreCase("null")) {
-                        PreferenceStorage.saveAddress(this, FatherAddress);
+                        PreferenceStorage.saveFatherAddress(this, FatherAddress);
+                    }
+
+                    // Parents Preference - Father's Occupation
+                    if ((FatherOccupation != null) && !(FatherOccupation.isEmpty()) && !FatherOccupation.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveFatherOccupation(this, FatherOccupation);
+                    }
+
+                    // Parents Preference - Father's Income
+                    if ((FatherIncome != null) && !(FatherIncome.isEmpty()) && !FatherIncome.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveFatherIncome(this, FatherIncome);
                     }
 
                     JSONArray getStudentData = response.getJSONArray("registeredDetails");

@@ -337,21 +337,21 @@ public class PreferenceStorage {
     }
 
 
-    ////////////////////////////////////
+    ////////        Father Details      ///////////
 
-    public static void saveParentID(Context context, String name) {
+    public static void saveFatherID(Context context, String name) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(EnsyfiConstants.PARENT_ID, name);
+        editor.putString(EnsyfiConstants.FATHER_ID, name);
         editor.commit();
     }
 
-    public static String getParentID(Context context) {
+    public static String getFatherID(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String parentID = sharedPreferences.getString(EnsyfiConstants.PARENT_ID, "");
-        return parentID;
+        String fatherID = sharedPreferences.getString(EnsyfiConstants.FATHER_ID, "");
+        return fatherID;
     }
 
     public static void saveFatherName(Context context, String name) {
@@ -369,139 +369,124 @@ public class PreferenceStorage {
         return fatherName;
     }
 
-    public static void saveMotherName(Context context, String name) {
+    public static void saveFatherOccupation(Context context, String name) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(EnsyfiConstants.MOTHER_NAME, name);
+        editor.putString(EnsyfiConstants.FATHER_OCCUPATION, name);
         editor.commit();
     }
 
-    public static String getMotherName(Context context) {
+    public static String getFatherOccupation(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String motherName = sharedPreferences.getString(EnsyfiConstants.PARENT_ID, "");
-        return motherName;
+        String fatherOccupation = sharedPreferences.getString(EnsyfiConstants.FATHER_OCCUPATION, "");
+        return fatherOccupation;
     }
 
-    public static void saveGuardnName(Context context, String name) {
+    public static void saveFatherIncome(Context context, String name) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(EnsyfiConstants.GUARDN_NAME, name);
+        editor.putString(EnsyfiConstants.FATHER_INCOME, name);
         editor.commit();
     }
 
-    public static String getGuardnName(Context context) {
+    public static String getFatherIncome(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String guardnName = sharedPreferences.getString(EnsyfiConstants.GUARDN_NAME, "");
-        return guardnName;
+        String fatherIncome= sharedPreferences.getString(EnsyfiConstants.FATHER_INCOME, "");
+        return fatherIncome;
     }
 
-    public static void saveOccupation(Context context, String name) {
+    public static void saveFatherAddress(Context context, String name) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(EnsyfiConstants.OCCUPATION, name);
+        editor.putString(EnsyfiConstants.FATHER_ADDRESS, name);
         editor.commit();
     }
 
-    public static String getOccupation(Context context) {
+    public static String getFatherAddress(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String occupation = sharedPreferences.getString(EnsyfiConstants.OCCUPATION, "");
-        return occupation;
+        String fatherAddress = sharedPreferences.getString(EnsyfiConstants.FATHER_ADDRESS, "");
+        return fatherAddress;
     }
 
-    public static void saveAddress(Context context, String name) {
+    public static void saveFatherEmail(Context context, String name) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(EnsyfiConstants.ADDRESS, name);
+        editor.putString(EnsyfiConstants.FATHER_EMAIL, name);
         editor.commit();
     }
 
-    public static String getAddress(Context context) {
+    public static String getFatherEmail(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String address = sharedPreferences.getString(EnsyfiConstants.ADDRESS, "");
-        return address;
+        String fatherEmail = sharedPreferences.getString(EnsyfiConstants.FATHER_EMAIL, "");
+        return fatherEmail;
     }
 
-    public static void saveEmail(Context context, String name) {
+    public static void saveFatherHomePhone(Context context, String name) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(EnsyfiConstants.EMAIL, name);
+        editor.putString(EnsyfiConstants.FATHER_HOME_PHONE, name);
         editor.commit();
     }
 
-    public static String getEmail(Context context) {
+    public static String getFatherHomePhone(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String email = sharedPreferences.getString(EnsyfiConstants.EMAIL, "");
-        return email;
+        String fatherHomePhone = sharedPreferences.getString(EnsyfiConstants.FATHER_HOME_PHONE, "");
+        return fatherHomePhone;
     }
 
-    public static void saveHomePhone(Context context, String name) {
+    public static void saveFatherOfficePhone(Context context, String name) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(EnsyfiConstants.HOME_PHONE, name);
+        editor.putString(EnsyfiConstants.FATHER_OFFICE_PHONE, name);
         editor.commit();
     }
 
-    public static String getHomePhone(Context context) {
+    public static String getFatherOfficePhone(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String homePhone = sharedPreferences.getString(EnsyfiConstants.HOME_PHONE, "");
-        return homePhone;
+        String fatherOfficePhone = sharedPreferences.getString(EnsyfiConstants.FATHER_OFFICE_PHONE, "");
+        return fatherOfficePhone;
     }
 
-    public static void saveOfficePhone(Context context, String name) {
+    public static void saveFatherMobile(Context context, String name) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(EnsyfiConstants.OFFICE_PHONE, name);
+        editor.putString(EnsyfiConstants.FATHER_MOBILE, name);
         editor.commit();
     }
 
-    public static String getOfficePhone(Context context) {
+    public static String getFatherMobile(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String officePhone = sharedPreferences.getString(EnsyfiConstants.OFFICE_PHONE, "");
-        return officePhone;
+        String fatherMobile= sharedPreferences.getString(EnsyfiConstants.FATHER_MOBILE, "");
+        return fatherMobile;
     }
 
-    public static void saveMobileOne(Context context, String name) {
+    public static void saveFatherRelationship(Context context, String name) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(EnsyfiConstants.MOBILE_ONE, name);
+        editor.putString(EnsyfiConstants.FATHER_RELATIONSHIP, name);
         editor.commit();
     }
 
-    public static String getMobileOne(Context context) {
+    public static String getFatherRelationship(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String mobileOne = sharedPreferences.getString(EnsyfiConstants.MOBILE_ONE, "");
-        return mobileOne;
-    }
-
-    public static void saveMobileTwo(Context context, String name) {
-        SharedPreferences sharedPreferences = PreferenceManager
-                .getDefaultSharedPreferences(context);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(EnsyfiConstants.MOBILE_TWO, name);
-        editor.commit();
-    }
-
-    public static String getMobileTwo(Context context) {
-        SharedPreferences sharedPreferences = PreferenceManager
-                .getDefaultSharedPreferences(context);
-        String mobileTwo = sharedPreferences.getString(EnsyfiConstants.MOBILE_TWO, "");
-        return mobileTwo;
+        String fatherRelationship = sharedPreferences.getString(EnsyfiConstants.FATHER_RELATIONSHIP, "");
+        return fatherRelationship;
     }
 
     public static void saveFatherImg(Context context, String name) {
@@ -519,6 +504,162 @@ public class PreferenceStorage {
         return fatherImg;
     }
 
+
+
+    ////////        Mother Details      ///////////
+
+
+
+    public static void saveMotherID(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.MOTHER_ID, name);
+        editor.commit();
+    }
+
+    public static String getMotherID(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String motherID = sharedPreferences.getString(EnsyfiConstants.MOTHER_ID, "");
+        return motherID;
+    }
+
+    public static void saveMotherName(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.MOTHER_NAME, name);
+        editor.commit();
+    }
+
+    public static String getMotherName(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String motherName = sharedPreferences.getString(EnsyfiConstants.MOTHER_NAME, "");
+        return motherName;
+    }
+
+    public static void saveMotherOccupation(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.MOTHER_OCCUPATION, name);
+        editor.commit();
+    }
+
+    public static String getMotherOccupation(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String motherOccupation = sharedPreferences.getString(EnsyfiConstants.MOTHER_OCCUPATION, "");
+        return motherOccupation;
+    }
+
+    public static void saveMotherIncome(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.MOTHER_INCOME, name);
+        editor.commit();
+    }
+
+    public static String getMotherIncome(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String motherIncome = sharedPreferences.getString(EnsyfiConstants.MOTHER_INCOME, "");
+        return motherIncome;
+    }
+
+    public static void saveMotherAddress(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.MOTHER_ADDRESS, name);
+        editor.commit();
+    }
+
+    public static String getMotherAddress(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String motherAddress = sharedPreferences.getString(EnsyfiConstants.MOTHER_ADDRESS, "");
+        return motherAddress;
+    }
+
+    public static void saveMotherEmail(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.MOTHER_EMAIL, name);
+        editor.commit();
+    }
+
+    public static String getMotherEmail(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String motherEmail = sharedPreferences.getString(EnsyfiConstants.MOTHER_EMAIL, "");
+        return motherEmail;
+    }
+
+    public static void saveMotherHomePhone(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.MOTHER_HOME_PHONE, name);
+        editor.commit();
+    }
+
+    public static String getMotherHomePhone(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String motherHomePhone = sharedPreferences.getString(EnsyfiConstants.MOTHER_HOME_PHONE, "");
+        return motherHomePhone;
+    }
+
+    public static void saveMotherOfficePhone(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.MOTHER_OFFICE_PHONE, name);
+        editor.commit();
+    }
+
+    public static String getMotherOfficePhone(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String motherOfficePhone = sharedPreferences.getString(EnsyfiConstants.MOTHER_OFFICE_PHONE, "");
+        return motherOfficePhone;
+    }
+
+    public static void saveMotherMobile(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.MOTHER_MOBILE, name);
+        editor.commit();
+    }
+
+    public static String getMotherMobile(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String motherMobile= sharedPreferences.getString(EnsyfiConstants.MOTHER_MOBILE, "");
+        return motherMobile;
+    }
+
+    public static void saveMotherRelationship(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.MOTHER_RELATIONSHIP, name);
+        editor.commit();
+    }
+
+    public static String getMotherRelationship(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String motherRelationship = sharedPreferences.getString(EnsyfiConstants.MOTHER_RELATIONSHIP, "");
+        return motherRelationship;
+    }
+
     public static void saveMotherImg(Context context, String name) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
@@ -534,18 +675,174 @@ public class PreferenceStorage {
         return motherImg;
     }
 
-    public static void saveGuardnImg(Context context, String name) {
+
+
+    ////////        Guardian Details      ///////////
+
+
+
+    public static void saveGuardianID(Context context, String name) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(EnsyfiConstants.GUARDN_IMAGE, name);
+        editor.putString(EnsyfiConstants.GUARDIAN_ID, name);
         editor.commit();
     }
 
-    public static String getGuardnImg(Context context) {
+    public static String getGuardianID(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String guardnImg = sharedPreferences.getString(EnsyfiConstants.GUARDN_IMAGE, "");
-        return guardnImg;
+        String guardianID = sharedPreferences.getString(EnsyfiConstants.GUARDIAN_ID, "");
+        return guardianID;
+    }
+
+    public static void saveGuardianName(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.GUARDIAN_NAME, name);
+        editor.commit();
+    }
+
+    public static String getGuardianName(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String guardianName = sharedPreferences.getString(EnsyfiConstants.GUARDIAN_NAME, "");
+        return guardianName;
+    }
+
+    public static void saveGuardianOccupation(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.GUARDIAN_OCCUPATION, name);
+        editor.commit();
+    }
+
+    public static String getGuardianOccupation(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String guardianOccupation = sharedPreferences.getString(EnsyfiConstants.GUARDIAN_OCCUPATION, "");
+        return guardianOccupation;
+    }
+
+    public static void saveGuardianIncome(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.GUARDIAN_INCOME, name);
+        editor.commit();
+    }
+
+    public static String getGuardianIncome(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String guardianIncome = sharedPreferences.getString(EnsyfiConstants.GUARDIAN_INCOME, "");
+        return guardianIncome;
+    }
+
+    public static void saveGuardianAddress(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.GUARDIAN_ADDRESS, name);
+        editor.commit();
+    }
+
+    public static String getGuardianAddress(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String guardianAddress = sharedPreferences.getString(EnsyfiConstants.GUARDIAN_ADDRESS, "");
+        return guardianAddress;
+    }
+
+    public static void saveGuardianEmail(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.GUARDIAN_EMAIL, name);
+        editor.commit();
+    }
+
+    public static String getGuardianEmail(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String guardianEmail = sharedPreferences.getString(EnsyfiConstants.GUARDIAN_EMAIL, "");
+        return guardianEmail;
+    }
+
+    public static void saveGuardianHomePhone(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.GUARDIAN_HOME_PHONE, name);
+        editor.commit();
+    }
+
+    public static String getGuardianHomePhone(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String guardianHomePhone = sharedPreferences.getString(EnsyfiConstants.GUARDIAN_HOME_PHONE, "");
+        return guardianHomePhone;
+    }
+
+    public static void saveGuardianOfficePhone(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.GUARDIAN_OFFICE_PHONE, name);
+        editor.commit();
+    }
+
+    public static String getGuardianOfficePhone(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String guardianOfficePhone = sharedPreferences.getString(EnsyfiConstants.GUARDIAN_OFFICE_PHONE, "");
+        return guardianOfficePhone;
+    }
+
+    public static void saveGuardianMobile(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.GUARDIAN_MOBILE, name);
+        editor.commit();
+    }
+
+    public static String getGuardianMobile(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String guardianMobile= sharedPreferences.getString(EnsyfiConstants.GUARDIAN_MOBILE, "");
+        return guardianMobile;
+    }
+
+    public static void saveGuardianRelationship(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.GUARDIAN_RELATIONSHIP, name);
+        editor.commit();
+    }
+
+    public static String getGuardianRelationship(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String guardianRelationship = sharedPreferences.getString(EnsyfiConstants.GUARDIAN_RELATIONSHIP, "");
+        return guardianRelationship;
+    }
+
+    public static void saveGuardianImg(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.GUARDIAN_IMAGE, name);
+        editor.commit();
+    }
+
+    public static String getGuardianImg(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String guardianImg = sharedPreferences.getString(EnsyfiConstants.GUARDIAN_IMAGE, "");
+        return guardianImg;
     }
 }

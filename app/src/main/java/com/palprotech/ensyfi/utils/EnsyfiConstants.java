@@ -111,20 +111,46 @@ public class EnsyfiConstants {
 
 
     //User Profile details
-    public static final String PARENT_ID = "parent_id";
-    public static final String FATHER_NAME = "father_name";
-    public static final String MOTHER_NAME = "mother_name";
-    public static final String GUARDN_NAME = "guardn_name";
-    public static final String OCCUPATION = "occupation";
-    public static final String ADDRESS = "address";
-    public static final String EMAIL = "email";
-    public static final String HOME_PHONE = "home_phone";
-    public static final String OFFICE_PHONE = "office_phone";
-    public static final String MOBILE_ONE = "mobile";
-    public static final String MOBILE_TWO = "mobile1";
-    public static final String FATHER_IMAGE = "father_pic";
-    public static final String MOTHER_IMAGE = "mother_pic";
-    public static final String GUARDN_IMAGE = "guardn_pic";
+    //Father Details
+    public static final String FATHER_ID = "id";
+    public static final String FATHER_NAME = "name";
+    public static final String FATHER_OCCUPATION = "occupation";
+    public static final String FATHER_INCOME = "income";
+    public static final String FATHER_ADDRESS = "home_address";
+    public static final String FATHER_EMAIL = "email";
+    public static final String FATHER_HOME_PHONE = "home_phone";
+    public static final String FATHER_OFFICE_PHONE = "office_phone";
+    public static final String FATHER_MOBILE = "mobile";
+    public static final String FATHER_RELATIONSHIP = "relationship";
+    public static final String FATHER_IMAGE = "user_pic";
+
+    //Mother details
+    public static final String MOTHER_ID = "id";
+    public static final String MOTHER_NAME = "name";
+    public static final String MOTHER_OCCUPATION = "occupation";
+    public static final String MOTHER_INCOME = "income";
+    public static final String MOTHER_ADDRESS = "home_address";
+    public static final String MOTHER_EMAIL = "email";
+    public static final String MOTHER_HOME_PHONE = "home_phone";
+    public static final String MOTHER_OFFICE_PHONE = "office_phone";
+    public static final String MOTHER_MOBILE = "mobile";
+    public static final String MOTHER_RELATIONSHIP = "relationship";
+    public static final String MOTHER_IMAGE = "user_pic";
+
+
+
+    //Guardian details
+    public static final String GUARDIAN_ID = "id";
+    public static final String GUARDIAN_NAME = "name";
+    public static final String GUARDIAN_OCCUPATION = "occupation";
+    public static final String GUARDIAN_INCOME = "income";
+    public static final String GUARDIAN_ADDRESS = "home_address";
+    public static final String GUARDIAN_EMAIL = "email";
+    public static final String GUARDIAN_HOME_PHONE = "home_phone";
+    public static final String GUARDIAN_OFFICE_PHONE = "office_phone";
+    public static final String GUARDIAN_MOBILE = "mobile";
+    public static final String GUARDIAN_RELATIONSHIP = "relationship";
+    public static final String GUARDIAN_IMAGE = "user_pic";
 
     //Class Test & Homework
     public static final String PARAM_CLASS_ID = "class_id";
