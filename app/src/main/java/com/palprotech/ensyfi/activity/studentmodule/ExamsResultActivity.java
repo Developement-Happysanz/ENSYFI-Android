@@ -219,8 +219,7 @@ public class ExamsResultActivity extends AppCompatActivity implements IServiceLi
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_EXAM_API;
-            serviceHelper.makeGetServiceCall(jsonObject.toString(),url);
+            serviceHelper.makeGetServiceCall(jsonObject.toString(),"");
 
             return null;
         }

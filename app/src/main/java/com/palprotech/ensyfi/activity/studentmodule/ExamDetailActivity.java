@@ -13,19 +13,19 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
-import com.palprotech.eduappparentsstudents.R;
-import com.palprotech.eduappparentsstudents.adapter.ExamDetailViewListAdapter;
-import com.palprotech.eduappparentsstudents.bean.dashboard.ExamDetailsView;
-import com.palprotech.eduappparentsstudents.bean.dashboard.ExamDetailsViewList;
-import com.palprotech.eduappparentsstudents.bean.dashboard.Exams;
-import com.palprotech.eduappparentsstudents.helper.AlertDialogHelper;
-import com.palprotech.eduappparentsstudents.helper.ProgressDialogHelper;
-import com.palprotech.eduappparentsstudents.interfaces.DialogClickListener;
-import com.palprotech.eduappparentsstudents.servicehelpers.ExamDetailViewServiceHelper;
-import com.palprotech.eduappparentsstudents.serviceinterfaces.IExamDetailViewServiceListener;
-import com.palprotech.eduappparentsstudents.utils.CommonUtils;
-import com.palprotech.eduappparentsstudents.utils.EduAppConstants;
-import com.palprotech.eduappparentsstudents.utils.PreferenceStorage;
+import com.palprotech.ensyfi.R;
+import com.palprotech.ensyfi.adapter.studentmodule.ExamDetailViewListAdapter;
+import com.palprotech.ensyfi.bean.student.ExamDetailsView;
+import com.palprotech.ensyfi.bean.student.ExamDetailsViewList;
+import com.palprotech.ensyfi.bean.student.Exams;
+import com.palprotech.ensyfi.helper.AlertDialogHelper;
+import com.palprotech.ensyfi.helper.ProgressDialogHelper;
+import com.palprotech.ensyfi.interfaces.DialogClickListener;
+import com.palprotech.ensyfi.servicehelpers.ServiceHelper;
+import com.palprotech.ensyfi.serviceinterfaces.IServiceListener;
+import com.palprotech.ensyfi.utils.CommonUtils;
+import com.palprotech.ensyfi.utils.EnsyfiConstants;
+import com.palprotech.ensyfi.utils.PreferenceStorage;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,13 +36,13 @@ import java.util.ArrayList;
  * Created by Admin on 18-05-2017.
  */
 
-public class ExamDetailActivity extends AppCompatActivity implements IExamDetailViewServiceListener, AdapterView.OnItemClickListener, DialogClickListener {
+public class ExamDetailActivity extends AppCompatActivity implements IServiceListener, AdapterView.OnItemClickListener, DialogClickListener {
 
     private static final String TAG = "ExamDetailActivity";
     ListView loadMoreListView;
     View view;
     ExamDetailViewListAdapter examDetailViewListAdapter;
-    ExamDetailViewServiceHelper examDetailViewServiceHelper;
+    ServiceHelper serviceHelper;
     ArrayList<ExamDetailsView> examDetailsViewArrayList;
     int pageNumber = 0, totalCount = 0;
     protected ProgressDialogHelper progressDialogHelper;
@@ -61,8 +61,8 @@ public class ExamDetailActivity extends AppCompatActivity implements IExamDetail
 //        loadMoreListView.setOnLoadMoreListener(this);
         loadMoreListView.setOnItemClickListener(this);
         examDetailsViewArrayList = new ArrayList<>();
-        examDetailViewServiceHelper = new ExamDetailViewServiceHelper(this);
-        examDetailViewServiceHelper.setExamDetailViewServiceListener(this);
+        serviceHelper = new ServiceHelper(this);
+        serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(this);
         exams = (Exams) getIntent().getSerializableExtra("eventObj");
 
@@ -113,15 +113,16 @@ public class ExamDetailActivity extends AppCompatActivity implements IExamDetail
 
             JSONObject jsonObject = new JSONObject();
             try {
-                jsonObject.put(EduAppConstants.PARAM_CLASS_ID, PreferenceStorage.getStudentClassIdPreference(getApplicationContext()));
-                jsonObject.put(EduAppConstants.PARAM_EXAM_ID, ExamId);
+                jsonObject.put(EnsyfiConstants.PARAM_CLASS_ID, PreferenceStorage.getStudentClassIdPreference(getApplicationContext()));
+                jsonObject.put(EnsyfiConstants.PARAM_EXAM_ID, ExamId);
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            examDetailViewServiceHelper.makeGetExamDetailViewServiceCall(jsonObject.toString());
+            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_EXAM_DETAIL_API;
+            serviceHelper.makeGetServiceCall(jsonObject.toString(),url);
 
             return null;
         }
@@ -143,7 +144,7 @@ public class ExamDetailActivity extends AppCompatActivity implements IExamDetail
         if ((response != null)) {
             try {
                 String status = response.getString("status");
-                String msg = response.getString(EduAppConstants.PARAM_MESSAGE);
+                String msg = response.getString(EnsyfiConstants.PARAM_MESSAGE);
                 Log.d(TAG, "status val" + status + "msg" + msg);
 
                 if ((status != null)) {
@@ -167,7 +168,7 @@ public class ExamDetailActivity extends AppCompatActivity implements IExamDetail
     }
 
     @Override
-    public void onExamDetailViewResponse(final JSONObject response) {
+    public void onResponse(final JSONObject response) {
         if (validateSignInResponse(response)) {
         Log.d("ajazFilterresponse : ", response.toString());
 
@@ -203,7 +204,7 @@ public class ExamDetailActivity extends AppCompatActivity implements IExamDetail
     }
 
     @Override
-    public void onExamDetailViewError(final String error) {
+    public void onError(final String error) {
         mHandler.post(new Runnable() {
             @Override
             public void run() {

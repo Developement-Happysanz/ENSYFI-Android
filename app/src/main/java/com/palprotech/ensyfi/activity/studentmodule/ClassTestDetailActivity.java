@@ -99,7 +99,7 @@ public class ClassTestDetailActivity extends AppCompatActivity implements IServi
 
                 progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
                 String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_STUDENT_CLASSTEST_MARK_API;
-                serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
+                serviceHelper.makeGetServiceCall(jsonObject.toString(),url);
 
 
             } else {

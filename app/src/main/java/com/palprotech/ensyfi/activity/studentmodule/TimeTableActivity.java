@@ -14,6 +14,8 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.palprotech.ensyfi.R;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
