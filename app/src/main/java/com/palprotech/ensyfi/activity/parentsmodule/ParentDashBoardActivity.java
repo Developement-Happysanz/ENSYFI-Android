@@ -28,7 +28,7 @@ import com.palprotech.ensyfi.activity.loginmodule.ProfileActivity;
 import com.palprotech.ensyfi.activity.loginmodule.SplashScreenActivity;
 import com.palprotech.ensyfi.activity.studentmodule.AttendanceActivity;
 import com.palprotech.ensyfi.activity.studentmodule.ClassTestHomeworkActivity;
-import com.palprotech.ensyfi.activity.studentmodule.EventsActivity;
+import com.palprotech.ensyfi.activity.general.EventsActivity;
 import com.palprotech.ensyfi.activity.studentmodule.ExamsResultActivity;
 import com.palprotech.ensyfi.activity.studentmodule.StudentInfoActivity;
 import com.palprotech.ensyfi.activity.studentmodule.TimeTableActivity;

@@ -31,7 +31,9 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
         WebView wView = (WebView) findViewById(R.id.web);
+        wView.setVisibility(View.VISIBLE);
         wView.loadUrl("file:///android_asset/ensyfi_logo.gif");
+
         // disable scroll on touch
         wView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -39,6 +41,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 return (event.getAction() == MotionEvent.ACTION_MOVE);
             }
         });
+
 
 
         new Handler().postDelayed(new Runnable() {
@@ -50,7 +53,6 @@ public class SplashScreenActivity extends AppCompatActivity {
                     String userName = PreferenceStorage.getUserName(getApplicationContext());
                     String isResetOver = PreferenceStorage.getForgotPasswordStatusEnable(getApplicationContext());
                     String instituteName = PreferenceStorage.getInstituteName(getApplicationContext());
-                    String studentName = PreferenceStorage.getStudentNamePreference(getApplicationContext());
 
                     if (isResetOver.equalsIgnoreCase("no")) {
                         Intent intent = new Intent(getApplicationContext(), ResetPasswordActivity.class);

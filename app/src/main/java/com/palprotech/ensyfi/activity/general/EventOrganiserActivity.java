@@ -1,4 +1,4 @@
-package com.palprotech.ensyfi.activity.studentmodule;
+package com.palprotech.ensyfi.activity.general;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
