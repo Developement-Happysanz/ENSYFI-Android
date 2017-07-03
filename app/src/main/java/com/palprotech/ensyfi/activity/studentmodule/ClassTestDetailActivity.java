@@ -11,10 +11,14 @@ import android.widget.TextView;
 
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.bean.student.ClassTest;
+import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
 import com.palprotech.ensyfi.servicehelpers.ServiceHelper;
 import com.palprotech.ensyfi.serviceinterfaces.IServiceListener;
+import com.palprotech.ensyfi.utils.CommonUtils;
+import com.palprotech.ensyfi.utils.EnsyfiConstants;
+import com.palprotech.ensyfi.utils.PreferenceStorage;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,7 +33,7 @@ public class ClassTestDetailActivity extends AppCompatActivity implements IServi
     private ClassTest classTest;
     private TextView txtTitle, txtHomeWorkDate, txtHomeWorkDetails, txtHomeWorkSubject, tvTitleText, txtViewMarks;
     private LinearLayout llMarkView;
-    private ServiceHelper classTestServiceHelper;
+    private ServiceHelper serviceHelper;
     private ProgressDialogHelper progressDialogHelper;
     String txtHomeWorkType = "0";
     String markStatus = "0";
@@ -61,8 +65,8 @@ public class ClassTestDetailActivity extends AppCompatActivity implements IServi
         txtViewMarks = (TextView) findViewById(R.id.viewmarks);
         llMarkView = (LinearLayout) findViewById(R.id.llMarkView);
 
-        classTestServiceHelper = new ClassTestServiceHelper(this);
-        classTestServiceHelper.setClassTestServiceListener(this);
+        serviceHelper = new ServiceHelper(this);
+        serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(this);
     }
 
@@ -86,15 +90,16 @@ public class ClassTestDetailActivity extends AppCompatActivity implements IServi
 
                 JSONObject jsonObject = new JSONObject();
                 try {
-                    jsonObject.put(EduAppConstants.PARAM_HOMEWORK_ID, classTest.getHwId());
-                    jsonObject.put(EduAppConstants.PARM_ENROLL_ID, PreferenceStorage.getStudentEnrollIdPreference(getApplicationContext()));
+                    jsonObject.put(EnsyfiConstants.PARAM_HOMEWORK_ID, classTest.getHwId());
+                    jsonObject.put(EnsyfiConstants.PARM_ENROLL_ID, PreferenceStorage.getStudentRegisteredPreference(getApplicationContext()));
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
                 progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-                classTestServiceHelper.makeGetClassTestMarkServiceCall(jsonObject.toString());
+                String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_STUDENT_CLASSTEST_MARK_API;
+                serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
 
             } else {
@@ -115,7 +120,7 @@ public class ClassTestDetailActivity extends AppCompatActivity implements IServi
     }
 
     @Override
-    public void onClassTestResponse(JSONObject response) {
+    public void onResponse(JSONObject response) {
         progressDialogHelper.hideProgressDialog();
         if (validateSignInResponse(response)) {
 
@@ -147,7 +152,7 @@ public class ClassTestDetailActivity extends AppCompatActivity implements IServi
     }
 
     @Override
-    public void onClassTestError(String error) {
+    public void onError(String error) {
         progressDialogHelper.hideProgressDialog();
         AlertDialogHelper.showSimpleAlertDialog(this, error);
     }
@@ -172,7 +177,7 @@ public class ClassTestDetailActivity extends AppCompatActivity implements IServi
         if ((response != null)) {
             try {
                 String status = response.getString("status");
-                String msg = response.getString(EduAppConstants.PARAM_MESSAGE);
+                String msg = response.getString(EnsyfiConstants.PARAM_MESSAGE);
                 Log.d(TAG, "status val" + status + "msg" + msg);
 
                 if ((status != null)) {
