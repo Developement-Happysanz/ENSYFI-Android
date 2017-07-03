@@ -197,6 +197,40 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     saveUserData(userData);
                     JSONObject getStudentInfo = response.getJSONObject("studentProfile");
                     JSONObject getStudentProfile = getStudentInfo.getJSONObject("0");
+
+                    //Student Details
+                    String StudentAdmissionId = "";
+                    String StudentAdmissionYear = "";
+                    String StudentAdmissionNumber = "";
+                    String StudentEmsiNumber = "";
+                    String StudentAdmissionDate = "";
+                    String StudentName = "";
+                    String StudentGender = "";
+                    String StudentDateOfBirth = "";
+                    String StudentAge = "";
+                    String StudentNationaity = "";
+                    String StudentReligion = "";
+                    String StudentCaste = "";
+                    String StudentCommunity = "";
+                    String StudentParentOrGuardian = "";
+                    String StudentParentOrGuardianId= "";
+                    String StudentMotherTongue = "";
+                    String StudentLanguage = "";
+                    String StudentMobile = "";
+                    String StudentSecondaryMobile = "";
+                    String StudentMail = "";
+                    String StudentSecondaryMail = "";
+                    String StudentPic = "";
+                    String StudentPreviousSchool = "";
+                    String StudentPreviousClass = "";
+                    String StudentPromotionStatus = "";
+                    String StudentTransferCertificate = "";
+                    String StudentRecordSheet = "";
+                    String StudentStatus = "";
+                    String StudentParentStatus = "";
+                    String StudentRegistered = "";
+
+
                     //Father Details
                     String FatherId = "";
                     String FatherName = "";
@@ -236,10 +270,48 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     String GuardianRelationship = "";
                     String GuardianPic = "";
 
+
+                    StudentAdmissionId = "admission_id";
+                    StudentAdmissionYear = "admisn_year";
+                    StudentAdmissionNumber = "admisn_no";
+                    StudentEmsiNumber = "emsi_num";
+                    StudentAdmissionDate = "admisn_date";
+                    StudentName = "name";
+                    StudentGender = "sex";
+                    StudentDateOfBirth = "dob";
+                    StudentAge = "age";
+                    StudentNationaity = "nationality";
+                    StudentReligion = "religion";
+                    StudentCaste = "community_class";
+                    StudentCommunity = "community";
+                    StudentParentOrGuardian = "parnt_guardn";
+                    StudentParentOrGuardianId= "parnt_guardn_id";
+                    StudentMotherTongue = "mother_tongue";
+                    StudentLanguage = "language";
+                    StudentMobile = "mobile";
+                    StudentSecondaryMobile = "sec_mobile";
+                    StudentMail = "email";
+                    StudentSecondaryMail = "sec_email";
+                    StudentPic = "student_pic";
+                    StudentPreviousSchool = "last_sch_name";
+                    StudentPreviousClass = "last_studied";
+                    StudentPromotionStatus = "qualified_promotion";
+                    StudentTransferCertificate = "transfer_certificate";
+                    StudentRecordSheet = "record_sheet";
+                    StudentStatus = "status";
+                    StudentParentStatus = "parents_status";
+                    StudentRegistered = "enrollment";
+
+
+
+
+
                     JSONObject getParentData = response.getJSONObject("parentProfile");
                     JSONObject fatherData = getParentData.getJSONObject("fatherProfile");
                     JSONObject motherData = getParentData.getJSONObject("motherProfile");
                     JSONObject guardianData = getParentData.getJSONObject("guardianProfile");
+
+                    ///////////     FATHER      //////////
 
                     FatherId = fatherData.getString("id");
                     FatherName = fatherData.getString("name");
@@ -253,7 +325,6 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     FatherRelationship = fatherData.getString("relationship");
                     FatherPic = fatherData.getString("user_pic");
 
-                    ///////////     FATHER      //////////
 
                     // Parents Preference - Father's Id
                     if ((FatherId != null) && !(FatherId.isEmpty()) && !FatherId.equalsIgnoreCase("null")) {
@@ -262,7 +333,7 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
 
                     // Parents Preference - Father's Name
                     if ((FatherName != null) && !(FatherName.isEmpty()) && !FatherName.equalsIgnoreCase("null")) {
-                        PreferenceStorage.saveFatherName(this, FatherAddress);
+                        PreferenceStorage.saveFatherName(this, FatherName);
                     }
 
                     // Parents Preference - Father's Mail
