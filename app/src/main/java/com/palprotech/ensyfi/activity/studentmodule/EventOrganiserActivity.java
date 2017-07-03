@@ -1,9 +1,9 @@
 package com.palprotech.ensyfi.activity.studentmodule;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -13,9 +13,9 @@ import android.widget.ListView;
 
 import com.google.gson.Gson;
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.adapter.studentmodule.EventListAdapter;
-import com.palprotech.ensyfi.bean.student.Event;
-import com.palprotech.ensyfi.bean.student.EventList;
+import com.palprotech.ensyfi.adapter.studentmodule.EventOrganiserListAdapter;
+import com.palprotech.ensyfi.bean.student.EventOrganiser;
+import com.palprotech.ensyfi.bean.student.EventOrganiserList;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
@@ -31,36 +31,38 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 /**
- * Created by Narendar on 18/04/17.
+ * Created by Admin on 22-05-2017.
  */
 
-public class EventsActivity extends AppCompatActivity implements IServiceListener, AdapterView.OnItemClickListener, DialogClickListener {
+public class EventOrganiserActivity extends AppCompatActivity implements DialogClickListener, IServiceListener, AdapterView.OnItemClickListener {
 
     private static final String TAG = "EventsActivity";
     ListView loadMoreListView;
     View view;
-    EventListAdapter eventListAdapter;
-    private ServiceHelper serviceHelper;
-    ArrayList<Event> eventArrayList;
+    EventOrganiserListAdapter eventOrganiserListAdapter;
+    ServiceHelper serviceHelper;
+    ArrayList<EventOrganiser> eventOrganiserArrayList;
     int pageNumber = 0, totalCount = 0;
     protected ProgressDialogHelper progressDialogHelper;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
-
+    private String eventId;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_events);
+        setContentView(R.layout.activity_event_organiser);
+
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
 //        loadMoreListView.setOnLoadMoreListener(this);
         loadMoreListView.setOnItemClickListener(this);
-        eventArrayList = new ArrayList<>();
+        eventOrganiserArrayList = new ArrayList<>();
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(this);
+        eventId = getIntent().getExtras().getString("eventId");
 
-        callGetEventService();
+        callGetEventOrganiserService();
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
         bckbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,12 +72,13 @@ public class EventsActivity extends AppCompatActivity implements IServiceListene
         });
     }
 
-    public void callGetEventService() {
-        /*if(eventsListAdapter != null){
+    private void callGetEventOrganiserService() {
+
+             /*if(eventsListAdapter != null){
             eventsListAdapter.clearSearchFlag();
         }*/
-        if (eventArrayList != null)
-            eventArrayList.clear();
+        if (eventOrganiserArrayList != null)
+            eventOrganiserArrayList.clear();
 
         if (CommonUtils.isNetworkAvailable(this)) {
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
@@ -88,21 +91,13 @@ public class EventsActivity extends AppCompatActivity implements IServiceListene
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Log.d(TAG, "onEvent list item clicked" + position);
-        Event event = null;
-        if ((eventListAdapter != null) && (eventListAdapter.ismSearching())) {
-            Log.d(TAG, "while searching");
-            int actualindex = eventListAdapter.getActualEventPos(position);
-            Log.d(TAG, "actual index" + actualindex);
-            event = eventArrayList.get(actualindex);
-        } else {
-            event = eventArrayList.get(position);
-        }
-        Intent intent = new Intent(this, EventDetailActivity.class);
-        intent.putExtra("eventObj", event);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        startActivity(intent);
+    public void onAlertPositiveClicked(int tag) {
+
+    }
+
+    @Override
+    public void onAlertNegativeClicked(int tag) {
+
     }
 
     private boolean validateSignInResponse(JSONObject response) {
@@ -134,38 +129,38 @@ public class EventsActivity extends AppCompatActivity implements IServiceListene
     }
 
     @Override
-    public void onResponse(final JSONObject response) {
+    public void onResponse( final JSONObject response) {
         if (validateSignInResponse(response)) {
-        Log.d("ajazFilterresponse : ", response.toString());
+            Log.d("ajazFilterresponse : ", response.toString());
 
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                progressDialogHelper.hideProgressDialog();
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    progressDialogHelper.hideProgressDialog();
 //                loadMoreListView.onLoadMoreComplete();
 
-                Gson gson = new Gson();
-                EventList eventList = gson.fromJson(response.toString(), EventList.class);
-                if (eventList.getEvents() != null && eventList.getEvents().size() > 0) {
-                    totalCount = eventList.getCount();
-                    isLoadingForFirstTime = false;
-                    updateListAdapter(eventList.getEvents());
+                    Gson gson = new Gson();
+                    EventOrganiserList eventOrganiserList = gson.fromJson(response.toString(), EventOrganiserList.class);
+                    if (eventOrganiserList.getEventOrganiserList() != null && eventOrganiserList.getEventOrganiserList().size() > 0) {
+                        totalCount = eventOrganiserList.getCount();
+                        isLoadingForFirstTime = false;
+                        updateListAdapter(eventOrganiserList.getEventOrganiserList());
+                    }
                 }
-            }
-        });
+            });
         }
         else {
             Log.d(TAG, "Error while sign In");
         }
     }
 
-    protected void updateListAdapter(ArrayList<Event> eventArrayList) {
-        this.eventArrayList.addAll(eventArrayList);
-        if (eventListAdapter == null) {
-            eventListAdapter = new EventListAdapter(this, this.eventArrayList);
-            loadMoreListView.setAdapter(eventListAdapter);
+    protected void updateListAdapter(ArrayList<EventOrganiser> eventOrganiserArrayList) {
+        this.eventOrganiserArrayList.addAll(eventOrganiserArrayList);
+        if (eventOrganiserListAdapter == null) {
+            eventOrganiserListAdapter = new EventOrganiserListAdapter(this, this.eventOrganiserArrayList);
+            loadMoreListView.setAdapter(eventOrganiserListAdapter);
         } else {
-            eventListAdapter.notifyDataSetChanged();
+            eventOrganiserListAdapter.notifyDataSetChanged();
         }
     }
 
@@ -176,21 +171,15 @@ public class EventsActivity extends AppCompatActivity implements IServiceListene
             public void run() {
                 progressDialogHelper.hideProgressDialog();
 //                loadMoreListView.onLoadMoreComplete();
-                AlertDialogHelper.showSimpleAlertDialog(EventsActivity.this, error);
+                AlertDialogHelper.showSimpleAlertDialog(EventOrganiserActivity.this, error);
             }
         });
     }
 
     @Override
-    public void onAlertPositiveClicked(int tag) {
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
     }
-
-    @Override
-    public void onAlertNegativeClicked(int tag) {
-
-    }
-
 
     private class HttpAsyncTask extends AsyncTask<String, Void, Void> {
         @Override
@@ -198,7 +187,7 @@ public class EventsActivity extends AppCompatActivity implements IServiceListene
 
             JSONObject jsonObject = new JSONObject();
             try {
-                jsonObject.put(EnsyfiConstants.PARAM_CLASS_ID, PreferenceStorage.getStudentClassIdPreference(getApplicationContext()));
+                jsonObject.put(EnsyfiConstants.PARAM_EVENT_ID, eventId);
 
 
             } catch (JSONException e) {
@@ -206,7 +195,7 @@ public class EventsActivity extends AppCompatActivity implements IServiceListene
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_EVENTS_API;
+            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_EVENT_ORGANISER_API;
             serviceHelper.makeGetServiceCall(jsonObject.toString(),url);
 
             return null;
@@ -219,3 +208,4 @@ public class EventsActivity extends AppCompatActivity implements IServiceListene
         }
     }
 }
+

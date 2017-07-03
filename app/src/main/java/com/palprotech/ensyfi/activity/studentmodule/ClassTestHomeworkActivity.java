@@ -43,7 +43,7 @@ public class ClassTestHomeworkActivity extends AppCompatActivity implements ISer
     ListView loadMoreListView;
     View view;
     ClassTestListAdapter classTestListAdapter;
-    ServiceHelper serviceHelper;
+    private ServiceHelper serviceHelper;
     ArrayList<ClassTest> classTestArrayList;
     int pageNumber = 0, totalCount = 0;
     protected ProgressDialogHelper progressDialogHelper;

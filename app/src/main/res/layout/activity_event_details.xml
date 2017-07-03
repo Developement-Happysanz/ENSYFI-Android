@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/appColor"
+            android:minHeight="?attr/actionBarSize" />
+
+        <ImageView
+            android:id="@+id/back_res"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:minHeight="?attr/actionBarSize"
+            android:paddingLeft="15dp"
+            android:src="@drawable/ic_arrow_back_white_48dp" />
+
+        <TextView
+            android:id="@+id/tvtitletext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:minHeight="?attr/actionBarSize"
+            android:paddingLeft="10dp"
+            android:text="Event Detail"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/actionbarTextSize" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/nav_back_ground_color"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/eventname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="30dp" />
+
+        <ImageView
+            android:id="@+id/loc"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_below="@+id/eventname"
+            android:layout_marginLeft="125dp"
+            android:src="@drawable/eventplaceicon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/eventname"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_toRightOf="@+id/loc"
+            android:paddingLeft="15dp"
+            android:text="Location"
+            android:textColor="@color/white" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/appColor"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingLeft="5dp"
+            android:src="@drawable/eventcalender" />
+
+        <TextView
+            android:id="@+id/eventdate"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_grey">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="DESCRIPTION"
+                android:textColor="@color/black"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/eventdetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Test" />
+
+            <Button
+                android:id="@+id/eventorg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="15dp"
+                android:background="@color/transparent"
+                android:text="View Event Organiser"
+                android:textColor="@color/appColor"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</LinearLayout>
