@@ -15,8 +15,6 @@ import com.palprotech.ensyfi.activity.parentsmodule.MainActivity;
 import com.palprotech.ensyfi.utils.AppValidator;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 
-import static com.palprotech.ensyfi.R.string.view;
-
 
 /**
  * Created by Admin on 22-03-2017.

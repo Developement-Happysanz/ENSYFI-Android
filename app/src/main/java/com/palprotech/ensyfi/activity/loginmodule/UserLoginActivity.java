@@ -271,36 +271,36 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     String GuardianPic = "";
 
 
-                    StudentAdmissionId = "admission_id";
-                    StudentAdmissionYear = "admisn_year";
-                    StudentAdmissionNumber = "admisn_no";
-                    StudentEmsiNumber = "emsi_num";
-                    StudentAdmissionDate = "admisn_date";
-                    StudentName = "name";
-                    StudentGender = "sex";
-                    StudentDateOfBirth = "dob";
-                    StudentAge = "age";
-                    StudentNationaity = "nationality";
-                    StudentReligion = "religion";
-                    StudentCaste = "community_class";
-                    StudentCommunity = "community";
-                    StudentParentOrGuardian = "parnt_guardn";
-                    StudentParentOrGuardianId= "parnt_guardn_id";
-                    StudentMotherTongue = "mother_tongue";
-                    StudentLanguage = "language";
-                    StudentMobile = "mobile";
-                    StudentSecondaryMobile = "sec_mobile";
-                    StudentMail = "email";
-                    StudentSecondaryMail = "sec_email";
-                    StudentPic = "student_pic";
-                    StudentPreviousSchool = "last_sch_name";
-                    StudentPreviousClass = "last_studied";
-                    StudentPromotionStatus = "qualified_promotion";
-                    StudentTransferCertificate = "transfer_certificate";
-                    StudentRecordSheet = "record_sheet";
-                    StudentStatus = "status";
-                    StudentParentStatus = "parents_status";
-                    StudentRegistered = "enrollment";
+                    StudentAdmissionId = getStudentProfile.getString("admission_id");
+                    StudentAdmissionYear = getStudentProfile.getString("admisn_year");
+                    StudentAdmissionNumber = getStudentProfile.getString("admisn_no");
+                    StudentEmsiNumber = getStudentProfile.getString("emsi_num");
+                    StudentAdmissionDate = getStudentProfile.getString("admisn_date");
+                    StudentName = getStudentProfile.getString("name");
+                    StudentGender = getStudentProfile.getString("sex");
+                    StudentDateOfBirth = getStudentProfile.getString("dob");
+                    StudentAge = getStudentProfile.getString("age");
+                    StudentNationaity = getStudentProfile.getString("nationality");
+                    StudentReligion = getStudentProfile.getString("religion");
+                    StudentCaste = getStudentProfile.getString("community_class");
+                    StudentCommunity = getStudentProfile.getString("community");
+                    StudentParentOrGuardian = getStudentProfile.getString("parnt_guardn");
+                    StudentParentOrGuardianId= getStudentProfile.getString("parnt_guardn_id");
+                    StudentMotherTongue = getStudentProfile.getString("mother_tongue");
+                    StudentLanguage = getStudentProfile.getString("language");
+                    StudentMobile = getStudentProfile.getString("mobile");
+                    StudentSecondaryMobile = getStudentProfile.getString("sec_mobile");
+                    StudentMail = getStudentProfile.getString("email");
+                    StudentSecondaryMail = getStudentProfile.getString("sec_email");
+                    StudentPic = getStudentProfile.getString("student_pic");
+                    StudentPreviousSchool = getStudentProfile.getString("last_sch_name");
+                    StudentPreviousClass = getStudentProfile.getString("last_studied");
+                    StudentPromotionStatus = getStudentProfile.getString("qualified_promotion");
+                    StudentTransferCertificate = getStudentProfile.getString("transfer_certificate");
+                    StudentRecordSheet = getStudentProfile.getString("record_sheet");
+                    StudentStatus = getStudentProfile.getString("status");
+                    StudentParentStatus = getStudentProfile.getString("parents_status");
+                    StudentRegistered = getStudentProfile.getString("enrollment");
 
 
 
