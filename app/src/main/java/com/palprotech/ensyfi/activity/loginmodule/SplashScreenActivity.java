@@ -1,6 +1,7 @@
 package com.palprotech.ensyfi.activity.loginmodule;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -31,7 +32,8 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
         WebView wView = (WebView) findViewById(R.id.web);
-        wView.setVisibility(View.VISIBLE);
+        wView.getSettings();
+        wView.setBackgroundColor(Color.TRANSPARENT);
         wView.loadUrl("file:///android_asset/ensyfi_logo.gif");
 
         // disable scroll on touch

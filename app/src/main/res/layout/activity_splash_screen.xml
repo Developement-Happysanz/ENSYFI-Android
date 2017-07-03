@@ -29,7 +29,6 @@
         android:id="@+id/web"
         android:layout_width="327dp"
         android:layout_height="409dp"
-        android:visibility="gone"
         android:layout_centerInParent="true"
         android:background="@color/transparent"
         android:scrollbars="none">
