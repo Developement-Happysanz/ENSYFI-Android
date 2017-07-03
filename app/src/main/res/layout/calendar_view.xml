@@ -32,7 +32,7 @@
         android:numColumns="7"
         android:stretchMode="columnWidth"></GridView>
 
-    <com.palprotech.eduappparentsstudents.customview.customcalendarpage.InfiniteViewPager
+    <com.palprotech.ensyfi.customview.caldroid_calendar.customcalendarpage.InfiniteViewPager
         android:id="@+id/months_infinite_pager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

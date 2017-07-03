@@ -68,7 +68,9 @@ public class SplashScreenActivity extends AppCompatActivity {
                         } else if (userType == 2) {
 
                         } else if (userType == 3) {
-
+                            Intent intent = new Intent(getApplicationContext(), ParentDashBoardActivity.class);
+                            startActivity(intent);
+                            finish();
                         } else {
                             Intent intent = new Intent(getApplicationContext(), ParentDashBoardActivity.class);
                             startActivity(intent);
