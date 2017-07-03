@@ -200,7 +200,7 @@ public class PreferenceStorage {
         editor.commit();
     }
 
-    public static String getStudentRegistereddPreference(Context context) {
+    public static String getStudentRegisteredPreference(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
         String studentPrefEnrollID = sharedPreferences.getString(EnsyfiConstants.KEY_STUDENT_ENROLL_ID_PREFERENCES, "");

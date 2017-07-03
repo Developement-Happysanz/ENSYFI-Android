@@ -23,16 +23,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
+import com.palprotech.ensyfi.activity.loginmodule.ChangePasswordActivity;
+import com.palprotech.ensyfi.activity.loginmodule.ProfileActivity;
 import com.palprotech.ensyfi.activity.loginmodule.SplashScreenActivity;
+import com.palprotech.ensyfi.activity.studentmodule.AttendanceActivity;
+import com.palprotech.ensyfi.activity.studentmodule.ClassTestHomeworkActivity;
+import com.palprotech.ensyfi.activity.studentmodule.EventsActivity;
+import com.palprotech.ensyfi.activity.studentmodule.ExamsResultActivity;
+import com.palprotech.ensyfi.activity.studentmodule.StudentInfoActivity;
+import com.palprotech.ensyfi.activity.studentmodule.TimeTableActivity;
 import com.palprotech.ensyfi.adapter.NavDrawerAdapter;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
-public class MainActivity extends AppCompatActivity implements DialogClickListener {
+public class ParentDashBoardActivity extends AppCompatActivity implements DialogClickListener {
 
-    private static final String TAG = MainActivity.class.getName();
+    private static final String TAG = ParentDashBoardActivity.class.getName();
     private static final int TAG_LOGOUT = 100;
     Toolbar toolbar;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -86,53 +94,53 @@ public class MainActivity extends AppCompatActivity implements DialogClickListen
         dashEvent = (LinearLayout) findViewById(R.id.events);
         dashCommunication = (LinearLayout) findViewById(R.id.communication);
 
-//        dashAttendance.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), AttendanceActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        dashClassTest.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), ClassTestHomeworkActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        dashExam.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), ExamsResultActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        dashTimeTable.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), TimeTableActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        dashEvent.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), EventsActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        dashCommunication.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), ParentsCommunicationActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        dashAttendance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AttendanceActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        dashClassTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ClassTestHomeworkActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        dashExam.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ExamsResultActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        dashTimeTable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), TimeTableActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        dashEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), EventsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        dashCommunication.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ParentsCommunicationActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         String name = PreferenceStorage.getName(getApplicationContext());
@@ -186,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements DialogClickListen
 
             public void onDrawerOpened(View drawerView) {
                 String userProfileName = PreferenceStorage.getName(getApplicationContext());
-                String url = PreferenceStorage.getUserPicture(MainActivity.this);
+                String url = PreferenceStorage.getUserPicture(ParentDashBoardActivity.this);
 
                 Log.d(TAG, "user name value" + userProfileName);
                 if ((userProfileName != null) && !userProfileName.isEmpty()) {
@@ -197,7 +205,7 @@ public class MainActivity extends AppCompatActivity implements DialogClickListen
                 if (((url != null) && !(url.isEmpty())) && !(url.equalsIgnoreCase(mCurrentUserProfileUrl))) {
                     Log.d(TAG, "image url is " + url);
                     mCurrentUserProfileUrl = url;
-                    Picasso.with(MainActivity.this).load(url).noPlaceholder().error(R.drawable.ab_logo).into(imgNavProfileImage);
+                    Picasso.with(ParentDashBoardActivity.this).load(url).noPlaceholder().error(R.drawable.ab_logo).into(imgNavProfileImage);
                 }
             }
         };
@@ -226,46 +234,46 @@ public class MainActivity extends AppCompatActivity implements DialogClickListen
 
     private void onNavigationMenuSelected(int position) {
 
-//        if (position == 0) {
-//            Intent navigationIntent = new Intent(this, ProfileActivity.class);
-//            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            startActivity(navigationIntent);
-//        } else if (position == 1) {
-//            Intent navigationIntent = new Intent(this, AttendanceActivity.class);
-//            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            startActivity(navigationIntent);
-//        } else if (position == 2) {
-//            Intent navigationIntent = new Intent(this, ClassTestHomeworkActivity.class);
-//            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            startActivity(navigationIntent);
-//        } else if (position == 3) {
-//            Intent navigationIntent = new Intent(this, ExamsResultActivity.class);
-//            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            startActivity(navigationIntent);
-//        } else if (position == 4) {
-//            Intent navigationIntent = new Intent(this, TimeTableActivity.class);
-//            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            startActivity(navigationIntent);
-//        } else if (position == 5) {
-//            Intent navigationIntent = new Intent(this, EventsActivity.class);
-//            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            startActivity(navigationIntent);
-//        } else if (position == 6) {
-//            Intent navigationIntent = new Intent(this, ParentsCommunicationActivity.class);
-//            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            startActivity(navigationIntent);
-//        } else if (position == 7) {
-//            Intent navigationIntent = new Intent(this, StudentInfoActivity.class);
-//            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            startActivity(navigationIntent);
-//        } else if (position == 8) {
-//            Intent navigationIntent = new Intent(this, ChangePasswordActivity.class);
-//            //navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            startActivity(navigationIntent);
-//        } else if (position == 9) {
-//            Log.d(TAG, "Perform Logout");
-//            doLogout();
-//        }
+        if (position == 0) {
+            Intent navigationIntent = new Intent(this, ProfileActivity.class);
+            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(navigationIntent);
+        } else if (position == 1) {
+            Intent navigationIntent = new Intent(this, AttendanceActivity.class);
+            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(navigationIntent);
+        } else if (position == 2) {
+            Intent navigationIntent = new Intent(this, ClassTestHomeworkActivity.class);
+            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(navigationIntent);
+        } else if (position == 3) {
+            Intent navigationIntent = new Intent(this, ExamsResultActivity.class);
+            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(navigationIntent);
+        } else if (position == 4) {
+            Intent navigationIntent = new Intent(this, TimeTableActivity.class);
+            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(navigationIntent);
+        } else if (position == 5) {
+            Intent navigationIntent = new Intent(this, EventsActivity.class);
+            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(navigationIntent);
+        } else if (position == 6) {
+            Intent navigationIntent = new Intent(this, ParentsCommunicationActivity.class);
+            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(navigationIntent);
+        } else if (position == 7) {
+            Intent navigationIntent = new Intent(this, StudentInfoActivity.class);
+            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(navigationIntent);
+        } else if (position == 8) {
+            Intent navigationIntent = new Intent(this, ChangePasswordActivity.class);
+            //navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(navigationIntent);
+        } else if (position == 9) {
+            Log.d(TAG, "Perform Logout");
+            doLogout();
+        }
     }
 
     @Override

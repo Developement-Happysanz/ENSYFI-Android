@@ -1,4 +1,4 @@
-package com.palprotech.ensyfi.activity.parentsmodule;
+package com.palprotech.ensyfi.activity.studentmodule;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
+import com.palprotech.ensyfi.activity.parentsmodule.ParentDashBoardActivity;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 
@@ -110,7 +111,7 @@ public class StudentInfoActivity extends AppCompatActivity {
                 }
 //
 //
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ParentDashBoardActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();

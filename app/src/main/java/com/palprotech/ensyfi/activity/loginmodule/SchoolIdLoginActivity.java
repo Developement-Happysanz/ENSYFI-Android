@@ -15,6 +15,7 @@ import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
 import com.palprotech.ensyfi.servicehelpers.ServiceHelper;
 import com.palprotech.ensyfi.serviceinterfaces.IServiceListener;
+import com.palprotech.ensyfi.utils.AppValidator;
 import com.palprotech.ensyfi.utils.CommonUtils;
 import com.palprotech.ensyfi.utils.EnsyfiConstants;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
@@ -54,22 +55,32 @@ public class SchoolIdLoginActivity extends AppCompatActivity implements View.OnC
     public void onClick(View v) {
         if (CommonUtils.isNetworkAvailable(this)) {
             if (v == btnSubmit) {
+                if (validateFields()) {
+                    JSONObject jsonObject = new JSONObject();
+                    try {
+                        jsonObject.put(EnsyfiConstants.PARAMS_FUNC_NAME, EnsyfiConstants.SIGN_IN_PARAMS_FUNC_NAME);
+                        jsonObject.put(EnsyfiConstants.PARAMS_INSTITUTE_ID, inputInstituteId.getText().toString());
 
-                JSONObject jsonObject = new JSONObject();
-                try {
-                    jsonObject.put(EnsyfiConstants.PARAMS_FUNC_NAME, EnsyfiConstants.SIGN_IN_PARAMS_FUNC_NAME);
-                    jsonObject.put(EnsyfiConstants.PARAMS_INSTITUTE_ID, inputInstituteId.getText().toString());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+                    String url = EnsyfiConstants.INSTITUTE_LOGIN_API;
+                    serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
                 }
-
-                progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-                String url = EnsyfiConstants.INSTITUTE_LOGIN_API;
-                serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
             }
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
+        }
+    }
+
+    private boolean validateFields() {
+        if (!AppValidator.checkNullString(this.inputInstituteId.getText().toString().trim())) {
+            AlertDialogHelper.showSimpleAlertDialog(this, this.getResources().getString(R.string.institute_Id));
+            return false;
+        } else {
+            return true;
         }
     }
 

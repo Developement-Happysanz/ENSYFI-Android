@@ -43,7 +43,7 @@
         <!--Dashboard-->
 
         <activity
-            android:name=".activity.parentsmodule.MainActivity"
+            android:name=".activity.parentsmodule.ParentDashBoardActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarGrey" />
@@ -62,7 +62,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarGrey" />
         <activity
-            android:name=".activity.parentsmodule.StudentInfoActivity"
+            android:name=".activity.studentmodule.StudentInfoActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarGrey" />

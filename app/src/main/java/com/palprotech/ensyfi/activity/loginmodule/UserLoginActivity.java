@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.activity.parentsmodule.StudentInfoActivity;
+import com.palprotech.ensyfi.activity.studentmodule.StudentInfoActivity;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
@@ -137,7 +137,7 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
     }
 
     private boolean validateSignInResponse(JSONObject response) {
-        boolean signInsuccess = false;
+        boolean signInSuccess = false;
         if ((response != null)) {
             try {
                 String status = response.getString("status");
@@ -147,12 +147,12 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                 if ((status != null)) {
                     if (((status.equalsIgnoreCase("activationError")) || (status.equalsIgnoreCase("alreadyRegistered")) ||
                             (status.equalsIgnoreCase("notRegistered")) || (status.equalsIgnoreCase("error")))) {
-                        signInsuccess = false;
+                        signInSuccess = false;
                         Log.d(TAG, "Show error dialog");
                         AlertDialogHelper.showSimpleAlertDialog(this, msg);
 
                     } else {
-                        signInsuccess = true;
+                        signInSuccess = true;
 
                     }
                 }
@@ -161,7 +161,7 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
             }
         }
 
-        return signInsuccess;
+        return signInSuccess;
     }
 
     public static void longInfo(String str) {
@@ -600,7 +600,7 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
 
                     // Parents Preference - Father's Name
                     if ((FatherName != null) && !(FatherName.isEmpty()) && !FatherName.equalsIgnoreCase("null")) {
-                        PreferenceStorage.saveFatherName(this, FatherAddress);
+                        PreferenceStorage.saveFatherName(this, FatherName);
                     }
 
                     // Parents Preference - Father's Mail

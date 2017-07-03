@@ -11,11 +11,9 @@ import android.view.View;
 import android.webkit.WebView;
 
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.activity.parentsmodule.MainActivity;
+import com.palprotech.ensyfi.activity.parentsmodule.ParentDashBoardActivity;
 import com.palprotech.ensyfi.utils.AppValidator;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
-
-import static com.palprotech.ensyfi.R.string.view;
 
 
 /**
@@ -32,7 +30,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        WebView wView = (WebView)findViewById(R.id.web);
+        WebView wView = (WebView) findViewById(R.id.web);
         wView.loadUrl("file:///android_asset/ensyfi_logo.gif");
         // disable scroll on touch
         wView.setOnTouchListener(new View.OnTouchListener() {
@@ -59,9 +57,19 @@ public class SplashScreenActivity extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     } else if (AppValidator.checkNullString(userName) && AppValidator.checkNullString(instituteName)) {
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(intent);
-                        finish();
+                        String userTypeString = PreferenceStorage.getUserType(getApplicationContext());
+                        int userType = Integer.parseInt(userTypeString);
+                        if (userType == 1) {
+
+                        } else if (userType == 2) {
+
+                        } else if (userType == 3) {
+
+                        } else {
+                            Intent intent = new Intent(getApplicationContext(), ParentDashBoardActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
                     } else if (AppValidator.checkNullString(instituteName)) {
                         Log.d(TAG, "No institute name yet, show user activity activity");
 

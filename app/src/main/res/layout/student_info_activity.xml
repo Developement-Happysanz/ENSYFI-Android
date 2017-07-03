@@ -42,7 +42,7 @@
             style="@style/spinner_style"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="40dp"
             android:layout_centerHorizontal="true"
             android:fontFamily="sans-serif"
             android:spinnerMode="dropdown"
@@ -50,13 +50,13 @@
             android:textColor="@color/text_gray"
             android:textSize="15sp" />
 
-        <com.palprotech.eduappparentsstudents.customview.CircleImageView
+        <com.palprotech.ensyfi.customview.CircleImageView
             android:id="@+id/stud_pic"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_below="@+id/eventtypespinner"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:fitsSystemWindows="true"
             android:scaleType="centerCrop"
             android:src="@drawable/profile_pic" />
@@ -69,7 +69,7 @@
             android:layout_alignEnd="@+id/admissid"
             android:layout_alignRight="@+id/admissid"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:text="NAME : "
             android:textColor="@color/appColor"
             android:textSize="20dp"/>
@@ -136,7 +136,6 @@
             android:layout_height="wrap_content"
             android:layout_alignEnd="@+id/admissid"
             android:layout_below="@+id/txtadmissid"
-            android:layout_centerHorizontal="true"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:text="CLASS : "
