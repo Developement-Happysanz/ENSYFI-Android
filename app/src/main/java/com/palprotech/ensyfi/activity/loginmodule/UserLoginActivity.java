@@ -195,8 +195,9 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     saveUserData(userData);
                 } else if (userType == 3) {
                     saveUserData(userData);
-                    JSONObject getStudentInfo = response.getJSONObject("studentProfile");
-                    JSONObject getStudentProfile = getStudentInfo.getJSONObject("0");
+                    JSONArray getData = response.getJSONArray("studentProfile");
+                    JSONObject getStudentProfile = getData.getJSONObject(0);
+//                    JSONObject getStudentProfile = getStudentInfo.getJSONObject("0");
 
                     //Student Details
                     String StudentAdmissionId = "";
@@ -301,9 +302,6 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     StudentStatus = getStudentProfile.getString("status");
                     StudentParentStatus = getStudentProfile.getString("parents_status");
                     StudentRegistered = getStudentProfile.getString("enrollment");
-
-
-
 
 
                     JSONObject getParentData = response.getJSONObject("parentProfile");
