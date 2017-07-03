@@ -15,6 +15,14 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.palprotech.ensyfi.R;
+import com.palprotech.ensyfi.helper.AlertDialogHelper;
+import com.palprotech.ensyfi.helper.ProgressDialogHelper;
+import com.palprotech.ensyfi.interfaces.DialogClickListener;
+import com.palprotech.ensyfi.servicehelpers.ServiceHelper;
+import com.palprotech.ensyfi.serviceinterfaces.IServiceListener;
+import com.palprotech.ensyfi.utils.CommonUtils;
+import com.palprotech.ensyfi.utils.EnsyfiConstants;
+import com.palprotech.ensyfi.utils.PreferenceStorage;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,18 +32,18 @@ import org.json.JSONObject;
  * Created by Narendar on 18/04/17.
  */
 
-public class TimeTableActivity extends AppCompatActivity implements ITimeTableServiceListener, DialogClickListener {
+public class TimeTableActivity extends AppCompatActivity implements IServiceListener, DialogClickListener {
     private static final String TAG = TimeTableActivity.class.getName();
     LinearLayout layout_all;
     private ProgressDialogHelper progressDialogHelper;
-    private TimeTableServiceHelper timeTableServiceHelper;
+    private ServiceHelper serviceHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_table);
-        timeTableServiceHelper = new TimeTableServiceHelper(this);
-        timeTableServiceHelper.setSignUpServiceListener(this);
+        serviceHelper = new ServiceHelper(this);
+        serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(this);
         GetTimeTableData();
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
@@ -52,14 +60,15 @@ public class TimeTableActivity extends AppCompatActivity implements ITimeTableSe
 
             JSONObject jsonObject = new JSONObject();
             try {
-                jsonObject.put(EduAppConstants.PARAMS_CLASS_ID, PreferenceStorage.getStudentClassIdPreference(getApplicationContext()));
+                jsonObject.put(EnsyfiConstants.PARAMS_CLASS_ID, PreferenceStorage.getStudentClassIdPreference(getApplicationContext()));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            timeTableServiceHelper.getStudentTimeTableServiceCall(jsonObject.toString());
+            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_STUDENT_TIME_TABLE_API;
+            serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
 
         } else {
@@ -72,7 +81,7 @@ public class TimeTableActivity extends AppCompatActivity implements ITimeTableSe
         if ((response != null)) {
             try {
                 String status = response.getString("status");
-                String msg = response.getString(EduAppConstants.PARAM_MESSAGE);
+                String msg = response.getString(EnsyfiConstants.PARAM_MESSAGE);
                 Log.d(TAG, "status val" + status + "msg" + msg);
 
                 if ((status != null)) {
@@ -106,7 +115,7 @@ public class TimeTableActivity extends AppCompatActivity implements ITimeTableSe
     }
 
     @Override
-    public void onTimeTableResponse(JSONObject response) {
+    public void onResponse(JSONObject response) {
 
         progressDialogHelper.hideProgressDialog();
         if (validateSignInResponse(response)) {
@@ -114,7 +123,7 @@ public class TimeTableActivity extends AppCompatActivity implements ITimeTableSe
             try {
                 JSONArray getData = response.getJSONArray("timeTable");
                 JSONObject userData = getData.getJSONObject(0);
-int getLength = getData.length();
+                int getLength = getData.length();
                 String subjectName = null;
                 Log.d(TAG, "userData dictionary" + userData.toString());
                 layout_all = (LinearLayout) findViewById(R.id.layout_timetable);
@@ -122,7 +131,7 @@ int getLength = getData.length();
                 layout.setLayoutParams(new TableLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.MATCH_PARENT));
                 layout_all.setScrollbarFadingEnabled(false);
-                layout.setPadding(0, 80,0, 80);
+                layout.setPadding(0, 80, 0, 80);
 
                 TableLayout.LayoutParams rowLp = new TableLayout.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT,
@@ -198,7 +207,7 @@ int getLength = getData.length();
     }
 
     @Override
-    public void onTimeTableError(String error) {
+    public void onError(String error) {
 
     }
 }
