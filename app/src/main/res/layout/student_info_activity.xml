@@ -42,13 +42,137 @@
             style="@style/spinner_style"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
             android:fontFamily="sans-serif"
-            android:spinnerMode="dropdown"
             android:overlapAnchor="false"
+            android:spinnerMode="dropdown"
             android:textColor="@color/text_gray"
             android:textSize="15sp" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="165dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/round_btn_plain">
+
+            <TextView
+                android:id="@+id/studname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="70dp"
+                android:text="Name                :"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/txtstudname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/studname"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/studname"
+                android:paddingTop="2dp"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/studid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/studname"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Student Id         :"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/txtstudid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/studid"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/studid"
+                android:paddingTop="2dp"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/admissid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/studid"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:text="Admission Id    :"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/txtadmissid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/admissid"
+                android:layout_toRightOf="@+id/admissid"
+                android:layout_marginLeft="5dp"
+                android:paddingTop="2dp"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/classid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtadmissid"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:text="Class                 :"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+
+
+            <TextView
+                android:id="@+id/txtclass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/txtadmissid"
+                android:layout_alignTop="@id/classid"
+                android:paddingTop="2dp"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/txtsec"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/txtclass"
+                android:layout_centerHorizontal="true"
+                android:layout_toRightOf="@id/txtclass"
+                android:textColor="@color/black"
+                android:paddingTop="2dp"
+                android:textSize="18dp" />
+
+            <Button
+                android:id="@+id/btnContinue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/appColor"
+                android:text="Continue"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="30dp"
+                android:textColor="@color/white" />
+        </RelativeLayout>
 
         <com.palprotech.ensyfi.customview.CircleImageView
             android:id="@+id/stud_pic"
@@ -56,127 +180,10 @@
             android:layout_height="120dp"
             android:layout_below="@+id/eventtypespinner"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:fitsSystemWindows="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/profile_pic" />
-
-        <TextView
-            android:id="@+id/studname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/stud_pic"
-            android:layout_alignEnd="@+id/admissid"
-            android:layout_alignRight="@+id/admissid"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:text="NAME : "
-            android:textColor="@color/appColor"
-            android:textSize="20dp"/>
-
-        <TextView
-            android:id="@+id/txtstudname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/stud_pic"
-            android:layout_toRightOf="@+id/studname"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:textColor="@color/black"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/studid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/admissid"
-            android:layout_alignRight="@+id/admissid"
-            android:layout_below="@+id/studname"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:text="STUDENT ID : "
-            android:textColor="@color/appColor"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/txtstudid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txtstudname"
-            android:layout_toRightOf="@+id/studid"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:textColor="@color/black"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/admissid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/studid"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="5dp"
-            android:text="ADMISSION ID : "
-            android:textColor="@color/appColor"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/txtadmissid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txtstudid"
-            android:layout_toRightOf="@+id/admissid"
-            android:layout_marginTop="5dp"
-            android:textColor="@color/black"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/classid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/admissid"
-            android:layout_below="@+id/txtadmissid"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:text="CLASS : "
-            android:textColor="@color/appColor"
-            android:textSize="20dp"
-            android:layout_alignRight="@+id/admissid" />
-
-
-        <TextView
-            android:id="@+id/txtclass"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/txtadmissid"
-            android:layout_below="@+id/txtadmissid"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:textColor="@color/black"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/txtsec"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txtadmissid"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:layout_toRightOf="@id/txtclass"
-            android:textColor="@color/black"
-            android:textSize="20dp" />
-
-        <Button
-            android:id="@+id/btnContinue"
-            android:layout_width="120dp"
-            android:layout_height="40dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="25dp"
-            android:background="@drawable/round_btn"
-            android:text="Continue"
-            android:textColor="@color/colour_pick" />
-
+            android:src="@drawable/ic_profile" />
     </RelativeLayout>
 
 </LinearLayout>
