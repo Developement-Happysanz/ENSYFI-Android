@@ -99,7 +99,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/describ"
-                    android:layout_marginBottom="50dp"
+                    android:layout_marginBottom="20dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:textColor="@color/black"
@@ -110,7 +110,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/txthomeworkdetails"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:visibility="gone">
 
                     <TextView
@@ -128,6 +128,38 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llMarkRemarks"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/llMarkView"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/remarks"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:text="REMARKS :"
+                        android:textColor="@color/appColor"
+                        android:textSize="23sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/viewremarks"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginTop="20dp"
                         android:gravity="center"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
