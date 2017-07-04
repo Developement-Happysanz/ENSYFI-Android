@@ -160,6 +160,12 @@
 
         <!--End-->
         <!---->
+        <!--Teacher Module-->
+        <activity
+            android:name=".activity.teachermodule.TeacherDashBoardActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarGrey" />
 
     </application>
 
