@@ -26,7 +26,7 @@ public class SaveStudentData {
     public void saveStudentRegisteredData(JSONArray studentRegistered) {
         database = new SQLiteHelper(context);
         try {
-            database.deleteLocal();
+            database.deleteStudentInfo();
 
             for (int i = 0; i < studentRegistered.length(); i++) {
                 HashMap<String, String> map = new HashMap<String, String>();

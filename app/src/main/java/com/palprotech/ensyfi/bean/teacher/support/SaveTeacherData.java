@@ -2,9 +2,13 @@ package com.palprotech.ensyfi.bean.teacher.support;
 
 import android.content.Context;
 
+import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.HashMap;
 
 /**
  * Created by Admin on 04-07-2017.
@@ -13,13 +17,13 @@ import org.json.JSONObject;
 public class SaveTeacherData {
 
     private Context context;
+    SQLiteHelper database;
 
     public SaveTeacherData(Context context) {
         this.context = context;
     }
 
-    public void saveTeacherProfile(JSONObject teacherProfile){
-
+    public void saveTeacherProfile(JSONObject teacherProfile) {
         try {
             JSONObject getTeacherProfile = teacherProfile.getJSONObject("0");
 
@@ -163,7 +167,66 @@ public class SaveTeacherData {
 
         } catch (Exception ex) {
         }
+    }
 
+    public void saveTeacherTimeTable(JSONArray timeTable) {
+        database = new SQLiteHelper(context);
+        try {
+            database.deleteTeacherTimeTable();
+
+            for (int i = 0; i < timeTable.length(); i++) {
+                HashMap<String, String> map = new HashMap<String, String>();
+                JSONObject jsonobj = timeTable.getJSONObject(i);
+
+                String table_id = "";
+                String class_id = "";
+                String subject_id = "";
+                String subject_name = "";
+                String teacher_id = "";
+                String name = "";
+                String day = "";
+                String period = "";
+                String sec_name = "";
+                String class_name = "";
+
+                table_id = jsonobj.getString("table_id");
+                class_id = jsonobj.getString("class_id");
+                subject_id = jsonobj.getString("subject_id");
+                subject_name = jsonobj.getString("subject_id");
+                teacher_id = jsonobj.getString("subject_id");
+                name = jsonobj.getString("subject_id");
+                day = jsonobj.getString("subject_id");
+                period = jsonobj.getString("subject_id");
+                sec_name = jsonobj.getString("subject_id");
+                class_name = jsonobj.getString("subject_id");
+
+                System.out.println("table_id : " + i + " = " + table_id);
+                System.out.println("class_id : " + i + " = " + class_id);
+                System.out.println("subject_id : " + i + " = " + subject_id);
+                System.out.println("subject_name : " + i + " = " + subject_name);
+                System.out.println("teacher_id : " + i + " = " + teacher_id);
+                System.out.println("name : " + i + " = " + name);
+                System.out.println("day : " + i + " = " + day);
+                System.out.println("period : " + i + " = " + period);
+                System.out.println("sec_name : " + i + " = " + sec_name);
+                System.out.println("class_name : " + i + " = " + class_name);
+
+                String v1 = table_id,
+                        v2 = class_id,
+                        v3 = subject_id,
+                        v4 = subject_name,
+                        v5 = teacher_id,
+                        v6 = name,
+                        v7 = day,
+                        v8 = period,
+                        v9 = sec_name,
+                        v10 = class_name;
+
+                database.teacher_timetable_insert(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 }
 

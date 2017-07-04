@@ -102,7 +102,7 @@
             android:theme="@style/AppThemeNoActionBarGrey" />
 
         <activity
-            android:name=".activity.studentmodule.TimeTableActivity"
+            android:name=".activity.studentmodule.StudentTimeTableActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarPink" />
@@ -163,6 +163,12 @@
         <!--Teacher Module-->
         <activity
             android:name=".activity.teachermodule.TeacherDashBoardActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarGrey" />
+
+        <activity
+            android:name=".activity.teachermodule.TeacherTimeTableActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarGrey" />

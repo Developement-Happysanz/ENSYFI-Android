@@ -33,8 +33,7 @@ import com.palprotech.ensyfi.activity.parentsmodule.ParentsCommunicationActivity
 import com.palprotech.ensyfi.activity.studentmodule.AttendanceActivity;
 import com.palprotech.ensyfi.activity.studentmodule.ClassTestHomeworkActivity;
 import com.palprotech.ensyfi.activity.studentmodule.ExamsResultActivity;
-import com.palprotech.ensyfi.activity.studentmodule.StudentInfoActivity;
-import com.palprotech.ensyfi.activity.studentmodule.TimeTableActivity;
+import com.palprotech.ensyfi.activity.studentmodule.StudentTimeTableActivity;
 import com.palprotech.ensyfi.adapter.NavDrawerAdapter;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
@@ -128,7 +127,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
         dashTimeTable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), TimeTableActivity.class);
+                Intent intent = new Intent(getApplicationContext(), TeacherTimeTableActivity.class);
                 startActivity(intent);
             }
         });
@@ -224,7 +223,6 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
         // Initialize header and listview
         navDrawerList = (ListView) findViewById(R.id.nav_drawer_options_list);
 
-
         NavDrawerAdapter navDrawerAdapter = new NavDrawerAdapter(getApplicationContext(), R.layout.nav_list_item, values);
         navListAdapter = new ArrayAdapter<String>(this, R.layout.nav_list_item, values);
         navDrawerList.setAdapter(navDrawerAdapter);
@@ -258,11 +256,11 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 4) {
-            Intent navigationIntent = new Intent(this, TimeTableActivity.class);
+            Intent navigationIntent = new Intent(this, TeacherTimeTableActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 5) {
-//            Intent navigationIntent = new Intent(this, TimeTableActivity.class);
+//            Intent navigationIntent = new Intent(this, StudentTimeTableActivity.class);
 //            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //            startActivity(navigationIntent);
         } else if (position == 6) {

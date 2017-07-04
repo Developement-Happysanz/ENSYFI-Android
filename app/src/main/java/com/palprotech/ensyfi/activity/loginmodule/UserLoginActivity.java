@@ -176,7 +176,7 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
         progressDialogHelper.hideProgressDialog();
         if (validateSignInResponse(response)) {
             try {
-//                JSONArray getData = response.getJSONArray("userData");
+
                 JSONObject userData = response.getJSONObject("userData");
 
                 int userType = Integer.parseInt(userData.getString("user_type"));
@@ -187,9 +187,12 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
 
                     saveUserData(userData);
 
-                    JSONArray getArray = response.getJSONArray("teacherProfile");
-                    JSONObject teacherProfile = getArray.getJSONObject(0);
+                    JSONArray getTeacherProfile = response.getJSONArray("teacherProfile");
+                    JSONObject teacherProfile = getTeacherProfile.getJSONObject(0);
                     teacherData.saveTeacherProfile(teacherProfile);
+
+                    JSONArray getTimeTable = response.getJSONArray("timeTable");
+                    teacherData.saveTeacherTimeTable(getTimeTable);
 
                 } else if (userType == 3) {
 

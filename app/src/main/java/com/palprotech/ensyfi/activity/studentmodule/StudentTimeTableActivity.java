@@ -32,8 +32,8 @@ import org.json.JSONObject;
  * Created by Narendar on 18/04/17.
  */
 
-public class TimeTableActivity extends AppCompatActivity implements IServiceListener, DialogClickListener {
-    private static final String TAG = TimeTableActivity.class.getName();
+public class StudentTimeTableActivity extends AppCompatActivity implements IServiceListener, DialogClickListener {
+    private static final String TAG = StudentTimeTableActivity.class.getName();
     LinearLayout layout_all;
     private ProgressDialogHelper progressDialogHelper;
     private ServiceHelper serviceHelper;
