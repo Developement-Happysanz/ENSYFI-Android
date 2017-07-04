@@ -20,7 +20,7 @@ public class EnsyfiConstants {
     // USERS URL
     public static final String USER_LOGIN_API = "/apimain/login/";
     public static final String USER_IMAGE_API_PARENTS = "/assets/parents/profile/";
-    public static final String USER_IMAGE_API_STUDENTS = "/assets/student/profile/";
+    public static final String USER_IMAGE_API_STUDENTS = "/assets/students/profile/";
     public static final String USER_IMAGE_API_TEACHERS = "/assets/teachers/profile/";
     public static final String USER_IMAGE_API_ADMIN = "/assets/admin/profile/";
 
@@ -47,7 +47,7 @@ public class EnsyfiConstants {
     public static final String GET_STUDENT_CLASSTEST_MARK_API = "/apistudent/disp_Ctestmarks/";
 
     // EXAM & RESULT URL
-//    public static final String GET_EXAM_API = "/apistudent/disp_Exams/";
+    public static final String GET_EXAM_API = "/apistudent/disp_Exams/";
     public static final String GET_EXAM_DETAIL_API = "/apistudent/disp_Examdetails/";
     public static final String GET_EXAM_MARK_API = "/apistudent/disp_Exammarks/";
 

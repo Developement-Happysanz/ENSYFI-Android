@@ -31,8 +31,8 @@ import org.json.JSONObject;
 public class ClassTestDetailActivity extends AppCompatActivity implements IServiceListener, DialogClickListener, View.OnClickListener {
     private static final String TAG = ClassTestDetailActivity.class.getName();
     private ClassTest classTest;
-    private TextView txtTitle, txtHomeWorkDate, txtHomeWorkDetails, txtHomeWorkSubject, tvTitleText, txtViewMarks;
-    private LinearLayout llMarkView;
+    private TextView txtTitle, txtHomeWorkDate, txtHomeWorkDetails, txtHomeWorkSubject, tvTitleText, txtViewMarks, txtViewRemarks;
+    private LinearLayout llMarkView, llMarkRemarks;
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper progressDialogHelper;
     String txtHomeWorkType = "0";
@@ -63,7 +63,9 @@ public class ClassTestDetailActivity extends AppCompatActivity implements IServi
         txtHomeWorkDetails = (TextView) findViewById(R.id.txthomeworkdetails);
         txtHomeWorkSubject = (TextView) findViewById(R.id.txthomeworksubject);
         txtViewMarks = (TextView) findViewById(R.id.viewmarks);
+        txtViewRemarks = (TextView) findViewById(R.id.viewremarks);
         llMarkView = (LinearLayout) findViewById(R.id.llMarkView);
+        llMarkRemarks = (LinearLayout) findViewById(R.id.llMarkRemarks);
 
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
@@ -84,6 +86,7 @@ public class ClassTestDetailActivity extends AppCompatActivity implements IServi
         mStatus = classTest.getHwMarkStatus();
         if (mStatus.equalsIgnoreCase("1")) {
             llMarkView.setVisibility(View.VISIBLE);
+            llMarkRemarks.setVisibility(View.VISIBLE);
 
             if (CommonUtils.isNetworkAvailable(this)) {
 
@@ -99,7 +102,7 @@ public class ClassTestDetailActivity extends AppCompatActivity implements IServi
 
                 progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
                 String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_STUDENT_CLASSTEST_MARK_API;
-                serviceHelper.makeGetServiceCall(jsonObject.toString(),url);
+                serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
 
             } else {
@@ -108,6 +111,7 @@ public class ClassTestDetailActivity extends AppCompatActivity implements IServi
 
         } else {
             llMarkView.setVisibility(View.GONE);
+            llMarkRemarks.setVisibility(View.GONE);
         }
 //        txtHomeWorkMarkStatus = classTest.getHwMarkStatus();
 //        if(txtHomeWorkMarkStatus.equals(1)){
@@ -131,13 +135,17 @@ public class ClassTestDetailActivity extends AppCompatActivity implements IServi
             try {
                 JSONArray getData = response.getJSONArray("ctestmarkDetails");
                 JSONObject marksData = getData.getJSONObject(0);
-                String user_id = null;
+                String studentMark = null, studentRemarks = null;
 
 
                 Log.d(TAG, "userData dictionary" + marksData.toString());
                 if (marksData != null) {
-                    user_id = marksData.getString("marks") + "";
-                    txtViewMarks.setText(user_id);
+                    studentMark = marksData.getString("marks") + "";
+                    txtViewMarks.setText(studentMark);
+                    studentRemarks = marksData.getString("remarks") + "";
+                    txtViewRemarks.setText(studentRemarks);
+
+
                     //
 
 
