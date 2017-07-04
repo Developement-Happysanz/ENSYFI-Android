@@ -3,6 +3,7 @@ package com.palprotech.ensyfi.bean.student.support;
 import android.content.Context;
 
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
+import com.palprotech.ensyfi.utils.PreferenceStorage;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -70,7 +71,7 @@ public class SaveStudentData {
             String StudentGender = "";
             String StudentDateOfBirth = "";
             String StudentAge = "";
-            String StudentNationaity = "";
+            String StudentNationality = "";
             String StudentReligion = "";
             String StudentCaste = "";
             String StudentCommunity = "";
@@ -101,7 +102,7 @@ public class SaveStudentData {
             StudentGender = getStudentProfile.getString("sex");
             StudentDateOfBirth = getStudentProfile.getString("dob");
             StudentAge = getStudentProfile.getString("age");
-            StudentNationaity = getStudentProfile.getString("nationality");
+            StudentNationality = getStudentProfile.getString("nationality");
             StudentReligion = getStudentProfile.getString("religion");
             StudentCaste = getStudentProfile.getString("community_class");
             StudentCommunity = getStudentProfile.getString("community");
@@ -122,6 +123,158 @@ public class SaveStudentData {
             StudentStatus = getStudentProfile.getString("status");
             StudentParentStatus = getStudentProfile.getString("parents_status");
             StudentRegistered = getStudentProfile.getString("enrollment");
+
+
+            // Parents Preference - Student Admission Id
+            if ((StudentAdmissionId != null) && !(StudentAdmissionId.isEmpty()) && !StudentAdmissionId.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveStudentAdmissionID(context, StudentAdmissionId);
+            }
+
+            // Parents Preference - Student Admission Year
+            if ((StudentAdmissionYear != null) && !(StudentAdmissionYear.isEmpty()) && !StudentAdmissionYear.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveStudentAdmissionYear(context, StudentAdmissionYear);
+            }
+
+            // Parents Preference - Student Admission Number
+            if ((StudentAdmissionNumber != null) && !(StudentAdmissionNumber.isEmpty()) && !StudentAdmissionNumber.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveStudentAdmissionNumber(context, StudentAdmissionNumber);
+            }
+
+            // Parents Preference - Student Emsi Number
+            if ((StudentEmsiNumber != null) && !(StudentEmsiNumber.isEmpty()) && !StudentEmsiNumber.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveStudentEmsiNumber(context, StudentEmsiNumber);
+            }
+
+            // Parents Preference - Student Admission Date
+            if ((StudentAdmissionDate != null) && !(StudentAdmissionDate.isEmpty()) && !StudentAdmissionDate.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveStudentAdmissionDate(context, StudentAdmissionDate);
+            }
+
+            // Parents Preference - Student Name
+            if ((StudentName != null) && !(StudentName.isEmpty()) && !StudentName.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveStudentName(context, StudentName);
+            }
+
+            // Parents Preference - Student Gender
+            if ((StudentGender != null) && !(StudentGender.isEmpty()) && !StudentGender.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveStudentGender(context, StudentGender);
+            }
+
+            // Parents Preference - Student Date Of Birth
+            if ((StudentDateOfBirth != null) && !(StudentDateOfBirth.isEmpty()) && !StudentDateOfBirth.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveStudentDateOfBirth(context, StudentDateOfBirth);
+            }
+
+            // Parents Preference - Student Age
+            if ((StudentAge != null) && !(StudentAge.isEmpty()) && !StudentAge.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveStudentAge(context, StudentAge);
+            }
+
+            // Parents Preference - Student Nationality
+            if ((StudentNationality != null) && !(StudentNationality.isEmpty()) && !StudentNationality.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveStudentNationality(context, StudentNationality);
+            }
+
+            // Parents Preference - Student Religion
+            if ((StudentReligion != null) && !(StudentReligion.isEmpty()) && !StudentReligion.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveFatherImg(context, StudentReligion);
+            }
+
+            // Parents Preference - Student Caste
+            if ((StudentCaste != null) && !(StudentCaste.isEmpty()) && !StudentCaste.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveStudentCaste(context, StudentCaste);
+            }
+
+            // Parents Preference - Student Community
+            if ((StudentCommunity != null) && !(StudentCommunity.isEmpty()) && !StudentCommunity.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveStudentCommunity(context, StudentCommunity);
+            }
+
+            // Parents Preference - Student Parent Or Guardian
+            if ((StudentParentOrGuardian != null) && !(StudentParentOrGuardian.isEmpty()) && !StudentParentOrGuardian.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveStudentParentOrGuardian(context, StudentParentOrGuardian);
+            }
+
+            // Parents Preference - Student Parent Or Guardian Id
+            if ((StudentParentOrGuardianId != null) && !(StudentParentOrGuardianId.isEmpty()) && !StudentParentOrGuardianId.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveStudentParentOrGuardianID(context, StudentParentOrGuardianId);
+            }
+
+            // Parents Preference - Student Mother Tongue
+            if ((StudentMotherTongue != null) && !(StudentMotherTongue.isEmpty()) && !StudentMotherTongue.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveStudentMotherTongue(context, StudentMotherTongue);
+            }
+
+            // Parents Preference - Student Language
+            if ((StudentLanguage != null) && !(StudentLanguage.isEmpty()) && !StudentLanguage.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveStudentLanguage(context, StudentLanguage);
+            }
+
+            // Parents Preference - Student Mobile
+            if ((StudentMobile != null) && !(StudentMobile.isEmpty()) && !StudentMobile.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveStudentMobile(context, StudentMobile);
+            }
+
+            // Parents Preference - Student Secondary Mobile
+            if ((StudentSecondaryMobile != null) && !(StudentSecondaryMobile.isEmpty()) && !StudentSecondaryMobile.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveStudentSecondaryMobile(context, StudentSecondaryMobile);
+            }
+
+            // Parents Preference - Student Mail
+            if ((StudentMail != null) && !(StudentMail.isEmpty()) && !StudentMail.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveStudentMail(context, StudentMail);
+            }
+
+            // Parents Preference - Student Secondary Mail
+            if ((StudentSecondaryMail != null) && !(StudentSecondaryMail.isEmpty()) && !StudentSecondaryMail.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveStudentSecondaryMail(context, StudentSecondaryMail);
+            }
+
+            // Parents Preference - Student Pic
+            if ((StudentPic != null) && !(StudentPic.isEmpty()) && !StudentPic.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveStudentImg(context, StudentPic);
+            }
+
+            // Parents Preference - Student Previous School
+            if ((StudentPreviousSchool != null) && !(StudentPreviousSchool.isEmpty()) && !StudentPreviousSchool.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveStudentPreviousSchool(context, StudentPreviousSchool);
+            }
+
+            // Parents Preference - Student Previous Class
+            if ((StudentPreviousClass != null) && !(StudentPreviousClass.isEmpty()) && !StudentPreviousClass.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveStudentPreviousClass(context, StudentPreviousClass);
+            }
+
+            // Parents Preference - Student Promotion Status
+            if ((StudentPromotionStatus != null) && !(StudentPromotionStatus.isEmpty()) && !StudentPromotionStatus.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveStudentPromotionStatus(context, StudentPromotionStatus);
+            }
+
+            // Parents Preference - Student Transfer Certificate
+            if ((StudentTransferCertificate != null) && !(StudentTransferCertificate.isEmpty()) && !StudentTransferCertificate.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveStudentTransferCertificate(context, StudentTransferCertificate);
+            }
+
+            // Parents Preference - Student Record Sheet
+            if ((StudentRecordSheet != null) && !(StudentRecordSheet.isEmpty()) && !StudentRecordSheet.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveStudentRecordSheet(context, StudentRecordSheet);
+            }
+
+            // Parents Preference - Student Status
+            if ((StudentStatus != null) && !(StudentStatus.isEmpty()) && !StudentStatus.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveStudentStatus(context, StudentStatus);
+            }
+
+            // Parents Preference - Student Parent Status
+            if ((StudentParentStatus != null) && !(StudentParentStatus.isEmpty()) && !StudentParentStatus.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveStudentParentStatus(context, StudentParentStatus);
+            }
+
+            // Parents Preference - Student Registered
+            if ((StudentRegistered != null) && !(StudentRegistered.isEmpty()) && !StudentRegistered.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveStudentRegistered(context, StudentRegistered);
+            }
+
 
         } catch (Exception ex) {
         }
