@@ -44,6 +44,9 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
     private static final String TAG = UserLoginActivity.class.getName();
 
     private ServiceHelper serviceHelper;
+    private SaveStudentData studentData;
+    private SaveParentData parentData;
+    private SaveTeacherData teacherData;
     private ProgressDialogHelper progressDialogHelper;
 
     private EditText inputUsername, inputPassword;
@@ -75,6 +78,9 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
 
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
+        studentData = new SaveStudentData(this);
+        parentData = new SaveParentData(this);
+        teacherData = new SaveTeacherData(this);
         progressDialogHelper = new ProgressDialogHelper(this);
 
         String url = PreferenceStorage.getInstituteLogoPicUrl(this);
@@ -156,14 +162,12 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
 
                     } else {
                         signInSuccess = true;
-
                     }
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
-
         return signInSuccess;
     }
 
@@ -197,11 +201,10 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                 } else if (userType == 2) {
                     saveUserData(userData);
 
-                    SaveTeacherData saveTeacherData = new SaveTeacherData();
-
                     JSONArray getArray = response.getJSONArray("teacherProfile");
                     JSONObject teacherProfile = getArray.getJSONObject(0);
-                    saveTeacherData.saveTeacherProfile(teacherProfile);
+
+                    teacherData.saveTeacherProfile(teacherProfile);
 
                 } else if (userType == 3) {
                     saveUserData(userData);
@@ -273,26 +276,18 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
 
 
                     JSONObject getParentData = response.getJSONObject("parentProfile");
-
-                    SaveParentData parentData = new SaveParentData(this);
                     parentData.saveParentProfile(getParentData);
 
                     JSONArray getStudentData = response.getJSONArray("registeredDetails");
-
-                    SaveStudentData studentData = new SaveStudentData(this);
                     studentData.saveStudentRegisteredData(getStudentData);
 
                 } else {
                     saveUserData(userData);
 
                     JSONObject getParentData = response.getJSONObject("parentProfile");
-
-                    SaveParentData parentData = new SaveParentData(this);
                     parentData.saveParentProfile(getParentData);
 
                     JSONArray getStudentData = response.getJSONArray("registeredDetails");
-
-                    SaveStudentData studentData = new SaveStudentData(this);
                     studentData.saveStudentRegisteredData(getStudentData);
                 }
 

@@ -1,5 +1,7 @@
 package com.palprotech.ensyfi.bean.teacher.support;
 
+import android.content.Context;
+
 import org.json.JSONObject;
 
 /**
@@ -7,6 +9,12 @@ import org.json.JSONObject;
  */
 
 public class SaveTeacherData {
+
+    private Context context;
+
+    public SaveTeacherData(Context context) {
+        this.context = context;
+    }
 
     public void saveTeacherProfile(JSONObject teacherProfile){
 
