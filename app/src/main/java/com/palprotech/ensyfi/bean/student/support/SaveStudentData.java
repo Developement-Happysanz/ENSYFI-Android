@@ -177,7 +177,7 @@ public class SaveStudentData {
 
             // Parents Preference - Student Religion
             if ((StudentReligion != null) && !(StudentReligion.isEmpty()) && !StudentReligion.equalsIgnoreCase("null")) {
-                PreferenceStorage.saveFatherImg(context, StudentReligion);
+                PreferenceStorage.saveStudentReligion(context, StudentReligion);
             }
 
             // Parents Preference - Student Caste

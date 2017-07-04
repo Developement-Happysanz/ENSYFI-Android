@@ -150,6 +150,27 @@ public class EnsyfiConstants {
     public static final String STUDENT_PARENT_STATUS = "stud_parents_status";
     public static final String STUDENT_REGISTERED = "stud_enrollment";
 
+    //Student Details
+    public static final String TEACHER_ID = "teacher_id";
+    public static final String TEACHER_NAME = "teacher_name";
+    public static final String TEACHER_GENDER = "teacher_sex";
+    public static final String TEACHER_AGE = "teacher_age";
+    public static final String TEACHER_NATIONALITY = "teacher_nationality";
+    public static final String TEACHER_RELIGION = "teacher_religion";
+    public static final String TEACHER_CASTE = "teacher_community_class";
+    public static final String TEACHER_COMMUNITY = "teacher_community";
+    public static final String TEACHER_ADDRESS = "teacher_home_address";
+    public static final String TEACHER_MOBILE = "teacher_mobile";
+    public static final String TEACHER_MAIL = "teacher_email";
+    public static final String TEACHER_SEC_MOBILE = "teacher_sec_mobile";
+    public static final String TEACHER_SEC_MAIL = "teacher_sec_email";
+    public static final String TEACHER_IMAGE = "teacher_pic";
+    public static final String TEACHER_SUBJECT = "teacher_subject";
+    public static final String TEACHER_CLASS_TAKEN = "teacher_class_taken";
+    public static final String TEACHER_SECTION = "teacher_sec_name";
+    public static final String TEACHER_CLASS_NAME = "teacher_class_name";
+    public static final String TEACHER_CLASS_TEACHER = "class_teacher";
+
     //Father Details
     public static final String FATHER_ID = "father_id";
     public static final String FATHER_NAME = "father_name";

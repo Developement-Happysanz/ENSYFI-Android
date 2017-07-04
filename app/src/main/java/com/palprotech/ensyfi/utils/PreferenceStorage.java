@@ -1296,4 +1296,291 @@ public class PreferenceStorage {
         String studentRegistered = sharedPreferences.getString(EnsyfiConstants.STUDENT_REGISTERED, "");
         return studentRegistered;
     }
+
+
+    /////////       TEACHER DETAILS         /////////
+
+    public static void saveTeacherId(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.TEACHER_ID, name);
+        editor.commit();
+    }
+
+    public static String getTeacherId(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String teacherId = sharedPreferences.getString(EnsyfiConstants.TEACHER_ID, "");
+        return teacherId;
+    }
+
+    public static void saveTeacherName(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.TEACHER_NAME, name);
+        editor.commit();
+    }
+
+    public static String getTeacherName(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String teacherName = sharedPreferences.getString(EnsyfiConstants.TEACHER_NAME, "");
+        return teacherName;
+    }
+
+    public static void saveTeacherGender(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.TEACHER_GENDER, name);
+        editor.commit();
+    }
+
+    public static String getTeacherGender(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String teacherGender = sharedPreferences.getString(EnsyfiConstants.TEACHER_GENDER, "");
+        return teacherGender ;
+    }
+
+    public static void saveTeacherAge(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.TEACHER_AGE, name);
+        editor.commit();
+    }
+
+    public static String getTeacherAge(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String teacherAge= sharedPreferences.getString(EnsyfiConstants.TEACHER_AGE, "");
+        return teacherAge;
+    }
+
+    public static void saveTeacherNationality(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.TEACHER_NATIONALITY, name);
+        editor.commit();
+    }
+
+    public static String getTeacherNationality(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String teacherNationality = sharedPreferences.getString(EnsyfiConstants.TEACHER_NATIONALITY, "");
+        return teacherNationality;
+    }
+
+    public static void saveTeacherReligion(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.TEACHER_RELIGION, name);
+        editor.commit();
+    }
+
+    public static String getTeacherReligion(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String teacherReligion = sharedPreferences.getString(EnsyfiConstants.TEACHER_RELIGION, "");
+        return teacherReligion;
+    }
+
+    public static void saveTeacherCaste(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.TEACHER_CASTE, name);
+        editor.commit();
+    }
+
+    public static String getTeacherCaste(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String teacherCaste = sharedPreferences.getString(EnsyfiConstants.TEACHER_CASTE, "");
+        return teacherCaste;
+    }
+
+    public static void saveTeacherCommunity(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.TEACHER_COMMUNITY, name);
+        editor.commit();
+    }
+
+    public static String getTeacherCommunity(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String teacherCommunity = sharedPreferences.getString(EnsyfiConstants.TEACHER_COMMUNITY, "");
+        return teacherCommunity;
+    }
+
+    public static void saveTeacherAddress(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.TEACHER_ADDRESS, name);
+        editor.commit();
+    }
+
+    public static String getTeacherAddress(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String teacherAddress = sharedPreferences.getString(EnsyfiConstants.TEACHER_ADDRESS, "");
+        return teacherAddress;
+    }
+
+    public static void saveTeacherMobile(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.TEACHER_MOBILE, name);
+        editor.commit();
+    }
+
+    public static String getTeacherMobile(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String teacherMobile = sharedPreferences.getString(EnsyfiConstants.TEACHER_MOBILE, "");
+        return teacherMobile;
+    }
+
+    public static void saveTeacherMail(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.TEACHER_MAIL, name);
+        editor.commit();
+    }
+
+    public static String getTeacherMail(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String teacherMail = sharedPreferences.getString(EnsyfiConstants.TEACHER_MAIL, "");
+        return teacherMail;
+    }
+    public static void saveTeacherSecondaryMobile(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.TEACHER_SEC_MOBILE, name);
+        editor.commit();
+    }
+
+    public static String getTeacherSecondaryMobile(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String teacherSecondaryMobile = sharedPreferences.getString(EnsyfiConstants.TEACHER_SEC_MOBILE, "");
+        return teacherSecondaryMobile;
+    }
+
+    public static void saveTeacherSecondaryMail(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.TEACHER_SEC_MAIL, name);
+        editor.commit();
+    }
+
+    public static String getTeacherSecondaryMail(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String teacherSecondaryMail = sharedPreferences.getString(EnsyfiConstants.TEACHER_SEC_MAIL, "");
+        return teacherSecondaryMail;
+    }
+
+    public static void saveTeacherPic(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.TEACHER_IMAGE, name);
+        editor.commit();
+    }
+
+    public static String getTeacherPic(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String teacherPic = sharedPreferences.getString(EnsyfiConstants.TEACHER_IMAGE, "");
+        return teacherPic;
+    }
+
+    public static void saveTeacherSubject(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.TEACHER_SUBJECT, name);
+        editor.commit();
+    }
+
+    public static String getTeacherSubject(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String teacherSubject = sharedPreferences.getString(EnsyfiConstants.TEACHER_SUBJECT, "");
+        return teacherSubject ;
+    }
+
+    public static void saveTeacherClassTaken(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.TEACHER_CLASS_TAKEN, name);
+        editor.commit();
+    }
+
+    public static String getTeacherClassTaken(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String teacherClassTaken = sharedPreferences.getString(EnsyfiConstants.TEACHER_CLASS_TAKEN, "");
+        return teacherClassTaken ;
+    }
+
+    public static void saveTeacherSectionName(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.TEACHER_SECTION, name);
+        editor.commit();
+    }
+
+    public static String getTeacherSectionName(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String teacherSectionName = sharedPreferences.getString(EnsyfiConstants.TEACHER_SECTION, "");
+        return teacherSectionName ;
+    }
+
+    public static void saveTeacherClassName(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.TEACHER_CLASS_NAME, name);
+        editor.commit();
+    }
+
+    public static String getTeacherClassName(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String teacherClassName = sharedPreferences.getString(EnsyfiConstants.TEACHER_CLASS_NAME, "");
+        return teacherClassName;
+    }
+
+    public static void saveClassTeacher(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.TEACHER_CLASS_TEACHER, name);
+        editor.commit();
+    }
+
+    public static String getClassTeacher(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String classTeacher = sharedPreferences.getString(EnsyfiConstants.TEACHER_CLASS_TEACHER, "");
+        return classTeacher;
+    }
 }
