@@ -46,7 +46,7 @@ public class TeacherTimeTableActivity extends AppCompatActivity implements Dialo
     LinearLayout layout_all;
     private ProgressDialogHelper progressDialogHelper;
     SQLiteHelper db;
-    Vector<String> vecTableId, vecClassName, vecSectionName, vecSubjectName;
+    Vector<String> vecTableId, vecClassName, vecSectionName, vecSubjectName, vecDay, vecPeriod;
     List<String> lsTeacherTimeTable = new ArrayList<String>();
     ArrayAdapter<String> adapterTeacherTimeTable;
     String ClassName, SectionName, SubjectName, TableId;
@@ -61,6 +61,8 @@ public class TeacherTimeTableActivity extends AppCompatActivity implements Dialo
         vecClassName = new Vector<String>();
         vecSectionName = new Vector<String>();
         vecSubjectName = new Vector<String>();
+        vecDay = new Vector<String>();
+        vecPeriod = new Vector<String>();
         GetTimeTableData();
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
         bckbtn.setOnClickListener(new View.OnClickListener() {
@@ -73,19 +75,6 @@ public class TeacherTimeTableActivity extends AppCompatActivity implements Dialo
 
     private void GetTimeTableData() {
         try {
-
-            Cursor c = db.getTeacherTimeTable();
-            if (c.getCount() > 0) {
-                if (c.moveToFirst()) {
-                    do {
-                        vecTableId.add(c.getString(0));
-                        vecClassName.add(c.getString(9));
-                        vecSectionName.add(c.getString(8));
-                        vecSubjectName.add(c.getString(3));
-                    } while (c.moveToNext());
-                }
-            }
-            db.close();
 
 //            JSONArray getData = response.getJSONArray("timeTable");
 //            JSONObject userData = getData.getJSONObject(0);
@@ -110,8 +99,8 @@ public class TeacherTimeTableActivity extends AppCompatActivity implements Dialo
                     ViewGroup.LayoutParams.MATCH_PARENT);
 
             cellLp.setMargins(2, 2, 2, 2);
-            int i = 0;
-            for (int f = 0; f <= 4; f++) {
+            int i = 1;
+            for (int f = 1; f <= 6; f++) {
 
                 TableRow tr = new TableRow(this);
 
@@ -131,13 +120,23 @@ public class TeacherTimeTableActivity extends AppCompatActivity implements Dialo
                             ViewGroup.LayoutParams.MATCH_PARENT));
                     TextView b = new TextView(this);
                     final String name;
-                    if(i>vecClassName.size()){
-                        name = "ok";
-                    } else {
-                        name = vecClassName.get(i) + "/" + vecSectionName.get(i) ;
-//                            + "/" + vecClassName.get(i) + "/" + vecSectionName.get(i) + "/" + vecSubjectName.get(i) + "";
-                    }
 
+                    String fValue = String.valueOf(f);
+                    String c1Value = String.valueOf(c1);
+                    Cursor c = db.getTeacherTimeTableValue(fValue, c1Value);
+                    if (c.getCount() > 0) {
+                        if (c.moveToFirst()) {
+                            do {
+                                ClassName = c.getString(0);
+                                SectionName = c.getString(1);
+                                SubjectName = c.getString(2);
+                            } while (c.moveToNext());
+                        }
+                        name = ClassName + "/" + SectionName + "/" + SubjectName;
+                    } else {
+                        name = "";
+                    }
+                    db.close();
 
                     cell.setBackgroundColor(Color.WHITE);//argb(255,104,53,142)
 

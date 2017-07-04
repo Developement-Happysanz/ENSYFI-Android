@@ -192,13 +192,13 @@ public class SaveTeacherData {
                 table_id = jsonobj.getString("table_id");
                 class_id = jsonobj.getString("class_id");
                 subject_id = jsonobj.getString("subject_id");
-                subject_name = jsonobj.getString("subject_id");
-                teacher_id = jsonobj.getString("subject_id");
-                name = jsonobj.getString("subject_id");
-                day = jsonobj.getString("subject_id");
-                period = jsonobj.getString("subject_id");
-                sec_name = jsonobj.getString("subject_id");
-                class_name = jsonobj.getString("subject_id");
+                subject_name = jsonobj.getString("subject_name");
+                teacher_id = jsonobj.getString("teacher_id");
+                name = jsonobj.getString("name");
+                day = jsonobj.getString("day");
+                period = jsonobj.getString("period");
+                sec_name = jsonobj.getString("sec_name");
+                class_name = jsonobj.getString("class_name");
 
                 System.out.println("table_id : " + i + " = " + table_id);
                 System.out.println("class_id : " + i + " = " + class_id);
@@ -210,6 +210,12 @@ public class SaveTeacherData {
                 System.out.println("period : " + i + " = " + period);
                 System.out.println("sec_name : " + i + " = " + sec_name);
                 System.out.println("class_name : " + i + " = " + class_name);
+
+                for (int f = 1; f <= 6; f++) {
+                    for (int c1 = 1; c1 <= 8; c1++) {
+
+                    }
+                }
 
                 String v1 = table_id,
                         v2 = class_id,
