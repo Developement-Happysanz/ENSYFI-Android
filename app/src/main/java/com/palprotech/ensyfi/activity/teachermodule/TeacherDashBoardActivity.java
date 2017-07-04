@@ -65,7 +65,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_parent_dash_board);
+        setContentView(R.layout.activity_teacher_dash_board);
         setTitle("ENSYFI - Teachers");
         toolbar = (Toolbar) findViewById(R.id.activity_toolbar);
         setSupportActionBar(toolbar);
