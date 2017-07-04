@@ -13,6 +13,7 @@ import android.webkit.WebView;
 
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.activity.parentsmodule.ParentDashBoardActivity;
+import com.palprotech.ensyfi.activity.teachermodule.TeacherDashBoardActivity;
 import com.palprotech.ensyfi.utils.AppValidator;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 
@@ -66,7 +67,9 @@ public class SplashScreenActivity extends AppCompatActivity {
                         if (userType == 1) {
 
                         } else if (userType == 2) {
-
+                            Intent intent = new Intent(getApplicationContext(), TeacherDashBoardActivity.class);
+                            startActivity(intent);
+                            finish();
                         } else if (userType == 3) {
                             Intent intent = new Intent(getApplicationContext(), ParentDashBoardActivity.class);
                             startActivity(intent);

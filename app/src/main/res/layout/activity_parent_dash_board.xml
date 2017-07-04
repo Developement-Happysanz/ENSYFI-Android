@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/activity_toolbar"
+            layout="@layout/tool_bar"></include>
+
+        <include
+            android:id="@+id/dashboard_layout"
+            layout="@layout/activity_dashboard_parents"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:clickable="true"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/landing_nav_header"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+        <ListView
+            android:id="@+id/nav_drawer_options_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="start"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:divider="@color/transparent"
+            android:dividerHeight="-0.0025dp"
+            android:scrollbars="vertical" />
+
+    </LinearLayout>
+
+</android.support.v4.widget.DrawerLayout>

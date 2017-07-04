@@ -13,7 +13,9 @@ import android.widget.TextView;
 
 
 import com.palprotech.ensyfi.R;
+import com.palprotech.ensyfi.activity.parentsmodule.ParentDashBoardActivity;
 import com.palprotech.ensyfi.activity.studentmodule.StudentInfoActivity;
+import com.palprotech.ensyfi.activity.teachermodule.TeacherDashBoardActivity;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 import com.palprotech.ensyfi.bean.parents.Support.SaveParentData;
 import com.palprotech.ensyfi.bean.student.support.SaveStudentData;
@@ -208,10 +210,30 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
             }
 
             if (PreferenceStorage.getForgotPasswordStatus(getApplicationContext()).contentEquals("1")) {
-                Intent intent = new Intent(this, StudentInfoActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
+                String userTypeString = PreferenceStorage.getUserType(getApplicationContext());
+                int userType = Integer.parseInt(userTypeString);
+                if (userType == 1) {
+                    Intent intent = new Intent(this, StudentInfoActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    finish();
+                } else if (userType == 2) {
+                    Intent intent = new Intent(this, TeacherDashBoardActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    finish();
+                } else if (userType == 3) {
+                    Intent intent = new Intent(this, StudentInfoActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Intent intent = new Intent(this, StudentInfoActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    finish();
+                }
+
             } else {
                 Intent intent = new Intent(this, ResetPasswordActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);

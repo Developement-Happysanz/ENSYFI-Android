@@ -1,15 +1,16 @@
-package com.palprotech.ensyfi.activity.parentsmodule;
+package com.palprotech.ensyfi.activity.teachermodule;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
@@ -23,12 +24,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
+import com.palprotech.ensyfi.activity.general.EventsActivity;
 import com.palprotech.ensyfi.activity.loginmodule.ChangePasswordActivity;
 import com.palprotech.ensyfi.activity.loginmodule.ProfileActivity;
 import com.palprotech.ensyfi.activity.loginmodule.SplashScreenActivity;
+import com.palprotech.ensyfi.activity.parentsmodule.ParentDashBoardActivity;
+import com.palprotech.ensyfi.activity.parentsmodule.ParentsCommunicationActivity;
 import com.palprotech.ensyfi.activity.studentmodule.AttendanceActivity;
 import com.palprotech.ensyfi.activity.studentmodule.ClassTestHomeworkActivity;
-import com.palprotech.ensyfi.activity.general.EventsActivity;
 import com.palprotech.ensyfi.activity.studentmodule.ExamsResultActivity;
 import com.palprotech.ensyfi.activity.studentmodule.StudentInfoActivity;
 import com.palprotech.ensyfi.activity.studentmodule.TimeTableActivity;
@@ -38,7 +41,11 @@ import com.palprotech.ensyfi.utils.PreferenceStorage;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
-public class ParentDashBoardActivity extends AppCompatActivity implements DialogClickListener {
+/**
+ * Created by Admin on 04-07-2017.
+ */
+
+public class TeacherDashBoardActivity extends AppCompatActivity implements DialogClickListener {
 
     private static final String TAG = ParentDashBoardActivity.class.getName();
     private static final int TAG_LOGOUT = 100;
@@ -49,23 +56,17 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
     boolean doubleBackToExitPressedOnce = false;
     private ImageView imgNavProfileImage;
     private ArrayAdapter<String> navListAdapter;
-    private String[] values = {"PROFILE", "ATTENDANCE", "CLASS TEST & HOMEWORK", "EXAM & RESULT", "TIME TABLE", "EVENT", "COMMUNICATION", "STUDENT INFO", "SETTINGS", "SIGN OUT"};
+    private String[] values = {"PROFILE", "ATTENDANCE", "CLASS TEST & HOMEWORK", "EXAM & RESULT", "TIME TABLE", "CALENDAR", "EVENT", "COMMUNICATION", "SETTINGS", "SIGN OUT"};
     TextView navUserProfileName = null;
     LinearLayout dashAttendance, dashTimeTable, dashClassTest, dashExam, dashEvent, dashCommunication;
     private String mCurrentUserProfileUrl = "";
     Context context;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_dash_board);
-        String userTypeString = PreferenceStorage.getUserType(getApplicationContext());
-        int userType = Integer.parseInt(userTypeString);
-        if (userType == 3) {
-            setTitle("ENSYFI - Students");
-        } else if (userType == 4) {
-            setTitle("ENSYFI - Parents");
-        }
+        setTitle("ENSYFI - Teachers");
         toolbar = (Toolbar) findViewById(R.id.activity_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -200,7 +201,7 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
 
             public void onDrawerOpened(View drawerView) {
                 String userProfileName = PreferenceStorage.getName(getApplicationContext());
-                String url = PreferenceStorage.getUserPicture(ParentDashBoardActivity.this);
+                String url = PreferenceStorage.getUserPicture(TeacherDashBoardActivity.this);
 
                 Log.d(TAG, "user name value" + userProfileName);
                 if ((userProfileName != null) && !userProfileName.isEmpty()) {
@@ -211,7 +212,7 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
                 if (((url != null) && !(url.isEmpty())) && !(url.equalsIgnoreCase(mCurrentUserProfileUrl))) {
                     Log.d(TAG, "image url is " + url);
                     mCurrentUserProfileUrl = url;
-                    Picasso.with(ParentDashBoardActivity.this).load(url).noPlaceholder().error(R.drawable.ab_logo).into(imgNavProfileImage);
+                    Picasso.with(TeacherDashBoardActivity.this).load(url).noPlaceholder().error(R.drawable.ab_logo).into(imgNavProfileImage);
                 }
             }
         };
@@ -261,15 +262,15 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 5) {
+//            Intent navigationIntent = new Intent(this, TimeTableActivity.class);
+//            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            startActivity(navigationIntent);
+        } else if (position == 6) {
             Intent navigationIntent = new Intent(this, EventsActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 6) {
-            Intent navigationIntent = new Intent(this, ParentsCommunicationActivity.class);
-            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(navigationIntent);
         } else if (position == 7) {
-            Intent navigationIntent = new Intent(this, StudentInfoActivity.class);
+            Intent navigationIntent = new Intent(this, ParentsCommunicationActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 8) {
@@ -326,6 +327,7 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
             return;
         }
     }
+
 
     @Override
     public void onAlertPositiveClicked(int tag) {
