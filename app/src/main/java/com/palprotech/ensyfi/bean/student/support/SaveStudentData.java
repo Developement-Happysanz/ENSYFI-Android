@@ -54,4 +54,77 @@ public class SaveStudentData {
             ex.printStackTrace();
         }
     }
+
+    public void saveStudentProfile(JSONArray studentProfile) {
+
+        try {
+            JSONObject getStudentProfile = studentProfile.getJSONObject(0);
+
+            //Student Details
+            String StudentAdmissionId = "";
+            String StudentAdmissionYear = "";
+            String StudentAdmissionNumber = "";
+            String StudentEmsiNumber = "";
+            String StudentAdmissionDate = "";
+            String StudentName = "";
+            String StudentGender = "";
+            String StudentDateOfBirth = "";
+            String StudentAge = "";
+            String StudentNationaity = "";
+            String StudentReligion = "";
+            String StudentCaste = "";
+            String StudentCommunity = "";
+            String StudentParentOrGuardian = "";
+            String StudentParentOrGuardianId = "";
+            String StudentMotherTongue = "";
+            String StudentLanguage = "";
+            String StudentMobile = "";
+            String StudentSecondaryMobile = "";
+            String StudentMail = "";
+            String StudentSecondaryMail = "";
+            String StudentPic = "";
+            String StudentPreviousSchool = "";
+            String StudentPreviousClass = "";
+            String StudentPromotionStatus = "";
+            String StudentTransferCertificate = "";
+            String StudentRecordSheet = "";
+            String StudentStatus = "";
+            String StudentParentStatus = "";
+            String StudentRegistered = "";
+
+            StudentAdmissionId = getStudentProfile.getString("admission_id");
+            StudentAdmissionYear = getStudentProfile.getString("admisn_year");
+            StudentAdmissionNumber = getStudentProfile.getString("admisn_no");
+            StudentEmsiNumber = getStudentProfile.getString("emsi_num");
+            StudentAdmissionDate = getStudentProfile.getString("admisn_date");
+            StudentName = getStudentProfile.getString("name");
+            StudentGender = getStudentProfile.getString("sex");
+            StudentDateOfBirth = getStudentProfile.getString("dob");
+            StudentAge = getStudentProfile.getString("age");
+            StudentNationaity = getStudentProfile.getString("nationality");
+            StudentReligion = getStudentProfile.getString("religion");
+            StudentCaste = getStudentProfile.getString("community_class");
+            StudentCommunity = getStudentProfile.getString("community");
+            StudentParentOrGuardian = getStudentProfile.getString("parnt_guardn");
+            StudentParentOrGuardianId = getStudentProfile.getString("parnt_guardn_id");
+            StudentMotherTongue = getStudentProfile.getString("mother_tongue");
+            StudentLanguage = getStudentProfile.getString("language");
+            StudentMobile = getStudentProfile.getString("mobile");
+            StudentSecondaryMobile = getStudentProfile.getString("sec_mobile");
+            StudentMail = getStudentProfile.getString("email");
+            StudentSecondaryMail = getStudentProfile.getString("sec_email");
+            StudentPic = getStudentProfile.getString("student_pic");
+            StudentPreviousSchool = getStudentProfile.getString("last_sch_name");
+            StudentPreviousClass = getStudentProfile.getString("last_studied");
+            StudentPromotionStatus = getStudentProfile.getString("qualified_promotion");
+            StudentTransferCertificate = getStudentProfile.getString("transfer_certificate");
+            StudentRecordSheet = getStudentProfile.getString("record_sheet");
+            StudentStatus = getStudentProfile.getString("status");
+            StudentParentStatus = getStudentProfile.getString("parents_status");
+            StudentRegistered = getStudentProfile.getString("enrollment");
+
+        } catch (Exception ex) {
+        }
+
+    }
 }

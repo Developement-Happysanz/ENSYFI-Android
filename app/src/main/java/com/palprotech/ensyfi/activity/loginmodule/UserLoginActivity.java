@@ -59,7 +59,6 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_login);
-//        mProfileImage = (ImageView) findViewById(R.id.image_institute_pic);
         SetUI();
     }
 
@@ -137,12 +136,10 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onAlertPositiveClicked(int tag) {
-
     }
 
     @Override
     public void onAlertNegativeClicked(int tag) {
-
     }
 
     private boolean validateSignInResponse(JSONObject response) {
@@ -171,124 +168,39 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
         return signInSuccess;
     }
 
-    public static void longInfo(String str) {
-        if (str.length() > 4000) {
-            Log.d("Data From", str.substring(0, 4000));
-            longInfo(str.substring(4000));
-        } else
-            Log.d("Data To", str);
-        String New;
-    }
-
     @Override
     public void onResponse(JSONObject response) {
 
         progressDialogHelper.hideProgressDialog();
         if (validateSignInResponse(response)) {
-
-//            String repo = response.toString();
-//            longInfo(repo);
-
             try {
 //                JSONArray getData = response.getJSONArray("userData");
                 JSONObject userData = response.getJSONObject("userData");
-                String user_id = null;
 
                 int userType = Integer.parseInt(userData.getString("user_type"));
 
                 if (userType == 1) {
                     saveUserData(userData);
                 } else if (userType == 2) {
+
                     saveUserData(userData);
 
                     JSONArray getArray = response.getJSONArray("teacherProfile");
                     JSONObject teacherProfile = getArray.getJSONObject(0);
-
                     teacherData.saveTeacherProfile(teacherProfile);
 
                 } else if (userType == 3) {
+
                     saveUserData(userData);
+                    saveStudentParentDetails(response);
+
                     JSONArray getData = response.getJSONArray("studentProfile");
-                    JSONObject getStudentProfile = getData.getJSONObject(0);
-
-                    //Student Details
-                    String StudentAdmissionId = "";
-                    String StudentAdmissionYear = "";
-                    String StudentAdmissionNumber = "";
-                    String StudentEmsiNumber = "";
-                    String StudentAdmissionDate = "";
-                    String StudentName = "";
-                    String StudentGender = "";
-                    String StudentDateOfBirth = "";
-                    String StudentAge = "";
-                    String StudentNationaity = "";
-                    String StudentReligion = "";
-                    String StudentCaste = "";
-                    String StudentCommunity = "";
-                    String StudentParentOrGuardian = "";
-                    String StudentParentOrGuardianId = "";
-                    String StudentMotherTongue = "";
-                    String StudentLanguage = "";
-                    String StudentMobile = "";
-                    String StudentSecondaryMobile = "";
-                    String StudentMail = "";
-                    String StudentSecondaryMail = "";
-                    String StudentPic = "";
-                    String StudentPreviousSchool = "";
-                    String StudentPreviousClass = "";
-                    String StudentPromotionStatus = "";
-                    String StudentTransferCertificate = "";
-                    String StudentRecordSheet = "";
-                    String StudentStatus = "";
-                    String StudentParentStatus = "";
-                    String StudentRegistered = "";
-
-                    StudentAdmissionId = getStudentProfile.getString("admission_id");
-                    StudentAdmissionYear = getStudentProfile.getString("admisn_year");
-                    StudentAdmissionNumber = getStudentProfile.getString("admisn_no");
-                    StudentEmsiNumber = getStudentProfile.getString("emsi_num");
-                    StudentAdmissionDate = getStudentProfile.getString("admisn_date");
-                    StudentName = getStudentProfile.getString("name");
-                    StudentGender = getStudentProfile.getString("sex");
-                    StudentDateOfBirth = getStudentProfile.getString("dob");
-                    StudentAge = getStudentProfile.getString("age");
-                    StudentNationaity = getStudentProfile.getString("nationality");
-                    StudentReligion = getStudentProfile.getString("religion");
-                    StudentCaste = getStudentProfile.getString("community_class");
-                    StudentCommunity = getStudentProfile.getString("community");
-                    StudentParentOrGuardian = getStudentProfile.getString("parnt_guardn");
-                    StudentParentOrGuardianId = getStudentProfile.getString("parnt_guardn_id");
-                    StudentMotherTongue = getStudentProfile.getString("mother_tongue");
-                    StudentLanguage = getStudentProfile.getString("language");
-                    StudentMobile = getStudentProfile.getString("mobile");
-                    StudentSecondaryMobile = getStudentProfile.getString("sec_mobile");
-                    StudentMail = getStudentProfile.getString("email");
-                    StudentSecondaryMail = getStudentProfile.getString("sec_email");
-                    StudentPic = getStudentProfile.getString("student_pic");
-                    StudentPreviousSchool = getStudentProfile.getString("last_sch_name");
-                    StudentPreviousClass = getStudentProfile.getString("last_studied");
-                    StudentPromotionStatus = getStudentProfile.getString("qualified_promotion");
-                    StudentTransferCertificate = getStudentProfile.getString("transfer_certificate");
-                    StudentRecordSheet = getStudentProfile.getString("record_sheet");
-                    StudentStatus = getStudentProfile.getString("status");
-                    StudentParentStatus = getStudentProfile.getString("parents_status");
-                    StudentRegistered = getStudentProfile.getString("enrollment");
-
-
-                    JSONObject getParentData = response.getJSONObject("parentProfile");
-                    parentData.saveParentProfile(getParentData);
-
-                    JSONArray getStudentData = response.getJSONArray("registeredDetails");
-                    studentData.saveStudentRegisteredData(getStudentData);
+                    studentData.saveStudentProfile(getData);
 
                 } else {
+
                     saveUserData(userData);
-
-                    JSONObject getParentData = response.getJSONObject("parentProfile");
-                    parentData.saveParentProfile(getParentData);
-
-                    JSONArray getStudentData = response.getJSONArray("registeredDetails");
-                    studentData.saveStudentRegisteredData(getStudentData);
+                    saveStudentParentDetails(response);
                 }
 
             } catch (JSONException e) {
@@ -309,6 +221,17 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
 
         } else {
             Log.d(TAG, "Error while sign In");
+        }
+    }
+
+    private void saveStudentParentDetails(JSONObject response) {
+        try {
+            JSONObject getParentData = response.getJSONObject("parentProfile");
+            parentData.saveParentProfile(getParentData);
+
+            JSONArray getStudentData = response.getJSONArray("registeredDetails");
+            studentData.saveStudentRegisteredData(getStudentData);
+        } catch (Exception ex) {
         }
     }
 
