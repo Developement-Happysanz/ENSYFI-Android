@@ -8,7 +8,8 @@ import org.json.JSONObject;
 
 public class SaveTeacherData {
 
-    public void saveTeacherProfile(JSONObject saveProfile) {
+    public void saveTeacherProfile(JSONObject teacherProfile){
 
     }
 }
+
