@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.bean.student.ClassTest;
+import com.palprotech.ensyfi.bean.student.viewlist.ClassTest;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;

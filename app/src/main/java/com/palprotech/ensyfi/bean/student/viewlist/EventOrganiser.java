@@ -1,15 +1,13 @@
-package com.palprotech.ensyfi.bean.student;
+package com.palprotech.ensyfi.bean.student.viewlist;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
-
 /**
- * Created by Narendar on 18/05/17.
+ * Created by Admin on 22-05-2017.
  */
 
-public class EventDetail implements Serializable {
+public class EventOrganiser {
 
     @SerializedName("sub_event_name")
     @Expose
@@ -22,29 +20,28 @@ public class EventDetail implements Serializable {
     /**
      * @return The sub_event_name
      */
-    public String getSub_event_name() {
+    public String getSubEventName() {
         return sub_event_name;
     }
 
     /**
      * @param sub_event_name The sub_event_name
      */
-    public void setSub_event_name(String sub_event_name) {
+    public void setSubEventName(String sub_event_name) {
         this.sub_event_name = sub_event_name;
     }
 
     /**
      * @return The name
      */
-    public String getName() {
+    public String getEventOrganiserName() {
         return name;
     }
 
     /**
      * @param name The name
      */
-    public void setName(String name) {
+    public void setEventOrganiserName(String name) {
         this.name = name;
     }
-
 }

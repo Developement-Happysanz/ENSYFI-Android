@@ -24,34 +24,34 @@ public class EnsyfiConstants {
     public static final String USER_IMAGE_API_ADMIN = "/assets/admin/profile/";
 
     //FORGOT PASSWORD URL
-    public static final String FORGOT_PASSWORD = "/api/forgot_password/";
-    public static final String RESET_PASSWORD = "/api/reset_Password/";
-    public static final String CHANGE_PASSWORD = "/api/change_Password/";
+    public static final String FORGOT_PASSWORD = "/apimain/forgot_Password/";
+    public static final String RESET_PASSWORD = "/apimain/reset_Password/";
+    public static final String CHANGE_PASSWORD = "/apimain/change_Password/";
 
     // STUDENT ATTENDANCE URL
 
-    public static final String GET_STUDENT_ATTENDANCD_API = "/api/disp_Attendence/";
+    public static final String GET_STUDENT_ATTENDANCD_API = "/apistudent/disp_Attendence/";
 
     // STUDENT TIMETABLE URL
-    public static final String GET_STUDENT_TIME_TABLE_API = "/api/stud_timetable/";
+    public static final String GET_STUDENT_TIME_TABLE_API = "/apistudent/disp_Timetable/";
 
     // CLASS TEST & HOMEWORK URL
-    public static final String GET_STUDENT_CLASSTEST_AND_HOMEWORK_API = "/api/disp_Homework/";
-    public static final String GET_STUDENT_CLASSTEST_MARK_API = "/api/disp_Ctestmarks/";
+    public static final String GET_STUDENT_CLASSTEST_AND_HOMEWORK_API = "/apistudent/disp_Homework/";
+    public static final String GET_STUDENT_CLASSTEST_MARK_API = "/apistudent/disp_Ctestmarks/";
 
     // EXAM & RESULT URL
-    public static final String GET_EXAM_API = "/api/disp_Exams/";
-    public static final String GET_EXAM_DETAIL_API = "/api/disp_Examdetails/";
-    public static final String GET_EXAM_MARK_API = "/api/disp_Exammarks/";
+    public static final String GET_EXAM_API = "/apistudent/disp_Exams/";
+    public static final String GET_EXAM_DETAIL_API = "/apistudent/disp_Examdetails/";
+    public static final String GET_EXAM_MARK_API = "/apistudent/disp_Exammarks/";
 
     // EVENTS URL
-    public static final String GET_EVENTS_API = "/api/disp_Events/";
+    public static final String GET_EVENTS_API = "/apimain/disp_Events/";
 
     //EVENT ORGANISER URL
-    public static final String GET_EVENT_ORGANISER_API = "/api/disp_subEvents/";
+    public static final String GET_EVENT_ORGANISER_API = "/apimain/disp_subEvents/";
 
     // COMMUNICATION URL
-    public static final String GET_COMMUNICATION_API = "/api/disp_ParentCommunication/";
+    public static final String GET_COMMUNICATION_API = "/apistudent/disp_Communication/";
 
     //Service Params
     public static String PARAM_MESSAGE = "msg";

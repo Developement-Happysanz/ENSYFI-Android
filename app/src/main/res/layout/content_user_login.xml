@@ -35,7 +35,7 @@
         android:hint="@string/user_name"
         android:inputType="textEmailAddress"
         android:maxLines="1"
-        android:text=""
+        android:text="800001"
         android:paddingLeft="10dp"
         android:textColor="#67368c"
         android:textColorHint="#7767368c" />
@@ -49,7 +49,7 @@
         android:hint="@string/password"
         android:inputType="textPassword"
         android:maxLines="1"
-        android:text=""
+        android:text="admin"
         android:paddingLeft="10dp"
         android:textColor="#67368c"
         android:textColorHint="#7767368c" />

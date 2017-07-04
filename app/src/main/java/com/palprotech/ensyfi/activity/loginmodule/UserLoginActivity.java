@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.activity.studentmodule.StudentInfoActivity;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
+import com.palprotech.ensyfi.bean.teacher.support.SaveTeacherData;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
@@ -193,6 +194,14 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     saveUserData(userData);
                 } else if (userType == 2) {
                     saveUserData(userData);
+                    SaveTeacherData saveTeacherData = new SaveTeacherData();
+
+                    JSONArray getArray = response.getJSONArray("teacherProfile");
+                    JSONObject teacherProfile = getArray.getJSONObject(0);
+                    saveTeacherData.saveTeacherProfile(teacherProfile);
+
+
+
                 } else if (userType == 3) {
                     saveUserData(userData);
                     JSONArray getData = response.getJSONArray("studentProfile");
@@ -214,7 +223,7 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     String StudentCaste = "";
                     String StudentCommunity = "";
                     String StudentParentOrGuardian = "";
-                    String StudentParentOrGuardianId= "";
+                    String StudentParentOrGuardianId = "";
                     String StudentMotherTongue = "";
                     String StudentLanguage = "";
                     String StudentMobile = "";
@@ -286,7 +295,7 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     StudentCaste = getStudentProfile.getString("community_class");
                     StudentCommunity = getStudentProfile.getString("community");
                     StudentParentOrGuardian = getStudentProfile.getString("parnt_guardn");
-                    StudentParentOrGuardianId= getStudentProfile.getString("parnt_guardn_id");
+                    StudentParentOrGuardianId = getStudentProfile.getString("parnt_guardn_id");
                     StudentMotherTongue = getStudentProfile.getString("mother_tongue");
                     StudentLanguage = getStudentProfile.getString("language");
                     StudentMobile = getStudentProfile.getString("mobile");
@@ -370,12 +379,12 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     }
 
                     // Parents Preference - Father's Relationship
-                    if ((FatherRelationship!= null) && !(FatherRelationship.isEmpty()) && !FatherRelationship.equalsIgnoreCase("null")) {
+                    if ((FatherRelationship != null) && !(FatherRelationship.isEmpty()) && !FatherRelationship.equalsIgnoreCase("null")) {
                         PreferenceStorage.saveFatherRelationship(this, FatherRelationship);
                     }
 
                     // Parents Preference - Father's Pic
-                    if ((FatherPic!= null) && !(FatherPic.isEmpty()) && !FatherPic.equalsIgnoreCase("null")) {
+                    if ((FatherPic != null) && !(FatherPic.isEmpty()) && !FatherPic.equalsIgnoreCase("null")) {
                         PreferenceStorage.saveFatherImg(this, FatherPic);
                     }
 
@@ -445,12 +454,12 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     }
 
                     // Parents Preference - Mother's Relationship
-                    if ((MotherRelationship!= null) && !(MotherRelationship.isEmpty()) && !MotherRelationship.equalsIgnoreCase("null")) {
+                    if ((MotherRelationship != null) && !(MotherRelationship.isEmpty()) && !MotherRelationship.equalsIgnoreCase("null")) {
                         PreferenceStorage.saveMotherRelationship(this, MotherRelationship);
                     }
 
                     // Parents Preference - Mother's Pic
-                    if ((MotherPic!= null) && !(MotherPic.isEmpty()) && !MotherPic.equalsIgnoreCase("null")) {
+                    if ((MotherPic != null) && !(MotherPic.isEmpty()) && !MotherPic.equalsIgnoreCase("null")) {
                         PreferenceStorage.saveMotherImg(this, MotherPic);
                     }
 
@@ -520,12 +529,12 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     }
 
                     // Parents Preference - Guardian's Relationship
-                    if ((GuardianRelationship!= null) && !(GuardianRelationship.isEmpty()) && !GuardianRelationship.equalsIgnoreCase("null")) {
+                    if ((GuardianRelationship != null) && !(GuardianRelationship.isEmpty()) && !GuardianRelationship.equalsIgnoreCase("null")) {
                         PreferenceStorage.saveGuardianRelationship(this, GuardianRelationship);
                     }
 
                     // Parents Preference - Guardian's Pic
-                    if ((GuardianPic!= null) && !(GuardianPic.isEmpty()) && !GuardianPic.equalsIgnoreCase("null")) {
+                    if ((GuardianPic != null) && !(GuardianPic.isEmpty()) && !GuardianPic.equalsIgnoreCase("null")) {
                         PreferenceStorage.saveGuardianImg(this, GuardianPic);
                     }
 
@@ -670,12 +679,12 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     }
 
                     // Parents Preference - Father's Relationship
-                    if ((FatherRelationship!= null) && !(FatherRelationship.isEmpty()) && !FatherRelationship.equalsIgnoreCase("null")) {
+                    if ((FatherRelationship != null) && !(FatherRelationship.isEmpty()) && !FatherRelationship.equalsIgnoreCase("null")) {
                         PreferenceStorage.saveFatherRelationship(this, FatherRelationship);
                     }
 
                     // Parents Preference - Father's Pic
-                    if ((FatherPic!= null) && !(FatherPic.isEmpty()) && !FatherPic.equalsIgnoreCase("null")) {
+                    if ((FatherPic != null) && !(FatherPic.isEmpty()) && !FatherPic.equalsIgnoreCase("null")) {
                         PreferenceStorage.saveFatherImg(this, FatherPic);
                     }
 
@@ -745,12 +754,12 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     }
 
                     // Parents Preference - Mother's Relationship
-                    if ((MotherRelationship!= null) && !(MotherRelationship.isEmpty()) && !MotherRelationship.equalsIgnoreCase("null")) {
+                    if ((MotherRelationship != null) && !(MotherRelationship.isEmpty()) && !MotherRelationship.equalsIgnoreCase("null")) {
                         PreferenceStorage.saveMotherRelationship(this, MotherRelationship);
                     }
 
                     // Parents Preference - Mother's Pic
-                    if ((MotherPic!= null) && !(MotherPic.isEmpty()) && !MotherPic.equalsIgnoreCase("null")) {
+                    if ((MotherPic != null) && !(MotherPic.isEmpty()) && !MotherPic.equalsIgnoreCase("null")) {
                         PreferenceStorage.saveMotherImg(this, MotherPic);
                     }
 
@@ -820,12 +829,12 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     }
 
                     // Parents Preference - Guardian's Relationship
-                    if ((GuardianRelationship!= null) && !(GuardianRelationship.isEmpty()) && !GuardianRelationship.equalsIgnoreCase("null")) {
+                    if ((GuardianRelationship != null) && !(GuardianRelationship.isEmpty()) && !GuardianRelationship.equalsIgnoreCase("null")) {
                         PreferenceStorage.saveGuardianRelationship(this, GuardianRelationship);
                     }
 
                     // Parents Preference - Guardian's Pic
-                    if ((GuardianPic!= null) && !(GuardianPic.isEmpty()) && !GuardianPic.equalsIgnoreCase("null")) {
+                    if ((GuardianPic != null) && !(GuardianPic.isEmpty()) && !GuardianPic.equalsIgnoreCase("null")) {
                         PreferenceStorage.saveGuardianImg(this, GuardianPic);
                     }
 

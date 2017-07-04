@@ -12,7 +12,7 @@ import android.widget.ImageView;
 
 
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.bean.student.Attendance;
+import com.palprotech.ensyfi.bean.student.viewlist.Attendance;
 import com.palprotech.ensyfi.customview.caldroid_calendar.customcalendar.CaldroidFragment;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;

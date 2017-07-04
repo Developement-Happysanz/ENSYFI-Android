@@ -1,4 +1,4 @@
-package com.palprotech.ensyfi.bean.student;
+package com.palprotech.ensyfi.bean.student.viewlist;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

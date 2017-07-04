@@ -1,4 +1,4 @@
-package com.palprotech.ensyfi.bean.student;
+package com.palprotech.ensyfi.bean.student.viewlist;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -6,17 +6,16 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 
 /**
- * Created by Admin on 15-05-2017.
+ * Created by Narendar on 17/05/17.
  */
 
-public class ClassTestList {
-
+public class EventList {
     @SerializedName("count")
     @Expose
     private int count;
-    @SerializedName("homeworkDetails")
+    @SerializedName("eventDetails")
     @Expose
-    private ArrayList<ClassTest> homeworkDetails = new ArrayList<ClassTest>();
+    private ArrayList<Event> eventDetails = new ArrayList<Event>();
 
     /**
      *
@@ -39,18 +38,19 @@ public class ClassTestList {
     /**
      *
      * @return
-     *     The classTest
+     *     The events
      */
-    public ArrayList<ClassTest> getClassTest() {
-        return homeworkDetails;
+    public ArrayList<Event> getEvents() {
+        return eventDetails;
     }
 
     /**
      *
-     * @param homeworkDetails
-     *     The classTest
+     * @param eventDetails
+     *     The events
      */
-    public void setClassTest(ArrayList<ClassTest> homeworkDetails) {
-        this.homeworkDetails = homeworkDetails;
+    public void setEvents(ArrayList<Event> eventDetails) {
+        this.eventDetails = eventDetails;
     }
 }
+
