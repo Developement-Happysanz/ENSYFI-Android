@@ -19,7 +19,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String TAG = "SQLiteHelper.java";
 
     private static final String DATABASE_NAME = "ENSYFI.db";
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 8;
 
     private String table_create_student = "Create table studentInfo(_id integer primary key autoincrement,"
             + "registered_id text,"
@@ -42,6 +42,13 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             + "sec_name text,"
             + "class_name text);";
 
+    private String table_create_teacher_student_details = "Create table teachersStudentDetails(_id integer primary key autoincrement,"
+            + "enroll_id text,"
+            + "admission_id text,"
+            + "class_id text,"
+            + "name text,"
+            + "class_section text);";
+
     public SQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -50,6 +57,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(table_create_student);
         db.execSQL(table_create_teacher_timetable);
+        db.execSQL(table_create_teacher_student_details);
     }
 
     @Override
@@ -58,6 +66,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
                 + oldVersion + " to " + newVersion
                 + ", which will destroy all old data");
         db.execSQL("DROP TABLE IF EXISTS studentInfo");
+        db.execSQL("DROP TABLE IF EXISTS teacherTimeTable");
+        db.execSQL("DROP TABLE IF EXISTS teachersStudentDetails");
     }
 
     public void open() throws SQLException {
@@ -65,7 +75,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     }
 
     /*
-    // Student Info Data Store and Retrieve Functionality
+    *   Student Info Data Store and Retrieve Functionality
     */
     public long student_details_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -109,13 +119,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.delete("studentInfo", null, null);
     }
     /*
-    // End
+    *   End
     */
 
     /*
-    Teacher's TimeTable Store & Retrieve Functionality
+    *   Teacher's TimeTable Store & Retrieve Functionality
     */
-
     public long teacher_timetable_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7, String val8, String val9, String val10) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues initialValues = new ContentValues();
@@ -134,16 +143,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         return l;
     }
 
-    public Cursor getTeacherTimeTable() throws SQLException {
-        SQLiteDatabase db = this.getWritableDatabase();
-        String fetch = "Select table_id,class_id,subject_id,subject_name,teacher_id,name,day,period,sec_name,class_name from teacherTimeTable order by table_id;";
-        Cursor c = db.rawQuery(fetch, null);
-        if (c != null) {
-            c.moveToFirst();
-        }
-        return c;
-    }
-
     public Cursor getTeacherTimeTableValue(String day, String period) throws SQLException {
         SQLiteDatabase db = this.getWritableDatabase();
         String fetch = "Select class_name,sec_name,subject_name from teacherTimeTable where day = " + day + " and period = " + period + ";";
@@ -159,4 +158,45 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("teacherTimeTable", null, null);
     }
+    /*
+    *   End
+    */
+
+    /*
+    *   Teacher's Class Students Details Store & Retrieve Functionality
+    */
+    public long teachers_class_students_details_insert(String val1, String val2, String val3, String val4, String val5) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues initialValues = new ContentValues();
+        initialValues.put("enroll_id", val1);
+        initialValues.put("admission_id", val2);
+        initialValues.put("class_id", val3);
+        initialValues.put("name", val4);
+        initialValues.put("class_section", val5);
+        long l = db.insert("teachersStudentDetails", null, initialValues);
+        db.close();
+        return l;
+    }
+
+    public Cursor getTeachersClass() throws SQLException {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String fetch = "Select distinct class_id,class_section from teachersStudentDetails;";
+        Cursor c = db.rawQuery(fetch, null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+    public void deleteTeachersClassStudentDetails() {
+        String ok;
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("teachersStudentDetails", null, null);
+
+    }
+    /*
+    *   End
+    */
+
+
 }

@@ -172,6 +172,11 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarGrey" />
+        <activity
+            android:name=".activity.teachermodule.TeacherAttendanceInsertActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarGrey" />
 
     </application>
 

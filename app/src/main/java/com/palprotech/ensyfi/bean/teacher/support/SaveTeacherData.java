@@ -211,12 +211,6 @@ public class SaveTeacherData {
                 System.out.println("sec_name : " + i + " = " + sec_name);
                 System.out.println("class_name : " + i + " = " + class_name);
 
-                for (int f = 1; f <= 6; f++) {
-                    for (int c1 = 1; c1 <= 8; c1++) {
-
-                    }
-                }
-
                 String v1 = table_id,
                         v2 = class_id,
                         v3 = subject_id,
@@ -229,6 +223,49 @@ public class SaveTeacherData {
                         v10 = class_name;
 
                 database.teacher_timetable_insert(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void saveStudentDetails(JSONArray studentDetails) {
+
+        database = new SQLiteHelper(context);
+        try {
+            database.deleteTeachersClassStudentDetails();
+
+            for (int i = 0; i < studentDetails.length(); i++) {
+                HashMap<String, String> map = new HashMap<String, String>();
+                JSONObject jsonobj = studentDetails.getJSONObject(i);
+
+                String enroll_id = "";
+                String admission_id = "";
+                String class_id = "";
+                String name = "";
+                String class_section = "";
+
+
+                enroll_id = jsonobj.getString("enroll_id");
+                admission_id = jsonobj.getString("admission_id");
+                class_id = jsonobj.getString("class_id");
+                name = jsonobj.getString("name");
+                class_section = jsonobj.getString("class_section");
+
+                System.out.println("enroll_id : " + i + " = " + enroll_id);
+                System.out.println("admission_id : " + i + " = " + admission_id);
+                System.out.println("class_id : " + i + " = " + class_id);
+                System.out.println("name : " + i + " = " + name);
+                System.out.println("class_section : " + i + " = " + class_section);
+
+
+                String v1 = enroll_id,
+                        v2 = admission_id,
+                        v3 = class_id,
+                        v4 = name,
+                        v5 = class_section;
+
+                database.teachers_class_students_details_insert(v1, v2, v3, v4, v5);
             }
         } catch (Exception ex) {
             ex.printStackTrace();

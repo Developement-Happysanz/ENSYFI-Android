@@ -1,7 +1,16 @@
 package com.palprotech.ensyfi.activity.loginmodule;
 
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Parcelable;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,16 +23,22 @@ import com.palprotech.ensyfi.interfaces.DialogClickListener;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Narendar on 05/04/17.
  */
 
 public class ProfileActivity extends AppCompatActivity implements DialogClickListener {
-
+    private static final String TAG = ProfileActivity.class.getName();
     private ImageView mProfileImage = null;
     private TextView txtUsrName, txtUserType;
     private EditText txtUsrID, txtMail, txtPassword, numPhone, txtAddress;
     private ImageView ParentProfile, GuardianProfile, StudentProfile, motherInfo, fatherInfo;
+    private Uri outputFileUri;
+    static final int REQUEST_IMAGE_GET = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +89,14 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
             Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(mProfileImage);
         }
 
+        mProfileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openImageIntent();
+
+            }
+        });
+
 
         final TextView fatherName = (TextView) findViewById(R.id.txtfathername);
         final TextView fatherAddress = (TextView) findViewById(R.id.txtfatheraddress);
@@ -107,6 +130,51 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
                 btnCancel.setVisibility(View.INVISIBLE);
             }
         });
+    }
+
+    private void openImageIntent() {
+
+// Determine Uri of camera image to save.
+        final File root = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "MyDir");
+
+        if (!root.exists()) {
+            if (!root.mkdirs()) {
+                Log.d(TAG, "Failed to create directory for storing images");
+                return;
+            }
+        }
+
+        final String fname = PreferenceStorage.getUserId(this) + ".png";
+        final File sdImageMainDirectory = new File(root.getPath() + File.separator + fname);
+        outputFileUri = Uri.fromFile(sdImageMainDirectory);
+        Log.d(TAG, "camera output Uri" + outputFileUri);
+
+        // Camera.
+        final List<Intent> cameraIntents = new ArrayList<Intent>();
+        final Intent captureIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        final PackageManager packageManager = getPackageManager();
+        final List<ResolveInfo> listCam = packageManager.queryIntentActivities(captureIntent, 0);
+        for (ResolveInfo res : listCam) {
+            final String packageName = res.activityInfo.packageName;
+            final Intent intent = new Intent(captureIntent);
+            intent.setComponent(new ComponentName(res.activityInfo.packageName, res.activityInfo.name));
+            intent.setPackage(packageName);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
+            cameraIntents.add(intent);
+        }
+
+        // Filesystem.
+        final Intent galleryIntent = new Intent();
+        galleryIntent.setType("image/*");
+        galleryIntent.setAction(Intent.ACTION_PICK);
+
+        // Chooser of filesystem options.
+        final Intent chooserIntent = Intent.createChooser(galleryIntent, "Select Profile Photo");
+
+        // Add the camera options.
+        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, cameraIntents.toArray(new Parcelable[cameraIntents.size()]));
+
+        startActivityForResult(chooserIntent, REQUEST_IMAGE_GET);
     }
 
 
