@@ -27,7 +27,7 @@ public class SaveTeacherData {
         try {
             JSONObject getTeacherProfile = teacherProfile.getJSONObject("0");
 
-            //Student Details
+            //Teacher Details
             String TeacherId = "";
             String TeacherName = "";
             String TeacherGender = "";
