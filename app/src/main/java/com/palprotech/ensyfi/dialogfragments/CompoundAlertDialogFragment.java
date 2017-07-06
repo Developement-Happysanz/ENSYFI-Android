@@ -5,15 +5,20 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 
 import com.palprotech.ensyfi.R;
+import com.palprotech.ensyfi.activity.loginmodule.ChangePasswordActivity;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
 import com.palprotech.ensyfi.utils.EnsyfiConstants;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
+
 
 public class CompoundAlertDialogFragment extends DialogFragment {
-
     private int tag;
     DialogClickListener dialogActions;
 
@@ -68,15 +73,14 @@ public class CompoundAlertDialogFragment extends DialogFragment {
                     CompoundAlertDialogFragment.this.dialogActions
                             .onAlertPositiveClicked(tag);
 
-              /*  SharedPreferences sharedPreferences =
+                SharedPreferences sharedPreferences =
                         PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 sharedPreferences.edit().clear().commit();
-                TwitterUtil.getInstance().resetTwitterRequestToken();
 
-                Intent navigationIntent = new Intent(getApplicationContext(), LoginNew.class);
+                Intent navigationIntent = new Intent(getApplicationContext(), ChangePasswordActivity.class);
                 navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(navigationIntent);
-                getActivity().finish(); */
+                getActivity().finish();
 
             } else {
                 dialog.cancel();
