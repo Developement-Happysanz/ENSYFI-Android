@@ -70,6 +70,7 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
         lvStudent = (ListView) findViewById(R.id.listView_students);
         btnSave = (Button) findViewById(R.id.btnSave);
         txtDateTime = (TextView) findViewById(R.id.txtDateTime);
+        btnSave.setVisibility(View.VISIBLE);
         getClassList();
 
         System.out.println("Current time => " + c.getTime());
@@ -148,6 +149,7 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
                     }
                 }
                 UpdateLastInsertedStudentAttendance(valLeave, valAbsent, valOD, valPresent, lastInsertedId);
+                btnSave.setVisibility(View.GONE);
             }
         });
     }
@@ -273,6 +275,7 @@ public void onClick(View v1) {
 
         *//**
  * get all values of the EditText-Fields  you can try to log your values EditText
+ * you can try to log your values EditText
  * you can try to log your values EditText
  * you can try to log your values EditText
  * you can try to log your values EditText

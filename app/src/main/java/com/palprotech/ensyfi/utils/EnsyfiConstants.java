@@ -59,7 +59,8 @@ public class EnsyfiConstants {
     public static final String GET_STUDENT_TIME_TABLE_API = "/apistudent/disp_Timetable/";
 
     //TEACHER'S URL
-
+    public static final String GET_TEACHERS_CLASS_ATTENDANCE_API = "/apiteacher/sync_Attendance/";
+    public static final String GET_TEACHERS_CLASS_ATTENDANCE_HISTORY_API = "/apiteacher/sync_Attendancehistory/";
 
 
     // PARAMETERS
@@ -230,4 +231,28 @@ public class EnsyfiConstants {
 
     //Event Organiser
     public static final String PARAM_EVENT_ID = "event_id";
+
+    //Teacher's Class Students Attendance
+    public static final String KEY_ATTENDANCE_AC_YEAR = "ac_year";
+    public static final String KEY_ATTENDANCE_CLASS_ID = "class_id";
+    public static final String KEY_ATTENDANCE_CLASS_TOTAL = "class_total";
+    public static final String KEY_ATTENDANCE_NO_OF_PRESSENT = "no_of_present";
+    public static final String KEY_ATTENDANCE_NO_OF_ABSENT = "no_of_absent";
+    public static final String KEY_ATTENDANCE_PERIOD = "attendence_period";
+    public static final String KEY_ATTENDANCE_CREATED_BY = "created_by";
+    public static final String KEY_ATTENDANCE_CREATED_AT = "created_at";
+    public static final String KEY_ATTENDANCE_STATUS = "status";
+
+    //Teacher's Class Students Attendance History
+    public static final String KEY_ATTENDANCE_HISTORY_ATTEND_ID = "attend_id";
+    public static final String KEY_ATTENDANCE_HISTORY_CLASS_ID = "class_id";
+    public static final String KEY_ATTENDANCE_HISTORY_STUDENT_ID = "student_id";
+    public static final String KEY_ATTENDANCE_HISTORY_ABS_DATE = "abs_date";
+    public static final String KEY_ATTENDANCE_HISTORY_A_STATUS = "a_status";
+    public static final String KEY_ATTENDANCE_HISTORY_ATTEND_PERIOD = "attend_period";
+    public static final String KEY_ATTENDANCE_HISTORY_A_VAL = "a_val";
+    public static final String KEY_ATTENDANCE_HISTORY_A_TAKEN_BY = "a_taken_by";
+    public static final String KEY_ATTENDANCE_HISTORY_CREATED_AT = "created_at";
+    public static final String KEY_ATTENDANCE_HISTORY_STATUS = "status";
+
 }

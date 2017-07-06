@@ -178,6 +178,12 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarGrey" />
 
+        <activity
+            android:name=".activity.teachermodule.SyncRecordsActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarGrey" />
+
     </application>
 
 </manifest>

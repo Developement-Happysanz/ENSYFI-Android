@@ -55,7 +55,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
     boolean doubleBackToExitPressedOnce = false;
     private ImageView imgNavProfileImage;
     private ArrayAdapter<String> navListAdapter;
-    private String[] values = {"PROFILE", "ATTENDANCE", "CLASS TEST & HOMEWORK", "EXAM & RESULT", "TIME TABLE", "CALENDAR", "EVENT", "COMMUNICATION", "SETTINGS", "SIGN OUT"};
+    private String[] values = {"PROFILE", "ATTENDANCE", "CLASS TEST & HOMEWORK", "EXAM & RESULT", "TIME TABLE", "CALENDAR", "EVENT", "COMMUNICATION", "SETTINGS", "SYNC", "SIGN OUT"};
     TextView navUserProfileName = null;
     LinearLayout dashAttendance, dashTimeTable, dashClassTest, dashExam, dashEvent, dashCommunication;
     private String mCurrentUserProfileUrl = "";
@@ -276,6 +276,10 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
             //navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 9) {
+            Intent navigationIntent = new Intent(this, SyncRecordsActivity.class);
+            //navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(navigationIntent);
+        }else if (position == 10) {
             Log.d(TAG, "Perform Logout");
             doLogout();
         }

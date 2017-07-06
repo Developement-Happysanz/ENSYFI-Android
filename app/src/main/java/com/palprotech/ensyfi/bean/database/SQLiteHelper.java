@@ -19,7 +19,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String TAG = "SQLiteHelper.java";
 
     private static final String DATABASE_NAME = "ENSYFI.db";
-    private static final int DATABASE_VERSION = 10;
+    private static final int DATABASE_VERSION = 11;
 
     private String table_create_student = "Create table studentInfo(_id integer primary key autoincrement,"
             + "registered_id text,"
@@ -283,6 +283,32 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         sqdb.update("attendance", values, "_id=" + val3, null);
     }
 
+    public Cursor getAttendanceList() throws SQLException {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String fetch = "Select _id,ac_year, class_id, class_total, no_of_present, no_of_absent, attendance_period, created_by, created_at, status from attendance where sync_status = 'NS' order by _id Limit 1;";
+        Cursor c = db.rawQuery(fetch, null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+    public void updateAttendanceId(String val1, String val2) {
+        SQLiteDatabase sqdb = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("server_at_id", val1);
+        System.out.print(val1 + "--" + val2);
+        sqdb.update("attendance", values, "_id=" + val2, null);
+    }
+
+    public void updateAttendanceSyncStatus(String val1) {
+        SQLiteDatabase sqdb = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("sync_status", "S");
+        System.out.print(val1);
+        sqdb.update("attendance", values, "_id=" + val1, null);
+    }
+
     public void deleteStudentAttendance() {
         String ok;
         SQLiteDatabase db = this.getWritableDatabase();
@@ -315,6 +341,24 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         long l = db.insert("attendanceHistory", "_id", initialValues);
         db.close();
         return l;
+    }
+
+    public void updateAttendanceHistoryServerId(String val1, String val2) {
+        SQLiteDatabase sqdb = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("server_attend_id", val1);
+        System.out.print(val1 + "--" + val2);
+        sqdb.update("attendanceHistory", values, "attend_id=" + val2, null);
+    }
+
+    public Cursor getAttendanceHistoryList(String val1) throws SQLException {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String fetch = "Select _id, attend_id,server_attend_id, class_id, student_id, abs_date, a_status, attend_period, a_val, a_taken_by, created_at, status from attendanceHistory where sync_status = 'NS' and server_attend_id = " + val1 + " order by _id Limit 1;";
+        Cursor c = db.rawQuery(fetch, null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
     }
 
     public void deleteStudentAttendanceHistory() {
