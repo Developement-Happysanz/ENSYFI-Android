@@ -1,19 +1,26 @@
 package com.palprotech.ensyfi.activity.teachermodule;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
+import com.palprotech.ensyfi.adapter.teachermodule.StudentListBaseAdapter;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
+import com.palprotech.ensyfi.bean.teacher.viewlist.Students;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
 
 import java.util.ArrayList;
@@ -32,7 +39,11 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
     SQLiteHelper db;
     Vector<String> vecClassList, vecClassSectionList;
     List<String> lsClassList = new ArrayList<String>();
+    ArrayList<Students> myList = new ArrayList<Students>();
     ArrayAdapter<String> adptClassList;
+    String set1, set2, set3;
+    ListView lvStudent;
+    Button btnSave;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,6 +53,8 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
         vecClassList = new Vector<String>();
         vecClassSectionList = new Vector<String>();
         spnClassList = (Spinner) findViewById(R.id.class_list_spinner);
+        lvStudent = (ListView) findViewById(R.id.listView_students);
+        btnSave = (Button) findViewById(R.id.btnSave);
         getClassList();
 
         spnClassList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -50,6 +63,9 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
                 String className = parent.getItemAtPosition(position).toString();
 
                 GetStudentsList(className);
+//                lvStudent.setAdapter(new StudentListBaseAdapter(TeacherAttendanceInsertActivity.this, myList));
+                StudentListBaseAdapter cadapter = new StudentListBaseAdapter(TeacherAttendanceInsertActivity.this, myList);
+                lvStudent.setAdapter(cadapter);
 
             }
 
@@ -58,10 +74,66 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
 
             }
         });
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v1) {
+
+                /** get all values of the EditText-Fields */
+                View view;
+                ArrayList<String> mannschaftsnamen = new ArrayList<String>();
+                TextView et, et1;
+                RadioGroup radioGroup;
+                for (int i = 0; i < lvStudent.getCount(); i++) {
+                    et = (TextView) lvStudent.getChildAt(i).findViewById(R.id.txt_studentId);
+                    et1 = (TextView) lvStudent.getChildAt(i).findViewById(R.id.txt_studentName);
+                    radioGroup = (RadioGroup) lvStudent.getChildAt(i).findViewById(R.id.group_me);
+                    if (et != null) {
+                        mannschaftsnamen.add(String.valueOf(et.getText()));
+                        String viewPrint = String.valueOf(et.getText());
+                        String viewPrint1 = String.valueOf(et1.getText());
+                        int selectedId = radioGroup.getCheckedRadioButtonId();
+                        // find the radiobutton by returned id
+                        RadioButton radioButton = (RadioButton) findViewById(selectedId);
+                        String viewPrint2 = String.valueOf(radioButton.getText());
+                        /** you can try to log your values EditText */
+                        Log.v("ypgs", String.valueOf(et.getText()));
+                    }
+                }
+            }
+        });
     }
 
     private void GetStudentsList(String className) {
 
+        myList.clear();
+        try {
+            Cursor c = db.getStudentsOfClass(className);
+            if (c.getCount() > 0) {
+                if (c.moveToFirst()) {
+                    do {
+                        Students lde = new Students();
+                        lde.setId(Integer.parseInt(c.getString(0)));
+                        lde.setEnrollId(c.getString(1));
+                        lde.setAdmissionId(c.getString(2));
+                        lde.setClassId(c.getString(3));
+                        lde.setStudentName(c.getString(4));
+                        lde.setClassSection(c.getString(5));
+
+                        // Add this object into the ArrayList myList
+                        myList.add(lde);
+
+                    } while (c.moveToNext());
+                }
+            }
+
+            db.close();
+
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG)
+                    .show();
+            e.printStackTrace();
+        }
     }
 
     private void getClassList() {
@@ -72,6 +144,7 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
                 if (c.moveToFirst()) {
                     do {
                         vecClassList.add(c.getString(1));
+                        set3 = c.getString(0);
 //                        vecClassSectionList.add(c.getString(1));
 
                     } while (c.moveToNext());

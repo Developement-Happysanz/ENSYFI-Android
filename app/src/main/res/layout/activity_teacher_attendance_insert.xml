@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/classListSpinner"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="120dp">
 
         <Spinner
             android:id="@+id/class_list_spinner"
@@ -20,6 +21,32 @@
             android:spinnerMode="dropdown"
             android:textColor="@color/text_gray"
             android:textSize="15sp" />
+
     </RelativeLayout>
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/listOfStudents"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnSave"
+        android:layout_below="@+id/classListSpinner">
+
+        <ListView
+            android:id="@+id/listView_students"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@color/background_grey"
+            android:dividerHeight="4dp">
+
+        </ListView>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Save" />
+
+</RelativeLayout>
