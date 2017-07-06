@@ -2,6 +2,7 @@ package com.palprotech.ensyfi.activity.teachermodule;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -22,8 +23,15 @@ import com.palprotech.ensyfi.adapter.teachermodule.StudentListBaseAdapter;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 import com.palprotech.ensyfi.bean.teacher.viewlist.Students;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
+import com.palprotech.ensyfi.utils.PreferenceStorage;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.TreeSet;
@@ -34,7 +42,7 @@ import java.util.Vector;
  */
 
 public class TeacherAttendanceInsertActivity extends AppCompatActivity implements DialogClickListener {
-
+    private static final String TAG = TeacherAttendanceInsertActivity.class.getName();
     private Spinner spnClassList;
     SQLiteHelper db;
     Vector<String> vecClassList, vecClassSectionList;
@@ -44,6 +52,12 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
     String set1, set2, set3;
     ListView lvStudent;
     Button btnSave;
+    TextView txtDateTime;
+    private String storeClassId;
+    String formattedServerDate;
+    int valPresent = 0, valAbsent = 0, valLeave = 0, valOD = 0, setAM_PM;
+    String lastInsertedId;
+    Calendar c = Calendar.getInstance();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,7 +69,25 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
         spnClassList = (Spinner) findViewById(R.id.class_list_spinner);
         lvStudent = (ListView) findViewById(R.id.listView_students);
         btnSave = (Button) findViewById(R.id.btnSave);
+        txtDateTime = (TextView) findViewById(R.id.txtDateTime);
         getClassList();
+
+        System.out.println("Current time => " + c.getTime());
+
+        SimpleDateFormat serverDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        formattedServerDate = serverDF.format(c.getTime());
+        SimpleDateFormat slocalDF = new SimpleDateFormat("dd-MM-yyyy");
+        String formattedLocalDate = slocalDF.format(c.getTime());
+        txtDateTime.setText(formattedLocalDate);
+
+        Calendar now = Calendar.getInstance();
+        int a = now.get(Calendar.AM_PM);
+        if (a == Calendar.AM) {
+            setAM_PM = a;
+        } else {
+            setAM_PM = a;
+        }
+
 
         spnClassList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -83,25 +115,73 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
                 View view;
                 ArrayList<String> mannschaftsnamen = new ArrayList<String>();
                 TextView et, et1;
-                RadioGroup radioGroup;
+                Spinner spinner;
+                StoreStudentAttendance();
                 for (int i = 0; i < lvStudent.getCount(); i++) {
                     et = (TextView) lvStudent.getChildAt(i).findViewById(R.id.txt_studentId);
                     et1 = (TextView) lvStudent.getChildAt(i).findViewById(R.id.txt_studentName);
-                    radioGroup = (RadioGroup) lvStudent.getChildAt(i).findViewById(R.id.group_me);
+                    spinner = (Spinner) lvStudent.getChildAt(i).findViewById(R.id.class_attendance_spinner);
                     if (et != null) {
                         mannschaftsnamen.add(String.valueOf(et.getText()));
-                        String viewPrint = String.valueOf(et.getText());
-                        String viewPrint1 = String.valueOf(et1.getText());
-                        int selectedId = radioGroup.getCheckedRadioButtonId();
-                        // find the radiobutton by returned id
-                        RadioButton radioButton = (RadioButton) findViewById(selectedId);
-                        String viewPrint2 = String.valueOf(radioButton.getText());
+                        String enrollId = String.valueOf(et.getText());
+                        String studentName = String.valueOf(et1.getText());
+                        String attendanceStatus = String.valueOf(spinner.getSelectedItem());
+                        if (attendanceStatus.equalsIgnoreCase("Leave")) {
+                            valLeave = valLeave + 1;
+                        } else if (attendanceStatus.equalsIgnoreCase("Absent")) {
+                            valAbsent = valAbsent + 1;
+                        } else if (attendanceStatus.equalsIgnoreCase("OD")) {
+                            valOD = valOD + 1;
+                        } else {
+                            valPresent = valPresent + 1;
+                        }
+                        SimpleDateFormat slocalDF = new SimpleDateFormat("yyyy-MM-dd");
+                        String formattedLocalInsertDate = slocalDF.format(c.getTime());
+
+                        long c = db.student_attendance_history_insert(lastInsertedId, storeClassId, enrollId, formattedLocalInsertDate, attendanceStatus, "AM", PreferenceStorage.getUserId(getApplicationContext()), formattedServerDate, PreferenceStorage.getUserId(getApplicationContext()), formattedServerDate, "A", "NS");
+                        if (c == -1) {
+                            Toast.makeText(getApplicationContext(), "Error while attendance insert...",
+                                    Toast.LENGTH_LONG).show();
+                        }
                         /** you can try to log your values EditText */
                         Log.v("ypgs", String.valueOf(et.getText()));
                     }
                 }
+                UpdateLastInsertedStudentAttendance(valLeave, valAbsent, valOD, valPresent, lastInsertedId);
             }
         });
+    }
+
+    private void UpdateLastInsertedStudentAttendance(int valLeave, int valAbsent, int valOD, int valPresent, String totalNoOfStudents) {
+        try {
+            int combinePOD = valOD + valPresent;
+            int combineAL = valLeave + valAbsent;
+
+            String noOfPresentOD = String.valueOf(combinePOD);
+            String noOfLeaveAbsent = String.valueOf(combineAL);
+
+            db.updateAttendance(noOfPresentOD, noOfLeaveAbsent, totalNoOfStudents);
+
+        } catch (Exception ex) {
+        }
+    }
+
+    private void StoreStudentAttendance() {
+        try {
+            int totalNoOfStudents = lvStudent.getCount();
+            String convertTotalNoOfStudents = String.valueOf(totalNoOfStudents);
+            String convertAM_PM = String.valueOf(setAM_PM);
+
+            long c = db.student_attendance_insert(PreferenceStorage.getAcademicYearId(this), storeClassId, convertTotalNoOfStudents, "", "", convertAM_PM, PreferenceStorage.getUserId(this), formattedServerDate, PreferenceStorage.getUserId(this), formattedServerDate, "A", "NS");
+            if (c == -1) {
+                Toast.makeText(this, "Error while attendance insert...",
+                        Toast.LENGTH_LONG).show();
+            } else {
+                lastInsertedId = String.valueOf(c);
+            }
+        } catch (Exception ex) {
+            Log.println(Log.VERBOSE, TAG, ex.toString());
+        }
     }
 
     private void GetStudentsList(String className) {
@@ -117,6 +197,7 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
                         lde.setEnrollId(c.getString(1));
                         lde.setAdmissionId(c.getString(2));
                         lde.setClassId(c.getString(3));
+                        storeClassId = c.getString(3);
                         lde.setStudentName(c.getString(4));
                         lde.setClassSection(c.getString(5));
 
@@ -181,3 +262,64 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
 
     }
 }
+
+/*
+*useful for radio button update in development
+*
+*/
+/*btnSave.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View v1) {
+
+        *//**
+ * get all values of the EditText-Fields  you can try to log your values EditText
+ * you can try to log your values EditText
+ * you can try to log your values EditText
+ * you can try to log your values EditText
+ * you can try to log your values EditText
+ * you can try to log your values EditText
+ * you can try to log your values EditText
+ * you can try to log your values EditText
+ * you can try to log your values EditText
+ * you can try to log your values EditText
+ * you can try to log your values EditText
+ * you can try to log your values EditText
+ * you can try to log your values EditText
+ * you can try to log your values EditText
+ * you can try to log your values EditText
+ * you can try to log your values EditText
+ * you can try to log your values EditText
+ * you can try to log your values EditText
+ * you can try to log your values EditText
+ * you can try to log your values EditText
+ * you can try to log your values EditText
+ * you can try to log your values EditText
+ * you can try to log your values EditText
+ * you can try to log your values EditText
+ * you can try to log your values EditText
+ * you can try to log your values EditText
+ * you can try to log your values EditText
+ * you can try to log your values EditText
+ *//*
+        View view;
+        ArrayList<String> mannschaftsnamen = new ArrayList<String>();
+        TextView et, et1;
+        RadioGroup radioGroup;
+        for (int i = 0; i < lvStudent.getCount(); i++) {
+        et = (TextView) lvStudent.getChildAt(i).findViewById(R.id.txt_studentId);
+        et1 = (TextView) lvStudent.getChildAt(i).findViewById(R.id.txt_studentName);
+        radioGroup = (RadioGroup) lvStudent.getChildAt(i).findViewById(R.id.group_me);
+        if (et != null) {
+        mannschaftsnamen.add(String.valueOf(et.getText()));
+        String viewPrint = String.valueOf(et.getText());
+        String viewPrint1 = String.valueOf(et1.getText());
+        int selectedId = radioGroup.getCheckedRadioButtonId();
+        // find the radiobutton by returned id
+        RadioButton radioButton = (RadioButton) findViewById(selectedId);
+        String viewPrint2 = String.valueOf(radioButton.getText());
+        *//** you can try to log your values EditText *//*
+        Log.v("ypgs", String.valueOf(et.getText()));
+        }
+        }
+        }
+        });*/

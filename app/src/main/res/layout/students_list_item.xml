@@ -7,105 +7,85 @@
         android:id="@+id/layout_frame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="7dp">
 
-        <LinearLayout
-            android:id="@+id/layout_Principal"
-            android:layout_width="fill_parent"
+        <TextView
+            android:id="@+id/txt_studentId"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_gravity="center"
+            android:layout_weight="0.10"
+            android:text="no"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Student Id : "
-                android:textSize="18dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txt_studentId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="no"
-                android:textSize="16dp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/txt_studentName"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_weight="0.50"
+            android:text="no"
+            android:textSize="15sp" />
 
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Student Name :"
-                    android:textSize="18dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt_studentName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="no"
-                    android:textSize="16dp" />
-
-                <TextView
-                    android:id="@+id/txt_tblPKey"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="no"
-                    android:textSize="16dp"
-                    android:visibility="gone" />
-            </LinearLayout>
-
-        </LinearLayout>
-        <RadioGroup
-            android:id="@+id/group_me"
-            android:layout_width="fill_parent"
+        <Spinner
+            android:id="@+id/class_attendance_spinner"
+            style="@style/spinner_style"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:layout_weight="0.30"
+            android:entries="@array/attendance"
+            android:overlapAnchor="false"
+            android:spinnerMode="dropdown"
+            android:textColor="@color/text_gray"
+            android:textSize="10sp" />
 
-            <RadioButton
-                android:id="@+id/answer0"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="Ans0" />
-
-            <RadioButton
-                android:id="@+id/answer1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="false"
-                android:text="Ans1" />
-
-            <RadioButton
-                android:id="@+id/answer2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="false"
-                android:text="Ans2" />
-
-            <RadioButton
-                android:id="@+id/answer3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="false"
-                android:text="Ans3" />
-        </RadioGroup>
+        <TextView
+            android:id="@+id/txt_tblPKey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="no"
+            android:textSize="16dp"
+            android:visibility="gone" />
 
     </LinearLayout>
 
 </FrameLayout>
+
+    <!-- <RadioGroup
+                android:id="@+id/group_me"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <RadioButton
+                    android:id="@+id/answer0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="Ans0" />
+
+                <RadioButton
+                    android:id="@+id/answer1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="Ans1" />
+
+                <RadioButton
+                    android:id="@+id/answer2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="Ans2" />
+
+                <RadioButton
+                    android:id="@+id/answer3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="Ans3" />
+            </RadioGroup>-->

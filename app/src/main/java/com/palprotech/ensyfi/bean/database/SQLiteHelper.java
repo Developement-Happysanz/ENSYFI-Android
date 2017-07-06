@@ -19,7 +19,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String TAG = "SQLiteHelper.java";
 
     private static final String DATABASE_NAME = "ENSYFI.db";
-    private static final int DATABASE_VERSION = 9;
+    private static final int DATABASE_VERSION = 10;
 
     private String table_create_student = "Create table studentInfo(_id integer primary key autoincrement,"
             + "registered_id text,"
@@ -49,15 +49,52 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             + "name text,"
             + "class_section text);";
 
+    private String table_create_attendance = "Create table attendance(_id integer primary key autoincrement,"
+            + "server_at_id text,"
+            + "ac_year text,"
+            + "class_id text,"
+            + "class_total text,"
+            + "no_of_present text,"
+            + "no_of_absent text,"
+            + "attendance_period text,"
+            + "created_by text,"
+            + "created_at text,"
+            + "updated_by text,"
+            + "updated_at text,"
+            + "status text,"
+            + "sync_status text);";
+
+    private String table_create_attendance_history = "Create table attendanceHistory(_id integer primary key autoincrement,"
+            + "attend_id text,"
+            + "server_attend_id text,"
+            + "class_id text,"
+            + "student_id text,"
+            + "abs_date text,"
+            + "a_status text,"
+            + "attend_period text,"
+            + "a_val text,"
+            + "a_taken_by text,"
+            + "created_at text,"
+            + "updated_by text,"
+            + "updated_at text,"
+            + "status text,"
+            + "sync_status text);";
+
     public SQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        //Student Details
         db.execSQL(table_create_student);
+        //Teacher Time Table
         db.execSQL(table_create_teacher_timetable);
+        //Teacher's Class Student
         db.execSQL(table_create_teacher_student_details);
+        //Attendance
+        db.execSQL(table_create_attendance);
+        db.execSQL(table_create_attendance_history);
     }
 
     @Override
@@ -65,9 +102,15 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         Log.w(SQLiteHelper.class.getName(), "Upgrading database from version "
                 + oldVersion + " to " + newVersion
                 + ", which will destroy all old data");
+        //Student Details
         db.execSQL("DROP TABLE IF EXISTS studentInfo");
+        //Teacher's Time Table
         db.execSQL("DROP TABLE IF EXISTS teacherTimeTable");
+        //Teacher's Class Student
         db.execSQL("DROP TABLE IF EXISTS teachersStudentDetails");
+        //Attendance
+        db.execSQL("DROP TABLE IF EXISTS attendance");
+        db.execSQL("DROP TABLE IF EXISTS attendanceHistory");
     }
 
     public void open() throws SQLException {
@@ -190,7 +233,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     public Cursor getStudentsOfClass(String classSection) throws SQLException {
         SQLiteDatabase db = this.getWritableDatabase();
-        String fetch = "Select * from teachersStudentDetails where class_section = '" + classSection + "';";
+        String fetch = "Select * from teachersStudentDetails where class_section = '" + classSection + "' order by enroll_id;";
         Cursor c = db.rawQuery(fetch, null);
         if (c != null) {
             c.moveToFirst();
@@ -208,5 +251,80 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     *   End
     */
 
+    /*
+    *   Attendance Store & Retrieve Functionality
+    */
+    public long student_attendance_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7, String val8, String val9, String val10, String val11, String val12) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues initialValues = new ContentValues();
+        initialValues.put("ac_year", val1);
+        initialValues.put("class_id", val2);
+        initialValues.put("class_total", val3);
+        initialValues.put("no_of_present", val4);
+        initialValues.put("no_of_absent", val5);
+        initialValues.put("attendance_period", val6);
+        initialValues.put("created_by", val7);
+        initialValues.put("created_at", val8);
+        initialValues.put("updated_by", val9);
+        initialValues.put("updated_at", val10);
+        initialValues.put("status", val11);
+        initialValues.put("sync_status", val12);
+        long l = db.insert("attendance", "_id", initialValues);
+        db.close();
+        return l;
+    }
+
+    public void updateAttendance(String val1, String val2, String val3) {
+        SQLiteDatabase sqdb = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("no_of_present", val1);
+        values.put("no_of_absent", val2);
+        System.out.print(val1 + "--" + val2 + "--" + val3);
+        sqdb.update("attendance", values, "_id=" + val3, null);
+    }
+
+    public void deleteStudentAttendance() {
+        String ok;
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("attendance", null, null);
+
+    }
+    /*
+    *   End
+    */
+
+    /*
+    *   Attendance History Store & Retrieve Functionality
+    */
+    public long student_attendance_history_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7, String val8, String val9, String val10, String val11, String val12) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues initialValues = new ContentValues();
+        initialValues.put("attend_id", val1);
+        initialValues.put("class_id", val2);
+        initialValues.put("student_id", val3);
+        initialValues.put("abs_date", val4);
+        initialValues.put("a_status", val5);
+        initialValues.put("attend_period", val6);
+        initialValues.put("a_val", val7);
+        initialValues.put("a_taken_by", val8);
+        initialValues.put("created_at", val9);
+        initialValues.put("updated_by", val10);
+        initialValues.put("updated_at", val10);
+        initialValues.put("status", val11);
+        initialValues.put("sync_status", val12);
+        long l = db.insert("attendanceHistory", "_id", initialValues);
+        db.close();
+        return l;
+    }
+
+    public void deleteStudentAttendanceHistory() {
+        String ok;
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("attendanceHistory", null, null);
+
+    }
+    /*
+    *   End
+    */
 
 }

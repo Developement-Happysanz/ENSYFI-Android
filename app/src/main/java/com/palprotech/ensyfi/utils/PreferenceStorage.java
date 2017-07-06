@@ -190,6 +190,22 @@ public class PreferenceStorage {
         return userTypeName;
     }
 
+    // Academic Year
+    public static void saveAcademicYearId(Context context, String academicYearId) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.KEY_ACADEMIC_YEAR_ID, academicYearId);
+        editor.commit();
+    }
+
+    public static String getAcademicYearId(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String academicYearId = sharedPreferences.getString(EnsyfiConstants.KEY_ACADEMIC_YEAR_ID, "");
+        return academicYearId;
+    }
+
     // Student Preference Data
     // Get Student Enroll Id
     public static void saveStudentRegisteredIdPreference(Context context, String studentPrefEnrollID) {

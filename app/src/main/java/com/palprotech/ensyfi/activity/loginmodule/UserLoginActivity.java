@@ -179,7 +179,14 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
 
                 JSONObject userData = response.getJSONObject("userData");
 
+                String academicYearId = response.getString("year_id");
+                // User Preference - Academic Year Id
+                if ((academicYearId != null) && !(academicYearId.isEmpty()) && !academicYearId.equalsIgnoreCase("null")) {
+                    PreferenceStorage.saveAcademicYearId(this, academicYearId);
+                }
+
                 int userType = Integer.parseInt(userData.getString("user_type"));
+
 
                 if (userType == 1) {
                     saveUserData(userData);

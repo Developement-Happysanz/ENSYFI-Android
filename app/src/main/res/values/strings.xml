@@ -62,4 +62,12 @@
     <string name="show_dialog">Show Dialog</string>
     <string name="undo">Undo</string>
 
+    <string-array name="attendance">
+        <item>Present</item>
+        <item>Leave</item>
+        <item>Absent</item>
+        <item>OD</item>
+    </string-array>
+
+
 </resources>

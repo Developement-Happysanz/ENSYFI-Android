@@ -107,6 +107,9 @@ public class EnsyfiConstants {
     public static final String KEY_USER_TYPE_NAME = "user_type_name";
     public static final String KEY_FORGOT_PASSWORD_STATUS = "forgot_password_status";
 
+    // Academic Year Id
+    public static final String KEY_ACADEMIC_YEAR_ID = "academic_year_id";
+
     // Student Preferences Data
     public static final String KEY_STUDENT_ENROLL_ID_PREFERENCES = "student_enroll_id";
     public static final String KEY_STUDENT_ADMISSION_ID_PREFERENCES = "student_admission_id";
