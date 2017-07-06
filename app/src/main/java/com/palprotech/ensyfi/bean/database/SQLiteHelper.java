@@ -19,7 +19,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String TAG = "SQLiteHelper.java";
 
     private static final String DATABASE_NAME = "ENSYFI.db";
-    private static final int DATABASE_VERSION = 8;
+    private static final int DATABASE_VERSION = 9;
 
     private String table_create_student = "Create table studentInfo(_id integer primary key autoincrement,"
             + "registered_id text,"
@@ -145,7 +145,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     public Cursor getTeacherTimeTableValue(String day, String period) throws SQLException {
         SQLiteDatabase db = this.getWritableDatabase();
-        String fetch = "Select class_name,sec_name,subject_name from teacherTimeTable where day = " + day + " and period = " + period + ";";
+        String fetch = "Select class_name,sec_name,subject_name from teacherTimeTable where day = '" + day + "' and period = '" + period + "';";
         Cursor c = db.rawQuery(fetch, null);
         if (c != null) {
             c.moveToFirst();
@@ -181,6 +181,16 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public Cursor getTeachersClass() throws SQLException {
         SQLiteDatabase db = this.getWritableDatabase();
         String fetch = "Select distinct class_id,class_section from teachersStudentDetails;";
+        Cursor c = db.rawQuery(fetch, null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+    public Cursor getStudentsOfClass(String classSection) throws SQLException {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String fetch = "Select * from teachersStudentDetails where class_section = '" + classSection + "';";
         Cursor c = db.rawQuery(fetch, null);
         if (c != null) {
             c.moveToFirst();
