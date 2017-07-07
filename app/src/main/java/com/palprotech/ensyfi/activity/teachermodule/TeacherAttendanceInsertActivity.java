@@ -96,6 +96,7 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
                 String className = parent.getItemAtPosition(position).toString();
 
                 GetStudentsList(className);
+                btnSave.setVisibility(View.VISIBLE);
 //                lvStudent.setAdapter(new StudentListBaseAdapter(TeacherAttendanceInsertActivity.this, myList));
                 StudentListBaseAdapter cadapter = new StudentListBaseAdapter(TeacherAttendanceInsertActivity.this, myList);
                 lvStudent.setAdapter(cadapter);
@@ -129,12 +130,16 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
                         String attendanceStatus = String.valueOf(spinner.getSelectedItem());
                         if (attendanceStatus.equalsIgnoreCase("Leave")) {
                             valLeave = valLeave + 1;
+                            attendanceStatus = "L";
                         } else if (attendanceStatus.equalsIgnoreCase("Absent")) {
                             valAbsent = valAbsent + 1;
+                            attendanceStatus = "A";
                         } else if (attendanceStatus.equalsIgnoreCase("OD")) {
                             valOD = valOD + 1;
+                            attendanceStatus = "OD";
                         } else {
                             valPresent = valPresent + 1;
+                            attendanceStatus = "P";
                         }
                         SimpleDateFormat slocalDF = new SimpleDateFormat("yyyy-MM-dd");
                         String formattedLocalInsertDate = slocalDF.format(c.getTime());
@@ -275,6 +280,7 @@ public void onClick(View v1) {
 
         *//**
  * get all values of the EditText-Fields  you can try to log your values EditText
+ * you can try to log your values EditText
  * you can try to log your values EditText
  * you can try to log your values EditText
  * you can try to log your values EditText

@@ -285,7 +285,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     public Cursor getAttendanceList() throws SQLException {
         SQLiteDatabase db = this.getWritableDatabase();
-        String fetch = "Select _id,ac_year, class_id, class_total, no_of_present, no_of_absent, attendance_period, created_by, created_at, status from attendance where sync_status = 'NS' order by _id Limit 1;";
+        String fetch = "Select _id,ac_year, class_id, class_total, no_of_present, no_of_absent, attendance_period, created_by, created_at, status from attendance where sync_status = 'NS' order by _id;";
         Cursor c = db.rawQuery(fetch, null);
         if (c != null) {
             c.moveToFirst();
@@ -353,12 +353,20 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     public Cursor getAttendanceHistoryList(String val1) throws SQLException {
         SQLiteDatabase db = this.getWritableDatabase();
-        String fetch = "Select _id, attend_id,server_attend_id, class_id, student_id, abs_date, a_status, attend_period, a_val, a_taken_by, created_at, status from attendanceHistory where sync_status = 'NS' and server_attend_id = " + val1 + " order by _id Limit 1;";
+        String fetch = "Select _id, attend_id,server_attend_id, class_id, student_id, abs_date, a_status, attend_period, a_val, a_taken_by, created_at, status from attendanceHistory where sync_status = 'NS' and server_attend_id = " + val1 + " order by _id;";
         Cursor c = db.rawQuery(fetch, null);
         if (c != null) {
             c.moveToFirst();
         }
         return c;
+    }
+
+    public void updateAttendanceHistorySyncStatus(String val1) {
+        SQLiteDatabase sqdb = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("sync_status", "S");
+        System.out.print(val1);
+        sqdb.update("attendanceHistory", values, "_id=" + val1, null);
     }
 
     public void deleteStudentAttendanceHistory() {
