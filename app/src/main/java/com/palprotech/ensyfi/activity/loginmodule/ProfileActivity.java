@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
@@ -19,10 +20,19 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.palprotech.ensyfi.R;
+import com.palprotech.ensyfi.activity.general.FeeStatusActivity;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
+import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
+import com.palprotech.ensyfi.servicehelpers.ServiceHelper;
+import com.palprotech.ensyfi.serviceinterfaces.IServiceListener;
+import com.palprotech.ensyfi.utils.CommonUtils;
+import com.palprotech.ensyfi.utils.EnsyfiConstants;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -32,14 +42,16 @@ import java.util.List;
  * Created by Narendar on 05/04/17.
  */
 
-public class ProfileActivity extends AppCompatActivity implements DialogClickListener {
+public class ProfileActivity extends AppCompatActivity implements IServiceListener, DialogClickListener {
     private static final String TAG = ProfileActivity.class.getName();
     private ImageView mProfileImage = null;
-    private TextView txtUsrName, txtUserType,txtPassword;
+    private TextView txtUsrName, txtUserType, txtPassword;
+    private ServiceHelper serviceHelper;
     private EditText txtUsrID, txtMail, numPhone, txtAddress;
-    private ImageView ParentProfile, GuardianProfile, StudentProfile, motherInfo, fatherInfo;
+    private ImageView ParentProfile, GuardianProfile, StudentProfile, motherInfo, fatherInfo, TeacherProfle;
     private Uri outputFileUri;
     static final int REQUEST_IMAGE_GET = 1;
+    protected ProgressDialogHelper progressDialogHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +76,7 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
         txtPassword = (TextView) findViewById(R.id.password);
         txtUsrName = (TextView) findViewById(R.id.name);
         txtUserType = (TextView) findViewById(R.id.typename);
+        progressDialogHelper = new ProgressDialogHelper(this);
         txtUsrID.setText(PreferenceStorage.getUserName(getApplicationContext()));
 //        txtMail.setText(PreferenceStorage.getEmail(getApplicationContext()));
 //        txtPassword.setText(PreferenceStorage.get(getApplicationContext()));
@@ -75,7 +88,18 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
         motherInfo = (ImageView) findViewById(R.id.img_mother_profile);
         ParentProfile = (ImageView) findViewById(R.id.ic_parentprofile);
         GuardianProfile = (ImageView) findViewById(R.id.ic_guardianprofile);
+        TeacherProfle =  (ImageView) findViewById(R.id.ic_teacherprofile);
         StudentProfile = (ImageView) findViewById(R.id.ic_studentprofile);
+        serviceHelper = new ServiceHelper(this);
+        serviceHelper.setServiceListener(this);
+        final Button feestatus = (Button) findViewById(R.id.fee_status);
+        feestatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), FeeStatusActivity.class);
+                startActivity(intent);
+            }
+        });
 
         final RelativeLayout parentinfo = (RelativeLayout) findViewById(R.id.popup_parent);
         final RelativeLayout guardianinfo = (RelativeLayout) findViewById(R.id.popup_guardian);
@@ -127,6 +151,25 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
         final TextView GOfficePhone = (TextView) findViewById(R.id.txtmotherofficephone);
         final TextView GHomePhone = (TextView) findViewById(R.id.txtmotherhomephone);
         final Button GbtnCancel = (Button) findViewById(R.id.cancel1);
+
+        final TextView TeacherId = (TextView) findViewById(R.id.txtTeacherid);
+        final TextView TeacherName = (TextView) findViewById(R.id.txtTeacherName);
+        final TextView TeacherGender = (TextView) findViewById(R.id.txtTeacherGender);
+        final TextView TeacherAge = (TextView) findViewById(R.id.txtTeacherAge);
+        final TextView TeacherNationality = (TextView) findViewById(R.id.txtTeacherNationality);
+        final TextView TeacherReligion = (TextView) findViewById(R.id.txtTeacherReligion);
+        final TextView TeacherCaste = (TextView) findViewById(R.id.txtTeacherCaste);
+        final TextView TeacherCommunity = (TextView) findViewById(R.id.txtTeacherCommunity);
+        final TextView TeacherAddress = (TextView) findViewById(R.id.txtTeacherAddress);
+        final TextView TeacherSubject = (TextView) findViewById(R.id.txtTeacherSubject);
+        final TextView ClassTeacher = (TextView) findViewById(R.id.txtClassTeacher);
+        final TextView TeacherMobile = (TextView) findViewById(R.id.txtTeacherMobile);
+        final TextView TeacherSecondaryMobile = (TextView) findViewById(R.id.txtTeacherSecondaryMobile);
+        final TextView TeacherMail = (TextView) findViewById(R.id.txtTeacherMail);
+        final TextView TeacherSecondaryMail = (TextView) findViewById(R.id.txtTeacherSecondaryMail);
+        final TextView TeacherSectionName = (TextView) findViewById(R.id.txtTeacherSectionName);
+        final TextView TeacherClassName = (TextView) findViewById(R.id.txtTeacherClassName);
+        final TextView TeacherClassTaken = (TextView) findViewById(R.id.txtTeacherClassTaken);
 
         ////// For Student ///////
         final TextView studentAdmissionId = (TextView) findViewById(R.id.txtstudentadminid);
@@ -182,20 +225,21 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
             public void onClick(View v) {
                 guardianinfo.setVisibility(View.VISIBLE);
                 GbtnCancel.setVisibility(View.VISIBLE);
-                Name.setText(PreferenceStorage.getGuardianName(getApplicationContext()));
-                Address.setText(PreferenceStorage.getGuardianAddress(getApplicationContext()));
-                Mail.setText(PreferenceStorage.getGuardianEmail(getApplicationContext()));
-                Occupation.setText(PreferenceStorage.getGuardianOccupation(getApplicationContext()));
-                Income.setText(PreferenceStorage.getGuardianID(getApplicationContext()));
-                Mobile.setText(PreferenceStorage.getGuardianMobile(getApplicationContext()));
-                OfficePhone.setText(PreferenceStorage.getGuardianOfficePhone(getApplicationContext()));
-                HomePhone.setText(PreferenceStorage.getGuardianHomePhone(getApplicationContext()));
+                GName.setText(PreferenceStorage.getGuardianName(getApplicationContext()));
+                GAddress.setText(PreferenceStorage.getGuardianAddress(getApplicationContext()));
+                GMail.setText(PreferenceStorage.getGuardianEmail(getApplicationContext()));
+                GOccupation.setText(PreferenceStorage.getGuardianOccupation(getApplicationContext()));
+                GIncome.setText(PreferenceStorage.getGuardianID(getApplicationContext()));
+                GMobile.setText(PreferenceStorage.getGuardianMobile(getApplicationContext()));
+                GOfficePhone.setText(PreferenceStorage.getGuardianOfficePhone(getApplicationContext()));
+                GHomePhone.setText(PreferenceStorage.getGuardianHomePhone(getApplicationContext()));
             }
         });
 
         StudentProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                callGetEventService();
                 studentinfo.setVisibility(View.VISIBLE);
                 SbtnCancel.setVisibility(View.VISIBLE);
                 studentAdmissionId.setText(PreferenceStorage.getStudentAdmissionID(getApplicationContext()));
@@ -337,6 +381,58 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
     @Override
     public void onAlertNegativeClicked(int tag) {
 
+    }
+
+    public void callGetEventService() {
+        /*if(eventsListAdapter != null){
+            eventsListAdapter.clearSearchFlag();
+        }*/
+
+        if (CommonUtils.isNetworkAvailable(this)) {
+            progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+            new ProfileActivity.HttpAsyncTask().execute("");
+        } else {
+//            AlertDialogHelper.showSimpleAlertDialog(this, getString(R.string.no_connectivity));
+            AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
+        }
+
+    }
+
+    @Override
+    public void onResponse(JSONObject response) {
+
+    }
+
+    @Override
+    public void onError(String error) {
+
+    }
+
+
+    private class HttpAsyncTask extends AsyncTask<String, Void, Void> {
+        @Override
+        protected Void doInBackground(String... urls) {
+
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put(EnsyfiConstants.STUDENT_ADMISSION_ID, PreferenceStorage.getStudentAdmissionIdPreference(getApplicationContext()));
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_STUDENT_INFO_DETAILS_API;
+            serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
+
+            return null;
+
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            progressDialogHelper.cancelProgressDialog();
+        }
     }
 }
 

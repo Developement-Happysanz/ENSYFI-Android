@@ -140,8 +140,13 @@
                     android:textColor="@color/appColor"
                     android:textSize="18dp" />
 
-
-                     />
+                <Button
+                    android:id="@+id/fee_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Check Student Fee Status"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"/>
 
 
                 <Button
@@ -175,7 +180,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="10dp"
-                android:gravity="center">
+                android:gravity="center"
+                android:visibility="gone">
 
 
                 <ImageView
@@ -234,6 +240,33 @@
                     android:text="Student"
                     android:textColor="@color/black"
                     android:textSize="15dp" />
+
+            </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/teacherprofile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/ic_teacherprofile"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/ic_teachers" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ic_teacherprofile"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:text="Personal Info"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
 
             </RelativeLayout>
 
@@ -1157,9 +1190,9 @@
                             android:id="@+id/txtStudentMobile"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignTop="@+id/StudentGender"
+                            android:layout_alignTop="@+id/StudentMobile"
                             android:layout_marginLeft="5dp"
-                            android:layout_toRightOf="@+id/StudentGender"
+                            android:layout_toRightOf="@+id/StudentMobile"
                             android:paddingTop="2dp"
                             android:textColor="@color/black"
                             android:textSize="15dp" />
@@ -1418,6 +1451,469 @@
                 </ScrollView>
 
             </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/popup_teacher"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/tlbar"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/popup_bg"
+                android:visibility="gone">
+
+
+                <RelativeLayout
+                    android:id="@+id/userimage3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <com.palprotech.ensyfi.customview.CircleImageView
+                        android:id="@+id/img_teacher_profile"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/ic_profile" />
+
+
+                </RelativeLayout>
+
+                <ScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/userimage3">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/round_btn_plain">
+
+                        <TextView
+                            android:id="@+id/Teacherid"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Admission id :"
+                            android:textColor="@color/black"
+                            android:textSize="18dp" />
+
+                        <TextView
+                            android:id="@+id/txtTeacherid"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@+id/Teacherid"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/Teacherid"
+                            android:paddingTop="2dp"
+                            android:textColor="@color/black"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/TeacherName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/Teacherid"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Name :"
+                            android:textColor="@color/black"
+                            android:textSize="18dp" />
+
+                        <TextView
+                            android:id="@+id/txtTeacherName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@+id/TeacherName"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/TeacherName"
+                            android:paddingTop="2dp"
+                            android:textColor="@color/black"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/TeacherGender"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/TeacherName"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Gender :"
+                            android:textColor="@color/black"
+                            android:textSize="18dp" />
+
+                        <TextView
+                            android:id="@+id/txtTeacherGender"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@+id/TeacherGender"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/TeacherGender"
+                            android:paddingTop="2dp"
+                            android:textColor="@color/black"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/TeacherAddress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/TeacherGender"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Date Of Birth :"
+                            android:textColor="@color/black"
+                            android:textSize="18dp" />
+
+                        <TextView
+                            android:id="@+id/txtTeacherAddress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@+id/TeacherAddress"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/TeacherAddress"
+                            android:paddingTop="2dp"
+                            android:textColor="@color/black"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/TeacherAge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/TeacherAddress"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Age :"
+                            android:textColor="@color/black"
+                            android:textSize="18dp" />
+
+
+                        <TextView
+                            android:id="@+id/txtTeacherAge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@id/TeacherAge"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/TeacherAge"
+                            android:paddingTop="2dp"
+                            android:textColor="@color/black"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/TeacherNationality"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/TeacherAge"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Nationality :"
+                            android:textColor="@color/black"
+                            android:textSize="18dp" />
+
+
+                        <TextView
+                            android:id="@+id/txtTeacherNationality"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@id/TeacherNationality"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/TeacherNationality"
+                            android:paddingTop="2dp"
+                            android:textColor="@color/black"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/TeacherReligion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txtTeacherNationality"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Religion  :"
+                            android:textColor="@color/black"
+                            android:textSize="18dp" />
+
+
+                        <TextView
+                            android:id="@+id/txtTeacherReligion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@id/TeacherReligion"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/TeacherReligion"
+                            android:paddingTop="2dp"
+                            android:textColor="@color/black"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/TeacherCaste"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/TeacherReligion"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Caste :"
+                            android:textColor="@color/black"
+                            android:textSize="18dp" />
+
+                        <TextView
+                            android:id="@+id/txtTeacherCaste"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@+id/TeacherCaste"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/TeacherCaste"
+                            android:paddingTop="2dp"
+                            android:textColor="@color/black"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/TeacherCommunity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/TeacherCaste"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Community :"
+                            android:textColor="@color/black"
+                            android:textSize="18dp" />
+
+                        <TextView
+                            android:id="@+id/txtTeacherCommunity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@+id/TeacherCommunity"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/TeacherCommunity"
+                            android:paddingTop="2dp"
+                            android:textColor="@color/black"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/TeacherSubject"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/TeacherCommunity"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Parent Or Guardian :"
+                            android:textColor="@color/black"
+                            android:textSize="18dp" />
+
+                        <TextView
+                            android:id="@+id/txtTeacherSubject"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@+id/TeacherSubject"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/TeacherSubject"
+                            android:paddingTop="2dp"
+                            android:textColor="@color/black"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/ClassTeacher"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/TeacherSubject"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Parent Or Guardian Id :"
+                            android:textColor="@color/black"
+                            android:textSize="18dp" />
+
+                        <TextView
+                            android:id="@+id/txtClassTeacher"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@+id/ClassTeacher"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/ClassTeacher"
+                            android:paddingTop="2dp"
+                            android:textColor="@color/black"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/TeacherSectionName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ClassTeacher"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Mother Tongue :"
+                            android:textColor="@color/black"
+                            android:textSize="18dp" />
+
+                        <TextView
+                            android:id="@+id/txtTeacherSectionName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@+id/TeacherSectionName"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/TeacherSectionName"
+                            android:paddingTop="2dp"
+                            android:textColor="@color/black"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/TeacherClassName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/TeacherSectionName"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Language :"
+                            android:textColor="@color/black"
+                            android:textSize="18dp" />
+
+                        <TextView
+                            android:id="@+id/txtTeacherClassName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@+id/TeacherClassName"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/TeacherClassName"
+                            android:paddingTop="2dp"
+                            android:textColor="@color/black"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/TeacherMobile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/TeacherClassName"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Mobile :"
+                            android:textColor="@color/black"
+                            android:textSize="18dp" />
+
+                        <TextView
+                            android:id="@+id/txtTeacherMobile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@+id/TeacherMobile"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/TeacherMobile"
+                            android:paddingTop="2dp"
+                            android:textColor="@color/black"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/TeacherSecondaryMobile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/TeacherMobile"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Secondary Mobile :"
+                            android:textColor="@color/black"
+                            android:textSize="18dp" />
+
+                        <TextView
+                            android:id="@+id/txtTeacherSecondaryMobile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@+id/TeacherSecondaryMobile"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/TeacherSecondaryMobile"
+                            android:paddingTop="2dp"
+                            android:textColor="@color/black"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/TeacherMail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/TeacherSecondaryMobile"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Mail :"
+                            android:textColor="@color/black"
+                            android:textSize="18dp" />
+
+
+                        <TextView
+                            android:id="@+id/txtTeacherMail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@id/TeacherMail"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/TeacherMail"
+                            android:paddingTop="2dp"
+                            android:textColor="@color/black"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/TeacherSecondaryMail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/TeacherMail"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Secondary Mail :"
+                            android:textColor="@color/black"
+                            android:textSize="18dp" />
+
+
+                        <TextView
+                            android:id="@+id/txtTeacherSecondaryMail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@id/TeacherSecondaryMail"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/TeacherSecondaryMail"
+                            android:paddingTop="2dp"
+                            android:textColor="@color/black"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/TeacherClassTaken"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/TeacherSecondaryMail"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Previous School :"
+                            android:textColor="@color/black"
+                            android:textSize="18dp" />
+
+
+                        <TextView
+                            android:id="@+id/txtTeacherClassTaken"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@id/TeacherClassTaken"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/TeacherClassTaken"
+                            android:paddingTop="2dp"
+                            android:textColor="@color/black"
+                            android:textSize="15dp" />
+
+
+                    </RelativeLayout>
+                </ScrollView>
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/cancel0"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignRight="@+id/popup_parent"
+                android:layout_alignTop="@+id/popup_parent"
+                android:layout_marginRight="-1dp"
+                android:layout_marginTop="-8dp"
+                android:background="@drawable/btn_close"
+                android:visibility="invisible" />
 
             <Button
                 android:id="@+id/cancel"

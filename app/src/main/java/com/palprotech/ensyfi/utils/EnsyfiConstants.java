@@ -44,7 +44,7 @@ public class EnsyfiConstants {
 
     //STUDENT PROFILE URL
 
-//    public static final
+    public static final String GET_STUDENT_INFO_DETAILS_API = "/apistudent/showStudentProfile/";
 
     // CLASS TEST & HOMEWORK URL
     public static final String GET_STUDENT_CLASSTEST_AND_HOMEWORK_API = "/apistudent/disp_Homework/";

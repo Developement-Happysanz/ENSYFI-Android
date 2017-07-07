@@ -36,6 +36,12 @@
     <string name="exam">EXAM &amp; RESULT</string>
     <string name="time_table">TIME TABLE</string>
     <string name="events">EVENTS</string>
+    <string name="students">STUDENTS</string>
+    <string name="teachers">TEACHERS</string>
+    <string name="parents">PARENTS</string>
+    <string name="classes">CLASSES</string>
+    <string name="result">RESULT</string>
+
     <string name="communication">COMMUNICATION</string>
 
     <!--Edit Profile-->

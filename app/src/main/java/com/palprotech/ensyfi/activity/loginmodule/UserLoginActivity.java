@@ -9,11 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.activity.parentsmodule.ParentDashBoardActivity;
 import com.palprotech.ensyfi.activity.studentmodule.StudentInfoActivity;
 import com.palprotech.ensyfi.activity.teachermodule.TeacherDashBoardActivity;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
@@ -35,8 +34,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-
 /**
  * Created by Admin on 22-03-2017.
  */
@@ -55,6 +52,7 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
     private Button btnLogin;
     private TextView txtInsName, txtForgotPassword;
     private ImageView mProfileImage = null;
+    RelativeLayout ParentInfo, TeacherInfo;
     SQLiteHelper database;
 
     @Override
@@ -91,6 +89,9 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
         if (((url != null) && !(url.isEmpty()))) {
             Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(mProfileImage);
         }
+
+        ParentInfo = (RelativeLayout) findViewById(R.id.selectuser);
+        TeacherInfo = (RelativeLayout) findViewById(R.id.teacherprofile);
     }
 
     @Override
@@ -204,6 +205,8 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     JSONArray getTeacherClassStudentsDetails = response.getJSONArray("studDetails");
                     teacherData.saveStudentDetails(getTeacherClassStudentsDetails);
 
+                    TeacherInfo.setVisibility(View.VISIBLE);
+
                 } else if (userType == 3) {
 
                     saveUserData(userData);
@@ -212,10 +215,13 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     JSONArray getData = response.getJSONArray("studentProfile");
                     studentData.saveStudentProfile(getData);
 
+                    ParentInfo.setVisibility(View.VISIBLE);
+
                 } else {
 
                     saveUserData(userData);
                     saveStudentParentDetails(response);
+                    ParentInfo.setVisibility(View.VISIBLE);
                 }
 
             } catch (JSONException e) {
@@ -229,6 +235,7 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     Intent intent = new Intent(this, StudentInfoActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
+
                     finish();
                 } else if (userType == 2) {
                     Intent intent = new Intent(this, TeacherDashBoardActivity.class);
