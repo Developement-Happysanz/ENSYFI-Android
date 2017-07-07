@@ -144,9 +144,10 @@
                     android:id="@+id/fee_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Check Student Fee Status"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginTop="20dp"/>
+                    android:layout_marginTop="20dp"
+                    android:text="Check Student Fee Status"
+                    android:visibility="gone" />
 
 
                 <Button
@@ -180,8 +181,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="10dp"
-                android:gravity="center"
-                android:visibility="gone">
+                android:gravity="center">
 
 
                 <ImageView
@@ -243,30 +243,30 @@
 
             </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/teacherprofile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="10dp"
-            android:visibility="gone">
-
-            <ImageView
-                android:id="@+id/ic_teacherprofile"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/ic_teachers" />
-
-            <TextView
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/teacherprofile"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/ic_teacherprofile"
-                android:layout_centerHorizontal="true"
-                android:gravity="center"
-                android:text="Personal Info"
-                android:textColor="@color/black"
-                android:textSize="15dp" />
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/ic_teacherprofile"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/ic_teachers" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ic_teacherprofile"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="Personal Info"
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
 
             </RelativeLayout>
 

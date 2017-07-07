@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.activity.general.FeeStatusActivity;
+import com.palprotech.ensyfi.bean.student.support.SaveStudentData;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
@@ -31,6 +32,7 @@ import com.palprotech.ensyfi.utils.EnsyfiConstants;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -52,6 +54,7 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
     private Uri outputFileUri;
     static final int REQUEST_IMAGE_GET = 1;
     protected ProgressDialogHelper progressDialogHelper;
+    private SaveStudentData studentData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,10 +91,11 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
         motherInfo = (ImageView) findViewById(R.id.img_mother_profile);
         ParentProfile = (ImageView) findViewById(R.id.ic_parentprofile);
         GuardianProfile = (ImageView) findViewById(R.id.ic_guardianprofile);
-        TeacherProfle =  (ImageView) findViewById(R.id.ic_teacherprofile);
+        TeacherProfle = (ImageView) findViewById(R.id.ic_teacherprofile);
         StudentProfile = (ImageView) findViewById(R.id.ic_studentprofile);
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
+        studentData = new SaveStudentData(this);
         final Button feestatus = (Button) findViewById(R.id.fee_status);
         feestatus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,7 +129,7 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
         mProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openImageIntent();
+//                openImageIntent();
 
             }
         });
@@ -239,38 +243,78 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
         StudentProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callGetEventService();
+
                 studentinfo.setVisibility(View.VISIBLE);
                 SbtnCancel.setVisibility(View.VISIBLE);
-                studentAdmissionId.setText(PreferenceStorage.getStudentAdmissionID(getApplicationContext()));
-                studentAdmissionYear.setText(PreferenceStorage.getStudentAdmissionYear(getApplicationContext()));
-                studentAdmissionNumber.setText(PreferenceStorage.getStudentAdmissionNumber(getApplicationContext()));
-                studentEmsiNumber.setText(PreferenceStorage.getStudentEmsiNumber(getApplicationContext()));
-                studentAdmissionDate.setText(PreferenceStorage.getStudentAdmissionDate(getApplicationContext()));
-                studentName.setText(PreferenceStorage.getStudentName(getApplicationContext()));
-                studentGender.setText(PreferenceStorage.getStudentGender(getApplicationContext()));
-                studentDateOfBirth.setText(PreferenceStorage.getStudentDateOfBirth(getApplicationContext()));
-                studentAge.setText(PreferenceStorage.getStudentAge(getApplicationContext()));
-                studentNationality.setText(PreferenceStorage.getStudentNationality(getApplicationContext()));
-                studentReligion.setText(PreferenceStorage.getStudentReligion(getApplicationContext()));
-                studentCaste.setText(PreferenceStorage.getStudentCaste(getApplicationContext()));
-                studentCommunity.setText(PreferenceStorage.getStudentCommunity(getApplicationContext()));
-                studentParentOrGuardian.setText(PreferenceStorage.getStudentParentOrGuardian(getApplicationContext()));
-                studentParentOrGuardianId.setText(PreferenceStorage.getStudentParentOrGuardianID(getApplicationContext()));
-                studentMotherTongue.setText(PreferenceStorage.getStudentMotherTongue(getApplicationContext()));
-                studentLanguage.setText(PreferenceStorage.getStudentLanguage(getApplicationContext()));
-                studentMobile.setText(PreferenceStorage.getStudentMobile(getApplicationContext()));
-                studentSecondaryMobile.setText(PreferenceStorage.getStudentSecondaryMobile(getApplicationContext()));
-                studentMail.setText(PreferenceStorage.getStudentMail(getApplicationContext()));
-                studentSecondaryMail.setText(PreferenceStorage.getStudentSecondaryMail(getApplicationContext()));
-                studentPreviousSchool.setText(PreferenceStorage.getStudentPreviousSchool(getApplicationContext()));
-                studentPreviousClass.setText(PreferenceStorage.getStudentPreviousClass(getApplicationContext()));
-                studentPromotionStatus.setText(PreferenceStorage.getStudentPromotionStatus(getApplicationContext()));
-                studentTransferCertificate.setText(PreferenceStorage.getStudentTransferCertificate(getApplicationContext()));
-                studentRecordSheet.setText(PreferenceStorage.getStudentRecordSheet(getApplicationContext()));
-                studentStatus.setText(PreferenceStorage.getStudentStatus(getApplicationContext()));
-                studentParentStatus.setText(PreferenceStorage.getStudentParentStatus(getApplicationContext()));
-                studentRegistered.setText(PreferenceStorage.getStudentRegistered(getApplicationContext()));
+
+                String userTypeString = PreferenceStorage.getUserType(getApplicationContext());
+                int userType = Integer.parseInt(userTypeString);
+                if (userType == 1) {
+
+                } else if (userType == 2) {
+                } else if (userType == 3) {
+                    studentAdmissionId.setText(PreferenceStorage.getStudentAdmissionID(getApplicationContext()));
+                    studentAdmissionYear.setText(PreferenceStorage.getStudentAdmissionYear(getApplicationContext()));
+                    studentAdmissionNumber.setText(PreferenceStorage.getStudentAdmissionNumber(getApplicationContext()));
+                    studentEmsiNumber.setText(PreferenceStorage.getStudentEmsiNumber(getApplicationContext()));
+                    studentAdmissionDate.setText(PreferenceStorage.getStudentAdmissionDate(getApplicationContext()));
+                    studentName.setText(PreferenceStorage.getStudentName(getApplicationContext()));
+                    studentGender.setText(PreferenceStorage.getStudentGender(getApplicationContext()));
+                    studentDateOfBirth.setText(PreferenceStorage.getStudentDateOfBirth(getApplicationContext()));
+                    studentAge.setText(PreferenceStorage.getStudentAge(getApplicationContext()));
+                    studentNationality.setText(PreferenceStorage.getStudentNationality(getApplicationContext()));
+                    studentReligion.setText(PreferenceStorage.getStudentReligion(getApplicationContext()));
+                    studentCaste.setText(PreferenceStorage.getStudentCaste(getApplicationContext()));
+                    studentCommunity.setText(PreferenceStorage.getStudentCommunity(getApplicationContext()));
+                    studentParentOrGuardian.setText(PreferenceStorage.getStudentParentOrGuardian(getApplicationContext()));
+                    studentParentOrGuardianId.setText(PreferenceStorage.getStudentParentOrGuardianID(getApplicationContext()));
+                    studentMotherTongue.setText(PreferenceStorage.getStudentMotherTongue(getApplicationContext()));
+                    studentLanguage.setText(PreferenceStorage.getStudentLanguage(getApplicationContext()));
+                    studentMobile.setText(PreferenceStorage.getStudentMobile(getApplicationContext()));
+                    studentSecondaryMobile.setText(PreferenceStorage.getStudentSecondaryMobile(getApplicationContext()));
+                    studentMail.setText(PreferenceStorage.getStudentMail(getApplicationContext()));
+                    studentSecondaryMail.setText(PreferenceStorage.getStudentSecondaryMail(getApplicationContext()));
+                    studentPreviousSchool.setText(PreferenceStorage.getStudentPreviousSchool(getApplicationContext()));
+                    studentPreviousClass.setText(PreferenceStorage.getStudentPreviousClass(getApplicationContext()));
+                    studentPromotionStatus.setText(PreferenceStorage.getStudentPromotionStatus(getApplicationContext()));
+                    studentTransferCertificate.setText(PreferenceStorage.getStudentTransferCertificate(getApplicationContext()));
+                    studentRecordSheet.setText(PreferenceStorage.getStudentRecordSheet(getApplicationContext()));
+                    studentStatus.setText(PreferenceStorage.getStudentStatus(getApplicationContext()));
+                    studentParentStatus.setText(PreferenceStorage.getStudentParentStatus(getApplicationContext()));
+                    studentRegistered.setText(PreferenceStorage.getStudentRegistered(getApplicationContext()));
+                } else {
+                    callGetStudentInfoService();
+                    studentAdmissionId.setText(PreferenceStorage.getStudentAdmissionID(getApplicationContext()));
+                    studentAdmissionYear.setText(PreferenceStorage.getStudentAdmissionYear(getApplicationContext()));
+                    studentAdmissionNumber.setText(PreferenceStorage.getStudentAdmissionNumber(getApplicationContext()));
+                    studentEmsiNumber.setText(PreferenceStorage.getStudentEmsiNumber(getApplicationContext()));
+                    studentAdmissionDate.setText(PreferenceStorage.getStudentAdmissionDate(getApplicationContext()));
+                    studentName.setText(PreferenceStorage.getStudentName(getApplicationContext()));
+                    studentGender.setText(PreferenceStorage.getStudentGender(getApplicationContext()));
+                    studentDateOfBirth.setText(PreferenceStorage.getStudentDateOfBirth(getApplicationContext()));
+                    studentAge.setText(PreferenceStorage.getStudentAge(getApplicationContext()));
+                    studentNationality.setText(PreferenceStorage.getStudentNationality(getApplicationContext()));
+                    studentReligion.setText(PreferenceStorage.getStudentReligion(getApplicationContext()));
+                    studentCaste.setText(PreferenceStorage.getStudentCaste(getApplicationContext()));
+                    studentCommunity.setText(PreferenceStorage.getStudentCommunity(getApplicationContext()));
+                    studentParentOrGuardian.setText(PreferenceStorage.getStudentParentOrGuardian(getApplicationContext()));
+                    studentParentOrGuardianId.setText(PreferenceStorage.getStudentParentOrGuardianID(getApplicationContext()));
+                    studentMotherTongue.setText(PreferenceStorage.getStudentMotherTongue(getApplicationContext()));
+                    studentLanguage.setText(PreferenceStorage.getStudentLanguage(getApplicationContext()));
+                    studentMobile.setText(PreferenceStorage.getStudentMobile(getApplicationContext()));
+                    studentSecondaryMobile.setText(PreferenceStorage.getStudentSecondaryMobile(getApplicationContext()));
+                    studentMail.setText(PreferenceStorage.getStudentMail(getApplicationContext()));
+                    studentSecondaryMail.setText(PreferenceStorage.getStudentSecondaryMail(getApplicationContext()));
+                    studentPreviousSchool.setText(PreferenceStorage.getStudentPreviousSchool(getApplicationContext()));
+                    studentPreviousClass.setText(PreferenceStorage.getStudentPreviousClass(getApplicationContext()));
+                    studentPromotionStatus.setText(PreferenceStorage.getStudentPromotionStatus(getApplicationContext()));
+                    studentTransferCertificate.setText(PreferenceStorage.getStudentTransferCertificate(getApplicationContext()));
+                    studentRecordSheet.setText(PreferenceStorage.getStudentRecordSheet(getApplicationContext()));
+                    studentStatus.setText(PreferenceStorage.getStudentStatus(getApplicationContext()));
+                    studentParentStatus.setText(PreferenceStorage.getStudentParentStatus(getApplicationContext()));
+                    studentRegistered.setText(PreferenceStorage.getStudentRegistered(getApplicationContext()));
+                }
+
             }
         });
 
@@ -383,14 +427,24 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
 
     }
 
-    public void callGetEventService() {
+    public void callGetStudentInfoService() {
         /*if(eventsListAdapter != null){
             eventsListAdapter.clearSearchFlag();
         }*/
 
         if (CommonUtils.isNetworkAvailable(this)) {
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put(EnsyfiConstants.STUDENT_ADMISSION_ID, PreferenceStorage.getStudentAdmissionIdPreference(this));
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            new ProfileActivity.HttpAsyncTask().execute("");
+            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.GET_STUDENT_INFO_DETAILS_API;
+            serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
         } else {
 //            AlertDialogHelper.showSimpleAlertDialog(this, getString(R.string.no_connectivity));
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
@@ -400,7 +454,16 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
 
     @Override
     public void onResponse(JSONObject response) {
+        progressDialogHelper.hideProgressDialog();
+        if (validateSignInResponse(response)) {
+            try {
 
+                JSONArray getData = response.getJSONArray("studentProfile");
+                studentData.saveStudentProfile(getData);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -408,31 +471,31 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
 
     }
 
-
-    private class HttpAsyncTask extends AsyncTask<String, Void, Void> {
-        @Override
-        protected Void doInBackground(String... urls) {
-
-            JSONObject jsonObject = new JSONObject();
+    private boolean validateSignInResponse(JSONObject response) {
+        boolean signInSuccess = false;
+        if ((response != null)) {
             try {
-                jsonObject.put(EnsyfiConstants.STUDENT_ADMISSION_ID, PreferenceStorage.getStudentAdmissionIdPreference(getApplicationContext()));
+                String status = response.getString("status");
+                String msg = response.getString(EnsyfiConstants.PARAM_MESSAGE);
+                Log.d(TAG, "status val" + status + "msg" + msg);
 
+                if ((status != null)) {
+                    if (((status.equalsIgnoreCase("activationError")) || (status.equalsIgnoreCase("alreadyRegistered")) ||
+                            (status.equalsIgnoreCase("notRegistered")) || (status.equalsIgnoreCase("error")))) {
+                        signInSuccess = false;
+                        Log.d(TAG, "Show error dialog");
+                        AlertDialogHelper.showSimpleAlertDialog(this, msg);
 
+                    } else {
+                        signInSuccess = true;
+                    }
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_STUDENT_INFO_DETAILS_API;
-            serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
-
-            return null;
-
         }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            progressDialogHelper.cancelProgressDialog();
-        }
+        return signInSuccess;
     }
+
 }
 

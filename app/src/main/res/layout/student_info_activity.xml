@@ -111,7 +111,7 @@
                 android:layout_below="@+id/studid"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
-                android:text="Admission Id    :"
+                android:text="Admission No    :"
                 android:textColor="@color/black"
                 android:textSize="18dp" />
 

@@ -38,6 +38,10 @@ public class EnsyfiConstants {
     // COMMUNICATION URL
     public static final String GET_COMMUNICATION_API = "/apistudent/disp_Communication/";
 
+    // UPLOAD USER PROFILE
+
+    public static final String UPLOAD_PROFILE_IMAGE = "/apimain/update_Profilepic/";
+
     // STUDENT & PARENTS URL
     // STUDENT ATTENDANCE URL
     public static final String GET_STUDENT_ATTENDANCD_API = "/apistudent/disp_Attendence/";

@@ -91,10 +91,15 @@ dependencies {
     compile 'com.makeramen:roundedimageview:2.1.0'
 
     compile 'com.mcxiaoke.volley:library:1.0.19'
+    compile 'dev.dworks.libs:volleyplus:+'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.android.support:multidex:1.0.1'
     compile 'com.facebook.android:facebook-android-sdk:4.0.0'
 
+    compile files('libs/apache-mime4j-0.6.jar')
+    compile files('libs/httpclient-4.3.6.jar')
+    compile files('libs/httpcore-4.3.3.jar')
+    compile files('libs/httpmime-4.3.6.jar')
     compile files('libs/universal-image-loader-1.9.3.jar')
 
     compile 'com.darwinsys:hirondelle-date4j:1.5.1'
