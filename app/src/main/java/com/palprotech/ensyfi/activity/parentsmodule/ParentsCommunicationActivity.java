@@ -105,7 +105,7 @@ public class ParentsCommunicationActivity extends AppCompatActivity implements I
 
             JSONObject jsonObject = new JSONObject();
             try {
-                jsonObject.put(EnsyfiConstants.PARAM_CLASS_ID, PreferenceStorage.getStudentClassIdPreference(getApplicationContext()));
+                jsonObject.put(EnsyfiConstants.KEY_USER_ID, PreferenceStorage.getUserId(getApplicationContext()));
 
 
             } catch (JSONException e) {
@@ -113,7 +113,7 @@ public class ParentsCommunicationActivity extends AppCompatActivity implements I
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_COMMUNICATION_API;
+            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_COMMUNICATION_CIRCULAR_API;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
             return null;

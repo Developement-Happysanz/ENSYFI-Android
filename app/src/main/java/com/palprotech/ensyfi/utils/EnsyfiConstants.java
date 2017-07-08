@@ -35,8 +35,8 @@ public class EnsyfiConstants {
     //EVENT ORGANISER URL
     public static final String GET_EVENT_ORGANISER_API = "/apimain/disp_subEvents/";
 
-    // COMMUNICATION URL
-    public static final String GET_COMMUNICATION_API = "/apistudent/disp_Communication/";
+    // COMMUNICATION CIRCULAR URL
+    public static final String GET_COMMUNICATION_CIRCULAR_API = "/apimain/disp_Circular/";
 
     // UPLOAD USER PROFILE
 
