@@ -42,6 +42,10 @@ public class EnsyfiConstants {
 
     public static final String UPLOAD_PROFILE_IMAGE = "/apimain/update_Profilepic/";
 
+    // FEES STATUS
+
+    public static final String GET_FEES_STATUS = "/apistudent/disp_Fees/";
+
     // STUDENT & PARENTS URL
     // STUDENT ATTENDANCE URL
     public static final String GET_STUDENT_ATTENDANCD_API = "/apistudent/disp_Attendence/";
