@@ -54,6 +54,7 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
     static final int REQUEST_IMAGE_GET = 1;
     protected ProgressDialogHelper progressDialogHelper;
     private SaveStudentData studentData;
+    RelativeLayout ParentInfo, TeacherInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +72,6 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
     }
 
     private void SetUI() {
-
         mProfileImage = (ImageView) findViewById(R.id.image_profile_pic);
         txtUsrID = (EditText) findViewById(R.id.userid);
         txtUsrID.setEnabled(false);
@@ -104,9 +104,13 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
             }
         });
 
+        ParentInfo = (RelativeLayout) findViewById(R.id.selectuser);
+        TeacherInfo = (RelativeLayout) findViewById(R.id.teacherprofile);
+
         final RelativeLayout parentinfo = (RelativeLayout) findViewById(R.id.popup_parent);
         final RelativeLayout guardianinfo = (RelativeLayout) findViewById(R.id.popup_guardian);
         final RelativeLayout studentinfo = (RelativeLayout) findViewById(R.id.popup_student);
+        final RelativeLayout teacherinfo = (RelativeLayout) findViewById(R.id.popup_teacher);
 
         txtPassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,24 +159,25 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
         final TextView GHomePhone = (TextView) findViewById(R.id.txtmotherhomephone);
         final Button GbtnCancel = (Button) findViewById(R.id.cancel1);
 
-        final TextView TeacherId = (TextView) findViewById(R.id.txtTeacherid);
-        final TextView TeacherName = (TextView) findViewById(R.id.txtTeacherName);
-        final TextView TeacherGender = (TextView) findViewById(R.id.txtTeacherGender);
-        final TextView TeacherAge = (TextView) findViewById(R.id.txtTeacherAge);
-        final TextView TeacherNationality = (TextView) findViewById(R.id.txtTeacherNationality);
-        final TextView TeacherReligion = (TextView) findViewById(R.id.txtTeacherReligion);
-        final TextView TeacherCaste = (TextView) findViewById(R.id.txtTeacherCaste);
-        final TextView TeacherCommunity = (TextView) findViewById(R.id.txtTeacherCommunity);
-        final TextView TeacherAddress = (TextView) findViewById(R.id.txtTeacherAddress);
-        final TextView TeacherSubject = (TextView) findViewById(R.id.txtTeacherSubject);
-        final TextView ClassTeacher = (TextView) findViewById(R.id.txtClassTeacher);
-        final TextView TeacherMobile = (TextView) findViewById(R.id.txtTeacherMobile);
-        final TextView TeacherSecondaryMobile = (TextView) findViewById(R.id.txtTeacherSecondaryMobile);
-        final TextView TeacherMail = (TextView) findViewById(R.id.txtTeacherMail);
-        final TextView TeacherSecondaryMail = (TextView) findViewById(R.id.txtTeacherSecondaryMail);
-        final TextView TeacherSectionName = (TextView) findViewById(R.id.txtTeacherSectionName);
-        final TextView TeacherClassName = (TextView) findViewById(R.id.txtTeacherClassName);
-        final TextView TeacherClassTaken = (TextView) findViewById(R.id.txtTeacherClassTaken);
+        final TextView teacherId = (TextView) findViewById(R.id.txtTeacherid);
+        final TextView teacherName = (TextView) findViewById(R.id.txtTeacherName);
+        final TextView teacherGender = (TextView) findViewById(R.id.txtTeacherGender);
+        final TextView teacherAge = (TextView) findViewById(R.id.txtTeacherAge);
+        final TextView teacherNationality = (TextView) findViewById(R.id.txtTeacherNationality);
+        final TextView teacherReligion = (TextView) findViewById(R.id.txtTeacherReligion);
+        final TextView teacherCaste = (TextView) findViewById(R.id.txtTeacherCaste);
+        final TextView teacherCommunity = (TextView) findViewById(R.id.txtTeacherCommunity);
+        final TextView teacherAddress = (TextView) findViewById(R.id.txtTeacherAddress);
+        final TextView teacherSubject = (TextView) findViewById(R.id.txtTeacherSubject);
+        final TextView classTeacher = (TextView) findViewById(R.id.txtClassTeacher);
+        final TextView teacherMobile = (TextView) findViewById(R.id.txtTeacherMobile);
+        final TextView teacherSecondaryMobile = (TextView) findViewById(R.id.txtTeacherSecondaryMobile);
+        final TextView teacherMail = (TextView) findViewById(R.id.txtTeacherMail);
+        final TextView teacherSecondaryMail = (TextView) findViewById(R.id.txtTeacherSecondaryMail);
+        final TextView teacherSectionName = (TextView) findViewById(R.id.txtTeacherSectionName);
+        final TextView teacherClassName = (TextView) findViewById(R.id.txtTeacherClassName);
+        final TextView teacherClassTaken = (TextView) findViewById(R.id.txtTeacherClassTaken);
+        final Button tbtnCancel = (Button) findViewById(R.id.cancel0);
 
         ////// For Student ///////
         final TextView studentAdmissionId = (TextView) findViewById(R.id.txtstudentadminid);
@@ -215,6 +220,14 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
         Mobile.setText(PreferenceStorage.getFatherMobile(getApplicationContext()));
         OfficePhone.setText(PreferenceStorage.getFatherOfficePhone(getApplicationContext()));
         HomePhone.setText(PreferenceStorage.getFatherHomePhone(getApplicationContext()));
+
+        String userTypeString = PreferenceStorage.getUserType(getApplicationContext());
+        int userType = Integer.parseInt(userTypeString);
+        if (userType == 2) {
+            TeacherInfo.setVisibility(View.VISIBLE);
+        } else if (userType == 3) {
+            ParentInfo.setVisibility(View.VISIBLE);
+        }
         ParentProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -317,6 +330,32 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
             }
         });
 
+        TeacherProfle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                teacherinfo.setVisibility(View.VISIBLE);
+                tbtnCancel.setVisibility(View.VISIBLE);
+                teacherId.setText(PreferenceStorage.getTeacherId(getApplicationContext()));
+                teacherName.setText(PreferenceStorage.getTeacherName(getApplicationContext()));
+                teacherGender.setText(PreferenceStorage.getTeacherGender(getApplicationContext()));
+                teacherAge.setText(PreferenceStorage.getTeacherAge(getApplicationContext()));
+                teacherNationality.setText(PreferenceStorage.getTeacherNationality(getApplicationContext()));
+                teacherReligion.setText(PreferenceStorage.getTeacherReligion(getApplicationContext()));
+                teacherCaste.setText(PreferenceStorage.getTeacherCaste(getApplicationContext()));
+                teacherCommunity.setText(PreferenceStorage.getTeacherCommunity(getApplicationContext()));
+                teacherAddress.setText(PreferenceStorage.getTeacherAddress(getApplicationContext()));
+                teacherSubject.setText(PreferenceStorage.getTeacherSubject(getApplicationContext()));
+                classTeacher.setText(PreferenceStorage.getClassTeacher(getApplicationContext()));
+                teacherMobile.setText(PreferenceStorage.getTeacherMobile(getApplicationContext()));
+                teacherSecondaryMobile.setText(PreferenceStorage.getTeacherSecondaryMobile(getApplicationContext()));
+                teacherMail.setText(PreferenceStorage.getTeacherMail(getApplicationContext()));
+                teacherSecondaryMail.setText(PreferenceStorage.getTeacherSecondaryMail(getApplicationContext()));
+                teacherSectionName.setText(PreferenceStorage.getTeacherSectionName(getApplicationContext()));
+                teacherClassName.setText(PreferenceStorage.getTeacherClassName(getApplicationContext()));
+                teacherClassTaken.setText(PreferenceStorage.getTeacherClassTaken(getApplicationContext()));
+            }
+        });
+
         fatherInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -366,6 +405,14 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
             public void onClick(View v) {
                 studentinfo.setVisibility(View.INVISIBLE);
                 SbtnCancel.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        tbtnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                teacherinfo.setVisibility(View.INVISIBLE);
+                tbtnCancel.setVisibility(View.INVISIBLE);
             }
         });
     }

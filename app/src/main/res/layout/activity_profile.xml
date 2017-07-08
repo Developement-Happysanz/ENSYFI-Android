@@ -180,7 +180,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="10dp"
-                android:gravity="center">
+                android:gravity="center"
+                android:visibility="gone">
 
 
                 <ImageView
@@ -1496,7 +1497,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
-                            android:text="Admission id :"
+                            android:text="Id :"
                             android:textColor="@color/black"
                             android:textSize="18dp" />
 
@@ -1563,7 +1564,7 @@
                             android:layout_below="@+id/TeacherGender"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
-                            android:text="Date Of Birth :"
+                            android:text="Address"
                             android:textColor="@color/black"
                             android:textSize="18dp" />
 
@@ -1700,7 +1701,7 @@
                             android:layout_below="@+id/TeacherCommunity"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
-                            android:text="Parent Or Guardian :"
+                            android:text="Handling Subject :"
                             android:textColor="@color/black"
                             android:textSize="18dp" />
 
@@ -1723,7 +1724,7 @@
                             android:layout_below="@+id/TeacherSubject"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
-                            android:text="Parent Or Guardian Id :"
+                            android:text="Class Teacher :"
                             android:textColor="@color/black"
                             android:textSize="18dp" />
 
@@ -1746,7 +1747,7 @@
                             android:layout_below="@+id/ClassTeacher"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
-                            android:text="Mother Tongue :"
+                            android:text="Class Section :"
                             android:textColor="@color/black"
                             android:textSize="18dp" />
 
@@ -1768,7 +1769,7 @@
                             android:layout_below="@+id/TeacherSectionName"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
-                            android:text="Language :"
+                            android:text="Class Name :"
                             android:textColor="@color/black"
                             android:textSize="18dp" />
 
@@ -1880,7 +1881,7 @@
                             android:layout_below="@+id/TeacherSecondaryMail"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
-                            android:text="Previous School :"
+                            android:text="Class Taken :"
                             android:textColor="@color/black"
                             android:textSize="18dp" />
 
@@ -1906,12 +1907,12 @@
                 android:id="@+id/cancel0"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_alignRight="@+id/popup_parent"
-                android:layout_alignTop="@+id/popup_parent"
+                android:layout_alignRight="@+id/popup_teacher"
+                android:layout_alignTop="@+id/popup_teacher"
                 android:layout_marginRight="-1dp"
                 android:layout_marginTop="-8dp"
                 android:background="@drawable/btn_close"
-                android:visibility="invisible" />
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/cancel"
@@ -1922,7 +1923,7 @@
                 android:layout_marginRight="-1dp"
                 android:layout_marginTop="-8dp"
                 android:background="@drawable/btn_close"
-                android:visibility="invisible" />
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/cancel1"
@@ -1933,7 +1934,7 @@
                 android:layout_marginRight="-1dp"
                 android:layout_marginTop="-8dp"
                 android:background="@drawable/btn_close"
-                android:visibility="invisible" />
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/cancel2"
@@ -1944,7 +1945,7 @@
                 android:layout_marginRight="-1dp"
                 android:layout_marginTop="-8dp"
                 android:background="@drawable/btn_close"
-                android:visibility="invisible" />
+                android:visibility="gone" />
 
 
         </RelativeLayout>

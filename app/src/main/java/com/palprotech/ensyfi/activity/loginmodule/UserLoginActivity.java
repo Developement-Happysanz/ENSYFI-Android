@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.palprotech.ensyfi.R;
@@ -52,7 +51,6 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
     private Button btnLogin;
     private TextView txtInsName, txtForgotPassword;
     private ImageView mProfileImage = null;
-    RelativeLayout ParentInfo, TeacherInfo;
     SQLiteHelper database;
 
     @Override
@@ -90,8 +88,6 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
             Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(mProfileImage);
         }
 
-//        ParentInfo = (RelativeLayout) findViewById(R.id.selectuser);
-//        TeacherInfo = (RelativeLayout) findViewById(R.id.teacherprofile);
     }
 
     @Override
@@ -205,7 +201,6 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     JSONArray getTeacherClassStudentsDetails = response.getJSONArray("studDetails");
                     teacherData.saveStudentDetails(getTeacherClassStudentsDetails);
 
-//                    TeacherInfo.setVisibility(View.VISIBLE);
 
                 } else if (userType == 3) {
 
@@ -215,13 +210,11 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     JSONArray getData = response.getJSONArray("studentProfile");
                     studentData.saveStudentProfile(getData);
 
-//                    ParentInfo.setVisibility(View.VISIBLE);
 
                 } else {
 
                     saveUserData(userData);
                     saveStudentParentDetails(response);
-//                    ParentInfo.setVisibility(View.VISIBLE);
                 }
 
             } catch (JSONException e) {
