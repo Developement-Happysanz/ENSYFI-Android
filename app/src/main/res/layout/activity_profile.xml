@@ -144,6 +144,7 @@
                     android:id="@+id/fee_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
                     android:text="Check Student Fee Status" />
@@ -180,8 +181,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="10dp"
-                android:gravity="center"
-                android:visibility="gone">
+                android:layout_marginTop="20dp"
+                android:gravity="center">
 
 
                 <ImageView
@@ -238,6 +239,24 @@
                     android:layout_below="@id/ic_studentprofile"
                     android:gravity="center"
                     android:text="Student"
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
+
+                <ImageView
+                    android:id="@+id/ic_feestatus"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_toRightOf="@+id/ic_studentprofile"
+                    android:background="@drawable/ic_student" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/ic_studentprofile"
+                    android:layout_alignRight="@id/ic_studentprofile"
+                    android:layout_below="@id/ic_feestatus"
+                    android:gravity="center"
+                    android:text="Fees"
                     android:textColor="@color/black"
                     android:textSize="15dp" />
 

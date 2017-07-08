@@ -55,6 +55,7 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
     protected ProgressDialogHelper progressDialogHelper;
     private SaveStudentData studentData;
     RelativeLayout ParentInfo, TeacherInfo;
+    Button feestatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +96,7 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
         studentData = new SaveStudentData(this);
-        final Button feestatus = (Button) findViewById(R.id.fee_status);
+        feestatus = (Button) findViewById(R.id.fee_status);
         feestatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -227,6 +228,10 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
             TeacherInfo.setVisibility(View.VISIBLE);
         } else if (userType == 3) {
             ParentInfo.setVisibility(View.VISIBLE);
+//            feestatus.setVisibility(View.VISIBLE);
+        } else {
+            ParentInfo.setVisibility(View.VISIBLE);
+            feestatus.setVisibility(View.VISIBLE);
         }
         ParentProfile.setOnClickListener(new View.OnClickListener() {
             @Override

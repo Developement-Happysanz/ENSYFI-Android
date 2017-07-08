@@ -201,7 +201,7 @@ public class ExamMarksActivity extends AppCompatActivity implements IServiceList
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAM_EXAM_ID, ExamId);
-                jsonObject.put(EnsyfiConstants.PARAM_STUDENT_ID, PreferenceStorage.getStudentRegisteredPreference(getApplicationContext()));
+                jsonObject.put(EnsyfiConstants.PARAM_STUDENT_ID, PreferenceStorage.getStudentRegisteredIdPreference(getApplicationContext()));
 
 
             } catch (JSONException e) {

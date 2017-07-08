@@ -94,7 +94,7 @@ public class ClassTestDetailActivity extends AppCompatActivity implements IServi
                 JSONObject jsonObject = new JSONObject();
                 try {
                     jsonObject.put(EnsyfiConstants.PARAM_HOMEWORK_ID, classTest.getHwId());
-                    jsonObject.put(EnsyfiConstants.PARM_ENROLL_ID, PreferenceStorage.getStudentRegisteredPreference(getApplicationContext()));
+                    jsonObject.put(EnsyfiConstants.PARM_ENROLL_ID, PreferenceStorage.getStudentRegisteredIdPreference(getApplicationContext()));
 
                 } catch (JSONException e) {
                     e.printStackTrace();
