@@ -80,7 +80,7 @@ public class FeeStatusListAdapter extends BaseAdapter {
         ViewHolder holder;
         if (convertView == null) {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
-            convertView = inflater.inflate(R.layout.circular_list_item, parent, false);
+            convertView = inflater.inflate(R.layout.fee_status_list_item, parent, false);
 
             holder = new FeeStatusListAdapter.ViewHolder();
             holder.txtTermName = (TextView) convertView.findViewById(R.id.txtTermName);

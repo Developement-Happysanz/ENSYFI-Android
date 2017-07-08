@@ -15,9 +15,9 @@ public class FeeStatusList {
     @SerializedName("count")
     @Expose
     private int count;
-    @SerializedName("feeStatusDetails")
+    @SerializedName("feesDetails")
     @Expose
-    private ArrayList<FeeStatus> feeStatusDetails = new ArrayList<FeeStatus>();
+    private ArrayList<FeeStatus> feesDetails = new ArrayList<FeeStatus>();
 
     /**
      * @return The count
@@ -37,13 +37,13 @@ public class FeeStatusList {
      * @return The FeeStatus
      */
     public ArrayList<FeeStatus> getFeeStatus() {
-        return feeStatusDetails;
+        return feesDetails;
     }
 
     /**
-     * @param feeStatusDetails The FeeStatus
+     * @param feesDetails The FeeStatus
      */
-    public void setFeeStatus(ArrayList<FeeStatus> feeStatusDetails) {
-        this.feeStatusDetails = feeStatusDetails;
+    public void setFeeStatus(ArrayList<FeeStatus> feesDetails) {
+        this.feesDetails = feesDetails;
     }
 }
