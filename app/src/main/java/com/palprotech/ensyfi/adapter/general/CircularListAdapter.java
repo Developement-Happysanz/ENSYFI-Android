@@ -1,4 +1,4 @@
-package com.palprotech.ensyfi.adapter.studentmodule;
+package com.palprotech.ensyfi.adapter.general;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,30 +12,33 @@ import android.widget.TextView;
 import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.palprotech.ensyfi.R;
+import com.palprotech.ensyfi.adapter.studentmodule.ClassTestListAdapter;
+import com.palprotech.ensyfi.adapter.studentmodule.CommunicationListAdapter;
 import com.palprotech.ensyfi.app.AppController;
+import com.palprotech.ensyfi.bean.general.viewlist.Circular;
 import com.palprotech.ensyfi.bean.general.viewlist.Communication;
 import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
 
 /**
- * Created by Admin on 18-05-2017.
+ * Created by Admin on 08-07-2017.
  */
 
-public class CommunicationListAdapter extends BaseAdapter {
+public class CircularListAdapter extends BaseAdapter {
 
-    private static final String TAG = ClassTestListAdapter.class.getName();
+    private static final String TAG = CircularListAdapter.class.getName();
     private final Transformation transformation;
     private Context context;
-    private ArrayList<Communication> communications;
+    private ArrayList<Circular> circulars;
     private boolean mSearching = false;
     private boolean mAnimateSearch = false;
     private ArrayList<Integer> mValidSearchIndices = new ArrayList<Integer>();
     private ImageLoader imageLoader = AppController.getInstance().getUniversalImageLoader();
 
-    public CommunicationListAdapter(Context context, ArrayList<Communication> communications) {
+    public CircularListAdapter(Context context, ArrayList<Circular> circulars) {
         this.context = context;
-        this.communications = communications;
+        this.circulars = circulars;
 
         transformation = new RoundedTransformationBuilder()
                 .cornerRadiusDp(0)
@@ -56,16 +59,16 @@ public class CommunicationListAdapter extends BaseAdapter {
 
         } else {
             // Log.d(TAG,"Normal count size");
-            return communications.size();
+            return circulars.size();
         }
     }
 
     @Override
     public Object getItem(int position) {
         if (mSearching) {
-            return communications.get(mValidSearchIndices.get(position));
+            return circulars.get(mValidSearchIndices.get(position));
         } else {
-            return communications.get(position);
+            return circulars.get(position);
         }
     }
 
@@ -79,13 +82,13 @@ public class CommunicationListAdapter extends BaseAdapter {
         ViewHolder holder;
         if (convertView == null) {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
-            convertView = inflater.inflate(R.layout.communication_list_item, parent, false);
+            convertView = inflater.inflate(R.layout.circular_list_item, parent, false);
 
-            holder = new ViewHolder();
-//            holder.txtClassTestTitle = (TextView) convertView.findViewById(R.id.txtClassTestTitle);
-            holder.txtCommunicationTitle = (TextView) convertView.findViewById(R.id.txtCommunicationTitle);
-            holder.txtCommunicationDate = (TextView) convertView.findViewById(R.id.txtCommunicationDate);
-            holder.txtCommunicationDetail = (TextView) convertView.findViewById(R.id.txtCommunicationDetail);
+            holder = new CircularListAdapter.ViewHolder();
+            holder.txtCircularType = (TextView) convertView.findViewById(R.id.txtCircularType);
+            holder.txtCircularTitle = (TextView) convertView.findViewById(R.id.txtCircularTitle);
+            holder.txtCircularDescription = (TextView) convertView.findViewById(R.id.txtCircularDescription);
+            holder.txtCircularDate = (TextView) convertView.findViewById(R.id.txtCircularDate);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -100,12 +103,12 @@ public class CommunicationListAdapter extends BaseAdapter {
             Log.d("Event List Adapter", "getview pos called" + position);
         }
 
-        Communication communication = communications.get(position);
+        Circular circular = circulars.get(position);
 
-//        holder.txtClassTestTitle.setText(classTests.get(position).getHwTitle());
-        holder.txtCommunicationTitle.setText(communications.get(position).getCommunicationTitle());
-        holder.txtCommunicationDate.setText(communications.get(position).getCommunicationDate());
-        holder.txtCommunicationDetail.setText(communications.get(position).getCommunicationDetails());
+        holder.txtCircularType.setText(circulars.get(position).getCircularType());
+        holder.txtCircularTitle.setText(circulars.get(position).getCircularTitle());
+        holder.txtCircularDescription.setText(circulars.get(position).getCircularDescription());
+        holder.txtCircularDate.setText(circulars.get(position).getCircularDate());
         return convertView;
     }
 
@@ -114,10 +117,10 @@ public class CommunicationListAdapter extends BaseAdapter {
         mAnimateSearch = false;
         Log.d("EventListAdapter", "serach for event" + eventName);
         mValidSearchIndices.clear();
-        for (int i = 0; i < communications.size(); i++) {
-            String communicationTitle = communications.get(i).getCommunicationTitle();
-            if ((communicationTitle != null) && !(communicationTitle.isEmpty())) {
-                if (communicationTitle.toLowerCase().contains(eventName.toLowerCase())) {
+        for (int i = 0; i < circulars.size(); i++) {
+            String circularTitle = circulars.get(i).getCircularTitle();
+            if ((circularTitle != null) && !(circularTitle.isEmpty())) {
+                if (circularTitle.toLowerCase().contains(eventName.toLowerCase())) {
                     mValidSearchIndices.add(i);
                 }
             }
@@ -138,7 +141,7 @@ public class CommunicationListAdapter extends BaseAdapter {
     }
 
     public class ViewHolder {
-        public TextView txtCommunicationTitle, txtCommunicationDate,txtCommunicationDetail;
+        public TextView txtCircularType, txtCircularTitle,txtCircularDescription,txtCircularDate;
     }
 
     public boolean ismSearching() {

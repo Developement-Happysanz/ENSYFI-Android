@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.bean.student.viewlist.Event;
+import com.palprotech.ensyfi.bean.general.viewlist.Event;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
 import com.palprotech.ensyfi.serviceinterfaces.IServiceListener;
 

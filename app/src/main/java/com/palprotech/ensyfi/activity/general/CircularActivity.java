@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,9 +14,10 @@ import android.widget.ListView;
 
 import com.google.gson.Gson;
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.adapter.studentmodule.EventOrganiserListAdapter;
-import com.palprotech.ensyfi.bean.general.viewlist.EventOrganiser;
-import com.palprotech.ensyfi.bean.general.viewlist.EventOrganiserList;
+import com.palprotech.ensyfi.adapter.general.CircularListAdapter;
+import com.palprotech.ensyfi.adapter.studentmodule.CommunicationListAdapter;
+import com.palprotech.ensyfi.bean.general.viewlist.Circular;
+import com.palprotech.ensyfi.bean.general.viewlist.CircularList;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
@@ -31,38 +33,36 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 /**
- * Created by Admin on 22-05-2017.
+ * Created by Admin on 08-07-2017.
  */
 
-public class EventOrganiserActivity extends AppCompatActivity implements DialogClickListener, IServiceListener, AdapterView.OnItemClickListener {
+public class CircularActivity extends AppCompatActivity implements IServiceListener, AdapterView.OnItemClickListener, DialogClickListener {
 
-    private static final String TAG = "EventsActivity";
+    private static final String TAG = "CircularActivity";
     ListView loadMoreListView;
     View view;
-    EventOrganiserListAdapter eventOrganiserListAdapter;
+    CircularListAdapter circularListAdapter;
     ServiceHelper serviceHelper;
-    ArrayList<EventOrganiser> eventOrganiserArrayList;
+    ArrayList<Circular> circularArrayList;
     int pageNumber = 0, totalCount = 0;
     protected ProgressDialogHelper progressDialogHelper;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
-    private String eventId;
+    private SearchView mSearchView = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_event_organiser);
-
+        setContentView(R.layout.activity_circular);
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
 //        loadMoreListView.setOnLoadMoreListener(this);
         loadMoreListView.setOnItemClickListener(this);
-        eventOrganiserArrayList = new ArrayList<>();
+        circularArrayList = new ArrayList<>();
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(this);
-        eventId = getIntent().getExtras().getString("eventId");
 
-        callGetEventOrganiserService();
+        callGetCircularService();
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
         bckbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,18 +70,19 @@ public class EventOrganiserActivity extends AppCompatActivity implements DialogC
                 finish();
             }
         });
+
     }
 
-    private void callGetEventOrganiserService() {
-
-             /*if(eventsListAdapter != null){
+    public void callGetCircularService() {
+        /*if(eventsListAdapter != null){
             eventsListAdapter.clearSearchFlag();
         }*/
-        if (eventOrganiserArrayList != null)
-            eventOrganiserArrayList.clear();
+        if (circularArrayList != null)
+            circularArrayList.clear();
 
         if (CommonUtils.isNetworkAvailable(this)) {
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+            //    eventServiceHelper.makeRawRequest(FindAFunConstants.GET_ADVANCE_SINGLE_SEARCH);
             new HttpAsyncTask().execute("");
         } else {
 //            AlertDialogHelper.showSimpleAlertDialog(this, getString(R.string.no_connectivity));
@@ -90,14 +91,31 @@ public class EventOrganiserActivity extends AppCompatActivity implements DialogC
 
     }
 
-    @Override
-    public void onAlertPositiveClicked(int tag) {
+    private class HttpAsyncTask extends AsyncTask<String, Void, Void> {
+        @Override
+        protected Void doInBackground(String... urls) {
 
-    }
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put(EnsyfiConstants.KEY_USER_ID, PreferenceStorage.getUserId(getApplicationContext()));
 
-    @Override
-    public void onAlertNegativeClicked(int tag) {
 
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_COMMUNICATION_CIRCULAR_API;
+            serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
+
+            return null;
+        }
+
+        // onPostExecute displays the results of the AsyncTask.
+        @Override
+        protected void onPostExecute(Void result) {
+            progressDialogHelper.cancelProgressDialog();
+        }
     }
 
     private boolean validateSignInResponse(JSONObject response) {
@@ -129,7 +147,22 @@ public class EventOrganiserActivity extends AppCompatActivity implements DialogC
     }
 
     @Override
-    public void onResponse( final JSONObject response) {
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onAlertPositiveClicked(int tag) {
+
+    }
+
+    @Override
+    public void onAlertNegativeClicked(int tag) {
+
+    }
+
+    @Override
+    public void onResponse(final JSONObject response) {
         if (validateSignInResponse(response)) {
             Log.d("ajazFilterresponse : ", response.toString());
 
@@ -140,27 +173,26 @@ public class EventOrganiserActivity extends AppCompatActivity implements DialogC
 //                loadMoreListView.onLoadMoreComplete();
 
                     Gson gson = new Gson();
-                    EventOrganiserList eventOrganiserList = gson.fromJson(response.toString(), EventOrganiserList.class);
-                    if (eventOrganiserList.getEventOrganiserList() != null && eventOrganiserList.getEventOrganiserList().size() > 0) {
-                        totalCount = eventOrganiserList.getCount();
+                    CircularList circularList = gson.fromJson(response.toString(), CircularList.class);
+                    if (circularList.getCircular() != null && circularList.getCircular().size() > 0) {
+                        totalCount = circularList.getCount();
                         isLoadingForFirstTime = false;
-                        updateListAdapter(eventOrganiserList.getEventOrganiserList());
+                        updateListAdapter(circularList.getCircular());
                     }
                 }
             });
-        }
-        else {
+        } else {
             Log.d(TAG, "Error while sign In");
         }
     }
 
-    protected void updateListAdapter(ArrayList<EventOrganiser> eventOrganiserArrayList) {
-        this.eventOrganiserArrayList.addAll(eventOrganiserArrayList);
-        if (eventOrganiserListAdapter == null) {
-            eventOrganiserListAdapter = new EventOrganiserListAdapter(this, this.eventOrganiserArrayList);
-            loadMoreListView.setAdapter(eventOrganiserListAdapter);
+    protected void updateListAdapter(ArrayList<Circular> circularArrayList) {
+        this.circularArrayList.addAll(circularArrayList);
+        if (circularListAdapter == null) {
+            circularListAdapter = new CircularListAdapter(this, this.circularArrayList);
+            loadMoreListView.setAdapter(circularListAdapter);
         } else {
-            eventOrganiserListAdapter.notifyDataSetChanged();
+            circularListAdapter.notifyDataSetChanged();
         }
     }
 
@@ -171,41 +203,8 @@ public class EventOrganiserActivity extends AppCompatActivity implements DialogC
             public void run() {
                 progressDialogHelper.hideProgressDialog();
 //                loadMoreListView.onLoadMoreComplete();
-                AlertDialogHelper.showSimpleAlertDialog(EventOrganiserActivity.this, error);
+                AlertDialogHelper.showSimpleAlertDialog(CircularActivity.this, error);
             }
         });
     }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-    }
-
-    private class HttpAsyncTask extends AsyncTask<String, Void, Void> {
-        @Override
-        protected Void doInBackground(String... urls) {
-
-            JSONObject jsonObject = new JSONObject();
-            try {
-                jsonObject.put(EnsyfiConstants.PARAM_EVENT_ID, eventId);
-
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_EVENT_ORGANISER_API;
-            serviceHelper.makeGetServiceCall(jsonObject.toString(),url);
-
-            return null;
-        }
-
-        // onPostExecute displays the results of the AsyncTask.
-        @Override
-        protected void onPostExecute(Void result) {
-            progressDialogHelper.cancelProgressDialog();
-        }
-    }
 }
-

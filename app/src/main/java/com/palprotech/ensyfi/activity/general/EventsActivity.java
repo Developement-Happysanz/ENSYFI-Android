@@ -14,8 +14,8 @@ import android.widget.ListView;
 import com.google.gson.Gson;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.adapter.studentmodule.EventListAdapter;
-import com.palprotech.ensyfi.bean.student.viewlist.Event;
-import com.palprotech.ensyfi.bean.student.viewlist.EventList;
+import com.palprotech.ensyfi.bean.general.viewlist.Event;
+import com.palprotech.ensyfi.bean.general.viewlist.EventList;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
@@ -198,7 +198,7 @@ public class EventsActivity extends AppCompatActivity implements IServiceListene
 
             JSONObject jsonObject = new JSONObject();
             try {
-                jsonObject.put(EnsyfiConstants.PARAM_CLASS_ID, PreferenceStorage.getStudentClassIdPreference(getApplicationContext()));
+                jsonObject.put(EnsyfiConstants.PARAM_CLASS_ID, "1");
 
 
             } catch (JSONException e) {

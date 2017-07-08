@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
+import com.palprotech.ensyfi.activity.general.CircularActivity;
 import com.palprotech.ensyfi.activity.loginmodule.ChangePasswordActivity;
 import com.palprotech.ensyfi.activity.loginmodule.ProfileActivity;
 import com.palprotech.ensyfi.activity.loginmodule.SplashScreenActivity;
@@ -143,7 +144,7 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
         dashCommunication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ParentsCommunicationActivity.class);
+                Intent intent = new Intent(getApplicationContext(), CircularActivity.class);
                 startActivity(intent);
             }
         });

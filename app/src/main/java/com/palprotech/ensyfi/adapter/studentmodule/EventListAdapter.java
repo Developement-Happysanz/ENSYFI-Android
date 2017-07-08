@@ -13,7 +13,7 @@ import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.app.AppController;
-import com.palprotech.ensyfi.bean.student.viewlist.Event;
+import com.palprotech.ensyfi.bean.general.viewlist.Event;
 import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
