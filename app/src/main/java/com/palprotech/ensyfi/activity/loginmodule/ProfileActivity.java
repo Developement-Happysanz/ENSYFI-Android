@@ -1,14 +1,8 @@
 package com.palprotech.ensyfi.activity.loginmodule;
 
-import android.content.ComponentName;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.Parcelable;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -35,10 +29,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Narendar on 05/04/17.
  */
@@ -49,13 +39,12 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
     private TextView txtUsrName, txtUserType, txtPassword;
     private ServiceHelper serviceHelper;
     private EditText txtUsrID, txtMail, numPhone, txtAddress;
-    private ImageView ParentProfile, GuardianProfile, StudentProfile, motherInfo, fatherInfo, TeacherProfle;
+    private ImageView ParentProfile, GuardianProfile, StudentProfile, motherInfo, fatherInfo, TeacherProfle, feestatus;
     private Uri outputFileUri;
     static final int REQUEST_IMAGE_GET = 1;
     protected ProgressDialogHelper progressDialogHelper;
     private SaveStudentData studentData;
     RelativeLayout ParentInfo, TeacherInfo;
-    Button feestatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +81,7 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
         studentData = new SaveStudentData(this);
-        feestatus = (Button) findViewById(R.id.fee_status);
+        feestatus = (ImageView) findViewById(R.id.ic_feestatus);
 
         feestatus.setOnClickListener(new View.OnClickListener() {
             @Override
