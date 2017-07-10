@@ -40,7 +40,8 @@ public class PreferenceStorage {
     public static String getInstituteName(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String instituteName = sharedPreferences.getString(EnsyfiConstants.KEY_INSTITUTE_NAME, "");
+        String instituteName;
+        instituteName = sharedPreferences.getString(EnsyfiConstants.KEY_INSTITUTE_NAME, "");
         return instituteName;
     }
 
@@ -56,7 +57,8 @@ public class PreferenceStorage {
     public static String getInstituteCode(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String instituteCode = sharedPreferences.getString(EnsyfiConstants.KEY_INSTITUTE_CODE, "");
+        String instituteCode;
+        instituteCode = sharedPreferences.getString(EnsyfiConstants.KEY_INSTITUTE_CODE, "");
         return instituteCode;
     }
 
@@ -73,7 +75,8 @@ public class PreferenceStorage {
     public static String getInstituteLogoPicUrl(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String url = sharedPreferences.getString(EnsyfiConstants.KEY_INSTITUTE_LOGO, "");
+        String url;
+        url = sharedPreferences.getString(EnsyfiConstants.KEY_INSTITUTE_LOGO, "");
         return url;
 
     }
@@ -91,7 +94,8 @@ public class PreferenceStorage {
     public static String getUserDynamicAPI(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String userDynamicAPI = sharedPreferences.getString(EnsyfiConstants.KEY_USER_DYNAMIC_API, "");
+        String userDynamicAPI;
+        userDynamicAPI = sharedPreferences.getString(EnsyfiConstants.KEY_USER_DYNAMIC_API, "");
         return userDynamicAPI;
     }
 
@@ -107,7 +111,8 @@ public class PreferenceStorage {
     public static String getUserId(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String userId = sharedPreferences.getString(EnsyfiConstants.KEY_USER_ID, "");
+        String  userId;
+        userId = sharedPreferences.getString(EnsyfiConstants.KEY_USER_ID, "");
         return userId;
     }
 
@@ -123,7 +128,8 @@ public class PreferenceStorage {
     public static String getName(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String name = sharedPreferences.getString(EnsyfiConstants.KEY_NAME, "");
+        String name;
+        name = sharedPreferences.getString(EnsyfiConstants.KEY_NAME, "");
         return name;
     }
 
@@ -139,7 +145,8 @@ public class PreferenceStorage {
     public static String getUserName(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String userName = sharedPreferences.getString(EnsyfiConstants.KEY_USER_NAME, "");
+        String userName;
+        userName = sharedPreferences.getString(EnsyfiConstants.KEY_USER_NAME, "");
         return userName;
     }
 
@@ -155,7 +162,8 @@ public class PreferenceStorage {
     public static String getUserPicture(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String userPicture = sharedPreferences.getString(EnsyfiConstants.KEY_USER_IMAGE, "");
+        String userPicture;
+        userPicture = sharedPreferences.getString(EnsyfiConstants.KEY_USER_IMAGE, "");
         return userPicture;
     }
 
@@ -171,7 +179,8 @@ public class PreferenceStorage {
     public static String getUserType(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String userType = sharedPreferences.getString(EnsyfiConstants.KEY_USER_TYPE, "");
+        String userType;
+        userType = sharedPreferences.getString(EnsyfiConstants.KEY_USER_TYPE, "");
         return userType;
     }
 
@@ -187,7 +196,8 @@ public class PreferenceStorage {
     public static String getUserTypeName(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String userTypeName = sharedPreferences.getString(EnsyfiConstants.KEY_USER_TYPE_NAME, "");
+        String userTypeName;
+        userTypeName = sharedPreferences.getString(EnsyfiConstants.KEY_USER_TYPE_NAME, "");
         return userTypeName;
     }
 
@@ -203,7 +213,8 @@ public class PreferenceStorage {
     public static String getAcademicYearId(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String academicYearId = sharedPreferences.getString(EnsyfiConstants.KEY_ACADEMIC_YEAR_ID, "");
+        String academicYearId;
+        academicYearId = sharedPreferences.getString(EnsyfiConstants.KEY_ACADEMIC_YEAR_ID, "");
         return academicYearId;
     }
 
@@ -220,7 +231,8 @@ public class PreferenceStorage {
     public static String getStudentRegisteredIdPreference(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentPrefEnrollID = sharedPreferences.getString(EnsyfiConstants.KEY_STUDENT_ENROLL_ID_PREFERENCES, "");
+        String studentPrefEnrollID;
+        studentPrefEnrollID = sharedPreferences.getString(EnsyfiConstants.KEY_STUDENT_ENROLL_ID_PREFERENCES, "");
         return studentPrefEnrollID;
     }
 
@@ -236,7 +248,8 @@ public class PreferenceStorage {
     public static String getStudentAdmissionIdPreference(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentPrefAdmissionID = sharedPreferences.getString(EnsyfiConstants.KEY_STUDENT_ADMISSION_ID_PREFERENCES, "");
+        String studentPrefAdmissionID;
+        studentPrefAdmissionID = sharedPreferences.getString(EnsyfiConstants.KEY_STUDENT_ADMISSION_ID_PREFERENCES, "");
         return studentPrefAdmissionID;
     }
 
@@ -252,7 +265,8 @@ public class PreferenceStorage {
     public static String getStudentAdmissionNoPreference(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentPrefAdmissionNo = sharedPreferences.getString(EnsyfiConstants.KEY_STUDENT_ADMISSION_NO_PREFERENCES, "");
+        String studentPrefAdmissionNo;
+        studentPrefAdmissionNo = sharedPreferences.getString(EnsyfiConstants.KEY_STUDENT_ADMISSION_NO_PREFERENCES, "");
         return studentPrefAdmissionNo;
     }
 
@@ -268,7 +282,8 @@ public class PreferenceStorage {
     public static String getStudentClassIdPreference(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentPrefclassId = sharedPreferences.getString(EnsyfiConstants.KEY_STUDENT_CLASS_ID_PREFERENCES, "");
+        String studentPrefclassId;
+        studentPrefclassId = sharedPreferences.getString(EnsyfiConstants.KEY_STUDENT_CLASS_ID_PREFERENCES, "");
         return studentPrefclassId;
     }
 
@@ -284,7 +299,8 @@ public class PreferenceStorage {
     public static String getStudentNamePreference(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentPrefName = sharedPreferences.getString(EnsyfiConstants.KEY_STUDENT_NAME_PREFERENCES, "");
+        String studentPrefName;
+        studentPrefName = sharedPreferences.getString(EnsyfiConstants.KEY_STUDENT_NAME_PREFERENCES, "");
         return studentPrefName;
     }
 
@@ -300,7 +316,8 @@ public class PreferenceStorage {
     public static String getStudentClassNamePreference(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentPrefClassName = sharedPreferences.getString(EnsyfiConstants.KEY_STUDENT_CLASS_NAME_PREFERENCES, "");
+        String studentPrefClassName;
+        studentPrefClassName = sharedPreferences.getString(EnsyfiConstants.KEY_STUDENT_CLASS_NAME_PREFERENCES, "");
         return studentPrefClassName;
     }
 
@@ -316,7 +333,8 @@ public class PreferenceStorage {
     public static String getStudentSectionNamePreference(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentPrefSectionName = sharedPreferences.getString(EnsyfiConstants.KEY_STUDENT_SECTION_NAME_PREFERENCES, "");
+        String studentPrefSectionName;
+        studentPrefSectionName = sharedPreferences.getString(EnsyfiConstants.KEY_STUDENT_SECTION_NAME_PREFERENCES, "");
         return studentPrefSectionName;
     }
 
@@ -325,7 +343,8 @@ public class PreferenceStorage {
     public static String getForgotPasswordStatus(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String url = sharedPreferences.getString(EnsyfiConstants.KEY_FORGOT_PASSWORD_STATUS, "");
+        String url;
+        url = sharedPreferences.getString(EnsyfiConstants.KEY_FORGOT_PASSWORD_STATUS, "");
         return url;
     }
 
@@ -341,7 +360,8 @@ public class PreferenceStorage {
     public static String getForgotPasswordStatusEnable(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String url = sharedPreferences.getString(EnsyfiConstants.KEY_FORGOT_PASSWORD_STATUS, "");
+        String url;
+        url = sharedPreferences.getString(EnsyfiConstants.KEY_FORGOT_PASSWORD_STATUS, "");
         return url;
     }
 
@@ -367,7 +387,8 @@ public class PreferenceStorage {
     public static String getFatherID(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String fatherID = sharedPreferences.getString(EnsyfiConstants.FATHER_ID, "");
+        String fatherID;
+        fatherID = sharedPreferences.getString(EnsyfiConstants.FATHER_ID, "");
         return fatherID;
     }
 
@@ -382,7 +403,8 @@ public class PreferenceStorage {
     public static String getFatherName(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String fatherName = sharedPreferences.getString(EnsyfiConstants.FATHER_NAME, "");
+        String fatherName;
+        fatherName = sharedPreferences.getString(EnsyfiConstants.FATHER_NAME, "");
         return fatherName;
     }
 
@@ -397,7 +419,8 @@ public class PreferenceStorage {
     public static String getFatherOccupation(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String fatherOccupation = sharedPreferences.getString(EnsyfiConstants.FATHER_OCCUPATION, "");
+        String fatherOccupation;
+        fatherOccupation = sharedPreferences.getString(EnsyfiConstants.FATHER_OCCUPATION, "");
         return fatherOccupation;
     }
 
@@ -412,7 +435,8 @@ public class PreferenceStorage {
     public static String getFatherIncome(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String fatherIncome= sharedPreferences.getString(EnsyfiConstants.FATHER_INCOME, "");
+        String fatherIncome;
+        fatherIncome = sharedPreferences.getString(EnsyfiConstants.FATHER_INCOME, "");
         return fatherIncome;
     }
 
@@ -427,7 +451,8 @@ public class PreferenceStorage {
     public static String getFatherAddress(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String fatherAddress = sharedPreferences.getString(EnsyfiConstants.FATHER_ADDRESS, "");
+        String fatherAddress;
+        fatherAddress = sharedPreferences.getString(EnsyfiConstants.FATHER_ADDRESS, "");
         return fatherAddress;
     }
 
@@ -442,7 +467,8 @@ public class PreferenceStorage {
     public static String getFatherEmail(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String fatherEmail = sharedPreferences.getString(EnsyfiConstants.FATHER_EMAIL, "");
+        String fatherEmail;
+        fatherEmail = sharedPreferences.getString(EnsyfiConstants.FATHER_EMAIL, "");
         return fatherEmail;
     }
 
@@ -457,7 +483,8 @@ public class PreferenceStorage {
     public static String getFatherHomePhone(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String fatherHomePhone = sharedPreferences.getString(EnsyfiConstants.FATHER_HOME_PHONE, "");
+        String fatherHomePhone;
+        fatherHomePhone = sharedPreferences.getString(EnsyfiConstants.FATHER_HOME_PHONE, "");
         return fatherHomePhone;
     }
 
@@ -472,7 +499,8 @@ public class PreferenceStorage {
     public static String getFatherOfficePhone(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String fatherOfficePhone = sharedPreferences.getString(EnsyfiConstants.FATHER_OFFICE_PHONE, "");
+        String fatherOfficePhone;
+        fatherOfficePhone = sharedPreferences.getString(EnsyfiConstants.FATHER_OFFICE_PHONE, "");
         return fatherOfficePhone;
     }
 
@@ -487,7 +515,8 @@ public class PreferenceStorage {
     public static String getFatherMobile(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String fatherMobile= sharedPreferences.getString(EnsyfiConstants.FATHER_MOBILE, "");
+        String fatherMobile;
+        fatherMobile = sharedPreferences.getString(EnsyfiConstants.FATHER_MOBILE, "");
         return fatherMobile;
     }
 
@@ -502,7 +531,8 @@ public class PreferenceStorage {
     public static String getFatherRelationship(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String fatherRelationship = sharedPreferences.getString(EnsyfiConstants.FATHER_RELATIONSHIP, "");
+        String fatherRelationship;
+        fatherRelationship = sharedPreferences.getString(EnsyfiConstants.FATHER_RELATIONSHIP, "");
         return fatherRelationship;
     }
 
@@ -517,7 +547,8 @@ public class PreferenceStorage {
     public static String getFatherImg(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String fatherImg = sharedPreferences.getString(EnsyfiConstants.FATHER_IMAGE, "");
+        String fatherImg;
+        fatherImg = sharedPreferences.getString(EnsyfiConstants.FATHER_IMAGE, "");
         return fatherImg;
     }
 
@@ -538,7 +569,8 @@ public class PreferenceStorage {
     public static String getMotherID(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String motherID = sharedPreferences.getString(EnsyfiConstants.MOTHER_ID, "");
+        String motherID;
+        motherID = sharedPreferences.getString(EnsyfiConstants.MOTHER_ID, "");
         return motherID;
     }
 
@@ -553,7 +585,8 @@ public class PreferenceStorage {
     public static String getMotherName(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String motherName = sharedPreferences.getString(EnsyfiConstants.MOTHER_NAME, "");
+        String motherName;
+        motherName = sharedPreferences.getString(EnsyfiConstants.MOTHER_NAME, "");
         return motherName;
     }
 
@@ -568,7 +601,8 @@ public class PreferenceStorage {
     public static String getMotherOccupation(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String motherOccupation = sharedPreferences.getString(EnsyfiConstants.MOTHER_OCCUPATION, "");
+        String motherOccupation;
+        motherOccupation = sharedPreferences.getString(EnsyfiConstants.MOTHER_OCCUPATION, "");
         return motherOccupation;
     }
 
@@ -583,7 +617,8 @@ public class PreferenceStorage {
     public static String getMotherIncome(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String motherIncome = sharedPreferences.getString(EnsyfiConstants.MOTHER_INCOME, "");
+        String motherIncome;
+        motherIncome = sharedPreferences.getString(EnsyfiConstants.MOTHER_INCOME, "");
         return motherIncome;
     }
 
@@ -598,7 +633,8 @@ public class PreferenceStorage {
     public static String getMotherAddress(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String motherAddress = sharedPreferences.getString(EnsyfiConstants.MOTHER_ADDRESS, "");
+        String motherAddress;
+        motherAddress = sharedPreferences.getString(EnsyfiConstants.MOTHER_ADDRESS, "");
         return motherAddress;
     }
 
@@ -613,7 +649,8 @@ public class PreferenceStorage {
     public static String getMotherEmail(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String motherEmail = sharedPreferences.getString(EnsyfiConstants.MOTHER_EMAIL, "");
+        String motherEmail;
+        motherEmail = sharedPreferences.getString(EnsyfiConstants.MOTHER_EMAIL, "");
         return motherEmail;
     }
 
@@ -628,7 +665,8 @@ public class PreferenceStorage {
     public static String getMotherHomePhone(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String motherHomePhone = sharedPreferences.getString(EnsyfiConstants.MOTHER_HOME_PHONE, "");
+        String motherHomePhone;
+        motherHomePhone = sharedPreferences.getString(EnsyfiConstants.MOTHER_HOME_PHONE, "");
         return motherHomePhone;
     }
 
@@ -643,7 +681,8 @@ public class PreferenceStorage {
     public static String getMotherOfficePhone(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String motherOfficePhone = sharedPreferences.getString(EnsyfiConstants.MOTHER_OFFICE_PHONE, "");
+        String motherOfficePhone;
+        motherOfficePhone = sharedPreferences.getString(EnsyfiConstants.MOTHER_OFFICE_PHONE, "");
         return motherOfficePhone;
     }
 
@@ -658,7 +697,8 @@ public class PreferenceStorage {
     public static String getMotherMobile(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String motherMobile= sharedPreferences.getString(EnsyfiConstants.MOTHER_MOBILE, "");
+        String motherMobile;
+        motherMobile = sharedPreferences.getString(EnsyfiConstants.MOTHER_MOBILE, "");
         return motherMobile;
     }
 
@@ -673,7 +713,8 @@ public class PreferenceStorage {
     public static String getMotherRelationship(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String motherRelationship = sharedPreferences.getString(EnsyfiConstants.MOTHER_RELATIONSHIP, "");
+        String motherRelationship;
+        motherRelationship = sharedPreferences.getString(EnsyfiConstants.MOTHER_RELATIONSHIP, "");
         return motherRelationship;
     }
 
@@ -688,7 +729,8 @@ public class PreferenceStorage {
     public static String getMotherImg(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String motherImg = sharedPreferences.getString(EnsyfiConstants.MOTHER_IMAGE, "");
+        String motherImg;
+        motherImg = sharedPreferences.getString(EnsyfiConstants.MOTHER_IMAGE, "");
         return motherImg;
     }
 
@@ -709,7 +751,8 @@ public class PreferenceStorage {
     public static String getGuardianID(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String guardianID = sharedPreferences.getString(EnsyfiConstants.GUARDIAN_ID, "");
+        String guardianID;
+        guardianID = sharedPreferences.getString(EnsyfiConstants.GUARDIAN_ID, "");
         return guardianID;
     }
 
@@ -724,7 +767,8 @@ public class PreferenceStorage {
     public static String getGuardianName(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String guardianName = sharedPreferences.getString(EnsyfiConstants.GUARDIAN_NAME, "");
+        String guardianName;
+        guardianName = sharedPreferences.getString(EnsyfiConstants.GUARDIAN_NAME, "");
         return guardianName;
     }
 
@@ -739,7 +783,8 @@ public class PreferenceStorage {
     public static String getGuardianOccupation(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String guardianOccupation = sharedPreferences.getString(EnsyfiConstants.GUARDIAN_OCCUPATION, "");
+        String guardianOccupation;
+        guardianOccupation = sharedPreferences.getString(EnsyfiConstants.GUARDIAN_OCCUPATION, "");
         return guardianOccupation;
     }
 
@@ -754,7 +799,8 @@ public class PreferenceStorage {
     public static String getGuardianIncome(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String guardianIncome = sharedPreferences.getString(EnsyfiConstants.GUARDIAN_INCOME, "");
+        String guardianIncome;
+        guardianIncome = sharedPreferences.getString(EnsyfiConstants.GUARDIAN_INCOME, "");
         return guardianIncome;
     }
 
@@ -769,7 +815,8 @@ public class PreferenceStorage {
     public static String getGuardianAddress(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String guardianAddress = sharedPreferences.getString(EnsyfiConstants.GUARDIAN_ADDRESS, "");
+        String guardianAddress;
+        guardianAddress = sharedPreferences.getString(EnsyfiConstants.GUARDIAN_ADDRESS, "");
         return guardianAddress;
     }
 
@@ -784,7 +831,8 @@ public class PreferenceStorage {
     public static String getGuardianEmail(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String guardianEmail = sharedPreferences.getString(EnsyfiConstants.GUARDIAN_EMAIL, "");
+        String guardianEmail;
+        guardianEmail = sharedPreferences.getString(EnsyfiConstants.GUARDIAN_EMAIL, "");
         return guardianEmail;
     }
 
@@ -799,7 +847,8 @@ public class PreferenceStorage {
     public static String getGuardianHomePhone(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String guardianHomePhone = sharedPreferences.getString(EnsyfiConstants.GUARDIAN_HOME_PHONE, "");
+        String guardianHomePhone;
+        guardianHomePhone = sharedPreferences.getString(EnsyfiConstants.GUARDIAN_HOME_PHONE, "");
         return guardianHomePhone;
     }
 
@@ -814,7 +863,8 @@ public class PreferenceStorage {
     public static String getGuardianOfficePhone(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String guardianOfficePhone = sharedPreferences.getString(EnsyfiConstants.GUARDIAN_OFFICE_PHONE, "");
+        String guardianOfficePhone;
+        guardianOfficePhone = sharedPreferences.getString(EnsyfiConstants.GUARDIAN_OFFICE_PHONE, "");
         return guardianOfficePhone;
     }
 
@@ -829,7 +879,8 @@ public class PreferenceStorage {
     public static String getGuardianMobile(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String guardianMobile= sharedPreferences.getString(EnsyfiConstants.GUARDIAN_MOBILE, "");
+        String guardianMobile;
+        guardianMobile = sharedPreferences.getString(EnsyfiConstants.GUARDIAN_MOBILE, "");
         return guardianMobile;
     }
 
@@ -844,7 +895,8 @@ public class PreferenceStorage {
     public static String getGuardianRelationship(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String guardianRelationship = sharedPreferences.getString(EnsyfiConstants.GUARDIAN_RELATIONSHIP, "");
+        String guardianRelationship;
+        guardianRelationship = sharedPreferences.getString(EnsyfiConstants.GUARDIAN_RELATIONSHIP, "");
         return guardianRelationship;
     }
 
@@ -859,7 +911,8 @@ public class PreferenceStorage {
     public static String getGuardianImg(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String guardianImg = sharedPreferences.getString(EnsyfiConstants.GUARDIAN_IMAGE, "");
+        String guardianImg;
+        guardianImg = sharedPreferences.getString(EnsyfiConstants.GUARDIAN_IMAGE, "");
         return guardianImg;
     }
 
@@ -876,7 +929,8 @@ public class PreferenceStorage {
     public static String getStudentAdmissionID(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentAdmissionID = sharedPreferences.getString(EnsyfiConstants.STUDENT_ADMISSION_ID, "");
+        String studentAdmissionID;
+        studentAdmissionID = sharedPreferences.getString(EnsyfiConstants.STUDENT_ADMISSION_ID, "");
         return studentAdmissionID;
     }
 
@@ -891,7 +945,8 @@ public class PreferenceStorage {
     public static String getStudentAdmissionYear(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentAdmissionYear = sharedPreferences.getString(EnsyfiConstants.STUDENT_ADMISSION_YEAR, "");
+        String studentAdmissionYear;
+        studentAdmissionYear = sharedPreferences.getString(EnsyfiConstants.STUDENT_ADMISSION_YEAR, "");
         return studentAdmissionYear;
     }
 
@@ -906,7 +961,8 @@ public class PreferenceStorage {
     public static String getStudentAdmissionNumber(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentAdmissionNumber = sharedPreferences.getString(EnsyfiConstants.STUDENT_ADMISSION_NUMBER, "");
+        String studentAdmissionNumber;
+        studentAdmissionNumber = sharedPreferences.getString(EnsyfiConstants.STUDENT_ADMISSION_NUMBER, "");
         return studentAdmissionNumber;
     }
 
@@ -921,7 +977,8 @@ public class PreferenceStorage {
     public static String getStudentEmsiNumber(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentEmsiNumber= sharedPreferences.getString(EnsyfiConstants.STUDENT_EMSI_NUMBER, "");
+        String studentEmsiNumber;
+        studentEmsiNumber = sharedPreferences.getString(EnsyfiConstants.STUDENT_EMSI_NUMBER, "");
         return studentEmsiNumber;
     }
 
@@ -936,7 +993,8 @@ public class PreferenceStorage {
     public static String getStudentAdmissionDate(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentAdmissionDate = sharedPreferences.getString(EnsyfiConstants.STUDENT_ADMISSION_DATE, "");
+        String studentAdmissionDate;
+        studentAdmissionDate = sharedPreferences.getString(EnsyfiConstants.STUDENT_ADMISSION_DATE, "");
         return studentAdmissionDate;
     }
 
@@ -951,7 +1009,8 @@ public class PreferenceStorage {
     public static String getStudentName(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentName = sharedPreferences.getString(EnsyfiConstants.STUDENT_NAME, "");
+        String studentName;
+        studentName = sharedPreferences.getString(EnsyfiConstants.STUDENT_NAME, "");
         return studentName;
     }
 
@@ -966,7 +1025,8 @@ public class PreferenceStorage {
     public static String getStudentGender(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentGender = sharedPreferences.getString(EnsyfiConstants.STUDENT_GENDER, "");
+        String studentGender;
+        studentGender = sharedPreferences.getString(EnsyfiConstants.STUDENT_GENDER, "");
         return studentGender;
     }
 
@@ -981,7 +1041,8 @@ public class PreferenceStorage {
     public static String getStudentDateOfBirth(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentDateOfBirth = sharedPreferences.getString(EnsyfiConstants.STUDENT_DATE_OF_BIRTH, "");
+        String studentDateOfBirth;
+        studentDateOfBirth = sharedPreferences.getString(EnsyfiConstants.STUDENT_DATE_OF_BIRTH, "");
         return studentDateOfBirth;
     }
 
@@ -996,7 +1057,8 @@ public class PreferenceStorage {
     public static String getStudentAge(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentAge = sharedPreferences.getString(EnsyfiConstants.STUDENT_AGE, "");
+        String studentAge;
+        studentAge = sharedPreferences.getString(EnsyfiConstants.STUDENT_AGE, "");
         return studentAge;
     }
 
@@ -1011,7 +1073,8 @@ public class PreferenceStorage {
     public static String getStudentNationality(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentNationality = sharedPreferences.getString(EnsyfiConstants.STUDENT_NATIONALITY, "");
+        String studentNationality;
+        studentNationality = sharedPreferences.getString(EnsyfiConstants.STUDENT_NATIONALITY, "");
         return studentNationality;
     }
 
@@ -1026,7 +1089,8 @@ public class PreferenceStorage {
     public static String getStudentReligion(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentReligion = sharedPreferences.getString(EnsyfiConstants.STUDENT_RELIGION, "");
+        String studentReligion;
+        studentReligion = sharedPreferences.getString(EnsyfiConstants.STUDENT_RELIGION, "");
         return studentReligion;
     }
     public static void saveStudentCaste(Context context, String name) {
@@ -1040,7 +1104,8 @@ public class PreferenceStorage {
     public static String getStudentCaste(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentCaste = sharedPreferences.getString(EnsyfiConstants.STUDENT_CASTE, "");
+        String studentCaste;
+        studentCaste = sharedPreferences.getString(EnsyfiConstants.STUDENT_CASTE, "");
         return studentCaste;
     }
 
@@ -1055,7 +1120,8 @@ public class PreferenceStorage {
     public static String getStudentCommunity(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentCommunity = sharedPreferences.getString(EnsyfiConstants.STUDENT_COMMUNITY, "");
+        String studentCommunity;
+        studentCommunity = sharedPreferences.getString(EnsyfiConstants.STUDENT_COMMUNITY, "");
         return studentCommunity;
     }
 
@@ -1070,7 +1136,8 @@ public class PreferenceStorage {
     public static String getStudentParentOrGuardian(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentParentOrGuardian = sharedPreferences.getString(EnsyfiConstants.STUDENT_PARENT_OR_GUARDIAN, "");
+        String studentParentOrGuardian;
+        studentParentOrGuardian = sharedPreferences.getString(EnsyfiConstants.STUDENT_PARENT_OR_GUARDIAN, "");
         return studentParentOrGuardian;
     }
 
@@ -1085,7 +1152,8 @@ public class PreferenceStorage {
     public static String getStudentParentOrGuardianID(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentParentOrGuardianID = sharedPreferences.getString(EnsyfiConstants.STUDENT_PARENT_OR_GUARDIAN_ID, "");
+        String studentParentOrGuardianID;
+        studentParentOrGuardianID = sharedPreferences.getString(EnsyfiConstants.STUDENT_PARENT_OR_GUARDIAN_ID, "");
         return studentParentOrGuardianID;
     }
 
@@ -1100,7 +1168,8 @@ public class PreferenceStorage {
     public static String getStudentMotherTongue(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentMotherTongue = sharedPreferences.getString(EnsyfiConstants.STUDENT_MOTHER_TONGUE, "");
+        String studentMotherTongue;
+        studentMotherTongue = sharedPreferences.getString(EnsyfiConstants.STUDENT_MOTHER_TONGUE, "");
         return studentMotherTongue;
     }
 
@@ -1115,7 +1184,8 @@ public class PreferenceStorage {
     public static String getStudentLanguage(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentLanguage = sharedPreferences.getString(EnsyfiConstants.STUDENT_LANGUAGE, "");
+        String studentLanguage;
+        studentLanguage = sharedPreferences.getString(EnsyfiConstants.STUDENT_LANGUAGE, "");
         return studentLanguage;
     }
 
@@ -1130,7 +1200,8 @@ public class PreferenceStorage {
     public static String getStudentMobile(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentMobile = sharedPreferences.getString(EnsyfiConstants.STUDENT_MOBILE, "");
+        String studentMobile;
+        studentMobile = sharedPreferences.getString(EnsyfiConstants.STUDENT_MOBILE, "");
         return studentMobile;
     }
 
@@ -1145,7 +1216,8 @@ public class PreferenceStorage {
     public static String getStudentSecondaryMobile(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentSecondaryMobile = sharedPreferences.getString(EnsyfiConstants.STUDENT_SECONDARY_MOBILE, "");
+        String studentSecondaryMobile;
+        studentSecondaryMobile = sharedPreferences.getString(EnsyfiConstants.STUDENT_SECONDARY_MOBILE, "");
         return studentSecondaryMobile;
     }
 
@@ -1160,7 +1232,8 @@ public class PreferenceStorage {
     public static String getStudentMail(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentMail= sharedPreferences.getString(EnsyfiConstants.STUDENT_MAIL, "");
+        String studentMail;
+        studentMail = sharedPreferences.getString(EnsyfiConstants.STUDENT_MAIL, "");
         return studentMail;
     }
 
@@ -1175,7 +1248,8 @@ public class PreferenceStorage {
     public static String getStudentSecondaryMail(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentSecondaryMail = sharedPreferences.getString(EnsyfiConstants.STUDENT_SECONDAR_MAIL, "");
+        String studentSecondaryMail;
+        studentSecondaryMail = sharedPreferences.getString(EnsyfiConstants.STUDENT_SECONDAR_MAIL, "");
         return studentSecondaryMail;
     }
 
@@ -1190,7 +1264,8 @@ public class PreferenceStorage {
     public static String getStudentImg(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentImg = sharedPreferences.getString(EnsyfiConstants.STUDENT_IMAGE, "");
+        String studentImg;
+        studentImg = sharedPreferences.getString(EnsyfiConstants.STUDENT_IMAGE, "");
         return studentImg;
     }
 
@@ -1205,7 +1280,8 @@ public class PreferenceStorage {
     public static String getStudentPreviousSchool(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentPreviousSchool = sharedPreferences.getString(EnsyfiConstants.STUDENT_PREVIOUS_SCHOOL, "");
+        String studentPreviousSchool;
+        studentPreviousSchool = sharedPreferences.getString(EnsyfiConstants.STUDENT_PREVIOUS_SCHOOL, "");
         return studentPreviousSchool;
     }
 
@@ -1220,7 +1296,8 @@ public class PreferenceStorage {
     public static String getStudentPreviousClass(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentPreviousClass = sharedPreferences.getString(EnsyfiConstants.STUDENT_PREVIOUS_CLASS, "");
+        String studentPreviousClass;
+        studentPreviousClass = sharedPreferences.getString(EnsyfiConstants.STUDENT_PREVIOUS_CLASS, "");
         return studentPreviousClass;
     }
 
@@ -1235,7 +1312,8 @@ public class PreferenceStorage {
     public static String getStudentPromotionStatus(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentPromotionStatus = sharedPreferences.getString(EnsyfiConstants.STUDENT_PROMOTION_STATUS, "");
+        String studentPromotionStatus;
+        studentPromotionStatus = sharedPreferences.getString(EnsyfiConstants.STUDENT_PROMOTION_STATUS, "");
         return studentPromotionStatus;
     }
 
@@ -1250,7 +1328,8 @@ public class PreferenceStorage {
     public static String getStudentTransferCertificate(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentTransferCertificate = sharedPreferences.getString(EnsyfiConstants.STUDENT_TRANSFER_CERTIFICATE, "");
+        String studentTransferCertificate;
+        studentTransferCertificate = sharedPreferences.getString(EnsyfiConstants.STUDENT_TRANSFER_CERTIFICATE, "");
         return studentTransferCertificate;
     }
 
@@ -1265,7 +1344,8 @@ public class PreferenceStorage {
     public static String getStudentRecordSheet(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentRecordSheet = sharedPreferences.getString(EnsyfiConstants.STUDENT_RECORD_SHEET, "");
+        String studentRecordSheet;
+        studentRecordSheet = sharedPreferences.getString(EnsyfiConstants.STUDENT_RECORD_SHEET, "");
         return studentRecordSheet;
     }
 
@@ -1280,7 +1360,8 @@ public class PreferenceStorage {
     public static String getStudentStatus(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentStatus = sharedPreferences.getString(EnsyfiConstants.STUDENT_STATUS, "");
+        String studentStatus;
+        studentStatus = sharedPreferences.getString(EnsyfiConstants.STUDENT_STATUS, "");
         return studentStatus;
     }
 
@@ -1295,7 +1376,8 @@ public class PreferenceStorage {
     public static String getStudentParentStatus(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentParentStatus = sharedPreferences.getString(EnsyfiConstants.STUDENT_PARENT_STATUS, "");
+        String studentParentStatus;
+        studentParentStatus = sharedPreferences.getString(EnsyfiConstants.STUDENT_PARENT_STATUS, "");
         return studentParentStatus;
     }
 
@@ -1310,7 +1392,8 @@ public class PreferenceStorage {
     public static String getStudentRegistered(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String studentRegistered = sharedPreferences.getString(EnsyfiConstants.STUDENT_REGISTERED, "");
+        String studentRegistered;
+        studentRegistered = sharedPreferences.getString(EnsyfiConstants.STUDENT_REGISTERED, "");
         return studentRegistered;
     }
 
@@ -1328,7 +1411,8 @@ public class PreferenceStorage {
     public static String getTeacherId(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String teacherId = sharedPreferences.getString(EnsyfiConstants.TEACHER_ID, "");
+        String teacherId;
+        teacherId = sharedPreferences.getString(EnsyfiConstants.TEACHER_ID, "");
         return teacherId;
     }
 
@@ -1343,7 +1427,8 @@ public class PreferenceStorage {
     public static String getTeacherName(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String teacherName = sharedPreferences.getString(EnsyfiConstants.TEACHER_NAME, "");
+        String teacherName;
+        teacherName = sharedPreferences.getString(EnsyfiConstants.TEACHER_NAME, "");
         return teacherName;
     }
 
@@ -1358,7 +1443,8 @@ public class PreferenceStorage {
     public static String getTeacherGender(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String teacherGender = sharedPreferences.getString(EnsyfiConstants.TEACHER_GENDER, "");
+        String teacherGender ;
+        teacherGender = sharedPreferences.getString(EnsyfiConstants.TEACHER_GENDER, "");
         return teacherGender ;
     }
 
@@ -1373,7 +1459,8 @@ public class PreferenceStorage {
     public static String getTeacherAge(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String teacherAge= sharedPreferences.getString(EnsyfiConstants.TEACHER_AGE, "");
+        String teacherAge;
+        teacherAge = sharedPreferences.getString(EnsyfiConstants.TEACHER_AGE, "");
         return teacherAge;
     }
 
@@ -1388,7 +1475,8 @@ public class PreferenceStorage {
     public static String getTeacherNationality(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String teacherNationality = sharedPreferences.getString(EnsyfiConstants.TEACHER_NATIONALITY, "");
+        String teacherNationality;
+        teacherNationality = sharedPreferences.getString(EnsyfiConstants.TEACHER_NATIONALITY, "");
         return teacherNationality;
     }
 
@@ -1403,7 +1491,8 @@ public class PreferenceStorage {
     public static String getTeacherReligion(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String teacherReligion = sharedPreferences.getString(EnsyfiConstants.TEACHER_RELIGION, "");
+        String teacherReligion;
+        teacherReligion = sharedPreferences.getString(EnsyfiConstants.TEACHER_RELIGION, "");
         return teacherReligion;
     }
 
@@ -1418,7 +1507,8 @@ public class PreferenceStorage {
     public static String getTeacherCaste(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String teacherCaste = sharedPreferences.getString(EnsyfiConstants.TEACHER_CASTE, "");
+        String teacherCaste;
+        teacherCaste = sharedPreferences.getString(EnsyfiConstants.TEACHER_CASTE, "");
         return teacherCaste;
     }
 
@@ -1433,7 +1523,8 @@ public class PreferenceStorage {
     public static String getTeacherCommunity(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String teacherCommunity = sharedPreferences.getString(EnsyfiConstants.TEACHER_COMMUNITY, "");
+        String teacherCommunity;
+        teacherCommunity = sharedPreferences.getString(EnsyfiConstants.TEACHER_COMMUNITY, "");
         return teacherCommunity;
     }
 
@@ -1448,7 +1539,8 @@ public class PreferenceStorage {
     public static String getTeacherAddress(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String teacherAddress = sharedPreferences.getString(EnsyfiConstants.TEACHER_ADDRESS, "");
+        String teacherAddress;
+        teacherAddress = sharedPreferences.getString(EnsyfiConstants.TEACHER_ADDRESS, "");
         return teacherAddress;
     }
 
@@ -1463,7 +1555,8 @@ public class PreferenceStorage {
     public static String getTeacherMobile(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String teacherMobile = sharedPreferences.getString(EnsyfiConstants.TEACHER_MOBILE, "");
+        String teacherMobile;
+        teacherMobile = sharedPreferences.getString(EnsyfiConstants.TEACHER_MOBILE, "");
         return teacherMobile;
     }
 
@@ -1478,7 +1571,8 @@ public class PreferenceStorage {
     public static String getTeacherMail(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String teacherMail = sharedPreferences.getString(EnsyfiConstants.TEACHER_MAIL, "");
+        String teacherMail;
+        teacherMail = sharedPreferences.getString(EnsyfiConstants.TEACHER_MAIL, "");
         return teacherMail;
     }
     public static void saveTeacherSecondaryMobile(Context context, String name) {
@@ -1492,7 +1586,8 @@ public class PreferenceStorage {
     public static String getTeacherSecondaryMobile(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String teacherSecondaryMobile = sharedPreferences.getString(EnsyfiConstants.TEACHER_SEC_MOBILE, "");
+        String teacherSecondaryMobile;
+        teacherSecondaryMobile = sharedPreferences.getString(EnsyfiConstants.TEACHER_SEC_MOBILE, "");
         return teacherSecondaryMobile;
     }
 
@@ -1507,7 +1602,8 @@ public class PreferenceStorage {
     public static String getTeacherSecondaryMail(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String teacherSecondaryMail = sharedPreferences.getString(EnsyfiConstants.TEACHER_SEC_MAIL, "");
+        String teacherSecondaryMail;
+        teacherSecondaryMail = sharedPreferences.getString(EnsyfiConstants.TEACHER_SEC_MAIL, "");
         return teacherSecondaryMail;
     }
 
@@ -1522,7 +1618,8 @@ public class PreferenceStorage {
     public static String getTeacherPic(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String teacherPic = sharedPreferences.getString(EnsyfiConstants.TEACHER_IMAGE, "");
+        String teacherPic;
+        teacherPic = sharedPreferences.getString(EnsyfiConstants.TEACHER_IMAGE, "");
         return teacherPic;
     }
 
@@ -1537,7 +1634,8 @@ public class PreferenceStorage {
     public static String getTeacherSubject(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String teacherSubject = sharedPreferences.getString(EnsyfiConstants.TEACHER_SUBJECT, "");
+        String teacherSubject ;
+        teacherSubject = sharedPreferences.getString(EnsyfiConstants.TEACHER_SUBJECT, "");
         return teacherSubject ;
     }
 
@@ -1552,7 +1650,8 @@ public class PreferenceStorage {
     public static String getTeacherClassTaken(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String teacherClassTaken = sharedPreferences.getString(EnsyfiConstants.TEACHER_CLASS_TAKEN, "");
+        String teacherClassTaken ;
+        teacherClassTaken = sharedPreferences.getString(EnsyfiConstants.TEACHER_CLASS_TAKEN, "");
         return teacherClassTaken ;
     }
 
@@ -1567,7 +1666,8 @@ public class PreferenceStorage {
     public static String getTeacherSectionName(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String teacherSectionName = sharedPreferences.getString(EnsyfiConstants.TEACHER_SECTION, "");
+        String teacherSectionName ;
+        teacherSectionName = sharedPreferences.getString(EnsyfiConstants.TEACHER_SECTION, "");
         return teacherSectionName ;
     }
 
