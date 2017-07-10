@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/background_grey">
 
     <LinearLayout
         android:id="@+id/layout_frame"
@@ -9,23 +10,31 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
-        android:padding="7dp">
+        android:background="@color/black">
 
         <TextView
             android:id="@+id/txt_studentId"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_weight="0.10"
+            android:layout_marginTop="2dp"
+            android:background="@color/white"
+            android:gravity="center"
             android:text="no"
+            android:layout_marginLeft="2dp"
             android:textSize="15sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txt_studentName"
             android:layout_width="100dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="0.50"
+            android:layout_marginTop="2dp"
+            android:background="@color/white"
+            android:layout_marginLeft="2dp"
+            android:gravity="center"
             android:text="no"
             android:textSize="15sp" />
 
@@ -35,10 +44,12 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.30"
+            android:layout_marginTop="2dp"
             android:entries="@array/attendance"
             android:overlapAnchor="false"
             android:spinnerMode="dropdown"
             android:textColor="@color/text_gray"
+            android:layout_marginLeft="2dp"
             android:textSize="10sp" />
 
         <TextView
