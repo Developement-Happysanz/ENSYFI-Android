@@ -17,7 +17,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.KEY_INSTITUTE_ID, instituteId);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getInstituteId(Context context) {
@@ -33,7 +33,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.KEY_INSTITUTE_NAME, instituteName);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getInstituteName(Context context) {
@@ -49,7 +49,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.KEY_INSTITUTE_CODE, instituteCode);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getInstituteCode(Context context) {
@@ -65,7 +65,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.KEY_INSTITUTE_LOGO, url);
-        editor.commit();
+        editor.apply();
 
     }
 
@@ -84,7 +84,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.KEY_USER_DYNAMIC_API, userDynamicAPI);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getUserDynamicAPI(Context context) {
@@ -100,7 +100,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.KEY_USER_ID, userId);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getUserId(Context context) {
@@ -116,7 +116,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.KEY_NAME, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getName(Context context) {
@@ -132,7 +132,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.KEY_USER_NAME, userName);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getUserName(Context context) {
@@ -148,7 +148,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.KEY_USER_IMAGE, userPicture);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getUserPicture(Context context) {
@@ -164,7 +164,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.KEY_USER_TYPE, userType);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getUserType(Context context) {
@@ -180,7 +180,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.KEY_USER_TYPE_NAME, userTypeName);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getUserTypeName(Context context) {
@@ -196,7 +196,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.KEY_ACADEMIC_YEAR_ID, academicYearId);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getAcademicYearId(Context context) {
@@ -213,7 +213,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.KEY_STUDENT_ENROLL_ID_PREFERENCES, studentPrefEnrollID);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentRegisteredIdPreference(Context context) {
@@ -229,7 +229,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.KEY_STUDENT_ADMISSION_ID_PREFERENCES, studentPrefAdmissionID);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentAdmissionIdPreference(Context context) {
@@ -245,7 +245,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.KEY_STUDENT_ADMISSION_NO_PREFERENCES, studentPrefAdmissionNo);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentAdmissionNoPreference(Context context) {
@@ -261,7 +261,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.KEY_STUDENT_CLASS_ID_PREFERENCES, studentPrefclassId);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentClassIdPreference(Context context) {
@@ -277,7 +277,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.KEY_STUDENT_NAME_PREFERENCES, studentPrefName);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentNamePreference(Context context) {
@@ -293,7 +293,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.KEY_STUDENT_CLASS_NAME_PREFERENCES, studentPrefClassName);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentClassNamePreference(Context context) {
@@ -333,7 +333,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.KEY_FORGOT_PASSWORD_STATUS, url);
-        editor.commit();
+        editor.apply();
     }
 
     // Forgot Password Enabled Check
@@ -349,7 +349,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.KEY_FORGOT_PASSWORD_STATUS, url);
-        editor.commit();
+        editor.apply();
     }
 
 
@@ -360,7 +360,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.FATHER_ID, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getFatherID(Context context) {
@@ -375,7 +375,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.FATHER_NAME, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getFatherName(Context context) {
@@ -390,7 +390,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.FATHER_OCCUPATION, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getFatherOccupation(Context context) {
@@ -405,7 +405,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.FATHER_INCOME, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getFatherIncome(Context context) {
@@ -420,7 +420,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.FATHER_ADDRESS, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getFatherAddress(Context context) {
@@ -435,7 +435,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.FATHER_EMAIL, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getFatherEmail(Context context) {
@@ -450,7 +450,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.FATHER_HOME_PHONE, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getFatherHomePhone(Context context) {
@@ -465,7 +465,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.FATHER_OFFICE_PHONE, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getFatherOfficePhone(Context context) {
@@ -480,7 +480,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.FATHER_MOBILE, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getFatherMobile(Context context) {
@@ -495,7 +495,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.FATHER_RELATIONSHIP, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getFatherRelationship(Context context) {
@@ -510,7 +510,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.FATHER_IMAGE, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getFatherImg(Context context) {
@@ -531,7 +531,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.MOTHER_ID, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getMotherID(Context context) {
@@ -546,7 +546,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.MOTHER_NAME, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getMotherName(Context context) {
@@ -561,7 +561,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.MOTHER_OCCUPATION, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getMotherOccupation(Context context) {
@@ -576,7 +576,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.MOTHER_INCOME, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getMotherIncome(Context context) {
@@ -591,7 +591,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.MOTHER_ADDRESS, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getMotherAddress(Context context) {
@@ -606,7 +606,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.MOTHER_EMAIL, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getMotherEmail(Context context) {
@@ -621,7 +621,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.MOTHER_HOME_PHONE, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getMotherHomePhone(Context context) {
@@ -636,7 +636,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.MOTHER_OFFICE_PHONE, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getMotherOfficePhone(Context context) {
@@ -651,7 +651,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.MOTHER_MOBILE, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getMotherMobile(Context context) {
@@ -666,7 +666,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.MOTHER_RELATIONSHIP, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getMotherRelationship(Context context) {
@@ -681,7 +681,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.MOTHER_IMAGE, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getMotherImg(Context context) {
@@ -702,7 +702,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.GUARDIAN_ID, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getGuardianID(Context context) {
@@ -717,7 +717,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.GUARDIAN_NAME, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getGuardianName(Context context) {
@@ -732,7 +732,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.GUARDIAN_OCCUPATION, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getGuardianOccupation(Context context) {
@@ -747,7 +747,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.GUARDIAN_INCOME, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getGuardianIncome(Context context) {
@@ -762,7 +762,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.GUARDIAN_ADDRESS, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getGuardianAddress(Context context) {
@@ -777,7 +777,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.GUARDIAN_EMAIL, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getGuardianEmail(Context context) {
@@ -792,7 +792,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.GUARDIAN_HOME_PHONE, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getGuardianHomePhone(Context context) {
@@ -807,7 +807,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.GUARDIAN_OFFICE_PHONE, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getGuardianOfficePhone(Context context) {
@@ -822,7 +822,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.GUARDIAN_MOBILE, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getGuardianMobile(Context context) {
@@ -837,7 +837,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.GUARDIAN_RELATIONSHIP, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getGuardianRelationship(Context context) {
@@ -852,7 +852,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.GUARDIAN_IMAGE, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getGuardianImg(Context context) {
@@ -869,7 +869,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.STUDENT_ADMISSION_ID, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentAdmissionID(Context context) {
@@ -884,7 +884,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.STUDENT_ADMISSION_YEAR, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentAdmissionYear(Context context) {
@@ -899,7 +899,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.STUDENT_ADMISSION_NUMBER, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentAdmissionNumber(Context context) {
@@ -914,7 +914,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.STUDENT_EMSI_NUMBER, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentEmsiNumber(Context context) {
@@ -929,7 +929,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.STUDENT_ADMISSION_DATE, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentAdmissionDate(Context context) {
@@ -944,7 +944,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.STUDENT_NAME, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentName(Context context) {
@@ -959,7 +959,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.STUDENT_GENDER, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentGender(Context context) {
@@ -974,7 +974,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.STUDENT_DATE_OF_BIRTH, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentDateOfBirth(Context context) {
@@ -989,7 +989,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.STUDENT_AGE, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentAge(Context context) {
@@ -1004,7 +1004,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.STUDENT_NATIONALITY, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentNationality(Context context) {
@@ -1019,7 +1019,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.STUDENT_RELIGION, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentReligion(Context context) {
@@ -1033,7 +1033,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.STUDENT_CASTE, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentCaste(Context context) {
@@ -1048,7 +1048,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.STUDENT_COMMUNITY, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentCommunity(Context context) {
@@ -1063,7 +1063,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.STUDENT_PARENT_OR_GUARDIAN, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentParentOrGuardian(Context context) {
@@ -1078,7 +1078,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.STUDENT_PARENT_OR_GUARDIAN_ID, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentParentOrGuardianID(Context context) {
@@ -1093,7 +1093,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.STUDENT_MOTHER_TONGUE, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentMotherTongue(Context context) {
@@ -1108,7 +1108,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.STUDENT_LANGUAGE, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentLanguage(Context context) {
@@ -1123,7 +1123,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.STUDENT_MOBILE, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentMobile(Context context) {
@@ -1138,7 +1138,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.STUDENT_SECONDARY_MOBILE, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentSecondaryMobile(Context context) {
@@ -1153,7 +1153,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.STUDENT_MAIL, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentMail(Context context) {
@@ -1168,7 +1168,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.STUDENT_SECONDAR_MAIL, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentSecondaryMail(Context context) {
@@ -1183,7 +1183,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.STUDENT_IMAGE, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentImg(Context context) {
@@ -1198,7 +1198,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.STUDENT_PREVIOUS_SCHOOL, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentPreviousSchool(Context context) {
@@ -1213,7 +1213,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.STUDENT_PREVIOUS_CLASS, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentPreviousClass(Context context) {
@@ -1228,7 +1228,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.STUDENT_PROMOTION_STATUS, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentPromotionStatus(Context context) {
@@ -1243,7 +1243,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.STUDENT_TRANSFER_CERTIFICATE, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentTransferCertificate(Context context) {
@@ -1258,7 +1258,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.STUDENT_RECORD_SHEET, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentRecordSheet(Context context) {
@@ -1273,7 +1273,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.STUDENT_STATUS, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentStatus(Context context) {
@@ -1288,7 +1288,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.STUDENT_PARENT_STATUS, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentParentStatus(Context context) {
@@ -1303,7 +1303,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.STUDENT_REGISTERED, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getStudentRegistered(Context context) {
@@ -1321,7 +1321,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.TEACHER_ID, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getTeacherId(Context context) {
@@ -1336,7 +1336,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.TEACHER_NAME, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getTeacherName(Context context) {
@@ -1351,7 +1351,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.TEACHER_GENDER, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getTeacherGender(Context context) {
@@ -1366,7 +1366,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.TEACHER_AGE, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getTeacherAge(Context context) {
@@ -1381,7 +1381,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.TEACHER_NATIONALITY, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getTeacherNationality(Context context) {
@@ -1396,7 +1396,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.TEACHER_RELIGION, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getTeacherReligion(Context context) {
@@ -1411,7 +1411,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.TEACHER_CASTE, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getTeacherCaste(Context context) {
@@ -1426,7 +1426,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.TEACHER_COMMUNITY, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getTeacherCommunity(Context context) {
@@ -1441,7 +1441,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.TEACHER_ADDRESS, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getTeacherAddress(Context context) {
@@ -1456,7 +1456,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.TEACHER_MOBILE, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getTeacherMobile(Context context) {
@@ -1471,7 +1471,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.TEACHER_MAIL, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getTeacherMail(Context context) {
@@ -1485,7 +1485,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.TEACHER_SEC_MOBILE, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getTeacherSecondaryMobile(Context context) {
@@ -1500,7 +1500,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.TEACHER_SEC_MAIL, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getTeacherSecondaryMail(Context context) {
@@ -1515,7 +1515,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.TEACHER_IMAGE, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getTeacherPic(Context context) {
@@ -1530,7 +1530,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.TEACHER_SUBJECT, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getTeacherSubject(Context context) {
@@ -1545,7 +1545,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.TEACHER_CLASS_TAKEN, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getTeacherClassTaken(Context context) {
@@ -1560,7 +1560,7 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.TEACHER_SECTION, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getTeacherSectionName(Context context) {
@@ -1575,13 +1575,14 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.TEACHER_CLASS_NAME, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getTeacherClassName(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String teacherClassName = sharedPreferences.getString(EnsyfiConstants.TEACHER_CLASS_NAME, "");
+        String teacherClassName;
+        teacherClassName = sharedPreferences.getString(EnsyfiConstants.TEACHER_CLASS_NAME, "");
         return teacherClassName;
     }
 
@@ -1590,13 +1591,14 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EnsyfiConstants.TEACHER_CLASS_TEACHER, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getClassTeacher(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String classTeacher = sharedPreferences.getString(EnsyfiConstants.TEACHER_CLASS_TEACHER, "");
+        String classTeacher;
+        classTeacher = sharedPreferences.getString(EnsyfiConstants.TEACHER_CLASS_TEACHER, "");
         return classTeacher;
     }
 }
