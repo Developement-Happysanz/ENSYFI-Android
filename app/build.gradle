@@ -91,7 +91,6 @@ dependencies {
     compile 'com.makeramen:roundedimageview:2.1.0'
 
     compile 'com.mcxiaoke.volley:library:1.0.19'
-    compile 'dev.dworks.libs:volleyplus:+'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.android.support:multidex:1.0.1'
     compile 'com.facebook.android:facebook-android-sdk:4.0.0'

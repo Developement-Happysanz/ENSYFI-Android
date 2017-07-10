@@ -23,9 +23,9 @@ public class SaveTeacherData {
         this.context = context;
     }
 
-    public void saveTeacherProfile(JSONObject teacherProfile) {
+    public void saveTeacherProfile(JSONArray teacherProfile) {
         try {
-            JSONObject getTeacherProfile = teacherProfile.getJSONObject("0");
+            JSONObject getTeacherProfile = teacherProfile.getJSONObject(0);
 
             //Teacher Details
             String TeacherId = "";
@@ -165,6 +165,7 @@ public class SaveTeacherData {
 
 
         } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 
