@@ -23,7 +23,8 @@ public class PreferenceStorage {
     public static String getInstituteId(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        String instituteId = sharedPreferences.getString(EnsyfiConstants.KEY_INSTITUTE_ID, "");
+        String instituteId;
+        instituteId = sharedPreferences.getString(EnsyfiConstants.KEY_INSTITUTE_ID, "");
         return instituteId;
     }
 

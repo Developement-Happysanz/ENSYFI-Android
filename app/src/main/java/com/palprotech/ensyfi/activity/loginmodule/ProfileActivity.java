@@ -81,10 +81,6 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
         txtUserType = (TextView) findViewById(R.id.typename);
         progressDialogHelper = new ProgressDialogHelper(this);
         txtUsrID.setText(PreferenceStorage.getUserName(getApplicationContext()));
-//        txtMail.setText(PreferenceStorage.getEmail(getApplicationContext()));
-//        txtPassword.setText(PreferenceStorage.get(getApplicationContext()));
-//        txtAddress.setText(PreferenceStorage.getAddress(getApplicationContext()));
-//        numPhone.setText(PreferenceStorage.getHomePhone(getApplicationContext()));
         txtUsrName.setText(PreferenceStorage.getName(getApplicationContext()));
         txtUserType.setText(PreferenceStorage.getUserTypeName(getApplicationContext()));
         fatherInfo = (ImageView) findViewById(R.id.img_father_profile);
@@ -97,6 +93,7 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
         serviceHelper.setServiceListener(this);
         studentData = new SaveStudentData(this);
         feestatus = (Button) findViewById(R.id.fee_status);
+
         feestatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,11 +118,7 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
             }
         });
         String url = PreferenceStorage.getUserPicture(this);
-        if ((url == null) || (url.isEmpty())) {
-           /* if ((loginMode == 1) || (loginMode == 3)) {
-                url = PreferenceStorage.getSocialNetworkProfileUrl(this);
-            } */
-        }
+
         if (((url != null) && !(url.isEmpty()))) {
             Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(mProfileImage);
         }
@@ -421,52 +414,6 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
             }
         });
     }
-
-    private void openImageIntent() {
-
-// Determine Uri of camera image to save.
-        final File root = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "MyDir");
-
-        if (!root.exists()) {
-            if (!root.mkdirs()) {
-                Log.d(TAG, "Failed to create directory for storing images");
-                return;
-            }
-        }
-
-        final String fname = PreferenceStorage.getUserId(this) + ".png";
-        final File sdImageMainDirectory = new File(root.getPath() + File.separator + fname);
-        outputFileUri = Uri.fromFile(sdImageMainDirectory);
-        Log.d(TAG, "camera output Uri" + outputFileUri);
-
-        // Camera.
-        final List<Intent> cameraIntents = new ArrayList<Intent>();
-        final Intent captureIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        final PackageManager packageManager = getPackageManager();
-        final List<ResolveInfo> listCam = packageManager.queryIntentActivities(captureIntent, 0);
-        for (ResolveInfo res : listCam) {
-            final String packageName = res.activityInfo.packageName;
-            final Intent intent = new Intent(captureIntent);
-            intent.setComponent(new ComponentName(res.activityInfo.packageName, res.activityInfo.name));
-            intent.setPackage(packageName);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
-            cameraIntents.add(intent);
-        }
-
-        // Filesystem.
-        final Intent galleryIntent = new Intent();
-        galleryIntent.setType("image/*");
-        galleryIntent.setAction(Intent.ACTION_PICK);
-
-        // Chooser of filesystem options.
-        final Intent chooserIntent = Intent.createChooser(galleryIntent, "Select Profile Photo");
-
-        // Add the camera options.
-        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, cameraIntents.toArray(new Parcelable[cameraIntents.size()]));
-
-        startActivityForResult(chooserIntent, REQUEST_IMAGE_GET);
-    }
-
 
     @Override
     public void onAlertPositiveClicked(int tag) {
