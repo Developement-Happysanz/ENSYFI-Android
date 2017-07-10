@@ -4,53 +4,55 @@
     android:layout_height="wrap_content"
     android:background="@color/background_grey">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/layout_frame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal"
         android:background="@color/black">
 
         <TextView
             android:id="@+id/txt_studentId"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_weight="0.10"
-            android:layout_marginTop="2dp"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/class_attendance_spinner"
+            android:layout_alignParentLeft="true"
+            android:layout_alignTop="@+id/class_attendance_spinner"
+            android:layout_marginLeft="2dp"
             android:background="@color/white"
             android:gravity="center"
-            android:text="no"
-            android:layout_marginLeft="2dp"
-            android:textSize="15sp"
-            android:textStyle="bold" />
+            android:text="Roll NO."
+            android:textColor="@color/black"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/txt_studentName"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.50"
-            android:layout_marginTop="2dp"
-            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/class_attendance_spinner"
+            android:layout_alignTop="@+id/class_attendance_spinner"
             android:layout_marginLeft="2dp"
+            android:layout_toLeftOf="@+id/class_attendance_spinner"
+            android:layout_toRightOf="@+id/txt_studentId"
+            android:background="@color/white"
             android:gravity="center"
-            android:text="no"
+            android:text="Student Name"
+            android:textColor="@color/black"
             android:textSize="15sp" />
 
         <Spinner
             android:id="@+id/class_attendance_spinner"
-            style="@style/spinner_style"
-            android:layout_width="50dp"
+            style="@style/attendance_spinner_style"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.30"
-            android:layout_marginTop="2dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginTop="1dp"
             android:entries="@array/attendance"
             android:overlapAnchor="false"
-            android:spinnerMode="dropdown"
+            android:spinnerMode="dialog"
             android:textColor="@color/text_gray"
-            android:layout_marginLeft="2dp"
-            android:textSize="10sp" />
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/txt_tblPKey"
@@ -61,7 +63,7 @@
             android:textSize="16dp"
             android:visibility="gone" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </FrameLayout>
 

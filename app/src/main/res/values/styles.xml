@@ -25,6 +25,14 @@
         <item name="android:popupBackground">#ffffff</item>
     </style>
 
+    <style name="attendance_spinner_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/attendance_spinner</item>
+
+        <item name="android:popupBackground">#ffffff</item>
+    </style>
+
     <style name="MySwitchTheme" parent="Theme.AppCompat.Light">
         <item name="colorControlActivated">@color/appColor</item>
 

@@ -90,7 +90,7 @@
                 android:layout_width="80sp"
                 android:layout_height="80sp"
                 android:layout_gravity="top|center"
-                android:background="@drawable/ic_parent" />
+                android:background="@drawable/ic_parents" />
 
             <TextView
                 android:layout_width="wrap_content"

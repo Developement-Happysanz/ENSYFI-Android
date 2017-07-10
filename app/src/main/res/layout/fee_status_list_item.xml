@@ -13,12 +13,11 @@
 
         <TextView
             android:id="@+id/txtTermName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginLeft="10dp"
-            android:paddingBottom="3dp"
-            android:paddingTop="3dp"
             android:text="Test"
+            android:gravity="center"
             android:textAllCaps="true"
             android:textColor="@color/appColor"
             android:textSize="20dp"
@@ -28,31 +27,14 @@
             android:id="@+id/txtStatus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtTermName"
+            android:layout_toRightOf="@+id/txtTermName"
             android:layout_marginLeft="10dp"
-            android:paddingBottom="3dp"
-            android:paddingTop="3dp"
+            android:layout_alignTop="@id/txtTermName"
+            android:layout_alignBottom="@id/txtTermName"
+            android:gravity="center"
             android:text="Test"
             android:textAllCaps="true"
-            android:textColor="@color/appColor"
             android:textSize="15dp" />
 
-
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_below="@+id/txtStatus"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/date_calender" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
-            android:src="@drawable/select_button"
-            android:visibility="gone" />
     </RelativeLayout>
 </LinearLayout>
