@@ -48,26 +48,25 @@ public class SaveTeacherData {
             String TeacherClassName = "";
             String TeacherClassTaken = "";
 
-            TeacherId = getTeacherProfile.getString("admission_id");
-            TeacherName = getTeacherProfile.getString("admisn_year");
-            TeacherGender = getTeacherProfile.getString("admisn_no");
-            TeacherAge = getTeacherProfile.getString("emsi_num");
-            TeacherNationality = getTeacherProfile.getString("admisn_date");
-            TeacherReligion = getTeacherProfile.getString("name");
-            TeacherCaste = getTeacherProfile.getString("sex");
-            TeacherCommunity = getTeacherProfile.getString("dob");
-            TeacherAddress = getTeacherProfile.getString("age");
-            TeacherSubject = getTeacherProfile.getString("nationality");
-            ClassTeacher = getTeacherProfile.getString("religion");
-            TeacherMobile = getTeacherProfile.getString("community_class");
-            TeacherSecondaryMobile = getTeacherProfile.getString("community");
-            TeacherMail = getTeacherProfile.getString("parnt_guardn");
-            TeacherSecondaryMail = getTeacherProfile.getString("parnt_guardn_id");
-            TeacherPic = getTeacherProfile.getString("mother_tongue");
-            TeacherSectionName = getTeacherProfile.getString("language");
-            TeacherClassName = getTeacherProfile.getString("mobile");
-            TeacherClassTaken = getTeacherProfile.getString("sec_mobile");
-
+            TeacherId = getTeacherProfile.getString("teacher_id");
+            TeacherName = getTeacherProfile.getString("name");
+            TeacherGender = getTeacherProfile.getString("sex");
+            TeacherAge = getTeacherProfile.getString("age");
+            TeacherNationality = getTeacherProfile.getString("nationality");
+            TeacherReligion = getTeacherProfile.getString("religion");
+            TeacherCaste = getTeacherProfile.getString("community_class");
+            TeacherCommunity = getTeacherProfile.getString("community");
+            TeacherAddress = getTeacherProfile.getString("address");
+            TeacherMail = getTeacherProfile.getString("email");
+            TeacherMobile = getTeacherProfile.getString("phone");
+            TeacherSecondaryMail = getTeacherProfile.getString("sec_email");
+            TeacherSecondaryMobile = getTeacherProfile.getString("sec_phone");
+            TeacherPic = getTeacherProfile.getString("profile_pic");
+            TeacherSubject = getTeacherProfile.getString("subject");
+            TeacherClassTaken = getTeacherProfile.getString("class_taken");
+            ClassTeacher = getTeacherProfile.getString("class_teacher");
+            TeacherSectionName = getTeacherProfile.getString("sec_name");
+            TeacherClassName = getTeacherProfile.getString("class_name");
 
             // Parents Preference - Student Admission Id
             if ((TeacherId != null) && !(TeacherId.isEmpty()) && !TeacherId.equalsIgnoreCase("null")) {
