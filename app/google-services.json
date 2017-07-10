@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "56118066242",
+    "firebase_url": "https://ensyfiapp.firebaseio.com",
+    "project_id": "ensyfiapp",
+    "storage_bucket": "ensyfiapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:56118066242:android:7fcce8c548ce6a4e",
+        "android_client_info": {
+          "package_name": "com.palprotech.ensyfi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "56118066242-hu0kg6bqntd9gka8npahedmrf9nc2mps.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "56118066242-refs52psneoh13so136fpsac2rfg75se.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.palprotech.ensyfi",
+            "certificate_hash": "0359e7dc48fefeb14bc7b8d941c6ca08301ad167"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHdz61li9XMLbGQfSQ67G6xjV0jJ0d_8g"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "56118066242-hu0kg6bqntd9gka8npahedmrf9nc2mps.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

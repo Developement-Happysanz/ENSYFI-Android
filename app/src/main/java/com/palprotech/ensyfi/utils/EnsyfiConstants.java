@@ -46,6 +46,10 @@ public class EnsyfiConstants {
 
     public static final String GET_FEES_STATUS = "/apistudent/disp_Fees/";
 
+    // ON DUTY URL
+    public static final String GET_ON_DUTY_REQUEST = "/apimain/add_Onduty/";
+    public static final String GET_ON_DUTY_VIEW = "/apimain/disp_Onduty/";
+
     // STUDENT & PARENTS URL
     // STUDENT ATTENDANCE URL
     public static final String GET_STUDENT_ATTENDANCD_API = "/apistudent/disp_Attendence/";
@@ -262,5 +266,17 @@ public class EnsyfiConstants {
     public static final String KEY_ATTENDANCE_HISTORY_A_TAKEN_BY = "a_taken_by";
     public static final String KEY_ATTENDANCE_HISTORY_CREATED_AT = "created_at";
     public static final String KEY_ATTENDANCE_HISTORY_STATUS = "status";
+
+    //OnDuty Params
+    public static final String PARAMS_OD_UESR_TYPE = "user_type";
+    public static final String PARAMS_OD_UESR_ID = "user_id";
+    public static final String PARAMS_OD_FOR = "od_for";
+    public static final String PARAMS_OD_FROM_DATE = "from_date";
+    public static final String PARAMS_OD_TO_DATE = "to_date";
+    public static final String PARAMS_OD_NOTES = "notes";
+    public static final String PARAMS_OD_STATUS = "status";
+    public static final String PARAMS_OD_CREATED_BY = "created_by";
+    public static final String PARAMS_OD_CREATED_AT = "created_at";
+
 
 }
