@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.palprotech.ensyfi.R;
+import com.palprotech.ensyfi.activity.adminmodule.AdminDashBoardActivity;
 import com.palprotech.ensyfi.activity.studentmodule.StudentInfoActivity;
 import com.palprotech.ensyfi.activity.teachermodule.TeacherDashBoardActivity;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
@@ -222,10 +223,9 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                 String userTypeString = PreferenceStorage.getUserType(getApplicationContext());
                 int userType = Integer.parseInt(userTypeString);
                 if (userType == 1) {
-                    Intent intent = new Intent(this, StudentInfoActivity.class);
+                    Intent intent = new Intent(this, AdminDashBoardActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
-
                     finish();
                 } else if (userType == 2) {
                     Intent intent = new Intent(this, TeacherDashBoardActivity.class);
