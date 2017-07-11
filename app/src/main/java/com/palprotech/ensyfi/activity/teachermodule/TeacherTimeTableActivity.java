@@ -100,7 +100,7 @@ public class TeacherTimeTableActivity extends AppCompatActivity implements Dialo
 
             cellLp.setMargins(2, 2, 2, 2);
             int i = 1;
-            for (int f = 1; f <= 6; f++) {
+            for (int f = 1; f <= 7; f++) {
 
                 TableRow tr = new TableRow(this);
 
@@ -113,7 +113,7 @@ public class TeacherTimeTableActivity extends AppCompatActivity implements Dialo
                         TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT);
                 llp.setMargins(1, 1, 1, 1);//2px right-margin
 
-                for (int c1 = 1; c1 <= 8; c1++) {
+                for (int c1 = 1; c1 <= 9; c1++) {
 
                     LinearLayout cell = new LinearLayout(this);
                     cell.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,

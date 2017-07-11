@@ -42,6 +42,7 @@ import java.util.Vector;
  */
 
 public class TeacherAttendanceInsertActivity extends AppCompatActivity implements DialogClickListener {
+
     private static final String TAG = TeacherAttendanceInsertActivity.class.getName();
     private Spinner spnClassList;
     SQLiteHelper db;

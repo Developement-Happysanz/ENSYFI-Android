@@ -46,6 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:minHeight="?attr/actionBarSize"
+
             android:paddingLeft="15dp"
             android:src="@drawable/ic_arrow_back_white_48dp" />
     </RelativeLayout>

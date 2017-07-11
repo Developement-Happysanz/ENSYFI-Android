@@ -21,6 +21,7 @@ import com.palprotech.ensyfi.bean.general.viewlist.OnDuty;
 import com.palprotech.ensyfi.bean.general.viewlist.OnDutyList;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
+import com.palprotech.ensyfi.interfaces.DialogClickListener;
 import com.palprotech.ensyfi.servicehelpers.ServiceHelper;
 import com.palprotech.ensyfi.serviceinterfaces.IServiceListener;
 import com.palprotech.ensyfi.utils.CommonUtils;
@@ -36,12 +37,13 @@ import java.util.ArrayList;
  * Created by Admin on 10-07-2017.
  */
 
-public class OnDutyActivity extends AppCompatActivity implements View.OnClickListener, IServiceListener, AdapterView.OnItemClickListener {
+public class OnDutyActivity extends AppCompatActivity implements View.OnClickListener, IServiceListener, AdapterView.OnItemClickListener,DialogClickListener {
 
     private ImageView btnBack, btnReqOnDuty;
     private static final String TAG = "FeeStatusActivity";
     ListView loadMoreListView;
     View view;
+
     OnDutyListAdapter onDutyListAdapter;
     ServiceHelper serviceHelper;
     ArrayList<OnDuty> onDutyArrayList;
@@ -73,6 +75,18 @@ public class OnDutyActivity extends AppCompatActivity implements View.OnClickLis
         progressDialogHelper = new ProgressDialogHelper(this);
 
         callOnDutyViewService();
+
+        String userTypeString = PreferenceStorage.getUserType(getApplicationContext());
+        int userType = Integer.parseInt(userTypeString);
+        if (userType == 1) {
+            String okNew = "";
+        } else if (userType == 2) {
+            btnReqOnDuty.setVisibility(View.VISIBLE);
+        } else if (userType == 3) {
+            btnReqOnDuty.setVisibility(View.VISIBLE);
+        } else {
+            btnReqOnDuty.setVisibility(View.GONE);
+        }
     }
 
     private void callOnDutyViewService() {
@@ -88,13 +102,37 @@ public class OnDutyActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+    @Override
+    public void onAlertPositiveClicked(int tag) {
+
+    }
+
+    @Override
+    public void onAlertNegativeClicked(int tag) {
+
+    }
+
     private class HttpAsyncTask extends AsyncTask<String, Void, Void> {
         @Override
         protected Void doInBackground(String... urls) {
 
             JSONObject jsonObject = new JSONObject();
             try {
-                jsonObject.put(EnsyfiConstants.PARAMS_FP_USER_ID, PreferenceStorage.getUserId(getApplicationContext()));
+                String userTypeString = PreferenceStorage.getUserType(getApplicationContext());
+                int userType = Integer.parseInt(userTypeString);
+                if (userType == 1) {
+                    String okNew = "";
+                } else if (userType == 2) {
+                    jsonObject.put(EnsyfiConstants.PARAMS_FP_USER_ID, PreferenceStorage.getUserId(getApplicationContext()));
+                    jsonObject.put(EnsyfiConstants.KEY_USER_TYPE,PreferenceStorage.getUserType(getApplicationContext()));
+                } else if (userType == 3) {
+                    jsonObject.put(EnsyfiConstants.PARAMS_FP_USER_ID, PreferenceStorage.getUserId(getApplicationContext()));
+                    jsonObject.put(EnsyfiConstants.KEY_USER_TYPE,PreferenceStorage.getUserType(getApplicationContext()));
+                } else {
+                    jsonObject.put(EnsyfiConstants.PARAMS_FP_USER_ID, PreferenceStorage.getStudentAdmissionIdPreference(getApplicationContext()));
+                    jsonObject.put(EnsyfiConstants.KEY_USER_TYPE,PreferenceStorage.getUserType(getApplicationContext()));
+                }
+
 
 
             } catch (JSONException e) {
@@ -113,6 +151,7 @@ public class OnDutyActivity extends AppCompatActivity implements View.OnClickLis
         protected void onPostExecute(Void result) {
             progressDialogHelper.cancelProgressDialog();
         }
+
     }
 
     @Override
@@ -148,7 +187,6 @@ public class OnDutyActivity extends AppCompatActivity implements View.OnClickLis
 
                     } else {
                         signInsuccess = true;
-
                     }
                 }
             } catch (JSONException e) {

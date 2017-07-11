@@ -26,16 +26,19 @@ import android.widget.Toast;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.activity.general.CircularActivity;
 import com.palprotech.ensyfi.activity.general.EventsActivity;
+import com.palprotech.ensyfi.activity.general.OnDutyActivity;
 import com.palprotech.ensyfi.activity.loginmodule.ChangePasswordActivity;
 import com.palprotech.ensyfi.activity.loginmodule.ProfileActivity;
 import com.palprotech.ensyfi.activity.loginmodule.SplashScreenActivity;
 import com.palprotech.ensyfi.activity.parentsmodule.ParentDashBoardActivity;
 import com.palprotech.ensyfi.activity.parentsmodule.ParentsCommunicationActivity;
 import com.palprotech.ensyfi.activity.studentmodule.AttendanceActivity;
+import com.palprotech.ensyfi.activity.studentmodule.AttendanceStatusActivity;
 import com.palprotech.ensyfi.activity.studentmodule.ClassTestHomeworkActivity;
 import com.palprotech.ensyfi.activity.studentmodule.ExamsResultActivity;
 import com.palprotech.ensyfi.activity.studentmodule.StudentTimeTableActivity;
 import com.palprotech.ensyfi.adapter.NavDrawerAdapter;
+import com.palprotech.ensyfi.bean.general.viewlist.Circular;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 import com.squareup.picasso.Callback;
@@ -56,7 +59,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
     boolean doubleBackToExitPressedOnce = false;
     private ImageView imgNavProfileImage;
     private ArrayAdapter<String> navListAdapter;
-    private String[] values = {"PROFILE", "ATTENDANCE", "CLASS TEST & HOMEWORK", "EXAM & RESULT", "TIME TABLE", "CALENDAR", "EVENT", "COMMUNICATION", "SETTINGS", "SYNC", "SIGN OUT"};
+    private String[] values = {"PROFILE", "ATTENDANCE", "CLASS TEST & HOMEWORK", "EXAM & RESULT", "TIME TABLE", "CALENDAR", "EVENT", "COMMUNICATION", "ON DUTY", "SETTINGS", "SYNC", "SIGN OUT"};
     TextView navUserProfileName = null;
     LinearLayout dashAttendance, dashTimeTable, dashClassTest, dashExam, dashEvent, dashCommunication;
     private String mCurrentUserProfileUrl = "";
@@ -104,7 +107,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
         dashAttendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), TeacherAttendanceInsertActivity.class);
+                Intent intent = new Intent(getApplicationContext(), AttendanceStatusActivity.class);
                 startActivity(intent);
             }
         });
@@ -245,7 +248,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 1) {
-            Intent navigationIntent = new Intent(this, TeacherAttendanceInsertActivity.class);
+            Intent navigationIntent = new Intent(this, AttendanceStatusActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 2) {
@@ -264,23 +267,30 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
 //            Intent navigationIntent = new Intent(this, StudentTimeTableActivity.class);
 //            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //            startActivity(navigationIntent);
+            Intent navigationIntent = new Intent(this, EventsActivity.class);
+            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(navigationIntent);
         } else if (position == 6) {
             Intent navigationIntent = new Intent(this, EventsActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 7) {
-            Intent navigationIntent = new Intent(this, ParentsCommunicationActivity.class);
+            Intent navigationIntent = new Intent(this, Circular.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 8) {
+            Intent navigationIntent = new Intent(this, OnDutyActivity.class);
+            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(navigationIntent);
+        } else if (position == 9) {
             Intent navigationIntent = new Intent(this, ChangePasswordActivity.class);
             //navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 9) {
+        } else if (position == 10) {
             Intent navigationIntent = new Intent(this, SyncRecordsActivity.class);
             //navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        }else if (position == 10) {
+        } else if (position == 11) {
             Log.d(TAG, "Perform Logout");
             doLogout();
         }

@@ -200,7 +200,6 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     JSONArray getTeacherClassStudentsDetails = response.getJSONArray("studDetails");
                     teacherData.saveStudentDetails(getTeacherClassStudentsDetails);
 
-
                 } else if (userType == 3) {
 
                     saveUserData(userData);
@@ -208,7 +207,6 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
 
                     JSONArray getData = response.getJSONArray("studentProfile");
                     studentData.saveStudentProfile(getData);
-
 
                 } else {
 

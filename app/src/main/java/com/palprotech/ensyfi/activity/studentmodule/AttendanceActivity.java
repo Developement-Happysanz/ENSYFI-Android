@@ -9,6 +9,7 @@ import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 
 import com.palprotech.ensyfi.R;
@@ -42,9 +43,7 @@ public class AttendanceActivity extends AppCompatActivity implements IServiceLis
     private CaldroidFragment caldroidFragment;
     private CaldroidFragment dialogCaldroidFragment;
     private static final String TAG = "ClassTestHomework";
-
     View view;
-
     ServiceHelper serviceHelper;
     ArrayList<Attendance> attendanceArrayList;
     int pageNumber = 0, totalCount = 0;
@@ -53,12 +52,18 @@ public class AttendanceActivity extends AppCompatActivity implements IServiceLis
     Handler mHandler = new Handler();
     private SearchView mSearchView = null;
     ArrayList<String> dateStrings;
+    private TextView txtWorkingDays, txtPresentDays, txtODDays, txtLeaveDays, txtAbsentDays;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance);
 
+        txtWorkingDays = (TextView) findViewById(R.id.txtWorkingDays);
+        txtPresentDays = (TextView) findViewById(R.id.txtPresentDays);
+        txtODDays = (TextView) findViewById(R.id.txtODDays);
+        txtLeaveDays = (TextView) findViewById(R.id.txtLeaveDays);
+        txtAbsentDays = (TextView) findViewById(R.id.txtAbsentDays);
         caldroidFragment = new CaldroidFragment();
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
@@ -246,6 +251,56 @@ public class AttendanceActivity extends AppCompatActivity implements IServiceLis
             String repo = response.toString();
             try {
                 JSONArray getData = response.getJSONArray("attendenceDetails");
+                JSONObject getAttendanceHistory = response.getJSONObject("attendenceHistory");
+
+                String totalWorkingDays, presentDays, odDays, leaveDays, absentDays;
+                totalWorkingDays = getAttendanceHistory.getString("total_working_days");
+                presentDays = getAttendanceHistory.getString("present_days");
+                odDays = getAttendanceHistory.getString("od_days");
+                leaveDays = getAttendanceHistory.getString("leave_days");
+                absentDays = getAttendanceHistory.getString("absent_days");
+                Double no1 = Double.parseDouble(totalWorkingDays),
+                        no2 = Double.parseDouble(presentDays),
+                        no3 = Double.parseDouble(odDays),
+                        no4 = Double.parseDouble(leaveDays),
+                        no5 = Double.parseDouble(absentDays);
+                String s1, s2, s3, s4, s5;
+                if (no1 > 1) {
+                    s1 = totalWorkingDays + "\tDays";
+                    txtWorkingDays.setText(s1);
+                } else {
+                    s1 = totalWorkingDays + "\tDay";
+                    txtWorkingDays.setText(s1);
+                }
+                if (no2 > 1) {
+                    s2 = presentDays + "\tDays";
+                    txtPresentDays.setText(s2);
+                } else {
+                    s2 = presentDays + "\tDay";
+                    txtPresentDays.setText(s2);
+                }
+                if (no3 > 1) {
+                    s3 = odDays + "\tDays";
+                    txtODDays.setText(s3);
+                } else {
+                    s3 = odDays + "\tDay";
+                    txtODDays.setText(s3);
+                }
+                if (no4 > 1) {
+                    s4 = leaveDays + "\tDays";
+                    txtLeaveDays.setText(s4);
+                } else {
+                    s4 = leaveDays + "\tDay";
+                    txtLeaveDays.setText(s4);
+                }
+                if (no5 > 1) {
+                    s5 = absentDays + "\tDays";
+                    txtAbsentDays.setText(s5);
+                } else {
+                    s5 = absentDays + "\tDay";
+                    txtAbsentDays.setText(s5);
+                }
+
 
                 for (int l = 0; l < getData.length(); l++) {
                     dateStrings.add(getData.getJSONObject(l).getString("abs_date"));
@@ -277,6 +332,7 @@ public class AttendanceActivity extends AppCompatActivity implements IServiceLis
 
 //            JSONObject userData = getData.getJSONObject(0);
             } catch (Exception ex) {
+                ex.printStackTrace();
             }
 
 //        mHandler.post(new Runnable() {

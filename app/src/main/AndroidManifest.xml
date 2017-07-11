@@ -71,12 +71,6 @@
             android:theme="@style/AppThemeNoActionBarGrey"
             android:windowSoftInputMode="stateHidden" />
 
-        <activity
-            android:name=".activity.general.CircularActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeNoActionBarGrey" />
-
         <!--End-->
         <!---->
         <!--Parent Module-->
@@ -150,6 +144,12 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarGrey" />
 
+        <activity
+            android:name=".activity.studentmodule.AttendanceStatusActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarGrey" />
+
         <!--End-->
         <!---->
         <!--General-->
@@ -179,6 +179,12 @@
 
         <activity
             android:name=".activity.general.OnDutyRequestActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarGrey" />
+
+        <activity
+            android:name=".activity.general.CircularActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarGrey" />

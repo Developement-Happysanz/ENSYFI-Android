@@ -39,11 +39,9 @@ public class EnsyfiConstants {
     public static final String GET_COMMUNICATION_CIRCULAR_API = "/apimain/disp_Circular/";
 
     // UPLOAD USER PROFILE
-
     public static final String UPLOAD_PROFILE_IMAGE = "/apimain/update_Profilepic/";
 
     // FEES STATUS
-
     public static final String GET_FEES_STATUS = "/apistudent/disp_Fees/";
 
     // ON DUTY URL
@@ -69,6 +67,9 @@ public class EnsyfiConstants {
 
     // STUDENT TIMETABLE URL
     public static final String GET_STUDENT_TIME_TABLE_API = "/apistudent/disp_Timetable/";
+
+    // STUDENT ATTENDANCE URL
+    public static final String GET_STUDENT_ATTENDANCE_API = "/apiteacher/disp_Attendence/";
 
     //TEACHER'S URL
     public static final String GET_TEACHERS_CLASS_ATTENDANCE_API = "/apiteacher/sync_Attendance/";
@@ -152,7 +153,7 @@ public class EnsyfiConstants {
     public static final String STUDENT_RELIGION = "stud_religion";
     public static final String STUDENT_CASTE = "stud_community_class";
     public static final String STUDENT_COMMUNITY = "stud_community";
-    public static final String STUDENT_PARENT_OR_GUARDIAN= "stud_parnt_guardn";
+    public static final String STUDENT_PARENT_OR_GUARDIAN = "stud_parnt_guardn";
     public static final String STUDENT_PARENT_OR_GUARDIAN_ID = "stud_parnt_guardn_id";
     public static final String STUDENT_MOTHER_TONGUE = "stud_mother_tongue";
     public static final String STUDENT_LANGUAGE = "stud_language";
@@ -277,6 +278,12 @@ public class EnsyfiConstants {
     public static final String PARAMS_OD_STATUS = "status";
     public static final String PARAMS_OD_CREATED_BY = "created_by";
     public static final String PARAMS_OD_CREATED_AT = "created_at";
+
+    // Attendance Params
+    public static final String PARAMS_DISPLAY_TYPE = "disp_type";
+    public static final String PARAMS_DISPLAY_DATE = "disp_date";
+    public static final String PARAMS_DISPLAY_MONTH = "from_month";
+    public static final String PARAMS_DISPLAY_YEAR = "from_year";
 
 
 }
