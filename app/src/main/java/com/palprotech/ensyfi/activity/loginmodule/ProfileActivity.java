@@ -1,14 +1,8 @@
 package com.palprotech.ensyfi.activity.loginmodule;
 
-import android.content.ComponentName;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.Parcelable;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -35,10 +29,6 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Narendar on 05/04/17.
@@ -68,7 +58,7 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
 
     private ServiceHelper serviceHelper;
     private EditText txtUsrID;
-    private ImageView fatherInfo, motherInfo;
+    private ImageView fatherInfo, motherInfo, guardianImg, studentImg, teacherImg;
     private Uri outputFileUri;
     static final int REQUEST_IMAGE_GET = 1;
     protected ProgressDialogHelper progressDialogHelper;
@@ -250,6 +240,11 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
         Mobile.setText(PreferenceStorage.getFatherMobile(getApplicationContext()));
         OfficePhone.setText(PreferenceStorage.getFatherOfficePhone(getApplicationContext()));
         HomePhone.setText(PreferenceStorage.getFatherHomePhone(getApplicationContext()));
+        String url = PreferenceStorage.getFatherImg(this);
+
+        if (((url != null) && !(url.isEmpty()))) {
+            Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(fatherInfo);
+        }
     }
 
     private void callMotherInfoPreferences() {
@@ -261,6 +256,11 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
         Mobile.setText(PreferenceStorage.getMotherMobile(getApplicationContext()));
         OfficePhone.setText(PreferenceStorage.getMotherOfficePhone(getApplicationContext()));
         HomePhone.setText(PreferenceStorage.getMotherHomePhone(getApplicationContext()));
+        String url = PreferenceStorage.getMotherImg(this);
+
+        if (((url != null) && !(url.isEmpty()))) {
+            Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(motherInfo);
+        }
     }
 
     private void callGuardianInfoPreferences() {
@@ -274,6 +274,11 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
         GMobile.setText(PreferenceStorage.getGuardianMobile(getApplicationContext()));
         GOfficePhone.setText(PreferenceStorage.getGuardianOfficePhone(getApplicationContext()));
         GHomePhone.setText(PreferenceStorage.getGuardianHomePhone(getApplicationContext()));
+        String url = PreferenceStorage.getGuardianImg(this);
+
+        if (((url != null) && !(url.isEmpty()))) {
+            Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(guardianImg);
+        }
     }
 
     private void callTeacherInfoPreferences() {
@@ -297,6 +302,11 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
         teacherSectionName.setText(PreferenceStorage.getTeacherSectionName(getApplicationContext()));
         teacherClassName.setText(PreferenceStorage.getTeacherClassName(getApplicationContext()));
         teacherClassTaken.setText(PreferenceStorage.getTeacherClassTaken(getApplicationContext()));
+        String url = PreferenceStorage.getTeacherPic(this);
+
+        if (((url != null) && !(url.isEmpty()))) {
+            Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(teacherImg);
+        }
     }
 
     private void callStudentInfoPreferences() {
@@ -329,6 +339,11 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
         studentStatus.setText(PreferenceStorage.getStudentStatus(getApplicationContext()));
         studentParentStatus.setText(PreferenceStorage.getStudentParentStatus(getApplicationContext()));
         studentRegistered.setText(PreferenceStorage.getStudentRegistered(getApplicationContext()));
+        String url = PreferenceStorage.getStudentImg(this);
+
+        if (((url != null) && !(url.isEmpty()))) {
+            Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(studentImg);
+        }
     }
 
     private void findViewById() {
@@ -356,6 +371,12 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
 
         motherInfo = (ImageView) findViewById(R.id.img_mother_profile);
         motherInfo.setOnClickListener(this);
+
+        guardianImg = (ImageView) findViewById(R.id.img_guardian_profile);
+
+        teacherImg = (ImageView) findViewById(R.id.img_teacher_profile);
+
+        studentImg = (ImageView) findViewById(R.id.img_student_profile);
 
         ParentProfile = (TextView) findViewById(R.id.ic_parentprofile);
         ParentProfile.setOnClickListener(this);

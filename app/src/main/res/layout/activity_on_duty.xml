@@ -8,7 +8,8 @@
     <RelativeLayout
         android:id="@+id/tlbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar_result"
@@ -42,13 +43,13 @@
 
         <ImageView
             android:id="@+id/reqOD"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_marginTop="5dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_height="50dp"
             android:layout_alignParentRight="true"
-            android:minHeight="?attr/actionBarSize"
-
-            android:paddingLeft="15dp"
-            android:src="@drawable/ic_arrow_back_white_48dp" />
+            android:src="@drawable/od_apply" />
     </RelativeLayout>
     <!--End-->
 

@@ -18,74 +18,58 @@
             android:layout_marginLeft="10dp"
             android:paddingBottom="3dp"
             android:paddingTop="3dp"
-            android:text="Test"
+            android:text="REASON ON DUTY"
             android:textAllCaps="true"
-            android:textColor="@color/appColor"
-            android:textSize="20dp"
-            android:textStyle="bold" />
+            android:textColor="@color/black"
+            android:textSize="22dp" />
 
         <TextView
             android:id="@+id/txtFromDate"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtOdFor"
-            android:layout_marginLeft="10dp"
-            android:paddingBottom="3dp"
-            android:paddingTop="3dp"
-            android:text="Test"
+            android:layout_marginLeft="20dp"
+            android:drawableLeft="@drawable/od_from_to"
+            android:gravity="bottom"
+            android:text="  16 June 2017"
             android:textAllCaps="true"
-            android:textColor="@color/appColor"
+            android:textColor="@color/black"
             android:textSize="15dp" />
 
         <TextView
             android:id="@+id/txtToDate"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtFromDate"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="5dp"
-            android:text="Test"
-            android:textColor="@color/appColor"
+            android:layout_alignBottom="@+id/txtFromDate"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/txtFromDate"
+            android:layout_marginRight="20dp"
+            android:drawableLeft="@drawable/od_from_to"
+            android:gravity="bottom"
+            android:text="  16 June 2017"
+            android:textColor="@color/black"
             android:textSize="15dp" />
-
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_below="@+id/txtToDate"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/date_calender" />
 
         <TextView
             android:id="@+id/txtStatus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtToDate"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="50dp"
             android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:text="Test"
-            android:textColor="@color/appColor"
-            android:textSize="15dp" />
-
-        <TextView
-            android:id="@+id/txtNotes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txtStatus"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="5dp"
-            android:text="Test"
-            android:textColor="@color/appColor"
-            android:textSize="15dp" />
-
+            android:textSize="20dp" />
 
         <ImageView
+            android:id="@+id/imgStatus"
+            android:layout_alignTop="@id/txtStatus"
+            android:layout_alignBottom="@id/txtStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
-            android:src="@drawable/select_button"
-            android:visibility="gone" />
+            android:layout_below="@+id/txtFromDate"
+            android:layout_marginLeft="20dp"/>
+
+
     </RelativeLayout>
 </LinearLayout>

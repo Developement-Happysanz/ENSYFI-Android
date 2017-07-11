@@ -259,19 +259,22 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <ImageView
+                <com.palprotech.ensyfi.customview.CircleImageView
                     android:id="@+id/img_father_profile"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:layout_marginRight="50dp"
-                    android:background="@drawable/ic_profile" />
+                    android:fitsSystemWindows="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_profile" />
 
-                <ImageView
+                <com.palprotech.ensyfi.customview.CircleImageView
                     android:id="@+id/img_mother_profile"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_toRightOf="@+id/img_father_profile"
-                    android:background="@drawable/ic_profile" />
+                    android:fitsSystemWindows="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_profile" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -521,11 +524,13 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <ImageView
+                <com.palprotech.ensyfi.customview.CircleImageView
                     android:id="@+id/img_guardian_profile"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:background="@drawable/ic_profile" />
+                    android:fitsSystemWindows="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_profile" />
 
             </RelativeLayout>
 
@@ -754,11 +759,13 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <ImageView
+                <com.palprotech.ensyfi.customview.CircleImageView
                     android:id="@+id/img_student_profile"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:background="@drawable/ic_profile" />
+                    android:fitsSystemWindows="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_profile" />
 
             </RelativeLayout>
 
@@ -1469,7 +1476,9 @@
                     android:id="@+id/img_teacher_profile"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:background="@drawable/ic_profile" />
+                    android:fitsSystemWindows="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_profile" />
 
             </RelativeLayout>
 

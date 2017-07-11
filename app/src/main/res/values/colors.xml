@@ -56,4 +56,11 @@
     <color name="blue">#ff33b5e5</color>
     <!---->
 
+    <!--OD Approval colors-->
+    <color name="approve">#089F49</color>
+    <color name="reject">#D85B4A</color>
+    <color name="pending">#BEC031</color>
+    <!---->
+
+
 </resources>

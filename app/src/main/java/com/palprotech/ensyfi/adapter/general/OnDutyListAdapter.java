@@ -2,22 +2,21 @@ package com.palprotech.ensyfi.adapter.general;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.palprotech.ensyfi.R;
-import com.squareup.picasso.Transformation;
-
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.makeramen.roundedimageview.RoundedTransformationBuilder;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.app.AppController;
-import com.palprotech.ensyfi.bean.general.viewlist.Circular;
 import com.palprotech.ensyfi.bean.general.viewlist.OnDuty;
+import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
 
@@ -88,8 +87,8 @@ public class OnDutyListAdapter extends BaseAdapter {
             holder.txtOdFor = (TextView) convertView.findViewById(R.id.txtOdFor);
             holder.txtFromDate = (TextView) convertView.findViewById(R.id.txtFromDate);
             holder.txtToDate = (TextView) convertView.findViewById(R.id.txtToDate);
-            holder.txtNotes = (TextView) convertView.findViewById(R.id.txtNotes);
             holder.txtStatus = (TextView) convertView.findViewById(R.id.txtStatus);
+            holder.imgStatus = (ImageView) convertView.findViewById(R.id.imgStatus);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -105,11 +104,22 @@ public class OnDutyListAdapter extends BaseAdapter {
         }
 
         OnDuty onDutys = onDuty.get(position);
+        if (onDuty.get(position).getStatus().contentEquals("Approved")) {
+            holder.txtStatus.setTextColor(ContextCompat.getColor(context, R.color.approve));
+            holder.imgStatus.setImageResource(R.drawable.od_approved);
+        }
+        else if (onDuty.get(position).getStatus().contentEquals("Rejected")) {
+            holder.txtStatus.setTextColor(ContextCompat.getColor(context, R.color.reject));
+            holder.imgStatus.setImageResource(R.drawable.od_rejected);
+        }
+        else{
+            holder.txtStatus.setTextColor(ContextCompat.getColor(context, R.color.pending));
+            holder.imgStatus.setImageResource(R.drawable.od_pending);
+        }
 
         holder.txtOdFor.setText(onDuty.get(position).getOdFor());
         holder.txtFromDate.setText(onDuty.get(position).getFromDate());
         holder.txtToDate.setText(onDuty.get(position).getToDate());
-        holder.txtNotes.setText(onDuty.get(position).getNotes());
         holder.txtStatus.setText(onDuty.get(position).getStatus());
         return convertView;
     }
@@ -143,7 +153,8 @@ public class OnDutyListAdapter extends BaseAdapter {
     }
 
     public class ViewHolder {
-        public TextView txtOdFor, txtFromDate, txtToDate, txtNotes, txtStatus;
+        public TextView txtOdFor, txtFromDate, txtToDate, txtStatus;
+        public ImageView imgStatus;
     }
 
     public boolean ismSearching() {

@@ -1,7 +1,9 @@
 package com.palprotech.ensyfi.activity.general;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -10,9 +12,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.activity.loginmodule.ProfileActivity;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
@@ -22,7 +25,6 @@ import com.palprotech.ensyfi.utils.CommonUtils;
 import com.palprotech.ensyfi.utils.EnsyfiConstants;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -37,7 +39,9 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
 
     private static final String TAG = OnDutyRequestActivity.class.getName();
     private EditText edtOnDutyRequestFor, edtOnDutyRequestDetails;
-    private Button dateFrom, dateTo, btnRequest;
+    private TextView dateFrom, dateTo;
+    private Button btnRequest;
+    Context context;
     private boolean isDoneClick = false;
     String singleDate = "";
     DatePickerDialog mFromDatePickerDialog = null;
@@ -46,6 +50,7 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
     protected ProgressDialogHelper progressDialogHelper;
     private ServiceHelper serviceHelper;
     final Calendar c = Calendar.getInstance();
+    LinearLayout frombackground, tobackground;
     String formattedServerDate;
 
     @Override
@@ -55,14 +60,17 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
         edtOnDutyRequestFor = (EditText) findViewById(R.id.edtOnDutyRequestFor);
         edtOnDutyRequestDetails = (EditText) findViewById(R.id.edtOnDutyRequestDetails);
 
-        dateFrom = (Button) findViewById(R.id.dateFrom);
+        dateFrom = (TextView) findViewById(R.id.dateFrom);
         dateFrom.setOnClickListener(this);
 
-        dateTo = (Button) findViewById(R.id.dateTo);
+        dateTo = (TextView) findViewById(R.id.dateTo);
         dateTo.setOnClickListener(this);
 
         btnRequest = (Button) findViewById(R.id.btnRequest);
         btnRequest.setOnClickListener(this);
+
+        frombackground = (LinearLayout) findViewById(R.id.fromDatee);
+        tobackground = (LinearLayout) findViewById(R.id.toDatee);
 
         progressDialogHelper = new ProgressDialogHelper(this);
 
@@ -125,18 +133,20 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
     public void onClick(View v) {
 
         if (v == dateFrom) {
-
+            frombackground.setBackgroundColor(Color.parseColor("#663366"));
+            dateFrom.setCompoundDrawablesWithIntrinsicBounds( R.drawable.od_from_date_selected, 0, 0, 0);
+            dateFrom.setTextColor((Color.parseColor("#663366")));
             final DatePickerDialog.OnDateSetListener fromdate = new DatePickerDialog.OnDateSetListener() {
 
                 public void onDateSet(DatePicker view, int year, int month, int day) {
                     Log.d(TAG, "From selected");
                     // isdoneclick = true;
                     if (isDoneClick) {
-                        ((Button) findViewById(R.id.dateFrom)).setText(formatDate(year, month, day));
+                        ((TextView) findViewById(R.id.dateFrom)).setText(formatDate(year, month, day));
                         mFromDateVal = formatDateServer(year, month, day);
                     } else {
                         Log.e("Clear", "Clear");
-                        ((Button) findViewById(R.id.dateFrom)).setText("");
+                        ((TextView) findViewById(R.id.dateFrom)).setText("");
                         mFromDateVal = "";
                     }
                 }
@@ -166,7 +176,7 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     isDoneClick = false;
-                    ((Button) findViewById(R.id.dateFrom)).setText("");
+                    ((TextView) findViewById(R.id.dateFrom)).setText("");
                     mFromDatePickerDialog.dismiss();
                 }
             });
@@ -175,16 +185,19 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
 
         if (v == dateTo) {
 
+            tobackground.setBackgroundColor(Color.parseColor("#663366"));
+            dateTo.setCompoundDrawablesWithIntrinsicBounds( R.drawable.od_from_date_selected, 0, 0, 0);
+            dateTo.setTextColor((Color.parseColor("#663366")));
             final DatePickerDialog.OnDateSetListener todate = new DatePickerDialog.OnDateSetListener() {
 
                 public void onDateSet(DatePicker view, int year, int month, int day) {
                     // isdoneclick = true;
 
                     if (isDoneClick) {
-                        ((Button) findViewById(R.id.dateTo)).setText(formatDate(year, month, day));
+                        ((TextView) findViewById(R.id.dateTo)).setText(formatDate(year, month, day));
                         mToDateVal = formatDateServer(year, month, day);
                     } else {
-                        ((Button) findViewById(R.id.dateTo)).setText("Select Date");
+                        ((TextView) findViewById(R.id.dateTo)).setText("Select Date");
                         mToDateVal = "";
                     }
                 }
@@ -213,7 +226,7 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     isDoneClick = false;
-                    ((Button) findViewById(R.id.dateTo)).setText("Select Date");
+                    ((TextView) findViewById(R.id.dateTo)).setText("Select Date");
                     dpd.dismiss();
                 }
             });
