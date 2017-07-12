@@ -9,63 +9,72 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:background="@drawable/round_btn_plain">
+        android:background="@drawable/round_btn_plain"
+        android:gravity="center">
 
         <TextView
             android:id="@+id/txtEnrollId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
             android:paddingBottom="3dp"
             android:paddingTop="3dp"
             android:text="12u233"
             android:textAllCaps="true"
             android:textColor="@color/black"
-            android:textSize="20dp"/>
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/hyphen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="-"
-            android:gravity="center"
-            android:textSize="20dp"
-            android:layout_toRightOf="@+id/txtEnrollId"
+            android:layout_alignBottom="@+id/txtEnrollId"
             android:layout_alignTop="@+id/txtEnrollId"
-            android:layout_alignBottom="@+id/txtEnrollId"/>
+            android:layout_toRightOf="@+id/txtEnrollId"
+            android:gravity="center"
+            android:text="-"
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/txtStudentName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/txtEnrollId"
+            android:layout_alignTop="@+id/txtEnrollId"
             android:layout_below="@+id/txtEnrollId"
             android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:layout_toRightOf="@+id/hyphen"
-            android:layout_alignTop="@+id/txtEnrollId"
-            android:layout_alignBottom="@+id/txtEnrollId"
+            android:gravity="center"
             android:text="Bala Murali Krishna"
             android:textColor="@color/black"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/hyphen1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/txtStudentName"
+            android:layout_alignTop="@+id/txtStudentName"
+            android:layout_toRightOf="@+id/txtStudentName"
             android:gravity="center"
-            android:textSize="20dp"/>
+            android:text="-"
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/txtLeaves"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtEnrollId"
-            android:layout_alignTop="@+id/txtEnrollId"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
             android:layout_alignBottom="@+id/txtEnrollId"
+            android:layout_alignTop="@+id/txtEnrollId"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/hyphen1"
             android:gravity="center"
-            android:layout_marginRight="10dp"
-            android:layout_alignParentRight="true"
-            android:text="Present"
-            android:background="@drawable/btn_square_fill_color"
-            android:textColor="@color/white"
-            android:textSize="20dp"/>
+            android:text="23"
+            android:textColor="@color/absent"
+            android:textSize="20dp" />
 
     </RelativeLayout>
 </LinearLayout>

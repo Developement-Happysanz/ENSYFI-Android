@@ -42,13 +42,13 @@
 
         <ImageView
             android:id="@+id/addAttendance"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_marginTop="5dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_height="50dp"
             android:layout_alignParentRight="true"
-            android:minHeight="?attr/actionBarSize"
-
-            android:paddingLeft="15dp"
-            android:src="@drawable/ic_arrow_back_white_48dp" />
+            android:src="@drawable/od_apply" />
     </RelativeLayout>
     <!--End-->
 
@@ -109,7 +109,19 @@
             android:layout_centerInParent="true"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
-            android:text="Select Date" />
+            android:text="Select Date"
+            android:background="@color/transparent"
+            android:textColor="@color/black"/>
+
+        <ImageView
+            android:id="@+id/cal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/od_from_to"
+            android:layout_alignTop="@+id/btnDateMonth"
+            android:layout_toLeftOf="@+id/btnDateMonth"
+            android:layout_marginTop="3dp"
+            android:layout_marginRight="10dp"/>
 
         <Spinner
             android:id="@+id/btnMonth"

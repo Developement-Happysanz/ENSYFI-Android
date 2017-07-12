@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.IdRes;
@@ -48,12 +47,8 @@ import com.palprotech.ensyfi.utils.PreferenceStorage;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.TreeSet;
@@ -66,7 +61,7 @@ import java.util.Vector;
 public class AttendanceStatusActivity extends AppCompatActivity implements DialogClickListener, AdapterView.OnItemClickListener, IServiceListener, View.OnClickListener {
 
     private static final String TAG = AttendanceStatusActivity.class.getName();
-    private ImageView btnBack, btnAddAttendnace;
+    private ImageView btnBack, btnAddAttendnace, imgCalendar;
     ListView loadMoreListView;
     View view;
     Context context;
@@ -350,6 +345,8 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
         btnBack = (ImageView) findViewById(R.id.back_res);
         btnBack.setOnClickListener(this);
 
+        imgCalendar = (ImageView) findViewById(R.id.cal);
+
         btnAddAttendnace = (ImageView) findViewById(R.id.addAttendance);
         btnAddAttendnace.setOnClickListener(this);
 
@@ -408,6 +405,7 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
 
                         checkDayMonthType = "month";
                         selectDateMonth.setVisibility(View.GONE);
+                        imgCalendar.setVisibility(View.GONE);
                         spinMonthView.setVisibility(View.VISIBLE);
                         getAcademicMonthsList();
                         break;

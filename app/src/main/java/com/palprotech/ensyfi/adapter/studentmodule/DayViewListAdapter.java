@@ -102,7 +102,22 @@ public class DayViewListAdapter extends BaseAdapter {
 
         holder.txtEnrollId.setText(dayViews.get(position).getEnrollId());
         holder.txtStudentName.setText(dayViews.get(position).getName());
-        holder.txtAttendanceStatus.setText(dayViews.get(position).getAStatus());
+        if((dayViews.get(position).getAStatus()).contentEquals("A")) {
+            holder.txtAttendanceStatus.setBackgroundResource(R.drawable.btn_attendance_absent);
+            holder.txtAttendanceStatus.setText("Absent");
+        }
+        else if((dayViews.get(position).getAStatus()).contentEquals("P")) {
+            holder.txtAttendanceStatus.setBackgroundResource(R.drawable.btn_attendance_present);
+            holder.txtAttendanceStatus.setText("Present");
+        }
+        else if((dayViews.get(position).getAStatus()).contentEquals("OD")) {
+            holder.txtAttendanceStatus.setBackgroundResource(R.drawable.btn_attendance_od);
+            holder.txtAttendanceStatus.setText("OD");
+        }
+        else {
+            holder.txtAttendanceStatus.setBackgroundResource(R.drawable.btn_attendance_leave);
+            holder.txtAttendanceStatus.setText("Leave");
+        }
         return convertView;
     }
 

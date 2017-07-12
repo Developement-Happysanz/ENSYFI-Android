@@ -34,7 +34,7 @@
             android:paddingTop="3dp"
             android:text="Test"
             android:textAllCaps="true"
-            android:textColor="@color/appColor"
+            android:textColor="@color/text_grey"
             android:textSize="15dp"
             android:textStyle="bold" />
 
@@ -49,7 +49,7 @@
             android:paddingTop="3dp"
             android:text="Test ok ok "
             android:textAllCaps="true"
-            android:textColor="@color/appColor"
+            android:textColor="@color/text_grey"
             android:textSize="15dp"
             android:textStyle="bold" />
 
@@ -61,7 +61,7 @@
             android:layout_marginLeft="40dp"
             android:layout_marginTop="5dp"
             android:text="Test"
-            android:textColor="@color/appColor"
+            android:textColor="@color/text_grey"
             android:textSize="15dp" />
 
         <ImageView
@@ -70,11 +70,11 @@
             android:layout_below="@+id/txtClassTestSubject"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/date_calender" />
+            android:src="@drawable/classtest_calendar" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
