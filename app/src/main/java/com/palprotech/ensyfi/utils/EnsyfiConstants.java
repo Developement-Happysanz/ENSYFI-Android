@@ -282,8 +282,8 @@ public class EnsyfiConstants {
     // Attendance Params
     public static final String PARAMS_DISPLAY_TYPE = "disp_type";
     public static final String PARAMS_DISPLAY_DATE = "disp_date";
-    public static final String PARAMS_DISPLAY_MONTH = "from_month";
-    public static final String PARAMS_DISPLAY_YEAR = "from_year";
+    public static final String PARAMS_DISPLAY_MONTH_YEAR = "month_year";
+
 
 
 }

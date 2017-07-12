@@ -150,6 +150,12 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarGrey" />
 
+        <activity
+            android:name=".activity.studentmodule.AttendanceMonthViewActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarGrey" />
+
         <!--End-->
         <!---->
         <!--General-->

@@ -19,7 +19,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String TAG = "SQLiteHelper.java";
 
     private static final String DATABASE_NAME = "ENSYFI.db";
-    private static final int DATABASE_VERSION = 11;
+    private static final int DATABASE_VERSION = 12;
 
     private String table_create_student = "Create table studentInfo(_id integer primary key autoincrement,"
             + "registered_id text,"
@@ -80,6 +80,9 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             + "status text,"
             + "sync_status text);";
 
+    private String table_create_academic_months = "Create table academicMonths(_id integer primary key autoincrement,"
+            + "academic_months text);";
+
     public SQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -94,7 +97,10 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(table_create_teacher_student_details);
         //Attendance
         db.execSQL(table_create_attendance);
+
         db.execSQL(table_create_attendance_history);
+
+        db.execSQL(table_create_academic_months);
     }
 
     @Override
@@ -110,7 +116,10 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS teachersStudentDetails");
         //Attendance
         db.execSQL("DROP TABLE IF EXISTS attendance");
+
         db.execSQL("DROP TABLE IF EXISTS attendanceHistory");
+
+        db.execSQL("DROP TABLE IF EXISTS academicMonths");
     }
 
     public void open() throws SQLException {
@@ -373,6 +382,38 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         String ok;
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("attendanceHistory", null, null);
+
+    }
+    /*
+    *   End
+    */
+
+    /*
+   *   Academic Store & Retrieve Functionality
+   */
+    public long academic_months_insert(String val1) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues initialValues = new ContentValues();
+        initialValues.put("academic_months", val1);
+        long l = db.insert("academicMonths", "_id", initialValues);
+        db.close();
+        return l;
+    }
+
+    public Cursor getAcademicMonths() throws SQLException {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String fetch = "Select academic_months from academicMonths order by _id asc;";
+        Cursor c = db.rawQuery(fetch, null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+    public void deleteAcademicMonths() {
+        String ok;
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("academicMonths", null, null);
 
     }
     /*

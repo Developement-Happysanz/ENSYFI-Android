@@ -113,24 +113,40 @@
 
         <Spinner
             android:id="@+id/btnMonth"
-            style="@style/spinner_style_button"
-            android:layout_width="wrap_content"
+            style="@style/spinner_style"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/btnDateMonth"
             android:layout_centerInParent="true"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:ellipsize="end"
-            android:padding="5dp"
             android:fontFamily="sans-serif"
             android:gravity="center"
+            android:overlapAnchor="false"
+            android:padding="5dp"
             android:text="Select Month"
             android:textAllCaps="false"
-            android:visibility="gone"
             android:textColor="@color/white"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:visibility="gone" />
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/listView_events"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@color/background_grey"
+            android:dividerHeight="4dp">
+
+        </ListView>
+
+    </LinearLayout>
 
 
 </LinearLayout>

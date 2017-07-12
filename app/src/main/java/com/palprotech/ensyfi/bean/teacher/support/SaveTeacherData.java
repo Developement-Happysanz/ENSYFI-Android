@@ -271,5 +271,27 @@ public class SaveTeacherData {
             ex.printStackTrace();
         }
     }
+
+    public void saveAcademicMonth(JSONArray academicMonth) {
+        database = new SQLiteHelper(context);
+        try {
+            database.deleteAcademicMonths();
+
+            for (int i = 0; i < academicMonth.length(); i++) {
+
+                String months = "";
+
+                months = academicMonth.getString(i);
+
+                System.out.println("table_id : " + i + " = " + months);
+
+                long x = database.academic_months_insert(months);
+
+                System.out.println("Stored Id : " + x);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 }
 
