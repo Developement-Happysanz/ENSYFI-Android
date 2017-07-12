@@ -83,6 +83,22 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     private String table_create_academic_months = "Create table academicMonths(_id integer primary key autoincrement,"
             + "academic_months text);";
 
+    private String table_create_homework_class_test = "Create table homeWorkClassTest(_id integer primary key autoincrement,"
+            + "attend_id text,"
+            + "server_attend_id text,"
+            + "class_id text,"
+            + "student_id text,"
+            + "abs_date text,"
+            + "a_status text,"
+            + "attend_period text,"
+            + "a_val text,"
+            + "a_taken_by text,"
+            + "created_at text,"
+            + "updated_by text,"
+            + "updated_at text,"
+            + "status text,"
+            + "sync_status text);";
+
     public SQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -101,6 +117,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(table_create_attendance_history);
 
         db.execSQL(table_create_academic_months);
+
+        db.execSQL(table_create_homework_class_test);
     }
 
     @Override
@@ -120,6 +138,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS attendanceHistory");
 
         db.execSQL("DROP TABLE IF EXISTS academicMonths");
+
+        db.execSQL("DROP TABLE IF EXISTS homeWorkClassTest");
     }
 
     public void open() throws SQLException {
