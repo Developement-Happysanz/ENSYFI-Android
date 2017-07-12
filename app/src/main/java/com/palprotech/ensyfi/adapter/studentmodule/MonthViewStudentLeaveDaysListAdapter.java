@@ -101,7 +101,7 @@ public class MonthViewStudentLeaveDaysListAdapter extends BaseAdapter{
 
         holder.txtEnrollId.setText(monthViewStudentLeaveDays.get(position).getEnrollId());
         holder.txtStudentName.setText(monthViewStudentLeaveDays.get(position).getName());
-        holder.txtLeaveDays.setText(monthViewStudentLeaveDays.get(position).getLeaves());
+        holder.txtLeaveDays.setText(monthViewStudentLeaveDays.get(position).getAbsDate());
         return convertView;
     }
 
