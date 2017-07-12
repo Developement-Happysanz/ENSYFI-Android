@@ -62,8 +62,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:layout_marginTop="10dp"
+                android:background="@color/black"
                 android:orientation="vertical">
 
 
@@ -76,15 +78,24 @@
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginTop="2dp"
                         android:layout_weight="0.50"
-                        android:text="Institute No. of Work Days" />
+                        android:background="@color/appColor"
+                        android:text="Institute No. of Work Days"
+                        android:textColor="@color/white" />
 
                     <TextView
                         android:id="@+id/txtWorkingDays"
                         android:layout_width="20dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginTop="2dp"
                         android:layout_weight="0.50"
-                        android:text="5 Days" />
+                        android:background="@color/white"
+                        android:text="5 Days"
+                        android:textColor="@color/black" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -95,15 +106,25 @@
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginTop="1dp"
                         android:layout_weight="0.50"
-                        android:text="Student Present Days" />
+                        android:background="@color/appColor"
+                        android:text="Student Present Days"
+                        android:textColor="@color/white" />
 
                     <TextView
                         android:id="@+id/txtPresentDays"
                         android:layout_width="20dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginTop="1dp"
                         android:layout_weight="0.50"
-                        android:text="5 Days" />
+                        android:background="@color/white"
+                        android:text="5 Days"
+                        android:textColor="@color/black" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -114,15 +135,25 @@
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginTop="1dp"
                         android:layout_weight="0.50"
-                        android:text="Student OD Days" />
+                        android:background="@color/appColor"
+                        android:text="Student OD Days"
+                        android:textColor="@color/white" />
 
                     <TextView
                         android:id="@+id/txtODDays"
                         android:layout_width="20dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginTop="1dp"
                         android:layout_weight="0.50"
-                        android:text="5 Days" />
+                        android:background="@color/white"
+                        android:text="5 Days"
+                        android:textColor="@color/black" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -133,15 +164,25 @@
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginTop="1dp"
                         android:layout_weight="0.50"
-                        android:text="Student Leave Days" />
+                        android:background="@color/appColor"
+                        android:text="Student Leave Days"
+                        android:textColor="@color/white" />
 
                     <TextView
                         android:id="@+id/txtLeaveDays"
                         android:layout_width="20dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginTop="1dp"
                         android:layout_weight="0.50"
-                        android:text="5 Days" />
+                        android:background="@color/white"
+                        android:text="5 Days"
+                        android:textColor="@color/black" />
+
                 </LinearLayout>
 
 
@@ -154,16 +195,28 @@
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginTop="1dp"
                         android:layout_weight="0.50"
-                        android:text="Student Absent Days" />
+                        android:background="@color/appColor"
+                        android:text="Student Absent Days"
+                        android:textColor="@color/white" />
 
                     <TextView
                         android:id="@+id/txtAbsentDays"
                         android:layout_width="20dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginTop="1dp"
                         android:layout_weight="0.50"
-                        android:text="5 Days" />
+                        android:background="@color/white"
+                        android:text="5 Days"
+                        android:textColor="@color/black" />
+
                 </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout

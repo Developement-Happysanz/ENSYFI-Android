@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -532,6 +532,17 @@
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_profile" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/img_guardian_profile"
+                    android:layout_alignRight="@id/img_guardian_profile"
+                    android:layout_below="@id/img_guardian_profile"
+                    android:gravity="center"
+                    android:text="FATHER"
+                    android:textColor="@color/white"
+                    android:textSize="18dp" />
+
             </RelativeLayout>
 
             <ScrollView
@@ -746,7 +757,7 @@
         <RelativeLayout
             android:id="@+id/popup_student"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="500dp"
             android:layout_below="@+id/tlbar"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
@@ -771,7 +782,7 @@
 
             <ScrollView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_below="@id/userimage2">
 
                 <RelativeLayout
@@ -1921,7 +1932,7 @@
 
     </RelativeLayout>
 
-</ScrollView>
+</LinearLayout>
 
 
 

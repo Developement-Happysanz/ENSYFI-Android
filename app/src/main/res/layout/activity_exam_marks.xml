@@ -43,6 +43,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
         android:layout_marginTop="50dp"
         android:background="@color/black">
 
@@ -57,13 +59,42 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
                 android:layout_marginTop="2dp"
-                android:layout_weight="0.50"
+                android:layout_weight="0.105"
                 android:background="@color/appColor"
                 android:gravity="center"
-                android:text="SUBJECT"
+                android:text="Subject"
                 android:textColor="@color/white"
                 android:textSize="20dp" />
 
+            <TextView
+                android:id="@+id/txtIntMarks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/da"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_toRightOf="@+id/da"
+                android:layout_weight="0.10"
+                android:background="@color/appColor"
+                android:gravity="center"
+                android:text="Internal"
+                android:textColor="@color/white"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/txtExtMarks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/da"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_toRightOf="@+id/da"
+                android:layout_weight="0.10"
+                android:background="@color/appColor"
+                android:gravity="center"
+                android:text="External"
+                android:textColor="@color/white"
+                android:textSize="20dp" />
             <TextView
                 android:id="@+id/txtMarks"
                 android:layout_width="match_parent"
@@ -72,10 +103,10 @@
                 android:layout_marginLeft="2dp"
                 android:layout_marginTop="2dp"
                 android:layout_toRightOf="@+id/da"
-                android:layout_weight="0.50"
+                android:layout_weight="0.10"
                 android:background="@color/appColor"
                 android:gravity="center"
-                android:text="MARK"
+                android:text="Total"
                 android:textColor="@color/white"
                 android:textSize="20dp" />
 
@@ -107,7 +138,7 @@
             android:layout_gravity="center"
             android:layout_weight="0.50"
             android:gravity="center"
-            android:text="Total"
+            android:text="Grand Total"
             android:textColor="@color/white"
             android:textSize="20dp" />
 

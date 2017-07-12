@@ -137,6 +137,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/btn_square_fill_white"
                 android:gravity="top"
+                android:inputType="textVisiblePassword"
                 android:hint="Description"
                 android:textColor="@color/black" />
 

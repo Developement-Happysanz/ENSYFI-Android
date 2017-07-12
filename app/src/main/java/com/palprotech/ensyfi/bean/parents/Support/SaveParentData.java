@@ -2,6 +2,7 @@ package com.palprotech.ensyfi.bean.parents.Support;
 
 import android.content.Context;
 
+import com.palprotech.ensyfi.utils.EnsyfiConstants;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 
 import org.json.JSONObject;
@@ -37,6 +38,7 @@ public class SaveParentData {
             String FatherOfficePhone = "";
             String FatherRelationship = "";
             String FatherPic = "";
+            String ParentimgUrl = EnsyfiConstants.USER_IMAGE_API_PARENTS;
 
             //Mother Details
             String MotherId = "";
@@ -50,6 +52,7 @@ public class SaveParentData {
             String MotherOfficePhone = "";
             String MotherRelationship = "";
             String MotherPic = "";
+            String MotherPicUrl = "";
 
             //Guardian Details
             String GuardianId = "";
@@ -63,6 +66,7 @@ public class SaveParentData {
             String GuardianOfficePhone = "";
             String GuardianRelationship = "";
             String GuardianPic = "";
+            String GuardianPicUrl = "";
 
             FatherId = fatherData.getString("id");
             FatherName = fatherData.getString("name");
@@ -129,6 +133,7 @@ public class SaveParentData {
             }
 
             // Parents Preference - Father's Pic
+            FatherPic = PreferenceStorage.getUserDynamicAPI(context) + ParentimgUrl + FatherPic;
             if ((FatherPic != null) && !(FatherPic.isEmpty()) && !FatherPic.equalsIgnoreCase("null")) {
                 PreferenceStorage.saveFatherImg(context, FatherPic);
             }
@@ -204,6 +209,7 @@ public class SaveParentData {
             }
 
             // Parents Preference - Mother's Pic
+            MotherPic = PreferenceStorage.getUserDynamicAPI(context) + ParentimgUrl + MotherPic;
             if ((MotherPic != null) && !(MotherPic.isEmpty()) && !MotherPic.equalsIgnoreCase("null")) {
                 PreferenceStorage.saveMotherImg(context, MotherPic);
             }
@@ -279,6 +285,7 @@ public class SaveParentData {
             }
 
             // Parents Preference - Guardian's Pic
+            GuardianPic = PreferenceStorage.getUserDynamicAPI(context) + ParentimgUrl + GuardianPic;
             if ((GuardianPic != null) && !(GuardianPic.isEmpty()) && !GuardianPic.equalsIgnoreCase("null")) {
                 PreferenceStorage.saveGuardianImg(context, GuardianPic);
             }

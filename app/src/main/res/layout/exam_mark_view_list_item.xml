@@ -17,24 +17,94 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"
             android:layout_marginTop="2dp"
-            android:layout_weight="0.50"
+            android:layout_weight="0.18"
             android:background="@color/white"
             android:gravity="center"
             android:paddingBottom="5dp"
-            android:text="2017-05-23"
+            android:text="Biology"
             android:textColor="@color/black" />
 
         <TextView
-            android:id="@+id/txtMark"
+            android:id="@+id/txtIntGrade"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"
             android:layout_marginTop="2dp"
-            android:layout_weight="0.50"
+
+            android:background="@color/white"
+            android:layout_weight="0.20"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:text="B1"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/txtIntMark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="2dp"
+
+            android:background="@color/white"
+            android:gravity="center"
+            android:layout_weight="0.20"
+            android:paddingBottom="5dp"
+            android:text="100"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/txtExtGrade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_toRightOf="@id/txtIntMark"
+            android:layout_weight="0.20"
             android:background="@color/white"
             android:gravity="center"
             android:paddingBottom="5dp"
-            android:text="12-12-2012"
+            android:text="B1"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/txtExtMark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_toRightOf="@id/txtExtGrade"
+            android:background="@color/white"
+            android:layout_weight="0.20"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:text="100"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/txtSubTotalGrade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="2dp"
+            android:background="@color/white"
+            android:layout_weight="0.20"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:text="B1"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/txtSubTotalMark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginTop="2dp"
+            android:background="@color/white"
+            android:layout_weight="0.20"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:text="100"
             android:textColor="@color/black" />
 
         <TextView

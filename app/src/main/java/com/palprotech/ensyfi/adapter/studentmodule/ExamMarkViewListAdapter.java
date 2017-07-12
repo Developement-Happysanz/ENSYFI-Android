@@ -82,7 +82,13 @@ public class ExamMarkViewListAdapter extends BaseAdapter {
 
             holder = new ViewHolder();
             holder.txtExamSubject = (TextView) convertView.findViewById(R.id.txtExamSubject);
-            holder.txtMark = (TextView) convertView.findViewById(R.id.txtMark);
+            holder.txtInternalMark = (TextView) convertView.findViewById(R.id.txtIntMark);
+            holder.TxtInternalGrade = (TextView) convertView.findViewById(R.id.txtIntGrade);
+            holder.txtExternalMark = (TextView) convertView.findViewById(R.id.txtExtMark);
+            holder.TxtExternalGrade = (TextView) convertView.findViewById(R.id.txtExtGrade);
+            holder.txtSubjectTotalMark = (TextView) convertView.findViewById(R.id.txtSubTotalMark);
+            holder.txtSubjectTotalGrade = (TextView) convertView.findViewById(R.id.txtSubTotalGrade);
+
 
             convertView.setTag(holder);
         } else {
@@ -101,7 +107,12 @@ public class ExamMarkViewListAdapter extends BaseAdapter {
         ExamMark examMark = examMarks.get(position);
 
         holder.txtExamSubject.setText(examMarks.get(position).getSubjectName());
-        holder.txtMark.setText(examMarks.get(position).getMarks());
+        holder.txtInternalMark.setText(examMarks.get(position).getInternalMark());
+        holder.TxtInternalGrade.setText(examMarks.get(position).getInternalGrade());
+        holder.txtExternalMark.setText(examMarks.get(position).getExternalMark());
+        holder.TxtExternalGrade.setText(examMarks.get(position).getExternalGrade());
+        holder.txtSubjectTotalMark.setText(examMarks.get(position).getTotalMarks());
+        holder.txtSubjectTotalGrade.setText(examMarks.get(position).getTotalGrade());
 
 
 
@@ -139,7 +150,7 @@ public class ExamMarkViewListAdapter extends BaseAdapter {
     }
 
     public class ViewHolder {
-        public TextView txtExamName, txtExamSubject, txtMark;
+        public TextView txtExamName, txtExamSubject, txtSubjectTotalGrade, txtSubjectTotalMark, txtInternalMark, TxtInternalGrade, txtExternalMark, TxtExternalGrade;
     }
 
     public boolean ismSearching() {
