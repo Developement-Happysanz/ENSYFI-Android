@@ -113,8 +113,6 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
         setContentView(R.layout.activity_attendance_status);
 
         setView();
-
-
     }
 
     @Override
@@ -217,6 +215,7 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
             }
             Intent intent = new Intent(this, AttendanceMonthViewActivity.class);
             intent.putExtra("eventObj", monthView);
+            intent.putExtra("monthYear", getMonthName);
             // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
         }

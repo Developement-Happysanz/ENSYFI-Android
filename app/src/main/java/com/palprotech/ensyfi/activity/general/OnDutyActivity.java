@@ -151,7 +151,6 @@ public class OnDutyActivity extends AppCompatActivity implements View.OnClickLis
         protected void onPostExecute(Void result) {
             progressDialogHelper.cancelProgressDialog();
         }
-
     }
 
     @Override

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background_grey"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/round_btn_plain">
+
+        <TextView
+            android:id="@+id/txtEnrollId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:paddingBottom="3dp"
+            android:paddingTop="3dp"
+            android:text="Title"
+            android:textAllCaps="true"
+            android:textColor="@color/appColor"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtStudentName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtEnrollId"
+            android:layout_marginLeft="10dp"
+            android:paddingBottom="3dp"
+            android:paddingTop="3dp"
+            android:text="Test"
+            android:textAllCaps="true"
+            android:textColor="@color/appColor"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtLeaveDays"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtEnrollId"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/txtStudentName"
+            android:paddingBottom="3dp"
+            android:paddingTop="3dp"
+            android:text="Test ok ok "
+            android:textAllCaps="true"
+            android:textColor="@color/appColor"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+</LinearLayout>

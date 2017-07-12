@@ -51,6 +51,7 @@ public class EnsyfiConstants {
     // STUDENT & PARENTS URL
     // STUDENT ATTENDANCE URL
     public static final String GET_STUDENT_ATTENDANCD_API = "/apistudent/disp_Attendence/";
+    public static final String GET_STUDENT_ATTENDANCD_MONTH_VIEW_API = "/apiteacher/disp_Monthview/";
 
     //STUDENT PROFILE URL
 
