@@ -541,7 +541,7 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
             spnClassList.setAdapter(dataAdapter3);
             spnClassList.setWillNotDraw(false);
         } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), "Error company lookup", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Error getting class list lookup", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
     }
@@ -568,7 +568,7 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
             spinMonthView.setAdapter(dataAdapter3);
             spinMonthView.setWillNotDraw(false);
         } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), "Error company lookup", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Error academic months lookup", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
     }
