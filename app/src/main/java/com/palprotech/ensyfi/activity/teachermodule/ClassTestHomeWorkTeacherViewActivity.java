@@ -11,6 +11,7 @@ import android.support.v7.widget.SearchView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -21,6 +22,7 @@ import com.palprotech.ensyfi.activity.studentmodule.AttendanceStatusActivity;
 import com.palprotech.ensyfi.adapter.teachermodule.ClassTestHomeWorkListBaseAdapter;
 import com.palprotech.ensyfi.adapter.teachermodule.StudentListBaseAdapter;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
+import com.palprotech.ensyfi.bean.student.viewlist.ClassTest;
 import com.palprotech.ensyfi.bean.teacher.viewlist.ClassTestHomeWork;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
@@ -57,6 +59,7 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
     private RadioGroup radioClassTestHomeWork;
     ArrayList<ClassTestHomeWork> myList = new ArrayList<ClassTestHomeWork>();
     ClassTestHomeWorkListBaseAdapter cadapter;
+    ImageView addAttendance;
 
 
     @Override
@@ -79,6 +82,8 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
         spnClassList = (Spinner) findViewById(R.id.class_list_spinner);
 
         radioClassTestHomeWork = (RadioGroup) findViewById(R.id.radioClassTestHomeWorkView);
+
+        addAttendance = (ImageView)findViewById(R.id.addAttendance);
 
         getClassList();
         GetClassTestList(getClassSectionId, "HT");
@@ -118,6 +123,16 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
 
                         break;
                 }
+            }
+        });
+
+        addAttendance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent navigationIntent = new Intent(getApplicationContext(), ClassTestHomeWorkAddActivity.class);
+                navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(navigationIntent);
             }
         });
     }
@@ -176,7 +191,6 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
             e.printStackTrace();
         }
     }
-
 
     private void getClassList() {
 
