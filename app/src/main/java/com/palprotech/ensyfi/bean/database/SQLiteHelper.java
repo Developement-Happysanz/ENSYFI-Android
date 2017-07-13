@@ -84,24 +84,24 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             + "academic_months text);";
 
     private static final String table_create_homework_class_test = "Create table IF NOT EXISTS homeWorkClassTest(_id integer primary key autoincrement,"
-            + "server_hw_id text,"
-            + "year_id text,"
-            + "class_id text,"
-            + "teacher_id text,"
-            + "hw_type text,"
-            + "subject_id text,"
-            + "subject_name text,"
-            + "title text,"
-            + "test_date text,"
-            + "due_date text,"
-            + "hw_details text,"
-            + "status text,"
-            + "mark_status text,"
-            + "created_by text,"
-            + "created_at text,"
-            + "updated_by text,"
-            + "updated_at text,"
-            + "sync_status text);";
+            + "server_hw_id text," //1
+            + "year_id text," //2
+            + "class_id text," //3
+            + "teacher_id text," //4
+            + "hw_type text,"//5
+            + "subject_id text,"//6
+            + "subject_name text,"//7
+            + "title text,"//8
+            + "test_date text,"//9
+            + "due_date text,"//10
+            + "hw_details text,"//11
+            + "status text,"//12
+            + "mark_status text,"//13
+            + "created_by text,"//14
+            + "created_at text,"//15
+            + "updated_by text,"//16
+            + "updated_at text,"//17
+            + "sync_status text);";//18
 
     public SQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -481,7 +481,18 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     public Cursor getClassTestHomeWork(String classId, String homeWorkType) throws SQLException {
         SQLiteDatabase db = this.getWritableDatabase();
+        //_id,title,subject_name,hw_type,test_date
         String fetch = "Select _id,title,subject_name,hw_type,test_date from homeWorkClassTest where class_id=" + classId + " and hw_type = '" + homeWorkType + "' order by _id asc;";
+        Cursor c = db.rawQuery(fetch, null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+    public Cursor getClassTestHomeWorkDetails(String homeworkId) throws SQLException {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String fetch = "Select * from homeWorkClassTest where _id=" + homeworkId + ";";
         Cursor c = db.rawQuery(fetch, null);
         if (c != null) {
             c.moveToFirst();
