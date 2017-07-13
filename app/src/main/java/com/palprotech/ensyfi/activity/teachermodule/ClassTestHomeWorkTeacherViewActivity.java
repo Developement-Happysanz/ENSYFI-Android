@@ -18,11 +18,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.activity.studentmodule.AttendanceStatusActivity;
 import com.palprotech.ensyfi.adapter.teachermodule.ClassTestHomeWorkListBaseAdapter;
-import com.palprotech.ensyfi.adapter.teachermodule.StudentListBaseAdapter;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
-import com.palprotech.ensyfi.bean.student.viewlist.ClassTest;
 import com.palprotech.ensyfi.bean.teacher.viewlist.ClassTestHomeWork;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
@@ -59,7 +56,7 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
     private RadioGroup radioClassTestHomeWork;
     ArrayList<ClassTestHomeWork> myList = new ArrayList<ClassTestHomeWork>();
     ClassTestHomeWorkListBaseAdapter cadapter;
-    ImageView addAttendance;
+    ImageView createClassTest;
 
 
     @Override
@@ -83,7 +80,7 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
 
         radioClassTestHomeWork = (RadioGroup) findViewById(R.id.radioClassTestHomeWorkView);
 
-        addAttendance = (ImageView)findViewById(R.id.addAttendance);
+        createClassTest = (ImageView)findViewById(R.id.createClassTest);
 
         getClassList();
         GetClassTestList(getClassSectionId, "HT");
@@ -126,7 +123,7 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
             }
         });
 
-        addAttendance.setOnClickListener(new View.OnClickListener() {
+        createClassTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
