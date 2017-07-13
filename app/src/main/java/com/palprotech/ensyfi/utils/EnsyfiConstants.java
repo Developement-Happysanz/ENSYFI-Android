@@ -189,6 +189,7 @@ public class EnsyfiConstants {
     public static final String TEACHER_IMAGE = "teacher_pic";
     public static final String TEACHER_SUBJECT = "teacher_subject";
     public static final String TEACHER_CLASS_TAKEN = "teacher_class_taken";
+    public static final String TEACHER_SUBJECT_NAME = "teacher_subject_name";
     public static final String TEACHER_SECTION = "teacher_sec_name";
     public static final String TEACHER_CLASS_NAME = "teacher_class_name";
     public static final String TEACHER_CLASS_TEACHER = "class_teacher";

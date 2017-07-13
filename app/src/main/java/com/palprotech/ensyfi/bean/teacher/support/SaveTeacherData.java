@@ -8,6 +8,8 @@ import com.palprotech.ensyfi.utils.PreferenceStorage;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 
 /**
@@ -47,6 +49,7 @@ public class SaveTeacherData {
             String TeacherSectionName = "";
             String TeacherClassName = "";
             String TeacherClassTaken = "";
+            String TeacherSubjectName = "";
 
             TeacherId = getTeacherProfile.getString("teacher_id");
             TeacherName = getTeacherProfile.getString("name");
@@ -65,6 +68,7 @@ public class SaveTeacherData {
             TeacherSubject = getTeacherProfile.getString("subject");
             TeacherClassTaken = getTeacherProfile.getString("class_taken");
             ClassTeacher = getTeacherProfile.getString("class_teacher");
+            TeacherSubjectName = getTeacherProfile.getString("subject_name");
             TeacherSectionName = getTeacherProfile.getString("sec_name");
             TeacherClassName = getTeacherProfile.getString("class_name");
 
@@ -161,6 +165,11 @@ public class SaveTeacherData {
             // Parents Preference - Student Secondary Mobile
             if ((TeacherClassTaken != null) && !(TeacherClassTaken.isEmpty()) && !TeacherClassTaken.equalsIgnoreCase("null")) {
                 PreferenceStorage.saveTeacherClassTaken(context, TeacherClassTaken);
+            }
+
+            // Parents Preference - Student Secondary Mobile
+            if ((TeacherSubjectName != null) && !(TeacherSubjectName.isEmpty()) && !TeacherSubjectName.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveTeacherSubjectName(context, TeacherSubjectName);
             }
 
 
@@ -286,6 +295,63 @@ public class SaveTeacherData {
                 System.out.println("table_id : " + i + " = " + months);
 
                 long x = database.academic_months_insert(months);
+
+                System.out.println("Stored Id : " + x);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void saveHomeWorkClassTest(JSONArray homeWorkClassTest) {
+        database = new SQLiteHelper(context);
+        try {
+            String formattedServerDate = "";
+            Calendar c = Calendar.getInstance();
+            SimpleDateFormat serverDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            formattedServerDate = serverDF.format(c.getTime());
+            database.deleteHomeWorkClassTest();
+
+            for (int i = 0; i < homeWorkClassTest.length(); i++) {
+                HashMap<String, String> map = new HashMap<String, String>();
+                JSONObject jsonobj = homeWorkClassTest.getJSONObject(i);
+
+                String hw_id = "";
+                String class_id = "";
+                String homeWork_type = "";
+                String subject_id = "";
+                String subject_name = "";
+                String title = "";
+                String test_date = "";
+                String due_date = "";
+                String homework_details = "";
+                String mark_status = "";
+
+
+                hw_id = jsonobj.getString("hw_id");
+                class_id = jsonobj.getString("class_id");
+                homeWork_type = jsonobj.getString("hw_type");
+                subject_id = jsonobj.getString("subject_id");
+                subject_name = jsonobj.getString("subject_name");
+                title = jsonobj.getString("title");
+                test_date = jsonobj.getString("test_date");
+                due_date = jsonobj.getString("due_date");
+                homework_details = jsonobj.getString("hw_details");
+                mark_status = jsonobj.getString("mark_status");
+
+                System.out.println("hw_id : " + i + " = " + hw_id);
+                System.out.println("class_id : " + i + " = " + class_id);
+                System.out.println("homeWork_type : " + i + " = " + homeWork_type);
+                System.out.println("subject_id : " + i + " = " + subject_id);
+                System.out.println("subject_name : " + i + " = " + subject_name);
+                System.out.println("title : " + i + " = " + title);
+                System.out.println("test_date : " + i + " = " + test_date);
+                System.out.println("due_date : " + i + " = " + due_date);
+                System.out.println("homework_details : " + i + " = " + homework_details);
+                System.out.println("mark_status : " + i + " = " + mark_status);
+
+
+                long x = database.homework_class_test_insert(hw_id, PreferenceStorage.getAcademicYearId(context), class_id, PreferenceStorage.getUserId(context), homeWork_type, subject_id, subject_name, title, test_date, due_date, homework_details, "Active", "0", PreferenceStorage.getUserId(context), formattedServerDate, PreferenceStorage.getUserId(context), formattedServerDate, "NS");
 
                 System.out.println("Stored Id : " + x);
             }

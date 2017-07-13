@@ -221,6 +221,12 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarGrey" />
 
+        <activity
+            android:name=".activity.teachermodule.ClassTestHomeWorkTeacherViewActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarGrey" />
+
         <!--End-->
         <!---->
         <!--Admin Module-->

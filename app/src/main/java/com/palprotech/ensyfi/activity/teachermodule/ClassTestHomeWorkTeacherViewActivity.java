@@ -1,0 +1,228 @@
+package com.palprotech.ensyfi.activity.teachermodule;
+
+import android.database.Cursor;
+import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.IdRes;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
+import android.widget.Toast;
+
+import com.palprotech.ensyfi.R;
+import com.palprotech.ensyfi.activity.studentmodule.AttendanceStatusActivity;
+import com.palprotech.ensyfi.adapter.teachermodule.ClassTestHomeWorkListBaseAdapter;
+import com.palprotech.ensyfi.adapter.teachermodule.StudentListBaseAdapter;
+import com.palprotech.ensyfi.bean.database.SQLiteHelper;
+import com.palprotech.ensyfi.bean.teacher.viewlist.ClassTestHomeWork;
+import com.palprotech.ensyfi.helper.ProgressDialogHelper;
+import com.palprotech.ensyfi.interfaces.DialogClickListener;
+import com.palprotech.ensyfi.servicehelpers.ServiceHelper;
+import com.palprotech.ensyfi.serviceinterfaces.IServiceListener;
+
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.TreeSet;
+import java.util.Vector;
+
+/**
+ * Created by Admin on 13-07-2017.
+ */
+
+public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity implements IServiceListener, AdapterView.OnItemClickListener, DialogClickListener {
+
+    private Spinner spnClassList;
+    ListView loadMoreListView;
+    private static final String TAG = "ClassTestHomeWorkTeacherView";
+    protected ProgressDialogHelper progressDialogHelper;
+    protected boolean isLoadingForFirstTime = true;
+    Handler mHandler = new Handler();
+    private SearchView mSearchView = null;
+    List<String> lsClassList = new ArrayList<String>();
+    ServiceHelper serviceHelper;
+    SQLiteHelper db;
+    Vector<String> vecClassList;
+    String getClassSectionId;
+    String classSection;
+    private RadioGroup radioClassTestHomeWork;
+    ArrayList<ClassTestHomeWork> myList = new ArrayList<ClassTestHomeWork>();
+    ClassTestHomeWorkListBaseAdapter cadapter;
+
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_class_test_homework_teacher_view);
+
+        db = new SQLiteHelper(getApplicationContext());
+        vecClassList = new Vector<String>();
+
+        serviceHelper = new ServiceHelper(this);
+        serviceHelper.setServiceListener(this);
+
+        progressDialogHelper = new ProgressDialogHelper(this);
+
+        loadMoreListView = (ListView) findViewById(R.id.listView_events);
+
+        loadMoreListView.setOnItemClickListener(this);
+
+        spnClassList = (Spinner) findViewById(R.id.class_list_spinner);
+
+        radioClassTestHomeWork = (RadioGroup) findViewById(R.id.radioClassTestHomeWorkView);
+
+        getClassList();
+        GetClassTestList(getClassSectionId, "HT");
+
+        spnClassList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                classSection = parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        radioClassTestHomeWork.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                String ClassTestOrHomeWork = "";
+                switch (checkedId) {
+                    case R.id.radioClassTest:
+                        ClassTestOrHomeWork = "HT";
+                        getClassId(classSection);
+                        GetClassTestList(getClassSectionId, ClassTestOrHomeWork);
+                        cadapter = new ClassTestHomeWorkListBaseAdapter(ClassTestHomeWorkTeacherViewActivity.this, myList);
+                        loadMoreListView.setAdapter(cadapter);
+
+                        break;
+
+                    case R.id.radioHomeWork:
+                        ClassTestOrHomeWork = "HW";
+                        getClassId(classSection);
+                        GetClassTestList(getClassSectionId, ClassTestOrHomeWork);
+                        cadapter = new ClassTestHomeWorkListBaseAdapter(ClassTestHomeWorkTeacherViewActivity.this, myList);
+                        loadMoreListView.setAdapter(cadapter);
+
+                        break;
+                }
+            }
+        });
+    }
+
+    private void GetClassTestList(String classSectionId, String ClassTestOrHomeWork) {
+
+        myList.clear();
+        try {
+            Cursor c = db.getClassTestHomeWork(classSectionId, ClassTestOrHomeWork);
+            if (c.getCount() > 0) {
+                if (c.moveToFirst()) {
+                    do {
+                        ClassTestHomeWork lde = new ClassTestHomeWork();
+                        lde.setId(Integer.parseInt(c.getString(0)));
+                        lde.setTitle(c.getString(1));
+                        lde.setSubjectName(c.getString(2));
+                        lde.setHomeWorkType(c.getString(3));
+                        lde.setTestDate(c.getString(4));
+
+                        // Add this object into the ArrayList myList
+                        myList.add(lde);
+
+                    } while (c.moveToNext());
+                }
+            } else {
+                Toast.makeText(getApplicationContext(), "No records", Toast.LENGTH_LONG).show();
+            }
+
+            db.close();
+
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
+    }
+
+    private void getClassId(String classSectionName) {
+
+        try {
+            Cursor c = db.getClassId(classSectionName);
+            if (c.getCount() > 0) {
+                if (c.moveToFirst()) {
+                    do {
+                        getClassSectionId = c.getString(0);
+                    } while (c.moveToNext());
+                }
+            }
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
+    }
+
+
+    private void getClassList() {
+
+        try {
+            Cursor c = db.getTeachersClass();
+            if (c.getCount() > 0) {
+                if (c.moveToFirst()) {
+                    do {
+                        vecClassList.add(c.getString(1));
+                    } while (c.moveToNext());
+                }
+            }
+            for (int i = 0; i < vecClassList.size(); i++) {
+                lsClassList.add(vecClassList.get(i));
+            }
+            HashSet hs = new HashSet();
+            TreeSet ts = new TreeSet(hs);
+            ts.addAll(lsClassList);
+            lsClassList.clear();
+            lsClassList.addAll(ts);
+            db.close();
+            ArrayAdapter<String> dataAdapter3 = new ArrayAdapter<String>(this, R.layout.spinner_item_ns, lsClassList);
+
+            spnClassList.setAdapter(dataAdapter3);
+            spnClassList.setWillNotDraw(false);
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "Error getting class list lookup", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onAlertPositiveClicked(int tag) {
+
+    }
+
+    @Override
+    public void onAlertNegativeClicked(int tag) {
+
+    }
+
+    @Override
+    public void onResponse(JSONObject response) {
+
+    }
+
+    @Override
+    public void onError(String error) {
+
+    }
+}

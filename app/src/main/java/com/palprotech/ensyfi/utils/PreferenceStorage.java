@@ -1655,6 +1655,22 @@ public class PreferenceStorage {
         return teacherClassTaken ;
     }
 
+    public static void saveTeacherSubjectName(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.TEACHER_SUBJECT_NAME, name);
+        editor.apply();
+    }
+
+    public static String getTeacherSubjectName(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String teacherSubject ;
+        teacherSubject = sharedPreferences.getString(EnsyfiConstants.TEACHER_SUBJECT_NAME, "");
+        return teacherSubject ;
+    }
+
     public static void saveTeacherSectionName(Context context, String name) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);

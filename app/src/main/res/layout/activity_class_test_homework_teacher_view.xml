@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_grey">
+
+        <Spinner
+            android:id="@+id/class_list_spinner"
+            style="@style/spinner_style"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="sans-serif"
+            android:overlapAnchor="false"
+            android:spinnerMode="dropdown"
+            android:textColor="@color/text_gray"
+            android:textSize="15sp" />
+
+        <RadioGroup
+            android:id="@+id/radioClassTestHomeWorkView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/class_list_spinner"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioClassTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Class Test"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:theme="@style/MySwitchTheme" />
+
+            <RadioButton
+                android:id="@+id/radioHomeWork"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home Work"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:theme="@style/MySwitchTheme" />
+
+        </RadioGroup>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/listView_events"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@color/background_grey"
+            android:dividerHeight="4dp">
+
+        </ListView>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -115,7 +115,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
         dashClassTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ClassTestHomeworkActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ClassTestHomeWorkTeacherViewActivity.class);
                 startActivity(intent);
             }
         });
@@ -252,7 +252,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 2) {
-            Intent navigationIntent = new Intent(this, ClassTestHomeworkActivity.class);
+            Intent navigationIntent = new Intent(this, ClassTestHomeWorkTeacherViewActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 3) {

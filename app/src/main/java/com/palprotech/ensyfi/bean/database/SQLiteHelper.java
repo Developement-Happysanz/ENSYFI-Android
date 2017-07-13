@@ -19,9 +19,9 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String TAG = "SQLiteHelper.java";
 
     private static final String DATABASE_NAME = "ENSYFI.db";
-    private static final int DATABASE_VERSION = 12;
+    private static final int DATABASE_VERSION = 17;
 
-    private String table_create_student = "Create table studentInfo(_id integer primary key autoincrement,"
+    private static final String table_create_student = "Create table IF NOT EXISTS studentInfo(_id integer primary key autoincrement,"
             + "registered_id text,"
             + "admission_id text,"
             + "admission_no text,"
@@ -30,7 +30,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             + "class_name text,"
             + "sec_name text);";
 
-    private String table_create_teacher_timetable = "Create table teacherTimeTable(_id integer primary key autoincrement,"
+    private static final String table_create_teacher_timetable = "Create table IF NOT EXISTS teacherTimeTable(_id integer primary key autoincrement,"
             + "table_id text,"
             + "class_id text,"
             + "subject_id text,"
@@ -42,14 +42,14 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             + "sec_name text,"
             + "class_name text);";
 
-    private String table_create_teacher_student_details = "Create table teachersStudentDetails(_id integer primary key autoincrement,"
+    private static final String table_create_teacher_student_details = "Create table IF NOT EXISTS teachersStudentDetails(_id integer primary key autoincrement,"
             + "enroll_id text,"
             + "admission_id text,"
             + "class_id text,"
             + "name text,"
             + "class_section text);";
 
-    private String table_create_attendance = "Create table attendance(_id integer primary key autoincrement,"
+    private static final String table_create_attendance = "Create table IF NOT EXISTS attendance(_id integer primary key autoincrement,"
             + "server_at_id text,"
             + "ac_year text,"
             + "class_id text,"
@@ -64,7 +64,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             + "status text,"
             + "sync_status text);";
 
-    private String table_create_attendance_history = "Create table attendanceHistory(_id integer primary key autoincrement,"
+    private static final String table_create_attendance_history = "Create table IF NOT EXISTS attendanceHistory(_id integer primary key autoincrement,"
             + "attend_id text,"
             + "server_attend_id text,"
             + "class_id text,"
@@ -80,23 +80,27 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             + "status text,"
             + "sync_status text);";
 
-    private String table_create_academic_months = "Create table academicMonths(_id integer primary key autoincrement,"
+    private static final String table_create_academic_months = "Create table IF NOT EXISTS academicMonths(_id integer primary key autoincrement,"
             + "academic_months text);";
 
-    private String table_create_homework_class_test = "Create table homeWorkClassTest(_id integer primary key autoincrement,"
-            + "attend_id text,"
-            + "server_attend_id text,"
+    private static final String table_create_homework_class_test = "Create table IF NOT EXISTS homeWorkClassTest(_id integer primary key autoincrement,"
+            + "server_hw_id text,"
+            + "year_id text,"
             + "class_id text,"
-            + "student_id text,"
-            + "abs_date text,"
-            + "a_status text,"
-            + "attend_period text,"
-            + "a_val text,"
-            + "a_taken_by text,"
+            + "teacher_id text,"
+            + "hw_type text,"
+            + "subject_id text,"
+            + "subject_name text,"
+            + "title text,"
+            + "test_date text,"
+            + "due_date text,"
+            + "hw_details text,"
+            + "status text,"
+            + "mark_status text,"
+            + "created_by text,"
             + "created_at text,"
             + "updated_by text,"
             + "updated_at text,"
-            + "status text,"
             + "sync_status text);";
 
     public SQLiteHelper(Context context) {
@@ -260,6 +264,16 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         return c;
     }
 
+    public Cursor getClassId(String classSection) throws SQLException {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String fetch = "Select distinct class_id from teachersStudentDetails where class_section='" + classSection + "';";
+        Cursor c = db.rawQuery(fetch, null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
     public Cursor getStudentsOfClass(String classSection) throws SQLException {
         SQLiteDatabase db = this.getWritableDatabase();
         String fetch = "Select * from teachersStudentDetails where class_section = '" + classSection + "' order by enroll_id;";
@@ -274,7 +288,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         String ok;
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("teachersStudentDetails", null, null);
-
     }
     /*
     *   End
@@ -342,7 +355,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         String ok;
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("attendance", null, null);
-
     }
     /*
     *   End
@@ -402,7 +414,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         String ok;
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("attendanceHistory", null, null);
-
     }
     /*
     *   End
@@ -434,7 +445,54 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         String ok;
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("academicMonths", null, null);
+    }
+    /*
+    *   End
+    */
 
+    /*
+  *   Academic Store & Retrieve Functionality
+  */
+    public long homework_class_test_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7, String val8, String val9, String val10, String val11, String val12, String val13, String val14, String val15, String val16, String val17, String val18) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues initialValues = new ContentValues();
+        initialValues.put("server_hw_id", val1);
+        initialValues.put("year_id", val2);
+        initialValues.put("class_id", val3);
+        initialValues.put("teacher_id", val4);
+        initialValues.put("hw_type", val5);
+        initialValues.put("subject_id", val6);
+        initialValues.put("subject_name", val7);
+        initialValues.put("title", val8);
+        initialValues.put("test_date", val9);
+        initialValues.put("due_date", val10);
+        initialValues.put("hw_details", val11);
+        initialValues.put("status", val12);
+        initialValues.put("mark_status", val13);
+        initialValues.put("created_by", val14);
+        initialValues.put("created_at", val15);
+        initialValues.put("updated_by", val16);
+        initialValues.put("updated_at", val17);
+        initialValues.put("sync_status", val18);
+        long l = db.insert("homeWorkClassTest", "_id", initialValues);
+        db.close();
+        return l;
+    }
+
+    public Cursor getClassTestHomeWork(String classId, String homeWorkType) throws SQLException {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String fetch = "Select _id,title,subject_name,hw_type,test_date from homeWorkClassTest where class_id=" + classId + " and hw_type = '" + homeWorkType + "' order by _id asc;";
+        Cursor c = db.rawQuery(fetch, null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+    public void deleteHomeWorkClassTest() {
+        String ok;
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("academicMonths", null, null);
     }
     /*
     *   End
