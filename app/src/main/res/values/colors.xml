@@ -70,5 +70,8 @@
     <color name="text_grey">#5D5E5E</color>
     <!---->
 
+    <!--Sync colors-->
+    <color name="disabled_text">#A7A9AC</color>
+    <!---->
 
 </resources>
