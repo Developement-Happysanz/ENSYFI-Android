@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.palprotech.ensyfi.R;
+import com.palprotech.ensyfi.activity.teachermodule.ClassTestHomeWorkTeacherViewActivity;
 import com.palprotech.ensyfi.bean.teacher.viewlist.ClassTestHomeWork;
 
 import java.util.ArrayList;
@@ -65,7 +66,16 @@ public class ClassTestHomeWorkListBaseAdapter extends BaseAdapter {
         mViewHolder.txtClassTestSubject.setText(currentListData.getSubjectName());
         mViewHolder.txtClassTestType.setText(currentListData.getHomeWorkType());
         mViewHolder.txtClassTestDate.setText(currentListData.getTestDate());
-        mViewHolder.txtClassTestHomeWorkId.setText(""+currentListData.getId());
+        mViewHolder.txtClassTestHomeWorkId.setText("" + currentListData.getId());
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TextView text = (TextView) view.findViewById(R.id.txtClassTestHomeWorkId);
+                String tEXT = text.getText().toString();
+                ((ClassTestHomeWorkTeacherViewActivity) context).viewClassTestHomeWorkDetailPage(Long.valueOf(tEXT).longValue());
+            }
+        });
 
         return convertView;
     }

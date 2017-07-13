@@ -1,5 +1,6 @@
 package com.palprotech.ensyfi.activity.teachermodule;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
@@ -151,6 +152,12 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
             Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
+    }
+
+    public void viewClassTestHomeWorkDetailPage(long id) {
+        Intent intent = new Intent(this, ClassTestHomeWorkDetailPageActivity.class);
+        intent.putExtra("id", id);
+        startActivityForResult(intent, 0);
     }
 
     private void getClassId(String classSectionName) {
