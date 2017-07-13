@@ -43,6 +43,7 @@ public class EventsActivity extends AppCompatActivity implements IServiceListene
     private ServiceHelper serviceHelper;
     ArrayList<Event> eventArrayList;
     int pageNumber = 0, totalCount = 0;
+
     protected ProgressDialogHelper progressDialogHelper;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
