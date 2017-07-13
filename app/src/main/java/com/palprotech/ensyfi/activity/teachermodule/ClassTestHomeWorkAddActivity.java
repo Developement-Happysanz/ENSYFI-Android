@@ -5,28 +5,34 @@ import android.content.DialogInterface;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
+import com.palprotech.ensyfi.adapter.teachermodule.ClassTestHomeWorkListBaseAdapter;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
 import com.palprotech.ensyfi.servicehelpers.ServiceHelper;
 import com.palprotech.ensyfi.serviceinterfaces.IServiceListener;
+import com.palprotech.ensyfi.utils.PreferenceStorage;
 
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
@@ -56,8 +62,9 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
     LinearLayout frombackground, tobackground;
     String formattedServerDate;
     private boolean isDoneClick = false;
-    String singleDate = "";
+    String singleDate = "", getClassSectionId, classSection, ClassTestOrHomeWork = "HT";
     DatePickerDialog mFromDatePickerDialog = null;
+    private RadioGroup radioClassTestHomeWork;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -86,15 +93,96 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
         dateTo = (TextView) findViewById(R.id.dateTo);
         dateTo.setOnClickListener(this);
 
+        radioClassTestHomeWork = (RadioGroup) findViewById(R.id.radioClassTestHomeWorkView);
+
+        frombackground = (LinearLayout) findViewById(R.id.fromDatee);
+        tobackground = (LinearLayout) findViewById(R.id.toDatee);
+
         getClassList();
+
+//        String getClassId = spnClassList.getSelectedItem().toString();
+//        getClassId(getClassId);
+
+        radioClassTestHomeWork.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+
+                switch (checkedId) {
+                    case R.id.radioClassTest:
+                        ClassTestOrHomeWork = "HT";
+                        getClassId(classSection);
+                        break;
+
+                    case R.id.radioHomeWork:
+                        ClassTestOrHomeWork = "HW";
+                        getClassId(classSection);
+                        break;
+                }
+            }
+        });
+
+        spnClassList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                classSection = parent.getItemAtPosition(position).toString();
+                getClassId(classSection);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
     }
 
     private void saveClassTestHomeWork() {
-        String classId, homeWorkType,title,description;
 
+        SimpleDateFormat serverDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        formattedServerDate = serverDF.format(c.getTime());
 
+        String serverHomeWorkId = "";
+        String yearId = PreferenceStorage.getAcademicYearId(this);
+        String classId = getClassSectionId;
+        String teacherId = PreferenceStorage.getUserId(this);
+        String homeWorkType = ClassTestOrHomeWork;
+        String subjectId = PreferenceStorage.getTeacherSubject(this);
+        String subjectName = PreferenceStorage.getTeacherSubjectName(this);
+        String title = edtSetTitle.getText().toString();
+        String testDate = mFromDateVal;
+        String dueDate = mToDateVal;
+        String homeWorkDetails = edtDescription.getText().toString();
+        String status = "Active";
+        String markStatus = "0";
+        String createdBy = PreferenceStorage.getUserId(this);
+        String createdAt = formattedServerDate;
+        String updatedBy = PreferenceStorage.getUserId(this);
+        String updatedAt = formattedServerDate;
+        String syncStatus = "NS";
 
+        long x = db.homework_class_test_insert(serverHomeWorkId, yearId, classId, teacherId, homeWorkType, subjectId,
+                subjectName, title, testDate, dueDate, homeWorkDetails, status, markStatus,
+                createdBy, createdAt, updatedBy, updatedAt, syncStatus);
+
+        System.out.println("Stored Id : " + x);
+
+    }
+
+    private void getClassId(String classSectionName) {
+
+        try {
+            Cursor c = db.getClassId(classSectionName);
+            if (c.getCount() > 0) {
+                if (c.moveToFirst()) {
+                    do {
+                        getClassSectionId = c.getString(0);
+                    } while (c.moveToNext());
+                }
+            }
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
     }
 
     private static String formatDate(int year, int month, int day) {
