@@ -94,139 +94,172 @@
                     android:textSize="25dp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/clstitle1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txthomeworksubject"
-                    android:text="Topic :"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    android:textColor="@color/appColor"
-                    android:textSize="23sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/clstitle"
+                <LinearLayout
+                    android:id="@+id/titleLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/clstitle1"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="10dp"
-                    android:text="Aksldfjksdlfnsd,nslckjsdl;ckjaskc,znc,xnc,ad"
-                    android:textColor="@color/black"
-                    android:textSize="18dp" />
+                    android:layout_below="@+id/txthomeworksubject"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/clstitle1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txthomeworksubject"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="20dp"
+                        android:text="Topic :"
+                        android:textColor="@color/appColor"
+                        android:textSize="23sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/clstitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/clstitle1"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Aksldfjksdlfnsd,nslckjsdl;ckjaskc,znc,xnc,ad"
+                        android:textColor="@color/black"
+                        android:textSize="18dp" />
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/underlinetopic"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_below="@+id/clstitle"
+                    android:layout_below="@+id/titleLayout"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="10dp"
                     android:background="@color/text_grey" />
 
-                <TextView
-                    android:id="@+id/describ"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtDueDate"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    android:text="Description :"
-                    android:textColor="@color/appColor"
-                    android:textSize="23sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txthomeworkdetails"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/describ"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:text="Description :"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/underlinedescription"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@+id/txthomeworkdetails"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/text_grey" />
-
-                <TextView
-                    android:id="@+id/txtTestDateTitle"
+                <LinearLayout
+                    android:id="@+id/testDateLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/underlinetopic"
-                    android:text="Test Date :"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="20dp"
-                    android:textColor="@color/appColor"
-                    android:textSize="23sp"
-                    android:textStyle="bold"/>
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/txtTestDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtTestDateTitle"
-                    android:layout_alignLeft="@+id/txtTestDateTitle"
-                    android:layout_marginTop="10dp"
-                    android:text="Test Date"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txtTestDateTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/underlinetopic"
+                        android:layout_marginTop="20dp"
+                        android:text="Test Date :"
+                        android:textColor="@color/appColor"
+                        android:textSize="23sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtTestDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@+id/txtTestDateTitle"
+                        android:layout_below="@+id/txtTestDateTitle"
+                        android:layout_marginTop="10dp"
+                        android:text="Test Date"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/underlineTestDate"
                     android:layout_width="wrap_content"
                     android:layout_height="1dp"
-                    android:layout_alignLeft="@+id/txtTestDateTitle"
-                    android:layout_alignRight="@+id/txtTestDateTitle"
-                    android:layout_below="@+id/txtTestDate"
-
+                    android:layout_alignLeft="@+id/testDateLayout"
+                    android:layout_alignRight="@+id/testDateLayout"
+                    android:layout_below="@+id/testDateLayout"
                     android:layout_marginTop="10dp"
                     android:background="@color/text_grey" />
 
-                <TextView
-                    android:id="@+id/txtDueDateTitle"
+                <LinearLayout
+                    android:id="@+id/dueDateLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/underlinetopic"
                     android:layout_alignParentRight="true"
-                    android:text="Due Date :"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginTop="20dp"
-                    android:textColor="@color/appColor"
-                    android:textSize="23sp"
-                    android:textStyle="bold"/>
+                    android:layout_below="@+id/underlinetopic"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/txtDueDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtDueDateTitle"
-                    android:layout_alignLeft="@+id/txtDueDateTitle"
-                    android:layout_marginTop="10dp"
-                    android:text="Due Date"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    <TextView
+                        android:id="@+id/txtDueDateTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/underlinetopic"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginTop="20dp"
+                        android:text="Due Date :"
+                        android:textColor="@color/appColor"
+                        android:textSize="23sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtDueDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@+id/txtDueDateTitle"
+                        android:layout_below="@+id/txtDueDateTitle"
+                        android:layout_marginTop="10dp"
+                        android:text="Due Date"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/underlineDueDate"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_alignLeft="@+id/txtDueDate"
+                    android:layout_alignLeft="@+id/dueDateLayout"
+                    android:layout_below="@+id/dueDateLayout"
                     android:layout_marginRight="30dp"
-                    android:layout_below="@+id/txtDueDate"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/text_grey" />
+
+                <LinearLayout
+                    android:id="@+id/descriptionLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/testDateLayout"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/describ"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="20dp"
+                        android:text="Description :"
+                        android:textColor="@color/appColor"
+                        android:textSize="23sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txthomeworkdetails"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/describ"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Description :"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/underlinedescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/descriptionLayout"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginTop="10dp"
                     android:background="@color/text_grey" />
 

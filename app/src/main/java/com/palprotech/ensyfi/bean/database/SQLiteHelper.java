@@ -363,7 +363,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     /*
     *   Attendance History Store & Retrieve Functionality
     */
-    public long student_attendance_history_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7, String val8, String val9, String val10, String val11, String val12) {
+    public long student_attendance_history_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7, String val8, String val9, String val10, String val11, String val12,String val13) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues initialValues = new ContentValues();
         initialValues.put("attend_id", val1);
@@ -376,9 +376,9 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         initialValues.put("a_taken_by", val8);
         initialValues.put("created_at", val9);
         initialValues.put("updated_by", val10);
-        initialValues.put("updated_at", val10);
-        initialValues.put("status", val11);
-        initialValues.put("sync_status", val12);
+        initialValues.put("updated_at", val11);
+        initialValues.put("status", val12);
+        initialValues.put("sync_status", val13);
         long l = db.insert("attendanceHistory", "_id", initialValues);
         db.close();
         return l;
@@ -394,7 +394,18 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     public Cursor getAttendanceHistoryList(String val1) throws SQLException {
         SQLiteDatabase db = this.getWritableDatabase();
-        String fetch = "Select _id, attend_id,server_attend_id, class_id, student_id, abs_date, a_status, attend_period, a_val, a_taken_by, created_at, status from attendanceHistory where sync_status = 'NS' and server_attend_id = " + val1 + " order by _id;";
+        String fetch = "Select _id, " +
+                "attend_id," +
+                "server_attend_id, " +
+                "class_id, " +
+                "student_id, " +
+                "abs_date, " +
+                "a_status, " +
+                "attend_period, " +
+                "a_val, " +
+                "a_taken_by, " +
+                "created_at, " +
+                "status from attendanceHistory where sync_status = 'NS' and server_attend_id = " + val1 + " order by _id;";
         Cursor c = db.rawQuery(fetch, null);
         if (c != null) {
             c.moveToFirst();

@@ -50,7 +50,7 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
     List<String> lsClassList = new ArrayList<String>();
     ArrayList<Students> myList = new ArrayList<Students>();
     ArrayAdapter<String> adptClassList;
-    String set1, set2, set3;
+    String set1, set2, set3, AM_PM;
     ListView lvStudent;
     Button btnSave;
     TextView txtDateTime;
@@ -86,8 +86,10 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
         int a = now.get(Calendar.AM_PM);
         if (a == Calendar.AM) {
             setAM_PM = a;
+            AM_PM = String.valueOf(setAM_PM);
         } else {
             setAM_PM = a;
+            AM_PM = String.valueOf(setAM_PM);
         }
 
 
@@ -145,7 +147,7 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
                         SimpleDateFormat slocalDF = new SimpleDateFormat("yyyy-MM-dd");
                         String formattedLocalInsertDate = slocalDF.format(c.getTime());
 
-                        long c = db.student_attendance_history_insert(lastInsertedId, storeClassId, enrollId, formattedLocalInsertDate, attendanceStatus, "AM", PreferenceStorage.getUserId(getApplicationContext()), formattedServerDate, PreferenceStorage.getUserId(getApplicationContext()), formattedServerDate, "A", "NS");
+                        long c = db.student_attendance_history_insert(lastInsertedId, storeClassId, enrollId, formattedLocalInsertDate, attendanceStatus, AM_PM, "", PreferenceStorage.getUserId(getApplicationContext()), formattedServerDate, PreferenceStorage.getUserId(getApplicationContext()), formattedServerDate, "A", "NS");
                         if (c == -1) {
                             Toast.makeText(getApplicationContext(), "Error while attendance insert...",
                                     Toast.LENGTH_LONG).show();

@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,21 +18,38 @@ import com.palprotech.ensyfi.bean.teacher.viewlist.ClassTestHomeWork;
  * Created by Admin on 13-07-2017.
  */
 
-public class ClassTestHomeWorkDetailPageActivity extends AppCompatActivity {
+public class ClassTestHomeWorkDetailPageActivity extends AppCompatActivity implements View.OnClickListener {
 
     SQLiteHelper db;
-    String homeWorkId, serverHomeWorkId, yearId, classId, teacherId, homeWorkType, subjectId, subjectName, title, testDate, dueDate, homeWorkDetails, status, markStatus, createdBy, createdAt, updatedBy, updatedAt, syncStatus;
+    String homeWorkId, serverHomeWorkId, yearId, classId, teacherId, homeWorkType, subjectId, subjectName, title,
+            testDate, dueDate, homeWorkDetails, status, markStatus, createdBy, createdAt, updatedBy, updatedAt, syncStatus;
+    TextView txtSubjectName, clsTitle, txtHomeWorkDtails, txtTestDate, txtDueDate, txtPageTitle, txtDueDateTitle, txtTestDateTitle;
+    ImageView addMarks, viewMarks;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_class_test_homework_detail_page);
+
         Intent intent = getIntent();
         long id = getIntent().getExtras().getLong("id");
-//        TextView txtId = (TextView) findViewById(R.id.txtId);
         db = new SQLiteHelper(getApplicationContext());
-//        txtId.setText("" + id);
         String homeWorkId = String.valueOf(id);
+
+        txtPageTitle = (TextView) findViewById(R.id.tvtitletext);
+        txtSubjectName = (TextView) findViewById(R.id.txthomeworksubject);
+        clsTitle = (TextView) findViewById(R.id.clstitle);
+        txtHomeWorkDtails = (TextView) findViewById(R.id.txthomeworkdetails);
+        txtTestDate = (TextView) findViewById(R.id.txtTestDate);
+        txtDueDate = (TextView) findViewById(R.id.txtDueDate);
+        txtDueDateTitle = (TextView) findViewById(R.id.txtDueDateTitle);
+        txtTestDateTitle = (TextView) findViewById(R.id.txtTestDateTitle);
+
+        addMarks = (ImageView) findViewById(R.id.addMarks);
+        addMarks.setOnClickListener(this);
+        viewMarks = (ImageView) findViewById(R.id.viewMarks);
+        viewMarks.setOnClickListener(this);
+
         GetHomeWorkClassTestDetails(homeWorkId);
     }
 
@@ -61,6 +80,7 @@ public class ClassTestHomeWorkDetailPageActivity extends AppCompatActivity {
                         updatedAt = c.getString(17);
                         syncStatus = c.getString(18);
 
+
                     } while (c.moveToNext());
                 }
             } else {
@@ -69,9 +89,43 @@ public class ClassTestHomeWorkDetailPageActivity extends AppCompatActivity {
 
             db.close();
 
+            if (homeWorkType.equalsIgnoreCase("HT")) {
+                txtPageTitle.setText("Class Test");
+                int checkMarkStatus;
+                checkMarkStatus = Integer.parseInt(markStatus);
+                txtDueDateTitle.setVisibility(View.GONE);
+                txtDueDate.setVisibility(View.GONE);
+                if (checkMarkStatus == 0) {
+                    addMarks.setVisibility(View.VISIBLE);
+                    viewMarks.setVisibility(View.GONE);
+                } else {
+                    addMarks.setVisibility(View.GONE);
+                    viewMarks.setVisibility(View.VISIBLE);
+                }
+
+            } else {
+                txtPageTitle.setText("Homework");
+                addMarks.setVisibility(View.GONE);
+                viewMarks.setVisibility(View.GONE);
+                txtDueDateTitle.setVisibility(View.VISIBLE);
+                txtDueDate.setVisibility(View.VISIBLE);
+                txtTestDateTitle.setText("Given Date :");
+            }
+            txtSubjectName.setText(subjectName);
+            clsTitle.setText(title);
+            txtHomeWorkDtails.setText(homeWorkDetails);
+            txtTestDate.setText(testDate);
+            txtDueDate.setText(dueDate);
+
+
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

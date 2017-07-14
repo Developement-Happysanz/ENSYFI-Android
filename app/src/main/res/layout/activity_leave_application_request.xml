@@ -69,7 +69,6 @@
                     android:layout_marginTop="30dp"
                     android:layout_gravity="center"
                     android:overlapAnchor="false"
-                    android:prompt="Leave Type"
                     android:spinnerMode="dropdown"
                     android:textColor="@color/text_gray"
                     android:textSize="15sp" />
