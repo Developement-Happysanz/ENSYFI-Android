@@ -172,6 +172,7 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
 
         System.out.println("Stored Id : " + x);
 
+        finish();
     }
 
     private void getClassId(String classSectionName) {

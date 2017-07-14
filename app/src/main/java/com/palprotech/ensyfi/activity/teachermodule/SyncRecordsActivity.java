@@ -33,11 +33,13 @@ public class SyncRecordsActivity extends AppCompatActivity implements IServiceLi
     private static final String TAG = SyncRecordsActivity.class.getName();
     private ServiceHelper serviceHelper;
     private Button btnSyncAttendanceRecords;
+    private Button btnSyncClassTestHomeworkRecords;
     private SyncAttendanceHistoryRecordsActivity syncAttendanceHistoryRecordsActivity;
+    private SyncClassTestHomeWork syncClassTestHomeWork;
     private ProgressDialogHelper progressDialogHelper;
     SQLiteHelper db;
-    String localAttendanceId, ac_year, class_id, class_total, no_of_present, no_of_absent, attendance_period, created_by, created_at, status;
-
+    String localAttendanceId, ac_year, class_id, class_total, no_of_present, no_of_absent,
+            attendance_period, created_by, created_at, status;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,9 +49,13 @@ public class SyncRecordsActivity extends AppCompatActivity implements IServiceLi
         btnSyncAttendanceRecords = (Button) findViewById(R.id.btnSyncAttendanceRecords);
         btnSyncAttendanceRecords.setOnClickListener(this);
 
+        btnSyncClassTestHomeworkRecords = (Button) findViewById(R.id.btnSyncClassTestHomeworkRecords);
+        btnSyncClassTestHomeworkRecords.setOnClickListener(this);
+
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
         syncAttendanceHistoryRecordsActivity = new SyncAttendanceHistoryRecordsActivity(this);
+        syncClassTestHomeWork = new SyncClassTestHomeWork(this);
         progressDialogHelper = new ProgressDialogHelper(this);
     }
 
@@ -101,8 +107,10 @@ public class SyncRecordsActivity extends AppCompatActivity implements IServiceLi
                     ex.printStackTrace();
                 }
             }
+            if (v == btnSyncClassTestHomeworkRecords) {
+                syncClassTestHomeWork.syncClassTestHomeWorkRecords();
+            }
         }
-
     }
 
     @Override

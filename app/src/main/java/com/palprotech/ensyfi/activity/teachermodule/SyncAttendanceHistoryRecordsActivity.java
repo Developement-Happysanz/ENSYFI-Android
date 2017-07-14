@@ -25,7 +25,9 @@ public class SyncAttendanceHistoryRecordsActivity implements IServiceListener {
 
     private static final String TAG = "SyncAttendanceHistory";
     private Context context;
-    String localAttendanceHistoryId, history_attend_id, history_server_attend_id, history_class_id, history_student_id, history_abs_date, history_a_status, history_attend_period, history_a_val, history_a_taken_by, history_created_at, history_status;
+    String localAttendanceHistoryId, history_attend_id, history_server_attend_id, history_class_id, history_student_id,
+            history_abs_date, history_a_status, history_attend_period, history_a_val, history_a_taken_by, history_created_at,
+            history_status;
     SQLiteHelper db;
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper progressDialogHelper;

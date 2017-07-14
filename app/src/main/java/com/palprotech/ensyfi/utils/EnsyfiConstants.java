@@ -76,6 +76,10 @@ public class EnsyfiConstants {
     public static final String GET_TEACHERS_CLASS_ATTENDANCE_API = "/apiteacher/sync_Attendance/";
     public static final String GET_TEACHERS_CLASS_ATTENDANCE_HISTORY_API = "/apiteacher/sync_Attendancehistory/";
 
+    // CLASS TEST & HOMEWORK
+    public static final String GET_CLASS_TEST_HOMEWORK_API = "/apiteacher/add_Homework/";
+    public static final String GET_CLASS_TEST_MARK_API = "/apiteacher/add_HWmarks/";
+
 
     // PARAMETERS
     //Service Params
@@ -286,6 +290,23 @@ public class EnsyfiConstants {
     public static final String PARAMS_DISPLAY_DATE = "disp_date";
     public static final String PARAMS_DISPLAY_MONTH_YEAR = "month_year";
 
+    // Class Test & Homework Params
+    public static final String PARAMS_CTHW_CLASS_ID = "class_id";
+    public static final String PARAMS_CTHW_TEACHER_ID = "teacher_id";
+    public static final String PARAMS_CTHW_HOMEWORK_TYPE = "homeWork_type";
+    public static final String PARAMS_CTHW_SUBJECT_ID = "subject_id";
+    public static final String PARAMS_CTHW_TITLE = "title";
+    public static final String PARAMS_CTHW_TEST_DATE = "test_date";
+    public static final String PARAMS_CTHW_DUE_DATE = "due_date";
+    public static final String PARAMS_CTHW_HOMEWORK_DETAILS = "homework_details";
+    public static final String PARAMS_CTHW_CREATED_BY = "created_by";
+    public static final String PARAMS_CTHW_CREATED_AT = "created_at";
 
-
+    // Class Test Marks Params
+    public static final String PARAMS_CTMARKS_HW_SERVER_MASTER_ID = "hw_masterid";
+    public static final String PARAMS_CTMARKS_STUDENT_ID = "student_id";
+    public static final String PARAMS_CTMARKS_MARKS = "marks";
+    public static final String PARAMS_CTMARKS_REMARKS = "remarks";
+    public static final String PARAMS_CTMARKS_CREATED_BY = "created_by";
+    public static final String PARAMS_CTMARKS_CREATED_AT = "created_at";
 }

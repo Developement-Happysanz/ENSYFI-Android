@@ -546,6 +546,32 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         sqdb.update("homeWorkClassTest", values, "_id=" + val1, null);
     }
 
+    public Cursor getClassTestHomeWorkList() throws SQLException {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String fetch = "Select * from homeWorkClassTest where sync_status = 'NS' order by _id;";
+        Cursor c = db.rawQuery(fetch, null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+    public void updateClassTestHomeWorkServerId(String val1, String val2) {
+        SQLiteDatabase sqdb = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("server_hw_id", val1);
+        System.out.print(val1 + "--" + val2);
+        sqdb.update("homeWorkClassTest", values, "_id=" + val2, null);
+    }
+
+    public void updateClassTestHomeWorkSyncStatus(String val1) {
+        SQLiteDatabase sqdb = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("sync_status", "S");
+        System.out.print(val1);
+        sqdb.update("homeWorkClassTest", values, "_id=" + val1, null);
+    }
+
     public void deleteHomeWorkClassTest() {
         String ok;
         SQLiteDatabase db = this.getWritableDatabase();
@@ -575,5 +601,37 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         long l = db.insert("classTestMark", "_id", initialValues);
         db.close();
         return l;
+    }
+
+    public Cursor getClassTestMarkList(String val1) throws SQLException {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String fetch = "Select * from classTestMark where sync_status = 'NS' and server_hw_id = " + val1 + " order by _id;";
+        Cursor c = db.rawQuery(fetch, null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+    public void updateClassTestMarkServerId(String val1, String val2) {
+        SQLiteDatabase sqdb = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("server_hw_id", val1);
+        System.out.print(val1 + "--" + val2);
+        sqdb.update("classTestMark", values, "local_hw_id=" + val2, null);
+    }
+
+    public void updateClassTestSyncStatus(String val1) {
+        SQLiteDatabase sqdb = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("sync_status", "S");
+        System.out.print(val1);
+        sqdb.update("classTestMark", values, "_id=" + val1, null);
+    }
+
+    public void deleteClassTestMark() {
+        String ok;
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("homeWorkClassTest", null, null);
     }
 }
