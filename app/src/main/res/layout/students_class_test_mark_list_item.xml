@@ -7,77 +7,52 @@
     <LinearLayout
         android:id="@+id/layout_frame"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:background="@color/black"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/txt_studentId"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/class_test_marks"
-            android:layout_alignParentLeft="true"
-            android:layout_alignTop="@+id/class_test_marks"
-            android:layout_marginLeft="2dp"
-            android:layout_weight="0.25"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_weight="0.20"
             android:background="@color/white"
             android:gravity="center"
-            android:text="Roll NO."
+            android:text="ID"
             android:textColor="@color/black"
             android:textSize="15sp" />
 
         <TextView
             android:id="@+id/txt_studentName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/class_test_marks"
-            android:layout_alignTop="@+id/class_test_marks"
-            android:layout_marginLeft="2dp"
-            android:layout_toLeftOf="@+id/class_test_marks"
-            android:layout_toRightOf="@+id/txt_studentId"
-            android:layout_weight="0.25"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_weight="0.60"
             android:background="@color/white"
-            android:gravity="center"
-            android:text="Student Name"
+            android:gravity="left|center"
+            android:text="Name"
             android:textColor="@color/black"
             android:textSize="15sp" />
 
         <EditText
             android:id="@+id/class_test_marks"
-            android:layout_width="120dp"
-            android:layout_height="50dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_marginTop="1dp"
-            android:layout_weight="0.25"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_weight="0.20"
             android:background="@color/white"
+            android:gravity="left|center"
             android:hint="mark"
-            android:textColor="@color/text_gray"
+            android:inputType="numberSigned"
+            android:maxLength="3"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray_2"
             android:textSize="15sp" />
-
-        <EditText
-            android:id="@+id/class_test_marks_remarks"
-            android:layout_width="120dp"
-            android:layout_height="50dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_marginTop="1dp"
-            android:layout_weight="0.25"
-            android:background="@color/white"
-            android:hint="Remark"
-            android:textColor="@color/text_gray"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/txt_tblPKey"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="no"
-            android:textSize="16dp"
-            android:visibility="gone" />
 
     </LinearLayout>
 

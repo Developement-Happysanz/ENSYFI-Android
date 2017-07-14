@@ -67,7 +67,6 @@ public class StudentListBaseAdapter extends BaseAdapter {
         mViewHolder.txtStudentId.setText(currentListData.getEnrollId());
         mViewHolder.txtStudentName.setText(currentListData.getStudentName());
 
-
         return convertView;
     }
 

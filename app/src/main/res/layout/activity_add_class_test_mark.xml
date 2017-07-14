@@ -1,8 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/appColor"
+            android:minHeight="?attr/actionBarSize" />
+
+        <ImageView
+            android:id="@+id/back_res"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:minHeight="?attr/actionBarSize"
+            android:paddingLeft="15dp"
+            android:src="@drawable/ic_arrow_back_white_48dp" />
+
+        <TextView
+            android:id="@+id/tvtitletext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:minHeight="?attr/actionBarSize"
+            android:paddingLeft="10dp"
+            android:text="Class Test Mark"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/actionbarTextSize" />
+
+        <ImageView
+            android:id="@+id/btnSave"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:src="@drawable/od_apply"
+            android:visibility="visible" />
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/classList"
@@ -49,77 +96,66 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/listOfStudents"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/classList"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:background="@color/black">
-
-        <TextView
-            android:id="@+id/attendrollnum"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/attendstudmark"
-            android:layout_alignTop="@+id/attendstudmark"
-            android:layout_marginLeft="2dp"
-            android:background="@color/appColor"
-            android:gravity="center"
-            android:text="Roll No."
-            android:textColor="@color/white"
-            android:textSize="18dp" />
-
-        <TextView
-            android:id="@+id/attendstudname"
+        <RelativeLayout
+            android:id="@+id/listOfStudents"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/attendstudmark"
-            android:layout_alignTop="@+id/attendstudmark"
-            android:layout_marginLeft="2dp"
-            android:layout_toLeftOf="@+id/attendstudmark"
-            android:layout_toRightOf="@id/attendrollnum"
-            android:background="@color/appColor"
-            android:gravity="center"
-            android:text="Student Name"
-            android:textColor="@color/white"
-            android:textSize="18dp" />
+            android:layout_below="@+id/classList"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@color/black">
 
-        <TextView
-            android:id="@+id/attendstudmark"
-            android:layout_width="120dp"
-            android:layout_height="50dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_marginTop="2dp"
-            android:background="@color/appColor"
-            android:gravity="center"
-            android:text="Student Mark"
-            android:textColor="@color/white"
-            android:textSize="18dp" />
+            <LinearLayout
+                android:id="@+id/attendrollnum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-        <ListView
-            android:id="@+id/listView_students"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/attendrollnum"
-            android:divider="@color/black"
-            android:dividerHeight="0dp">
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_weight="0.20"
+                    android:background="@color/appColor"
+                    android:gravity="center"
+                    android:text="ID"
+                    android:textColor="@color/white"
+                    android:textSize="18dp" />
 
-        </ListView>
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_weight="060"
+                    android:background="@color/appColor"
+                    android:gravity="center"
+                    android:text="Name"
+                    android:textColor="@color/white"
+                    android:textSize="18dp" />
 
-    </RelativeLayout>
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_weight="0.20"
+                    android:background="@color/appColor"
+                    android:gravity="center"
+                    android:text="Mark"
+                    android:textColor="@color/white"
+                    android:textSize="18dp" />
 
-    <Button
-        android:id="@+id/btnSave"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:background="@drawable/btn_square_fill_color"
-        android:text="Save"
-        android:textColor="@color/white" />
+            </LinearLayout>
 
-</RelativeLayout>
+            <ListView
+                android:id="@+id/listView_students"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/attendrollnum"
+                android:divider="@color/black"
+                android:dividerHeight="1dp">
+
+            </ListView>
+
+        </RelativeLayout>
+
+</LinearLayout>

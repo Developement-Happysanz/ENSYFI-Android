@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,7 +37,7 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
             testDate, dueDate, homeWorkDetails, status, markStatus, createdBy, createdAt, updatedBy, updatedAt, syncStatus;
     ListView lvStudent;
     ArrayList<StudentsClassTestMarks> myList = new ArrayList<StudentsClassTestMarks>();
-    Button btnSave;
+    ImageView btnSave;
     private String storeClassId;
     Calendar c = Calendar.getInstance();
     String homeWorkId, formattedServerDate;
@@ -55,7 +56,7 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
 
         lvStudent = (ListView) findViewById(R.id.listView_students);
 
-        btnSave = (Button) findViewById(R.id.btnSave);
+        btnSave = (ImageView) findViewById(R.id.btnSave);
         btnSave.setOnClickListener(this);
 
         SimpleDateFormat serverDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -157,18 +158,19 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
         View view;
         ArrayList<String> mannschaftsnamen = new ArrayList<String>();
         TextView et, et1;
-        EditText edtMarks, edtRemarks;
+        EditText edtMarks;
         for (int i = 0; i < lvStudent.getCount(); i++) {
             et = (TextView) lvStudent.getChildAt(i).findViewById(R.id.txt_studentId);
             et1 = (TextView) lvStudent.getChildAt(i).findViewById(R.id.txt_studentName);
             edtMarks = (EditText) lvStudent.getChildAt(i).findViewById(R.id.class_test_marks);
-            edtRemarks = (EditText) lvStudent.getChildAt(i).findViewById(R.id.class_test_marks_remarks);
+//            edtRemarks = (EditText) lvStudent.getChildAt(i).findViewById(R.id.class_test_marks_remarks);
             if (et != null) {
                 mannschaftsnamen.add(String.valueOf(et.getText()));
                 String enrollId = String.valueOf(et.getText());
                 String studentName = String.valueOf(et1.getText());
                 String marks = edtMarks.getText().toString();
-                String remarks = edtRemarks.getText().toString();
+                String remarks = "";
+//                        = edtRemarks.getText().toString();
                 if (marks.isEmpty()) {
                     marks = "0";
                 }
