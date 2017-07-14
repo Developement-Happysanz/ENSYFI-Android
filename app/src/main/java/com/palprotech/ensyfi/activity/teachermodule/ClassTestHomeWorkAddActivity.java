@@ -150,7 +150,7 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
         String serverHomeWorkId = "";
         String yearId = PreferenceStorage.getAcademicYearId(this);
         String classId = getClassSectionId;
-        String teacherId = PreferenceStorage.getUserId(this);
+        String teacherId = PreferenceStorage.getTeacherId(this);
         String homeWorkType = ClassTestOrHomeWork;
         String subjectId = PreferenceStorage.getTeacherSubject(this);
         String subjectName = PreferenceStorage.getTeacherSubjectName(this);

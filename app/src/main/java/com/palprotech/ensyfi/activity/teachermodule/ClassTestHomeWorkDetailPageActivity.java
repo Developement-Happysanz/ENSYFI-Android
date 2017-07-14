@@ -139,8 +139,8 @@ public class ClassTestHomeWorkDetailPageActivity extends AppCompatActivity imple
         }
 
         if (v == viewMarks) {
-            Intent intent = new Intent(getApplicationContext(), ViewClassTestMarkActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent(getApplicationContext(), ViewClassTestMarkActivity.class);
+//            startActivity(intent);
         }
     }
 }
