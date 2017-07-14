@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_grey">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/tlbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/appColor"
+                android:minHeight="?attr/actionBarSize" />
+
+            <ImageView
+                android:id="@+id/back_res"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:minHeight="?attr/actionBarSize"
+                android:paddingLeft="15dp"
+                android:src="@drawable/ic_arrow_back_white_48dp" />
+
+            <TextView
+                android:id="@+id/tvtitletext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:minHeight="?attr/actionBarSize"
+                android:paddingLeft="10dp"
+                android:text="Leave Request"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/actionbarTextSize" />
+
+        </RelativeLayout>
+        <!--End-->
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <Spinner
+                    android:id="@+id/class_list_spinner"
+                    style="@style/spinner_style"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_gravity="center"
+                    android:overlapAnchor="false"
+                    android:prompt="Leave Type"
+                    android:spinnerMode="dropdown"
+                    android:textColor="@color/text_gray"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:text="Start Date"
+                        android:textColor="@color/black"
+                        android:textSize="22dp" />
+
+                    <LinearLayout
+                        android:id="@+id/fromDatee"
+                        android:layout_width="150dp"
+                        android:layout_height="75dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/white"
+                        android:gravity="right">
+
+                        <TextView
+                            android:id="@+id/dateFrom"
+                            android:layout_width="140dp"
+                            android:layout_height="75dp"
+                            android:background="@color/white"
+                            android:drawableLeft="@drawable/od_from_date_unselected"
+                            android:gravity="center"
+                            android:text="Select date"
+                            android:textSize="20dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="To :"
+                        android:textColor="@color/black"
+                        android:textSize="22dp" />
+
+                    <LinearLayout
+                        android:id="@+id/toDatee"
+                        android:layout_width="150dp"
+                        android:layout_height="75dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/white"
+                        android:gravity="right">
+
+                        <TextView
+                            android:id="@+id/dateTo"
+                            android:layout_width="140dp"
+                            android:layout_height="75dp"
+                            android:background="@color/white"
+                            android:drawableLeft="@drawable/od_from_date_unselected"
+                            android:gravity="center"
+                            android:text="Select date"
+                            android:textSize="20dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Details :"
+                    android:textColor="@color/black"
+                    android:textSize="22dp" />
+
+                <EditText
+                    android:id="@+id/edtOnDutyRequestDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/btn_square_fill_white"
+                    android:gravity="top"
+                    android:inputType="textVisiblePassword"
+                    android:hint="Description"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnRequest"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/btn_square_fill_color"
+                android:text="Request"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

@@ -58,7 +58,7 @@
             android:layout_marginTop="5dp"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:src="@drawable/ic_view"
+            android:src="@drawable/ic_view2"
             android:visibility="visible" />
 
     </RelativeLayout>
@@ -99,9 +99,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/txthomeworksubject"
+                    android:text="Topic :"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="20dp"
-                    android:text="Topic :"
                     android:textColor="@color/appColor"
                     android:textSize="23sp"
                     android:textStyle="bold" />
@@ -132,7 +132,7 @@
                     android:id="@+id/describ"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/underlinetopic"
+                    android:layout_below="@+id/txtDueDate"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="20dp"
                     android:text="Description :"
@@ -166,45 +166,69 @@
                     android:id="@+id/txtTestDateTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/underlinedescription"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/underlinetopic"
                     android:text="Test Date :"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/appColor"
+                    android:textSize="23sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/txtTestDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/txtTestDateTitle"
-                    android:layout_marginLeft="10dp"
+                    android:layout_alignLeft="@+id/txtTestDateTitle"
                     android:layout_marginTop="10dp"
                     android:text="Test Date"
                     android:textColor="@color/black"
                     android:textSize="18sp" />
 
                 <TextView
+                    android:id="@+id/underlineTestDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_alignLeft="@+id/txtTestDateTitle"
+                    android:layout_alignRight="@+id/txtTestDateTitle"
+                    android:layout_below="@+id/txtTestDate"
+
+                    android:layout_marginTop="10dp"
+                    android:background="@color/text_grey" />
+
+                <TextView
                     android:id="@+id/txtDueDateTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtTestDate"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/underlinetopic"
+                    android:layout_alignParentRight="true"
                     android:text="Due Date :"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/appColor"
+                    android:textSize="23sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/txtDueDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/txtDueDateTitle"
-                    android:layout_marginLeft="10dp"
+                    android:layout_alignLeft="@+id/txtDueDateTitle"
                     android:layout_marginTop="10dp"
                     android:text="Due Date"
                     android:textColor="@color/black"
                     android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/underlineDueDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignLeft="@+id/txtDueDate"
+                    android:layout_marginRight="30dp"
+                    android:layout_below="@+id/txtDueDate"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/text_grey" />
 
             </RelativeLayout>
         </ScrollView>
