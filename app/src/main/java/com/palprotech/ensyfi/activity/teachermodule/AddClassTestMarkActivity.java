@@ -184,5 +184,9 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
                 Log.v("ypgs", String.valueOf(et.getText()));
             }
         }
+
+        db.updateClassTestHomeWorkMarkStatus(homeWorkId);
+
+        finish();
     }
 }

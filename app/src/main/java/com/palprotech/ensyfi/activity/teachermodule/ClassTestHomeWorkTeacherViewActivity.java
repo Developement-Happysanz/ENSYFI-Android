@@ -83,7 +83,6 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
         createClassTest = (ImageView)findViewById(R.id.createClassTest);
 
         getClassList();
-        GetClassTestList(getClassSectionId, "HT");
 
         spnClassList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -96,6 +95,9 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
 
             }
         });
+
+        GetClassTestList(getClassSectionId, "HT");
+
 
         radioClassTestHomeWork.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
