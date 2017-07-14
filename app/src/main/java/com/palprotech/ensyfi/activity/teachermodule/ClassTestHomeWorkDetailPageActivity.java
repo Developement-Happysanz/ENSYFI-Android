@@ -27,9 +27,9 @@ public class ClassTestHomeWorkDetailPageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_class_test_homework_detail_page);
         Intent intent = getIntent();
         long id = getIntent().getExtras().getLong("id");
-        TextView txtId = (TextView) findViewById(R.id.txtId);
+//        TextView txtId = (TextView) findViewById(R.id.txtId);
         db = new SQLiteHelper(getApplicationContext());
-        txtId.setText("" + id);
+//        txtId.setText("" + id);
         String homeWorkId = String.valueOf(id);
         GetHomeWorkClassTestDetails(homeWorkId);
     }

@@ -48,7 +48,7 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:src="@drawable/od_apply"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
         <ImageView
             android:id="@+id/viewMarks"
@@ -59,7 +59,7 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:src="@drawable/ic_view"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
     </RelativeLayout>
 
@@ -85,56 +85,56 @@
                     android:id="@+id/txthomeworksubject"
                     android:layout_width="120dp"
                     android:layout_height="50dp"
-                    android:background="@color/appColor"
                     android:layout_centerHorizontal="true"
+                    android:background="@color/appColor"
                     android:gravity="center"
-                    android:textAllCaps="true"
                     android:text="Tamil"
+                    android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textSize="25dp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/clstitle"
+                    android:id="@+id/clstitle1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/txthomeworksubject"
-                    android:layout_marginTop="20dp"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
                     android:text="Topic :"
                     android:textColor="@color/appColor"
                     android:textSize="23sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txtClassTestTitle1"
+                    android:id="@+id/clstitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/clstitle"
-                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/clstitle1"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
                     android:text="Aksldfjksdlfnsd,nslckjsdl;ckjaskc,znc,xnc,ad"
                     android:textColor="@color/black"
                     android:textSize="18dp" />
 
                 <TextView
                     android:id="@+id/underlinetopic"
-                    android:layout_below="@+id/txtClassTestTitle1"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_below="@+id/clstitle"
                     android:layout_marginLeft="10dp"
-                    android:background="@color/text_grey"/>
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/text_grey" />
 
                 <TextView
                     android:id="@+id/describ"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/underlinetopic"
-                    android:layout_marginTop="20dp"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
                     android:text="Description :"
                     android:textColor="@color/appColor"
                     android:textSize="23sp"
@@ -146,25 +146,67 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/describ"
                     android:layout_marginLeft="10dp"
-                    android:text="Description :"
                     android:layout_marginTop="10dp"
+                    android:text="Description :"
                     android:textColor="@color/black"
                     android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/underlinedescription"
-                    android:layout_below="@+id/txthomeworkdetails"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_below="@+id/txthomeworkdetails"
                     android:layout_marginBottom="10dp"
-                    android:background="@color/text_grey"/>
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/text_grey" />
+
+                <TextView
+                    android:id="@+id/txtTestDateTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/underlinedescription"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Test Date :"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/txtTestDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtTestDateTitle"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Test Date"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/txtDueDateTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtTestDate"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Due Date :"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/txtDueDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtDueDateTitle"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Due Date"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
 
             </RelativeLayout>
         </ScrollView>
-
     </LinearLayout>
-
 </LinearLayout>
