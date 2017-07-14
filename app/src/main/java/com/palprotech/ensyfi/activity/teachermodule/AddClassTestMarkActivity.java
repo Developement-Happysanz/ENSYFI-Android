@@ -190,5 +190,11 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
                 Log.v("ypgs", String.valueOf(et.getText()));
             }
         }
+
+        db.updateClassTestHomeWorkMarkStatus(homeWorkId);
+        Toast.makeText(getApplicationContext(), "Class Test - " + title + ".\n Marks Updated Successfully...",
+                Toast.LENGTH_LONG).show();
+
+        finish();
     }
 }

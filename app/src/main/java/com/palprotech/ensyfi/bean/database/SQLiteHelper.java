@@ -538,10 +538,18 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         return c;
     }
 
+    public void updateClassTestHomeWorkMarkStatus(String val1) {
+        SQLiteDatabase sqdb = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("mark_status", "1");
+        System.out.print(val1);
+        sqdb.update("homeWorkClassTest", values, "_id=" + val1, null);
+    }
+
     public void deleteHomeWorkClassTest() {
         String ok;
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete("academicMonths", null, null);
+        db.delete("homeWorkClassTest", null, null);
     }
     /*
     *   End
