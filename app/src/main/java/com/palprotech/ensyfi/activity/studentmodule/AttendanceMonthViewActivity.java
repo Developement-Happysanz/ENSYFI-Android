@@ -9,15 +9,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.adapter.studentmodule.MonthViewStudentLeaveDaysListAdapter;
-import com.palprotech.ensyfi.bean.student.viewlist.ClassTest;
-
 import com.palprotech.ensyfi.bean.student.viewlist.MonthView;
 import com.palprotech.ensyfi.bean.student.viewlist.MonthViewStudentLeaveDays;
 import com.palprotech.ensyfi.bean.student.viewlist.MonthViewStudentLeaveDaysList;
@@ -80,6 +78,13 @@ public class AttendanceMonthViewActivity extends AppCompatActivity implements Di
         btnFullAttendance.setOnClickListener(this);
 
         callMonthViewStudentLeaveDaysViewService();
+        ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
+        bckbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void callMonthViewStudentLeaveDaysViewService() {

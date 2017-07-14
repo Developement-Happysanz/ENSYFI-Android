@@ -3,7 +3,6 @@ package com.palprotech.ensyfi.activity.teachermodule;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
@@ -15,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -22,7 +22,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.adapter.teachermodule.ClassTestHomeWorkListBaseAdapter;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
@@ -99,6 +98,13 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
         tobackground = (LinearLayout) findViewById(R.id.toDatee);
 
         getClassList();
+        ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
+        bckbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 //        String getClassId = spnClassList.getSelectedItem().toString();
 //        getClassId(getClassId);
@@ -276,9 +282,6 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
     @Override
     public void onClick(View v) {
         if (v == dateFrom) {
-            frombackground.setBackgroundColor(Color.parseColor("#663366"));
-            dateFrom.setCompoundDrawablesWithIntrinsicBounds(R.drawable.od_from_date_selected, 0, 0, 0);
-            dateFrom.setTextColor((Color.parseColor("#663366")));
             final DatePickerDialog.OnDateSetListener fromdate = new DatePickerDialog.OnDateSetListener() {
 
                 public void onDateSet(DatePicker view, int year, int month, int day) {
@@ -327,10 +330,6 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
         }
 
         if (v == dateTo) {
-
-            tobackground.setBackgroundColor(Color.parseColor("#663366"));
-            dateTo.setCompoundDrawablesWithIntrinsicBounds(R.drawable.od_from_date_selected, 0, 0, 0);
-            dateTo.setTextColor((Color.parseColor("#663366")));
             final DatePickerDialog.OnDateSetListener todate = new DatePickerDialog.OnDateSetListener() {
 
                 public void onDateSet(DatePicker view, int year, int month, int day) {

@@ -13,11 +13,11 @@
 
         <TextView
             android:id="@+id/txt_studentId"
-            android:layout_width="50dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="1dp"
             android:layout_marginLeft="1dp"
-            android:layout_weight="0.20"
+            android:layout_weight="0.099"
             android:background="@color/white"
             android:gravity="center"
             android:text="ID"
@@ -26,27 +26,28 @@
 
         <TextView
             android:id="@+id/txt_studentName"
-            android:layout_width="100dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="1dp"
             android:layout_marginLeft="1dp"
-            android:layout_weight="0.60"
+            android:layout_weight="0.04"
             android:background="@color/white"
             android:gravity="left|center"
             android:text="Name"
+            android:paddingLeft="10dp"
             android:textColor="@color/black"
             android:textSize="15sp" />
 
         <EditText
             android:id="@+id/class_test_marks"
-            android:layout_width="80dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="1dp"
             android:layout_marginLeft="1dp"
-            android:layout_weight="0.20"
+            android:layout_weight="0.099"
             android:background="@color/white"
-            android:gravity="left|center"
-            android:hint="mark"
+            android:gravity="center"
+            android:hint="Mark"
             android:inputType="numberSigned"
             android:maxLength="3"
             android:maxLines="1"

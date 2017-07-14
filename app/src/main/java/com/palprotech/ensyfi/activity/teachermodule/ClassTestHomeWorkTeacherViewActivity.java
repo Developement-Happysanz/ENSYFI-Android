@@ -83,6 +83,15 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
         createClassTest = (ImageView)findViewById(R.id.createClassTest);
 
         getClassList();
+
+        ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
+        bckbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         GetClassTestList(getClassSectionId, "HT");
 
         spnClassList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

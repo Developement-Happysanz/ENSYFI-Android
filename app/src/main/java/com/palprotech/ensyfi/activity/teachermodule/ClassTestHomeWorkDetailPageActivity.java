@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
-import com.palprotech.ensyfi.bean.teacher.viewlist.ClassTestHomeWork;
 
 /**
  * Created by Admin on 13-07-2017.
@@ -52,6 +51,13 @@ public class ClassTestHomeWorkDetailPageActivity extends AppCompatActivity imple
         viewMarks.setOnClickListener(this);
 
         GetHomeWorkClassTestDetails(homeWorkId);
+        ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
+        bckbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void GetHomeWorkClassTestDetails(String homeWorkId) {
