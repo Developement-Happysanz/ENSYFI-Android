@@ -79,6 +79,7 @@ public class EnsyfiConstants {
     // CLASS TEST & HOMEWORK
     public static final String GET_CLASS_TEST_HOMEWORK_API = "/apiteacher/add_Homework/";
     public static final String GET_CLASS_TEST_MARK_API = "/apiteacher/add_HWmarks/";
+    public static final String GET_ACADEMIC_EXAM_MARK_API = "/apiteacher/add_Exammarks/";
 
 
     // PARAMETERS
@@ -309,4 +310,15 @@ public class EnsyfiConstants {
     public static final String PARAMS_CTMARKS_REMARKS = "remarks";
     public static final String PARAMS_CTMARKS_CREATED_BY = "created_by";
     public static final String PARAMS_CTMARKS_CREATED_AT = "created_at";
+
+    // Academic Exam Marks Params
+    public static final String PARAMS_ACADEMIC_EXAM_MARKS_EXAM_ID = "exam_id";
+    public static final String PARAMS_ACADEMIC_EXAM_MARKS_TEACHER_ID = "teacher_id";
+    public static final String PARAMS_ACADEMIC_EXAM_MARKS_SUBJECT_ID = "subject_id";
+    public static final String PARAMS_ACADEMIC_EXAM_MARKS_STUDENT_ID = "stu_id";
+    public static final String PARAMS_ACADEMIC_EXAM_MARKS_CLASS_MASTER_ID = "classmaster_id";
+    public static final String PARAMS_ACADEMIC_EXAM_MARKS_INTERNAL_MARK = "internal_mark";
+    public static final String PARAMS_ACADEMIC_EXAM_MARKS_EXTERNAL_MARK = "external_mark";
+    public static final String PARAMS_ACADEMIC_EXAM_MARKS_CREATED_BY = "created_by";
+
 }

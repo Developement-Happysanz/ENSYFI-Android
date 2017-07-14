@@ -19,7 +19,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String TAG = "SQLiteHelper.java";
 
     private static final String DATABASE_NAME = "ENSYFI.db";
-    private static final int DATABASE_VERSION = 18;
+    private static final int DATABASE_VERSION = 20;
 
     private static final String table_create_student = "Create table IF NOT EXISTS studentInfo(_id integer primary key autoincrement,"
             + "registered_id text,"
@@ -116,6 +116,45 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             + "updated_at text,"//10
             + "sync_status text);";//11
 
+    private static final String table_create_exams_of_the_class = "Create table IF NOT EXISTS academicExams(_id integer primary key autoincrement,"
+            + "exam_id text," //1
+            + "exam_name text," //2
+            + "classmaster_id text," //3
+            + "sec_name text," //4
+            + "class_name text,"//5
+            + "Fromdate text,"//6
+            + "Todate text,"//7
+            + "MarkStatus text);";//8
+
+    private static final String table_create_exams_details = "Create table IF NOT EXISTS academicExamsDetails(_id integer primary key autoincrement,"
+            + "exam_id text," //1
+            + "exam_name text," //2
+            + "subject_name text," //3
+            + "exam_date text," //4
+            + "times text,"//5
+            + "classmaster_id text,"//6
+            + "class_name text,"//7
+            + "sec_name text);";//8
+
+    private static final String table_create_academic_exam_marks = "Create table IF NOT EXISTS academicExamMarks(_id integer primary key autoincrement,"
+            + "exam_id text," //1
+            + "teacher_id text," //2
+            + "subject_id text," //3
+            + "stu_id text," //4
+            + "classmaster_id text,"//5
+            + "internal_mark text,"//6
+            + "internal_grade text,"//7
+            + "external_mark text,"//8
+            + "external_grade text,"//9
+            + "total_marks text,"//10
+            + "total_grade text,"//11
+            + "created_by text,"//12
+            + "created_at text,"//13
+            + "updated_by text,"//14
+            + "updated_at text,"//15
+            + "sync_status text);";//16
+
+
     public SQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -138,6 +177,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(table_create_homework_class_test);
 
         db.execSQL(table_create_class_test_mark);
+
+        db.execSQL(table_create_exams_of_the_class);
+
+        db.execSQL(table_create_exams_details);
+
+        db.execSQL(table_create_academic_exam_marks);
     }
 
     @Override
@@ -161,6 +206,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS homeWorkClassTest");
 
         db.execSQL("DROP TABLE IF EXISTS classTestMark");
+
+        db.execSQL("DROP TABLE IF EXISTS academicExams");
+
+        db.execSQL("DROP TABLE IF EXISTS academicExamsDetails");
+
+        db.execSQL("DROP TABLE IF EXISTS academicExamMarks");
     }
 
     public void open() throws SQLException {
@@ -634,4 +685,147 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("homeWorkClassTest", null, null);
     }
+    /*
+    *   End
+    */
+
+    /*
+    *   Academic Exams Store & Retrieve Functionality
+    */
+    public long exam_of_classes_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7, String val8) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues initialValues = new ContentValues();
+        initialValues.put("exam_id", val1);
+        initialValues.put("exam_name", val2);
+        initialValues.put("classmaster_id", val3);
+        initialValues.put("sec_name", val4);
+        initialValues.put("class_name", val5);
+        initialValues.put("Fromdate", val6);
+        initialValues.put("Todate", val7);
+        initialValues.put("MarkStatus", val8);
+        long l = db.insert("academicExams", "_id", initialValues);
+        db.close();
+        return l;
+    }
+
+    public Cursor getAcademicExamList(String val1) throws SQLException {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String fetch = "Select * from academicExams where classmaster_id = " + val1 + " order by _id;";
+        Cursor c = db.rawQuery(fetch, null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+    public Cursor getAcademicExamInfo(String val1) throws SQLException {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String fetch = "Select * from academicExams where _id = " + val1 + " order by _id;";
+        Cursor c = db.rawQuery(fetch, null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+    public void deleteExamOfClasses() {
+        String ok;
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("academicExams", null, null);
+    }
+    /*
+    *   End
+    */
+
+    /*
+    *   Academic Exams Details Store & Retrieve Functionality
+    */
+    public long exam_details_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7, String val8) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues initialValues = new ContentValues();
+        initialValues.put("exam_id", val1);
+        initialValues.put("exam_name", val2);
+        initialValues.put("subject_name", val3);
+        initialValues.put("exam_date", val4);
+        initialValues.put("times", val5);
+        initialValues.put("classmaster_id", val6);
+        initialValues.put("class_name", val7);
+        initialValues.put("sec_name", val8);
+        long l = db.insert("academicExamsDetails", "_id", initialValues);
+        db.close();
+        return l;
+    }
+
+    public Cursor getAcademicExamDetailsList(String val1, String val2) throws SQLException {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String fetch = "Select * from academicExamsDetails where classmaster_id = " + val1 + " and exam_id = " + val2 + " order by _id;";
+        Cursor c = db.rawQuery(fetch, null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+    public void deleteExamDetails() {
+        String ok;
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("academicExamsDetails", null, null);
+    }
+    /*
+    *   End
+    */
+
+    /*
+  *   Homework Class Test Store & Retrieve Functionality
+  */
+    public long academic_exam_marks_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7, String val8, String val9, String val10, String val11, String val12, String val13, String val14, String val15, String val16) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues initialValues = new ContentValues();
+        initialValues.put("exam_id", val1);
+        initialValues.put("teacher_id", val2);
+        initialValues.put("subject_id", val3);
+        initialValues.put("stu_id", val4);
+        initialValues.put("classmaster_id", val5);
+        initialValues.put("internal_mark", val6);
+        initialValues.put("internal_grade", val7);
+        initialValues.put("external_mark", val8);
+        initialValues.put("external_grade", val9);
+        initialValues.put("total_marks", val10);
+        initialValues.put("total_grade", val11);
+        initialValues.put("created_by", val12);
+        initialValues.put("created_at", val13);
+        initialValues.put("updated_by", val14);
+        initialValues.put("updated_at", val15);
+        initialValues.put("sync_status", val16);
+        long l = db.insert("academicExamMarks", "_id", initialValues);
+        db.close();
+        return l;
+    }
+
+    public Cursor getAcademicExamMarksList() throws SQLException {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String fetch = "Select * from academicExamMarks where sync_status = 'NS' order by _id;";
+        Cursor c = db.rawQuery(fetch, null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+    public void updateAcademicExamMarksSyncStatus(String val1) {
+        SQLiteDatabase sqdb = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("sync_status", "S");
+        System.out.print(val1);
+        sqdb.update("academicExamMarks", values, "_id=" + val1, null);
+    }
+
+    public void deleteAcademicExamMarks() {
+        String ok;
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("academicExamMarks", null, null);
+    }
+    /*
+    *   End
+    */
 }

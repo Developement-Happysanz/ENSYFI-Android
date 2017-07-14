@@ -3,24 +3,20 @@ package com.palprotech.ensyfi.activity.teachermodule;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.adapter.teachermodule.ClassTestHomeWorkListBaseAdapter;
+import com.palprotech.ensyfi.adapter.teachermodule.AcademicExamsListBaseAdapter;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
-import com.palprotech.ensyfi.bean.teacher.viewlist.ClassTestHomeWork;
+import com.palprotech.ensyfi.bean.teacher.viewlist.AcademicExams;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
 import com.palprotech.ensyfi.servicehelpers.ServiceHelper;
@@ -35,34 +31,27 @@ import java.util.TreeSet;
 import java.util.Vector;
 
 /**
- * Created by Admin on 13-07-2017.
+ * Created by Admin on 14-07-2017.
  */
 
-public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity implements IServiceListener, AdapterView.OnItemClickListener, DialogClickListener {
+public class AcademicExamViewActivity extends AppCompatActivity implements IServiceListener, AdapterView.OnItemClickListener, DialogClickListener, View.OnClickListener {
 
     private Spinner spnClassList;
-    ListView loadMoreListView;
-    private static final String TAG = "ClassTestHomeWorkTeacherView";
+    private static final String TAG = "AcademicExamView";
     protected ProgressDialogHelper progressDialogHelper;
-    protected boolean isLoadingForFirstTime = true;
-    Handler mHandler = new Handler();
-    private SearchView mSearchView = null;
     List<String> lsClassList = new ArrayList<String>();
     ServiceHelper serviceHelper;
     SQLiteHelper db;
     Vector<String> vecClassList;
-    String getClassSectionId;
-    String classSection;
-    private RadioGroup radioClassTestHomeWork;
-    ArrayList<ClassTestHomeWork> myList = new ArrayList<ClassTestHomeWork>();
-    ClassTestHomeWorkListBaseAdapter cadapter;
-    ImageView createClassTest;
-
+    private String classSection, getClassSectionId;
+    ArrayList<AcademicExams> myList = new ArrayList<AcademicExams>();
+    AcademicExamsListBaseAdapter cadapter;
+    ListView loadMoreListView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_class_test_homework_teacher_view);
+        setContentView(R.layout.activity_academic_exam_view_activity);
 
         db = new SQLiteHelper(getApplicationContext());
         vecClassList = new Vector<String>();
@@ -72,22 +61,30 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
 
         progressDialogHelper = new ProgressDialogHelper(this);
 
+        spnClassList = (Spinner) findViewById(R.id.class_list_spinner);
+
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
 
         loadMoreListView.setOnItemClickListener(this);
 
-        spnClassList = (Spinner) findViewById(R.id.class_list_spinner);
-
-        radioClassTestHomeWork = (RadioGroup) findViewById(R.id.radioClassTestHomeWorkView);
-
-        createClassTest = (ImageView)findViewById(R.id.createClassTest);
-
         getClassList();
+
+        ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
+        bckbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         spnClassList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 classSection = parent.getItemAtPosition(position).toString();
+                getClassId(classSection);
+                loadAcademicExams(getClassSectionId);
+                cadapter = new AcademicExamsListBaseAdapter(AcademicExamViewActivity.this, myList);
+                loadMoreListView.setAdapter(cadapter);
             }
 
             @Override
@@ -95,61 +92,20 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
 
             }
         });
-
-//        GetClassTestList(getClassSectionId, "HT");
-
-
-        radioClassTestHomeWork.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                String ClassTestOrHomeWork = "";
-                switch (checkedId) {
-                    case R.id.radioClassTest:
-                        ClassTestOrHomeWork = "HT";
-                        getClassId(classSection);
-                        GetClassTestList(getClassSectionId, ClassTestOrHomeWork);
-                        cadapter = new ClassTestHomeWorkListBaseAdapter(ClassTestHomeWorkTeacherViewActivity.this, myList);
-                        loadMoreListView.setAdapter(cadapter);
-
-                        break;
-
-                    case R.id.radioHomeWork:
-                        ClassTestOrHomeWork = "HW";
-                        getClassId(classSection);
-                        GetClassTestList(getClassSectionId, ClassTestOrHomeWork);
-                        cadapter = new ClassTestHomeWorkListBaseAdapter(ClassTestHomeWorkTeacherViewActivity.this, myList);
-                        loadMoreListView.setAdapter(cadapter);
-
-                        break;
-                }
-            }
-        });
-
-        createClassTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent navigationIntent = new Intent(getApplicationContext(), ClassTestHomeWorkAddActivity.class);
-                navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(navigationIntent);
-            }
-        });
     }
 
-    private void GetClassTestList(String classSectionId, String ClassTestOrHomeWork) {
-
+    private void loadAcademicExams(String classSectionId) {
         myList.clear();
         try {
-            Cursor c = db.getClassTestHomeWork(classSectionId, ClassTestOrHomeWork);
+            Cursor c = db.getAcademicExamList(classSectionId);
             if (c.getCount() > 0) {
                 if (c.moveToFirst()) {
                     do {
-                        ClassTestHomeWork lde = new ClassTestHomeWork();
+                        AcademicExams lde = new AcademicExams();
                         lde.setId(Integer.parseInt(c.getString(0)));
-                        lde.setTitle(c.getString(1));
-                        lde.setSubjectName(c.getString(2));
-                        lde.setHomeWorkType(c.getString(3));
-                        lde.setTestDate(c.getString(4));
+                        lde.setExamName(c.getString(2));
+                        lde.setFromDate(c.getString(6));
+                        lde.setToDate(c.getString(7));
 
                         // Add this object into the ArrayList myList
                         myList.add(lde);
@@ -166,12 +122,6 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
             Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
-    }
-
-    public void viewClassTestHomeWorkDetailPage(long id) {
-        Intent intent = new Intent(this, ClassTestHomeWorkDetailPageActivity.class);
-        intent.putExtra("id", id);
-        startActivityForResult(intent, 0);
     }
 
     private void getClassId(String classSectionName) {
@@ -221,8 +171,14 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
         }
     }
 
+    public void viewAcademicExamsDetailPage(long id) {
+        Intent intent = new Intent(this, AcademicExamDetailPage.class);
+        intent.putExtra("id", id);
+        startActivityForResult(intent, 0);
+    }
+
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    public void onClick(View v) {
 
     }
 
@@ -243,6 +199,11 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
 
     @Override
     public void onError(String error) {
+
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
     }
 }

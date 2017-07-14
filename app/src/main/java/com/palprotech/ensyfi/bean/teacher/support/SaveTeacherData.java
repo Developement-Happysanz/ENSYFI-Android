@@ -359,5 +359,117 @@ public class SaveTeacherData {
             ex.printStackTrace();
         }
     }
+
+    public void saveExamsOfClass(JSONArray academicExams) {
+        database = new SQLiteHelper(context);
+
+        try {
+            database.deleteExamOfClasses();
+            for (int i = 0; i < academicExams.length(); i++) {
+                HashMap<String, String> map = new HashMap<String, String>();
+                JSONObject jsonobj = academicExams.getJSONObject(i);
+
+                String exam_id = "";
+                String exam_name = "";
+                String classmaster_id = "";
+                String sec_name = "";
+                String class_name = "";
+                String Fromdate = "";
+                String Todate = "";
+                String MarkStatus = "";
+
+                exam_id = jsonobj.getString("exam_id");
+                exam_name = jsonobj.getString("exam_name");
+                classmaster_id = jsonobj.getString("classmaster_id");
+                sec_name = jsonobj.getString("sec_name");
+                class_name = jsonobj.getString("class_name");
+                Fromdate = jsonobj.getString("Fromdate");
+                Todate = jsonobj.getString("Todate");
+                MarkStatus = jsonobj.getString("MarkStatus");
+
+                System.out.println("exam_id : " + i + " = " + exam_id);
+                System.out.println("exam_name : " + i + " = " + exam_name);
+                System.out.println("classmaster_id : " + i + " = " + classmaster_id);
+                System.out.println("sec_name : " + i + " = " + sec_name);
+                System.out.println("class_name : " + i + " = " + class_name);
+                System.out.println("Fromdate : " + i + " = " + Fromdate);
+                System.out.println("Todate : " + i + " = " + Todate);
+                System.out.println("MarkStatus : " + i + " = " + MarkStatus);
+
+                String v1 = exam_id,
+                        v2 = exam_name,
+                        v3 = classmaster_id,
+                        v4 = sec_name,
+                        v5 = class_name,
+                        v6 = Fromdate,
+                        v7 = Todate,
+                        v8 = MarkStatus;
+
+                long l = database.exam_of_classes_insert(v1, v2, v3, v4, v5, v6, v7, v8);
+
+                System.out.println("" + l);
+
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void saveExamsDetails(JSONArray academicExamsDetails) {
+        database = new SQLiteHelper(context);
+
+        try {
+            database.deleteExamDetails();
+            for (int i = 0; i < academicExamsDetails.length(); i++) {
+                HashMap<String, String> map = new HashMap<String, String>();
+                JSONObject jsonobj = academicExamsDetails.getJSONObject(i);
+
+                String exam_id = "";
+                String exam_name = "";
+                String subject_name = "";
+                String exam_date = "";
+                String times = "";
+                String classmaster_id = "";
+                String class_name = "";
+                String sec_name = "";
+
+                exam_id = jsonobj.getString("exam_id");
+                exam_name = jsonobj.getString("exam_name");
+                subject_name = jsonobj.getString("subject_name");
+                exam_date = jsonobj.getString("exam_date");
+                times = jsonobj.getString("times");
+                classmaster_id = jsonobj.getString("classmaster_id");
+                class_name = jsonobj.getString("class_name");
+                sec_name = jsonobj.getString("sec_name");
+
+                System.out.println("exam_id : " + i + " = " + exam_id);
+                System.out.println("exam_name : " + i + " = " + exam_name);
+                System.out.println("subject_name : " + i + " = " + subject_name);
+                System.out.println("exam_date : " + i + " = " + exam_date);
+                System.out.println("times : " + i + " = " + times);
+                System.out.println("classmaster_id : " + i + " = " + classmaster_id);
+                System.out.println("class_name : " + i + " = " + class_name);
+                System.out.println("sec_name : " + i + " = " + sec_name);
+
+                String v1 = exam_id,
+                        v2 = exam_name,
+                        v3 = subject_name,
+                        v4 = exam_date,
+                        v5 = times,
+                        v6 = classmaster_id,
+                        v7 = class_name,
+                        v8 = sec_name;
+
+                long l = database.exam_details_insert(v1, v2, v3, v4, v5, v6, v7, v8);
+
+                System.out.println("" + l);
+
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 }
 

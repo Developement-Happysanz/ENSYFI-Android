@@ -1,4 +1,4 @@
-package com.palprotech.ensyfi.activity.teachermodule;
+package com.palprotech.ensyfi.activity.general;
 
 import android.database.Cursor;
 import android.os.Bundle;
@@ -10,7 +10,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.activity.loginmodule.UserLoginActivity;
+import com.palprotech.ensyfi.activity.teachermodule.SyncAcademicExamMarks;
+import com.palprotech.ensyfi.activity.teachermodule.SyncAttendanceHistoryRecordsActivity;
+import com.palprotech.ensyfi.activity.teachermodule.SyncClassTestHomeWork;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
@@ -34,8 +36,10 @@ public class SyncRecordsActivity extends AppCompatActivity implements IServiceLi
     private ServiceHelper serviceHelper;
     private Button btnSyncAttendanceRecords;
     private Button btnSyncClassTestHomeworkRecords;
+    private Button btnSyncExamMarks;
     private SyncAttendanceHistoryRecordsActivity syncAttendanceHistoryRecordsActivity;
     private SyncClassTestHomeWork syncClassTestHomeWork;
+    private SyncAcademicExamMarks syncAcademicExamMarks;
     private ProgressDialogHelper progressDialogHelper;
     SQLiteHelper db;
     String localAttendanceId, ac_year, class_id, class_total, no_of_present, no_of_absent,
@@ -52,10 +56,14 @@ public class SyncRecordsActivity extends AppCompatActivity implements IServiceLi
         btnSyncClassTestHomeworkRecords = (Button) findViewById(R.id.btnSyncClassTestHomeworkRecords);
         btnSyncClassTestHomeworkRecords.setOnClickListener(this);
 
+        btnSyncExamMarks = (Button) findViewById(R.id.btnSyncExamMarks);
+        btnSyncExamMarks.setOnClickListener(this);
+
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
         syncAttendanceHistoryRecordsActivity = new SyncAttendanceHistoryRecordsActivity(this);
         syncClassTestHomeWork = new SyncClassTestHomeWork(this);
+        syncAcademicExamMarks = new SyncAcademicExamMarks(this);
         progressDialogHelper = new ProgressDialogHelper(this);
     }
 
@@ -109,6 +117,9 @@ public class SyncRecordsActivity extends AppCompatActivity implements IServiceLi
             }
             if (v == btnSyncClassTestHomeworkRecords) {
                 syncClassTestHomeWork.syncClassTestHomeWorkRecords();
+            }
+            if (v == btnSyncExamMarks) {
+                syncAcademicExamMarks.SyncAcademicMarks();
             }
         }
     }

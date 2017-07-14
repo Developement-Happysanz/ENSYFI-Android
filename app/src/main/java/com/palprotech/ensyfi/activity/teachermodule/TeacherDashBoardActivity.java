@@ -27,16 +27,12 @@ import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.activity.general.CircularActivity;
 import com.palprotech.ensyfi.activity.general.EventsActivity;
 import com.palprotech.ensyfi.activity.general.OnDutyActivity;
+import com.palprotech.ensyfi.activity.general.SyncRecordsActivity;
 import com.palprotech.ensyfi.activity.loginmodule.ChangePasswordActivity;
 import com.palprotech.ensyfi.activity.loginmodule.ProfileActivity;
 import com.palprotech.ensyfi.activity.loginmodule.SplashScreenActivity;
 import com.palprotech.ensyfi.activity.parentsmodule.ParentDashBoardActivity;
-import com.palprotech.ensyfi.activity.parentsmodule.ParentsCommunicationActivity;
-import com.palprotech.ensyfi.activity.studentmodule.AttendanceActivity;
 import com.palprotech.ensyfi.activity.studentmodule.AttendanceStatusActivity;
-import com.palprotech.ensyfi.activity.studentmodule.ClassTestHomeworkActivity;
-import com.palprotech.ensyfi.activity.studentmodule.ExamsResultActivity;
-import com.palprotech.ensyfi.activity.studentmodule.StudentTimeTableActivity;
 import com.palprotech.ensyfi.adapter.NavDrawerAdapter;
 import com.palprotech.ensyfi.bean.general.viewlist.Circular;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
@@ -123,7 +119,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
         dashExam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ExamsResultActivity.class);
+                Intent intent = new Intent(getApplicationContext(), AcademicExamViewActivity.class);
                 startActivity(intent);
             }
         });
@@ -256,7 +252,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 3) {
-            Intent navigationIntent = new Intent(this, ExamsResultActivity.class);
+            Intent navigationIntent = new Intent(this, AcademicExamViewActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 4) {

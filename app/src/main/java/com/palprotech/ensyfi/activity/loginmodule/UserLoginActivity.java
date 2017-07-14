@@ -207,6 +207,12 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     JSONArray getHomeWorkClassTest = response.getJSONArray("homeWork");
                     teacherData.saveHomeWorkClassTest(getHomeWorkClassTest);
 
+                    JSONArray getExamsOfClass = response.getJSONArray("Exams");
+                    teacherData.saveExamsOfClass(getExamsOfClass);
+
+                    JSONArray getAcademicExamDetails = response.getJSONArray("examDetails");
+                    teacherData.saveExamsDetails(getAcademicExamDetails);
+
                 } else if (userType == 3) {
 
                     saveUserData(userData);
