@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/classList"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <LinearLayout
+            android:id="@+id/titleLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Topic :" />
+
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Topic :" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/testDateLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/titleLayout"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Topic :" />
+
+            <TextView
+                android:id="@+id/txtTestDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Topic :" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/listOfStudents"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/classList"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@color/black">
+
+        <TextView
+            android:id="@+id/attendrollnum"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/attendstudmark"
+            android:layout_alignTop="@+id/attendstudmark"
+            android:layout_marginLeft="2dp"
+            android:background="@color/appColor"
+            android:gravity="center"
+            android:text="Roll No."
+            android:textColor="@color/white"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/attendstudname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/attendstudmark"
+            android:layout_alignTop="@+id/attendstudmark"
+            android:layout_marginLeft="2dp"
+            android:layout_toLeftOf="@+id/attendstudmark"
+            android:layout_toRightOf="@id/attendrollnum"
+            android:background="@color/appColor"
+            android:gravity="center"
+            android:text="Student Name"
+            android:textColor="@color/white"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/attendstudmark"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginTop="2dp"
+            android:background="@color/appColor"
+            android:gravity="center"
+            android:text="Student Mark"
+            android:textColor="@color/white"
+            android:textSize="18dp" />
+
+        <ListView
+            android:id="@+id/listView_students"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/attendrollnum"
+            android:divider="@color/black"
+            android:dividerHeight="0dp">
+
+        </ListView>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:background="@drawable/btn_square_fill_color"
+        android:text="Save"
+        android:textColor="@color/white" />
+
+</RelativeLayout>

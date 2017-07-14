@@ -92,7 +92,6 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
             AM_PM = String.valueOf(setAM_PM);
         }
 
-
         spnClassList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -100,10 +99,9 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
 
                 GetStudentsList(className);
                 btnSave.setVisibility(View.VISIBLE);
-//                lvStudent.setAdapter(new StudentListBaseAdapter(TeacherAttendanceInsertActivity.this, myList));
+//                lvStudent.setAdapter(new StudentListClassTestMarkBaseAdapter(TeacherAttendanceInsertActivity.this, myList));
                 StudentListBaseAdapter cadapter = new StudentListBaseAdapter(TeacherAttendanceInsertActivity.this, myList);
                 lvStudent.setAdapter(cadapter);
-
             }
 
             @Override

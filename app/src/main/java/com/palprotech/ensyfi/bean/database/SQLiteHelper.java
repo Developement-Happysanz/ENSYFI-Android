@@ -19,7 +19,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String TAG = "SQLiteHelper.java";
 
     private static final String DATABASE_NAME = "ENSYFI.db";
-    private static final int DATABASE_VERSION = 17;
+    private static final int DATABASE_VERSION = 18;
 
     private static final String table_create_student = "Create table IF NOT EXISTS studentInfo(_id integer primary key autoincrement,"
             + "registered_id text,"
@@ -103,6 +103,19 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             + "updated_at text,"//17
             + "sync_status text);";//18
 
+    private static final String table_create_class_test_mark = "Create table IF NOT EXISTS classTestMark(_id integer primary key autoincrement,"
+            + "student_id text," //1
+            + "local_hw_id text," //2
+            + "server_hw_id text," //3
+            + "marks text," //4
+            + "remarks text,"//5
+            + "status text,"//6
+            + "created_by text,"//7
+            + "created_at text,"//8
+            + "updated_by text,"//9
+            + "updated_at text,"//10
+            + "sync_status text);";//11
+
     public SQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -123,6 +136,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(table_create_academic_months);
 
         db.execSQL(table_create_homework_class_test);
+
+        db.execSQL(table_create_class_test_mark);
     }
 
     @Override
@@ -144,6 +159,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS academicMonths");
 
         db.execSQL("DROP TABLE IF EXISTS homeWorkClassTest");
+
+        db.execSQL("DROP TABLE IF EXISTS classTestMark");
     }
 
     public void open() throws SQLException {
@@ -284,6 +301,16 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         return c;
     }
 
+    public Cursor getStudentsOfClassBasedOnClassId(String classSectionId) throws SQLException {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String fetch = "Select * from teachersStudentDetails where class_id = " + classSectionId + " order by enroll_id;";
+        Cursor c = db.rawQuery(fetch, null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
     public void deleteTeachersClassStudentDetails() {
         String ok;
         SQLiteDatabase db = this.getWritableDatabase();
@@ -363,7 +390,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     /*
     *   Attendance History Store & Retrieve Functionality
     */
-    public long student_attendance_history_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7, String val8, String val9, String val10, String val11, String val12,String val13) {
+    public long student_attendance_history_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7, String val8, String val9, String val10, String val11, String val12, String val13) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues initialValues = new ContentValues();
         initialValues.put("attend_id", val1);
@@ -462,7 +489,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     */
 
     /*
-  *   Academic Store & Retrieve Functionality
+  *   Homework Class Test Store & Retrieve Functionality
   */
     public long homework_class_test_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7, String val8, String val9, String val10, String val11, String val12, String val13, String val14, String val15, String val16, String val17, String val18) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -520,4 +547,25 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     *   End
     */
 
+    /*
+ *   Class Test Marks Store & Retrieve Functionality
+ */
+    public long class_test_mark_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7, String val8, String val9, String val10, String val11) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues initialValues = new ContentValues();
+        initialValues.put("student_id", val1);
+        initialValues.put("local_hw_id", val2);
+        initialValues.put("server_hw_id", val3);
+        initialValues.put("marks", val4);
+        initialValues.put("remarks", val5);
+        initialValues.put("status", val6);
+        initialValues.put("created_by", val7);
+        initialValues.put("created_at", val8);
+        initialValues.put("updated_by", val9);
+        initialValues.put("updated_at", val10);
+        initialValues.put("sync_status", val11);
+        long l = db.insert("classTestMark", "_id", initialValues);
+        db.close();
+        return l;
+    }
 }

@@ -25,6 +25,7 @@ public class ClassTestHomeWorkDetailPageActivity extends AppCompatActivity imple
             testDate, dueDate, homeWorkDetails, status, markStatus, createdBy, createdAt, updatedBy, updatedAt, syncStatus;
     TextView txtSubjectName, clsTitle, txtHomeWorkDtails, txtTestDate, txtDueDate, txtPageTitle, txtDueDateTitle, txtTestDateTitle;
     ImageView addMarks, viewMarks;
+    long id;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,7 +33,7 @@ public class ClassTestHomeWorkDetailPageActivity extends AppCompatActivity imple
         setContentView(R.layout.activity_class_test_homework_detail_page);
 
         Intent intent = getIntent();
-        long id = getIntent().getExtras().getLong("id");
+        id = getIntent().getExtras().getLong("id");
         db = new SQLiteHelper(getApplicationContext());
         String homeWorkId = String.valueOf(id);
 
@@ -117,7 +118,6 @@ public class ClassTestHomeWorkDetailPageActivity extends AppCompatActivity imple
             txtTestDate.setText(testDate);
             txtDueDate.setText(dueDate);
 
-
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
             e.printStackTrace();
@@ -126,6 +126,15 @@ public class ClassTestHomeWorkDetailPageActivity extends AppCompatActivity imple
 
     @Override
     public void onClick(View v) {
+        if (v == addMarks) {
+            Intent intent = new Intent(getApplicationContext(), AddClassTestMarkActivity.class);
+            intent.putExtra("hw_id", id);
+            startActivity(intent);
+        }
 
+        if (v == viewMarks) {
+            Intent intent = new Intent(getApplicationContext(), AddClassTestMarkActivity.class);
+            startActivity(intent);
+        }
     }
 }
