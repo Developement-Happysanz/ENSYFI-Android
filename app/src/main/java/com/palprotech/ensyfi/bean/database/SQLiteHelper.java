@@ -19,7 +19,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String TAG = "SQLiteHelper.java";
 
     private static final String DATABASE_NAME = "ENSYFI.db";
-    private static final int DATABASE_VERSION = 20;
+    private static final int DATABASE_VERSION = 21;
 
     private static final String table_create_student = "Create table IF NOT EXISTS studentInfo(_id integer primary key autoincrement,"
             + "registered_id text,"
@@ -154,6 +154,11 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             + "updated_at text,"//15
             + "sync_status text);";//16
 
+    private static final String table_create_leave_type = "Create table IF NOT EXISTS leaveType(_id integer primary key autoincrement,"
+            + "id text," //1
+            + "leave_title text," //2
+            + "leave_type text);";//3
+
 
     public SQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -183,6 +188,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(table_create_exams_details);
 
         db.execSQL(table_create_academic_exam_marks);
+
+        db.execSQL(table_create_leave_type);
     }
 
     @Override
@@ -212,6 +219,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS academicExamsDetails");
 
         db.execSQL("DROP TABLE IF EXISTS academicExamMarks");
+
+        db.execSQL("DROP TABLE IF EXISTS leaveType");
     }
 
     public void open() throws SQLException {
@@ -824,6 +833,49 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         String ok;
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("academicExamMarks", null, null);
+    }
+    /*
+    *   End
+    */
+
+    /*
+  *   Homework Class Test Store & Retrieve Functionality
+  */
+    public long leave_type_insert(String val1, String val2, String val3) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues initialValues = new ContentValues();
+        initialValues.put("id", val1);
+        initialValues.put("leave_title", val2);
+        initialValues.put("leave_type", val3);
+        long l = db.insert("leaveType", "_id", initialValues);
+        db.close();
+        return l;
+    }
+
+    public Cursor getLeaveTypeList() throws SQLException {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String fetch = "Select distinct id,leave_title,leave_type from leaveType order by _id;";
+        Cursor c = db.rawQuery(fetch, null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+    public Cursor getLeaveTypeId(String val1) throws SQLException {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String fetch = "Select distinct leave_type from leaveType where leave_title= '" + val1 + "' order by _id;";
+        Cursor c = db.rawQuery(fetch, null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+    public void deleteLeaveTypes() {
+        String ok;
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("leaveType", null, null);
     }
     /*
     *   End

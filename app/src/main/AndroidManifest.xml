@@ -196,6 +196,12 @@
             android:theme="@style/AppThemeNoActionBarGrey" />
 
         <activity
+            android:name=".activity.general.LeaveStatusActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarGrey" />
+
+        <activity
             android:name=".activity.general.LeaveApplyActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"

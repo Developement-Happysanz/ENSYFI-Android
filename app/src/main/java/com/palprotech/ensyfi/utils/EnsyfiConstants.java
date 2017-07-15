@@ -85,6 +85,8 @@ public class EnsyfiConstants {
 
     // USER LEAVES
     public static final String GET_USER_LEAVES_API = "/apiteacher/disp_Userleaves/";
+    public static final String GET_USER_LEAVES_TYPE_API = "/apiteacher/disp_Leavetype/";
+    public static final String GET_USER_LEAVES_APPLY_API = "/apiteacher/add_Userleaves/";
 
 
     // PARAMETERS

@@ -26,7 +26,7 @@ import android.widget.Toast;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.activity.general.CircularActivity;
 import com.palprotech.ensyfi.activity.general.EventsActivity;
-import com.palprotech.ensyfi.activity.general.LeaveApplyActivity;
+import com.palprotech.ensyfi.activity.general.LeaveStatusActivity;
 import com.palprotech.ensyfi.activity.general.OnDutyActivity;
 import com.palprotech.ensyfi.activity.general.SyncRecordsActivity;
 import com.palprotech.ensyfi.activity.loginmodule.ChangePasswordActivity;
@@ -280,7 +280,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 9) {
-            Intent navigationIntent = new Intent(this, LeaveApplyActivity.class);
+            Intent navigationIntent = new Intent(this, LeaveStatusActivity.class);
             //navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 10) {
