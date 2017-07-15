@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.activity.general.CircularActivity;
 import com.palprotech.ensyfi.activity.general.EventsActivity;
+import com.palprotech.ensyfi.activity.general.LeaveApplyActivity;
 import com.palprotech.ensyfi.activity.general.OnDutyActivity;
 import com.palprotech.ensyfi.activity.general.SyncRecordsActivity;
 import com.palprotech.ensyfi.activity.loginmodule.ChangePasswordActivity;
@@ -55,7 +56,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
     boolean doubleBackToExitPressedOnce = false;
     private ImageView imgNavProfileImage;
     private ArrayAdapter<String> navListAdapter;
-    private String[] values = {"PROFILE", "ATTENDANCE", "CLASS TEST & HOMEWORK", "EXAM & RESULT", "TIME TABLE", "CALENDAR", "EVENT", "COMMUNICATION", "ON DUTY", "SETTINGS", "SYNC", "SIGN OUT"};
+    private String[] values = {"PROFILE", "ATTENDANCE", "CLASS TEST & HOMEWORK", "EXAM & RESULT", "TIME TABLE", "CALENDAR", "EVENT", "COMMUNICATION", "ON DUTY", "APPLY LEAVE", "SETTINGS", "SYNC", "SIGN OUT"};
     TextView navUserProfileName = null;
     LinearLayout dashAttendance, dashTimeTable, dashClassTest, dashExam, dashEvent, dashCommunication;
     private String mCurrentUserProfileUrl = "";
@@ -279,14 +280,18 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 9) {
-            Intent navigationIntent = new Intent(this, ChangePasswordActivity.class);
+            Intent navigationIntent = new Intent(this, LeaveApplyActivity.class);
             //navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 10) {
-            Intent navigationIntent = new Intent(this, SyncRecordsActivity.class);
+            Intent navigationIntent = new Intent(this, ChangePasswordActivity.class);
             //navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 11) {
+            Intent navigationIntent = new Intent(this, SyncRecordsActivity.class);
+            //navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(navigationIntent);
+        } else if (position == 12) {
             Log.d(TAG, "Perform Logout");
             doLogout();
         }

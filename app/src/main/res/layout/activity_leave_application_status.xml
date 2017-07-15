@@ -42,7 +42,7 @@
             android:textSize="@dimen/actionbarTextSize" />
 
         <ImageView
-            android:id="@+id/reqOD"
+            android:id="@+id/reqLeave"
             android:layout_width="50dp"
             android:layout_marginTop="5dp"
             android:paddingTop="10dp"

@@ -79,7 +79,12 @@ public class EnsyfiConstants {
     // CLASS TEST & HOMEWORK
     public static final String GET_CLASS_TEST_HOMEWORK_API = "/apiteacher/add_Homework/";
     public static final String GET_CLASS_TEST_MARK_API = "/apiteacher/add_HWmarks/";
+
+    // EXAM & RESULT
     public static final String GET_ACADEMIC_EXAM_MARK_API = "/apiteacher/add_Exammarks/";
+
+    // USER LEAVES
+    public static final String GET_USER_LEAVES_API = "/apiteacher/disp_Userleaves/";
 
 
     // PARAMETERS
