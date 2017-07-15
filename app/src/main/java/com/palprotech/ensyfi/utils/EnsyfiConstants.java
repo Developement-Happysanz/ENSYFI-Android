@@ -328,4 +328,14 @@ public class EnsyfiConstants {
     public static final String PARAMS_ACADEMIC_EXAM_MARKS_EXTERNAL_MARK = "external_mark";
     public static final String PARAMS_ACADEMIC_EXAM_MARKS_CREATED_BY = "created_by";
 
+    //Leave Params
+    public static final String PARAMS_LEAVE_USER_TYPE = "user_type";
+    public static final String PARAMS_LEAVE_USER_ID = "user_id";
+    public static final String PARAMS_LEAVE_LEAVE_MASTER_ID = "leave_master_id";
+    public static final String PARAMS_LEAVE_LEAVE_TYPE = "leave_type";
+    public static final String PARAMS_LEAVE_DATE_FROM = "date_from";
+    public static final String PARAMS_LEAVE_DATE_TO = "date_to";
+    public static final String PARAMS_LEAVE_FROM_TIME = "fromTime";
+    public static final String PARAMS_LEAVE_TO_TIME = "toTime";
+    public static final String PARAMS_LEAVE_DESCRIPTION = "description";
 }

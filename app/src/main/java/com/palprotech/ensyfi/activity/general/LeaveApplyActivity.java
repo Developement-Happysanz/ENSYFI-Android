@@ -1,6 +1,9 @@
 package com.palprotech.ensyfi.activity.general;
 
+import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -10,7 +13,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -31,6 +36,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -56,6 +62,14 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
     Vector<String> vecLeaveList;
     String storeLeaveTypeId;
     RelativeLayout relativedate, relativetime;
+    final Calendar c = Calendar.getInstance();
+    LinearLayout frombackground, tobackground;
+    private boolean isDoneClick = false;
+    private String mFromDateVal = null;
+    private String mToDateVal = null;
+    String singleDate = "", checkVal = "N";
+    String formattedServerDate;
+    DatePickerDialog mFromDatePickerDialog = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,6 +77,7 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_leave_application_request);
 
         spnLeaveType = (Spinner) findViewById(R.id.class_list_spinner);
+
         dateFrom = (TextView) findViewById(R.id.dateFrom);
         dateFrom.setOnClickListener(this);
 
@@ -76,8 +91,12 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
         timeTo.setOnClickListener(this);
 
         edtOnDutyRequestDetails = (EditText) findViewById(R.id.edtOnDutyRequestDetails);
+
         btnRequest = (Button) findViewById(R.id.btnRequest);
         btnRequest.setOnClickListener(this);
+
+        frombackground = (LinearLayout) findViewById(R.id.fromDatee);
+        tobackground = (LinearLayout) findViewById(R.id.toDatee);
 
         progressDialogHelper = new ProgressDialogHelper(this);
         serviceHelper = new ServiceHelper(this);
@@ -180,7 +199,195 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View v) {
+        if (v == dateFrom) {
+            frombackground.setBackgroundColor(Color.parseColor("#663366"));
+            dateFrom.setCompoundDrawablesWithIntrinsicBounds(R.drawable.od_from_date_selected, 0, 0, 0);
+            dateFrom.setTextColor((Color.parseColor("#663366")));
+            final DatePickerDialog.OnDateSetListener fromdate = new DatePickerDialog.OnDateSetListener() {
 
+                public void onDateSet(DatePicker view, int year, int month, int day) {
+                    Log.d(TAG, "From selected");
+                    // isdoneclick = true;
+                    if (isDoneClick) {
+                        ((TextView) findViewById(R.id.dateFrom)).setText(formatDate(year, month, day));
+                        mFromDateVal = formatDateServer(year, month, day);
+                    } else {
+                        Log.e("Clear", "Clear");
+                        ((TextView) findViewById(R.id.dateFrom)).setText("");
+                        mFromDateVal = "";
+                    }
+                }
+            };
+
+            final Calendar c = Calendar.getInstance();
+            final int currentYear = c.get(Calendar.YEAR);
+            final int currentMonth = c.get(Calendar.MONTH);
+            final int currentDay = c.get(Calendar.DAY_OF_MONTH);
+
+            singleDate = "";
+
+            mFromDatePickerDialog = new DatePickerDialog(LeaveApplyActivity.this, R.style.datePickerTheme, fromdate, currentYear,
+                    currentMonth, currentDay);
+
+            mFromDatePickerDialog.setButton(DatePickerDialog.BUTTON_POSITIVE, "Done", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    isDoneClick = true;
+                    Log.d(TAG, "Done clicked");
+                    DatePicker datePicker = mFromDatePickerDialog.getDatePicker();
+                    fromdate.onDateSet(datePicker, datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth());
+                    mFromDatePickerDialog.dismiss();
+                }
+            });
+            mFromDatePickerDialog.setButton(DatePickerDialog.BUTTON_NEGATIVE, "Clear", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    isDoneClick = false;
+                    ((TextView) findViewById(R.id.dateFrom)).setText("");
+                    mFromDatePickerDialog.dismiss();
+                }
+            });
+            mFromDatePickerDialog.show();
+        }
+
+        if (v == dateTo) {
+
+            tobackground.setBackgroundColor(Color.parseColor("#663366"));
+            dateTo.setCompoundDrawablesWithIntrinsicBounds(R.drawable.od_from_date_selected, 0, 0, 0);
+            dateTo.setTextColor((Color.parseColor("#663366")));
+            final DatePickerDialog.OnDateSetListener todate = new DatePickerDialog.OnDateSetListener() {
+
+                public void onDateSet(DatePicker view, int year, int month, int day) {
+                    // isdoneclick = true;
+
+                    if (isDoneClick) {
+                        ((TextView) findViewById(R.id.dateTo)).setText(formatDate(year, month, day));
+                        mToDateVal = formatDateServer(year, month, day);
+                    } else {
+                        ((TextView) findViewById(R.id.dateTo)).setText("Select Date");
+                        mToDateVal = "";
+                    }
+                }
+
+            };
+
+
+            final int currentYear = c.get(Calendar.YEAR);
+            final int currentMonth = c.get(Calendar.MONTH);
+            final int currentDay = c.get(Calendar.DAY_OF_MONTH);
+
+            singleDate = "";
+
+            final DatePickerDialog dpd = new DatePickerDialog(LeaveApplyActivity.this, R.style.datePickerTheme, todate, currentYear,
+                    currentMonth, currentDay);
+            dpd.setButton(DatePickerDialog.BUTTON_POSITIVE, "Done", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    isDoneClick = true;
+                    DatePicker datePicker = dpd.getDatePicker();
+                    todate.onDateSet(datePicker, datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth());
+                    dpd.dismiss();
+                }
+            });
+            dpd.setButton(DatePickerDialog.BUTTON_NEGATIVE, "Clear", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    isDoneClick = false;
+                    ((TextView) findViewById(R.id.dateTo)).setText("Select Date");
+                    dpd.dismiss();
+                }
+            });
+            dpd.show();
+        }
+        if (v == btnRequest) {
+            checkVal = "Y";
+            callLeaveRequest();
+        }
+    }
+
+    private void callLeaveRequest() {
+
+        String user_type = "";
+        String user_id = "";
+        String leave_master_id = "";
+        String leave_type = "";
+        String date_from = "";
+        String date_to = "";
+        String fromTime = "";
+        String toTime = "";
+        String description = "";
+
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+
+            jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_USER_TYPE, "2");
+            jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_USER_ID, "1");
+            jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_LEAVE_MASTER_ID, "1");
+            jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_LEAVE_TYPE, "1");
+            jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_DATE_FROM, "2017-05-01");
+            jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_DATE_TO, "2017-05-01");
+            jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_FROM_TIME, "12:00:00");
+            jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_TO_TIME, "12:00:00");
+            jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_DESCRIPTION, "new");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_USER_LEAVES_APPLY_API;
+        serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
+
+    }
+
+    private static String formatDate(int year, int month, int day) {
+
+            /*Calendar cal = Calendar.getInstance();
+            cal.setTimeInMillis(0);
+            cal.set(year, month, day);
+            Date date = cal.getTime();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-mmm-yyyy");
+            return sdf.format(date);*/
+        String formattedDay = "", formattedMonth = "";
+        month = month + 1;
+        if (day < 10) {
+            formattedDay = "0" + day;
+        } else {
+            formattedDay = "" + day;
+        }
+
+        if (month < 10) {
+            formattedMonth = "0" + month;
+        } else {
+            formattedMonth = "" + month;
+        }
+
+        return formattedDay + "-" + formattedMonth + "-" + year;
+    }
+
+    private static String formatDateServer(int year, int month, int day) {
+
+            /*Calendar cal = Calendar.getInstance();
+            cal.setTimeInMillis(0);
+            cal.set(year, month, day);
+            Date date = cal.getTime();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-mmm-yyyy");
+            return sdf.format(date);*/
+        String formattedDay = "", formattedMonth = "";
+        month = month + 1;
+        if (day < 10) {
+            formattedDay = "0" + day;
+        } else {
+            formattedDay = "" + day;
+        }
+
+        if (month < 10) {
+            formattedMonth = "0" + month;
+        } else {
+            formattedMonth = "" + month;
+        }
+
+        return year + "-" + formattedMonth + "-" + formattedDay;
     }
 
     @Override
@@ -226,8 +433,11 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
         if (validateSignInResponse(response)) {
             Log.d("ajazFilterresponse : ", response.toString());
             try {
-                JSONArray getLeaveTypes = response.getJSONArray("leaveDetails");
-                SaveLeaveTypes(getLeaveTypes);
+                if (!checkVal.equalsIgnoreCase("Y")) {
+                    JSONArray getLeaveTypes = response.getJSONArray("leaveDetails");
+                    SaveLeaveTypes(getLeaveTypes);
+                } else {
+                }
             } catch (Exception ex) {
             }
         } else {
