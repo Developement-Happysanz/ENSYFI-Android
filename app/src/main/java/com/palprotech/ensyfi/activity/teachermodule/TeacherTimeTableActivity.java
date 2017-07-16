@@ -89,7 +89,7 @@ public class TeacherTimeTableActivity extends AppCompatActivity implements Dialo
             layout.setLayoutParams(new TableLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT));
             layout_all.setScrollbarFadingEnabled(false);
-            layout.setPadding(0, 80, 0, 80);
+            layout.setPadding(0, 50, 0, 50);
 
             TableLayout.LayoutParams rowLp = new TableLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
@@ -100,7 +100,10 @@ public class TeacherTimeTableActivity extends AppCompatActivity implements Dialo
 
             cellLp.setMargins(2, 2, 2, 2);
             int i = 1;
-            for (int f = 1; f <= 7; f++) {
+            int r = 1;
+            int col = 1;
+            for (int f = 0; f <= 6; f++) {
+
 
                 TableRow tr = new TableRow(this);
 
@@ -113,28 +116,82 @@ public class TeacherTimeTableActivity extends AppCompatActivity implements Dialo
                         TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT);
                 llp.setMargins(1, 1, 1, 1);//2px right-margin
 
-                for (int c1 = 1; c1 <= 9; c1++) {
+                for (int c1 = 0; c1 <= 8; c1++) {
 
                     LinearLayout cell = new LinearLayout(this);
                     cell.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                             ViewGroup.LayoutParams.MATCH_PARENT));
                     TextView b = new TextView(this);
-                    final String name;
+                    String name = "";
 
-                    String fValue = String.valueOf(f);
-                    String c1Value = String.valueOf(c1);
-                    Cursor c = db.getTeacherTimeTableValue(fValue, c1Value);
-                    if (c.getCount() > 0) {
-                        if (c.moveToFirst()) {
-                            do {
-                                ClassName = c.getString(0);
-                                SectionName = c.getString(1);
-                                SubjectName = c.getString(2);
-                            } while (c.moveToNext());
+                    if (((r == 1) && (col == 1)) || ((r == 1) && (col == 2)) || ((r == 1) && (col == 3)) || ((r == 1) && (col == 4))
+                            || ((r == 1) && (col == 5)) || ((r == 1) && (col == 6)) || ((r == 1) && (col == 7)) || ((r == 1) && (col == 8))
+                            || ((r == 1) && (col == 9)) || ((r == 2) && (col == 10)) || ((r == 3) && (col == 19)) || ((r == 4) && (col == 28))
+                            || ((r == 5) && (col == 37)) || ((r == 6) && (col == 46)) || ((r == 7) && (col == 55))) {
+                        b.setBackgroundColor(Color.parseColor("#708090"));
+                        if ((r == 1) && (col == 1)) {
+                            b.setTextColor(Color.parseColor("#FFFFFF"));
+                            name = "Period\n&\nDay";
                         }
-                        name = ClassName + "/" + SectionName + "/" + SubjectName;
+                        if ((r == 1) && (col == 2)) {
+                            name = "" + 1;
+                        }
+                        if ((r == 1) && (col == 3)) {
+                            name = "" + 2;
+                        }
+                        if ((r == 1) && (col == 4)) {
+                            name = "" + 3;
+                        }
+                        if ((r == 1) && (col == 5)) {
+                            name = "" + 4;
+                        }
+                        if ((r == 1) && (col == 6)) {
+                            name = "" + 5;
+                        }
+                        if ((r == 1) && (col == 7)) {
+                            name = "" + 6;
+                        }
+                        if ((r == 1) && (col == 8)) {
+                            name = "" + 7;
+                        }
+                        if ((r == 1) && (col == 9)) {
+                            name = "" + 8;
+                        }
+                        if ((r == 2) && (col == 10)) {
+                            name = "Monday";
+                        }
+                        if ((r == 3) && (col == 19)) {
+                            name = "Tuesday";
+                        }
+                        if ((r == 4) && (col == 28)) {
+                            name = "Wednesday";
+                        }
+                        if ((r == 5) && (col == 37)) {
+                            name = "Thursday";
+                        }
+                        if ((r == 6) && (col == 46)) {
+                            name = "Friday";
+                        }
+                        if ((r == 7) && (col == 55)) {
+                            name = "Saturday";
+                        }
+//                        b.setTextColor(Color.parseColor("#ffff00"));
                     } else {
-                        name = "";
+                        String fValue = String.valueOf(f);
+                        String c1Value = String.valueOf(c1);
+                        Cursor c = db.getTeacherTimeTableValue(fValue, c1Value);
+                        if (c.getCount() > 0) {
+                            if (c.moveToFirst()) {
+                                do {
+                                    ClassName = c.getString(0);
+                                    SectionName = c.getString(1);
+                                    SubjectName = c.getString(2);
+                                } while (c.moveToNext());
+                            }
+                            name = ClassName + "-" + SectionName + "\n" + SubjectName;
+                        } else {
+                            name = "";
+                        }
                     }
                     db.close();
 
@@ -155,16 +212,18 @@ public class TeacherTimeTableActivity extends AppCompatActivity implements Dialo
                     });
                     b.setPressed(true);
 
-                    b.setHeight(150);
-                    b.setWidth(150);
+                    b.setHeight(160);
+                    b.setWidth(160);
                     b.setPadding(1, 0, 2, 0);
                     cell.addView(b);
                     cell.setLayoutParams(llp);//2px border on the right for the cell
 
                     tr.addView(cell, cellLp);
                     i++;
+                    col++;
                 } // for
                 layout.addView(tr, rowLp);
+                r++;
             }
             // for
             layout_all.addView(layout);
