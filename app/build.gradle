@@ -100,6 +100,7 @@ dependencies {
     compile files('libs/httpcore-4.3.3.jar')
     compile files('libs/httpmime-4.3.6.jar')
     compile files('libs/universal-image-loader-1.9.3.jar')
+    compile files('libs/joda-time-2.4.jar')
 
     compile 'com.darwinsys:hirondelle-date4j:1.5.1'
 }

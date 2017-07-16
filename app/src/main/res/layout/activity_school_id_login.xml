@@ -32,6 +32,7 @@
             android:fontFamily="sans-serif"
             android:hint="@string/school_id_login"
             android:inputType="text"
+            android:digits="abcdefghijklmnopqrstvuwxyz1234567890./"
             android:maxLines="1"
             android:text="edu123456"
             android:padding="10dp"

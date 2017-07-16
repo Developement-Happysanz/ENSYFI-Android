@@ -135,6 +135,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:digits="abcdefghijklmnopqrstvuwxyz1234567890./"
             android:clickable="false"
             android:selectAllOnFocus="false" />
 
@@ -234,6 +235,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:digits="abcdefghijklmnopqrstvuwxyz1234567890./"
             android:layout_marginRight="10dp"
             android:clickable="false"
             android:selectAllOnFocus="false" />

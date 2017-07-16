@@ -59,7 +59,6 @@ public class CompoundAlertDialogFragment extends DialogFragment {
                 .setPositiveButton(posButton, mListener)
                 .setNegativeButton(negButton, mListener)
                 .create();
-
     }
 
     DialogInterface.OnClickListener mListener = new DialogInterface.OnClickListener() {
@@ -73,9 +72,9 @@ public class CompoundAlertDialogFragment extends DialogFragment {
                     CompoundAlertDialogFragment.this.dialogActions
                             .onAlertPositiveClicked(tag);
 
-                SharedPreferences sharedPreferences =
-                        PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                sharedPreferences.edit().clear().commit();
+//                SharedPreferences sharedPreferences =
+//                        PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+//                sharedPreferences.edit().clear().commit();
 
                 Intent navigationIntent = new Intent(getApplicationContext(), ChangePasswordActivity.class);
                 navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -89,6 +88,5 @@ public class CompoundAlertDialogFragment extends DialogFragment {
                             .onAlertNegativeClicked(tag);
             }
         }
-
     };
 }

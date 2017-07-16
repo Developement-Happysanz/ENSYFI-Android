@@ -21,15 +21,23 @@ import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
 import com.palprotech.ensyfi.servicehelpers.ServiceHelper;
 import com.palprotech.ensyfi.serviceinterfaces.IServiceListener;
+import com.palprotech.ensyfi.utils.AppValidator;
 import com.palprotech.ensyfi.utils.CommonUtils;
 import com.palprotech.ensyfi.utils.EnsyfiConstants;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 
+import org.joda.time.DateTime;
+import org.joda.time.Days;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
+import static android.R.attr.format;
 
 /**
  * Created by Admin on 10-07-2017.
@@ -74,9 +82,43 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
 
         progressDialogHelper = new ProgressDialogHelper(this);
 
+        loadFromDate();
+        loadToDate();
+
+
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
 
+    }
+
+    private void loadFromDate() {
+        SimpleDateFormat DF = new SimpleDateFormat("dd-MM-yyyy");
+        String formattedDate = DF.format(c.getTime());
+        SimpleDateFormat serverDF = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedServerDate = serverDF.format(c.getTime());
+
+        frombackground.setBackgroundColor(Color.parseColor("#663366"));
+        dateFrom.setCompoundDrawablesWithIntrinsicBounds(R.drawable.od_from_date_selected, 0, 0, 0);
+        dateFrom.setTextColor((Color.parseColor("#663366")));
+
+        ((TextView) findViewById(R.id.dateFrom)).setText(formattedDate);
+
+        mFromDateVal = formattedServerDate;
+    }
+
+    private void loadToDate() {
+        SimpleDateFormat DF = new SimpleDateFormat("dd-MM-yyyy");
+        String formattedDate = DF.format(c.getTime());
+        SimpleDateFormat serverDF = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedServerDate = serverDF.format(c.getTime());
+
+        tobackground.setBackgroundColor(Color.parseColor("#663366"));
+        dateTo.setCompoundDrawablesWithIntrinsicBounds(R.drawable.od_from_date_selected, 0, 0, 0);
+        dateTo.setTextColor((Color.parseColor("#663366")));
+
+        ((TextView) findViewById(R.id.dateTo)).setText(formattedDate);
+
+        mToDateVal = formattedServerDate;
     }
 
     private static String formatDate(int year, int month, int day) {
@@ -134,7 +176,7 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
 
         if (v == dateFrom) {
             frombackground.setBackgroundColor(Color.parseColor("#663366"));
-            dateFrom.setCompoundDrawablesWithIntrinsicBounds( R.drawable.od_from_date_selected, 0, 0, 0);
+            dateFrom.setCompoundDrawablesWithIntrinsicBounds(R.drawable.od_from_date_selected, 0, 0, 0);
             dateFrom.setTextColor((Color.parseColor("#663366")));
             final DatePickerDialog.OnDateSetListener fromdate = new DatePickerDialog.OnDateSetListener() {
 
@@ -186,7 +228,7 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
         if (v == dateTo) {
 
             tobackground.setBackgroundColor(Color.parseColor("#663366"));
-            dateTo.setCompoundDrawablesWithIntrinsicBounds( R.drawable.od_from_date_selected, 0, 0, 0);
+            dateTo.setCompoundDrawablesWithIntrinsicBounds(R.drawable.od_from_date_selected, 0, 0, 0);
             dateTo.setTextColor((Color.parseColor("#663366")));
             final DatePickerDialog.OnDateSetListener todate = new DatePickerDialog.OnDateSetListener() {
 
@@ -240,37 +282,74 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
         }
     }
 
-    private void callGetStudentInfoService() {
-        String reasonFor, odDetails;
-        reasonFor = edtOnDutyRequestFor.getText().toString();
-        odDetails = edtOnDutyRequestDetails.getText().toString();
+    private boolean validateFields() {
+        int getDate = 0;
+        try {
 
+            DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+            Date dateFrom = format.parse(this.dateFrom.getText().toString().trim());
+            Date dateTo = format.parse(this.dateTo.getText().toString().trim());
 
-        if (CommonUtils.isNetworkAvailable(this)) {
-            JSONObject jsonObject = new JSONObject();
-            try {
-                jsonObject.put(EnsyfiConstants.PARAMS_OD_UESR_TYPE, PreferenceStorage.getUserType(this));
-                jsonObject.put(EnsyfiConstants.PARAMS_OD_UESR_ID, PreferenceStorage.getUserId(this));
-                jsonObject.put(EnsyfiConstants.PARAMS_OD_FOR, reasonFor);
-                jsonObject.put(EnsyfiConstants.PARAMS_OD_FROM_DATE, mFromDateVal);
-                jsonObject.put(EnsyfiConstants.PARAMS_OD_TO_DATE, mToDateVal);
-                jsonObject.put(EnsyfiConstants.PARAMS_OD_NOTES, odDetails);
-                jsonObject.put(EnsyfiConstants.PARAMS_OD_STATUS, "Pending");
-                jsonObject.put(EnsyfiConstants.PARAMS_OD_CREATED_BY, PreferenceStorage.getUserType(this));
-                jsonObject.put(EnsyfiConstants.PARAMS_OD_CREATED_AT, formattedServerDate);
+            DateTime dt1 = new DateTime(dateFrom);
+            DateTime dt2 = new DateTime(dateTo);
 
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+            getDate = Days.daysBetween(dt1, dt2).getDays();
 
-            progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.GET_ON_DUTY_REQUEST;
-            serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
-        } else {
-
-            AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
 
+        if (!AppValidator.checkNullString(this.edtOnDutyRequestFor.getText().toString().trim())) {
+            AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid reason");
+            return false;
+        } else if (!AppValidator.checkNullString(this.edtOnDutyRequestDetails.getText().toString().trim())) {
+            AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid reason details");
+            return false;
+        } else if (getDate < 0) {
+            AlertDialogHelper.showSimpleAlertDialog(this, "ToDate should not lesser than FromDate");
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private void callGetStudentInfoService() {
+        try {
+
+            String reasonFor = "", odDetails = "";
+
+            reasonFor = edtOnDutyRequestFor.getText().toString();
+            odDetails = edtOnDutyRequestDetails.getText().toString();
+
+            if (validateFields()) {
+                if (CommonUtils.isNetworkAvailable(this)) {
+                    JSONObject jsonObject = new JSONObject();
+                    try {
+                        jsonObject.put(EnsyfiConstants.PARAMS_OD_UESR_TYPE, PreferenceStorage.getUserType(this));
+                        jsonObject.put(EnsyfiConstants.PARAMS_OD_UESR_ID, PreferenceStorage.getUserId(this));
+                        jsonObject.put(EnsyfiConstants.PARAMS_OD_FOR, reasonFor);
+                        jsonObject.put(EnsyfiConstants.PARAMS_OD_FROM_DATE, mFromDateVal);
+                        jsonObject.put(EnsyfiConstants.PARAMS_OD_TO_DATE, mToDateVal);
+                        jsonObject.put(EnsyfiConstants.PARAMS_OD_NOTES, odDetails);
+                        jsonObject.put(EnsyfiConstants.PARAMS_OD_STATUS, "Pending");
+                        jsonObject.put(EnsyfiConstants.PARAMS_OD_CREATED_BY, PreferenceStorage.getUserType(this));
+                        jsonObject.put(EnsyfiConstants.PARAMS_OD_CREATED_AT, formattedServerDate);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+                    String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.GET_ON_DUTY_REQUEST;
+                    serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
+                } else {
+
+                    AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override
@@ -322,6 +401,7 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
 
                         Log.d(TAG, "Show error dialog");
                         AlertDialogHelper.showSimpleAlertDialog(this, msg);
+                        finish();
 
                     }
                 }
