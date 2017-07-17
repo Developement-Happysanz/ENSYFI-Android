@@ -177,7 +177,7 @@ public class StudentInfoActivity extends AppCompatActivity {
             spnStudentInfo.setAdapter(dataAdapter3);
             spnStudentInfo.setWillNotDraw(false);
         } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), "Error company lookup", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
     }

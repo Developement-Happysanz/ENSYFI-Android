@@ -255,7 +255,7 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
             spnClassList.setAdapter(dataAdapter3);
             spnClassList.setWillNotDraw(false);
         } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), "Error company lookup", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
     }

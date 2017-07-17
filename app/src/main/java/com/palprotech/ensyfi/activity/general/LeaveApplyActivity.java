@@ -176,7 +176,7 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
             spnLeaveType.setAdapter(dataAdapter3);
             spnLeaveType.setWillNotDraw(false);
         } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), "Error getting class list lookup", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
     }
