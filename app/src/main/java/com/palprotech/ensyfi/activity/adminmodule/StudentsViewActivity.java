@@ -1,29 +1,27 @@
 package com.palprotech.ensyfi.activity.adminmodule;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
-import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.activity.studentmodule.StudentTimeTableActivity;
+import com.palprotech.ensyfi.adapter.adminmodule.ClassStudentListAdapter;
 import com.palprotech.ensyfi.bean.admin.support.StoreClass;
 import com.palprotech.ensyfi.bean.admin.support.StoreSection;
+import com.palprotech.ensyfi.bean.admin.viewlist.ClassStudent;
+import com.palprotech.ensyfi.bean.admin.viewlist.ClassStudentList;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
@@ -43,14 +41,22 @@ import java.util.ArrayList;
  * Created by Admin on 17-07-2017.
  */
 
-public class ClassViewActivity extends AppCompatActivity implements IServiceListener, DialogClickListener {
+public class StudentsViewActivity extends AppCompatActivity implements IServiceListener, DialogClickListener, AdapterView.OnItemClickListener {
 
-    private static final String TAG = ClassViewActivity.class.getName();
+    private static final String TAG = StudentsViewActivity.class.getName();
     LinearLayout layout_all;
     private ProgressDialogHelper progressDialogHelper;
     private ServiceHelper serviceHelper;
     private Spinner spnClassList, spnSectionList;
     private String checkSpinner = "", storeClassId, storeSectionId;
+    ListView loadMoreListView;
+    ClassStudentListAdapter classStudentListAdapter;
+    ArrayList<ClassStudent> classStudentArrayList;
+    int pageNumber = 0, totalCount = 0;
+    protected boolean isLoadingForFirstTime = true;
+    Handler mHandler = new Handler();
+    private SearchView mSearchView = null;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,6 +67,10 @@ public class ClassViewActivity extends AppCompatActivity implements IServiceList
         progressDialogHelper = new ProgressDialogHelper(this);
         spnClassList = (Spinner) findViewById(R.id.class_list_spinner);
         spnSectionList = (Spinner) findViewById(R.id.section_list_spinner);
+        loadMoreListView = (ListView) findViewById(R.id.listView_events);
+//        loadMoreListView.setOnLoadMoreListener(this);
+        loadMoreListView.setOnItemClickListener(this);
+        classStudentArrayList = new ArrayList<>();
 
         GetClassData();
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
@@ -118,7 +128,6 @@ public class ClassViewActivity extends AppCompatActivity implements IServiceList
             String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_SECTION_LISTS;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
-
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
         }
@@ -147,7 +156,11 @@ public class ClassViewActivity extends AppCompatActivity implements IServiceList
     }
 
     private void GetStudentData() {
+
         checkSpinner = "students";
+        if (classStudentArrayList != null)
+            classStudentArrayList.clear();
+
         if (CommonUtils.isNetworkAvailable(this)) {
 
             JSONObject jsonObject = new JSONObject();
@@ -208,7 +221,7 @@ public class ClassViewActivity extends AppCompatActivity implements IServiceList
     }
 
     @Override
-    public void onResponse(JSONObject response) {
+    public void onResponse(final JSONObject response) {
 
         progressDialogHelper.hideProgressDialog();
 
@@ -264,7 +277,21 @@ public class ClassViewActivity extends AppCompatActivity implements IServiceList
                     spnSectionList.setAdapter(adapter);
 //                spnClassList.setSelection(adapter.getPosition());//Optional to set the selected item.
                 } else {
-                    Log.d(TAG, "Error while sign In");
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressDialogHelper.hideProgressDialog();
+//                loadMoreListView.onLoadMoreComplete();
+
+                            Gson gson = new Gson();
+                            ClassStudentList classStudentList = gson.fromJson(response.toString(), ClassStudentList.class);
+                            if (classStudentList.getClassStudent() != null && classStudentList.getClassStudent().size() > 0) {
+                                totalCount = classStudentList.getCount();
+                                isLoadingForFirstTime = false;
+                                updateListAdapter(classStudentList.getClassStudent());
+                            }
+                        }
+                    });
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -275,9 +302,43 @@ public class ClassViewActivity extends AppCompatActivity implements IServiceList
         }
     }
 
+    protected void updateListAdapter(ArrayList<ClassStudent> classStudentArrayList) {
+        this.classStudentArrayList.addAll(classStudentArrayList);
+        if (classStudentListAdapter == null) {
+            classStudentListAdapter = new ClassStudentListAdapter(this, this.classStudentArrayList);
+            loadMoreListView.setAdapter(classStudentListAdapter);
+        } else {
+            classStudentListAdapter.notifyDataSetChanged();
+        }
+    }
+
     @Override
-    public void onError(String error) {
-        progressDialogHelper.hideProgressDialog();
-        AlertDialogHelper.showSimpleAlertDialog(this, error);
+    public void onError(final String error) {
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                progressDialogHelper.hideProgressDialog();
+//                loadMoreListView.onLoadMoreComplete();
+                AlertDialogHelper.showSimpleAlertDialog(StudentsViewActivity.this, error);
+            }
+        });
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Log.d(TAG, "onEvent list item click" + position);
+        ClassStudent classStudent = null;
+        if ((classStudentListAdapter != null) && (classStudentListAdapter.ismSearching())) {
+            Log.d(TAG, "while searching");
+            int actualindex = classStudentListAdapter.getActualEventPos(position);
+            Log.d(TAG, "actual index" + actualindex);
+            classStudent = classStudentArrayList.get(actualindex);
+        } else {
+            classStudent = classStudentArrayList.get(position);
+        }
+        Intent intent = new Intent(this, ClassStudentDetailsActivity.class);
+        intent.putExtra("eventObj", classStudent);
+        // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(intent);
     }
 }

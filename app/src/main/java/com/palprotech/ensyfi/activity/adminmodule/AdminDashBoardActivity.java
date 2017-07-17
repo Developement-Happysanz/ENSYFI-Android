@@ -31,8 +31,6 @@ import com.palprotech.ensyfi.activity.loginmodule.ChangePasswordActivity;
 import com.palprotech.ensyfi.activity.loginmodule.ProfileActivity;
 import com.palprotech.ensyfi.activity.loginmodule.SplashScreenActivity;
 import com.palprotech.ensyfi.activity.parentsmodule.ParentsCommunicationActivity;
-import com.palprotech.ensyfi.activity.studentmodule.AttendanceActivity;
-import com.palprotech.ensyfi.activity.studentmodule.ClassTestHomeworkActivity;
 import com.palprotech.ensyfi.activity.studentmodule.ExamsResultActivity;
 import com.palprotech.ensyfi.activity.studentmodule.StudentInfoActivity;
 import com.palprotech.ensyfi.activity.studentmodule.StudentTimeTableActivity;
@@ -94,7 +92,7 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
         students.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ClassViewActivity.class);
+                Intent intent = new Intent(getApplicationContext(), StudentsViewActivity.class);
                 startActivity(intent);
             }
         });
@@ -102,7 +100,7 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
         teachers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ClassTestHomeworkActivity.class);
+                Intent intent = new Intent(getApplicationContext(), TeachersViewActivity.class);
                 startActivity(intent);
             }
         });
@@ -142,7 +140,7 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
         events.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CircularActivity.class);
+                Intent intent = new Intent(getApplicationContext(), EventsActivity.class);
                 startActivity(intent);
             }
         });
@@ -252,11 +250,11 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 1) {
-            Intent navigationIntent = new Intent(this, ClassViewActivity.class);
+            Intent navigationIntent = new Intent(this, StudentsViewActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 2) {
-            Intent navigationIntent = new Intent(this, ClassTestHomeworkActivity.class);
+            Intent navigationIntent = new Intent(this, TeachersViewActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 3) {
@@ -276,11 +274,11 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 7) {
-            Intent navigationIntent = new Intent(this, StudentInfoActivity.class);
+            Intent navigationIntent = new Intent(this, EventsActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 8) {
-            Intent navigationIntent = new Intent(this, OnDutyActivity.class);
+            Intent navigationIntent = new Intent(this, CircularActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         }else if (position == 9) {

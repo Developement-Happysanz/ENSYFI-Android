@@ -94,6 +94,12 @@ public class EnsyfiConstants {
     public static final String GET_SECTION_LISTS = "/apiadmin/get_all_sections/";
     public static final String GET_STUDENT_LISTS = "/apiadmin/get_all_students_in_classes/";
 
+    public static final String GET_STUDENT_INFO = "/apiadmin/get_student_details/";
+
+    public static final String GET_TEACHERS_LIST = "/apiadmin/get_all_teachers/";
+
+    public static final String GET_TEACHERS_INFO = "/apiadmin/get_teacher_class_details/";
+
 
     // PARAMETERS
     //Service Params
@@ -157,7 +163,6 @@ public class EnsyfiConstants {
 
 
     //User Profile details
-
     //Student Details
     public static final String STUDENT_ADMISSION_ID = "stud_admission_id";
     public static final String STUDENT_ADMISSION_YEAR = "stud_admisn_year";
@@ -348,4 +353,10 @@ public class EnsyfiConstants {
     //Class and Section Params
     public static final String PARAMS_CLASS_ID_LIST = "ClassId";
     public static final String PARAMS_SECTION_ID_LIST = "SectionId";
+
+    //Students
+    public static final String PARAMS_STUDENT_ID_SHOW = "student_id";
+
+    //Teachers
+    public static final String PARAMS_TEACHER_ID_SHOW = "teacher_id";
 }

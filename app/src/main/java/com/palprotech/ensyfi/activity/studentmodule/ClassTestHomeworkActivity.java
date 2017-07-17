@@ -81,50 +81,16 @@ public class ClassTestHomeworkActivity extends AppCompatActivity implements ISer
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
                 switch (checkedId) {
                     case R.id.radioClassTest:
-//                        RadioButton value = Integer.parseInt(((RadioButton) findViewById(R.id.radioClassTest).getText()) * 3);
-//                        Toast.makeText(getApplicationContext(), "Class Test", Toast.LENGTH_SHORT).show();
                         isHomeWorkType = "HT";
                         callGetClassTestService();
                         break;
                     case R.id.radioHomeWork:
-//                        RadioButton value1 = Integer.parseInt(((RadioButton) findViewById(R.id.radioClassHome).getText()) * 3);
-//                        Toast.makeText(getApplicationContext(), "Home Work", Toast.LENGTH_SHORT).show();
                         isHomeWorkType = "HW";
                         callGetClassTestService();
                         break;
-
                 }
             }
         });
-
-//        switcherClassTest = (SwitchCompat) findViewById(R.id.switch_test);
-//        switcherHomeWork = (SwitchCompat) findViewById(R.id.switch_homwork);
-       /* switcherClassTest.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Log.v("Switch State=", "" + isChecked);
-                Toast.makeText(getApplicationContext(),"Switch State 1=" + isChecked,Toast.LENGTH_SHORT).show();
-                //
-//                switcherHomeWork.setChecked(true);
-            }
-
-        });
-
-
-        switcherHomeWork.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Log.v("Switch State=", "" + isChecked);
-                Toast.makeText(getApplicationContext(),"Switch State 2=" + isChecked,Toast.LENGTH_SHORT).show();
-                //
-//                switcherClassTest.setChecked(true);
-            }
-
-        }); */
-
-
     }
 
     public void callGetClassTestService() {
@@ -142,7 +108,6 @@ public class ClassTestHomeworkActivity extends AppCompatActivity implements ISer
 //            AlertDialogHelper.showSimpleAlertDialog(this, getString(R.string.no_connectivity));
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
         }
-
     }
 
     @Override
@@ -180,7 +145,6 @@ public class ClassTestHomeworkActivity extends AppCompatActivity implements ISer
 
                     } else {
                         signInsuccess = true;
-
                     }
                 }
             } catch (JSONException e) {
