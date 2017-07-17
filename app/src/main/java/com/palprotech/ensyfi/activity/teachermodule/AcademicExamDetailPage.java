@@ -37,7 +37,7 @@ public class AcademicExamDetailPage extends AppCompatActivity implements IServic
     AcademicExamDetailsListBaseAdapter cadapter;
     ListView loadMoreListView;
     String examId, examName, classMasterId, sectionName, className, fromDate, toDate, markStatus;
-    ImageView back_res1, back_res2;
+    ImageView addExamMark, viewExamMark;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,19 +48,19 @@ public class AcademicExamDetailPage extends AppCompatActivity implements IServic
         db = new SQLiteHelper(getApplicationContext());
         String examId = String.valueOf(id);
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
-        back_res1 = (ImageView) findViewById(R.id.back_res1);
-        back_res1.setOnClickListener(this);
-        back_res2 = (ImageView) findViewById(R.id.back_res2);
-        back_res2.setOnClickListener(this);
+        addExamMark = (ImageView) findViewById(R.id.addExamMarks);
+        addExamMark.setOnClickListener(this);
+        viewExamMark = (ImageView) findViewById(R.id.viewExamMarks);
+        viewExamMark.setOnClickListener(this);
         GetAcademicExamInfo(examId);
         loadAcademicExamDetails(classMasterId, examId);
         int checkMarkStatus = Integer.parseInt(markStatus);
         if (checkMarkStatus == 0) {
-            back_res1.setVisibility(View.VISIBLE);
-            back_res2.setVisibility(View.GONE);
+            addExamMark.setVisibility(View.VISIBLE);
+            viewExamMark.setVisibility(View.GONE);
         } else {
-            back_res1.setVisibility(View.GONE);
-            back_res2.setVisibility(View.VISIBLE);
+            addExamMark.setVisibility(View.GONE);
+            viewExamMark.setVisibility(View.VISIBLE);
         }
     }
 
@@ -122,12 +122,12 @@ public class AcademicExamDetailPage extends AppCompatActivity implements IServic
 
     @Override
     public void onClick(View v) {
-        if (v == back_res1) {
+        if (v == addExamMark) {
             Intent intent = new Intent(getApplicationContext(), AddAcademicExamMarksActivity.class);
             intent.putExtra("id", id);
             startActivity(intent);
         }
-        if (v == back_res2) {
+        if (v == viewExamMark) {
             Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
         }
 

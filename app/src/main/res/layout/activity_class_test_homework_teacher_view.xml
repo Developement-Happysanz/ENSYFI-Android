@@ -34,7 +34,7 @@
             android:gravity="center"
             android:minHeight="?attr/actionBarSize"
             android:paddingLeft="10dp"
-            android:text="Class Test"
+            android:text="Class Test &amp; homework"
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="@dimen/actionbarTextSize" />

@@ -3,6 +3,7 @@ package com.palprotech.ensyfi.bean.teacher.support;
 import android.content.Context;
 
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
+import com.palprotech.ensyfi.utils.EnsyfiConstants;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 
 import org.json.JSONArray;
@@ -30,6 +31,8 @@ public class SaveTeacherData {
             JSONObject getTeacherProfile = teacherProfile.getJSONObject(0);
 
             //Teacher Details
+            String imageURL = "";
+            imageURL = EnsyfiConstants.USER_IMAGE_API_TEACHERS; // Teacher user image url
             String TeacherId = "";
             String TeacherName = "";
             String TeacherGender = "";
@@ -45,6 +48,7 @@ public class SaveTeacherData {
             String TeacherSecondaryMobile = "";
             String TeacherMail = "";
             String TeacherSecondaryMail = "";
+            String TeacherPicUrl = "";
             String TeacherPic = "";
             String TeacherSectionName = "";
             String TeacherClassName = "";
@@ -71,6 +75,8 @@ public class SaveTeacherData {
             TeacherSubjectName = getTeacherProfile.getString("subject_name");
             TeacherSectionName = getTeacherProfile.getString("sec_name");
             TeacherClassName = getTeacherProfile.getString("class_name");
+
+            TeacherPicUrl = PreferenceStorage.getUserDynamicAPI(context) + imageURL + TeacherPic; // Generate user image url
 
             // Parents Preference - Student Admission Id
             if ((TeacherId != null) && !(TeacherId.isEmpty()) && !TeacherId.equalsIgnoreCase("null")) {
@@ -148,8 +154,8 @@ public class SaveTeacherData {
             }
 
             // Parents Preference - Student Mother Tongue
-            if ((TeacherPic != null) && !(TeacherPic.isEmpty()) && !TeacherPic.equalsIgnoreCase("null")) {
-                PreferenceStorage.saveTeacherPic(context, TeacherPic);
+            if ((TeacherPicUrl != null) && !(TeacherPicUrl.isEmpty()) && !TeacherPicUrl.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveTeacherPic(context, TeacherPicUrl);
             }
 
             // Parents Preference - Student Language

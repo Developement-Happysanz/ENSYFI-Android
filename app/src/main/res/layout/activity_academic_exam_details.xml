@@ -39,28 +39,34 @@
             android:textSize="@dimen/actionbarTextSize" />
 
         <ImageView
-            android:id="@+id/back_res1"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
+            android:id="@+id/addExamMarks"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_alignParentRight="true"
-            android:minHeight="?attr/actionBarSize"
-            android:paddingLeft="15dp"
-            android:src="@drawable/ic_arrow_back_white_48dp" />
+            android:layout_marginTop="5dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:src="@drawable/od_apply"
+            android:visibility="visible" />
 
         <ImageView
-            android:id="@+id/back_res2"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
+            android:id="@+id/viewExamMarks"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_alignParentRight="true"
-            android:minHeight="?attr/actionBarSize"
-            android:paddingLeft="15dp"
-            android:src="@drawable/ic_arrow_back_white_48dp" />
+            android:layout_marginTop="5dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:src="@drawable/ic_view2"
+            android:visibility="visible" />
 
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_gravity="center_vertical"
         android:layout_marginTop="50dp"
         android:background="@color/black">
@@ -104,6 +110,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/ti"
                 android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
                 android:layout_marginTop="2dp"
                 android:layout_toRightOf="@+id/ti"
                 android:layout_weight="0.33"
