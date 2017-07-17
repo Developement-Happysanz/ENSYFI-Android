@@ -165,6 +165,7 @@ public class AcademicExamViewActivity extends AppCompatActivity implements IServ
 
             spnClassList.setAdapter(dataAdapter3);
             spnClassList.setWillNotDraw(false);
+
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "Error getting class list lookup", Toast.LENGTH_LONG).show();
             e.printStackTrace();

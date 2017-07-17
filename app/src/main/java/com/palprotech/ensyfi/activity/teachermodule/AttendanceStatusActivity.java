@@ -1,4 +1,4 @@
-package com.palprotech.ensyfi.activity.studentmodule;
+package com.palprotech.ensyfi.activity.teachermodule;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
@@ -26,7 +26,6 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.activity.teachermodule.TeacherAttendanceInsertActivity;
 import com.palprotech.ensyfi.adapter.studentmodule.DayViewListAdapter;
 import com.palprotech.ensyfi.adapter.studentmodule.MonthViewListAdapter;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;

@@ -88,6 +88,12 @@ public class EnsyfiConstants {
     public static final String GET_USER_LEAVES_TYPE_API = "/apiteacher/disp_Leavetype/";
     public static final String GET_USER_LEAVES_APPLY_API = "/apiteacher/add_Userleaves/";
 
+    // ADMIN URLS
+    // CLASS LIST URL
+    public static final String GET_CLASS_LISTS = "/apiadmin/get_all_classes/";
+    public static final String GET_SECTION_LISTS = "/apiadmin/get_all_sections/";
+    public static final String GET_STUDENT_LISTS = "/apiadmin/get_all_students_in_classes/";
+
 
     // PARAMETERS
     //Service Params
@@ -338,4 +344,8 @@ public class EnsyfiConstants {
     public static final String PARAMS_LEAVE_FROM_TIME = "fromTime";
     public static final String PARAMS_LEAVE_TO_TIME = "toTime";
     public static final String PARAMS_LEAVE_DESCRIPTION = "description";
+
+    //Class and Section Params
+    public static final String PARAMS_CLASS_ID_LIST = "ClassId";
+    public static final String PARAMS_SECTION_ID_LIST = "SectionId";
 }

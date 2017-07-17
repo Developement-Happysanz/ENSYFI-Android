@@ -23,7 +23,7 @@ public class SaveStudentData {
         this.context = context;
     }
 
-    public void saveStudentRegisteredData(JSONArray studentRegistered) {
+    public void     saveStudentRegisteredData(JSONArray studentRegistered) {
         database = new SQLiteHelper(context);
         try {
             database.deleteStudentInfo();

@@ -269,6 +269,7 @@ public class StudentTimeTableActivity extends AppCompatActivity implements IServ
 
     @Override
     public void onError(String error) {
-
+        progressDialogHelper.hideProgressDialog();
+        AlertDialogHelper.showSimpleAlertDialog(this, error);
     }
 }

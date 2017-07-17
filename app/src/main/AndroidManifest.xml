@@ -145,13 +145,13 @@
             android:theme="@style/AppThemeNoActionBarGrey" />
 
         <activity
-            android:name=".activity.studentmodule.AttendanceStatusActivity"
+            android:name=".activity.teachermodule.AttendanceStatusActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarGrey" />
 
         <activity
-            android:name=".activity.studentmodule.AttendanceMonthViewActivity"
+            android:name=".activity.teachermodule.AttendanceMonthViewActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarGrey" />
@@ -286,6 +286,11 @@
         <!--Admin Module-->
         <activity
             android:name=".activity.adminmodule.AdminDashBoardActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarGrey" />
+        <activity
+            android:name=".activity.adminmodule.ClassViewActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarGrey" />

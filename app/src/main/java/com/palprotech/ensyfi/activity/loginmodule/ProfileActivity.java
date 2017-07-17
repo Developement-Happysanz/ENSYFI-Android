@@ -88,7 +88,11 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
 
         String userTypeString = PreferenceStorage.getUserType(getApplicationContext());
         int userType = Integer.parseInt(userTypeString);
-        if (userType == 2) {
+        if (userType == 1) {
+            TeacherInfo.setVisibility(View.GONE);
+            ParentInfo.setVisibility(View.GONE);
+            FeeStatusView.setVisibility(View.GONE);
+        } else if (userType == 2) {
             TeacherInfo.setVisibility(View.VISIBLE);
             ParentInfo.setVisibility(View.GONE);
         } else if (userType == 3) {
