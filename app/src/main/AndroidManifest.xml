@@ -338,6 +338,36 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarGrey" />
 
+        <activity
+            android:name=".activity.adminmodule.ExamViewActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarGrey" />
+
+        <activity
+            android:name=".activity.adminmodule.ResultViewActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarGrey" />
+
+        <activity
+            android:name=".activity.adminmodule.StudentResultView"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarGrey" />
+
+        <activity
+            android:name=".activity.adminmodule.FeesViewActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarGrey" />
+
+        <activity
+            android:name=".activity.adminmodule.FeesStatusView"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarGrey" />
+
     </application>
 
 </manifest>
