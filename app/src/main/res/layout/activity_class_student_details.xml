@@ -45,4 +45,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="View Fees" />
+
+    <Button
+        android:id="@+id/btnAttendance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Attendance" />
+
 </LinearLayout>

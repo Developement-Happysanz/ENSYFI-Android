@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.palprotech.ensyfi.R;
+import com.palprotech.ensyfi.activity.studentmodule.AttendanceActivity;
 import com.palprotech.ensyfi.activity.studentmodule.ClassTestHomeworkActivity;
 import com.palprotech.ensyfi.activity.studentmodule.ExamsResultActivity;
 import com.palprotech.ensyfi.activity.studentmodule.FeeStatusActivity;
@@ -36,7 +37,7 @@ public class ClassStudentDetailsActivity extends AppCompatActivity implements IS
     private static final String TAG = ClassStudentDetailsActivity.class.getName();
     private ClassStudent classStudent;
     private TextView txtStudentName, txtStudentRegId;
-    private Button btnClassTestHomework, btnExams, btnFees;
+    private Button btnClassTestHomework, btnExams, btnFees,btnAttendance,btnOnDuty;
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper progressDialogHelper;
 
@@ -56,6 +57,12 @@ public class ClassStudentDetailsActivity extends AppCompatActivity implements IS
 
         btnFees = (Button) findViewById(R.id.btnFees);
         btnFees.setOnClickListener(this);
+
+        btnAttendance = (Button)findViewById(R.id.btnAttendance);
+        btnAttendance.setOnClickListener(this);
+
+        btnOnDuty=(Button)findViewById(R.id.btnOnDuty);
+        btnOnDuty.setOnClickListener(this);
 
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
@@ -192,6 +199,22 @@ public class ClassStudentDetailsActivity extends AppCompatActivity implements IS
             Intent intent = new Intent(getApplicationContext(), FeeStatusActivity.class);
             startActivity(intent);
         }
+        if(v==btnAttendance){
+            String ClassId = classStudent.getClassId();
+            // Student Preference - ClassId
+            if ((ClassId != null) && !(ClassId.isEmpty()) && !ClassId.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveStudentClassIdPreference(getApplicationContext(), ClassId);
+            }
+
+            String StudentId = classStudent.getEnrollId();
+            // Student Preference - EnrollId
+            if ((StudentId != null) && !(StudentId.isEmpty()) && !StudentId.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveStudentRegisteredIdPreference(getApplicationContext(), StudentId);
+            }
+            Intent intent = new Intent(this, AttendanceActivity.class);
+            startActivity(intent);
+        }
+
     }
 
     @Override
