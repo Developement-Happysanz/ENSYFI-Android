@@ -19,7 +19,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String TAG = "SQLiteHelper.java";
 
     private static final String DATABASE_NAME = "ENSYFI.db";
-    private static final int DATABASE_VERSION = 22;
+    private static final int DATABASE_VERSION = 23;
 
     private static final String table_create_student = "Create table IF NOT EXISTS studentInfo(_id integer primary key autoincrement,"
             + "registered_id text,"
@@ -159,6 +159,13 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             + "leave_title text," //2
             + "leave_type text);";//3
 
+    private static final String table_create_teacher_handling_subjects = "Create table IF NOT EXISTS teacherHandlingSubject(_id integer primary key autoincrement,"
+            + "class_master_id text," //1
+            + "teacher_id text," //2
+            + "class_name text," //3
+            + "sec_name text," //4
+            + "subject_name text);";//5
+
 
     public SQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -190,6 +197,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(table_create_academic_exam_marks);
 
         db.execSQL(table_create_leave_type);
+
+        db.execSQL(table_create_teacher_handling_subjects);
     }
 
     @Override
@@ -221,6 +230,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS academicExamMarks");
 
         db.execSQL("DROP TABLE IF EXISTS leaveType");
+
+        db.execSQL("DROP TABLE IF EXISTS teacherHandlingSubject");
     }
 
     public void open() throws SQLException {
@@ -876,6 +887,32 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         String ok;
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("leaveType", null, null);
+    }
+    /*
+    *   End
+    */
+
+    /*
+  *   Homework Class Test Store & Retrieve Functionality
+  */
+    public long teacher_handling_subject_insert(String val1, String val2, String val3,String val4,String val5) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues initialValues = new ContentValues();
+        initialValues.put("class_master_id", val1);
+        initialValues.put("teacher_id", val2);
+        initialValues.put("class_name", val3);
+        initialValues.put("sec_name", val4);
+        initialValues.put("subject_name", val5);
+        long l = db.insert("teacherHandlingSubject", "_id", initialValues);
+        db.close();
+        return l;
+    }
+
+
+    public void deleteTeacherHandlingSubjects() {
+        String ok;
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("teacherHandlingSubject", null, null);
     }
     /*
     *   End

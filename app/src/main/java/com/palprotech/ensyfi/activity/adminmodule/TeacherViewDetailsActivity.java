@@ -1,5 +1,6 @@
 package com.palprotech.ensyfi.activity.adminmodule;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -9,8 +10,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.palprotech.ensyfi.R;
+import com.palprotech.ensyfi.activity.studentmodule.ExamsResultActivity;
+import com.palprotech.ensyfi.activity.teachermodule.TeacherTimeTableActivity;
 import com.palprotech.ensyfi.bean.admin.viewlist.ClassStudent;
 import com.palprotech.ensyfi.bean.admin.viewlist.TeacherView;
+import com.palprotech.ensyfi.bean.teacher.support.SaveTeacherData;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
@@ -36,6 +40,7 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
     private Button btnTeacherTimeTable;
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper progressDialogHelper;
+    private SaveTeacherData teacherData;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,6 +58,8 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(this);
+
+        teacherData = new SaveTeacherData(this);
 
         populateData();
         String view = "";
@@ -86,6 +93,9 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
     @Override
     public void onClick(View v) {
         if (v == btnTeacherTimeTable) {
+
+            Intent intent = new Intent(this, TeacherTimeTableActivity.class);
+            startActivity(intent);
         }
     }
 
@@ -105,23 +115,21 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
         if (validateSignInResponse(response)) {
 
             String repo = response.toString();
-
 //            longInfo(repo);
 
-            /*try {
-                JSONArray getStudentData = response.getJSONArray("studentData");
-                JSONObject studentData = getStudentData.getJSONObject(0);
-                String studentMark = null, studentRemarks = null;
+            try {
+                JSONArray getTimeTable = response.getJSONArray("timeTable");
+                teacherData.saveTeacherTimeTable(getTimeTable);
 
-                JSONObject getParentData = response.getJSONObject("parents_details");
+                JSONArray getClassSubject = response.getJSONArray("class_name");
+                teacherData.saveTeacherHandlingSubject(getClassSubject);
 
-                JSONObject fatherData = getParentData.getJSONObject("fatherProfile");
-                JSONObject motherData = getParentData.getJSONObject("motherProfile");
-                JSONObject guardianData = getParentData.getJSONObject("guardianProfile");
+                JSONArray getTeacherProfile = response.getJSONArray("teacherProfile");
+                teacherData.saveTeacherProfile(getTeacherProfile);
 
             } catch (JSONException e) {
                 e.printStackTrace();
-            }*/
+            }
 
         } else {
             Log.d(TAG, "Error while sign In");

@@ -35,6 +35,7 @@ import com.palprotech.ensyfi.activity.studentmodule.ExamsResultActivity;
 import com.palprotech.ensyfi.activity.studentmodule.StudentInfoActivity;
 import com.palprotech.ensyfi.activity.studentmodule.StudentTimeTableActivity;
 import com.palprotech.ensyfi.adapter.NavDrawerAdapter;
+import com.palprotech.ensyfi.bean.general.support.DeleteTableRecords;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 import com.squareup.picasso.Picasso;
@@ -60,11 +61,17 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
     LinearLayout students, teachers, parents, classes, exams, results, events, communication;
     private String mCurrentUserProfileUrl = "";
     Context context;
+    private DeleteTableRecords deleteTableRecords;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dashboard_admin);
+        String userTypeString = PreferenceStorage.getUserType(getApplicationContext());
+        int userType = Integer.parseInt(userTypeString);
+        if (userType == 1) {
+            setTitle("ENSYFI - Admin");
+        }
         toolbar = (Toolbar) findViewById(R.id.activity_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -88,6 +95,7 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
         results = (LinearLayout) findViewById(R.id.results);
         events = (LinearLayout) findViewById(R.id.events);
         communication = (LinearLayout) findViewById(R.id.communication);
+        deleteTableRecords = new DeleteTableRecords(this);
 
         students.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -281,7 +289,7 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
             Intent navigationIntent = new Intent(this, CircularActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        }else if (position == 9) {
+        } else if (position == 9) {
             Intent navigationIntent = new Intent(this, ChangePasswordActivity.class);
             //navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
@@ -305,6 +313,9 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
     }
 
     public void doLogout() {
+
+        deleteTableRecords.deleteAllRecords();
+
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(this);
         sharedPreferences.edit().clear().commit();

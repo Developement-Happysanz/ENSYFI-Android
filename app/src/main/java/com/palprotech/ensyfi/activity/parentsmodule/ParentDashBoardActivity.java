@@ -35,6 +35,7 @@ import com.palprotech.ensyfi.activity.studentmodule.ExamsResultActivity;
 import com.palprotech.ensyfi.activity.studentmodule.StudentInfoActivity;
 import com.palprotech.ensyfi.activity.studentmodule.StudentTimeTableActivity;
 import com.palprotech.ensyfi.adapter.NavDrawerAdapter;
+import com.palprotech.ensyfi.bean.general.support.DeleteTableRecords;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 import com.squareup.picasso.Callback;
@@ -56,6 +57,7 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
     LinearLayout dashAttendance, dashTimeTable, dashClassTest, dashExam, dashEvent, dashCommunication;
     private String mCurrentUserProfileUrl = "";
     Context context;
+    private DeleteTableRecords deleteTableRecords;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +103,7 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
         dashTimeTable = (LinearLayout) findViewById(R.id.time_table);
         dashEvent = (LinearLayout) findViewById(R.id.events);
         dashCommunication = (LinearLayout) findViewById(R.id.communication);
+        deleteTableRecords = new DeleteTableRecords(this);
 
         dashAttendance.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -302,6 +305,9 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
     }
 
     public void doLogout() {
+
+        deleteTableRecords.deleteAllRecords();
+
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(this);
         sharedPreferences.edit().clear().commit();

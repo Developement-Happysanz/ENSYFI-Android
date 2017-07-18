@@ -213,6 +213,9 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     JSONArray getAcademicExamDetails = response.getJSONArray("examDetails");
                     teacherData.saveExamsDetails(getAcademicExamDetails);
 
+                    JSONArray getClassSubject = response.getJSONArray("classSubject");
+                    teacherData.saveTeacherHandlingSubject(getClassSubject);
+
                 } else if (userType == 3) {
 
                     saveUserData(userData);
@@ -270,11 +273,13 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
 
     private void saveStudentParentDetails(JSONObject response) {
         try {
+
             JSONObject getParentData = response.getJSONObject("parentProfile");
             parentData.saveParentProfile(getParentData);
 
             JSONArray getStudentData = response.getJSONArray("registeredDetails");
             studentData.saveStudentRegisteredData(getStudentData);
+
         } catch (Exception ex) {
         }
     }
