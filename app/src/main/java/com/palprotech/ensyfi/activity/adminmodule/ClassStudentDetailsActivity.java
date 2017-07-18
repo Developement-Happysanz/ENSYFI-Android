@@ -37,7 +37,7 @@ public class ClassStudentDetailsActivity extends AppCompatActivity implements IS
     private static final String TAG = ClassStudentDetailsActivity.class.getName();
     private ClassStudent classStudent;
     private TextView txtStudentName, txtStudentRegId;
-    private Button btnClassTestHomework, btnExams, btnFees,btnAttendance,btnOnDuty;
+    private Button btnClassTestHomework, btnExams, btnFees, btnAttendance, btnOnDuty;
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper progressDialogHelper;
 
