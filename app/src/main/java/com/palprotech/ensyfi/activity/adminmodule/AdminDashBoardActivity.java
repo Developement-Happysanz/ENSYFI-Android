@@ -132,7 +132,7 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
         exams.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), EventsActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ExamViewActivity.class);
                 startActivity(intent);
             }
         });
@@ -140,7 +140,7 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
         results.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CircularActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ResultViewActivity.class);
                 startActivity(intent);
             }
         });
@@ -274,11 +274,11 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 5) {
-            Intent navigationIntent = new Intent(this, EventsActivity.class);
+            Intent navigationIntent = new Intent(this, ExamViewActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 6) {
-            Intent navigationIntent = new Intent(this, ParentsCommunicationActivity.class);
+            Intent navigationIntent = new Intent(this, ResultViewActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 7) {

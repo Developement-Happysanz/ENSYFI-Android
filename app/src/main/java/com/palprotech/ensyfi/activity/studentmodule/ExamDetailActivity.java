@@ -113,7 +113,7 @@ public class ExamDetailActivity extends AppCompatActivity implements IServiceLis
 
             JSONObject jsonObject = new JSONObject();
             try {
-                jsonObject.put(EnsyfiConstants.PARAM_CLASS_ID, PreferenceStorage.getStudentClassIdPreference(getApplicationContext()));
+                jsonObject.put(EnsyfiConstants.PARAM_CLASS_ID, exams.getCassMasterId());
                 jsonObject.put(EnsyfiConstants.PARAM_EXAM_ID, ExamId);
 
             } catch (JSONException e) {

@@ -9,7 +9,7 @@ import java.io.Serializable;
  * Created by Admin on 17-05-2017.
  */
 
-public class Exams implements Serializable{
+public class Exams implements Serializable {
 
     @SerializedName("exam_id")
     @Expose
@@ -31,7 +31,9 @@ public class Exams implements Serializable{
     @Expose
     private String MarkStatus;
 
-
+    @SerializedName("classmaster_id")
+    @Expose
+    private String classmaster_id;
 
 
     /**
@@ -102,6 +104,20 @@ public class Exams implements Serializable{
      */
     public void setMarkStatus(String MarkStatus) {
         this.MarkStatus = MarkStatus;
+    }
+
+    /**
+     * @return The classmaster_id
+     */
+    public String getCassMasterId() {
+        return classmaster_id;
+    }
+
+    /**
+     * @param classmaster_id The classmaster_id
+     */
+    public void setCassMasterId(String classmaster_id) {
+        this.classmaster_id = classmaster_id;
     }
 
 }
