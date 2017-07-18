@@ -61,9 +61,6 @@ public class ClassStudentDetailsActivity extends AppCompatActivity implements IS
         btnAttendance = (Button)findViewById(R.id.btnAttendance);
         btnAttendance.setOnClickListener(this);
 
-        btnOnDuty=(Button)findViewById(R.id.btnOnDuty);
-        btnOnDuty.setOnClickListener(this);
-
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(this);

@@ -94,7 +94,7 @@
                         android:layout_marginTop="2dp"
                         android:layout_weight="0.50"
                         android:background="@color/white"
-                        android:text="5 Days"
+                        android:text=""
                         android:textColor="@color/black" />
                 </LinearLayout>
 
@@ -122,7 +122,7 @@
                         android:layout_marginTop="1dp"
                         android:layout_weight="0.50"
                         android:background="@color/white"
-                        android:text="5 Days"
+                        android:text=""
                         android:textColor="@color/black" />
 
                 </LinearLayout>
@@ -151,7 +151,7 @@
                         android:layout_marginTop="1dp"
                         android:layout_weight="0.50"
                         android:background="@color/white"
-                        android:text="5 Days"
+                        android:text=""
                         android:textColor="@color/black" />
 
                 </LinearLayout>
@@ -180,7 +180,7 @@
                         android:layout_marginTop="1dp"
                         android:layout_weight="0.50"
                         android:background="@color/white"
-                        android:text="5 Days"
+                        android:text=""
                         android:textColor="@color/black" />
 
                 </LinearLayout>
@@ -212,7 +212,7 @@
                         android:layout_marginTop="1dp"
                         android:layout_weight="0.50"
                         android:background="@color/white"
-                        android:text="5 Days"
+                        android:text=""
                         android:textColor="@color/black" />
 
                 </LinearLayout>
