@@ -321,8 +321,8 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
         JSONObject jsonObject = new JSONObject();
         try {
 
-            jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_USER_TYPE, "2");
-            jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_USER_ID, "1");
+            jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_USER_TYPE, PreferenceStorage.getUserType(this));
+            jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_USER_ID, PreferenceStorage.getUserId(this));
             jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_LEAVE_MASTER_ID, "1");
             jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_LEAVE_TYPE, "1");
             jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_DATE_FROM, "2017-05-01");
