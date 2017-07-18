@@ -128,7 +128,9 @@ public class AcademicExamDetailPage extends AppCompatActivity implements IServic
             startActivity(intent);
         }
         if (v == viewExamMark) {
-            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(getApplicationContext(), AcademicExamResultView.class);
+            intent.putExtra("id", id);
+            startActivity(intent);
         }
 
     }

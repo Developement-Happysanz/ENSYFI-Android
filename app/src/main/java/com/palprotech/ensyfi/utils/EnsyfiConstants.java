@@ -104,6 +104,8 @@ public class EnsyfiConstants {
 
     public static final String GET_CLASS_TEST_MARK = "/apiteacher/disp_Ctestmarks/";
 
+    public static final String GET_ACADEMIC_EXAM_MARK = "/apiteacher/disp_Exammarks/";
+
     public static final String GET_PARENT_INFO = "/apiadmin/get_parent_details/";
 
     public static final String GET_VIEW_STUDENT_INFO = "/apiadmin/get_parent_student_list/";
@@ -374,6 +376,8 @@ public class EnsyfiConstants {
 
     //Students
     public static final String PARAMS_STUDENT_ID_SHOW = "student_id";
+
+    public static final String PARAMS_SUBJECT_ID_SHOW = "subject_id";
 
     //Teachers
     public static final String PARAMS_TEACHER_ID_SHOW = "teacher_id";
