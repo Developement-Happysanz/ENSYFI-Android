@@ -106,6 +106,8 @@ public class EnsyfiConstants {
 
     public static final String GET_VIEW_STUDENT_INFO = "/apiadmin/get_parent_student_list/";
 
+    public static final String GET_VIEW_TEACHERS_INFO_LIST = "/apiadmin/list_of_teachers_for_class/";
+
 
     // PARAMETERS
     //Service Params
