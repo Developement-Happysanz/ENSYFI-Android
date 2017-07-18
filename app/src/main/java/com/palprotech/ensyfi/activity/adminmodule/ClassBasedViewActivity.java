@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
 import com.google.gson.Gson;
@@ -62,6 +63,8 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
     private RadioGroup radioStudentsTeachersView;
     TeacherViewListAdapter teacherViewListAdapter;
     ArrayList<TeacherView> teacherViewArrayList;
+    private RelativeLayout TeacherList, StudentList;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,6 +81,9 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
         loadMoreListView.setOnItemClickListener(this);
         classStudentArrayList = new ArrayList<>();
         teacherViewArrayList = new ArrayList<>();
+
+        TeacherList = (RelativeLayout) findViewById(R.id.layout_frame_teacher);
+        StudentList = (RelativeLayout) findViewById(R.id.layout_frame_student);
 
         GetClassData();
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
@@ -126,12 +132,14 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
                     case R.id.radioStudent:
 //                        ClassTestOrHomeWork = "HT";
 //                        getClassId(classSection);
+                        StudentList.setVisibility(View.VISIBLE);
                         GetStudentData();
                         break;
 
                     case R.id.radioTeachers:
 //                        ClassTestOrHomeWork = "HW";
 //                        getClassId(classSection);
+                        TeacherList.setVisibility(View.VISIBLE);
                         GetTeacherData();
                         break;
                 }
