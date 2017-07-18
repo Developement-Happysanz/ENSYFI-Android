@@ -314,6 +314,24 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarGrey" />
 
+        <activity
+            android:name=".activity.adminmodule.ParentsViewActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarGrey" />
+
+        <activity
+            android:name=".activity.adminmodule.ParentsViewDetailsActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarGrey" />
+
+        <activity
+            android:name=".activity.adminmodule.StudentsInfoActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarGrey" />
+
     </application>
 
 </manifest>

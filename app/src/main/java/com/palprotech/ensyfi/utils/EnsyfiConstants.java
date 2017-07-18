@@ -100,6 +100,12 @@ public class EnsyfiConstants {
 
     public static final String GET_TEACHERS_INFO = "/apiadmin/get_teacher_class_details/";
 
+    public static final String GET_PARENT_LIST = "/apiadmin/get_list_of_parents/";
+
+    public static final String GET_PARENT_INFO = "/apiadmin/get_parent_details/";
+
+    public static final String GET_VIEW_STUDENT_INFO = "/apiadmin/get_parent_student_list/";
+
 
     // PARAMETERS
     //Service Params
@@ -354,9 +360,14 @@ public class EnsyfiConstants {
     public static final String PARAMS_CLASS_ID_LIST = "ClassId";
     public static final String PARAMS_SECTION_ID_LIST = "SectionId";
 
+    public static final String PARAMS_CLASS_ID_NEW = "class_id";
+    public static final String PARAMS_SECTION_ID = "section_id";
+
     //Students
     public static final String PARAMS_STUDENT_ID_SHOW = "student_id";
 
     //Teachers
     public static final String PARAMS_TEACHER_ID_SHOW = "teacher_id";
+
+    public static final String PARAMS_PARENT_ID_SHOW = "parent_id";
 }
