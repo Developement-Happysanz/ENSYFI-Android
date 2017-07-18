@@ -124,7 +124,7 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
         classes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), StudentTimeTableActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ClassBasedViewActivity.class);
                 startActivity(intent);
             }
         });
@@ -270,7 +270,7 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 4) {
-            Intent navigationIntent = new Intent(this, StudentTimeTableActivity.class);
+            Intent navigationIntent = new Intent(this, ClassBasedViewActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 5) {
