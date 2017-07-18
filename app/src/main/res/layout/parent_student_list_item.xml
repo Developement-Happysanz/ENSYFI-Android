@@ -1,73 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/background_grey"
-    android:orientation="vertical">
+    android:background="@color/background_grey">
 
     <RelativeLayout
+        android:id="@+id/layout_frame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/round_btn_plain">
+        android:background="@color/black">
 
         <TextView
             android:id="@+id/txtClassStudentRegId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:paddingBottom="3dp"
-            android:paddingTop="3dp"
-            android:text="Title"
-            android:textAllCaps="true"
-            android:textColor="@color/appColor"
-            android:textSize="20dp"
-            android:textStyle="bold" />
+            android:layout_width="90dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="2dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="Roll NO."
+            android:textColor="@color/black"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/txtClassStudentName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txtClassStudentRegId"
-            android:layout_marginLeft="10dp"
-            android:paddingBottom="3dp"
-            android:paddingTop="3dp"
-            android:text="Test"
-            android:textAllCaps="true"
-            android:textColor="@color/text_grey"
-            android:textSize="15dp"
-            android:textStyle="bold" />
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="2dp"
+            android:layout_toLeftOf="@+id/txtParentName"
+            android:layout_toRightOf="@+id/txtClassStudentRegId"
+            android:background="@color/white"
+            android:gravity="left|center"
+            android:paddingLeft="5dp"
+            android:text="Student Name"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/txtParentName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txtClassStudentRegId"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/txtClassStudentName"
-            android:paddingBottom="3dp"
-            android:paddingTop="3dp"
-            android:text="Test ok ok "
-            android:textAllCaps="true"
-            android:textColor="@color/text_grey"
-            android:textSize="15dp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_below="@+id/txtParentName"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/classtest_calendar" />
-
-        <ImageView
-            android:layout_width="30dp"
+            android:layout_width="130dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
-            android:src="@drawable/select_button" />
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:background="@color/white"
+            android:gravity="left|center"
+            android:paddingLeft="5dp"
+            android:text="Parent Name"
+            android:textColor="@color/black"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/txt_tblPKey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="no"
+            android:textSize="16dp"
+            android:visibility="gone" />
 
     </RelativeLayout>
-</LinearLayout>
+
+</FrameLayout>
+
+

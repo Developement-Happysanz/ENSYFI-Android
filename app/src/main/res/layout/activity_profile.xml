@@ -53,20 +53,7 @@
             android:layout_height="200dp"
             android:layout_below="@+id/tlbar"
             android:background="@drawable/profile_bg"
-            android:orientation="vertical">
-
-            <!--<android.support.design.widget.FloatingActionButton-->
-            <!--android:id="@+id/fab"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentBottom="true"-->
-            <!--android:layout_alignParentRight="true"-->
-            <!--android:layout_marginLeft="5dp"-->
-            <!--android:layout_marginRight="@dimen/fab_margin"-->
-            <!--android:src="@drawable/ic_mode_edit_white_24dp"-->
-            <!--app:backgroundTint="@color/city_text_color" />-->
-
-        </LinearLayout>
+            android:orientation="vertical"/>
 
         <com.palprotech.ensyfi.customview.CircleImageView
             android:id="@+id/image_profile_pic"
