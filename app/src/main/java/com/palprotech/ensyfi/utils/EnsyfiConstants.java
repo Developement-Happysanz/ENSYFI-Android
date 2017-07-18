@@ -102,6 +102,8 @@ public class EnsyfiConstants {
 
     public static final String GET_PARENT_LIST = "/apiadmin/get_list_of_parents/";
 
+    public static final String GET_CLASS_TEST_MARK = "/apiteacher/disp_Ctestmarks/";
+
     public static final String GET_PARENT_INFO = "/apiadmin/get_parent_details/";
 
     public static final String GET_VIEW_STUDENT_INFO = "/apiadmin/get_parent_student_list/";
