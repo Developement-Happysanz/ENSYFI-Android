@@ -110,6 +110,10 @@ public class EnsyfiConstants {
 
     public static final String GET_VIEW_EXAMS = "/apiadmin/list_of_exams_class/";
 
+    public static final String GET_VIEW_FEES = "/apiadmin/get_fees_master_class/";
+
+    public static final String GET_VIEW_FEES_STATUS = "/apiadmin/get_fees_status/";
+
     // PARAMETERS
     //Service Params
     public static String PARAM_MESSAGE = "msg";
@@ -373,4 +377,6 @@ public class EnsyfiConstants {
     public static final String PARAMS_TEACHER_ID_SHOW = "teacher_id";
 
     public static final String PARAMS_PARENT_ID_SHOW = "parent_id";
+
+    public static final String PARAMS_FEES_ID_SHOW = "fees_id";
 }
