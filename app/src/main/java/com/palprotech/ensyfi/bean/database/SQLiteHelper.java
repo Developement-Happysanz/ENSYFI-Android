@@ -19,7 +19,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String TAG = "SQLiteHelper.java";
 
     private static final String DATABASE_NAME = "ENSYFI.db";
-    private static final int DATABASE_VERSION = 23;
+    private static final int DATABASE_VERSION = 24;
 
     private static final String table_create_student = "Create table IF NOT EXISTS studentInfo(_id integer primary key autoincrement,"
             + "registered_id text,"

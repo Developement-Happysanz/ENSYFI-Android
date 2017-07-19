@@ -271,6 +271,7 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
 
     @Override
     public void onResponse(final JSONObject response) {
+        progressDialogHelper.hideProgressDialog();
         if (validateSignInResponse(response)) {
             Log.d("ajazFilterresponse : ", response.toString());
             if (checkDayMonthType.equalsIgnoreCase("day")) {

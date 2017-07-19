@@ -270,7 +270,7 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 6) {
-            Intent navigationIntent = new Intent(this, ParentsCommunicationActivity.class);
+            Intent navigationIntent = new Intent(this, CircularActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 7) {
