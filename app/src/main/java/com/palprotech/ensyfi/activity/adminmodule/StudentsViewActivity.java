@@ -139,7 +139,7 @@ public class StudentsViewActivity extends AppCompatActivity implements IServiceL
 
             JSONObject jsonObject = new JSONObject();
             try {
-                jsonObject.put(EnsyfiConstants.PARAMS_CLASS_ID, PreferenceStorage.getStudentClassIdPreference(getApplicationContext()));
+                jsonObject.put(EnsyfiConstants.PARAMS_CLASS_ID, "1");
 
             } catch (JSONException e) {
                 e.printStackTrace();
