@@ -56,7 +56,7 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
     boolean doubleBackToExitPressedOnce = false;
     private ImageView imgNavProfileImage;
     private ArrayAdapter<String> navListAdapter;
-    private String[] values = {"PROFILE", "STUDENTS", "TEACHERS", "PARENTS", "CLASSES", "EXAM", "RESULT", "EVENTS", "COMMUNICATION","FEES STATUS", "SETTINGS", "SIGN OUT"};
+    private String[] values = {"PROFILE", "STUDENTS", "TEACHERS", "PARENTS", "CLASSES", "EXAM", "RESULT", "EVENTS", "COMMUNICATION", "FEES STATUS", "ON DUTY", "SETTINGS", "SIGN OUT"};
     TextView navUserProfileName = null;
     LinearLayout students, teachers, parents, classes, exams, results, events, communication;
     private String mCurrentUserProfileUrl = "";
@@ -293,11 +293,15 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
             Intent navigationIntent = new Intent(this, FeesViewActivity.class);
             //navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        }else if (position == 10) {
+        } else if (position == 10) {
+            Intent navigationIntent = new Intent(this, OnDutyViewActivity.class);
+            //navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(navigationIntent);
+        }else if (position == 11) {
             Intent navigationIntent = new Intent(this, ChangePasswordActivity.class);
             //navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 11) {
+        } else if (position == 12) {
             Log.d(TAG, "Perform Logout");
             doLogout();
         }

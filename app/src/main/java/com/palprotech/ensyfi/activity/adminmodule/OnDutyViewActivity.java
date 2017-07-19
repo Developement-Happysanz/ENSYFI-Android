@@ -1,9 +1,9 @@
-package com.palprotech.ensyfi.activity.general;
+package com.palprotech.ensyfi.activity.adminmodule;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -12,10 +12,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RadioGroup;
 
 import com.google.gson.Gson;
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.activity.studentmodule.FeeStatusActivity;
+import com.palprotech.ensyfi.activity.general.OnDutyActivity;
 import com.palprotech.ensyfi.adapter.general.OnDutyListAdapter;
 import com.palprotech.ensyfi.bean.general.viewlist.OnDuty;
 import com.palprotech.ensyfi.bean.general.viewlist.OnDutyList;
@@ -34,59 +35,56 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 /**
- * Created by Admin on 10-07-2017.
+ * Created by Admin on 19-07-2017.
  */
 
-public class OnDutyActivity extends AppCompatActivity implements View.OnClickListener, IServiceListener, AdapterView.OnItemClickListener,DialogClickListener {
+public class OnDutyViewActivity extends AppCompatActivity implements IServiceListener, DialogClickListener, AdapterView.OnItemClickListener {
 
-    private ImageView btnBack, btnReqOnDuty;
-    private static final String TAG = "FeeStatusActivity";
+    private static final String TAG = OnDutyViewActivity.class.getName();
+    private ProgressDialogHelper progressDialogHelper;
+    private ServiceHelper serviceHelper;
     ListView loadMoreListView;
-    View view;
-
     OnDutyListAdapter onDutyListAdapter;
-    ServiceHelper serviceHelper;
     ArrayList<OnDuty> onDutyArrayList;
     int pageNumber = 0, totalCount = 0;
-    protected ProgressDialogHelper progressDialogHelper;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
     private SearchView mSearchView = null;
+    private RadioGroup radioStudentsTeachersView;
+    String checkStudentTeacher="student";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_on_duty);
-
-        btnBack = (ImageView) findViewById(R.id.back_res);
-        btnBack.setOnClickListener(this);
-
-        btnReqOnDuty = (ImageView) findViewById(R.id.reqOD);
-        btnReqOnDuty.setOnClickListener(this);
-
-        loadMoreListView = (ListView) findViewById(R.id.listView_events);
-
-        loadMoreListView.setOnItemClickListener(this);
-        onDutyArrayList = new ArrayList<>();
-
+        setContentView(R.layout.activity_on_duty_view);
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
-
         progressDialogHelper = new ProgressDialogHelper(this);
-
+        radioStudentsTeachersView = (RadioGroup) findViewById(R.id.radioStudentsTeachersView);
+        loadMoreListView = (ListView) findViewById(R.id.listView_events);
+//        loadMoreListView.setOnLoadMoreListener(this);
+        loadMoreListView.setOnItemClickListener(this);
+        onDutyArrayList = new ArrayList<>();
         callOnDutyViewService();
+        radioStudentsTeachersView.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
 
-        String userTypeString = PreferenceStorage.getUserType(getApplicationContext());
-        int userType = Integer.parseInt(userTypeString);
-        if (userType == 1) {
-            btnReqOnDuty.setVisibility(View.GONE);
-        } else if (userType == 2) {
-            btnReqOnDuty.setVisibility(View.VISIBLE);
-        } else if (userType == 3) {
-            btnReqOnDuty.setVisibility(View.VISIBLE);
-        } else {
-            btnReqOnDuty.setVisibility(View.GONE);
-        }
+                switch (checkedId) {
+                    case R.id.radioStudent:
+                        checkStudentTeacher = "student";
+                        callOnDutyViewService();
+                        break;
+
+                    case R.id.radioTeachers:
+                        checkStudentTeacher = "teacher";
+                        callOnDutyViewService();
+                        break;
+                }
+            }
+        });
+
+
     }
 
     private void callOnDutyViewService() {
@@ -102,37 +100,14 @@ public class OnDutyActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    @Override
-    public void onAlertPositiveClicked(int tag) {
-
-    }
-
-    @Override
-    public void onAlertNegativeClicked(int tag) {
-
-    }
-
     private class HttpAsyncTask extends AsyncTask<String, Void, Void> {
         @Override
         protected Void doInBackground(String... urls) {
 
             JSONObject jsonObject = new JSONObject();
+            String url = "";
             try {
-                String userTypeString = PreferenceStorage.getUserType(getApplicationContext());
-                int userType = Integer.parseInt(userTypeString);
-                if (userType == 1) {
-                    String okNew = "";
-                } else if (userType == 2) {
-                    jsonObject.put(EnsyfiConstants.PARAMS_FP_USER_ID, PreferenceStorage.getUserId(getApplicationContext()));
-                    jsonObject.put(EnsyfiConstants.KEY_USER_TYPE,PreferenceStorage.getUserType(getApplicationContext()));
-                } else if (userType == 3) {
-                    jsonObject.put(EnsyfiConstants.PARAMS_FP_USER_ID, PreferenceStorage.getUserId(getApplicationContext()));
-                    jsonObject.put(EnsyfiConstants.KEY_USER_TYPE,PreferenceStorage.getUserType(getApplicationContext()));
-                } else {
-                    jsonObject.put(EnsyfiConstants.PARAMS_FP_USER_ID, PreferenceStorage.getStudentAdmissionIdPreference(getApplicationContext()));
-                    jsonObject.put(EnsyfiConstants.KEY_USER_TYPE,PreferenceStorage.getUserType(getApplicationContext()));
-                }
-
+                jsonObject.put(EnsyfiConstants.KEY_USER_TYPE, "1");
 
 
             } catch (JSONException e) {
@@ -140,7 +115,13 @@ public class OnDutyActivity extends AppCompatActivity implements View.OnClickLis
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_ON_DUTY_VIEW;
+
+            if (checkStudentTeacher.equalsIgnoreCase("student")) {
+                url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_OD_STUDENT_API;
+            } else {
+                url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_OD_TEACHER_API;
+            }
+
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
             return null;
@@ -151,22 +132,6 @@ public class OnDutyActivity extends AppCompatActivity implements View.OnClickLis
         protected void onPostExecute(Void result) {
             progressDialogHelper.cancelProgressDialog();
         }
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (v == btnBack) {
-            finish();
-        }
-        if (v == btnReqOnDuty) {
-            Intent intent = new Intent(getApplicationContext(), OnDutyRequestActivity.class);
-            startActivity(intent);
-        }
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
     }
 
     private boolean validateSignInResponse(JSONObject response) {
@@ -194,6 +159,21 @@ public class OnDutyActivity extends AppCompatActivity implements View.OnClickLis
         }
 
         return signInsuccess;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onAlertPositiveClicked(int tag) {
+
+    }
+
+    @Override
+    public void onAlertNegativeClicked(int tag) {
+
     }
 
     @Override
@@ -236,10 +216,8 @@ public class OnDutyActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void run() {
                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
-                AlertDialogHelper.showSimpleAlertDialog(OnDutyActivity.this, error);
+                AlertDialogHelper.showSimpleAlertDialog(OnDutyViewActivity.this, error);
             }
         });
     }
-
 }
