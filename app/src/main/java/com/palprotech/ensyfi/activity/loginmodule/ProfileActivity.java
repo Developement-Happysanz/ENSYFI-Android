@@ -240,7 +240,7 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
         Address.setText(PreferenceStorage.getFatherAddress(getApplicationContext()));
         Mail.setText(PreferenceStorage.getFatherEmail(getApplicationContext()));
         Occupation.setText(PreferenceStorage.getFatherOccupation(getApplicationContext()));
-        Income.setText(PreferenceStorage.getFatherID(getApplicationContext()));
+        Income.setText(PreferenceStorage.getFatherIncome(getApplicationContext()));
         Mobile.setText(PreferenceStorage.getFatherMobile(getApplicationContext()));
         OfficePhone.setText(PreferenceStorage.getFatherOfficePhone(getApplicationContext()));
         HomePhone.setText(PreferenceStorage.getFatherHomePhone(getApplicationContext()));
@@ -256,7 +256,7 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
         Address.setText(PreferenceStorage.getMotherAddress(getApplicationContext()));
         Mail.setText(PreferenceStorage.getMotherEmail(getApplicationContext()));
         Occupation.setText(PreferenceStorage.getMotherOccupation(getApplicationContext()));
-        Income.setText(PreferenceStorage.getMotherID(getApplicationContext()));
+        Income.setText(PreferenceStorage.getMotherIncome(getApplicationContext()));
         Mobile.setText(PreferenceStorage.getMotherMobile(getApplicationContext()));
         OfficePhone.setText(PreferenceStorage.getMotherOfficePhone(getApplicationContext()));
         HomePhone.setText(PreferenceStorage.getMotherHomePhone(getApplicationContext()));
@@ -274,7 +274,7 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
         GAddress.setText(PreferenceStorage.getGuardianAddress(getApplicationContext()));
         GMail.setText(PreferenceStorage.getGuardianEmail(getApplicationContext()));
         GOccupation.setText(PreferenceStorage.getGuardianOccupation(getApplicationContext()));
-        GIncome.setText(PreferenceStorage.getGuardianID(getApplicationContext()));
+        GIncome.setText(PreferenceStorage.getGuardianIncome(getApplicationContext()));
         GMobile.setText(PreferenceStorage.getGuardianMobile(getApplicationContext()));
         GOfficePhone.setText(PreferenceStorage.getGuardianOfficePhone(getApplicationContext()));
         GHomePhone.setText(PreferenceStorage.getGuardianHomePhone(getApplicationContext()));

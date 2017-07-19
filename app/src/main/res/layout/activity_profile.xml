@@ -108,7 +108,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
-                android:digits="abcdefghijklmnopqrstvuwxyz1234567890./"
+                android:digits="aãâáàbcçdeéfghiíjklmnoõôóòpqrstuvwxyzAÃÂÁÀBCÇDEÉFGHIÍJKLMNOÕÔÓÒPQRSTUVWXYZ1234567890@-_'+=(){}[]*%$₹£¢€¥#!?,.;: /?\\¡¿[]•∆π™℅¶♂♀°℃®©\◆●【】&lt;&gt;&amp;"
                 android:layout_marginRight="25dp"
                 android:focusableInTouchMode="true"
                 android:inputType="textEmailAddress" />

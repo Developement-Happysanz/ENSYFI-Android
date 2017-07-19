@@ -263,7 +263,7 @@
                     android:layout_marginTop="10dp"
                     android:background="@drawable/btn_square_fill_white"
                     android:gravity="top"
-                    android:digits="abcdefghijklmnopqrstvuwxyz1234567890./"
+                    android:digits="aãâáàbcçdeéfghiíjklmnoõôóòpqrstuvwxyzAÃÂÁÀBCÇDEÉFGHIÍJKLMNOÕÔÓÒPQRSTUVWXYZ1234567890@-_'+=(){}[]*%$₹£¢€¥#!?,.;\n: /?\\¡¿[]•∆π™℅¶♂♀°℃®©\◆●【】&lt;&gt;&amp;"
                     android:hint="Description"
                     android:inputType="textVisiblePassword"
                     android:textColor="@color/black" />
