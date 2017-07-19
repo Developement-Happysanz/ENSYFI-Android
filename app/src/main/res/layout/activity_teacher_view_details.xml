@@ -10,7 +10,7 @@
         android:background="@color/background_grey">
 
         <com.palprotech.ensyfi.customview.CircleImageView
-            android:id="@+id/img_profile_stud"
+            android:id="@+id/img_profile_teacher"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_alignParentTop="true"
@@ -24,7 +24,7 @@
             android:id="@+id/name_roll_disp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/img_profile_stud"
+            android:layout_below="@+id/img_profile_teacher"
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:orientation="horizontal">

@@ -68,12 +68,12 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
-                android:background="@color/white"
+                android:background="@color/appColor"
+                android:textColor="@color/white"
                 android:layout_alignTop="@+id/ClassStdAdmnNo"
                 android:layout_alignBottom="@+id/ClassStdAdmnNo"
                 android:gravity="center"
                 android:text="Roll No."
-                android:textColor="@color/black"
                 android:textSize="18dp"/>
 
             <TextView
@@ -87,8 +87,8 @@
                 android:layout_alignBottom="@+id/ClassStdAdmnNo"
                 android:gravity="center"
                 android:text="Student Name"
-                android:background="@color/white"
-                android:textColor="@color/black"
+                android:background="@color/appColor"
+                android:textColor="@color/white"
                 android:textSize="18dp"/>
 
             <TextView
@@ -101,8 +101,8 @@
                 android:layout_marginBottom="2dp"
                 android:layout_marginLeft="2dp"
                 android:layout_marginRight="2dp"
-                android:background="@color/white"
-                android:textColor="@color/black"
+                android:background="@color/appColor"
+                android:textColor="@color/white"
                 android:textSize="18dp"/>
         </RelativeLayout>
 

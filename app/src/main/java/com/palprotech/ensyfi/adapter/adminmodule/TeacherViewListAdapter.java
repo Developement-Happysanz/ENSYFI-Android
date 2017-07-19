@@ -13,7 +13,6 @@ import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.app.AppController;
-import com.palprotech.ensyfi.bean.admin.viewlist.ClassStudent;
 import com.palprotech.ensyfi.bean.admin.viewlist.TeacherView;
 import com.squareup.picasso.Transformation;
 
@@ -103,7 +102,7 @@ public class TeacherViewListAdapter extends BaseAdapter {
 
         holder.txtTeacherId.setText(teacherViews.get(position).getTeacherId());
         holder.txtTeacherName.setText(teacherViews.get(position).getName());
-        holder.txtTeacherMainSubject.setText(teacherViews.get(position).getSubject());
+        holder.txtTeacherMainSubject.setText(teacherViews.get(position).getSubjectName());
 
         return convertView;
     }

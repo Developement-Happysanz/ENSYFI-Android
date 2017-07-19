@@ -94,10 +94,10 @@
                 android:layout_width="90dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="2dp"
-                android:background="@color/white"
+                android:background="@color/appColor"
+                android:textColor="@color/white"
                 android:gravity="center"
                 android:text="Roll NO."
-                android:textColor="@color/black"
                 android:textSize="18sp" />
 
             <TextView
@@ -108,11 +108,11 @@
                 android:layout_marginLeft="2dp"
                 android:layout_toLeftOf="@+id/ParentName"
                 android:layout_toRightOf="@+id/ClassStudentRegId"
-                android:background="@color/white"
+                android:background="@color/appColor"
+                android:textColor="@color/white"
                 android:gravity="center"
                 android:paddingLeft="5dp"
                 android:text="Student Name"
-                android:textColor="@color/black"
                 android:textSize="18sp" />
 
             <TextView
@@ -122,11 +122,11 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginLeft="2dp"
                 android:layout_marginRight="2dp"
-                android:background="@color/white"
+                android:background="@color/appColor"
+                android:textColor="@color/white"
                 android:gravity="center"
                 android:paddingLeft="5dp"
                 android:text="Parent Name"
-                android:textColor="@color/black"
                 android:textSize="18sp" />
 
             <TextView

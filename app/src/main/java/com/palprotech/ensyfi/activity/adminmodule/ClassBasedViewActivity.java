@@ -133,6 +133,7 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
 //                        ClassTestOrHomeWork = "HT";
 //                        getClassId(classSection);
                         StudentList.setVisibility(View.VISIBLE);
+                        TeacherList.setVisibility(View.GONE);
                         GetStudentData();
                         break;
 
@@ -140,6 +141,7 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
 //                        ClassTestOrHomeWork = "HW";
 //                        getClassId(classSection);
                         TeacherList.setVisibility(View.VISIBLE);
+                        StudentList.setVisibility(View.GONE);
                         GetTeacherData();
                         break;
                 }
