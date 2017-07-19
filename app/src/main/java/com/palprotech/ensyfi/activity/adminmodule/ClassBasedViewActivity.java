@@ -130,16 +130,12 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
 
                 switch (checkedId) {
                     case R.id.radioStudent:
-//                        ClassTestOrHomeWork = "HT";
-//                        getClassId(classSection);
                         StudentList.setVisibility(View.VISIBLE);
                         TeacherList.setVisibility(View.GONE);
                         GetStudentData();
                         break;
 
                     case R.id.radioTeachers:
-//                        ClassTestOrHomeWork = "HW";
-//                        getClassId(classSection);
                         TeacherList.setVisibility(View.VISIBLE);
                         StudentList.setVisibility(View.GONE);
                         GetTeacherData();

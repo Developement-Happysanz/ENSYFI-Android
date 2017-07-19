@@ -12,21 +12,17 @@ import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
 import com.palprotech.ensyfi.servicehelpers.ServiceHelper;
-import com.palprotech.ensyfi.serviceinterfaces.IServiceListener;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 import com.squareup.picasso.Picasso;
-
-import org.json.JSONObject;
 
 /**
  * Created by Narendar on 19/07/17.
  */
 
-public class ParentInfoActivity extends AppCompatActivity implements IServiceListener, DialogClickListener, View.OnClickListener {
+public class ParentInfoActivity extends AppCompatActivity implements DialogClickListener, View.OnClickListener {
 
     private static final String TAG = ProfileActivity.class.getName();
-    private ImageView mProfileImage = null, btnBack;
-    private TextView txtUsrName, txtUserType, txtPassword;
+    private ImageView btnBack;
 
     private TextView Name, Address, Mail, Occupation, Income, Mobile, OfficePhone, HomePhone;
 
@@ -54,6 +50,7 @@ public class ParentInfoActivity extends AppCompatActivity implements IServiceLis
 //            Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(mProfileImage);
 //        }
 
+        callMotherInfoPreferences();
         callFatherInfoPreferences();
     }
 
@@ -70,10 +67,6 @@ public class ParentInfoActivity extends AppCompatActivity implements IServiceLis
 
         motherInfo = (ImageView) findViewById(R.id.img_mother_profile);
         motherInfo.setOnClickListener(this);
-
-
-        serviceHelper = new ServiceHelper(this);
-        serviceHelper.setServiceListener(this);
 
 
         //////For Parent and Guardian///////
@@ -144,16 +137,6 @@ public class ParentInfoActivity extends AppCompatActivity implements IServiceLis
         if (v == motherInfo) {
             callMotherInfoPreferences();
         }
-
-    }
-
-    @Override
-    public void onResponse(JSONObject response) {
-
-    }
-
-    @Override
-    public void onError(String error) {
 
     }
 }
