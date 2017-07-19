@@ -38,6 +38,8 @@ public class EnsyfiConstants {
     // COMMUNICATION CIRCULAR URL
     public static final String GET_COMMUNICATION_CIRCULAR_API = "/apimain/disp_Circular/";
 
+    public static final String GET_COMMUNICATION_CIRCULAR_ADMIN_API = "/apiadmin/get_all_circular_view/";
+
     // UPLOAD USER PROFILE
     public static final String UPLOAD_PROFILE_IMAGE = "/apimain/update_Profilepic/";
 

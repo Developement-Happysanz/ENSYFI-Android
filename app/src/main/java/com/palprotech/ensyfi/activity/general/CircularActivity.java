@@ -55,7 +55,6 @@ public class CircularActivity extends AppCompatActivity implements IServiceListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_circular);
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
-//        loadMoreListView.setOnLoadMoreListener(this);
         loadMoreListView.setOnItemClickListener(this);
         circularArrayList = new ArrayList<>();
         serviceHelper = new ServiceHelper(this);
@@ -82,10 +81,8 @@ public class CircularActivity extends AppCompatActivity implements IServiceListe
 
         if (CommonUtils.isNetworkAvailable(this)) {
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            //    eventServiceHelper.makeRawRequest(FindAFunConstants.GET_ADVANCE_SINGLE_SEARCH);
             new HttpAsyncTask().execute("");
         } else {
-//            AlertDialogHelper.showSimpleAlertDialog(this, getString(R.string.no_connectivity));
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
         }
 
@@ -105,7 +102,15 @@ public class CircularActivity extends AppCompatActivity implements IServiceListe
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_COMMUNICATION_CIRCULAR_API;
+            String url="";
+            String userTypeString = PreferenceStorage.getUserType(getApplicationContext());
+            int userType = Integer.parseInt(userTypeString);
+            if (userType == 1) {
+                url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_COMMUNICATION_CIRCULAR_ADMIN_API;
+            } else {
+                url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_COMMUNICATION_CIRCULAR_API;
+            }
+
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
             return null;
