@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.bean.admin.viewlist.ClassStudent;
 import com.palprotech.ensyfi.bean.admin.viewlist.ParentStudent;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
@@ -21,7 +20,6 @@ import com.palprotech.ensyfi.utils.CommonUtils;
 import com.palprotech.ensyfi.utils.EnsyfiConstants;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -70,7 +68,7 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
     }
 
     private void populateData() {
-        txtStudentName.setText(parentStudent.getName());
+        txtStudentName.setText(parentStudent.getFatherName());
         txtStudentRegId.setText(parentStudent.getStudentId());
 
         if (CommonUtils.isNetworkAvailable(this)) {

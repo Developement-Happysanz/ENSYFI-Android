@@ -9,17 +9,12 @@ import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Spinner;
 
 import com.google.gson.Gson;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.adapter.adminmodule.ClassStudentListAdapter;
-import com.palprotech.ensyfi.bean.admin.support.StoreClass;
-import com.palprotech.ensyfi.bean.admin.support.StoreSection;
 import com.palprotech.ensyfi.bean.admin.viewlist.ClassStudent;
 import com.palprotech.ensyfi.bean.admin.viewlist.ClassStudentList;
 import com.palprotech.ensyfi.bean.admin.viewlist.ParentStudent;
@@ -71,6 +66,13 @@ public class StudentsInfoActivity extends AppCompatActivity implements IServiceL
         classStudentArrayList = new ArrayList<>();
 
         GetStudentData();
+        ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
+        bckbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 

@@ -30,7 +30,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/txtStudentName"
+                android:id="@+id/txtTeacherName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Bala murali krishna"
@@ -43,7 +43,7 @@
                 android:textSize="22dp" />
 
             <TextView
-                android:id="@+id/txtStudentRegId"
+                android:id="@+id/txtTeacherId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="23"
@@ -144,9 +144,11 @@
 
             <Button
                 android:id="@+id/btnTeacherTimeTable"
-                android:layout_width="wrap_content"
+                android:layout_width="125dp"
                 android:layout_height="wrap_content"
-                android:text="View Time Table" />
+                android:text="View Time Table"
+                android:textColor="@color/white"
+                android:background="@drawable/btn_square_fill_color"/>
         </LinearLayout>
     </RelativeLayout>
 
