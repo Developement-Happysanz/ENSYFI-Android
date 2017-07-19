@@ -117,7 +117,15 @@ public class LeaveStatusActivity extends AppCompatActivity implements View.OnCli
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_USER_LEAVES_API;
+            String url = "";
+            String userTypeString = PreferenceStorage.getUserType(getApplicationContext());
+            int userType = Integer.parseInt(userTypeString);
+            if (userType == 1) {
+                url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_USER_LEAVES_STATUS_ADMIN_API;
+            } else {
+                url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_USER_LEAVES_API;
+            }
+
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
             return null;

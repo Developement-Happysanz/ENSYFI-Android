@@ -90,6 +90,8 @@ public class EnsyfiConstants {
     public static final String GET_USER_LEAVES_TYPE_API = "/apiteacher/disp_Leavetype/";
     public static final String GET_USER_LEAVES_APPLY_API = "/apiteacher/add_Userleaves/";
 
+    public static final String GET_USER_LEAVES_STATUS_ADMIN_API = "/apiadmin/get_teachers_leaves/";
+
     //OD Admin urls
     public static final String GET_OD_STUDENT_API = "/apiadmin/get_students_od_view/";
     public static final String GET_OD_TEACHER_API = "/apiadmin/get_teachers_od_view/";
