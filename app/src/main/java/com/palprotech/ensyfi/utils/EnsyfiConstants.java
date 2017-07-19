@@ -368,8 +368,8 @@ public class EnsyfiConstants {
     public static final String PARAMS_LEAVE_DESCRIPTION = "description";
 
     //Class and Section Params
-    public static final String PARAMS_CLASS_ID_LIST = "ClassId";
-    public static final String PARAMS_SECTION_ID_LIST = "SectionId";
+    public static final String PARAMS_CLASS_ID_LIST = "class_id";
+    public static final String PARAMS_SECTION_ID_LIST = "section_id";
 
     public static final String PARAMS_CLASS_ID_NEW = "class_id";
     public static final String PARAMS_SECTION_ID = "section_id";
