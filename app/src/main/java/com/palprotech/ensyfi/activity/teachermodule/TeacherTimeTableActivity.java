@@ -1,5 +1,6 @@
 package com.palprotech.ensyfi.activity.teachermodule;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -16,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.activity.studentmodule.StudentTimeTableActivity;
@@ -50,6 +52,10 @@ public class TeacherTimeTableActivity extends AppCompatActivity implements Dialo
     List<String> lsTeacherTimeTable = new ArrayList<String>();
     ArrayAdapter<String> adapterTeacherTimeTable;
     String ClassName, SectionName, SubjectName, TableId;
+    String ClassId = "";
+    String SubjectId = "";
+    String PeriodId = "";
+    String SubjectNameVal = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -122,11 +128,15 @@ public class TeacherTimeTableActivity extends AppCompatActivity implements Dialo
                     cell.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                             ViewGroup.LayoutParams.MATCH_PARENT));
                     TextView b = new TextView(this);
+                    final TextView set = new TextView(this);
                     String name = "";
+                    String name1 = "";
 
                     if (((r == 1) && (col == 1)) || ((r == 1) && (col == 2)) || ((r == 1) && (col == 3)) || ((r == 1) && (col == 4))
-                            || ((r == 1) && (col == 5)) || ((r == 1) && (col == 6)) || ((r == 1) && (col == 7)) || ((r == 1) && (col == 8))
-                            || ((r == 1) && (col == 9)) || ((r == 2) && (col == 10)) || ((r == 3) && (col == 19)) || ((r == 4) && (col == 28))
+                            || ((r == 1) && (col == 5)) || ((r == 1) && (col == 6)) || ((r == 1) && (col == 7))
+                            || ((r == 1) && (col == 8))
+                            || ((r == 1) && (col == 9)) || ((r == 2) && (col == 10)) || ((r == 3) && (col == 19))
+                            || ((r == 4) && (col == 28))
                             || ((r == 5) && (col == 37)) || ((r == 6) && (col == 46)) || ((r == 7) && (col == 55))) {
                         b.setBackgroundColor(Color.parseColor("#708090"));
                         if ((r == 1) && (col == 1)) {
@@ -177,6 +187,7 @@ public class TeacherTimeTableActivity extends AppCompatActivity implements Dialo
                         }
 //                        b.setTextColor(Color.parseColor("#ffff00"));
                     } else {
+
                         String fValue = String.valueOf(f);
                         String c1Value = String.valueOf(c1);
                         Cursor c = db.getTeacherTimeTableValue(fValue, c1Value);
@@ -186,36 +197,57 @@ public class TeacherTimeTableActivity extends AppCompatActivity implements Dialo
                                     ClassName = c.getString(0);
                                     SectionName = c.getString(1);
                                     SubjectName = c.getString(2);
+                                    ClassId = c.getString(3);
+                                    SubjectId = c.getString(4);
+                                    PeriodId = c.getString(5);
                                 } while (c.moveToNext());
                             }
                             name = ClassName + "-" + SectionName + "\n" + SubjectName;
+                            /*name1 = "ClassName:" + ClassName +
+                                    "-" + SectionName + ",ClassId:" + ClassId + ",SubjectName:" + SubjectName +
+                                    ",SubjectId:" + SubjectId + ",PeriodId:" + PeriodId;*/
+                            name1 = ClassName + "-" + SectionName + "," + ClassId + "," + SubjectName + "," + SubjectId + "," + PeriodId;
                         } else {
                             name = "";
+                            name1 = "";
                         }
                     }
                     db.close();
 
                     cell.setBackgroundColor(Color.WHITE);//argb(255,104,53,142)
 
+                    set.setText(name1);
                     b.setText(name);
                     b.setTextSize(13.0f);
+                    set.setTextSize(13.0f);
                     b.setTypeface(null, Typeface.BOLD);
+                    set.setTypeface(null, Typeface.BOLD);
                     b.setAllCaps(true);
+                    set.setAllCaps(true);
                     b.setTextColor(Color.parseColor("#FF68358E"));
                     b.setGravity(Gravity.CENTER);
+                    set.setGravity(Gravity.CENTER);
                     b.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             // TODO Auto-generated method stub
-
+//                            Toast.makeText(getApplicationContext(), set.getText().toString(),
+//                                    Toast.LENGTH_LONG).show();
+                            Intent navigationIntent = new Intent(getApplicationContext(), TimeTableReviewAddActivity.class);
+                            navigationIntent.putExtra("timeTableValue", set.getText().toString());
+                            startActivity(navigationIntent);
                         }
                     });
                     b.setPressed(true);
-
                     b.setHeight(160);
+                    set.setHeight(0);
                     b.setWidth(160);
+                    set.setWidth(0);
                     b.setPadding(1, 0, 2, 0);
+                    set.setPadding(0, 0, 0, 0);
+                    set.setVisibility(View.INVISIBLE);
                     cell.addView(b);
+                    cell.addView(set);
                     cell.setLayoutParams(llp);//2px border on the right for the cell
 
                     tr.addView(cell, cellLp);

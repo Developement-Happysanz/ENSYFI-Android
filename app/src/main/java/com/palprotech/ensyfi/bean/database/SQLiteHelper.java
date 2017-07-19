@@ -309,7 +309,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     public Cursor getTeacherTimeTableValue(String day, String period) throws SQLException {
         SQLiteDatabase db = this.getWritableDatabase();
-        String fetch = "Select class_name,sec_name,subject_name from teacherTimeTable where day = '" + day + "' and period = '" + period + "';";
+        String fetch = "Select class_name,sec_name,subject_name,class_id,subject_id,period,subject_name from teacherTimeTable where day = '" + day + "' and period = '" + period + "';";
         Cursor c = db.rawQuery(fetch, null);
         if (c != null) {
             c.moveToFirst();
