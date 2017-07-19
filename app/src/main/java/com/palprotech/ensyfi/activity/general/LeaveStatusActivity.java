@@ -73,6 +73,14 @@ public class LeaveStatusActivity extends AppCompatActivity implements View.OnCli
 
         progressDialogHelper = new ProgressDialogHelper(this);
 
+        String userTypeString = PreferenceStorage.getUserType(getApplicationContext());
+        int userType = Integer.parseInt(userTypeString);
+        if (userType == 1) {
+            btnReqLeave.setVisibility(View.GONE);
+        } else {
+            btnReqLeave.setVisibility(View.VISIBLE);
+        }
+
         callLeaveStatusViewService();
     }
 
