@@ -1,6 +1,7 @@
 package com.palprotech.ensyfi.activity.general;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.format.Time;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,6 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
@@ -28,18 +31,27 @@ import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
 import com.palprotech.ensyfi.servicehelpers.ServiceHelper;
 import com.palprotech.ensyfi.serviceinterfaces.IServiceListener;
+import com.palprotech.ensyfi.utils.AppValidator;
+import com.palprotech.ensyfi.utils.CommonUtils;
 import com.palprotech.ensyfi.utils.EnsyfiConstants;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 
+import org.joda.time.DateTime;
+import org.joda.time.Days;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.TreeSet;
 import java.util.Vector;
 
@@ -60,13 +72,15 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
     SQLiteHelper database;
     List<String> lsLeaveList = new ArrayList<String>();
     Vector<String> vecLeaveList;
-    String storeLeaveTypeId;
+    String storeLeaveTypeId, storeLeaveId;
     RelativeLayout relativedate, relativetime;
     final Calendar c = Calendar.getInstance();
-    LinearLayout frombackground, tobackground;
+    LinearLayout frombackground, tobackground, fromtimebackgroud, totimebackground;
     private boolean isDoneClick = false;
     private String mFromDateVal = null;
     private String mToDateVal = null;
+    private String mFromTimeVal = null;
+    private String mToTimeVal = null;
     String singleDate = "", checkVal = "N";
     String formattedServerDate;
     DatePickerDialog mFromDatePickerDialog = null;
@@ -98,6 +112,9 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
         frombackground = (LinearLayout) findViewById(R.id.fromDatee);
         tobackground = (LinearLayout) findViewById(R.id.toDatee);
 
+        fromtimebackgroud = (LinearLayout) findViewById(R.id.fromTimee);
+        totimebackground = (LinearLayout) findViewById(R.id.toTimee);
+
         progressDialogHelper = new ProgressDialogHelper(this);
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
@@ -108,6 +125,12 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
 
         loadLeaveType();
         getLeaveList();
+
+        loadFromDate();
+        loadToDate();
+
+        loadFromTime();
+        loadToTime();
 
         spnLeaveType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -132,6 +155,63 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
 
             }
         });
+
+    }
+
+    private void loadFromDate() {
+        SimpleDateFormat DF = new SimpleDateFormat("dd-MM-yyyy");
+        String formattedDate = DF.format(c.getTime());
+        SimpleDateFormat serverDF = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedServerDate = serverDF.format(c.getTime());
+
+        frombackground.setBackgroundColor(Color.parseColor("#663366"));
+        dateFrom.setCompoundDrawablesWithIntrinsicBounds(R.drawable.od_from_date_selected, 0, 0, 0);
+        dateFrom.setTextColor((Color.parseColor("#663366")));
+
+        ((TextView) findViewById(R.id.dateFrom)).setText(formattedDate);
+
+        mFromDateVal = formattedServerDate;
+    }
+
+    private void loadToDate() {
+        SimpleDateFormat DF = new SimpleDateFormat("dd-MM-yyyy");
+        String formattedDate = DF.format(c.getTime());
+        SimpleDateFormat serverDF = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedServerDate = serverDF.format(c.getTime());
+
+        tobackground.setBackgroundColor(Color.parseColor("#663366"));
+        dateTo.setCompoundDrawablesWithIntrinsicBounds(R.drawable.od_from_date_selected, 0, 0, 0);
+        dateTo.setTextColor((Color.parseColor("#663366")));
+
+        ((TextView) findViewById(R.id.dateTo)).setText(formattedDate);
+
+        mToDateVal = formattedServerDate;
+    }
+
+    private void loadFromTime() {
+        SimpleDateFormat DF = new SimpleDateFormat("hh:mm a");
+        String formattedTime = DF.format(c.getTime());
+
+        fromtimebackgroud.setBackgroundColor(Color.parseColor("#663366"));
+        dateFromTime.setCompoundDrawablesWithIntrinsicBounds(R.drawable.od_from_date_selected, 0, 0, 0);
+        dateFromTime.setTextColor((Color.parseColor("#663366")));
+
+        dateFromTime.setText(formattedTime);
+
+        mFromTimeVal = formattedTime;
+    }
+
+    private void loadToTime() {
+        SimpleDateFormat DF = new SimpleDateFormat("hh:mm a");
+        String formattedTime = DF.format(c.getTime());
+
+        totimebackground.setBackgroundColor(Color.parseColor("#663366"));
+        timeTo.setCompoundDrawablesWithIntrinsicBounds(R.drawable.od_from_date_selected, 0, 0, 0);
+        timeTo.setTextColor((Color.parseColor("#663366")));
+
+        timeTo.setText(formattedTime);
+
+        mToTimeVal = formattedTime;
     }
 
     private void getLeaveTypeId(String leaveTypeName) {
@@ -142,6 +222,7 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
                 if (c.moveToFirst()) {
                     do {
                         storeLeaveTypeId = c.getString(0);
+                        storeLeaveId = c.getString(1);
                     } while (c.moveToNext());
                 }
             }
@@ -182,7 +263,7 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void loadLeaveType() {
-
+        checkVal = "N";
         JSONObject jsonObject = new JSONObject();
         try {
 
@@ -203,6 +284,7 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
             frombackground.setBackgroundColor(Color.parseColor("#663366"));
             dateFrom.setCompoundDrawablesWithIntrinsicBounds(R.drawable.od_from_date_selected, 0, 0, 0);
             dateFrom.setTextColor((Color.parseColor("#663366")));
+
             final DatePickerDialog.OnDateSetListener fromdate = new DatePickerDialog.OnDateSetListener() {
 
                 public void onDateSet(DatePicker view, int year, int month, int day) {
@@ -255,6 +337,7 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
             tobackground.setBackgroundColor(Color.parseColor("#663366"));
             dateTo.setCompoundDrawablesWithIntrinsicBounds(R.drawable.od_from_date_selected, 0, 0, 0);
             dateTo.setTextColor((Color.parseColor("#663366")));
+
             final DatePickerDialog.OnDateSetListener todate = new DatePickerDialog.OnDateSetListener() {
 
                 public void onDateSet(DatePicker view, int year, int month, int day) {
@@ -268,7 +351,6 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
                         mToDateVal = "";
                     }
                 }
-
             };
 
 
@@ -299,45 +381,136 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
             });
             dpd.show();
         }
+        if (v == dateFromTime) {
+
+            Calendar mcurrentTime = Calendar.getInstance();
+            int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+            int minute = mcurrentTime.get(Calendar.MINUTE);
+            TimePickerDialog mTimePicker;
+            mTimePicker = new TimePickerDialog(LeaveApplyActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                @Override
+                public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                    try {
+                        String s = selectedHour + ":" + selectedMinute + ":00";
+                        DateFormat f1 = new SimpleDateFormat("HH:mm:ss"); //HH for hour of the day (0 - 23)
+                        Date d = f1.parse(s);
+                        DateFormat f2 = new SimpleDateFormat("hh:mm a");
+                        f2.format(d).toUpperCase();// "12:18am"
+                        mFromTimeVal = f2.format(d).toUpperCase();
+                        dateFromTime.setText(f2.format(d).toUpperCase());
+                    } catch (ParseException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }, hour, minute, false);//Yes 24 hour time
+            mTimePicker.setTitle("Select Time");
+            mTimePicker.show();
+        }
+        if (v == timeTo) {
+
+            Calendar mcurrentTime = Calendar.getInstance();
+            int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+            int minute = mcurrentTime.get(Calendar.MINUTE);
+            TimePickerDialog mTimePicker;
+            mTimePicker = new TimePickerDialog(LeaveApplyActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                @Override
+                public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                    try {
+                        String s = selectedHour + ":" + selectedMinute + ":00";
+                        DateFormat f1 = new SimpleDateFormat("HH:mm:ss"); //HH for hour of the day (0 - 23)
+                        Date d = f1.parse(s);
+                        DateFormat f2 = new SimpleDateFormat("hh:mm a");
+                        mToTimeVal = f2.format(d).toUpperCase();
+                        timeTo.setText(f2.format(d).toUpperCase());
+                    } catch (ParseException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }, hour, minute, false);//Yes 24 hour time
+            mTimePicker.setTitle("Select Time");
+            mTimePicker.show();
+
+        }
         if (v == btnRequest) {
-            checkVal = "Y";
+            checkVal = "YES";
             callLeaveRequest();
         }
     }
 
-    private void callLeaveRequest() {
-
-        String user_type = "";
-        String user_id = "";
-        String leave_master_id = "";
-        String leave_type = "";
-        String date_from = "";
-        String date_to = "";
-        String fromTime = "";
-        String toTime = "";
-        String description = "";
-
-
-        JSONObject jsonObject = new JSONObject();
+    private boolean validateFields() {
+        int getDate = 0;
         try {
 
-            jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_USER_TYPE, PreferenceStorage.getUserType(this));
-            jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_USER_ID, PreferenceStorage.getUserId(this));
-            jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_LEAVE_MASTER_ID, "1");
-            jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_LEAVE_TYPE, "1");
-            jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_DATE_FROM, "2017-05-01");
-            jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_DATE_TO, "2017-05-01");
-            jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_FROM_TIME, "12:00:00");
-            jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_TO_TIME, "12:00:00");
-            jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_DESCRIPTION, "new");
+            DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+            Date dateFrom = format.parse(this.dateFrom.getText().toString().trim());
+            Date dateTo = format.parse(this.dateTo.getText().toString().trim());
 
-        } catch (JSONException e) {
-            e.printStackTrace();
+            DateTime dt1 = new DateTime(dateFrom);
+            DateTime dt2 = new DateTime(dateTo);
+
+            getDate = Days.daysBetween(dt1, dt2).getDays();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
-        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_USER_LEAVES_APPLY_API;
-        serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
+        if (!AppValidator.checkNullString(this.spnLeaveType.getSelectedItem().toString().trim())) {
+            AlertDialogHelper.showSimpleAlertDialog(this, "Select valid leave type");
+            return false;
+        } else if (!AppValidator.checkNullString(this.edtOnDutyRequestDetails.getText().toString().trim())) {
+            AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid leave details");
+            return false;
+        } else if (getDate < 0) {
+            AlertDialogHelper.showSimpleAlertDialog(this, "ToDate should not lesser than FromDate");
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private void callLeaveRequest() {
+        try {
+            String user_type = "";
+            String user_id = "";
+            String leave_master_id = "";
+            String leave_type = "";
+            String date_from = "";
+            String date_to = "";
+            String fromTime = "";
+            String toTime = "";
+            String description = "";
+
+            description = edtOnDutyRequestDetails.getText().toString();
+
+            if (validateFields()) {
+                if (CommonUtils.isNetworkAvailable(this)) {
+                    JSONObject jsonObject = new JSONObject();
+                    try {
+
+                        jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_USER_TYPE, PreferenceStorage.getUserType(this));
+                        jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_USER_ID, PreferenceStorage.getUserId(this));
+                        jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_LEAVE_MASTER_ID, storeLeaveId);
+                        jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_LEAVE_TYPE, storeLeaveTypeId);
+                        jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_DATE_FROM, mFromDateVal);
+                        jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_DATE_TO, mToDateVal);
+                        jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_FROM_TIME, mFromTimeVal);
+                        jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_TO_TIME, mToTimeVal);
+                        jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_DESCRIPTION, description);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+                    String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_USER_LEAVES_APPLY_API;
+                    serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
+                } else {
+
+                    AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     private static String formatDate(int year, int month, int day) {
@@ -433,9 +606,18 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
         if (validateSignInResponse(response)) {
             Log.d("ajazFilterresponse : ", response.toString());
             try {
-                if (!checkVal.equalsIgnoreCase("Y")) {
-                    JSONArray getLeaveTypes = response.getJSONArray("leaveDetails");
-                    SaveLeaveTypes(getLeaveTypes);
+                if (checkVal.contentEquals("YES")) {
+                    String status = response.getString("status");
+                    String msg = response.getString(EnsyfiConstants.PARAM_MESSAGE);
+                    if ((status != null)) {
+                        if (((status.equalsIgnoreCase("success")))) {
+
+                            Log.d(TAG, "Show error dialog");
+                            AlertDialogHelper.showSimpleAlertDialog(this, msg);
+                            finish();
+
+                        }
+                    }
                 } else {
                 }
             } catch (Exception ex) {

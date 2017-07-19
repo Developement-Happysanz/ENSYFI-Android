@@ -875,7 +875,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     public Cursor getLeaveTypeId(String val1) throws SQLException {
         SQLiteDatabase db = this.getWritableDatabase();
-        String fetch = "Select distinct leave_type from leaveType where leave_title= '" + val1 + "' order by _id;";
+        String fetch = "Select distinct leave_type,id from leaveType where leave_title= '" + val1 + "' order by _id;";
         Cursor c = db.rawQuery(fetch, null);
         if (c != null) {
             c.moveToFirst();
