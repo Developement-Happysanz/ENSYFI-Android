@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/background_grey"
     android:orientation="vertical">
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/round_btn_plain">
 
         <TextView
             android:id="@+id/txtStudentName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginLeft="10dp"
-            android:paddingBottom="3dp"
-            android:paddingTop="3dp"
-            android:text="Exam Name"
+            android:text="Test"
+            android:gravity="center"
             android:textAllCaps="true"
             android:textColor="@color/appColor"
             android:textSize="20dp"
@@ -26,52 +25,16 @@
 
         <TextView
             android:id="@+id/txtStatus"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtStudentName"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="5dp"
-            android:text="Exam date"
-            android:textColor="@color/appColor"
-            android:textSize="15dp" />
-
-        <TextView
-            android:id="@+id/hyphen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/txtStatus"
-            android:layout_toRightOf="@+id/txtStatus"
-            android:text=" - "
-            android:textColor="@color/black"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/txtDueDateTo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txtStudentName"
-            android:layout_marginTop="5dp"
-            android:layout_toRightOf="@+id/hyphen"
-            android:text="Exam date"
-            android:visibility="gone"
-            android:textColor="@color/appColor"
-            android:textSize="15dp" />
-
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_below="@+id/txtStudentName"
-            android:layout_marginBottom="10dp"
+            android:layout_toRightOf="@+id/txtStudentName"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/date_calender" />
+            android:layout_alignTop="@id/txtStudentName"
+            android:layout_alignBottom="@id/txtStudentName"
+            android:gravity="center"
+            android:text="Test"
+            android:textAllCaps="true"
+            android:textSize="15dp" />
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
-            android:src="@drawable/select_button" />
     </RelativeLayout>
-
 </LinearLayout>

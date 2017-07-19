@@ -132,7 +132,7 @@
                 android:background="@color/appColor"
                 android:textColor="@color/white"
                 android:gravity="center"
-                android:text="Roll No."
+                android:text="ID"
                 android:textSize="15sp" />
 
             <TextView
@@ -191,7 +191,7 @@
                 android:layout_alignTop="@+id/ClassStdAdmnNo"
                 android:layout_alignBottom="@+id/ClassStdAdmnNo"
                 android:gravity="center"
-                android:text="Roll No."
+                android:text="ID"
                 android:background="@color/appColor"
                 android:textColor="@color/white"
                 android:textSize="18dp"/>

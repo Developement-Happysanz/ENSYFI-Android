@@ -57,12 +57,12 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
     private TextView ParentProfile, GuardianProfile, StudentProfile, FeeStatusView, TeacherProfile;
 
     private ServiceHelper serviceHelper;
+    private SaveStudentData studentData;
     private EditText txtUsrID;
     private ImageView fatherInfo, motherInfo, guardianImg, studentImg, teacherImg;
     private Uri outputFileUri;
     static final int REQUEST_IMAGE_GET = 1;
     protected ProgressDialogHelper progressDialogHelper;
-    private SaveStudentData studentData;
     RelativeLayout TeacherInfo, parentInfoPopup, guardianInfoPopup, studentInfoPopup, teacherInfoPopup;
     LinearLayout ParentInfo;
     Button btnCancel, GbtnCancel, tbtnCancel, SbtnCancel;
@@ -84,7 +84,7 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
             Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(mProfileImage);
         }
 
-        callFatherInfoPreferences();
+//        callFatherInfoPreferences();
 
         String userTypeString = PreferenceStorage.getUserType(getApplicationContext());
         int userType = Integer.parseInt(userTypeString);
@@ -116,42 +116,48 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
             AlertDialogHelper.showCompoundAlertDialog(ProfileActivity.this, "Change Password", "Password will be Reset. Do you still wish to continue...", "OK", "CANCEL", 1);
         }
         if (v == fatherInfo) {
-            callFatherInfoPreferences();
+//            callFatherInfoPreferences();
         }
         if (v == motherInfo) {
-            callMotherInfoPreferences();
+//            callMotherInfoPreferences();
         }
         if (v == FeeStatusView) {
             Intent intent = new Intent(getApplicationContext(), FeeStatusActivity.class);
             startActivity(intent);
         }
         if (v == ParentProfile) {
-            parentInfoPopup.setVisibility(View.VISIBLE);
-            btnCancel.setVisibility(View.VISIBLE);
+            Intent intent = new Intent(getApplicationContext(), ParentInfoActivity.class);
+            startActivity(intent);
+//            parentInfoPopup.setVisibility(View.VISIBLE);
+//            btnCancel.setVisibility(View.VISIBLE);
         }
         if (v == btnCancel) {
-            parentInfoPopup.setVisibility(View.INVISIBLE);
-            btnCancel.setVisibility(View.INVISIBLE);
+//            parentInfoPopup.setVisibility(View.INVISIBLE);
+//            btnCancel.setVisibility(View.INVISIBLE);
         }
         if (v == GuardianProfile) {
-            callGuardianInfoPreferences();
+            Intent intent = new Intent(getApplicationContext(), GuardianInfoActivity.class);
+            startActivity(intent);
+//            callGuardianInfoPreferences();
         }
         if (v == GbtnCancel) {
-            guardianInfoPopup.setVisibility(View.INVISIBLE);
-            GbtnCancel.setVisibility(View.INVISIBLE);
+//            guardianInfoPopup.setVisibility(View.INVISIBLE);
+//            GbtnCancel.setVisibility(View.INVISIBLE);
         }
         if (v == StudentProfile) {
-            studentInfoPopup.setVisibility(View.VISIBLE);
-            SbtnCancel.setVisibility(View.VISIBLE);
-
+            Intent intent = new Intent(getApplicationContext(), StudentInfoActivity.class);
+            startActivity(intent);
+//            studentInfoPopup.setVisibility(View.VISIBLE);
+//            SbtnCancel.setVisibility(View.VISIBLE);
+//
             String userTypeString = PreferenceStorage.getUserType(getApplicationContext());
             int userType = Integer.parseInt(userTypeString);
 
             if (userType == 3) {
-                callStudentInfoPreferences();
+//                callStudentInfoPreferences();
             } else {
                 callGetStudentInfoService();
-                callStudentInfoPreferences();
+//                callStudentInfoPreferences();
             }
         }
         if (v == SbtnCancel) {
@@ -159,7 +165,9 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
             SbtnCancel.setVisibility(View.INVISIBLE);
         }
         if (v == TeacherProfile) {
-            callTeacherInfoPreferences();
+            Intent intent = new Intent(getApplicationContext(), TeacherInfoActivity.class);
+            startActivity(intent);
+//            callTeacherInfoPreferences();
         }
         if (v == tbtnCancel) {
             teacherInfoPopup.setVisibility(View.INVISIBLE);
@@ -370,17 +378,17 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
         txtUsrName.setText(PreferenceStorage.getName(getApplicationContext()));
         txtUserType.setText(PreferenceStorage.getUserTypeName(getApplicationContext()));
 
-        fatherInfo = (ImageView) findViewById(R.id.img_father_profile);
-        fatherInfo.setOnClickListener(this);
-
-        motherInfo = (ImageView) findViewById(R.id.img_mother_profile);
-        motherInfo.setOnClickListener(this);
-
-        guardianImg = (ImageView) findViewById(R.id.img_guardian_profile);
-
-        teacherImg = (ImageView) findViewById(R.id.img_teacher_profile);
-
-        studentImg = (ImageView) findViewById(R.id.img_student_profile);
+//        fatherInfo = (ImageView) findViewById(R.id.img_father_profile);
+//        fatherInfo.setOnClickListener(this);
+//
+//        motherInfo = (ImageView) findViewById(R.id.img_mother_profile);
+//        motherInfo.setOnClickListener(this);
+//
+//        guardianImg = (ImageView) findViewById(R.id.img_guardian_profile);
+//
+//        teacherImg = (ImageView) findViewById(R.id.img_teacher_profile);
+//
+//        studentImg = (ImageView) findViewById(R.id.img_student_profile);
 
         ParentProfile = (TextView) findViewById(R.id.ic_parentprofile);
         ParentProfile.setOnClickListener(this);
@@ -397,96 +405,88 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
         FeeStatusView = (TextView) findViewById(R.id.ic_feestatus);
         FeeStatusView.setOnClickListener(this);
 
-        serviceHelper = new ServiceHelper(this);
-        serviceHelper.setServiceListener(this);
-        studentData = new SaveStudentData(this);
+//        serviceHelper = new ServiceHelper(this);
+//        serviceHelper.setServiceListener(this);
+//        studentData = new SaveStudentData(this);
 
         ParentInfo = (LinearLayout) findViewById(R.id.parentStudentView);
         TeacherInfo = (RelativeLayout) findViewById(R.id.teacherprofile);
 
-        parentInfoPopup = (RelativeLayout) findViewById(R.id.popup_parent);
-        guardianInfoPopup = (RelativeLayout) findViewById(R.id.popup_guardian);
-        studentInfoPopup = (RelativeLayout) findViewById(R.id.popup_student);
-        teacherInfoPopup = (RelativeLayout) findViewById(R.id.popup_teacher);
+//        parentInfoPopup = (RelativeLayout) findViewById(R.id.popup_parent);
+//        guardianInfoPopup = (RelativeLayout) findViewById(R.id.popup_guardian);
+//        studentInfoPopup = (RelativeLayout) findViewById(R.id.popup_student);
+//        teacherInfoPopup = (RelativeLayout) findViewById(R.id.popup_teacher);
 
-        //////For Parent and Guardian///////
-        Name = (TextView) findViewById(R.id.txtfathername);
-        Address = (TextView) findViewById(R.id.txtfatheraddress);
-        Mail = (TextView) findViewById(R.id.txtfathermail);
-        Occupation = (TextView) findViewById(R.id.txtfatheroccupation);
-        Income = (TextView) findViewById(R.id.txtincome);
-        Mobile = (TextView) findViewById(R.id.txtfathermobile);
-        OfficePhone = (TextView) findViewById(R.id.txtfatherofficephone);
-        HomePhone = (TextView) findViewById(R.id.txtfatherhomephone);
-        btnCancel = (Button) findViewById(R.id.cancel);
-        btnCancel.setOnClickListener(this);
-
-        //////For Parent and Guardian///////
-        GName = (TextView) findViewById(R.id.txtmothername);
-        GAddress = (TextView) findViewById(R.id.txtmotheraddress);
-        GMail = (TextView) findViewById(R.id.txtmothermail);
-        GOccupation = (TextView) findViewById(R.id.txtmotheroccupation);
-        GIncome = (TextView) findViewById(R.id.txtmotherincome);
-        GMobile = (TextView) findViewById(R.id.txtmothermobile);
-        GOfficePhone = (TextView) findViewById(R.id.txtmotherofficephone);
-        GHomePhone = (TextView) findViewById(R.id.txtmotherhomephone);
-        GbtnCancel = (Button) findViewById(R.id.cancel1);
-        GbtnCancel.setOnClickListener(this);
-
-        // Teacher's Info view
-        teacherId = (TextView) findViewById(R.id.txtTeacherid);
-        teacherName = (TextView) findViewById(R.id.txtTeacherName);
-        teacherGender = (TextView) findViewById(R.id.txtTeacherGender);
-        teacherAge = (TextView) findViewById(R.id.txtTeacherAge);
-        teacherNationality = (TextView) findViewById(R.id.txtTeacherNationality);
-        teacherReligion = (TextView) findViewById(R.id.txtTeacherReligion);
-        teacherCaste = (TextView) findViewById(R.id.txtTeacherCaste);
-        teacherCommunity = (TextView) findViewById(R.id.txtTeacherCommunity);
-        teacherAddress = (TextView) findViewById(R.id.txtTeacherAddress);
-        teacherSubject = (TextView) findViewById(R.id.txtTeacherSubject);
-        classTeacher = (TextView) findViewById(R.id.txtClassTeacher);
-        teacherMobile = (TextView) findViewById(R.id.txtTeacherMobile);
-        teacherSecondaryMobile = (TextView) findViewById(R.id.txtTeacherSecondaryMobile);
-        teacherMail = (TextView) findViewById(R.id.txtTeacherMail);
-        teacherSecondaryMail = (TextView) findViewById(R.id.txtTeacherSecondaryMail);
-        teacherSectionName = (TextView) findViewById(R.id.txtTeacherSectionName);
-        teacherClassName = (TextView) findViewById(R.id.txtTeacherClassName);
-        teacherClassTaken = (TextView) findViewById(R.id.txtTeacherClassTaken);
-        tbtnCancel = (Button) findViewById(R.id.cancel0);
-        tbtnCancel.setOnClickListener(this);
-
-        ////// For Student ///////
-        studentAdmissionId = (TextView) findViewById(R.id.txtstudentadminid);
-        studentAdmissionYear = (TextView) findViewById(R.id.txtstudentadminyear);
-        studentAdmissionNumber = (TextView) findViewById(R.id.txtstudentadminnum);
-        studentEmsiNumber = (TextView) findViewById(R.id.txtstudentemsinum);
-        studentAdmissionDate = (TextView) findViewById(R.id.txtStudentAdmissionDate);
-        studentName = (TextView) findViewById(R.id.txtStudentName);
-        studentGender = (TextView) findViewById(R.id.txtStudentGender);
-        studentDateOfBirth = (TextView) findViewById(R.id.txtStudentDateOfBirth);
-        studentAge = (TextView) findViewById(R.id.txtStudentAge);
-        studentNationality = (TextView) findViewById(R.id.txtStudentNationality);
-        studentReligion = (TextView) findViewById(R.id.txtStudentReligion);
-        studentCaste = (TextView) findViewById(R.id.txtStudentCaste);
-        studentCommunity = (TextView) findViewById(R.id.txtStudentCommunity);
-        studentParentOrGuardian = (TextView) findViewById(R.id.txtStudentParentOrGuardian);
-        studentParentOrGuardianId = (TextView) findViewById(R.id.txtStudentParentOrGuardianId);
-        studentMotherTongue = (TextView) findViewById(R.id.txtStudentMotherTongue);
-        studentLanguage = (TextView) findViewById(R.id.txtStudentLanguage);
-        studentMobile = (TextView) findViewById(R.id.txtStudentMobile);
-        studentSecondaryMobile = (TextView) findViewById(R.id.txtStudentSecondaryMobile);
-        studentMail = (TextView) findViewById(R.id.txtStudentMail);
-        studentSecondaryMail = (TextView) findViewById(R.id.txtStudentSecondaryMail);
-        studentPreviousSchool = (TextView) findViewById(R.id.txtStudentPreviousSchool);
-        studentPreviousClass = (TextView) findViewById(R.id.txtStudentPreviousClass);
-        studentPromotionStatus = (TextView) findViewById(R.id.txtStudentPromotionStatus);
-        studentTransferCertificate = (TextView) findViewById(R.id.txtStudentTransferCertificate);
-        studentRecordSheet = (TextView) findViewById(R.id.txtStudentRecordSheet);
-        studentStatus = (TextView) findViewById(R.id.txtStudentStatus);
-        studentParentStatus = (TextView) findViewById(R.id.txtStudentParentStatus);
-        studentRegistered = (TextView) findViewById(R.id.txtStudentRegistered);
-        SbtnCancel = (Button) findViewById(R.id.cancel2);
-        SbtnCancel.setOnClickListener(this);
+        //////For Parent ///////
+//        Name = (TextView) findViewById(R.id.txtfathername);
+//        Address = (TextView) findViewById(R.id.txtfatheraddress);
+//        Mail = (TextView) findViewById(R.id.txtfathermail);
+//        Occupation = (TextView) findViewById(R.id.txtfatheroccupation);
+//        Income = (TextView) findViewById(R.id.txtincome);
+//        Mobile = (TextView) findViewById(R.id.txtfathermobile);
+//        OfficePhone = (TextView) findViewById(R.id.txtfatherofficephone);
+//        HomePhone = (TextView) findViewById(R.id.txtfatherhomephone);
+//
+//        //////For Guardian///////
+//        GName = (TextView) findViewById(R.id.txtmothername);
+//        GAddress = (TextView) findViewById(R.id.txtmotheraddress);
+//        GMail = (TextView) findViewById(R.id.txtmothermail);
+//        GOccupation = (TextView) findViewById(R.id.txtmotheroccupation);
+//        GIncome = (TextView) findViewById(R.id.txtmotherincome);
+//        GMobile = (TextView) findViewById(R.id.txtmothermobile);
+//        GOfficePhone = (TextView) findViewById(R.id.txtmotherofficephone);
+//        GHomePhone = (TextView) findViewById(R.id.txtmotherhomephone);
+//
+//        // Teacher's Info view
+//        teacherId = (TextView) findViewById(R.id.txtTeacherid);
+//        teacherName = (TextView) findViewById(R.id.txtTeacherName);
+//        teacherGender = (TextView) findViewById(R.id.txtTeacherGender);
+//        teacherAge = (TextView) findViewById(R.id.txtTeacherAge);
+//        teacherNationality = (TextView) findViewById(R.id.txtTeacherNationality);
+//        teacherReligion = (TextView) findViewById(R.id.txtTeacherReligion);
+//        teacherCaste = (TextView) findViewById(R.id.txtTeacherCaste);
+//        teacherCommunity = (TextView) findViewById(R.id.txtTeacherCommunity);
+//        teacherAddress = (TextView) findViewById(R.id.txtTeacherAddress);
+//        teacherSubject = (TextView) findViewById(R.id.txtTeacherSubject);
+//        classTeacher = (TextView) findViewById(R.id.txtClassTeacher);
+//        teacherMobile = (TextView) findViewById(R.id.txtTeacherMobile);
+//        teacherSecondaryMobile = (TextView) findViewById(R.id.txtTeacherSecondaryMobile);
+//        teacherMail = (TextView) findViewById(R.id.txtTeacherMail);
+//        teacherSecondaryMail = (TextView) findViewById(R.id.txtTeacherSecondaryMail);
+//        teacherSectionName = (TextView) findViewById(R.id.txtTeacherSectionName);
+//        teacherClassName = (TextView) findViewById(R.id.txtTeacherClassName);
+//        teacherClassTaken = (TextView) findViewById(R.id.txtTeacherClassTaken);
+//
+//        ////// For Student ///////
+//        studentAdmissionId = (TextView) findViewById(R.id.txtstudentadminid);
+//        studentAdmissionYear = (TextView) findViewById(R.id.txtstudentadminyear);
+//        studentAdmissionNumber = (TextView) findViewById(R.id.txtstudentadminnum);
+//        studentEmsiNumber = (TextView) findViewById(R.id.txtstudentemsinum);
+//        studentAdmissionDate = (TextView) findViewById(R.id.txtStudentAdmissionDate);
+//        studentName = (TextView) findViewById(R.id.txtStudentName);
+//        studentGender = (TextView) findViewById(R.id.txtStudentGender);
+//        studentDateOfBirth = (TextView) findViewById(R.id.txtStudentDateOfBirth);
+//        studentAge = (TextView) findViewById(R.id.txtStudentAge);
+//        studentNationality = (TextView) findViewById(R.id.txtStudentNationality);
+//        studentReligion = (TextView) findViewById(R.id.txtStudentReligion);
+//        studentCaste = (TextView) findViewById(R.id.txtStudentCaste);
+//        studentCommunity = (TextView) findViewById(R.id.txtStudentCommunity);
+//        studentParentOrGuardian = (TextView) findViewById(R.id.txtStudentParentOrGuardian);
+//        studentParentOrGuardianId = (TextView) findViewById(R.id.txtStudentParentOrGuardianId);
+//        studentMotherTongue = (TextView) findViewById(R.id.txtStudentMotherTongue);
+//        studentLanguage = (TextView) findViewById(R.id.txtStudentLanguage);
+//        studentMobile = (TextView) findViewById(R.id.txtStudentMobile);
+//        studentSecondaryMobile = (TextView) findViewById(R.id.txtStudentSecondaryMobile);
+//        studentMail = (TextView) findViewById(R.id.txtStudentMail);
+//        studentSecondaryMail = (TextView) findViewById(R.id.txtStudentSecondaryMail);
+//        studentPreviousSchool = (TextView) findViewById(R.id.txtStudentPreviousSchool);
+//        studentPreviousClass = (TextView) findViewById(R.id.txtStudentPreviousClass);
+//        studentPromotionStatus = (TextView) findViewById(R.id.txtStudentPromotionStatus);
+//        studentTransferCertificate = (TextView) findViewById(R.id.txtStudentTransferCertificate);
+//        studentRecordSheet = (TextView) findViewById(R.id.txtStudentRecordSheet);
+//        studentStatus = (TextView) findViewById(R.id.txtStudentStatus);
+//        studentParentStatus = (TextView) findViewById(R.id.txtStudentParentStatus);
+//        studentRegistered = (TextView) findViewById(R.id.txtStudentRegistered);
     }
 
     @Override

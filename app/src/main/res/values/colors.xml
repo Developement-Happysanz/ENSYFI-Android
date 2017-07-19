@@ -74,4 +74,7 @@
     <color name="disabled_text">#A7A9AC</color>
     <!---->
 
+    <color name="popup_bg">#464c48</color>
+
+
 </resources>

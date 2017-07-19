@@ -2,6 +2,7 @@ package com.palprotech.ensyfi.adapter.adminmodule;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,6 @@ import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.app.AppController;
-import com.palprotech.ensyfi.bean.admin.viewlist.Fees;
 import com.palprotech.ensyfi.bean.admin.viewlist.FeesStatus;
 import com.squareup.picasso.Transformation;
 
@@ -102,6 +102,13 @@ public class FeesStatusListAdapter extends BaseAdapter {
 
         holder.txtStudentName.setText(feesStatuses.get(position).getName());
         holder.txtStatus.setText(feesStatuses.get(position).getStatus());
+
+        if((feesStatuses.get(position).getStatus()).contentEquals("Paid")){
+            holder.txtStatus.setTextColor(ContextCompat.getColor(context, R.color.approve));
+        }
+        else {
+            holder.txtStatus.setTextColor(ContextCompat.getColor(context, R.color.reject));
+        }
 
         return convertView;
     }

@@ -71,6 +71,30 @@
             android:theme="@style/AppThemeNoActionBarGrey"
             android:windowSoftInputMode="stateHidden" />
 
+        <activity
+            android:name=".activity.loginmodule.ParentInfoActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarGrey" />
+
+        <!--<activity-->
+            <!--android:name=".activity.loginmodule.GuardianInfoActivity"-->
+            <!--android:label="@string/app_name"-->
+            <!--android:screenOrientation="portrait"-->
+            <!--android:theme="@style/AppThemeNoActionBarGrey" />-->
+
+        <activity
+            android:name=".activity.loginmodule.StudentInfoActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarGrey" />
+
+        <!--<activity-->
+            <!--android:name=".activity.loginmodule.TeacherInfoActivity"-->
+            <!--android:label="@string/app_name"-->
+            <!--android:screenOrientation="portrait"-->
+            <!--android:theme="@style/AppThemeNoActionBarGrey" />-->
+
         <!--End-->
         <!---->
         <!--Parent Module-->
