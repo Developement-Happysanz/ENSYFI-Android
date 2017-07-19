@@ -492,26 +492,30 @@ public class SaveTeacherData {
                 String class_name = "";
                 String sec_name = "";
                 String subject_name = "";
+                String subject_id = "";
 
                 class_master_id = jsonobj.getString("class_master_id");
                 teacher_id = jsonobj.getString("teacher_id");
                 class_name = jsonobj.getString("class_name");
                 sec_name = jsonobj.getString("sec_name");
                 subject_name = jsonobj.getString("subject_name");
+                subject_id = jsonobj.getString("subject_id");
 
                 System.out.println("class_master_id : " + i + " = " + class_master_id);
                 System.out.println("teacher_id : " + i + " = " + teacher_id);
                 System.out.println("class_name : " + i + " = " + class_name);
                 System.out.println("sec_name : " + i + " = " + sec_name);
                 System.out.println("subject_name : " + i + " = " + subject_name);
+                System.out.println("subject_id : " + i + " = " + subject_id);
 
                 String v1 = class_master_id,
                         v2 = teacher_id,
                         v3 = class_name,
                         v4 = sec_name,
-                        v5 = subject_name;
+                        v5 = subject_name,
+                        v6 = subject_id;
 
-                long l = database.teacher_handling_subject_insert(v1, v2, v3, v4, v5);
+                long l = database.teacher_handling_subject_insert(v1, v2, v3, v4, v5, v6);
 
                 System.out.println("" + l);
 

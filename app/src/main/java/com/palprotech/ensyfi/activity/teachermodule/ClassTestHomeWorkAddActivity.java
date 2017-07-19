@@ -3,6 +3,7 @@ package com.palprotech.ensyfi.activity.teachermodule;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
@@ -23,19 +24,26 @@ import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
+import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
 import com.palprotech.ensyfi.servicehelpers.ServiceHelper;
 import com.palprotech.ensyfi.serviceinterfaces.IServiceListener;
+import com.palprotech.ensyfi.utils.AppValidator;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 
+import org.joda.time.DateTime;
+import org.joda.time.Days;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.TreeSet;
 import java.util.Vector;
 
@@ -45,23 +53,25 @@ import java.util.Vector;
 
 public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements IServiceListener, DialogClickListener, View.OnClickListener {
 
-    private Spinner spnClassList;
+    private Spinner spnClassList, spnSubjectList;
     private static final String TAG = "CTHWTeacherView";
     protected ProgressDialogHelper progressDialogHelper;
     List<String> lsClassList = new ArrayList<String>();
+    List<String> lsSubjectList = new ArrayList<String>();
     ServiceHelper serviceHelper;
     SQLiteHelper db;
     Vector<String> vecClassList;
+    Vector<String> vecSubjectList;
     EditText edtSetTitle, edtDescription;
     Button btnSubmit;
-    private TextView dateFrom, dateTo;
+    private TextView dateFrom, dateTo, txthwctsubject;
     private String mFromDateVal = null;
     private String mToDateVal = null;
     final Calendar c = Calendar.getInstance();
     LinearLayout frombackground, tobackground;
     String formattedServerDate;
     private boolean isDoneClick = false;
-    String singleDate = "", getClassSectionId, classSection, ClassTestOrHomeWork = "HT";
+    String singleDate = "", getClassSectionId, classSection, ClassTestOrHomeWork = "HT", subjectName = "", getClassSubjectId;
     DatePickerDialog mFromDatePickerDialog = null;
     private RadioGroup radioClassTestHomeWork;
 
@@ -72,6 +82,7 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
 
         db = new SQLiteHelper(getApplicationContext());
         vecClassList = new Vector<String>();
+        vecSubjectList = new Vector<String>();
 
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
@@ -79,6 +90,7 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
         progressDialogHelper = new ProgressDialogHelper(this);
 
         spnClassList = (Spinner) findViewById(R.id.class_list_spinner);
+        spnSubjectList = (Spinner) findViewById(R.id.subject_list_spinner);
 
         edtSetTitle = (EditText) findViewById(R.id.edtSetTitle);
         edtDescription = (EditText) findViewById(R.id.edtDescription);
@@ -92,12 +104,15 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
         dateTo = (TextView) findViewById(R.id.dateTo);
         dateTo.setOnClickListener(this);
 
+        txthwctsubject = (TextView) findViewById(R.id.txthwctsubject);
+
         radioClassTestHomeWork = (RadioGroup) findViewById(R.id.radioClassTestHomeWorkView);
 
         frombackground = (LinearLayout) findViewById(R.id.fromDatee);
         tobackground = (LinearLayout) findViewById(R.id.toDatee);
 
         getClassList();
+
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
         bckbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,6 +147,7 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 classSection = parent.getItemAtPosition(position).toString();
                 getClassId(classSection);
+                getSubjectList(getClassSectionId);
             }
 
             @Override
@@ -140,6 +156,54 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
             }
         });
 
+        spnSubjectList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                subjectName = parent.getItemAtPosition(position).toString();
+                txthwctsubject.setText(subjectName);
+                getSubjectId(subjectName, getClassSectionId);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        loadFromDate();
+        loadToDate();
+
+
+    }
+
+    private void loadFromDate() {
+        SimpleDateFormat DF = new SimpleDateFormat("dd-MM-yyyy");
+        String formattedDate = DF.format(c.getTime());
+        SimpleDateFormat serverDF = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedServerDate = serverDF.format(c.getTime());
+
+        frombackground.setBackgroundColor(Color.parseColor("#663366"));
+        dateFrom.setCompoundDrawablesWithIntrinsicBounds(R.drawable.od_from_date_selected, 0, 0, 0);
+        dateFrom.setTextColor((Color.parseColor("#663366")));
+
+        ((TextView) findViewById(R.id.dateFrom)).setText(formattedDate);
+
+        mFromDateVal = formattedServerDate;
+    }
+
+    private void loadToDate() {
+        SimpleDateFormat DF = new SimpleDateFormat("dd-MM-yyyy");
+        String formattedDate = DF.format(c.getTime());
+        SimpleDateFormat serverDF = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedServerDate = serverDF.format(c.getTime());
+
+        tobackground.setBackgroundColor(Color.parseColor("#663366"));
+        dateTo.setCompoundDrawablesWithIntrinsicBounds(R.drawable.od_from_date_selected, 0, 0, 0);
+        dateTo.setTextColor((Color.parseColor("#663366")));
+
+        ((TextView) findViewById(R.id.dateTo)).setText(formattedDate);
+
+        mToDateVal = formattedServerDate;
     }
 
     private void saveClassTestHomeWork() {
@@ -152,8 +216,8 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
         String classId = getClassSectionId;
         String teacherId = PreferenceStorage.getTeacherId(this);
         String homeWorkType = ClassTestOrHomeWork;
-        String subjectId = PreferenceStorage.getTeacherSubject(this);
-        String subjectName = PreferenceStorage.getTeacherSubjectName(this);
+        String subjectId = getClassSubjectId;
+        String SubjectName = subjectName;
         String title = edtSetTitle.getText().toString();
         String testDate = mFromDateVal;
         String dueDate = mToDateVal;
@@ -166,13 +230,46 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
         String updatedAt = formattedServerDate;
         String syncStatus = "NS";
 
-        long x = db.homework_class_test_insert(serverHomeWorkId, yearId, classId, teacherId, homeWorkType, subjectId,
-                subjectName, title, testDate, dueDate, homeWorkDetails, status, markStatus,
-                createdBy, createdAt, updatedBy, updatedAt, syncStatus);
+        if (validateFields()) {
+            long x = db.homework_class_test_insert(serverHomeWorkId, yearId, classId, teacherId, homeWorkType, subjectId,
+                    SubjectName, title, testDate, dueDate, homeWorkDetails, status, markStatus,
+                    createdBy, createdAt, updatedBy, updatedAt, syncStatus);
 
-        System.out.println("Stored Id : " + x);
+            System.out.println("Stored Id : " + x);
 
-        finish();
+            finish();
+        }
+    }
+
+    private boolean validateFields() {
+        int getDate = 0;
+        try {
+
+            DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+            Date dateFrom = format.parse(this.dateFrom.getText().toString().trim());
+            Date dateTo = format.parse(this.dateTo.getText().toString().trim());
+
+            DateTime dt1 = new DateTime(dateFrom);
+            DateTime dt2 = new DateTime(dateTo);
+
+            getDate = Days.daysBetween(dt1, dt2).getDays();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        if (!AppValidator.checkNullString(this.edtSetTitle.getText().toString().trim())) {
+            AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid title");
+            return false;
+        } else if (!AppValidator.checkNullString(this.edtDescription.getText().toString().trim())) {
+            AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid details");
+            return false;
+        } else if (getDate < 0) {
+            AlertDialogHelper.showSimpleAlertDialog(this, "ToDate should not lesser than FromDate");
+            return false;
+        } else {
+            return true;
+        }
     }
 
     private void getClassId(String classSectionName) {
@@ -192,42 +289,21 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
         }
     }
 
-    private static String formatDate(int year, int month, int day) {
+    private void getSubjectId(String subjectName, String classId) {
 
-        String formattedDay = "", formattedMonth = "";
-        month = month + 1;
-        if (day < 10) {
-            formattedDay = "0" + day;
-        } else {
-            formattedDay = "" + day;
+        try {
+            Cursor c = db.getSubjectId(subjectName, classId);
+            if (c.getCount() > 0) {
+                if (c.moveToFirst()) {
+                    do {
+                        getClassSubjectId = c.getString(6);
+                    } while (c.moveToNext());
+                }
+            }
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
         }
-
-        if (month < 10) {
-            formattedMonth = "0" + month;
-        } else {
-            formattedMonth = "" + month;
-        }
-
-        return formattedDay + "-" + formattedMonth + "-" + year;
-    }
-
-    private static String formatDateServer(int year, int month, int day) {
-
-        String formattedDay = "", formattedMonth = "";
-        month = month + 1;
-        if (day < 10) {
-            formattedDay = "0" + day;
-        } else {
-            formattedDay = "" + day;
-        }
-
-        if (month < 10) {
-            formattedMonth = "0" + month;
-        } else {
-            formattedMonth = "" + month;
-        }
-
-        return year + "-" + formattedMonth + "-" + formattedDay;
     }
 
     private void getClassList() {
@@ -260,6 +336,36 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
         }
     }
 
+    private void getSubjectList(String classId) {
+
+        try {
+            Cursor c = db.getHandlingSubjectList(classId);
+            if (c.getCount() > 0) {
+                if (c.moveToFirst()) {
+                    do {
+                        vecSubjectList.add(c.getString(5));
+                    } while (c.moveToNext());
+                }
+            }
+            for (int i = 0; i < vecSubjectList.size(); i++) {
+                lsSubjectList.add(vecSubjectList.get(i));
+            }
+            HashSet hs = new HashSet();
+            TreeSet ts = new TreeSet(hs);
+            ts.addAll(lsSubjectList);
+            lsSubjectList.clear();
+            lsSubjectList.addAll(ts);
+            db.close();
+            ArrayAdapter<String> dataAdapter3 = new ArrayAdapter<String>(this, R.layout.spinner_item_ns, lsSubjectList);
+
+            spnSubjectList.setAdapter(dataAdapter3);
+            spnSubjectList.setWillNotDraw(false);
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "Error getting class list lookup", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void onAlertPositiveClicked(int tag) {
 
@@ -277,7 +383,8 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
 
     @Override
     public void onError(String error) {
-
+        progressDialogHelper.hideProgressDialog();
+        AlertDialogHelper.showSimpleAlertDialog(this, error);
     }
 
     @Override
@@ -379,4 +486,43 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
             saveClassTestHomeWork();
         }
     }
+
+    private static String formatDate(int year, int month, int day) {
+
+        String formattedDay = "", formattedMonth = "";
+        month = month + 1;
+        if (day < 10) {
+            formattedDay = "0" + day;
+        } else {
+            formattedDay = "" + day;
+        }
+
+        if (month < 10) {
+            formattedMonth = "0" + month;
+        } else {
+            formattedMonth = "" + month;
+        }
+
+        return formattedDay + "-" + formattedMonth + "-" + year;
+    }
+
+    private static String formatDateServer(int year, int month, int day) {
+
+        String formattedDay = "", formattedMonth = "";
+        month = month + 1;
+        if (day < 10) {
+            formattedDay = "0" + day;
+        } else {
+            formattedDay = "" + day;
+        }
+
+        if (month < 10) {
+            formattedMonth = "0" + month;
+        } else {
+            formattedMonth = "" + month;
+        }
+
+        return year + "-" + formattedMonth + "-" + formattedDay;
+    }
+
 }

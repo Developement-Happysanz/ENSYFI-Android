@@ -393,4 +393,19 @@ public class EnsyfiConstants {
     public static final String PARAMS_PARENT_ID_SHOW = "parent_id";
 
     public static final String PARAMS_FEES_ID_SHOW = "fees_id";
+
+    // TimeTable Review Add Params
+    public static final String PARAMS_REVIEW_TIME_DATE = "time_date";
+    public static final String PARAMS_REVIEW_CLASS_ID = "class_id";
+    public static final String PARAMS_REVIEW_SUBJECT_ID = "subject_id";
+    public static final String PARAMS_REVIEW_PERIOD_ID = "period_id";
+    public static final String PARAMS_REVIEW_USER_TYPE = "user_type";
+    public static final String PARAMS_REVIEW_USER_ID = "user_id";
+    public static final String PARAMS_REVIEW_COMMENTS = "comments";
+    public static final String PARAMS_REVIEW_CREATED_AT = "created_at";
+
+    // Timetable Review
+    public static final String GET_ON_TIME_TABLE_REVIEW_ADD= "/apiteacher/add_Timetablereview/";
+    public static final String GET_ON_TIME_TABLE_REVIEW_= "/apiteacher/disp_Timetablereview/";
+
 }

@@ -77,6 +77,18 @@ public class TeacherTimeTableActivity extends AppCompatActivity implements Dialo
                 finish();
             }
         });
+
+        ImageView viewExamMark = (ImageView) findViewById(R.id.viewExamMarks);
+        viewExamMark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), TimeTableReview.class);
+//            intent.putExtra("id", id);
+                startActivity(intent);
+
+            }
+        });
     }
 
     private void GetTimeTableData() {
