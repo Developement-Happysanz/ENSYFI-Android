@@ -405,9 +405,9 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
         FeeStatusView = (TextView) findViewById(R.id.ic_feestatus);
         FeeStatusView.setOnClickListener(this);
 
-//        serviceHelper = new ServiceHelper(this);
-//        serviceHelper.setServiceListener(this);
-//        studentData = new SaveStudentData(this);
+        serviceHelper = new ServiceHelper(this);
+        serviceHelper.setServiceListener(this);
+        studentData = new SaveStudentData(this);
 
         ParentInfo = (LinearLayout) findViewById(R.id.parentStudentView);
         TeacherInfo = (RelativeLayout) findViewById(R.id.teacherprofile);

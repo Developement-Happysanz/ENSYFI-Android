@@ -2,34 +2,27 @@ package com.palprotech.ensyfi.activity.loginmodule;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.bean.student.support.SaveStudentData;
-import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
 import com.palprotech.ensyfi.servicehelpers.ServiceHelper;
-import com.palprotech.ensyfi.serviceinterfaces.IServiceListener;
-import com.palprotech.ensyfi.utils.CommonUtils;
-import com.palprotech.ensyfi.utils.EnsyfiConstants;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 import com.squareup.picasso.Picasso;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  * Created by Narendar on 19/07/17.
  */
 
-public class StudentInfoActivity extends AppCompatActivity implements IServiceListener, DialogClickListener, View.OnClickListener {
+public class StudentInfoActivity extends AppCompatActivity implements DialogClickListener, View.OnClickListener {
 
     private static final String TAG = StudentInfoActivity.class.getName();
+
+    private ImageView btnBack;
 
     protected ProgressDialogHelper progressDialogHelper;
 
@@ -50,17 +43,15 @@ public class StudentInfoActivity extends AppCompatActivity implements IServiceLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_profile_info);
         SetUI();
-        callGetStudentInfoService();
         callStudentInfoPreferences();
 
     }
 
     private void SetUI() {
-        studentImg = (ImageView) findViewById(R.id.img_student_profile);
+        btnBack = (ImageView) findViewById(R.id.back_res);
+        btnBack.setOnClickListener(this);
 
-        serviceHelper = new ServiceHelper(this);
-        serviceHelper.setServiceListener(this);
-        studentData = new SaveStudentData(this);
+        studentImg = (ImageView) findViewById(R.id.img_student_profile);
 
         ////// For Student ///////
         studentAdmissionId = (TextView) findViewById(R.id.txtstudentadminid);
@@ -96,52 +87,6 @@ public class StudentInfoActivity extends AppCompatActivity implements IServiceLi
         progressDialogHelper = new ProgressDialogHelper(this);
     }
 
-    private void callGetStudentInfoService() {
-
-        if (CommonUtils.isNetworkAvailable(this)) {
-            JSONObject jsonObject = new JSONObject();
-            try {
-                jsonObject.put(EnsyfiConstants.STUDENT_ADMISSION_ID, PreferenceStorage.getStudentAdmissionIdPreference(this));
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.GET_STUDENT_INFO_DETAILS_API;
-            serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
-        } else {
-
-            AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
-        }
-
-    }
-
-    private boolean validateSignInResponse(JSONObject response) {
-        boolean signInSuccess = false;
-        if ((response != null)) {
-            try {
-                String status = response.getString("status");
-                String msg = response.getString(EnsyfiConstants.PARAM_MESSAGE);
-                Log.d(TAG, "status val" + status + "msg" + msg);
-
-                if ((status != null)) {
-                    if (((status.equalsIgnoreCase("activationError")) || (status.equalsIgnoreCase("alreadyRegistered")) ||
-                            (status.equalsIgnoreCase("notRegistered")) || (status.equalsIgnoreCase("error")))) {
-                        signInSuccess = false;
-                        Log.d(TAG, "Show error dialog");
-                        AlertDialogHelper.showSimpleAlertDialog(this, msg);
-
-                    } else {
-                        signInSuccess = true;
-                    }
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-        return signInSuccess;
-    }
 
     private void callStudentInfoPreferences() {
         studentAdmissionId.setText(PreferenceStorage.getStudentAdmissionID(getApplicationContext()));
@@ -181,28 +126,10 @@ public class StudentInfoActivity extends AppCompatActivity implements IServiceLi
     }
 
     @Override
-    public void onResponse(JSONObject response) {
-        progressDialogHelper.hideProgressDialog();
-        if (validateSignInResponse(response)) {
-            try {
-
-                JSONArray getData = response.getJSONArray("studentProfile");
-                studentData.saveStudentProfile(getData);
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    @Override
-    public void onError(String error) {
-        progressDialogHelper.hideProgressDialog();
-        AlertDialogHelper.showSimpleAlertDialog(this, error);
-    }
-
-    @Override
     public void onClick(View v) {
+        if (v == btnBack) {
+            finish();
+        }
 
     }
 
