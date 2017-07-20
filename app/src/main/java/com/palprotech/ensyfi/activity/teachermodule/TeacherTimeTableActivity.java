@@ -77,6 +77,18 @@ public class TeacherTimeTableActivity extends AppCompatActivity implements Dialo
                 finish();
             }
         });
+
+        ImageView viewExamMark = (ImageView) findViewById(R.id.viewExamMarks);
+        viewExamMark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), TimeTableReview.class);
+//            intent.putExtra("id", id);
+                startActivity(intent);
+
+            }
+        });
     }
 
     private void GetTimeTableData() {
@@ -218,8 +230,8 @@ public class TeacherTimeTableActivity extends AppCompatActivity implements Dialo
 
                     set.setText(name1);
                     b.setText(name);
-                    b.setTextSize(13.0f);
-                    set.setTextSize(13.0f);
+                    b.setTextSize(11.0f);
+                    set.setTextSize(11.0f);
                     b.setTypeface(null, Typeface.BOLD);
                     set.setTypeface(null, Typeface.BOLD);
                     b.setAllCaps(true);
@@ -239,9 +251,9 @@ public class TeacherTimeTableActivity extends AppCompatActivity implements Dialo
                         }
                     });
                     b.setPressed(true);
-                    b.setHeight(160);
+                    b.setHeight(140);
                     set.setHeight(0);
-                    b.setWidth(160);
+                    b.setWidth(140);
                     set.setWidth(0);
                     b.setPadding(1, 0, 2, 0);
                     set.setPadding(0, 0, 0, 0);

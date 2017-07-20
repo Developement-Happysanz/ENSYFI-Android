@@ -46,6 +46,7 @@
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="@dimen/actionbarTextSize" />
+
     </RelativeLayout>
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
