@@ -60,9 +60,10 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
 
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
+        teacherData = new SaveTeacherData(this);
+
         progressDialogHelper = new ProgressDialogHelper(this);
 
-        teacherData = new SaveTeacherData(this);
         String view = "";
 
         btnBack = (ImageView) findViewById(R.id.back_res);
@@ -90,7 +91,8 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
         teacherClassTaken = (TextView) findViewById(R.id.txtTeacherClassTaken);
 
         populateData();
-        getTeacherInfo();
+
+        getTeacherProfileInfo();
     }
 
     private void populateData() {
@@ -131,16 +133,6 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
     }
 
     @Override
-    public void onAlertPositiveClicked(int tag) {
-
-    }
-
-    @Override
-    public void onAlertNegativeClicked(int tag) {
-
-    }
-
-    @Override
     public void onResponse(JSONObject response) {
         progressDialogHelper.hideProgressDialog();
         if (validateSignInResponse(response)) {
@@ -157,6 +149,7 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
 
                 JSONArray getTeacherProfile = response.getJSONArray("teacherProfile");
                 teacherData.saveTeacherProfile(getTeacherProfile);
+
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -201,7 +194,7 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
         return signInsuccess;
     }
 
-    private void getTeacherInfo() {
+    private void getTeacherProfileInfo() {
 
         teacherId.setText(PreferenceStorage.getTeacherId(getApplicationContext()));
         teacherName.setText(PreferenceStorage.getTeacherName(getApplicationContext()));
@@ -221,5 +214,15 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
         teacherSectionName.setText(PreferenceStorage.getTeacherSectionName(getApplicationContext()));
         teacherClassName.setText(PreferenceStorage.getTeacherClassName(getApplicationContext()));
         teacherClassTaken.setText(PreferenceStorage.getTeacherClassTaken(getApplicationContext()));
+    }
+
+    @Override
+    public void onAlertPositiveClicked(int tag) {
+
+    }
+
+    @Override
+    public void onAlertNegativeClicked(int tag) {
+
     }
 }

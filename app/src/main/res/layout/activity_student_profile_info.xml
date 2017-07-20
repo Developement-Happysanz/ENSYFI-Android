@@ -35,7 +35,7 @@
             android:gravity="center"
             android:minHeight="?attr/actionBarSize"
             android:paddingLeft="10dp"
-            android:text="Parent Profile"
+            android:text="Student Profile"
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="@dimen/actionbarTextSize" />
@@ -85,7 +85,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Admission ID              :"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/txtstudentadminid"
@@ -97,13 +98,14 @@
                     android:layout_toRightOf="@+id/studentadminid"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
-                    android:textSize="18dp" />
+                    android:textSize="18dp"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/studentadminnum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtstudentadminid"
+                    android:layout_below="@+id/txtStudentName"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Admission Number   :"
@@ -379,7 +381,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Parent Or Guardian     :"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/txtStudentParentOrGuardian"
@@ -391,7 +394,8 @@
                     android:layout_toRightOf="@+id/StudentParentOrGuardian"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
-                    android:textSize="18dp" />
+                    android:textSize="18dp"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/StudentParentOrGuardianId"
@@ -402,7 +406,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Parent Or Guardian Id :"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/txtStudentParentOrGuardianId"
@@ -414,13 +419,14 @@
                     android:layout_toRightOf="@+id/StudentParentOrGuardianId"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
-                    android:textSize="18dp" />
+                    android:textSize="18dp"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/StudentMotherTongue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtStudentParentOrGuardianId"
+                    android:layout_below="@+id/txtStudentCommunity"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Mother Tongue            :"
@@ -605,7 +611,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Promotion Status       :"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/txtStudentPromotionStatus"
@@ -617,13 +624,14 @@
                     android:layout_toRightOf="@+id/StudentPromotionStatus"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
-                    android:textSize="18dp" />
+                    android:textSize="18dp"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/StudentTransferCertificate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtStudentPromotionStatus"
+                    android:layout_below="@+id/txtStudentPreviousClass"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Transfer Certificate    :"
@@ -674,7 +682,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Status                           :"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/txtStudentStatus"
@@ -685,7 +694,8 @@
                     android:layout_toRightOf="@+id/StudentStatus"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
-                    android:textSize="18dp" />
+                    android:textSize="18dp"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/StudentParentStatus"
@@ -696,7 +706,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Parent Status              :"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/txtStudentParentStatus"
@@ -707,7 +718,8 @@
                     android:layout_toRightOf="@+id/StudentParentStatus"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
-                    android:textSize="18dp" />
+                    android:textSize="18dp"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/StudentRegistered"
@@ -718,7 +730,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Registered                    :"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/txtStudentRegistered"
@@ -729,7 +742,8 @@
                     android:layout_toRightOf="@+id/StudentRegistered"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
-                    android:textSize="18dp" />
+                    android:textSize="18dp"
+                    android:visibility="gone"/>
 
 
             </RelativeLayout>

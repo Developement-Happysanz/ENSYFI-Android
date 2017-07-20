@@ -3,7 +3,6 @@ package com.palprotech.ensyfi.activity.teachermodule;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
@@ -182,9 +181,9 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
         SimpleDateFormat serverDF = new SimpleDateFormat("yyyy-MM-dd");
         String formattedServerDate = serverDF.format(c.getTime());
 
-        frombackground.setBackgroundColor(Color.parseColor("#663366"));
-        dateFrom.setCompoundDrawablesWithIntrinsicBounds(R.drawable.od_from_date_selected, 0, 0, 0);
-        dateFrom.setTextColor((Color.parseColor("#663366")));
+//        frombackground.setBackgroundColor(Color.parseColor("#663366"));
+//        dateFrom.setCompoundDrawablesWithIntrinsicBounds(R.drawable.od_from_date_selected, 0, 0, 0);
+//        dateFrom.setTextColor((Color.parseColor("#663366")));
 
         ((TextView) findViewById(R.id.dateFrom)).setText(formattedDate);
 
@@ -197,9 +196,9 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
         SimpleDateFormat serverDF = new SimpleDateFormat("yyyy-MM-dd");
         String formattedServerDate = serverDF.format(c.getTime());
 
-        tobackground.setBackgroundColor(Color.parseColor("#663366"));
-        dateTo.setCompoundDrawablesWithIntrinsicBounds(R.drawable.od_from_date_selected, 0, 0, 0);
-        dateTo.setTextColor((Color.parseColor("#663366")));
+//        tobackground.setBackgroundColor(Color.parseColor("#663366"));
+//        dateTo.setCompoundDrawablesWithIntrinsicBounds(R.drawable.od_from_date_selected, 0, 0, 0);
+//        dateTo.setTextColor((Color.parseColor("#663366")));
 
         ((TextView) findViewById(R.id.dateTo)).setText(formattedDate);
 
