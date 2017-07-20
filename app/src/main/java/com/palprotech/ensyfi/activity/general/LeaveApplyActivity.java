@@ -263,7 +263,7 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void loadLeaveType() {
-        checkVal = "N";
+        checkVal = "Y";
         JSONObject jsonObject = new JSONObject();
         try {
 
@@ -618,7 +618,10 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
 
                         }
                     }
-                } else {
+                }
+                if (checkVal.contentEquals("Y")) {
+                    JSONArray loadLeaveTypes = response.getJSONArray("leaveDetails");
+                    SaveLeaveTypes(loadLeaveTypes);
                 }
             } catch (Exception ex) {
             }

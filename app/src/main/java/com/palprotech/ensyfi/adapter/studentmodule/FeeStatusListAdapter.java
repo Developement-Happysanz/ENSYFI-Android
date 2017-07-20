@@ -83,6 +83,8 @@ public class FeeStatusListAdapter extends BaseAdapter {
             holder = new FeeStatusListAdapter.ViewHolder();
             holder.txtTermName = (TextView) convertView.findViewById(R.id.txtTermName);
             holder.txtStatus = (TextView) convertView.findViewById(R.id.txtStatus);
+            holder.txtDueDateFrom = (TextView) convertView.findViewById(R.id.txtDueDateFrom);
+            holder.txtDueDateTo = (TextView) convertView.findViewById(R.id.txtDueDateTo);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -101,6 +103,8 @@ public class FeeStatusListAdapter extends BaseAdapter {
 
         holder.txtTermName.setText(feeStatuses.get(position).getTermName());
         holder.txtStatus.setText(feeStatuses.get(position).getStatus());
+        holder.txtDueDateFrom.setText("Due From : " + feeStatuses.get(position).getDueDateFrom());
+        holder.txtDueDateTo.setText("Due To : " + feeStatuses.get(position).getDueDateTo());
         return convertView;
     }
 
@@ -133,7 +137,7 @@ public class FeeStatusListAdapter extends BaseAdapter {
     }
 
     public class ViewHolder {
-        public TextView txtTermName, txtStatus,txtDueDate;
+        public TextView txtTermName, txtStatus, txtDueDateFrom, txtDueDateTo;
     }
 
     public boolean ismSearching() {

@@ -19,6 +19,14 @@ public class FeeStatus implements Serializable {
     @Expose
     private String status;
 
+    @SerializedName("due_date_from")
+    @Expose
+    private String due_date_from;
+
+    @SerializedName("due_date_to")
+    @Expose
+    private String due_date_to;
+
     /**
      * @return The term_name
      */
@@ -46,5 +54,35 @@ public class FeeStatus implements Serializable {
      */
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    /**
+     * @return The due_date_from
+     */
+    public String getDueDateFrom() {
+
+        return due_date_from;
+    }
+
+    /**
+     * @param due_date_from The due_date_from
+     */
+    public void setDueDateFrom(String due_date_from) {
+        this.due_date_from = due_date_from;
+    }
+
+    /**
+     * @return The due_date_to
+     */
+    public String getDueDateTo() {
+
+        return due_date_to;
+    }
+
+    /**
+     * @param due_date_to The due_date_to
+     */
+    public void setDueDateTo(String due_date_to) {
+        this.due_date_to = due_date_to;
     }
 }

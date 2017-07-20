@@ -37,7 +37,7 @@
             android:textSize="15dp" />
 
         <TextView
-            android:id="@+id/txtDueDate"
+            android:id="@+id/txtDueDateFrom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/txtTermName"
@@ -47,8 +47,21 @@
             android:gravity="center"
             android:text="Test OK"
             android:textAllCaps="true"
-            android:textSize="15dp"
-            android:visibility="gone" />
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/txtDueDateTo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/txtTermName"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/txtDueDateFrom"
+            android:gravity="center"
+            android:text="Test OK"
+            android:textAllCaps="true"
+            android:textSize="15dp" />
 
     </RelativeLayout>
 </LinearLayout>
