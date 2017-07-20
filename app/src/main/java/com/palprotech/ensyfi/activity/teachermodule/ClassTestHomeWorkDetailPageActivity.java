@@ -140,7 +140,8 @@ public class ClassTestHomeWorkDetailPageActivity extends AppCompatActivity imple
 
         if (v == viewMarks) {
             Intent intent = new Intent(getApplicationContext(), ViewClassTestMarkActivity.class);
-            intent.putExtra("hw_id", id);
+            long ids = Long.parseLong(serverHomeWorkId);
+            intent.putExtra("hw_id", ids);
             startActivity(intent);
         }
     }

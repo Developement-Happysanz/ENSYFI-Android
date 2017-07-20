@@ -46,13 +46,13 @@ public class AcademicExamDetailPage extends AppCompatActivity implements IServic
         Intent intent = getIntent();
         id = getIntent().getExtras().getLong("id");
         db = new SQLiteHelper(getApplicationContext());
-        String examId = String.valueOf(id);
+        String localExamId = String.valueOf(id);
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
         addExamMark = (ImageView) findViewById(R.id.addExamMarks);
         addExamMark.setOnClickListener(this);
         viewExamMark = (ImageView) findViewById(R.id.viewExamMarks);
         viewExamMark.setOnClickListener(this);
-        GetAcademicExamInfo(examId);
+        GetAcademicExamInfo(localExamId);
         loadAcademicExamDetails(classMasterId, examId);
         int checkMarkStatus = Integer.parseInt(markStatus);
         if (checkMarkStatus == 0) {

@@ -133,7 +133,7 @@ public class FeeStatusListAdapter extends BaseAdapter {
     }
 
     public class ViewHolder {
-        public TextView txtTermName, txtStatus;
+        public TextView txtTermName, txtStatus,txtDueDate;
     }
 
     public boolean ismSearching() {

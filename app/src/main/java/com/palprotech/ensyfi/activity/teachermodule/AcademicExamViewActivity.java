@@ -21,6 +21,7 @@ import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
 import com.palprotech.ensyfi.servicehelpers.ServiceHelper;
 import com.palprotech.ensyfi.serviceinterfaces.IServiceListener;
+import com.palprotech.ensyfi.utils.PreferenceStorage;
 
 import org.json.JSONObject;
 
@@ -36,7 +37,7 @@ import java.util.Vector;
 
 public class AcademicExamViewActivity extends AppCompatActivity implements IServiceListener, AdapterView.OnItemClickListener, DialogClickListener, View.OnClickListener {
 
-    private Spinner spnClassList;
+    private Spinner spnClassList, spnSubjectList;
     private static final String TAG = "AcademicExamView";
     protected ProgressDialogHelper progressDialogHelper;
     List<String> lsClassList = new ArrayList<String>();
@@ -47,6 +48,9 @@ public class AcademicExamViewActivity extends AppCompatActivity implements IServ
     ArrayList<AcademicExams> myList = new ArrayList<AcademicExams>();
     AcademicExamsListBaseAdapter cadapter;
     ListView loadMoreListView;
+    String subjectName = "", getClassSubjectId;
+    Vector<String> vecSubjectList;
+    List<String> lsSubjectList = new ArrayList<String>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,6 +59,7 @@ public class AcademicExamViewActivity extends AppCompatActivity implements IServ
 
         db = new SQLiteHelper(getApplicationContext());
         vecClassList = new Vector<String>();
+        vecSubjectList = new Vector<String>();
 
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
@@ -62,6 +67,7 @@ public class AcademicExamViewActivity extends AppCompatActivity implements IServ
         progressDialogHelper = new ProgressDialogHelper(this);
 
         spnClassList = (Spinner) findViewById(R.id.class_list_spinner);
+        spnSubjectList = (Spinner) findViewById(R.id.subject_list_spinner);
 
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
 
@@ -83,6 +89,7 @@ public class AcademicExamViewActivity extends AppCompatActivity implements IServ
                 classSection = parent.getItemAtPosition(position).toString();
                 getClassId(classSection);
                 loadAcademicExams(getClassSectionId);
+                getSubjectList(getClassSectionId);
                 cadapter = new AcademicExamsListBaseAdapter(AcademicExamViewActivity.this, myList);
                 loadMoreListView.setAdapter(cadapter);
             }
@@ -92,6 +99,68 @@ public class AcademicExamViewActivity extends AppCompatActivity implements IServ
 
             }
         });
+
+        spnSubjectList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                subjectName = parent.getItemAtPosition(position).toString();
+//                txthwctsubject.setText(subjectName);
+                getSubjectId(subjectName, getClassSectionId);
+                PreferenceStorage.saveTeacherSubject(getApplicationContext(), getClassSubjectId);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    private void getSubjectId(String subjectName, String classId) {
+
+        try {
+            Cursor c = db.getSubjectId(subjectName, classId);
+            if (c.getCount() > 0) {
+                if (c.moveToFirst()) {
+                    do {
+                        getClassSubjectId = c.getString(6);
+                    } while (c.moveToNext());
+                }
+            }
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
+    }
+
+    private void getSubjectList(String classId) {
+
+        try {
+            Cursor c = db.getHandlingSubjectList(classId);
+            if (c.getCount() > 0) {
+                if (c.moveToFirst()) {
+                    do {
+                        vecSubjectList.add(c.getString(5));
+                    } while (c.moveToNext());
+                }
+            }
+            for (int i = 0; i < vecSubjectList.size(); i++) {
+                lsSubjectList.add(vecSubjectList.get(i));
+            }
+            HashSet hs = new HashSet();
+            TreeSet ts = new TreeSet(hs);
+            ts.addAll(lsSubjectList);
+            lsSubjectList.clear();
+            lsSubjectList.addAll(ts);
+            db.close();
+            ArrayAdapter<String> dataAdapter3 = new ArrayAdapter<String>(this, R.layout.spinner_item_ns, lsSubjectList);
+
+            spnSubjectList.setAdapter(dataAdapter3);
+            spnSubjectList.setWillNotDraw(false);
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "Error getting class list lookup", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
     }
 
     private void loadAcademicExams(String classSectionId) {

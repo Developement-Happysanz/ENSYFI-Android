@@ -60,7 +60,7 @@ public class AcademicExamResultView extends AppCompatActivity implements IServic
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.academic_exam_result_view);
-        hwId = getIntent().getExtras().getLong("hw_id");
+        hwId = getIntent().getExtras().getLong("id");
         homeWorkId = String.valueOf(hwId);
         String examId = String.valueOf(hwId);
         serviceHelper = new ServiceHelper(this);

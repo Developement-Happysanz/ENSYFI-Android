@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
@@ -58,6 +59,14 @@ public class SyncRecordsActivity extends AppCompatActivity implements IServiceLi
 
         btnSyncExamMarks = (Button) findViewById(R.id.btnSyncExamMarks);
         btnSyncExamMarks.setOnClickListener(this);
+
+        ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
+        bckbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
