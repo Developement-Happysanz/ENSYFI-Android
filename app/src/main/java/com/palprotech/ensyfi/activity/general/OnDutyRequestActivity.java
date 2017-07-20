@@ -7,8 +7,10 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -67,6 +69,8 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
         setContentView(R.layout.activity_on_duty_request);
         edtOnDutyRequestFor = (EditText) findViewById(R.id.edtOnDutyRequestFor);
         edtOnDutyRequestDetails = (EditText) findViewById(R.id.edtOnDutyRequestDetails);
+//        edtOnDutyRequestDetails.setImeOptions(EditorInfo.IME_ACTION_DONE);
+//        edtOnDutyRequestDetails.setRawInputType(InputType.TYPE_CLASS_TEXT);
 
         dateFrom = (TextView) findViewById(R.id.dateFrom);
         dateFrom.setOnClickListener(this);

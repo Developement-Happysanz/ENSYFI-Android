@@ -50,10 +50,10 @@ public class SaveTeacherData {
             String TeacherSecondaryMail = "";
             String TeacherPicUrl = "";
             String TeacherPic = "";
-            String TeacherSectionName = "";
-            String TeacherClassName = "";
+//            String TeacherSectionName = "";
+//            String TeacherClassName = "";
             String TeacherClassTaken = "";
-            String TeacherSubjectName = "";
+//            String TeacherSubjectName = "";
 
             TeacherId = getTeacherProfile.getString("teacher_id");
             TeacherName = getTeacherProfile.getString("name");
@@ -72,9 +72,9 @@ public class SaveTeacherData {
             TeacherSubject = getTeacherProfile.getString("subject");
             TeacherClassTaken = getTeacherProfile.getString("class_taken");
             ClassTeacher = getTeacherProfile.getString("class_teacher");
-            TeacherSubjectName = getTeacherProfile.getString("subject_name");
-            TeacherSectionName = getTeacherProfile.getString("sec_name");
-            TeacherClassName = getTeacherProfile.getString("class_name");
+//            TeacherSubjectName = getTeacherProfile.getString("subject_name");
+//            TeacherSectionName = getTeacherProfile.getString("sec_name");
+//            TeacherClassName = getTeacherProfile.getString("class_name");
 
             TeacherPicUrl = PreferenceStorage.getUserDynamicAPI(context) + imageURL + TeacherPic; // Generate user image url
 
@@ -158,7 +158,7 @@ public class SaveTeacherData {
                 PreferenceStorage.saveTeacherPic(context, TeacherPicUrl);
             }
 
-            // Parents Preference - Student Language
+          /*  // Parents Preference - Student Language
             if ((TeacherSectionName != null) && !(TeacherSectionName.isEmpty()) && !TeacherSectionName.equalsIgnoreCase("null")) {
                 PreferenceStorage.saveTeacherSectionName(context, TeacherSectionName);
             }
@@ -166,18 +166,17 @@ public class SaveTeacherData {
             // Parents Preference - Student Mobile
             if ((TeacherClassName != null) && !(TeacherClassName.isEmpty()) && !TeacherClassName.equalsIgnoreCase("null")) {
                 PreferenceStorage.saveTeacherClassName(context, TeacherClassName);
-            }
+            }*/
 
             // Parents Preference - Student Secondary Mobile
             if ((TeacherClassTaken != null) && !(TeacherClassTaken.isEmpty()) && !TeacherClassTaken.equalsIgnoreCase("null")) {
                 PreferenceStorage.saveTeacherClassTaken(context, TeacherClassTaken);
             }
 
-            // Parents Preference - Student Secondary Mobile
+            /*// Parents Preference - Student Secondary Mobile
             if ((TeacherSubjectName != null) && !(TeacherSubjectName.isEmpty()) && !TeacherSubjectName.equalsIgnoreCase("null")) {
                 PreferenceStorage.saveTeacherSubjectName(context, TeacherSubjectName);
-            }
-
+            }*/
 
         } catch (Exception ex) {
             ex.printStackTrace();

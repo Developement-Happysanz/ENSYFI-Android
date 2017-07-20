@@ -25,6 +25,7 @@ public class ClassTestHomeWorkDetailPageActivity extends AppCompatActivity imple
     TextView txtSubjectName, clsTitle, txtHomeWorkDtails, txtTestDate, txtDueDate, txtPageTitle, txtDueDateTitle, txtTestDateTitle;
     ImageView addMarks, viewMarks;
     long id;
+    String homeWorkIdLocal;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,7 +35,7 @@ public class ClassTestHomeWorkDetailPageActivity extends AppCompatActivity imple
         Intent intent = getIntent();
         id = getIntent().getExtras().getLong("id");
         db = new SQLiteHelper(getApplicationContext());
-        String homeWorkId = String.valueOf(id);
+        homeWorkIdLocal = String.valueOf(id);
 
         txtPageTitle = (TextView) findViewById(R.id.tvtitletext);
         txtSubjectName = (TextView) findViewById(R.id.txthomeworksubject);

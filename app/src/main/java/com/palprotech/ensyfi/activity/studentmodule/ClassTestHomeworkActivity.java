@@ -59,7 +59,6 @@ public class ClassTestHomeworkActivity extends AppCompatActivity implements ISer
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_classtest_homework);
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
-//        loadMoreListView.setOnLoadMoreListener(this);
         loadMoreListView.setOnItemClickListener(this);
         classTestArrayList = new ArrayList<>();
         serviceHelper = new ServiceHelper(this);
@@ -68,6 +67,7 @@ public class ClassTestHomeworkActivity extends AppCompatActivity implements ISer
         radioClassHome = (RadioGroup) findViewById(R.id.radioClassHome);
 
         callGetClassTestService();
+
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
         bckbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,10 +102,8 @@ public class ClassTestHomeworkActivity extends AppCompatActivity implements ISer
 
         if (CommonUtils.isNetworkAvailable(this)) {
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            //    eventServiceHelper.makeRawRequest(FindAFunConstants.GET_ADVANCE_SINGLE_SEARCH);
             new HttpAsyncTask().execute("");
         } else {
-//            AlertDialogHelper.showSimpleAlertDialog(this, getString(R.string.no_connectivity));
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
         }
     }
@@ -165,7 +163,6 @@ public class ClassTestHomeworkActivity extends AppCompatActivity implements ISer
                 @Override
                 public void run() {
                     progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
 
                     Gson gson = new Gson();
                     ClassTestList classTestsList = gson.fromJson(response.toString(), ClassTestList.class);
@@ -198,7 +195,6 @@ public class ClassTestHomeworkActivity extends AppCompatActivity implements ISer
             @Override
             public void run() {
                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
                 AlertDialogHelper.showSimpleAlertDialog(ClassTestHomeworkActivity.this, error);
             }
         });

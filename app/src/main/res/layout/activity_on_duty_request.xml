@@ -82,9 +82,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:maxLines="1"
                     android:digits="aãâáàbcçdeéfghiíjklmnoõôóòpqrstuvwxyzAÃÂÁÀBCÇDEÉFGHIÍJKLMNOÕÔÓÒPQRSTUVWXYZ1234567890@-_'+=(){}[]*%$₹£¢€¥#!?,.;: /?\\¡¿[]•∆π™℅¶♂♀°℃®©\◆●【】&lt;&gt;&amp;"
                     android:hint="Reason for OD request"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:textColor="@color/black" />
 
             </LinearLayout>
@@ -191,10 +192,13 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/btn_square_fill_white"
-                    android:digits="aãâáàbcçdeéfghiíjklmnoõôóòpqrstuvwxyzAÃÂÁÀBCÇDEÉFGHIÍJKLMNOÕÔÓÒPQRSTUVWXYZ1234567890@-_'+=(){}[]*%$₹£¢€¥#!?,.;: /?\\¡¿[]•∆π™℅¶♂♀°℃®©\◆●【】&lt;&gt;&amp;"
+                    android:digits="aãâáàbcçdeéfghiíjklmnoõôóòpqrstuvwxyzAÃÂÁÀBCÇDEÉFGHIÍJKLMNOÕÔÓÒPQRSTUVWXYZ1234567890@-_'+=(){}[]*%$₹£¢€¥#!?,.;\n: /?\\¡¿[]•∆π™℅¶♂♀°℃®©\◆●【】&lt;&gt;&amp;"
                     android:gravity="top"
                     android:hint="Description"
-                    android:inputType="textVisiblePassword"
+                    android:lines="3"
+                    android:imeOptions="actionDone"
+                    android:scrollHorizontally="false"
+                    android:inputType="textImeMultiLine"
                     android:textColor="@color/black" />
 
             </LinearLayout>
