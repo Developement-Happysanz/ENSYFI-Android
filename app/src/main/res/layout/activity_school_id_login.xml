@@ -32,9 +32,11 @@
             android:background="@drawable/textborder"
             android:fontFamily="sans-serif"
             android:hint="@string/school_id_login"
+            android:imeOptions="actionDone"
             android:inputType="text"
             android:maxLines="1"
-            android:text="edu123456"
+            android:text=""
+            android:singleLine="true"
             android:padding="10dp"
             android:textColor="@color/white"
             android:textColorHint="@color/light_font" />
