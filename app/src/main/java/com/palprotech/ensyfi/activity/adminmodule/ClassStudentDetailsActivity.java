@@ -25,7 +25,6 @@ import com.palprotech.ensyfi.serviceinterfaces.IServiceListener;
 import com.palprotech.ensyfi.utils.CommonUtils;
 import com.palprotech.ensyfi.utils.EnsyfiConstants;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -73,14 +72,13 @@ public class ClassStudentDetailsActivity extends AppCompatActivity implements IS
 
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
+        studentData = new SaveStudentData(this);
         progressDialogHelper = new ProgressDialogHelper(this);
 
         btnBack = (ImageView) findViewById(R.id.back_res);
         btnBack.setOnClickListener(this);
 
         studentImg = (ImageView) findViewById(R.id.img_student_profile);
-
-        studentData = new SaveStudentData(this);
 
         ////// For Student ///////
         studentAdmissionId = (TextView) findViewById(R.id.txtstudentadminid);
@@ -116,6 +114,8 @@ public class ClassStudentDetailsActivity extends AppCompatActivity implements IS
         progressDialogHelper = new ProgressDialogHelper(this);
 
         populateData();
+
+        getStudentInfo();
         String view = "";
     }
 
@@ -153,7 +153,7 @@ public class ClassStudentDetailsActivity extends AppCompatActivity implements IS
 
             try {
                 JSONArray getStudentData = response.getJSONArray("studentData");
-                JSONObject studentData = getStudentData.getJSONObject(0);
+                studentData.saveStudentProfile(getStudentData);
 
                 String studentMark = null, studentRemarks = null;
 
@@ -167,7 +167,7 @@ public class ClassStudentDetailsActivity extends AppCompatActivity implements IS
                 e.printStackTrace();
             }
 
-            getStudentInfo();
+
 
         } else {
             Log.d(TAG, "Error while sign In");
@@ -295,11 +295,11 @@ public class ClassStudentDetailsActivity extends AppCompatActivity implements IS
         studentStatus.setText(PreferenceStorage.getStudentStatus(getApplicationContext()));
         studentParentStatus.setText(PreferenceStorage.getStudentParentStatus(getApplicationContext()));
         studentRegistered.setText(PreferenceStorage.getStudentRegistered(getApplicationContext()));
-        String imgurl = PreferenceStorage.getStudentImg(this);
-
-        if (((imgurl != null) && !(imgurl.isEmpty()))) {
-            Picasso.with(this).load(imgurl).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(studentImg);
-        }
+//        String imgurl = PreferenceStorage.getStudentImg(this);
+//
+//        if (((imgurl != null) && !(imgurl.isEmpty()))) {
+//            Picasso.with(this).load(imgurl).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(studentImg);
+//        }
     }
 
     @Override

@@ -68,10 +68,31 @@
                 android:id="@+id/img_mother_profile"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
+                android:layout_marginRight="30dp"
                 android:layout_toRightOf="@+id/img_father_profile"
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_profile" />
+
+            <com.palprotech.ensyfi.customview.CircleImageView
+                android:id="@+id/img_guardian_profile"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:fitsSystemWindows="true"
+                android:layout_toRightOf="@+id/img_mother_profile"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_profile" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/img_guardian_profile"
+                android:layout_alignRight="@id/img_guardian_profile"
+                android:layout_below="@id/img_guardian_profile"
+                android:gravity="center"
+                android:text="Guardian"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -80,7 +101,7 @@
                 android:layout_alignRight="@id/img_father_profile"
                 android:layout_below="@id/img_father_profile"
                 android:gravity="center"
-                android:text="FATHER"
+                android:text="Father"
                 android:textColor="@color/black"
                 android:textSize="18dp" />
 
@@ -91,7 +112,7 @@
                 android:layout_alignRight="@id/img_mother_profile"
                 android:layout_below="@id/img_mother_profile"
                 android:gravity="center"
-                android:text="MOTHER"
+                android:text="Mother"
                 android:textColor="@color/black"
                 android:textSize="18dp" />
 

@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.bean.admin.viewlist.ParentStudent;
+import com.palprotech.ensyfi.bean.parents.Support.SaveParentData;
+import com.palprotech.ensyfi.bean.student.support.SaveStudentData;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
@@ -22,6 +24,7 @@ import com.palprotech.ensyfi.utils.EnsyfiConstants;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -38,6 +41,8 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper progressDialogHelper;
     private ImageView guardianImg, fatherInfo, motherInfo, btnBack;
+    private SaveStudentData studentData;
+    private SaveParentData parentData;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,9 +66,13 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
 
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
+        studentData = new SaveStudentData(this);
+        parentData = new SaveParentData(this);
+
         progressDialogHelper = new ProgressDialogHelper(this);
 
         populateData();
+        callFatherInfoPreferences();
 
         String view = "";
 
@@ -99,6 +108,22 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
             intent.putExtra("eventObj", parentStudent);
             startActivity(intent);
         }
+
+        if (v == btnBack) {
+            finish();
+        }
+
+        if (v == fatherInfo) {
+            callFatherInfoPreferences();
+        }
+
+        if (v == motherInfo) {
+            callMotherInfoPreferences();
+        }
+
+        if (v == guardianImg) {
+            callGuardianInfoPreferences();
+        }
     }
 
     @Override
@@ -127,10 +152,13 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
                 JSONObject fatherData = getParentData.getJSONObject("fatherProfile");
                 JSONObject motherData = getParentData.getJSONObject("motherProfile");
                 JSONObject guardianData = getParentData.getJSONObject("guardianProfile");
+                saveStudentParentDetails(response);
+
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
 
         } else {
             Log.d(TAG, "Error while sign In");
@@ -230,5 +258,24 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
         Mobile = (TextView) findViewById(R.id.txtfathermobile);
         OfficePhone = (TextView) findViewById(R.id.txtfatherofficephone);
         HomePhone = (TextView) findViewById(R.id.txtfatherhomephone);
+        guardianImg = (ImageView) findViewById(R.id.img_guardian_profile);
+        guardianImg.setOnClickListener(this);
+        motherInfo = (ImageView) findViewById(R.id.img_mother_profile);
+        motherInfo.setOnClickListener(this);
+        fatherInfo = (ImageView) findViewById(R.id.img_father_profile);
+        fatherInfo.setOnClickListener(this);
+    }
+
+    private void saveStudentParentDetails(JSONObject response) {
+        try {
+
+            JSONObject getParentData = response.getJSONObject("parentProfile");
+            parentData.saveParentProfile(getParentData);
+
+            JSONArray getStudentData = response.getJSONArray("registeredDetails");
+            studentData.saveStudentRegisteredData(getStudentData);
+
+        } catch (Exception ex) {
+        }
     }
 }

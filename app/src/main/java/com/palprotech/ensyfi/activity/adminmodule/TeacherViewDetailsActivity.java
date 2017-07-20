@@ -70,7 +70,6 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
 
         teacherImg = (ImageView) findViewById(R.id.img_teacher_profile);
 
-        // Teacher's Info view
         teacherId = (TextView) findViewById(R.id.txtTeacherid);
         teacherName = (TextView) findViewById(R.id.txtTeacherName);
         teacherGender = (TextView) findViewById(R.id.txtTeacherGender);
@@ -91,17 +90,10 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
         teacherClassTaken = (TextView) findViewById(R.id.txtTeacherClassTaken);
 
         populateData();
+        getTeacherInfo();
     }
 
     private void populateData() {
-        teacherName.setText(teacherView.getName());
-        teacherId.setText(teacherView.getTeacherId());
-        teacherGender.setText(teacherView.getSex());
-        teacherAge.setText(teacherView.getAge());
-        teacherSubject.setText(teacherView.getSubjectName());
-        classTeacher.setText(teacherView.getClassTeacher());
-        teacherSectionName.setText(teacherView.getSectionName());
-        teacherClassName.setText(teacherView.getClassName());
 
         if (CommonUtils.isNetworkAvailable(this)) {
 
@@ -207,5 +199,27 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
         }
 
         return signInsuccess;
+    }
+
+    private void getTeacherInfo() {
+
+        teacherId.setText(PreferenceStorage.getTeacherId(getApplicationContext()));
+        teacherName.setText(PreferenceStorage.getTeacherName(getApplicationContext()));
+        teacherGender.setText(PreferenceStorage.getTeacherGender(getApplicationContext()));
+        teacherAge.setText(PreferenceStorage.getTeacherAge(getApplicationContext()));
+        teacherNationality.setText(PreferenceStorage.getTeacherNationality(getApplicationContext()));
+        teacherReligion.setText(PreferenceStorage.getTeacherReligion(getApplicationContext()));
+        teacherCaste.setText(PreferenceStorage.getTeacherCaste(getApplicationContext()));
+        teacherCommunity.setText(PreferenceStorage.getTeacherCommunity(getApplicationContext()));
+        teacherAddress.setText(PreferenceStorage.getTeacherAddress(getApplicationContext()));
+        teacherSubject.setText(PreferenceStorage.getTeacherSubjectName(getApplicationContext()));
+        classTeacher.setText(PreferenceStorage.getClassTeacher(getApplicationContext()));
+        teacherMobile.setText(PreferenceStorage.getTeacherMobile(getApplicationContext()));
+        teacherSecondaryMobile.setText(PreferenceStorage.getTeacherSecondaryMobile(getApplicationContext()));
+        teacherMail.setText(PreferenceStorage.getTeacherMail(getApplicationContext()));
+        teacherSecondaryMail.setText(PreferenceStorage.getTeacherSecondaryMail(getApplicationContext()));
+        teacherSectionName.setText(PreferenceStorage.getTeacherSectionName(getApplicationContext()));
+        teacherClassName.setText(PreferenceStorage.getTeacherClassName(getApplicationContext()));
+        teacherClassTaken.setText(PreferenceStorage.getTeacherClassTaken(getApplicationContext()));
     }
 }
