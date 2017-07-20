@@ -4,10 +4,49 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <RelativeLayout
+        android:id="@+id/tlbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/appColor"
+            android:minHeight="?attr/actionBarSize" />
+
+        <ImageView
+            android:id="@+id/back_res"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:minHeight="?attr/actionBarSize"
+            android:paddingLeft="15dp"
+            android:src="@drawable/ic_arrow_back_white_48dp" />
+
+        <TextView
+            android:id="@+id/tvtitletext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:minHeight="?attr/actionBarSize"
+            android:paddingLeft="10dp"
+            android:text="Teacher List"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/actionbarTextSize" />
+
+    </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:background="@color/black"
         android:orientation="vertical">
 
@@ -21,13 +60,13 @@
 
             <TextView
                 android:id="@+id/TeacherId"
-                android:layout_width="90dp"
+                android:layout_width="50dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="2dp"
                 android:background="@color/appColor"
                 android:textColor="@color/white"
                 android:gravity="center"
-                android:text="Roll No."
+                android:text="ID"
                 android:textSize="15sp" />
 
             <TextView
@@ -56,7 +95,7 @@
                 android:textColor="@color/white"
                 android:gravity="center"
                 android:paddingLeft="5dp"
-                android:text="Handling Subject"
+                android:text="Main Subject"
                 android:textSize="15dp" />
 
             <TextView

@@ -17,13 +17,12 @@ import com.squareup.picasso.Picasso;
 
 public class TeacherInfoActivity extends AppCompatActivity implements DialogClickListener, View.OnClickListener {
 
-    private ImageView teacherImg;
+    private ImageView teacherImg, btnBack;
 
     private TextView teacherId, teacherName, teacherGender, teacherAge, teacherNationality, teacherReligion, teacherCaste,
             teacherCommunity, teacherAddress, teacherSubject, classTeacher, teacherMobile, teacherSecondaryMobile, teacherMail,
             teacherSecondaryMail, teacherSectionName, teacherClassName, teacherClassTaken;
 
-    private ImageView btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

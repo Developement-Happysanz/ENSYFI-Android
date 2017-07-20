@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.palprotech.ensyfi.R;
@@ -19,6 +20,7 @@ import com.palprotech.ensyfi.serviceinterfaces.IServiceListener;
 import com.palprotech.ensyfi.utils.CommonUtils;
 import com.palprotech.ensyfi.utils.EnsyfiConstants;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,10 +33,11 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
 
     private static final String TAG = ParentsViewDetailsActivity.class.getName();
     private ParentStudent parentStudent;
-    private TextView txtStudentName, txtStudentRegId;
+    private TextView Name, Address, Mail, Occupation, Income, Mobile, OfficePhone, HomePhone;
     private Button btnShowStudentInfo, btnExams, btnFees, btnAttendance, btnOnDuty;
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper progressDialogHelper;
+    private ImageView guardianImg, fatherInfo, motherInfo, btnBack;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,11 +45,10 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
         setContentView(R.layout.activity_parents_view_details);
         parentStudent = (ParentStudent) getIntent().getSerializableExtra("eventObj");
 
-        txtStudentName = (TextView) findViewById(R.id.txtStudentName);
-        txtStudentRegId = (TextView) findViewById(R.id.txtStudentRegId);
-
         btnShowStudentInfo = (Button) findViewById(R.id.btnShowStudentInfo);
         btnShowStudentInfo.setOnClickListener(this);
+
+        findViewById();
 
       /*  btnExams = (Button) findViewById(R.id.btnExams);
         btnExams.setOnClickListener(this);
@@ -68,8 +70,6 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
     }
 
     private void populateData() {
-        txtStudentName.setText(parentStudent.getFatherName());
-        txtStudentRegId.setText(parentStudent.getStudentId());
 
         if (CommonUtils.isNetworkAvailable(this)) {
 
@@ -169,5 +169,66 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
         }
 
         return signInsuccess;
+    }
+
+    private void callFatherInfoPreferences() {
+        Name.setText(PreferenceStorage.getFatherName(getApplicationContext()));
+        Address.setText(PreferenceStorage.getFatherAddress(getApplicationContext()));
+        Mail.setText(PreferenceStorage.getFatherEmail(getApplicationContext()));
+        Occupation.setText(PreferenceStorage.getFatherOccupation(getApplicationContext()));
+        Income.setText(PreferenceStorage.getFatherIncome(getApplicationContext()));
+        Mobile.setText(PreferenceStorage.getFatherMobile(getApplicationContext()));
+        OfficePhone.setText(PreferenceStorage.getFatherOfficePhone(getApplicationContext()));
+        HomePhone.setText(PreferenceStorage.getFatherHomePhone(getApplicationContext()));
+        String url = PreferenceStorage.getFatherImg(this);
+
+        if (((url != null) && !(url.isEmpty()))) {
+            Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(fatherInfo);
+        }
+    }
+
+    private void callMotherInfoPreferences() {
+        Name.setText(PreferenceStorage.getMotherName(getApplicationContext()));
+        Address.setText(PreferenceStorage.getMotherAddress(getApplicationContext()));
+        Mail.setText(PreferenceStorage.getMotherEmail(getApplicationContext()));
+        Occupation.setText(PreferenceStorage.getMotherOccupation(getApplicationContext()));
+        Income.setText(PreferenceStorage.getMotherIncome(getApplicationContext()));
+        Mobile.setText(PreferenceStorage.getMotherMobile(getApplicationContext()));
+        OfficePhone.setText(PreferenceStorage.getMotherOfficePhone(getApplicationContext()));
+        HomePhone.setText(PreferenceStorage.getMotherHomePhone(getApplicationContext()));
+        String url = PreferenceStorage.getMotherImg(this);
+
+        if (((url != null) && !(url.isEmpty()))) {
+            Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(motherInfo);
+        }
+    }
+
+    private void callGuardianInfoPreferences() {
+        Name.setText(PreferenceStorage.getGuardianName(getApplicationContext()));
+        Address.setText(PreferenceStorage.getGuardianAddress(getApplicationContext()));
+        Mail.setText(PreferenceStorage.getGuardianEmail(getApplicationContext()));
+        Occupation.setText(PreferenceStorage.getGuardianOccupation(getApplicationContext()));
+        Income.setText(PreferenceStorage.getGuardianIncome(getApplicationContext()));
+        Mobile.setText(PreferenceStorage.getGuardianMobile(getApplicationContext()));
+        OfficePhone.setText(PreferenceStorage.getGuardianOfficePhone(getApplicationContext()));
+        HomePhone.setText(PreferenceStorage.getGuardianHomePhone(getApplicationContext()));
+        String url = PreferenceStorage.getGuardianImg(this);
+
+        if (((url != null) && !(url.isEmpty()))) {
+            Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(guardianImg);
+        }
+    }
+    private void findViewById() {
+        btnBack = (ImageView) findViewById(R.id.back_res);
+        btnBack.setOnClickListener(this);
+
+        Name = (TextView) findViewById(R.id.txtfathername);
+        Address = (TextView) findViewById(R.id.txtfatheraddress);
+        Mail = (TextView) findViewById(R.id.txtfathermail);
+        Occupation = (TextView) findViewById(R.id.txtfatheroccupation);
+        Income = (TextView) findViewById(R.id.txtincome);
+        Mobile = (TextView) findViewById(R.id.txtfathermobile);
+        OfficePhone = (TextView) findViewById(R.id.txtfatherofficephone);
+        HomePhone = (TextView) findViewById(R.id.txtfatherhomephone);
     }
 }

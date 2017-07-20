@@ -12,7 +12,7 @@ android:background="@color/background_grey">
 
     <TextView
         android:id="@+id/txtTeacherId"
-        android:layout_width="90dp"
+        android:layout_width="50dp"
         android:layout_height="30dp"
         android:layout_marginLeft="2dp"
         android:background="@color/white"

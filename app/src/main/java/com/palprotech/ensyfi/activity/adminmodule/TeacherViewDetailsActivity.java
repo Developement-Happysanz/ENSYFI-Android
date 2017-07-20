@@ -7,12 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.activity.studentmodule.ExamsResultActivity;
 import com.palprotech.ensyfi.activity.teachermodule.TeacherTimeTableActivity;
-import com.palprotech.ensyfi.bean.admin.viewlist.ClassStudent;
 import com.palprotech.ensyfi.bean.admin.viewlist.TeacherView;
 import com.palprotech.ensyfi.bean.teacher.support.SaveTeacherData;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
@@ -34,6 +33,8 @@ import org.json.JSONObject;
 
 public class TeacherViewDetailsActivity extends AppCompatActivity implements IServiceListener, DialogClickListener, View.OnClickListener {
 
+    private ImageView teacherImg, btnBack;
+
     private static final String TAG = TeacherViewDetailsActivity.class.getName();
     private TeacherView teacherView;
     private TextView txtTeacherName, txtTeacherId;
@@ -42,6 +43,10 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
     private ProgressDialogHelper progressDialogHelper;
     private SaveTeacherData teacherData;
 
+    private TextView teacherId, teacherName, teacherGender, teacherAge, teacherNationality, teacherReligion, teacherCaste,
+            teacherCommunity, teacherAddress, teacherSubject, classTeacher, teacherMobile, teacherSecondaryMobile, teacherMail,
+            teacherSecondaryMail, teacherSectionName, teacherClassName, teacherClassTaken;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,8 +54,6 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
 
         teacherView = (TeacherView) getIntent().getSerializableExtra("eventObj");
 
-        txtTeacherName = (TextView) findViewById(R.id.txtTeacherName);
-        txtTeacherId = (TextView) findViewById(R.id.txtTeacherId);
 
         btnTeacherTimeTable = (Button) findViewById(R.id.btnTeacherTimeTable);
         btnTeacherTimeTable.setOnClickListener(this);
@@ -60,14 +63,45 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
         progressDialogHelper = new ProgressDialogHelper(this);
 
         teacherData = new SaveTeacherData(this);
+        String view = "";
+
+        btnBack = (ImageView) findViewById(R.id.back_res);
+        btnBack.setOnClickListener(this);
+
+        teacherImg = (ImageView) findViewById(R.id.img_teacher_profile);
+
+        // Teacher's Info view
+        teacherId = (TextView) findViewById(R.id.txtTeacherid);
+        teacherName = (TextView) findViewById(R.id.txtTeacherName);
+        teacherGender = (TextView) findViewById(R.id.txtTeacherGender);
+        teacherAge = (TextView) findViewById(R.id.txtTeacherAge);
+        teacherNationality = (TextView) findViewById(R.id.txtTeacherNationality);
+        teacherReligion = (TextView) findViewById(R.id.txtTeacherReligion);
+        teacherCaste = (TextView) findViewById(R.id.txtTeacherCaste);
+        teacherCommunity = (TextView) findViewById(R.id.txtTeacherCommunity);
+        teacherAddress = (TextView) findViewById(R.id.txtTeacherAddress);
+        teacherSubject = (TextView) findViewById(R.id.txtTeacherSubject);
+        classTeacher = (TextView) findViewById(R.id.txtClassTeacher);
+        teacherMobile = (TextView) findViewById(R.id.txtTeacherMobile);
+        teacherSecondaryMobile = (TextView) findViewById(R.id.txtTeacherSecondaryMobile);
+        teacherMail = (TextView) findViewById(R.id.txtTeacherMail);
+        teacherSecondaryMail = (TextView) findViewById(R.id.txtTeacherSecondaryMail);
+        teacherSectionName = (TextView) findViewById(R.id.txtTeacherSectionName);
+        teacherClassName = (TextView) findViewById(R.id.txtTeacherClassName);
+        teacherClassTaken = (TextView) findViewById(R.id.txtTeacherClassTaken);
 
         populateData();
-        String view = "";
     }
 
     private void populateData() {
-        txtTeacherName.setText(teacherView.getName());
-        txtTeacherId.setText(teacherView.getTeacherId());
+        teacherName.setText(teacherView.getName());
+        teacherId.setText(teacherView.getTeacherId());
+        teacherGender.setText(teacherView.getSex());
+        teacherAge.setText(teacherView.getAge());
+        teacherSubject.setText(teacherView.getSubjectName());
+        classTeacher.setText(teacherView.getClassTeacher());
+        teacherSectionName.setText(teacherView.getSectionName());
+        teacherClassName.setText(teacherView.getClassName());
 
         if (CommonUtils.isNetworkAvailable(this)) {
 
@@ -97,6 +131,11 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
             Intent intent = new Intent(this, TeacherTimeTableActivity.class);
             startActivity(intent);
         }
+
+        if (v == btnBack) {
+            finish();
+        }
+
     }
 
     @Override
