@@ -357,7 +357,7 @@ public class SaveTeacherData {
                 System.out.println("mark_status : " + i + " = " + mark_status);
 
 
-                long x = database.homework_class_test_insert(hw_id, PreferenceStorage.getAcademicYearId(context), class_id, PreferenceStorage.getUserId(context), homeWork_type, subject_id, subject_name, title, test_date, due_date, homework_details, "Active", "0", PreferenceStorage.getUserId(context), formattedServerDate, PreferenceStorage.getUserId(context), formattedServerDate, "S");
+                long x = database.homework_class_test_insert(hw_id, PreferenceStorage.getAcademicYearId(context), class_id, PreferenceStorage.getUserId(context), homeWork_type, subject_id, subject_name, title, test_date, due_date, homework_details, "Active", mark_status, PreferenceStorage.getUserId(context), formattedServerDate, PreferenceStorage.getUserId(context), formattedServerDate, "S");
 
                 System.out.println("Stored Id : " + x);
             }

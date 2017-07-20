@@ -59,6 +59,21 @@
             android:textColor="@color/text_gray"
             android:textSize="15sp" />
 
+        <Spinner
+            android:id="@+id/subject_list_spinner"
+            style="@style/spinner_style"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/class_list_spinner"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif"
+            android:overlapAnchor="false"
+            android:spinnerMode="dropdown"
+            android:textColor="@color/text_gray"
+            android:textSize="15sp" />
+
     </RelativeLayout>
 
     <LinearLayout

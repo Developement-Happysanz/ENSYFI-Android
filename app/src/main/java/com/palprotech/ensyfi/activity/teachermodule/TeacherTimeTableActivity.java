@@ -245,9 +245,12 @@ public class TeacherTimeTableActivity extends AppCompatActivity implements Dialo
                             // TODO Auto-generated method stub
 //                            Toast.makeText(getApplicationContext(), set.getText().toString(),
 //                                    Toast.LENGTH_LONG).show();
-                            Intent navigationIntent = new Intent(getApplicationContext(), TimeTableReviewAddActivity.class);
-                            navigationIntent.putExtra("timeTableValue", set.getText().toString());
-                            startActivity(navigationIntent);
+                            String isValid = set.getText().toString();
+                            if (!isValid.isEmpty()) {
+                                Intent navigationIntent = new Intent(getApplicationContext(), TimeTableReviewAddActivity.class);
+                                navigationIntent.putExtra("timeTableValue", set.getText().toString());
+                                startActivity(navigationIntent);
+                            }
                         }
                     });
                     b.setPressed(true);
