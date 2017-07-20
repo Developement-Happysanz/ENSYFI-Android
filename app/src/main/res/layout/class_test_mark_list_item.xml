@@ -17,7 +17,7 @@
             android:layout_marginLeft="2dp"
             android:background="@color/white"
             android:gravity="center"
-            android:text="Roll NO."
+            android:text=""
             android:textColor="@color/black"
             android:textSize="15sp" />
 
