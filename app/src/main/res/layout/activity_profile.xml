@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -53,7 +54,7 @@
             android:layout_height="200dp"
             android:layout_below="@+id/tlbar"
             android:background="@drawable/profile_bg"
-            android:orientation="vertical"/>
+            android:orientation="vertical" />
 
         <com.palprotech.ensyfi.customview.CircleImageView
             android:id="@+id/image_profile_pic"
@@ -65,6 +66,14 @@
             android:fitsSystemWindows="true"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_profile" />
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/profile_bg"
+            android:text="Save" />
 
         <TextView
             android:id="@+id/name"
@@ -108,8 +117,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
-                android:digits="aãâáàbcçdeéfghiíjklmnoõôóòpqrstuvwxyzAÃÂÁÀBCÇDEÉFGHIÍJKLMNOÕÔÓÒPQRSTUVWXYZ1234567890@-_'+=(){}[]*%$₹£¢€¥#!?,.;: /?\\¡¿[]•∆π™℅¶♂♀°℃®©\◆●【】&lt;&gt;&amp;"
                 android:layout_marginRight="25dp"
+                android:digits="aãâáàbcçdeéfghiíjklmnoõôóòpqrstuvwxyzAÃÂÁÀBCÇDEÉFGHIÍJKLMNOÕÔÓÒPQRSTUVWXYZ1234567890@-_'+=(){}[]*%$₹£¢€¥#!?,.;: /?\\¡¿[]•∆π™℅¶♂♀°℃®©\◆●【】&lt;&gt;&amp;"
                 android:focusableInTouchMode="true"
                 android:inputType="textEmailAddress" />
 
