@@ -51,54 +51,72 @@
         android:layout_marginTop="10dp"
         android:background="@color/black">
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/attendrollnum"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="1dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="2dp"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginLeft="1dp"
-                android:layout_weight="0.09"
+                android:id="@+id/student_id"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
                 android:background="@color/appColor"
                 android:gravity="center"
                 android:text="ID"
                 android:textColor="@color/white"
-                android:textSize="18dp" />
+                android:textSize="15dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:layout_toRightOf="@+id/student_id"
+                android:layout_toLeftOf="@+id/internalmarks"
                 android:layout_marginLeft="1dp"
                 android:layout_weight="0.05"
                 android:background="@color/appColor"
                 android:gravity="center"
                 android:text="Name"
                 android:textColor="@color/white"
-                android:textSize="18dp" />
+                android:textSize="15dp" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:id="@+id/internalmarks"
+                android:layout_width="65dp"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/externalmarks"
                 android:layout_marginLeft="1dp"
-                android:layout_weight="0.080"
                 android:background="@color/appColor"
                 android:gravity="center"
-                android:text="Mark"
+                android:text="Internal"
                 android:textColor="@color/white"
-                android:textSize="18dp" />
+                android:textSize="15dp" />
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/externalmarks"
+                android:layout_width="65dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1dp"
+                android:layout_alignParentRight="true"
+                android:background="@color/appColor"
+                android:gravity="center"
+                android:text="External"
+                android:textColor="@color/white"
+                android:textSize="15dp" />
+
+        </RelativeLayout>
 
         <ListView
             android:id="@+id/listView_students"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/attendrollnum"
-            android:layout_marginRight="1dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginBottom="2dp"
             android:divider="@color/black"
             android:dividerHeight="1dp">
 
