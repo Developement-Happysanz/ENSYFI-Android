@@ -56,7 +56,6 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
     private static final String TAG = "CTHWTeacherView";
     protected ProgressDialogHelper progressDialogHelper;
     List<String> lsClassList = new ArrayList<String>();
-    List<String> lsSubjectList = new ArrayList<String>();
     ServiceHelper serviceHelper;
     SQLiteHelper db;
     Vector<String> vecClassList;
@@ -335,6 +334,7 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
 
     private void getSubjectList(String classId) {
         Vector<String> vecSubjectList = new Vector<String>();
+        List<String> lsSubjectList = new ArrayList<String>();
         try {
             Cursor c = db.getHandlingSubjectList(classId);
             if (c.getCount() > 0) {
