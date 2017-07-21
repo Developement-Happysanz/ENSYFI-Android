@@ -85,6 +85,7 @@ public class FeesStatusListAdapter extends BaseAdapter {
             holder.txtStudentName = (TextView) convertView.findViewById(R.id.txtStudentName);
             holder.txtStatus = (TextView) convertView.findViewById(R.id.txtStatus);
             holder.txtDueDateFrom = (TextView) convertView.findViewById(R.id.txtDueDateFrom);
+            holder.txtQuotaName = (TextView) convertView.findViewById(R.id.txtQuotaName);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -104,7 +105,7 @@ public class FeesStatusListAdapter extends BaseAdapter {
         holder.txtStudentName.setText(feesStatuses.get(position).getName());
         holder.txtStatus.setText(feesStatuses.get(position).getStatus());
         holder.txtDueDateFrom.setText("Paid At : " + feesStatuses.get(position).getUpdatedAt());
-
+        holder.txtQuotaName.setText("Quota : " + feesStatuses.get(position).getQuotaName());
 
         if ((feesStatuses.get(position).getStatus()).contentEquals("Paid")) {
             holder.txtStatus.setTextColor(ContextCompat.getColor(context, R.color.approve));
@@ -146,7 +147,7 @@ public class FeesStatusListAdapter extends BaseAdapter {
     }
 
     public class ViewHolder {
-        public TextView txtStudentName, txtStatus, txtDueDateFrom, txtDueDateTo;
+        public TextView txtStudentName, txtStatus, txtDueDateFrom, txtQuotaName;
     }
 
     public boolean ismSearching() {

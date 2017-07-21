@@ -60,7 +60,6 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
     ServiceHelper serviceHelper;
     SQLiteHelper db;
     Vector<String> vecClassList;
-    Vector<String> vecSubjectList;
     EditText edtSetTitle, edtDescription;
     Button btnSubmit;
     private TextView dateFrom, dateTo, txthwctsubject;
@@ -81,7 +80,6 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
 
         db = new SQLiteHelper(getApplicationContext());
         vecClassList = new Vector<String>();
-        vecSubjectList = new Vector<String>();
 
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
@@ -336,7 +334,7 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
     }
 
     private void getSubjectList(String classId) {
-
+        Vector<String> vecSubjectList = new Vector<String>();
         try {
             Cursor c = db.getHandlingSubjectList(classId);
             if (c.getCount() > 0) {

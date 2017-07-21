@@ -26,6 +26,7 @@ public class ClassTestHomeWorkDetailPageActivity extends AppCompatActivity imple
     ImageView addMarks, viewMarks;
     long id;
     String homeWorkIdLocal;
+    int checkMarkStatus = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -99,7 +100,6 @@ public class ClassTestHomeWorkDetailPageActivity extends AppCompatActivity imple
 
             if (homeWorkType.equalsIgnoreCase("HT")) {
                 txtPageTitle.setText("Class Test");
-                int checkMarkStatus;
                 checkMarkStatus = Integer.parseInt(markStatus);
                 txtDueDateTitle.setVisibility(View.GONE);
                 txtDueDate.setVisibility(View.GONE);

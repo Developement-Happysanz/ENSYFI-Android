@@ -16,9 +16,12 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.app.AppController;
 import com.palprotech.ensyfi.bean.general.viewlist.OnDuty;
+import com.palprotech.ensyfi.utils.PreferenceStorage;
 import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
  * Created by Admin on 10-07-2017.
@@ -107,17 +110,22 @@ public class OnDutyListAdapter extends BaseAdapter {
         if (onDuty.get(position).getStatus().contentEquals("Approved")) {
             holder.txtStatus.setTextColor(ContextCompat.getColor(context, R.color.approve));
             holder.imgStatus.setImageResource(R.drawable.od_approved);
-        }
-        else if (onDuty.get(position).getStatus().contentEquals("Rejected")) {
+        } else if (onDuty.get(position).getStatus().contentEquals("Rejected")) {
             holder.txtStatus.setTextColor(ContextCompat.getColor(context, R.color.reject));
             holder.imgStatus.setImageResource(R.drawable.od_rejected);
-        }
-        else{
+        } else {
             holder.txtStatus.setTextColor(ContextCompat.getColor(context, R.color.pending));
             holder.imgStatus.setImageResource(R.drawable.od_pending);
         }
 
-        holder.txtOdFor.setText(onDuty.get(position).getOdFor());
+        String userTypeString = PreferenceStorage.getUserType(getApplicationContext());
+        int userType = Integer.parseInt(userTypeString);
+        if (userType == 1) {
+            holder.txtOdFor.setText(onDuty.get(position).getName() + " - " + onDuty.get(position).getOdFor());
+        } else {
+            holder.txtOdFor.setText(onDuty.get(position).getOdFor());
+        }
+
         holder.txtFromDate.setText(onDuty.get(position).getFromDate());
         holder.txtToDate.setText(onDuty.get(position).getToDate());
         holder.txtStatus.setText(onDuty.get(position).getStatus());
