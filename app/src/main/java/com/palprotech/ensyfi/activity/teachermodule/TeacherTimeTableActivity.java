@@ -239,20 +239,25 @@ public class TeacherTimeTableActivity extends AppCompatActivity implements Dialo
                     b.setTextColor(Color.parseColor("#FF68358E"));
                     b.setGravity(Gravity.CENTER);
                     set.setGravity(Gravity.CENTER);
-                    b.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            // TODO Auto-generated method stub
+                    String userTypeString = PreferenceStorage.getUserType(getApplicationContext());
+                    int userType = Integer.parseInt(userTypeString);
+                    if (userType == 2) {
+                        b.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                // TODO Auto-generated method stub
 //                            Toast.makeText(getApplicationContext(), set.getText().toString(),
 //                                    Toast.LENGTH_LONG).show();
-                            String isValid = set.getText().toString();
-                            if (!isValid.isEmpty()) {
-                                Intent navigationIntent = new Intent(getApplicationContext(), TimeTableReviewAddActivity.class);
-                                navigationIntent.putExtra("timeTableValue", set.getText().toString());
-                                startActivity(navigationIntent);
+                                String isValid = set.getText().toString();
+                                if (!isValid.isEmpty()) {
+                                    Intent navigationIntent = new Intent(getApplicationContext(), TimeTableReviewAddActivity.class);
+                                    navigationIntent.putExtra("timeTableValue", set.getText().toString());
+                                    startActivity(navigationIntent);
+                                }
                             }
-                        }
-                    });
+                        });
+                    }
+
                     b.setPressed(true);
                     b.setHeight(140);
                     set.setHeight(0);
