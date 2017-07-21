@@ -395,14 +395,16 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
                 switch (checkedId) {
                     case R.id.radioDayView:
-
+                        if (dayViewArrayList != null)
+                            dayViewArrayList.clear();
                         checkDayMonthType = "day";
                         spinMonthView.setVisibility(View.GONE);
                         selectDateMonth.setVisibility(View.VISIBLE);
                         break;
 
                     case R.id.radioMonthView:
-
+                        if (dayViewArrayList != null)
+                            dayViewArrayList.clear();
                         checkDayMonthType = "month";
                         selectDateMonth.setVisibility(View.GONE);
                         imgCalendar.setVisibility(View.GONE);

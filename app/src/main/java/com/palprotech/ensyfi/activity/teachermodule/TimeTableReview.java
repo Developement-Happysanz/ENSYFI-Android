@@ -1,5 +1,6 @@
 package com.palprotech.ensyfi.activity.teachermodule;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -111,7 +112,20 @@ public class TimeTableReview extends AppCompatActivity implements IServiceListen
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+        Log.d(TAG, "onEvent list item clicked" + position);
+        TTReview ttReview = null;
+        if ((tTReviewListAdapter != null) && (tTReviewListAdapter.ismSearching())) {
+            Log.d(TAG, "while searching");
+            int actualindex = tTReviewListAdapter.getActualEventPos(position);
+            Log.d(TAG, "actual index" + actualindex);
+            ttReview = tTReviewArrayList.get(actualindex);
+        } else {
+            ttReview = tTReviewArrayList.get(position);
+        }
+        Intent intent = new Intent(this, TimeTableReviewDetails.class);
+        intent.putExtra("eventObj", ttReview);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(intent);
     }
 
     @Override

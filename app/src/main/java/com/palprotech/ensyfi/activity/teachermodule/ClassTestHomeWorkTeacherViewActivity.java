@@ -57,6 +57,7 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
     ArrayList<ClassTestHomeWork> myList = new ArrayList<ClassTestHomeWork>();
     ClassTestHomeWorkListBaseAdapter cadapter;
     ImageView createClassTest;
+    String ClassTestOrHomeWork = "";
 
 
     @Override
@@ -80,7 +81,7 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
 
         radioClassTestHomeWork = (RadioGroup) findViewById(R.id.radioClassTestHomeWorkView);
 
-        createClassTest = (ImageView)findViewById(R.id.createClassTest);
+        createClassTest = (ImageView) findViewById(R.id.createClassTest);
 
         getClassList();
 
@@ -104,13 +105,11 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
             }
         });
 
-//        GetClassTestList(getClassSectionId, "HT");
-
+        callSpinner();
 
         radioClassTestHomeWork.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                String ClassTestOrHomeWork = "";
                 switch (checkedId) {
                     case R.id.radioClassTest:
                         ClassTestOrHomeWork = "HT";
@@ -142,6 +141,15 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
                 startActivity(navigationIntent);
             }
         });
+    }
+
+    private void callSpinner() {
+        ClassTestOrHomeWork = "HT";
+        String getClassId = spnClassList.getSelectedItem().toString();
+        getClassId(getClassId);
+        GetClassTestList(getClassSectionId, ClassTestOrHomeWork);
+        cadapter = new ClassTestHomeWorkListBaseAdapter(ClassTestHomeWorkTeacherViewActivity.this, myList);
+        loadMoreListView.setAdapter(cadapter);
     }
 
     private void GetClassTestList(String classSectionId, String ClassTestOrHomeWork) {

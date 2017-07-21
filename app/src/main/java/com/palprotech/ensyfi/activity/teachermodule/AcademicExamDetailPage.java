@@ -52,6 +52,13 @@ public class AcademicExamDetailPage extends AppCompatActivity implements IServic
         addExamMark.setOnClickListener(this);
         viewExamMark = (ImageView) findViewById(R.id.viewExamMarks);
         viewExamMark.setOnClickListener(this);
+        ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
+        bckbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         GetAcademicExamInfo(localExamId);
         loadAcademicExamDetails(classMasterId, examId);
         int checkMarkStatus = Integer.parseInt(markStatus);

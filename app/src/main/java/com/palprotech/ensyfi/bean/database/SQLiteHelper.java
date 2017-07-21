@@ -749,6 +749,15 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         return c;
     }
 
+    public void updateAcademicExamMarksStatus(String val1, String val2) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String fetch = "Update academicExams SET MarkStatus = '1' where exam_id = '" + val1 + "' and classmaster_id = '" + val2 + "';";
+        Cursor c = db.rawQuery(fetch, null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+    }
+
     public void deleteExamOfClasses() {
         String ok;
         SQLiteDatabase db = this.getWritableDatabase();
