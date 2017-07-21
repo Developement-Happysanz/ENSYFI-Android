@@ -1718,4 +1718,34 @@ public class PreferenceStorage {
         classTeacher = sharedPreferences.getString(EnsyfiConstants.TEACHER_CLASS_TEACHER, "");
         return classTeacher;
     }
+
+    public static void saveGCM(Context context, String gcmId) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.KEY_GCM_ID, gcmId);
+        editor.commit();
+    }
+
+    public static String getGCM(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String userGCMId = sharedPreferences.getString(EnsyfiConstants.KEY_GCM_ID, "");
+        return userGCMId;
+    }
+
+    public static void saveIMEI(Context context, String imei) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.KEY_IMEI, imei);
+        editor.commit();
+    }
+
+    public static String getIMEI(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String userGCMId = sharedPreferences.getString(EnsyfiConstants.KEY_IMEI, "");
+        return userGCMId;
+    }
 }

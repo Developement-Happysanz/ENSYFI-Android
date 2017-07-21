@@ -54,6 +54,8 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
     private ImageView mProfileImage = null;
     SQLiteHelper database;
 
+    public static final String REG_ID = "regId";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

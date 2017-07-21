@@ -408,4 +408,11 @@ public class EnsyfiConstants {
     public static final String GET_ON_TIME_TABLE_REVIEW_ADD= "/apiteacher/add_Timetablereview/";
     public static final String GET_ON_TIME_TABLE_REVIEW_= "/apiteacher/disp_Timetablereview/";
 
+    // Google Project Number
+    public static final String GOOGLE_PROJECT_ID = "56118066242";
+    public static final String MESSAGE_KEY = "message";
+
+    public static final String KEY_GCM_ID = "gcm_id";
+    public static final String KEY_IMEI = "imei_code";
+
 }

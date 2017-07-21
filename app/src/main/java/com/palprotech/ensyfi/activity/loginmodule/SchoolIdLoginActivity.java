@@ -1,19 +1,39 @@
 package com.palprotech.ensyfi.activity.loginmodule;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.IntentSender;
+import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.annotation.Nullable;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.TelephonyManager;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.facebook.CallbackManager;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
 import com.palprotech.ensyfi.servicehelpers.ServiceHelper;
+import com.palprotech.ensyfi.servicehelpers.gcm.GCMRegistrationIntentService;
 import com.palprotech.ensyfi.serviceinterfaces.IServiceListener;
 import com.palprotech.ensyfi.utils.AppValidator;
 import com.palprotech.ensyfi.utils.CommonUtils;
@@ -23,11 +43,17 @@ import com.palprotech.ensyfi.utils.PreferenceStorage;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+import static com.palprotech.ensyfi.activity.loginmodule.UserLoginActivity.REG_ID;
+
 /**
  * Created by Admin on 22-03-2017.
  */
 
-public class SchoolIdLoginActivity extends AppCompatActivity implements View.OnClickListener, IServiceListener, DialogClickListener {
+public class SchoolIdLoginActivity extends AppCompatActivity implements View.OnClickListener, IServiceListener, DialogClickListener{
 
     private static final String TAG = SchoolIdLoginActivity.class.getName();
 
@@ -36,11 +62,28 @@ public class SchoolIdLoginActivity extends AppCompatActivity implements View.OnC
 
     private EditText inputInstituteId;
     private ImageView btnSubmit;
+    String regId;
+    GoogleCloudMessaging gcm;
+    private static final String APP_VERSION = "appVersion";
+    private CallbackManager callbackManager;
+    private boolean mResolvingError = false;
+    private static final int RC_SIGN_IN = 0;
+    private static final int REQUEST_CODE_TOKEN_AUTH = 1;
+    private ConnectionResult mConnectionResult;
+    String IMEINo;
+    Context context;
+    private boolean mSignInClicked;
+
+    //Creating a broadcast receiver for gcm registration
+//    private BroadcastReceiver mRegistrationBroadcastReceiver;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_school_id_login);
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
         inputInstituteId = (EditText) findViewById(R.id.inputInsId);
         btnSubmit = (ImageView) findViewById(R.id.btnSubmit);
@@ -49,6 +92,7 @@ public class SchoolIdLoginActivity extends AppCompatActivity implements View.OnC
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(this);
+
     }
 
     @Override

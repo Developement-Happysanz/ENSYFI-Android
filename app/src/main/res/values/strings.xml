@@ -91,5 +91,9 @@
         <item>December</item>
     </string-array>
 
+    <!--live-->
+    <string name="google_maps_key">AIzaSyDuPQ0xxNwxMc9zRe9mxVEbQdUSMTHkCOo</string>
+    <!--live-->
+
 
 </resources>

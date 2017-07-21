@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "56118066242-nnkk59h8nc40nsvfhtdsq8m0r4mlmhe1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.palprotech.ensyfi",
+            "certificate_hash": "7fa736848b086fd7b9713048684d8cd594c20606"
+          }
+        },
+        {
           "client_id": "56118066242-hu0kg6bqntd9gka8npahedmrf9nc2mps.apps.googleusercontent.com",
           "client_type": 3
         },
