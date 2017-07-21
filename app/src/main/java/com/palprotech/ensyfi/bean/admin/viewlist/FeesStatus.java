@@ -35,6 +35,10 @@ public class FeesStatus implements Serializable {
     @Expose
     private String updated_at;
 
+    @SerializedName("quota_name")
+    @Expose
+    private String quota_name;
+
 
     /**
      * @return The id
@@ -118,5 +122,19 @@ public class FeesStatus implements Serializable {
      */
     public void setUpdatedAt(String updated_at) {
         this.updated_at = updated_at;
+    }
+
+    /**
+     * @return The quota_name
+     */
+    public String getQuotaName() {
+        return quota_name;
+    }
+
+    /**
+     * @param quota_name The quota_name
+     */
+    public void setQuotaName(String quota_name) {
+        this.quota_name = quota_name;
     }
 }

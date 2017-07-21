@@ -124,7 +124,6 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
         relativetime = (RelativeLayout) findViewById(R.id.relativetime);
 
         loadLeaveType();
-        getLeaveList();
 
         loadFromDate();
         loadToDate();
@@ -623,13 +622,13 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
                             Log.d(TAG, "Show error dialog");
                             AlertDialogHelper.showSimpleAlertDialog(this, msg);
                             finish();
-
                         }
                     }
                 }
                 if (checkVal.contentEquals("Y")) {
                     JSONArray loadLeaveTypes = response.getJSONArray("leaveDetails");
                     SaveLeaveTypes(loadLeaveTypes);
+                    getLeaveList();
                 }
             } catch (Exception ex) {
             }

@@ -115,7 +115,6 @@ public class ClassStudentDetailsActivity extends AppCompatActivity implements IS
 
         populateData();
 
-        getStudentInfo();
         String view = "";
     }
 
@@ -167,7 +166,7 @@ public class ClassStudentDetailsActivity extends AppCompatActivity implements IS
                 e.printStackTrace();
             }
 
-
+            getStudentInfo();
 
         } else {
             Log.d(TAG, "Error while sign In");

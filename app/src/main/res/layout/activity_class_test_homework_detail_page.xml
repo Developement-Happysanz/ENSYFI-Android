@@ -48,7 +48,7 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:src="@drawable/od_apply"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/viewMarks"
@@ -59,7 +59,7 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:src="@drawable/ic_view2"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
     </RelativeLayout>
 
@@ -88,7 +88,7 @@
                     android:layout_centerHorizontal="true"
                     android:background="@color/appColor"
                     android:gravity="center"
-                    android:text="Tamil"
+                    android:text=""
                     android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textSize="25dp"
@@ -122,7 +122,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="10dp"
-                        android:text="Aksldfjksdlfnsd,nslckjsdl;ckjaskc,znc,xnc,ad"
+                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="18dp" />
                 </LinearLayout>
@@ -164,7 +164,7 @@
                         android:layout_alignLeft="@+id/txtTestDateTitle"
                         android:layout_below="@+id/txtTestDateTitle"
                         android:layout_marginTop="10dp"
-                        android:text="Test Date"
+                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="18sp" />
                 </LinearLayout>
@@ -207,7 +207,7 @@
                         android:layout_alignLeft="@+id/txtDueDateTitle"
                         android:layout_below="@+id/txtDueDateTitle"
                         android:layout_marginTop="10dp"
-                        android:text="Due Date"
+                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="18sp" />
                 </LinearLayout>
@@ -235,7 +235,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="20dp"
-                        android:text="Description :"
+                        android:text=""
                         android:textColor="@color/appColor"
                         android:textSize="23sp"
                         android:textStyle="bold" />

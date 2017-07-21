@@ -921,7 +921,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     public Cursor getHandlingSubjectList(String val1) throws SQLException {
         SQLiteDatabase db = this.getWritableDatabase();
-        String fetch = "Select * from teacherHandlingSubject where class_master_id=" + val1 + " order by _id;";
+        String fetch = "Select * from teacherHandlingSubject where class_master_id='" + val1 + "' order by _id;";
         Cursor c = db.rawQuery(fetch, null);
         if (c != null) {
             c.moveToFirst();

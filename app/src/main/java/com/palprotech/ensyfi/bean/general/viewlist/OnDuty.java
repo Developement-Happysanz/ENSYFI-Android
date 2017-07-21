@@ -31,6 +31,10 @@ public class OnDuty implements Serializable {
     @Expose
     private String status;
 
+    @SerializedName("name")
+    @Expose
+    private String name;
+
     /**
      * @return The od_for
      */
@@ -99,6 +103,20 @@ public class OnDuty implements Serializable {
      */
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    /**
+     * @return The name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name The name
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

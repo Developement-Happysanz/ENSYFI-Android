@@ -158,11 +158,11 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
                 JSONArray getTeacherProfile = response.getJSONArray("teacherProfile");
                 teacherData.saveTeacherProfile(getTeacherProfile);
 
-                getTeacherInfo();
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
+            getTeacherInfo();
 
         } else {
             Log.d(TAG, "Error while sign In");

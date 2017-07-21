@@ -16,9 +16,12 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.app.AppController;
 import com.palprotech.ensyfi.bean.general.viewlist.LeaveStatus;
+import com.palprotech.ensyfi.utils.PreferenceStorage;
 import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
  * Created by Admin on 15-07-2017.
@@ -116,11 +119,29 @@ public class LeaveStatusListAdapter extends BaseAdapter {
             holder.imgStatus.setImageResource(R.drawable.od_pending);
         }
 
-        holder.txtLeaveTitle.setText(leaveStatus.get(position).getLeaveTitle());
+        int leaveType = Integer.parseInt(leaveStatus.get(position).getLeaveType());
+        if (leaveType == 0) {
+            holder.txtFromTime.setVisibility(View.VISIBLE);
+            holder.txtToTime.setVisibility(View.VISIBLE);
+            holder.txtToLeaveDate.setVisibility(View.GONE);
+        } else {
+            holder.txtFromTime.setVisibility(View.GONE);
+            holder.txtToTime.setVisibility(View.GONE);
+        }
+
+        String userTypeString = PreferenceStorage.getUserType(getApplicationContext());
+        int userType = Integer.parseInt(userTypeString);
+        if (userType == 1) {
+            holder.txtLeaveTitle.setText(leaveStatus.get(position).getName() + " - " + leaveStatus.get(position).getLeaveTitle());
+        } else {
+            holder.txtLeaveTitle.setText(leaveStatus.get(position).getLeaveTitle());
+        }
+
+
         holder.txtFromLeaveDate.setText(leaveStatus.get(position).getFromLeaveDate());
-        holder.txtToLeaveDate.setText(leaveStatus.get(position).getToLeaveDate());
+        holder.txtToLeaveDate.setText(" - " + leaveStatus.get(position).getToLeaveDate());
         holder.txtFromTime.setText(leaveStatus.get(position).getFromTime());
-        holder.txtToTime.setText(leaveStatus.get(position).getToTime());
+        holder.txtToTime.setText(" - " + leaveStatus.get(position).getToTime());
         holder.txtStatus.setText(leaveStatus.get(position).getStatus());
         return convertView;
     }

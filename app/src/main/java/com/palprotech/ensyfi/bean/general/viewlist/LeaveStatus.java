@@ -35,6 +35,14 @@ public class LeaveStatus implements Serializable {
     @Expose
     private String status;
 
+    @SerializedName("name")
+    @Expose
+    private String name;
+
+    @SerializedName("leave_type")
+    @Expose
+    private String leave_type;
+
     /**
      * @return The leave_title
      */
@@ -117,5 +125,33 @@ public class LeaveStatus implements Serializable {
      */
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    /**
+     * @return The name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name The name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return The leave_type
+     */
+    public String getLeaveType() {
+        return leave_type;
+    }
+
+    /**
+     * @param leave_type The leave_type
+     */
+    public void setLeaveType(String leave_type) {
+        this.leave_type = leave_type;
     }
 }
