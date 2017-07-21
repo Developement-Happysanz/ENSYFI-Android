@@ -63,19 +63,13 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
     private ImageView btnBack, btnAddAttendnace, imgCalendar;
     ListView loadMoreListView;
     View view;
-    Context context;
-    int pageNumber = 0, totalCount = 0;
     protected ProgressDialogHelper progressDialogHelper;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
-    private SearchView mSearchView = null;
     private Spinner spnClassList;
-    Vector<String> vecClassList, vecClassSectionList, vecAcademicMonths;
+    Vector<String> vecClassSectionList, vecAcademicMonths;
     List<String> lsClassList = new ArrayList<String>();
     List<String> lsAcademicMonthsList = new ArrayList<String>();
-    ArrayList<Students> myList = new ArrayList<Students>();
-    ArrayAdapter<String> adptClassList;
-    String set1, set2, set3;
     ListView lvStudent;
     private String storeClassId;
     SQLiteHelper db;
@@ -88,24 +82,18 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
     DatePickerDialog mFromDatePickerDialog = null;
     AlertDialog dialog = null;
     private boolean isDoneClick = false;
-    StringBuilder sb;
     ServiceHelper serviceHelper;
     String getMonthName;
-    private static int SPLASH_TIME_OUT = 3900;
     Spinner spinMonthView;
-
     DayViewListAdapter dayViewListAdapter;
     ArrayList<DayView> dayViewArrayList;
-
     MonthViewListAdapter monthViewListAdapter;
     ArrayList<MonthView> monthViewArrayList;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance_status);
-
         setView();
     }
 
@@ -157,6 +145,7 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
                     mFromDatePickerDialog.dismiss();
                 }
             });
+
             mFromDatePickerDialog.setButton(DatePickerDialog.BUTTON_NEGATIVE, "Clear", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -171,14 +160,14 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
 
     private void callOnDayAttendanceViewService() {
 
-        if (dayViewArrayList != null)
-            dayViewArrayList.clear();
+//        if (dayViewArrayList != null)
+//            dayViewArrayList.clear();
 
         if (CommonUtils.isNetworkAvailable(this)) {
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
             JSONObject jsonObject = new JSONObject();
             try {
-                jsonObject.put(EnsyfiConstants.PARAM_CLASS_ID, set3);
+                jsonObject.put(EnsyfiConstants.PARAM_CLASS_ID, storeClassId);
                 jsonObject.put(EnsyfiConstants.PARAMS_DISPLAY_TYPE, checkDayMonthType);
                 jsonObject.put(EnsyfiConstants.PARAMS_DISPLAY_DATE, mFromDateVal);
 
@@ -192,6 +181,199 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
         }
+    }
+
+    private void callOnMonthAttendanceViewService() {
+
+//        if (monthViewArrayList != null)
+//            monthViewArrayList.clear();
+
+        if (CommonUtils.isNetworkAvailable(this)) {
+            progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put(EnsyfiConstants.PARAM_CLASS_ID, storeClassId);
+                jsonObject.put(EnsyfiConstants.PARAMS_DISPLAY_TYPE, checkDayMonthType);
+                jsonObject.put(EnsyfiConstants.PARAMS_DISPLAY_MONTH_YEAR, getMonthName);
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_STUDENT_ATTENDANCE_API;
+            serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
+        } else {
+            AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
+        }
+    }
+
+    @Override
+    public void onResponse(final JSONObject response) {
+        progressDialogHelper.hideProgressDialog();
+        if (validateSignInResponse(response)) {
+            Log.d("ajazFilterresponse : ", response.toString());
+            if (checkDayMonthType.equalsIgnoreCase("day")) {
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        progressDialogHelper.hideProgressDialog();
+
+                        Gson gson = new Gson();
+                        DayViewList dayViewList = gson.fromJson(response.toString(), DayViewList.class);
+                        if (dayViewList.getDayView() != null && dayViewList.getDayView().size() > 0) {
+//                            totalCount = dayViewList.getCount();
+//                            isLoadingForFirstTime = false;
+                            updateDayViewListAdapter(dayViewList.getDayView());
+                        }
+                    }
+                });
+            } else {
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        progressDialogHelper.hideProgressDialog();
+
+                        Gson gson = new Gson();
+                        MonthViewList monthViewList = gson.fromJson(response.toString(), MonthViewList.class);
+                        if (monthViewList.getMonthView() != null && monthViewList.getMonthView().size() > 0) {
+//                            totalCount = monthViewList.getCount();
+//                            isLoadingForFirstTime = false;
+                            updateMonthViewListAdapter(monthViewList.getMonthView());
+                        }
+                    }
+                });
+            }
+        } else {
+            Log.d(TAG, "Error while sign In");
+        }
+    }
+
+    @Override
+    public void onError(final String error) {
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                progressDialogHelper.hideProgressDialog();
+                AlertDialogHelper.showSimpleAlertDialog(AttendanceStatusActivity.this, error);
+            }
+        });
+    }
+
+    protected void updateDayViewListAdapter(ArrayList<DayView> dayViewArrayList) {
+        this.dayViewArrayList.addAll(dayViewArrayList);
+//        if (dayViewListAdapter == null) {
+            dayViewListAdapter = new DayViewListAdapter(AttendanceStatusActivity.this, this.dayViewArrayList);
+            loadMoreListView.setAdapter(dayViewListAdapter);
+//        } else {
+            dayViewListAdapter.notifyDataSetChanged();
+//        }
+    }
+
+    protected void updateMonthViewListAdapter(ArrayList<MonthView> monthViewArrayList) {
+        this.monthViewArrayList.addAll(monthViewArrayList);
+//        if (monthViewListAdapter == null) {
+            monthViewListAdapter = new MonthViewListAdapter(AttendanceStatusActivity.this, this.monthViewArrayList);
+            loadMoreListView.setAdapter(monthViewListAdapter);
+//        } else {
+            monthViewListAdapter.notifyDataSetChanged();
+//        }
+    }
+
+    private void setView() {
+        btnBack = (ImageView) findViewById(R.id.back_res);
+        btnBack.setOnClickListener(this);
+        imgCalendar = (ImageView) findViewById(R.id.cal);
+        btnAddAttendnace = (ImageView) findViewById(R.id.addAttendance);
+        btnAddAttendnace.setOnClickListener(this);
+        db = new SQLiteHelper(getApplicationContext());
+        vecClassSectionList = new Vector<String>();
+        vecAcademicMonths = new Vector<String>();
+        spnClassList = (Spinner) findViewById(R.id.class_list_spinner);
+        lvStudent = (ListView) findViewById(R.id.listView_students);
+        loadMoreListView = (ListView) findViewById(R.id.listView_events);
+        loadMoreListView.setOnItemClickListener(this);
+        dayViewArrayList = new ArrayList<>();
+        monthViewArrayList = new ArrayList<>();
+        radioDayMonthView = (RadioGroup) findViewById(R.id.radioDayMonthView);
+        selectDateMonth = (Button) findViewById(R.id.btnDateMonth);
+        selectDateMonth.setOnClickListener(this);
+        serviceHelper = new ServiceHelper(this);
+        serviceHelper.setServiceListener(this);
+        spinMonthView = (Spinner) findViewById(R.id.btnMonth);
+        progressDialogHelper = new ProgressDialogHelper(this);
+        getClassList();
+
+        spnClassList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+//                if (dayViewArrayList != null)
+//                    dayViewArrayList.clear();
+//
+//                if (monthViewArrayList != null)
+//                    monthViewArrayList.clear();
+
+                String className = parent.getItemAtPosition(position).toString();
+                GetClassId(className);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        radioDayMonthView.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                switch (checkedId) {
+                    case R.id.radioDayView:
+
+                        if (monthViewArrayList != null)
+                            monthViewArrayList.clear();
+                        if (dayViewArrayList != null)
+                            dayViewArrayList.clear();
+
+                        checkDayMonthType = "day";
+                        selectDateMonth.setVisibility(View.VISIBLE);
+                        imgCalendar.setVisibility(View.VISIBLE);
+                        spinMonthView.setVisibility(View.GONE);
+                        break;
+
+                    case R.id.radioMonthView:
+
+                        if (dayViewArrayList != null)
+                            dayViewArrayList.clear();
+                        if (monthViewArrayList != null)
+                            monthViewArrayList.clear();
+
+                        checkDayMonthType = "month";
+                        selectDateMonth.setVisibility(View.GONE);
+                        imgCalendar.setVisibility(View.GONE);
+                        spinMonthView.setVisibility(View.VISIBLE);
+                        getAcademicMonthsList();
+                        break;
+                }
+            }
+        });
+
+        spinMonthView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String item = parent.getItemAtPosition(position).toString();
+                if (!item.equalsIgnoreCase("Select Month")) {
+                    getMonthName = item;
+                    callOnMonthAttendanceViewService();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     @Override
@@ -210,34 +392,85 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
             Intent intent = new Intent(this, AttendanceMonthViewActivity.class);
             intent.putExtra("eventObj", monthView);
             intent.putExtra("monthYear", getMonthName);
-            // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
         }
     }
 
-    private void callOnMonthAttendanceViewService() {
-
-        if (monthViewArrayList != null)
-            monthViewArrayList.clear();
-
-        if (CommonUtils.isNetworkAvailable(this)) {
-            progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            JSONObject jsonObject = new JSONObject();
-            try {
-                jsonObject.put(EnsyfiConstants.PARAM_CLASS_ID, set3);
-                jsonObject.put(EnsyfiConstants.PARAMS_DISPLAY_TYPE, checkDayMonthType);
-                jsonObject.put(EnsyfiConstants.PARAMS_DISPLAY_MONTH_YEAR, getMonthName);
-
-
-            } catch (JSONException e) {
-                e.printStackTrace();
+    private void getAcademicMonthsList() {
+        try {
+            Cursor c = db.getAcademicMonths();
+            if (c.getCount() > 0) {
+                if (c.moveToFirst()) {
+                    do {
+                        vecAcademicMonths.add(c.getString(0));
+                        //set1 = c.getString(0);
+                    } while (c.moveToNext());
+                }
+            }
+            lsAcademicMonthsList.add("Select Month");
+            for (int i = 0; i < vecAcademicMonths.size(); i++) {
+                lsAcademicMonthsList.add(vecAcademicMonths.get(i));
             }
 
-            progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_STUDENT_ATTENDANCE_API;
-            serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
-        } else {
-            AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
+            db.close();
+            ArrayAdapter<String> dataAdapter3 = new ArrayAdapter<String>(this, R.layout.spinner_item_ns, lsAcademicMonthsList);
+            spinMonthView.setAdapter(dataAdapter3);
+            spinMonthView.setWillNotDraw(false);
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "Error academic months lookup", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
+    }
+
+    private void GetClassId(String classID) {
+
+        try {
+            Cursor c = db.getClassId(classID);
+            if (c.getCount() > 0) {
+                if (c.moveToFirst()) {
+                    do {
+                        storeClassId = c.getString(0);
+                    } while (c.moveToNext());
+                }
+            }
+
+            db.close();
+
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG)
+                    .show();
+            e.printStackTrace();
+        }
+    }
+
+    private void getClassList() {
+        Vector<String> vecClassList = new Vector<String>();
+        List<String> lsClassList = new ArrayList<String>();
+        try {
+            Cursor c = db.getTeachersClass();
+            if (c.getCount() > 0) {
+                if (c.moveToFirst()) {
+                    do {
+                        vecClassList.add(c.getString(1));
+                    } while (c.moveToNext());
+                }
+            }
+            for (int i = 0; i < vecClassList.size(); i++) {
+                lsClassList.add(vecClassList.get(i));
+            }
+            HashSet hs = new HashSet();
+            TreeSet ts = new TreeSet(hs);
+            ts.addAll(lsClassList);
+            lsClassList.clear();
+            lsClassList.addAll(ts);
+            db.close();
+            ArrayAdapter<String> dataAdapter3 = new ArrayAdapter<String>(this, R.layout.spinner_item_ns, lsClassList);
+
+            spnClassList.setAdapter(dataAdapter3);
+            spnClassList.setWillNotDraw(false);
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "Error getting class list lookup", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
         }
     }
 
@@ -266,172 +499,6 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
         }
 
         return signInsuccess;
-    }
-
-
-    @Override
-    public void onResponse(final JSONObject response) {
-        progressDialogHelper.hideProgressDialog();
-        if (validateSignInResponse(response)) {
-            Log.d("ajazFilterresponse : ", response.toString());
-            if (checkDayMonthType.equalsIgnoreCase("day")) {
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        progressDialogHelper.hideProgressDialog();
-
-                        Gson gson = new Gson();
-                        DayViewList dayViewList = gson.fromJson(response.toString(), DayViewList.class);
-                        if (dayViewList.getDayView() != null && dayViewList.getDayView().size() > 0) {
-                            totalCount = dayViewList.getCount();
-                            isLoadingForFirstTime = false;
-                            updateDayViewListAdapter(dayViewList.getDayView());
-                        }
-                    }
-                });
-            } else {
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        progressDialogHelper.hideProgressDialog();
-
-                        Gson gson = new Gson();
-                        MonthViewList monthViewList = gson.fromJson(response.toString(), MonthViewList.class);
-                        if (monthViewList.getMonthView() != null && monthViewList.getMonthView().size() > 0) {
-                            totalCount = monthViewList.getCount();
-                            isLoadingForFirstTime = false;
-                            updateMonthViewListAdapter(monthViewList.getMonthView());
-                        }
-                    }
-                });
-            }
-        } else {
-            Log.d(TAG, "Error while sign In");
-        }
-    }
-
-    protected void updateDayViewListAdapter(ArrayList<DayView> dayViewArrayList) {
-        this.dayViewArrayList.addAll(dayViewArrayList);
-        if (dayViewListAdapter == null) {
-            dayViewListAdapter = new DayViewListAdapter(this, this.dayViewArrayList);
-            loadMoreListView.setAdapter(dayViewListAdapter);
-        } else {
-            dayViewListAdapter.notifyDataSetChanged();
-        }
-    }
-
-    protected void updateMonthViewListAdapter(ArrayList<MonthView> monthViewArrayList) {
-        this.monthViewArrayList.addAll(monthViewArrayList);
-        if (monthViewListAdapter == null) {
-            monthViewListAdapter = new MonthViewListAdapter(this, this.monthViewArrayList);
-            loadMoreListView.setAdapter(monthViewListAdapter);
-        } else {
-            monthViewListAdapter.notifyDataSetChanged();
-        }
-    }
-
-    @Override
-    public void onError(final String error) {
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                progressDialogHelper.hideProgressDialog();
-                AlertDialogHelper.showSimpleAlertDialog(AttendanceStatusActivity.this, error);
-            }
-        });
-    }
-
-    private void setView() {
-        btnBack = (ImageView) findViewById(R.id.back_res);
-        btnBack.setOnClickListener(this);
-
-        imgCalendar = (ImageView) findViewById(R.id.cal);
-
-        btnAddAttendnace = (ImageView) findViewById(R.id.addAttendance);
-        btnAddAttendnace.setOnClickListener(this);
-
-        db = new SQLiteHelper(getApplicationContext());
-        vecClassList = new Vector<String>();
-        vecClassSectionList = new Vector<String>();
-        vecAcademicMonths = new Vector<String>();
-        spnClassList = (Spinner) findViewById(R.id.class_list_spinner);
-        lvStudent = (ListView) findViewById(R.id.listView_students);
-
-        loadMoreListView = (ListView) findViewById(R.id.listView_events);
-
-        loadMoreListView.setOnItemClickListener(this);
-
-        dayViewArrayList = new ArrayList<>();
-
-        monthViewArrayList = new ArrayList<>();
-
-        radioDayMonthView = (RadioGroup) findViewById(R.id.radioDayMonthView);
-
-        selectDateMonth = (Button) findViewById(R.id.btnDateMonth);
-        selectDateMonth.setOnClickListener(this);
-
-        serviceHelper = new ServiceHelper(this);
-        serviceHelper.setServiceListener(this);
-
-        progressDialogHelper = new ProgressDialogHelper(this);
-
-        getClassList();
-
-        spnClassList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String className = parent.getItemAtPosition(position).toString();
-                GetClassId(className);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        radioDayMonthView.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                switch (checkedId) {
-                    case R.id.radioDayView:
-                        if (dayViewArrayList != null)
-                            dayViewArrayList.clear();
-                        checkDayMonthType = "day";
-                        spinMonthView.setVisibility(View.GONE);
-                        selectDateMonth.setVisibility(View.VISIBLE);
-                        break;
-
-                    case R.id.radioMonthView:
-                        if (dayViewArrayList != null)
-                            dayViewArrayList.clear();
-                        checkDayMonthType = "month";
-                        selectDateMonth.setVisibility(View.GONE);
-                        imgCalendar.setVisibility(View.GONE);
-                        spinMonthView.setVisibility(View.VISIBLE);
-                        getAcademicMonthsList();
-                        break;
-                }
-            }
-        });
-
-        spinMonthView = (Spinner) findViewById(R.id.btnMonth);
-
-        spinMonthView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String item = parent.getItemAtPosition(position).toString();
-                if (!item.equalsIgnoreCase("Select Month")) {
-                    getMonthName = item;
-                    callOnMonthAttendanceViewService();
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
     }
 
     private static String formatDate(int year, int month, int day) {
@@ -480,95 +547,5 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
     @Override
     public void onAlertNegativeClicked(int tag) {
 
-    }
-
-    private void GetClassId(String classID) {
-
-        try {
-            Cursor c = db.getStudentsOfClass(classID);
-            if (c.getCount() > 0) {
-                if (c.moveToFirst()) {
-                    do {
-                        Students lde = new Students();
-                        lde.setId(Integer.parseInt(c.getString(0)));
-                        lde.setEnrollId(c.getString(1));
-                        lde.setAdmissionId(c.getString(2));
-                        lde.setClassId(c.getString(3));
-                        storeClassId = c.getString(3);
-                        lde.setStudentName(c.getString(4));
-                        lde.setClassSection(c.getString(5));
-
-                        // Add this object into the ArrayList myList
-                        myList.add(lde);
-
-                    } while (c.moveToNext());
-                }
-            }
-
-            db.close();
-
-        } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG)
-                    .show();
-            e.printStackTrace();
-        }
-    }
-
-    private void getClassList() {
-
-        try {
-            Cursor c = db.getTeachersClass();
-            if (c.getCount() > 0) {
-                if (c.moveToFirst()) {
-                    do {
-                        vecClassList.add(c.getString(1));
-                        set3 = c.getString(0);
-                    } while (c.moveToNext());
-                }
-            }
-            for (int i = 0; i < vecClassList.size(); i++) {
-                lsClassList.add(vecClassList.get(i));
-            }
-            HashSet hs = new HashSet();
-            TreeSet ts = new TreeSet(hs);
-            ts.addAll(lsClassList);
-            lsClassList.clear();
-            lsClassList.addAll(ts);
-            db.close();
-            ArrayAdapter<String> dataAdapter3 = new ArrayAdapter<String>(this, R.layout.spinner_item_ns, lsClassList);
-
-            spnClassList.setAdapter(dataAdapter3);
-            spnClassList.setWillNotDraw(false);
-        } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), "Error getting class list lookup", Toast.LENGTH_LONG).show();
-            e.printStackTrace();
-        }
-    }
-
-    private void getAcademicMonthsList() {
-
-        try {
-            Cursor c = db.getAcademicMonths();
-            if (c.getCount() > 0) {
-                if (c.moveToFirst()) {
-                    do {
-                        vecAcademicMonths.add(c.getString(0));
-                        set1 = c.getString(0);
-                    } while (c.moveToNext());
-                }
-            }
-            lsAcademicMonthsList.add("Select Month");
-            for (int i = 0; i < vecAcademicMonths.size(); i++) {
-                lsAcademicMonthsList.add(vecAcademicMonths.get(i));
-            }
-
-            db.close();
-            ArrayAdapter<String> dataAdapter3 = new ArrayAdapter<String>(this, R.layout.spinner_item_ns, lsAcademicMonthsList);
-            spinMonthView.setAdapter(dataAdapter3);
-            spinMonthView.setWillNotDraw(false);
-        } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), "Error academic months lookup", Toast.LENGTH_LONG).show();
-            e.printStackTrace();
-        }
     }
 }

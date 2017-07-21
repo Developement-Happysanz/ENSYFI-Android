@@ -52,7 +52,7 @@ public class ClassTestHomeWorkDetailPageActivity extends AppCompatActivity imple
         viewMarks = (ImageView) findViewById(R.id.viewMarks);
         viewMarks.setOnClickListener(this);
 
-        GetHomeWorkClassTestDetails(homeWorkId);
+        GetHomeWorkClassTestDetails(homeWorkIdLocal);
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
         bckbtn.setOnClickListener(new View.OnClickListener() {
             @Override

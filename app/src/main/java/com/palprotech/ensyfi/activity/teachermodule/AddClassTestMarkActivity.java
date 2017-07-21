@@ -17,6 +17,8 @@ import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.adapter.teachermodule.StudentListClassTestMarkBaseAdapter;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 import com.palprotech.ensyfi.bean.teacher.viewlist.StudentsClassTestMarks;
+import com.palprotech.ensyfi.helper.AlertDialogHelper;
+import com.palprotech.ensyfi.utils.AppValidator;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 
 import java.text.SimpleDateFormat;
@@ -159,42 +161,76 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
         SaveStudentsClasstestMarks();
     }
 
+    private boolean validateFields() {
+        int getCount = 0;
+        getCount = lvStudent.getCount();
+
+        EditText edtClassTestMark;
+        TextView et, et1;
+        int count = 0;
+        int validMark = 100;
+
+        for (int i = 0; i < lvStudent.getCount(); i++) {
+            edtClassTestMark = (EditText) lvStudent.getChildAt(i).findViewById(R.id.class_test_marks);
+            int Mark = Integer.parseInt(edtClassTestMark.getText().toString());
+            et1 = (TextView) lvStudent.getChildAt(i).findViewById(R.id.txt_studentName);
+
+            if (!AppValidator.checkNullString(edtClassTestMark.getText().toString().trim())) {
+                AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid marks for student - " + String.valueOf(et1.getText()));
+            }
+            if (Mark <= 0 || Mark >= validMark + 1) {
+                AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid marks for student - " + String.valueOf(et1.getText()) + " between 0 to " + validMark);
+
+            } else {
+                count++;
+            }
+        }
+
+        if (getCount == count) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     private void SaveStudentsClasstestMarks() {
 /** get all values of the EditText-Fields */
         View view;
         ArrayList<String> mannschaftsnamen = new ArrayList<String>();
         TextView et, et1;
         EditText edtMarks;
-        for (int i = 0; i < lvStudent.getCount(); i++) {
-            et = (TextView) lvStudent.getChildAt(i).findViewById(R.id.txt_studentId);
-            et1 = (TextView) lvStudent.getChildAt(i).findViewById(R.id.txt_studentName);
-            edtMarks = (EditText) lvStudent.getChildAt(i).findViewById(R.id.class_test_marks);
+        if (validateFields()) {
+            for (int i = 0; i < lvStudent.getCount(); i++) {
+                et = (TextView) lvStudent.getChildAt(i).findViewById(R.id.txt_studentId);
+                et1 = (TextView) lvStudent.getChildAt(i).findViewById(R.id.txt_studentName);
+                edtMarks = (EditText) lvStudent.getChildAt(i).findViewById(R.id.class_test_marks);
 //            edtRemarks = (EditText) lvStudent.getChildAt(i).findViewById(R.id.class_test_marks_remarks);
-            if (et != null) {
-                mannschaftsnamen.add(String.valueOf(et.getText()));
-                String enrollId = String.valueOf(et.getText());
-                String studentName = String.valueOf(et1.getText());
-                String marks = edtMarks.getText().toString();
-                String remarks = "";
+                if (et != null) {
+                    mannschaftsnamen.add(String.valueOf(et.getText()));
+                    String enrollId = String.valueOf(et.getText());
+                    String studentName = String.valueOf(et1.getText());
+                    String marks = edtMarks.getText().toString();
+                    String remarks = "";
 //                        = edtRemarks.getText().toString();
-                if (marks.isEmpty()) {
-                    marks = "0";
-                }
+                    if (marks.isEmpty()) {
+                        marks = "0";
+                    }
 
-                long c = db.class_test_mark_insert(enrollId, homeWorkId, "", marks, remarks, "Active", PreferenceStorage.getUserId(getApplicationContext()), formattedServerDate, PreferenceStorage.getUserId(getApplicationContext()), formattedServerDate, "NS");
-                if (c == -1) {
-                    Toast.makeText(getApplicationContext(), "Error while marks add...",
-                            Toast.LENGTH_LONG).show();
+                    long c = db.class_test_mark_insert(enrollId, homeWorkId, "", marks, remarks, "Active", PreferenceStorage.getUserId(getApplicationContext()), formattedServerDate, PreferenceStorage.getUserId(getApplicationContext()), formattedServerDate, "NS");
+                    if (c == -1) {
+                        Toast.makeText(getApplicationContext(), "Error while marks add...",
+                                Toast.LENGTH_LONG).show();
+                    }
+                    /** you can try to log your values EditText */
+                    Log.v("ypgs", String.valueOf(et.getText()));
                 }
-                /** you can try to log your values EditText */
-                Log.v("ypgs", String.valueOf(et.getText()));
             }
+
+            db.updateClassTestHomeWorkMarkStatus(homeWorkId);
+            Toast.makeText(getApplicationContext(), "Class Test - " + title + ".\n Marks Updated Successfully...",
+                    Toast.LENGTH_LONG).show();
+
+            finish();
         }
-
-        db.updateClassTestHomeWorkMarkStatus(homeWorkId);
-        Toast.makeText(getApplicationContext(), "Class Test - " + title + ".\n Marks Updated Successfully...",
-                Toast.LENGTH_LONG).show();
-
-        finish();
     }
 }

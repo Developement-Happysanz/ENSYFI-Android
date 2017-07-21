@@ -132,17 +132,21 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
                     case R.id.radioStudent:
                         StudentList.setVisibility(View.VISIBLE);
                         TeacherList.setVisibility(View.GONE);
+//                        loadMoreListView.setAdapter(null);
                         GetStudentData();
                         break;
 
                     case R.id.radioTeachers:
                         TeacherList.setVisibility(View.VISIBLE);
                         StudentList.setVisibility(View.GONE);
+//                        loadMoreListView.setAdapter(null);
                         GetTeacherData();
                         break;
                 }
             }
         });
+
+//        GetStudentData();
     }
 
     private void GetTeacherData() {

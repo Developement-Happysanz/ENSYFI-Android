@@ -102,7 +102,10 @@ public class MonthViewListAdapter extends BaseAdapter {
 
         holder.txtEnrollId.setText(monthViews.get(position).getEnrollId());
         holder.txtStudentName.setText(monthViews.get(position).getName());
-        holder.txtLeaves.setText(monthViews.get(position).getLeaves() + " Days Leave");
+        Double leave = Double.parseDouble(monthViews.get(position).getLeaves());
+        double roundOff = (double) Math.round(leave * 100) / 100;
+        String roundLeaves = String.valueOf(roundOff);
+        holder.txtLeaves.setText(roundLeaves + " Days Leave");
         return convertView;
     }
 
