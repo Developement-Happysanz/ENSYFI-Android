@@ -210,6 +210,11 @@ public class ClassStudentDetailsActivity extends AppCompatActivity implements IS
 
     @Override
     public void onClick(View v) {
+
+        if (v == btnBack) {
+            finish();
+        }
+
         if (v == btnClassTestHomework) {
 
             String ClassId = classStudent.getClassId();

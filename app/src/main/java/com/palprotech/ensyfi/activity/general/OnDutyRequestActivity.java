@@ -7,13 +7,12 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.text.InputType;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -38,8 +37,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-
-import static android.R.attr.format;
 
 /**
  * Created by Admin on 10-07-2017.
@@ -92,6 +89,13 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
 
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
+        ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
+        bckbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 

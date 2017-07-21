@@ -3,12 +3,12 @@ package com.palprotech.ensyfi.activity.teachermodule;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.bean.teacher.viewlist.TTReview;
-
-import org.w3c.dom.Text;
 
 /**
  * Created by Admin on 21-07-2017.
@@ -36,12 +36,21 @@ public class TimeTableReviewDetails extends AppCompatActivity {
 
         txttime_date.setText(ttReview.getTimeDate());
         txtday.setText(ttReview.getDay());
-        txtclass_id.setText(ttReview.getTimeDate());
+        txtclass_id.setText(ttReview.getClassId());
         txtclass_name.setText(ttReview.getClassName());
         txtsec_name.setText(ttReview.getSectionName());
         txtsubject_name.setText(ttReview.getSubjectName());
         txtcomments.setText(ttReview.getComments());
         txtremarks.setText(ttReview.getRemarks());
         txtstatus.setText(ttReview.getStatus());
+
+        ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
+        bckbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
 }

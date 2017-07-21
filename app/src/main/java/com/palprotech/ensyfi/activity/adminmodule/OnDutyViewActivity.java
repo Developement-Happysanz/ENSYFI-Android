@@ -16,7 +16,6 @@ import android.widget.RadioGroup;
 
 import com.google.gson.Gson;
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.activity.general.OnDutyActivity;
 import com.palprotech.ensyfi.adapter.general.OnDutyListAdapter;
 import com.palprotech.ensyfi.bean.general.viewlist.OnDuty;
 import com.palprotech.ensyfi.bean.general.viewlist.OnDutyList;
@@ -81,6 +80,14 @@ public class OnDutyViewActivity extends AppCompatActivity implements IServiceLis
                         callOnDutyViewService();
                         break;
                 }
+            }
+        });
+
+        ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
+        bckbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 

@@ -69,6 +69,15 @@ public class TimeTableReview extends AppCompatActivity implements IServiceListen
         progressDialogHelper = new ProgressDialogHelper(this);
 
         callTTReviewService();
+
+        ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
+        bckbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
 
     private void callTTReviewService() {

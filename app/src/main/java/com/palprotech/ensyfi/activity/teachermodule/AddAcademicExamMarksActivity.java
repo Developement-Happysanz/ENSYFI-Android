@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.util.Range;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -23,15 +22,9 @@ import com.palprotech.ensyfi.interfaces.DialogClickListener;
 import com.palprotech.ensyfi.utils.AppValidator;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 
-import org.joda.time.DateTime;
-import org.joda.time.Days;
-
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 /**
  * Created by Admin on 15-07-2017.
@@ -73,6 +66,15 @@ public class AddAcademicExamMarksActivity extends AppCompatActivity implements V
 
         StudentsAcademicExamMarksAddBaseAdapter cadapter = new StudentsAcademicExamMarksAddBaseAdapter(AddAcademicExamMarksActivity.this, myList);
         lvStudent.setAdapter(cadapter);
+
+        ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
+        bckbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
 
     private void GetStudentsList(String classSectionId) {

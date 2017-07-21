@@ -60,7 +60,6 @@ public class StudentsInfoActivity extends AppCompatActivity implements IServiceL
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(this);
-        ;
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
         loadMoreListView.setOnItemClickListener(this);
         classStudentArrayList = new ArrayList<>();

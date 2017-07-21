@@ -9,12 +9,12 @@ import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.adapter.adminmodule.TeacherViewListAdapter;
-import com.palprotech.ensyfi.bean.admin.viewlist.ClassStudentList;
 import com.palprotech.ensyfi.bean.admin.viewlist.TeacherView;
 import com.palprotech.ensyfi.bean.admin.viewlist.TeacherViewList;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
@@ -26,7 +26,6 @@ import com.palprotech.ensyfi.utils.CommonUtils;
 import com.palprotech.ensyfi.utils.EnsyfiConstants;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -62,6 +61,13 @@ public class TeachersViewActivity extends AppCompatActivity implements IServiceL
         loadMoreListView.setOnItemClickListener(this);
         teacherViewArrayList = new ArrayList<>();
         GetTeacherData();
+        ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
+        bckbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 

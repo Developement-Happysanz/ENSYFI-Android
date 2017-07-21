@@ -8,19 +8,13 @@ import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Spinner;
 
 import com.google.gson.Gson;
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.adapter.adminmodule.FeesListAdapter;
 import com.palprotech.ensyfi.adapter.adminmodule.FeesStatusListAdapter;
-import com.palprotech.ensyfi.bean.admin.support.StoreClass;
-import com.palprotech.ensyfi.bean.admin.support.StoreSection;
 import com.palprotech.ensyfi.bean.admin.viewlist.Fees;
-import com.palprotech.ensyfi.bean.admin.viewlist.FeesList;
 import com.palprotech.ensyfi.bean.admin.viewlist.FeesStatus;
 import com.palprotech.ensyfi.bean.admin.viewlist.FeesStatusList;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
@@ -78,6 +72,13 @@ public class FeesStatusView extends AppCompatActivity implements IServiceListene
 
 
         GetFeesStatusData();
+        ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
+        bckbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void GetFeesStatusData() {

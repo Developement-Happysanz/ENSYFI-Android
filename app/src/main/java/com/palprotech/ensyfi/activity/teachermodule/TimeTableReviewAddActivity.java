@@ -12,8 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.activity.general.OnDutyRequestActivity;
-import com.palprotech.ensyfi.bean.student.viewlist.MonthView;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
@@ -24,16 +22,11 @@ import com.palprotech.ensyfi.utils.CommonUtils;
 import com.palprotech.ensyfi.utils.EnsyfiConstants;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 
-import org.joda.time.DateTime;
-import org.joda.time.Days;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 /**
  * Created by Admin on 19-07-2017.
@@ -86,6 +79,15 @@ public class TimeTableReviewAddActivity extends AppCompatActivity implements ISe
                 saveReview();
             }
         });
+
+        ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
+        bckbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
 
     private void saveReview() {

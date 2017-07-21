@@ -9,16 +9,14 @@ import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.adapter.teachermodule.ClassTestMarkListAdapter;
 import com.palprotech.ensyfi.adapter.teachermodule.ExamResultListAdapter;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
-import com.palprotech.ensyfi.bean.teacher.viewlist.ClassTestMark;
-import com.palprotech.ensyfi.bean.teacher.viewlist.ClassTestMarkList;
 import com.palprotech.ensyfi.bean.teacher.viewlist.ExamResult;
 import com.palprotech.ensyfi.bean.teacher.viewlist.ExamResultList;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
@@ -73,6 +71,15 @@ public class AcademicExamResultView extends AppCompatActivity implements IServic
         examResultArrayList = new ArrayList<>();
         GetAcademicExamInfo(examId);
         GetClassTestMarkData();
+
+        ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
+        bckbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
 
     private void GetAcademicExamInfo(String examIdLocal) {

@@ -2,6 +2,7 @@ package com.palprotech.ensyfi.adapter.studentmodule;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -105,6 +106,12 @@ public class FeeStatusListAdapter extends BaseAdapter {
         holder.txtStatus.setText(feeStatuses.get(position).getStatus());
         holder.txtDueDateFrom.setText("Due From : " + feeStatuses.get(position).getDueDateFrom());
         holder.txtDueDateTo.setText("Due To : " + feeStatuses.get(position).getDueDateTo());
+
+        if ((feeStatuses.get(position).getStatus()).contentEquals("Paid")) {
+            holder.txtStatus.setTextColor(ContextCompat.getColor(context, R.color.approve));
+        } else {
+            holder.txtStatus.setTextColor(ContextCompat.getColor(context, R.color.reject));
+        }
         return convertView;
     }
 

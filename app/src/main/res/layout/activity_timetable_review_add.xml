@@ -42,7 +42,7 @@
             android:gravity="center"
             android:minHeight="?attr/actionBarSize"
             android:padding="5dp"
-            android:text="TIME TABLE REVIEW"
+            android:text="Add notes"
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="@dimen/actionbarTextSize" />
@@ -71,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
-                    android:text="Class         :"
+                    android:text="Class               :"
                     android:textColor="@color/black"
                     android:textSize="22dp" />
 
@@ -93,7 +93,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_below="@+id/txtClassName"
                     android:layout_marginTop="10dp"
-                    android:text="Subject      :"
+                    android:text="Subject            :"
                     android:textColor="@color/black"
                     android:textSize="22dp" />
 
@@ -110,12 +110,12 @@
 
                 <TextView
                     android:id="@+id/periodId"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/txtSubjectName"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
-                    android:text="Period        :"
+                    android:text="Period              :"
                     android:textColor="@color/black"
                     android:textSize="22dp" />
 
@@ -141,7 +141,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
-                    android:text="Details       :"
+                    android:text="Description     :"
                     android:textColor="@color/black"
                     android:textSize="22dp" />
 
@@ -157,7 +157,8 @@
                     android:gravity="top"
                     android:hint="Description"
                     android:inputType="textVisiblePassword"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="18dp"/>
 
             </LinearLayout>
 
