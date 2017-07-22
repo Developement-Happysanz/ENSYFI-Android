@@ -84,9 +84,9 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_below="@+id/TeacherName"
-                    android:text="Id                                   :"
+                    android:text="Id                                :"
                     android:textColor="@color/black"
-                    android:textSize="18dp" />
+                    android:textSize="20dp" />
 
                 <TextView
                     android:id="@+id/txtTeacherid"
@@ -170,7 +170,7 @@
                     android:id="@+id/TeacherAge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/TeacherAddress"
+                    android:layout_below="@+id/txtTeacherAddress"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Age                            :"
@@ -219,9 +219,9 @@
                     android:layout_below="@+id/txtTeacherNationality"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Religion                        :"
+                    android:text="Religion                     :"
                     android:textColor="@color/black"
-                    android:textSize="18dp" />
+                    android:textSize="20dp" />
 
 
                 <TextView

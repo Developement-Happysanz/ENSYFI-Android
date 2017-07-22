@@ -42,14 +42,17 @@
 
     </RelativeLayout>
 
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="20dp">
+        android:orientation="vertical">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -57,7 +60,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/btn_square_fill_white">
 
                 <TextView
@@ -121,10 +124,11 @@
 
                 <TextView
                     android:id="@+id/txthomeworkdetails"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/describ"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:text="Description :"
                     android:layout_marginTop="10dp"
                     android:textColor="@color/black"
@@ -143,10 +147,11 @@
 
                 <LinearLayout
                     android:id="@+id/llMarkView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/txthomeworkdetails"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical"
                     android:visibility="gone">
 
                     <TextView
@@ -157,7 +162,7 @@
                         android:text="MARKS :"
                         android:textColor="@color/appColor"
                         android:textSize="23sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"/>
 
                     <TextView
                         android:id="@+id/viewmarks"
@@ -168,14 +173,25 @@
                         android:textColor="@color/black"
                         android:textSize="15sp" />
 
+                    <TextView
+                        android:id="@+id/underlinemarks"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/text_grey"/>
+
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/llMarkRemarks"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/llMarkView"
                     android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
                     android:orientation="vertical"
                     android:visibility="gone">
 
@@ -194,16 +210,27 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginBottom="20dp"
                         android:layout_marginTop="20dp"
                         android:gravity="center"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
 
+                    <TextView
+                        android:id="@+id/underlineremarks"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/text_grey"/>
+
                 </LinearLayout>
 
             </RelativeLayout>
-        </ScrollView>
+
     </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>
