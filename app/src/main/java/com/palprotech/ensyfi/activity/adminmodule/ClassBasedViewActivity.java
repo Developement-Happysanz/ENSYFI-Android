@@ -116,6 +116,7 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
                 StoreSection sectionList = (StoreSection) parent.getSelectedItem();
 //                Toast.makeText(getApplicationContext(), "Section ID: " + sectionList.getSectionId() + ",  Section Name : " + sectionList.getSectionName(), Toast.LENGTH_SHORT).show();
                 storeSectionId = sectionList.getSectionId();
+
                 //GetStudentData();
             }
 
