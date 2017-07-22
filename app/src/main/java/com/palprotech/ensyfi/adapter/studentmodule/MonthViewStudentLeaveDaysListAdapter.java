@@ -101,7 +101,26 @@ public class MonthViewStudentLeaveDaysListAdapter extends BaseAdapter {
         MonthViewStudentLeaveDays monthViewStudentLeaveDay = monthViewStudentLeaveDays.get(position);
 
 //        holder.txtEnrollId.setText(monthViewStudentLeaveDays.get(position).getEnrollId());
-        holder.txtDuration.setText(monthViewStudentLeaveDays.get(position).getLeaves() + " ");
+        String checkStatus = monthViewStudentLeaveDays.get(position).getLeaves();
+        int status = Integer.parseInt(checkStatus);
+        String leaveNos = "";
+        if (status == 1) {
+            leaveNos = "Half day";
+        } else {
+            leaveNos = "Full day";
+        }
+        String checkStatus1 = monthViewStudentLeaveDays.get(position).getAStatus();
+        String leaveType = "";
+        if (checkStatus1.contentEquals("L")) {
+            leaveType = "leave";
+        } else if (checkStatus1.contentEquals("A")) {
+            leaveType = "absent";
+        } else if (checkStatus1.contentEquals("OD")) {
+            leaveType = "OD";
+        } else {
+            leaveType = "";
+        }
+        holder.txtDuration.setText(leaveNos + " " + leaveType);
         holder.txtLeaveDays.setText(monthViewStudentLeaveDays.get(position).getAbsDate());
         return convertView;
     }
