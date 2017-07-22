@@ -145,12 +145,13 @@
                 android:textSize="18dp" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/btnRefreshClassTestHomeworkRecords"
                 android:layout_alignTop="@+id/btnSyncClassTestHomeworkRecords"
+                android:layout_toLeftOf="@+id/btnRefreshClassTestHomeworkRecords"
                 android:layout_marginLeft="10dp"
-                android:gravity="center"
+                android:gravity="center|left"
                 android:text="Class Test and Homework"
                 android:textColor="@color/black"
                 android:textSize="20dp"
