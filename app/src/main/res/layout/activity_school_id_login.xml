@@ -2,54 +2,54 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/school_login_bg">
+    android:background="@drawable/school_login_bg"
+    android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="100dp"
-            android:layout_marginBottom="200dp"
-            android:src="@drawable/hp_logo" />
-
-        <EditText
-            android:id="@+id/inputInsId"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/imageView"
-            android:gravity="center"
-            android:digits="aãâáàbcçdeéfghiíjklmnoõôóòpqrstuvwxyzAÃÂÁÀBCÇDEÉFGHIÍJKLMNOÕÔÓÒPQRSTUVWXYZ1234567890@-_'+=(){}[]*%$₹£¢€¥#!?,.;: /?\\¡¿[]•∆π™℅¶♂♀°℃®©\◆●【】&lt;&gt;&amp;"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="-180dp"
-            android:layout_marginLeft="155dp"
-            android:background="@drawable/textborder"
-            android:fontFamily="sans-serif"
-            android:hint="@string/school_id_login"
-            android:imeOptions="actionDone"
-            android:inputType="text"
-            android:maxLines="1"
-            android:text=""
-            android:singleLine="true"
-            android:padding="10dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/light_font" />
+            android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/btnSubmit"
-            android:layout_width="50sp"
-            android:layout_height="50sp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="50dp"
-            android:src="@drawable/login_next_icon" />
 
-    </RelativeLayout>
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="200dp"
+                android:layout_marginLeft="100dp"
+                android:src="@drawable/hp_logo" />
+
+            <EditText
+                android:id="@+id/inputInsId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imageView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="155dp"
+                android:layout_marginTop="-180dp"
+                android:background="@drawable/textborder"
+                android:digits="aãâáàbcçdeéfghiíjklmnoõôóòpqrstuvwxyzAÃÂÁÀBCÇDEÉFGHIÍJKLMNOÕÔÓÒPQRSTUVWXYZ1234567890@-_'+=(){}[]*%$₹£¢€¥#!?,.;: /?\\¡¿[]•∆π™℅¶♂♀°℃®©\◆●【】&lt;&gt;&amp;"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:hint="@string/school_id_login"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@color/white"
+                android:textColorHint="@color/light_font" />
+
+            <ImageView
+                android:id="@+id/btnSubmit"
+                android:layout_width="50sp"
+                android:layout_height="50sp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="50dp"
+                android:src="@drawable/login_next_icon" />
+
+        </RelativeLayout>
 
 </LinearLayout>

@@ -137,10 +137,10 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
 
     private boolean validateFields() {
         if (!AppValidator.checkNullString(this.inputUsername.getText().toString().trim())) {
-            AlertDialogHelper.showSimpleAlertDialog(getApplicationContext(), this.getResources().getString(R.string.enter_user_name));
+            AlertDialogHelper.showSimpleAlertDialog(this, this.getResources().getString(R.string.enter_user_name));
             return false;
         } else if (!AppValidator.checkNullString(this.inputPassword.getText().toString())) {
-            AlertDialogHelper.showSimpleAlertDialog(getApplicationContext(), this.getResources().getString(R.string.enter_password));
+            AlertDialogHelper.showSimpleAlertDialog(this, this.getResources().getString(R.string.enter_password));
             return false;
         } else {
             return true;
