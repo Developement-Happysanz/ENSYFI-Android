@@ -44,15 +44,6 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/actionbarTextSize" />
 
-            <ImageView
-                android:id="@+id/reqOD"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="5dp"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:src="@drawable/od_apply" />
         </RelativeLayout>
         <!--End-->
 
