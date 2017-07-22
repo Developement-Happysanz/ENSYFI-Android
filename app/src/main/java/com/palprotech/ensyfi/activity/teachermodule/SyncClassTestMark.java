@@ -87,6 +87,58 @@ public class SyncClassTestMark implements IServiceListener {
 
     }
 
+    public void syncClassTestMarkToServer() {
+        serviceHelper = new ServiceHelper(context);
+        serviceHelper.setServiceListener(this);
+        progressDialogHelper = new ProgressDialogHelper(context);
+        db = new SQLiteHelper(context);
+        try {
+            Cursor c = db.getClassTestMarkListView();
+            String newOk = "";
+            if (c.getCount() > 0) {
+                if (c.moveToFirst()) {
+                    do {
+                        classTestMarkId = c.getString(0);
+                        studentId = c.getString(1);
+                        localHwId = c.getString(2);
+                        serverHwId = c.getString(3);
+                        marks = c.getString(4);
+                        remarks = c.getString(5);
+                        status = c.getString(6);
+                        createdBy = c.getString(7);
+                        createdAt = c.getString(8);
+                        updatedBy = c.getString(9);
+                        updatedAt = c.getString(10);
+                        syncStatus = c.getString(11);
+
+                        JSONObject jsonObject = new JSONObject();
+                        try {
+
+                            jsonObject.put(EnsyfiConstants.PARAMS_CTMARKS_HW_SERVER_MASTER_ID, serverHwId);
+                            jsonObject.put(EnsyfiConstants.PARAMS_CTMARKS_STUDENT_ID, studentId);
+                            jsonObject.put(EnsyfiConstants.PARAMS_CTMARKS_MARKS, marks);
+                            jsonObject.put(EnsyfiConstants.PARAMS_CTMARKS_REMARKS, remarks);
+                            jsonObject.put(EnsyfiConstants.PARAMS_CTMARKS_CREATED_BY, createdBy);
+                            jsonObject.put(EnsyfiConstants.PARAMS_CTMARKS_CREATED_AT, createdAt);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        progressDialogHelper.showProgressDialog(context.getString(R.string.progress_loading));
+                        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(context) + EnsyfiConstants.GET_CLASS_TEST_MARK_API;
+                        serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
+
+
+                    } while (c.moveToNext());
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
     private boolean validateSignInResponse(JSONObject response) {
         boolean signInSuccess = false;
         if ((response != null)) {

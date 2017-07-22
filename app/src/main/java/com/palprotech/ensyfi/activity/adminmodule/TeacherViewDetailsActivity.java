@@ -120,7 +120,9 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
     public void onClick(View v) {
         if (v == btnTeacherTimeTable) {
 
+            PreferenceStorage.saveTeacherId(this, teacherId.getText().toString());
             Intent intent = new Intent(this, TeacherTimeTableActivity.class);
+
             startActivity(intent);
         }
 

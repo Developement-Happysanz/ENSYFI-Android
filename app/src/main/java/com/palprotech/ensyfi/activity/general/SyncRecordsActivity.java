@@ -14,6 +14,7 @@ import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.activity.teachermodule.SyncAcademicExamMarks;
 import com.palprotech.ensyfi.activity.teachermodule.SyncAttendanceHistoryRecordsActivity;
 import com.palprotech.ensyfi.activity.teachermodule.SyncClassTestHomeWork;
+import com.palprotech.ensyfi.activity.teachermodule.SyncClassTestMark;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
@@ -41,6 +42,7 @@ public class SyncRecordsActivity extends AppCompatActivity implements IServiceLi
     private SyncAttendanceHistoryRecordsActivity syncAttendanceHistoryRecordsActivity;
     private SyncClassTestHomeWork syncClassTestHomeWork;
     private SyncAcademicExamMarks syncAcademicExamMarks;
+    private SyncClassTestMark syncClassTestMark;
     private ProgressDialogHelper progressDialogHelper;
     SQLiteHelper db;
     String localAttendanceId, ac_year, class_id, class_total, no_of_present, no_of_absent,
@@ -74,6 +76,7 @@ public class SyncRecordsActivity extends AppCompatActivity implements IServiceLi
         syncClassTestHomeWork = new SyncClassTestHomeWork(this);
         syncAcademicExamMarks = new SyncAcademicExamMarks(this);
         progressDialogHelper = new ProgressDialogHelper(this);
+        syncClassTestMark = new SyncClassTestMark(this);
     }
 
     @Override
@@ -126,6 +129,7 @@ public class SyncRecordsActivity extends AppCompatActivity implements IServiceLi
             }
             if (v == btnSyncClassTestHomeworkRecords) {
                 syncClassTestHomeWork.syncClassTestHomeWorkRecords();
+                syncClassTestMark.syncClassTestMarkToServer();
             }
             if (v == btnSyncExamMarks) {
                 syncAcademicExamMarks.SyncAcademicMarks();

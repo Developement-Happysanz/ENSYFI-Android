@@ -99,7 +99,7 @@ public class TimeTableReview extends AppCompatActivity implements IServiceListen
 
             JSONObject jsonObject = new JSONObject();
             try {
-                jsonObject.put(EnsyfiConstants.PARAMS_OD_UESR_ID, PreferenceStorage.getUserId(getApplicationContext()));
+                jsonObject.put(EnsyfiConstants.PARAMS_CTHW_TEACHER_ID, PreferenceStorage.getTeacherId(getApplicationContext()));
 
             } catch (JSONException e) {
                 e.printStackTrace();

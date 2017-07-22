@@ -157,8 +157,8 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
 
     private void callOnDayAttendanceViewService() {
 
-//        if (dayViewArrayList != null)
-//            dayViewArrayList.clear();
+        if (dayViewArrayList != null)
+            dayViewArrayList.clear();
 
         if (CommonUtils.isNetworkAvailable(this)) {
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
@@ -182,8 +182,8 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
 
     private void callOnMonthAttendanceViewService() {
 
-//        if (monthViewArrayList != null)
-//            monthViewArrayList.clear();
+        if (monthViewArrayList != null)
+            monthViewArrayList.clear();
 
         if (CommonUtils.isNetworkAvailable(this)) {
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));

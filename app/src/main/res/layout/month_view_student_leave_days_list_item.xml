@@ -43,12 +43,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"
-            android:layout_marginTop="2dp"
             android:layout_marginRight="2dp"
+            android:layout_marginTop="2dp"
             android:layout_weight="0.1"
             android:background="@color/white"
             android:gravity="center"
-            android:text="Test"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="20dp" />
 

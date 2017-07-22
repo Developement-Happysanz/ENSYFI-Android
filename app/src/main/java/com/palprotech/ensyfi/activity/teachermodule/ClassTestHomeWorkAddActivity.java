@@ -206,27 +206,27 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
 
         SimpleDateFormat serverDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         formattedServerDate = serverDF.format(c.getTime());
-
-        String serverHomeWorkId = "";
-        String yearId = PreferenceStorage.getAcademicYearId(this);
-        String classId = getClassSectionId;
-        String teacherId = PreferenceStorage.getTeacherId(this);
-        String homeWorkType = ClassTestOrHomeWork;
-        String subjectId = getClassSubjectId;
-        String SubjectName = subjectName;
-        String title = edtSetTitle.getText().toString();
-        String testDate = mFromDateVal;
-        String dueDate = mToDateVal;
-        String homeWorkDetails = edtDescription.getText().toString();
-        String status = "Active";
-        String markStatus = "0";
-        String createdBy = PreferenceStorage.getUserId(this);
-        String createdAt = formattedServerDate;
-        String updatedBy = PreferenceStorage.getUserId(this);
-        String updatedAt = formattedServerDate;
-        String syncStatus = "NS";
-
         if (validateFields()) {
+            String serverHomeWorkId = "";
+            String yearId = PreferenceStorage.getAcademicYearId(this);
+            String classId = getClassSectionId;
+            String teacherId = PreferenceStorage.getTeacherId(this);
+            String homeWorkType = ClassTestOrHomeWork;
+            String subjectId = getClassSubjectId;
+            String SubjectName = subjectName;
+            String title = edtSetTitle.getText().toString();
+            String testDate = mFromDateVal;
+            String dueDate = mToDateVal;
+            String homeWorkDetails = edtDescription.getText().toString();
+            String status = "Active";
+            String markStatus = "0";
+            String createdBy = PreferenceStorage.getUserId(this);
+            String createdAt = formattedServerDate;
+            String updatedBy = PreferenceStorage.getUserId(this);
+            String updatedAt = formattedServerDate;
+            String syncStatus = "NS";
+
+
             long x = db.homework_class_test_insert(serverHomeWorkId, yearId, classId, teacherId, homeWorkType, subjectId,
                     SubjectName, title, testDate, dueDate, homeWorkDetails, status, markStatus,
                     createdBy, createdAt, updatedBy, updatedAt, syncStatus);

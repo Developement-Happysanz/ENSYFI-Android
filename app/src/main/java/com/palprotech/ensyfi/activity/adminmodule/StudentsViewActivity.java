@@ -68,7 +68,6 @@ public class StudentsViewActivity extends AppCompatActivity implements IServiceL
         spnClassList = (Spinner) findViewById(R.id.class_list_spinner);
         spnSectionList = (Spinner) findViewById(R.id.section_list_spinner);
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
-//        loadMoreListView.setOnLoadMoreListener(this);
         loadMoreListView.setOnItemClickListener(this);
         classStudentArrayList = new ArrayList<>();
 

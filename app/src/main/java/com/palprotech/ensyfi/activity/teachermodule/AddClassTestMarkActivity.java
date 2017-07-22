@@ -18,6 +18,7 @@ import com.palprotech.ensyfi.adapter.teachermodule.StudentListClassTestMarkBaseA
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 import com.palprotech.ensyfi.bean.teacher.viewlist.StudentsClassTestMarks;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
+import com.palprotech.ensyfi.interfaces.DialogClickListener;
 import com.palprotech.ensyfi.utils.AppValidator;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 
@@ -29,7 +30,7 @@ import java.util.Calendar;
  * Created by Admin on 14-07-2017.
  */
 
-public class AddClassTestMarkActivity extends AppCompatActivity implements View.OnClickListener {
+public class AddClassTestMarkActivity extends AppCompatActivity implements View.OnClickListener,DialogClickListener {
 
     long hwId;
     TextView txtTitle, txtTestDate;
@@ -232,5 +233,15 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
 
             finish();
         }
+    }
+
+    @Override
+    public void onAlertPositiveClicked(int tag) {
+
+    }
+
+    @Override
+    public void onAlertNegativeClicked(int tag) {
+
     }
 }

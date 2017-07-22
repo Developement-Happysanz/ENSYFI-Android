@@ -685,6 +685,16 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         return c;
     }
 
+    public Cursor getClassTestMarkListView() throws SQLException {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String fetch = "Select * from classTestMark where sync_status = 'NS' order by _id;";
+        Cursor c = db.rawQuery(fetch, null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
     public void updateClassTestMarkServerId(String val1, String val2) {
         SQLiteDatabase sqdb = this.getWritableDatabase();
         ContentValues values = new ContentValues();
