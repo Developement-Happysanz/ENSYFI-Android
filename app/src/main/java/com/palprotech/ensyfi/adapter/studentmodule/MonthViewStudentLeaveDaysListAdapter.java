@@ -22,7 +22,7 @@ import java.util.ArrayList;
  * Created by Admin on 12-07-2017.
  */
 
-public class MonthViewStudentLeaveDaysListAdapter extends BaseAdapter{
+public class MonthViewStudentLeaveDaysListAdapter extends BaseAdapter {
 
     private static final String TAG = MonthViewListAdapter.class.getName();
     private final Transformation transformation;
@@ -43,6 +43,7 @@ public class MonthViewStudentLeaveDaysListAdapter extends BaseAdapter{
                 .build();
         mSearching = false;
     }
+
     @Override
     public int getCount() {
         if (mSearching) {
@@ -80,8 +81,8 @@ public class MonthViewStudentLeaveDaysListAdapter extends BaseAdapter{
             convertView = inflater.inflate(R.layout.month_view_student_leave_days_list_item, parent, false);
 
             holder = new ViewHolder();
-            holder.txtEnrollId = (TextView) convertView.findViewById(R.id.txtEnrollId);
-            holder.txtStudentName = (TextView) convertView.findViewById(R.id.txtStudentName);
+//            holder.txtEnrollId = (TextView) convertView.findViewById(R.id.txtEnrollId);
+            holder.txtDuration = (TextView) convertView.findViewById(R.id.txtDuration);
             holder.txtLeaveDays = (TextView) convertView.findViewById(R.id.txtLeaveDays);
             convertView.setTag(holder);
         } else {
@@ -99,8 +100,27 @@ public class MonthViewStudentLeaveDaysListAdapter extends BaseAdapter{
 
         MonthViewStudentLeaveDays monthViewStudentLeaveDay = monthViewStudentLeaveDays.get(position);
 
-        holder.txtEnrollId.setText(monthViewStudentLeaveDays.get(position).getEnrollId());
-        holder.txtStudentName.setText(monthViewStudentLeaveDays.get(position).getName());
+//        holder.txtEnrollId.setText(monthViewStudentLeaveDays.get(position).getEnrollId());
+        String checkStatus = monthViewStudentLeaveDays.get(position).getLeaves();
+        int status = Integer.parseInt(checkStatus);
+        String leaveNos = "";
+        if (status == 1) {
+            leaveNos = "Half day";
+        } else {
+            leaveNos = "Full day";
+        }
+        String checkStatus1 = monthViewStudentLeaveDays.get(position).getAStatus();
+        String leaveType = "";
+        if (checkStatus1.contentEquals("L")) {
+            leaveType = "leave";
+        } else if (checkStatus1.contentEquals("A")) {
+            leaveType = "absent";
+        } else if (checkStatus1.contentEquals("OD")) {
+            leaveType = "OD";
+        } else {
+            leaveType = "";
+        }
+        holder.txtDuration.setText(leaveNos + " " + leaveType);
         holder.txtLeaveDays.setText(monthViewStudentLeaveDays.get(position).getAbsDate());
         return convertView;
     }
@@ -136,7 +156,7 @@ public class MonthViewStudentLeaveDaysListAdapter extends BaseAdapter{
     }
 
     public class ViewHolder {
-        public TextView txtEnrollId, txtStudentName, txtLeaveDays;
+        public TextView txtEnrollId, txtStudentName, txtLeaveDays, txtDuration;
     }
 
     public boolean ismSearching() {
