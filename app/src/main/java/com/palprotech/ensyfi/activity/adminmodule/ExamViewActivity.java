@@ -19,7 +19,6 @@ import com.google.gson.Gson;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.activity.studentmodule.ExamDetailActivity;
 import com.palprotech.ensyfi.activity.studentmodule.ExamMarksActivity;
-import com.palprotech.ensyfi.activity.studentmodule.ExamsResultActivity;
 import com.palprotech.ensyfi.adapter.studentmodule.ExamListAdapter;
 import com.palprotech.ensyfi.bean.admin.support.StoreClass;
 import com.palprotech.ensyfi.bean.admin.support.StoreSection;

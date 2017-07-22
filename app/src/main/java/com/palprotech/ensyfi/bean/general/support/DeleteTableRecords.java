@@ -4,8 +4,6 @@ import android.content.Context;
 
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 
-import org.json.JSONArray;
-
 /**
  * Created by Admin on 18-07-2017.
  */

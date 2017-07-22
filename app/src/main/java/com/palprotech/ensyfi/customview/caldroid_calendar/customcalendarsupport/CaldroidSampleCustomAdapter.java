@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.customview.caldroid_calendar.customcalendar.CaldroidFragment;
 import com.palprotech.ensyfi.customview.caldroid_calendar.customcalendar.CaldroidGridAdapter;

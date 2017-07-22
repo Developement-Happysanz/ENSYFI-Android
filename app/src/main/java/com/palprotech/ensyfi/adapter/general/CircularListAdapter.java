@@ -12,11 +12,8 @@ import android.widget.TextView;
 import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.adapter.studentmodule.ClassTestListAdapter;
-import com.palprotech.ensyfi.adapter.studentmodule.CommunicationListAdapter;
 import com.palprotech.ensyfi.app.AppController;
 import com.palprotech.ensyfi.bean.general.viewlist.Circular;
-import com.palprotech.ensyfi.bean.general.viewlist.Communication;
 import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;

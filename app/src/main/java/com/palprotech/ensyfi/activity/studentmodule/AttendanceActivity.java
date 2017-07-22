@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.bean.student.viewlist.Attendance;
 import com.palprotech.ensyfi.customview.caldroid_calendar.customcalendar.CaldroidFragment;

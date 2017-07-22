@@ -1,7 +1,6 @@
 package com.palprotech.ensyfi.activity.teachermodule;
 
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -11,7 +10,6 @@ import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -33,7 +31,6 @@ import com.palprotech.ensyfi.bean.student.viewlist.DayView;
 import com.palprotech.ensyfi.bean.student.viewlist.DayViewList;
 import com.palprotech.ensyfi.bean.student.viewlist.MonthView;
 import com.palprotech.ensyfi.bean.student.viewlist.MonthViewList;
-import com.palprotech.ensyfi.bean.teacher.viewlist.Students;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;

@@ -2,7 +2,6 @@ package com.palprotech.ensyfi.bean.admin.viewlist;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.palprotech.ensyfi.bean.student.viewlist.ClassTest;
 
 import java.util.ArrayList;
 

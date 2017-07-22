@@ -27,20 +27,15 @@ import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.activity.general.CircularActivity;
 import com.palprotech.ensyfi.activity.general.EventsActivity;
 import com.palprotech.ensyfi.activity.general.LeaveStatusActivity;
-import com.palprotech.ensyfi.activity.general.OnDutyActivity;
 import com.palprotech.ensyfi.activity.loginmodule.ChangePasswordActivity;
 import com.palprotech.ensyfi.activity.loginmodule.ProfileActivity;
 import com.palprotech.ensyfi.activity.loginmodule.SplashScreenActivity;
-import com.palprotech.ensyfi.activity.parentsmodule.ParentsCommunicationActivity;
-import com.palprotech.ensyfi.activity.studentmodule.ExamsResultActivity;
-import com.palprotech.ensyfi.activity.studentmodule.StudentInfoActivity;
-import com.palprotech.ensyfi.activity.studentmodule.StudentTimeTableActivity;
 import com.palprotech.ensyfi.adapter.NavDrawerAdapter;
 import com.palprotech.ensyfi.bean.general.support.DeleteTableRecords;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
-import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by Admin on 11-07-2017.

@@ -14,7 +14,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.adapter.adminmodule.ClassStudentListAdapter;
 import com.palprotech.ensyfi.app.AppController;
-import com.palprotech.ensyfi.bean.admin.viewlist.ClassStudent;
 import com.palprotech.ensyfi.bean.teacher.viewlist.ClassTestMark;
 import com.squareup.picasso.Transformation;
 

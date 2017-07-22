@@ -15,7 +15,6 @@ import android.widget.ListView;
 import com.google.gson.Gson;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.adapter.general.CircularListAdapter;
-import com.palprotech.ensyfi.adapter.studentmodule.CommunicationListAdapter;
 import com.palprotech.ensyfi.bean.general.viewlist.Circular;
 import com.palprotech.ensyfi.bean.general.viewlist.CircularList;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;

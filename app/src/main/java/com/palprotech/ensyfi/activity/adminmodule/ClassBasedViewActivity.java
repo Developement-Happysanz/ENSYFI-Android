@@ -431,21 +431,21 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
 
     protected void updateListStudentAdapter(ArrayList<ClassStudent> classStudentArrayList) {
         this.classStudentArrayList.addAll(classStudentArrayList);
-        if (classStudentListAdapter == null) {
+//        if (classStudentListAdapter == null) {
             classStudentListAdapter = new ClassStudentListAdapter(this, this.classStudentArrayList);
             loadMoreListView.setAdapter(classStudentListAdapter);
-        } else {
+//        } else {
             classStudentListAdapter.notifyDataSetChanged();
-        }
+//        }
     }
 
     protected void updateListTeacherAdapter(ArrayList<TeacherView> teacherViewArrayList) {
         this.teacherViewArrayList.addAll(teacherViewArrayList);
-        if (teacherViewListAdapter == null) {
+//        if (teacherViewListAdapter == null) {
             teacherViewListAdapter = new TeacherViewListAdapter(this, this.teacherViewArrayList);
             loadMoreListView.setAdapter(teacherViewListAdapter);
-        } else {
+//        } else {
             teacherViewListAdapter.notifyDataSetChanged();
-        }
+//        }
     }
 }

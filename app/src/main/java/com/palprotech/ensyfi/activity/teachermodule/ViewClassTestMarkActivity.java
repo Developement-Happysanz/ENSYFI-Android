@@ -12,11 +12,7 @@ import android.widget.ListView;
 
 import com.google.gson.Gson;
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.activity.adminmodule.ParentsViewActivity;
-import com.palprotech.ensyfi.adapter.adminmodule.ParentStudentListAdapter;
 import com.palprotech.ensyfi.adapter.teachermodule.ClassTestMarkListAdapter;
-import com.palprotech.ensyfi.bean.admin.viewlist.ParentStudent;
-import com.palprotech.ensyfi.bean.admin.viewlist.ParentStudentList;
 import com.palprotech.ensyfi.bean.teacher.viewlist.ClassTestMark;
 import com.palprotech.ensyfi.bean.teacher.viewlist.ClassTestMarkList;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
