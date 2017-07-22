@@ -6,6 +6,7 @@
     android:background="@color/white"
     android:fitsSystemWindows="true"
     android:gravity="center"
+    android:id="@+id/mainLayout"
     android:orientation="vertical"
     tools:context=".activity.loginmodule.UserLoginActivity">
 

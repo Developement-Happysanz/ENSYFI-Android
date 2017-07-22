@@ -83,7 +83,7 @@
 
                 <TextView
                     android:id="@+id/txthomeworksubject"
-                    android:layout_width="120dp"
+                    android:layout_width="150dp"
                     android:layout_height="50dp"
                     android:layout_centerHorizontal="true"
                     android:background="@color/appColor"
@@ -91,7 +91,7 @@
                     android:text=""
                     android:textAllCaps="true"
                     android:textColor="@color/white"
-                    android:textSize="25dp"
+                    android:textSize="23dp"
                     android:textStyle="bold" />
 
                 <LinearLayout
