@@ -30,7 +30,7 @@ import java.util.Calendar;
  * Created by Admin on 14-07-2017.
  */
 
-public class AddClassTestMarkActivity extends AppCompatActivity implements View.OnClickListener,DialogClickListener {
+public class AddClassTestMarkActivity extends AppCompatActivity implements View.OnClickListener, DialogClickListener {
 
     long hwId;
     TextView txtTitle, txtTestDate;
@@ -179,10 +179,10 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
             if (!AppValidator.checkNullString(edtClassTestMark.getText().toString().trim())) {
                 AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid marks for student - " + String.valueOf(et1.getText()));
             }
-            if (Mark <= 0 || Mark >= validMark + 1) {
-                AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid marks for student - " + String.valueOf(et1.getText()) + " between 0 to " + validMark);
-
-            } else {
+//            if (Mark <= 0 || Mark >= validMark + 1) {
+//                AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid marks for student - " + String.valueOf(et1.getText()) + " between 0 to " + validMark);
+//            }
+            else {
                 count++;
             }
         }
@@ -217,7 +217,7 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
                         marks = "0";
                     }
 
-                    long c = db.class_test_mark_insert(enrollId, homeWorkId, "", marks, remarks, "Active", PreferenceStorage.getUserId(getApplicationContext()), formattedServerDate, PreferenceStorage.getUserId(getApplicationContext()), formattedServerDate, "NS");
+                    long c = db.class_test_mark_insert(enrollId, homeWorkId, serverHomeWorkId, marks, remarks, "Active", PreferenceStorage.getUserId(getApplicationContext()), formattedServerDate, PreferenceStorage.getUserId(getApplicationContext()), formattedServerDate, "NS");
                     if (c == -1) {
                         Toast.makeText(getApplicationContext(), "Error while marks add...",
                                 Toast.LENGTH_LONG).show();

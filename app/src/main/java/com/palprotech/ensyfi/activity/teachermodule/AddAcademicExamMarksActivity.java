@@ -164,14 +164,14 @@ public class AddAcademicExamMarksActivity extends AppCompatActivity implements V
                 AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid external marks for student - " + String.valueOf(et1.getText()));
 //                return false;
             }
-            if (internalMark <= 0 || internalMark >= validInternalMark + 1) {
-                AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid internal marks for student - " + String.valueOf(et1.getText()) + " between 0 to " + validInternalMark);
-
-            }
-            if (externalMark <= 0 || externalMark >= validExternalMark + 1) {
-                AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid external marks for student - " + String.valueOf(et1.getText()) + " between 0 to " + validExternalMark);
-
-            } else {
+//            if (internalMark <= 0 || internalMark >= validInternalMark + 1) {
+//                AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid internal marks for student - " + String.valueOf(et1.getText()) + " between 0 to " + validInternalMark);
+//
+//            }
+//            if (externalMark <= 0 || externalMark >= validExternalMark + 1) {
+//                AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid external marks for student - " + String.valueOf(et1.getText()) + " between 0 to " + validExternalMark);
+//            }
+            else {
                 count++;
 //                return true;
             }

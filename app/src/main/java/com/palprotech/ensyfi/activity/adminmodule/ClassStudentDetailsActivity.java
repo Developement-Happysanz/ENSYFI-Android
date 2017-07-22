@@ -237,6 +237,12 @@ public class ClassStudentDetailsActivity extends AppCompatActivity implements IS
                 PreferenceStorage.saveStudentClassIdPreference(getApplicationContext(), ClassId);
             }
 
+            String StudentId = classStudent.getEnrollId();
+            // Student Preference - EnrollId
+            if ((StudentId != null) && !(StudentId.isEmpty()) && !StudentId.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveStudentRegisteredIdPreference(getApplicationContext(), StudentId);
+            }
+
             Intent intent = new Intent(this, ExamsResultActivity.class);
             startActivity(intent);
         }

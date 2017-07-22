@@ -111,7 +111,7 @@ public class ClassStudent implements Serializable {
      * @return The class_id
      */
     public String getClassId() {
-        return admisn_year;
+        return class_id;
     }
 
     /**

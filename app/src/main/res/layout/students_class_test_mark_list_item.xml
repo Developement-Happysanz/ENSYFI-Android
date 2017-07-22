@@ -33,8 +33,8 @@
             android:layout_weight="0.04"
             android:background="@color/white"
             android:gravity="left|center"
-            android:text="Name"
             android:paddingLeft="10dp"
+            android:text="Name"
             android:textColor="@color/black"
             android:textSize="15sp" />
 
@@ -46,12 +46,14 @@
             android:layout_marginLeft="1dp"
             android:layout_weight="0.099"
             android:background="@color/white"
+            android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:gravity="center"
             android:hint="Mark"
             android:inputType="numberSigned"
-            android:text="0"
             android:maxLength="3"
             android:maxLines="1"
+            android:singleLine="true"
+            android:text="0"
             android:textColor="@color/black"
             android:textColorHint="@color/gray_2"
             android:textSize="15sp" />
