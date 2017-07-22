@@ -57,7 +57,7 @@
 
             <TextView
                 android:id="@+id/ClassStudentRegId"
-                android:layout_width="250dp"
+                android:layout_width="190dp"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/ClassStdAdmnNo"
                 android:layout_alignTop="@+id/ClassStdAdmnNo"
@@ -70,7 +70,7 @@
 
             <TextView
                 android:id="@+id/ClassStudentName"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/ClassStdAdmnNo"
                 android:layout_alignTop="@+id/ClassStdAdmnNo"
@@ -79,7 +79,7 @@
                 android:layout_toRightOf="@+id/ClassStudentRegId"
                 android:background="@color/appColor"
                 android:gravity="center"
-                android:text="Internal Mark"
+                android:text="Internal"
                 android:textColor="@color/white"
                 android:textSize="18dp" />
 
@@ -93,7 +93,7 @@
                 android:layout_marginRight="2dp"
                 android:background="@color/appColor"
                 android:gravity="center"
-                android:text="External Mark"
+                android:text="External"
                 android:textColor="@color/white"
                 android:textSize="18dp" />
         </RelativeLayout>
