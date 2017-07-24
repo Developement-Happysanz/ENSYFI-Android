@@ -75,7 +75,7 @@ public class ClassTestHomeWorkListBaseAdapter extends BaseAdapter {
         mViewHolder.txtClassTestTitle.setText(currentListData.getTitle());
         mViewHolder.txtClassTestSubject.setText(currentListData.getSubjectName());
         mViewHolder.txtClassTestType.setText("-  " + isTypeChecked);
-        mViewHolder.txtClassTestDate.setText(currentListData.getTestDate());
+        mViewHolder.txtClassTestDate.setText("Given Date : " + currentListData.getTestDate() + " - Due Date : " + currentListData.getDueDate());
         mViewHolder.txtClassTestHomeWorkId.setText("" + currentListData.getId());
 
         convertView.setOnClickListener(new View.OnClickListener() {

@@ -166,6 +166,7 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
                         lde.setSubjectName(c.getString(2));
                         lde.setHomeWorkType(c.getString(3));
                         lde.setTestDate(c.getString(4));
+                        lde.setDueDate(c.getString(5));
 
                         // Add this object into the ArrayList myList
                         myList.add(lde);
