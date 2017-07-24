@@ -41,7 +41,7 @@ public class EnsyfiConstants {
     public static final String GET_COMMUNICATION_CIRCULAR_ADMIN_API = "/apiadmin/get_all_circular_view/";
 
     // UPLOAD USER PROFILE
-    public static final String UPLOAD_PROFILE_IMAGE = "/apimain/update_Profilepic/";
+    public static final String UPLOAD_PROFILE_IMAGE = "/apimain/user_profilepic_upload/";
 
     // FEES STATUS
     public static final String GET_FEES_STATUS = "/apistudent/disp_Fees/";

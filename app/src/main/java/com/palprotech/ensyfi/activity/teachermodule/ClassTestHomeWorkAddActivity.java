@@ -74,6 +74,7 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
     String singleDate = "", getClassSectionId, classSection, ClassTestOrHomeWork = "HT", subjectName = "", getClassSubjectId;
     DatePickerDialog mFromDatePickerDialog = null;
     private RadioGroup radioClassTestHomeWork;
+    private TextView checkDateTitle;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -110,6 +111,8 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
         frombackground = (LinearLayout) findViewById(R.id.fromDatee);
         tobackground = (LinearLayout) findViewById(R.id.toDatee);
 
+        checkDateTitle = (TextView) findViewById(R.id.checkDateTitle);
+
         getClassList();
 
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
@@ -130,11 +133,13 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
                 switch (checkedId) {
                     case R.id.radioClassTest:
                         ClassTestOrHomeWork = "HT";
+                        checkDateTitle.setText("Test Date ");
                         getClassId(classSection);
                         break;
 
                     case R.id.radioHomeWork:
                         ClassTestOrHomeWork = "HW";
+                        checkDateTitle.setText("Submission Date ");
                         getClassId(classSection);
                         break;
                 }
@@ -272,7 +277,7 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
             AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid details");
             return false;
         } else if (getDate < 0) {
-            AlertDialogHelper.showSimpleAlertDialog(this, "ToDate should not lesser than FromDate");
+            AlertDialogHelper.showSimpleAlertDialog(this, "Should not lesser than Today's Date");
             return false;
         } else {
             return true;
