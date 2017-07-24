@@ -69,7 +69,6 @@ public class ClassTestHomeWorkListBaseAdapter extends BaseAdapter {
 
         mViewHolder.txtClassTestTitle.setText(currentListData.getTitle());
         mViewHolder.txtClassTestSubject.setText(currentListData.getSubjectName());
-        mViewHolder.txtClassTestType.setText("-  " + isTypeChecked);
         if (checkClassTestType.equalsIgnoreCase("HT")) {
             isTypeChecked = "Class Test";
             mViewHolder.txtClassTestDate.setText("Test Date : " + currentListData.getDueDate());
@@ -77,6 +76,7 @@ public class ClassTestHomeWorkListBaseAdapter extends BaseAdapter {
             isTypeChecked = "Home Work";
             mViewHolder.txtClassTestDate.setText("Homework Submission Date : " + currentListData.getDueDate());
         }
+        mViewHolder.txtClassTestType.setText("-  " + isTypeChecked);
         mViewHolder.txtClassTestHomeWorkId.setText("" + currentListData.getId());
 
         convertView.setOnClickListener(new View.OnClickListener() {
