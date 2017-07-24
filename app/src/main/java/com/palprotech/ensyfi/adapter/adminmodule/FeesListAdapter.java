@@ -14,9 +14,12 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.app.AppController;
 import com.palprotech.ensyfi.bean.admin.viewlist.Fees;
+import com.palprotech.ensyfi.bean.student.viewlist.DayView;
 import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Created by Admin on 19-07-2017.
@@ -33,10 +36,16 @@ public class FeesListAdapter extends BaseAdapter{
     private ArrayList<Integer> mValidSearchIndices = new ArrayList<Integer>();
     private ImageLoader imageLoader = AppController.getInstance().getUniversalImageLoader();
 
+    Comparator<Fees> myComparator = new Comparator<Fees>() {
+        public int compare(Fees obj1, Fees obj2) {
+            return obj1.getFeesId().compareTo(obj2.getFeesId());
+        }
+    };
+
     public FeesListAdapter(Context context, ArrayList<Fees> fees) {
         this.context = context;
         this.fees = fees;
-
+        Collections.sort(fees, myComparator);
         transformation = new RoundedTransformationBuilder()
                 .cornerRadiusDp(0)
                 .oval(false)

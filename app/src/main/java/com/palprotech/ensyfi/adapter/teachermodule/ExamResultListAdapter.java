@@ -14,16 +14,19 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.adapter.adminmodule.ClassStudentListAdapter;
 import com.palprotech.ensyfi.app.AppController;
+import com.palprotech.ensyfi.bean.student.viewlist.DayView;
 import com.palprotech.ensyfi.bean.teacher.viewlist.ExamResult;
 import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Created by Admin on 19-07-2017.
  */
 
-public class ExamResultListAdapter extends BaseAdapter{
+public class ExamResultListAdapter extends BaseAdapter {
 
     private static final String TAG = ClassStudentListAdapter.class.getName();
     private final Transformation transformation;
@@ -34,9 +37,16 @@ public class ExamResultListAdapter extends BaseAdapter{
     private ArrayList<Integer> mValidSearchIndices = new ArrayList<Integer>();
     private ImageLoader imageLoader = AppController.getInstance().getUniversalImageLoader();
 
+    Comparator<ExamResult> myComparator = new Comparator<ExamResult>() {
+        public int compare(ExamResult obj1, ExamResult obj2) {
+            return obj1.getName().compareTo(obj2.getName());
+        }
+    };
+
     public ExamResultListAdapter(Context context, ArrayList<ExamResult> examResults) {
         this.context = context;
         this.examResults = examResults;
+        Collections.sort(examResults, myComparator);
 
         transformation = new RoundedTransformationBuilder()
                 .cornerRadiusDp(0)

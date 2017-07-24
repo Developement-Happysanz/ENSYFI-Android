@@ -33,6 +33,7 @@ public class ExamListAdapter extends BaseAdapter{
     private ArrayList<Integer> mValidSearchIndices =new ArrayList<Integer>();
     private ImageLoader imageLoader = AppController.getInstance().getUniversalImageLoader();
 
+
     public ExamListAdapter(Context context, ArrayList<Exams> exams) {
         this.context = context;
         this.exams = exams;
