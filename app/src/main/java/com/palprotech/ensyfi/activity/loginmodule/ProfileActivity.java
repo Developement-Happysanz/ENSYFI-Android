@@ -70,20 +70,6 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
     private ImageView mProfileImage = null, btnBack;
     private TextView txtUsrName, txtUserType, txtPassword;
 
-    private TextView Name, Address, Mail, Occupation, Income, Mobile, OfficePhone, HomePhone;
-
-    private TextView GName, GAddress, GMail, GOccupation, GIncome, GMobile, GOfficePhone, GHomePhone;
-    private TextView teacherId, teacherName, teacherGender, teacherAge, teacherNationality, teacherReligion, teacherCaste,
-            teacherCommunity, teacherAddress, teacherSubject, classTeacher, teacherMobile, teacherSecondaryMobile, teacherMail,
-            teacherSecondaryMail, teacherSectionName, teacherClassName, teacherClassTaken;
-
-    private TextView studentAdmissionId, studentAdmissionYear, studentAdmissionNumber, studentEmsiNumber, studentAdmissionDate,
-            studentName, studentGender, studentDateOfBirth, studentAge, studentNationality, studentReligion, studentCaste,
-            studentCommunity, studentParentOrGuardian, studentParentOrGuardianId, studentMotherTongue, studentLanguage,
-            studentMobile, studentSecondaryMobile, studentMail, studentSecondaryMail, studentPreviousSchool,
-            studentPreviousClass, studentPromotionStatus, studentTransferCertificate, studentRecordSheet, studentStatus,
-            studentParentStatus, studentRegistered;
-
     private TextView ParentProfile, GuardianProfile, StudentProfile, FeeStatusView, TeacherProfile;
 
     private ServiceHelper serviceHelper;
@@ -147,7 +133,7 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
             finish();
         }
         if (v == mProfileImage) {
-//            openImageIntent();
+            openImageIntent();
         }
         if (v == txtPassword) {
             AlertDialogHelper.showCompoundAlertDialog(ProfileActivity.this, "Change Password", "Password will be Reset. Do you still wish to continue...", "OK", "CANCEL", 1);
@@ -211,13 +197,18 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
             tbtnCancel.setVisibility(View.INVISIBLE);
         }
         if (v == btnSave) {
-//            saveUserProfile();
+            saveUserProfile();
         }
     }
 
     @Override
     public void onResponse(JSONObject response) {
         progressDialogHelper.hideProgressDialog();
+
+        if (mProgressDialog != null) {
+            mProgressDialog.cancel();
+        }
+
         if (validateSignInResponse(response)) {
             try {
 
@@ -296,7 +287,7 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
             String responseString = null;
 
             httpclient = new DefaultHttpClient();
-            httppost = new HttpPost(String.format(EnsyfiConstants.UPLOAD_PROFILE_IMAGE, Integer.parseInt(PreferenceStorage.getUserId(ProfileActivity.this))));
+            httppost = new HttpPost(String.format(EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.UPLOAD_PROFILE_IMAGE + Integer.parseInt(PreferenceStorage.getUserId(ProfileActivity.this)) + "/" + PreferenceStorage.getUserType(ProfileActivity.this)));
 //            httppost = new HttpPost(String.format(EnsyfiConstants.UPLOAD_PROFILE_IMAGE));
 
             try {
@@ -347,7 +338,9 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
                         try {
                             JSONObject resp = new JSONObject(responseString);
                             String successVal = resp.getString("status");
-                            mUpdatedImageUrl = resp.getString("image");
+
+                            mUpdatedImageUrl = resp.getString("user_picture");
+
                             Log.d(TAG, "updated image url is" + mUpdatedImageUrl);
                             if (successVal.equalsIgnoreCase("success")) {
                                 Log.d(TAG, "Updated image succesfully");
@@ -379,7 +372,21 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
                 Toast.makeText(ProfileActivity.this, "Unable to save profile picture", Toast.LENGTH_SHORT).show();
             } else {
                 if (mUpdatedImageUrl != null) {
-                    PreferenceStorage.saveUserPicture(ProfileActivity.this, mUpdatedImageUrl);
+                    String userTypeString = PreferenceStorage.getUserType(getApplicationContext()); //Get userType for generate user image url
+                    String imageURL = "";
+                    String UserPicUrl = "";
+                    int userType = Integer.parseInt(userTypeString);
+                    if (userType == 1) {
+                        imageURL = EnsyfiConstants.USER_IMAGE_API_ADMIN; // Admin user image url
+                    } else if (userType == 2) {
+                        imageURL = EnsyfiConstants.USER_IMAGE_API_TEACHERS; // Teacher user image url
+                    } else if (userType == 3) {
+                        imageURL = EnsyfiConstants.USER_IMAGE_API_STUDENTS; // Student user image url
+                    } else {
+                        imageURL = EnsyfiConstants.USER_IMAGE_API_PARENTS; // Parents user image url
+                    }
+                    UserPicUrl = PreferenceStorage.getUserDynamicAPI(getApplicationContext()) + imageURL + mUpdatedImageUrl; // Generate user image url
+                    PreferenceStorage.saveUserPicture(ProfileActivity.this, UserPicUrl);
                 }
             }
 //            saveProfileData();
@@ -697,120 +704,49 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
 
     }
 
-    private void callFatherInfoPreferences() {
-        Name.setText(PreferenceStorage.getFatherName(getApplicationContext()));
-        Address.setText(PreferenceStorage.getFatherAddress(getApplicationContext()));
-        Mail.setText(PreferenceStorage.getFatherEmail(getApplicationContext()));
-        Occupation.setText(PreferenceStorage.getFatherOccupation(getApplicationContext()));
-        Income.setText(PreferenceStorage.getFatherIncome(getApplicationContext()));
-        Mobile.setText(PreferenceStorage.getFatherMobile(getApplicationContext()));
-        OfficePhone.setText(PreferenceStorage.getFatherOfficePhone(getApplicationContext()));
-        HomePhone.setText(PreferenceStorage.getFatherHomePhone(getApplicationContext()));
-        String url = PreferenceStorage.getFatherImg(this);
+//    private TextView studentAdmissionId, studentAdmissionYear, studentAdmissionNumber, studentEmsiNumber, studentAdmissionDate,
+//            studentName, studentGender, studentDateOfBirth, studentAge, studentNationality, studentReligion, studentCaste,
+//            studentCommunity, studentParentOrGuardian, studentParentOrGuardianId, studentMotherTongue, studentLanguage,
+//            studentMobile, studentSecondaryMobile, studentMail, studentSecondaryMail, studentPreviousSchool,
+//            studentPreviousClass, studentPromotionStatus, studentTransferCertificate, studentRecordSheet, studentStatus,
+//            studentParentStatus, studentRegistered;
 
-        if (((url != null) && !(url.isEmpty()))) {
-            Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(fatherInfo);
-        }
-    }
-
-    private void callMotherInfoPreferences() {
-        Name.setText(PreferenceStorage.getMotherName(getApplicationContext()));
-        Address.setText(PreferenceStorage.getMotherAddress(getApplicationContext()));
-        Mail.setText(PreferenceStorage.getMotherEmail(getApplicationContext()));
-        Occupation.setText(PreferenceStorage.getMotherOccupation(getApplicationContext()));
-        Income.setText(PreferenceStorage.getMotherIncome(getApplicationContext()));
-        Mobile.setText(PreferenceStorage.getMotherMobile(getApplicationContext()));
-        OfficePhone.setText(PreferenceStorage.getMotherOfficePhone(getApplicationContext()));
-        HomePhone.setText(PreferenceStorage.getMotherHomePhone(getApplicationContext()));
-        String url = PreferenceStorage.getMotherImg(this);
-
-        if (((url != null) && !(url.isEmpty()))) {
-            Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(motherInfo);
-        }
-    }
-
-    private void callGuardianInfoPreferences() {
-        guardianInfoPopup.setVisibility(View.VISIBLE);
-        GbtnCancel.setVisibility(View.VISIBLE);
-        GName.setText(PreferenceStorage.getGuardianName(getApplicationContext()));
-        GAddress.setText(PreferenceStorage.getGuardianAddress(getApplicationContext()));
-        GMail.setText(PreferenceStorage.getGuardianEmail(getApplicationContext()));
-        GOccupation.setText(PreferenceStorage.getGuardianOccupation(getApplicationContext()));
-        GIncome.setText(PreferenceStorage.getGuardianIncome(getApplicationContext()));
-        GMobile.setText(PreferenceStorage.getGuardianMobile(getApplicationContext()));
-        GOfficePhone.setText(PreferenceStorage.getGuardianOfficePhone(getApplicationContext()));
-        GHomePhone.setText(PreferenceStorage.getGuardianHomePhone(getApplicationContext()));
-        String url = PreferenceStorage.getGuardianImg(this);
-
-        if (((url != null) && !(url.isEmpty()))) {
-            Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(guardianImg);
-        }
-    }
-
-    private void callTeacherInfoPreferences() {
-        teacherInfoPopup.setVisibility(View.VISIBLE);
-        tbtnCancel.setVisibility(View.VISIBLE);
-        teacherId.setText(PreferenceStorage.getTeacherId(getApplicationContext()));
-        teacherName.setText(PreferenceStorage.getTeacherName(getApplicationContext()));
-        teacherGender.setText(PreferenceStorage.getTeacherGender(getApplicationContext()));
-        teacherAge.setText(PreferenceStorage.getTeacherAge(getApplicationContext()));
-        teacherNationality.setText(PreferenceStorage.getTeacherNationality(getApplicationContext()));
-        teacherReligion.setText(PreferenceStorage.getTeacherReligion(getApplicationContext()));
-        teacherCaste.setText(PreferenceStorage.getTeacherCaste(getApplicationContext()));
-        teacherCommunity.setText(PreferenceStorage.getTeacherCommunity(getApplicationContext()));
-        teacherAddress.setText(PreferenceStorage.getTeacherAddress(getApplicationContext()));
-        teacherSubject.setText(PreferenceStorage.getTeacherSubject(getApplicationContext()));
-        classTeacher.setText(PreferenceStorage.getClassTeacher(getApplicationContext()));
-        teacherMobile.setText(PreferenceStorage.getTeacherMobile(getApplicationContext()));
-        teacherSecondaryMobile.setText(PreferenceStorage.getTeacherSecondaryMobile(getApplicationContext()));
-        teacherMail.setText(PreferenceStorage.getTeacherMail(getApplicationContext()));
-        teacherSecondaryMail.setText(PreferenceStorage.getTeacherSecondaryMail(getApplicationContext()));
-        teacherSectionName.setText(PreferenceStorage.getTeacherSectionName(getApplicationContext()));
-        teacherClassName.setText(PreferenceStorage.getTeacherClassName(getApplicationContext()));
-        teacherClassTaken.setText(PreferenceStorage.getTeacherClassTaken(getApplicationContext()));
-        String url = PreferenceStorage.getTeacherPic(this);
-
-        if (((url != null) && !(url.isEmpty()))) {
-            Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(teacherImg);
-        }
-    }
-
-    private void callStudentInfoPreferences() {
-        studentAdmissionId.setText(PreferenceStorage.getStudentAdmissionID(getApplicationContext()));
-        studentAdmissionYear.setText(PreferenceStorage.getStudentAdmissionYear(getApplicationContext()));
-        studentAdmissionNumber.setText(PreferenceStorage.getStudentAdmissionNumber(getApplicationContext()));
-        studentEmsiNumber.setText(PreferenceStorage.getStudentEmsiNumber(getApplicationContext()));
-        studentAdmissionDate.setText(PreferenceStorage.getStudentAdmissionDate(getApplicationContext()));
-        studentName.setText(PreferenceStorage.getStudentName(getApplicationContext()));
-        studentGender.setText(PreferenceStorage.getStudentGender(getApplicationContext()));
-        studentDateOfBirth.setText(PreferenceStorage.getStudentDateOfBirth(getApplicationContext()));
-        studentAge.setText(PreferenceStorage.getStudentAge(getApplicationContext()));
-        studentNationality.setText(PreferenceStorage.getStudentNationality(getApplicationContext()));
-        studentReligion.setText(PreferenceStorage.getStudentReligion(getApplicationContext()));
-        studentCaste.setText(PreferenceStorage.getStudentCaste(getApplicationContext()));
-        studentCommunity.setText(PreferenceStorage.getStudentCommunity(getApplicationContext()));
-        studentParentOrGuardian.setText(PreferenceStorage.getStudentParentOrGuardian(getApplicationContext()));
-        studentParentOrGuardianId.setText(PreferenceStorage.getStudentParentOrGuardianID(getApplicationContext()));
-        studentMotherTongue.setText(PreferenceStorage.getStudentMotherTongue(getApplicationContext()));
-        studentLanguage.setText(PreferenceStorage.getStudentLanguage(getApplicationContext()));
-        studentMobile.setText(PreferenceStorage.getStudentMobile(getApplicationContext()));
-        studentSecondaryMobile.setText(PreferenceStorage.getStudentSecondaryMobile(getApplicationContext()));
-        studentMail.setText(PreferenceStorage.getStudentMail(getApplicationContext()));
-        studentSecondaryMail.setText(PreferenceStorage.getStudentSecondaryMail(getApplicationContext()));
-        studentPreviousSchool.setText(PreferenceStorage.getStudentPreviousSchool(getApplicationContext()));
-        studentPreviousClass.setText(PreferenceStorage.getStudentPreviousClass(getApplicationContext()));
-        studentPromotionStatus.setText(PreferenceStorage.getStudentPromotionStatus(getApplicationContext()));
-        studentTransferCertificate.setText(PreferenceStorage.getStudentTransferCertificate(getApplicationContext()));
-        studentRecordSheet.setText(PreferenceStorage.getStudentRecordSheet(getApplicationContext()));
-        studentStatus.setText(PreferenceStorage.getStudentStatus(getApplicationContext()));
-        studentParentStatus.setText(PreferenceStorage.getStudentParentStatus(getApplicationContext()));
-        studentRegistered.setText(PreferenceStorage.getStudentRegistered(getApplicationContext()));
-        String url = PreferenceStorage.getStudentImg(this);
-
-        if (((url != null) && !(url.isEmpty()))) {
-            Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(studentImg);
-        }
-    }
+//    private void callStudentInfoPreferences() {
+//        studentAdmissionId.setText(PreferenceStorage.getStudentAdmissionID(getApplicationContext()));
+//        studentAdmissionYear.setText(PreferenceStorage.getStudentAdmissionYear(getApplicationContext()));
+//        studentAdmissionNumber.setText(PreferenceStorage.getStudentAdmissionNumber(getApplicationContext()));
+//        studentEmsiNumber.setText(PreferenceStorage.getStudentEmsiNumber(getApplicationContext()));
+//        studentAdmissionDate.setText(PreferenceStorage.getStudentAdmissionDate(getApplicationContext()));
+//        studentName.setText(PreferenceStorage.getStudentName(getApplicationContext()));
+//        studentGender.setText(PreferenceStorage.getStudentGender(getApplicationContext()));
+//        studentDateOfBirth.setText(PreferenceStorage.getStudentDateOfBirth(getApplicationContext()));
+//        studentAge.setText(PreferenceStorage.getStudentAge(getApplicationContext()));
+//        studentNationality.setText(PreferenceStorage.getStudentNationality(getApplicationContext()));
+//        studentReligion.setText(PreferenceStorage.getStudentReligion(getApplicationContext()));
+//        studentCaste.setText(PreferenceStorage.getStudentCaste(getApplicationContext()));
+//        studentCommunity.setText(PreferenceStorage.getStudentCommunity(getApplicationContext()));
+//        studentParentOrGuardian.setText(PreferenceStorage.getStudentParentOrGuardian(getApplicationContext()));
+//        studentParentOrGuardianId.setText(PreferenceStorage.getStudentParentOrGuardianID(getApplicationContext()));
+//        studentMotherTongue.setText(PreferenceStorage.getStudentMotherTongue(getApplicationContext()));
+//        studentLanguage.setText(PreferenceStorage.getStudentLanguage(getApplicationContext()));
+//        studentMobile.setText(PreferenceStorage.getStudentMobile(getApplicationContext()));
+//        studentSecondaryMobile.setText(PreferenceStorage.getStudentSecondaryMobile(getApplicationContext()));
+//        studentMail.setText(PreferenceStorage.getStudentMail(getApplicationContext()));
+//        studentSecondaryMail.setText(PreferenceStorage.getStudentSecondaryMail(getApplicationContext()));
+//        studentPreviousSchool.setText(PreferenceStorage.getStudentPreviousSchool(getApplicationContext()));
+//        studentPreviousClass.setText(PreferenceStorage.getStudentPreviousClass(getApplicationContext()));
+//        studentPromotionStatus.setText(PreferenceStorage.getStudentPromotionStatus(getApplicationContext()));
+//        studentTransferCertificate.setText(PreferenceStorage.getStudentTransferCertificate(getApplicationContext()));
+//        studentRecordSheet.setText(PreferenceStorage.getStudentRecordSheet(getApplicationContext()));
+//        studentStatus.setText(PreferenceStorage.getStudentStatus(getApplicationContext()));
+//        studentParentStatus.setText(PreferenceStorage.getStudentParentStatus(getApplicationContext()));
+//        studentRegistered.setText(PreferenceStorage.getStudentRegistered(getApplicationContext()));
+//        String url = PreferenceStorage.getStudentImg(this);
+//
+//        if (((url != null) && !(url.isEmpty()))) {
+//            Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(studentImg);
+//        }
+//    }
 
 }
 

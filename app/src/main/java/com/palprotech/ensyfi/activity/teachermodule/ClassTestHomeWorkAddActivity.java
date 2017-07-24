@@ -74,7 +74,7 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
     String singleDate = "", getClassSectionId, classSection, ClassTestOrHomeWork = "HT", subjectName = "", getClassSubjectId;
     DatePickerDialog mFromDatePickerDialog = null;
     private RadioGroup radioClassTestHomeWork;
-    private TextView checkDateTitle;
+    private LinearLayout checkTestTitle, checkDueTitle;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -111,8 +111,12 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
         frombackground = (LinearLayout) findViewById(R.id.fromDatee);
         tobackground = (LinearLayout) findViewById(R.id.toDatee);
 
-        checkDateTitle = (TextView) findViewById(R.id.checkDateTitle);
-        checkDateTitle.setText("Test Date ");
+        checkTestTitle = (LinearLayout) findViewById(R.id.checkTestTitle);
+
+        checkDueTitle = (LinearLayout) findViewById(R.id.checkDueTitle);
+
+        checkTestTitle.setVisibility(View.VISIBLE);
+        checkDueTitle.setVisibility(View.GONE);
 
         getClassList();
 
@@ -134,13 +138,15 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
                 switch (checkedId) {
                     case R.id.radioClassTest:
                         ClassTestOrHomeWork = "HT";
-                        checkDateTitle.setText("Test Date ");
+                        checkTestTitle.setVisibility(View.VISIBLE);
+                        checkDueTitle.setVisibility(View.GONE);
                         getClassId(classSection);
                         break;
 
                     case R.id.radioHomeWork:
                         ClassTestOrHomeWork = "HW";
-                        checkDateTitle.setText("Submission Date ");
+                        checkTestTitle.setVisibility(View.GONE);
+                        checkDueTitle.setVisibility(View.VISIBLE);
                         getClassId(classSection);
                         break;
                 }
@@ -277,10 +283,12 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
         } else if (!AppValidator.checkNullString(this.edtDescription.getText().toString().trim())) {
             AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid details");
             return false;
-        } else if (getDate < 0) {
-            AlertDialogHelper.showSimpleAlertDialog(this, "Should not lesser than Today's Date");
-            return false;
-        } else {
+        }
+//        else if (getDate < 0) {
+//            AlertDialogHelper.showSimpleAlertDialog(this, "Should not lesser than Today's Date");
+//            return false;
+//        }
+        else {
             return true;
         }
     }
