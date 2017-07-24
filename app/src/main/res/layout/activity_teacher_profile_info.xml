@@ -82,11 +82,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
+                    android:textStyle="bold"
                     android:layout_marginTop="10dp"
                     android:layout_below="@+id/TeacherName"
                     android:text="Id                                :"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
                 <TextView
                     android:id="@+id/txtTeacherid"
@@ -109,7 +110,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Name                        :"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="18dp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/txtTeacherName"
@@ -131,7 +133,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Gender                      :"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="18dp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/txtTeacherGender"
@@ -153,7 +156,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Address                    :"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textStyle="bold"
+                    android:textSize="18dp" />
 
                 <TextView
                     android:id="@+id/txtTeacherAddress"
@@ -174,8 +178,9 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Age                            :"
+                    android:textStyle="bold"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
 
                 <TextView
@@ -196,9 +201,10 @@
                     android:layout_below="@+id/TeacherAge"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
+                    android:textStyle="bold"
                     android:text="Nationality                :"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
 
                 <TextView
@@ -219,9 +225,10 @@
                     android:layout_below="@+id/txtTeacherNationality"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
+                    android:textStyle="bold"
                     android:text="Religion                     :"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
 
                 <TextView
@@ -242,9 +249,10 @@
                     android:layout_below="@+id/TeacherReligion"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
+                    android:textStyle="bold"
                     android:text="Caste                         :"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
                 <TextView
                     android:id="@+id/txtTeacherCaste"
@@ -265,9 +273,10 @@
                     android:layout_below="@+id/TeacherCaste"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
+                    android:textStyle="bold"
                     android:text="Community              :"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
                 <TextView
                     android:id="@+id/txtTeacherCommunity"
@@ -288,9 +297,10 @@
                     android:layout_below="@+id/TeacherCommunity"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
+                    android:textStyle="bold"
                     android:text="Handling Subject    :"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
                 <TextView
                     android:id="@+id/txtTeacherSubject"
@@ -311,9 +321,10 @@
                     android:layout_below="@+id/TeacherSubject"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
+                    android:textStyle="bold"
                     android:text="Class Teacher          :"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
                 <TextView
                     android:id="@+id/txtClassTeacher"
@@ -333,10 +344,11 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/ClassTeacher"
                     android:layout_marginLeft="10dp"
+                    android:textStyle="bold"
                     android:layout_marginTop="10dp"
                     android:text="Class Section           :"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
                 <TextView
                     android:id="@+id/txtTeacherSectionName"
@@ -356,9 +368,10 @@
                     android:layout_below="@+id/TeacherSectionName"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
+                    android:textStyle="bold"
                     android:text="Class Name              :"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
                 <TextView
                     android:id="@+id/txtTeacherClassName"
@@ -377,10 +390,11 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/TeacherClassName"
                     android:layout_marginLeft="10dp"
+                    android:textStyle="bold"
                     android:layout_marginTop="10dp"
                     android:text="Mobile                       :"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
                 <TextView
                     android:id="@+id/txtTeacherMobile"
@@ -399,10 +413,11 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/TeacherMobile"
                     android:layout_marginLeft="10dp"
+                    android:textStyle="bold"
                     android:layout_marginTop="10dp"
                     android:text="Secondary Mobile   :"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
                 <TextView
                     android:id="@+id/txtTeacherSecondaryMobile"
@@ -421,10 +436,11 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/TeacherSecondaryMobile"
                     android:layout_marginLeft="10dp"
+                    android:textStyle="bold"
                     android:layout_marginTop="10dp"
                     android:text="Mail                            :"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
 
                 <TextView
@@ -445,9 +461,10 @@
                     android:layout_below="@+id/TeacherMail"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
+                    android:textStyle="bold"
                     android:text="Secondary Mail        :"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
                 <TextView
                     android:id="@+id/txtTeacherSecondaryMail"
@@ -466,10 +483,11 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/TeacherSecondaryMail"
                     android:layout_marginLeft="10dp"
+                    android:textStyle="bold"
                     android:layout_marginTop="10dp"
                     android:text="Class Taken              :"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
 
                 <TextView

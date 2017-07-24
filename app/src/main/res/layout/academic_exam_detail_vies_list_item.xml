@@ -14,7 +14,7 @@
         <TextView
             android:id="@+id/txtSubDate"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginTop="2dp"
             android:layout_weight="0.33"
@@ -27,7 +27,7 @@
         <TextView
             android:id="@+id/txtSubTime"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginTop="2dp"
             android:layout_weight="0.33"

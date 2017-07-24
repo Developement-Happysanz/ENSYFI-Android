@@ -8,6 +8,7 @@ import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
@@ -64,6 +65,13 @@ public class ViewClassTestMarkActivity extends AppCompatActivity implements ISer
         classTestMarkArrayList = new ArrayList<>();
 
         GetClassTestMarkData();
+        ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
+        bckbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 

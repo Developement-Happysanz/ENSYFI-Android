@@ -116,7 +116,8 @@
                 android:layout_marginTop="30dp"
                 android:text="Name               :"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textStyle="bold"
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/txtfathername"
@@ -139,7 +140,8 @@
                 android:layout_marginTop="10dp"
                 android:text="Address           :"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textStyle="bold"
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/txtfatheraddress"
@@ -161,7 +163,8 @@
                 android:layout_marginTop="10dp"
                 android:text="Mail                  :"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textStyle="bold"
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/txtfathermail"
@@ -183,7 +186,8 @@
                 android:layout_marginTop="10dp"
                 android:text="Occupation     :"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textStyle="bold"
+                android:textSize="18dp"/>
 
             <TextView
                 android:id="@+id/txtfatheroccupation"
@@ -205,7 +209,8 @@
                 android:layout_marginTop="10dp"
                 android:text="Income            :"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textStyle="bold"
+                android:textSize="18dp"/>
 
             <TextView
                 android:id="@+id/txtincome"
@@ -227,7 +232,8 @@
                 android:layout_marginTop="10dp"
                 android:text="Mobile             :"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textStyle="bold"
+                android:textSize="18dp"/>
 
             <TextView
                 android:id="@+id/txtfathermobile"
@@ -249,7 +255,8 @@
                 android:layout_marginTop="10dp"
                 android:text="Home Phone  :"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textStyle="bold"
+                android:textSize="18dp"/>
 
             <TextView
                 android:id="@+id/txtfatherhomephone"
@@ -272,7 +279,8 @@
                 android:layout_marginTop="10dp"
                 android:text="Office Phone  :"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textStyle="bold"
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/txtfatherofficephone"

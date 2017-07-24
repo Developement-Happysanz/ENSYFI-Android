@@ -71,7 +71,7 @@
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
                     android:textAllCaps="true"
-                    android:text="Tamil"
+                    android:text="Computer Science"
                     android:textColor="@color/white"
                     android:textSize="23dp"
                     android:textStyle="bold" />
