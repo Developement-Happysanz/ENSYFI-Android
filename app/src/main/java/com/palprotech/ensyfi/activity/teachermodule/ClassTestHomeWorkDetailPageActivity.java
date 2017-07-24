@@ -101,8 +101,10 @@ public class ClassTestHomeWorkDetailPageActivity extends AppCompatActivity imple
             if (homeWorkType.equalsIgnoreCase("HT")) {
                 txtPageTitle.setText("Class Test");
                 checkMarkStatus = Integer.parseInt(markStatus);
-                txtDueDateTitle.setVisibility(View.GONE);
-                txtDueDate.setVisibility(View.GONE);
+                txtDueDateTitle.setVisibility(View.VISIBLE);
+                txtDueDate.setVisibility(View.VISIBLE);
+                txtDueDateTitle.setText("Test Date : ");
+                txtTestDateTitle.setText("Given Date : ");
                 if (checkMarkStatus == 0) {
                     addMarks.setVisibility(View.VISIBLE);
                     viewMarks.setVisibility(View.GONE);

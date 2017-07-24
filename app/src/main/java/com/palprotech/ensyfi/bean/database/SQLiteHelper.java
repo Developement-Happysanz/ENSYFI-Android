@@ -592,7 +592,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public Cursor getClassTestHomeWork(String classId, String homeWorkType) throws SQLException {
         SQLiteDatabase db = this.getWritableDatabase();
         //_id,title,subject_name,hw_type,test_date
-        String fetch = "Select _id,title,subject_name,hw_type,test_date from homeWorkClassTest where class_id=" + classId + " and hw_type = '" + homeWorkType + "' order by _id asc;";
+        String fetch = "Select _id,title,subject_name,hw_type,test_date,due_date from homeWorkClassTest where class_id=" + classId + " and hw_type = '" + homeWorkType + "' order by _id asc;";
         Cursor c = db.rawQuery(fetch, null);
         if (c != null) {
             c.moveToFirst();

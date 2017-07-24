@@ -11,6 +11,7 @@ public class ClassTestHomeWork {
     public String subject_name;
     public String hw_type;
     public String test_date;
+    public String due_date;
 
     public int getId() {
         return id;
@@ -50,5 +51,13 @@ public class ClassTestHomeWork {
 
     public void setTestDate(String TestDate) {
         test_date = TestDate;
+    }
+
+    public String getDueDate() {
+        return due_date;
+    }
+
+    public void setDueDate(String DueDate) {
+        due_date = DueDate;
     }
 }
