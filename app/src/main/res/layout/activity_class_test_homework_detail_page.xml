@@ -84,14 +84,14 @@
                 <TextView
                     android:id="@+id/txthomeworksubject"
                     android:layout_width="150dp"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:background="@color/appColor"
                     android:gravity="center"
                     android:text=""
                     android:textAllCaps="true"
                     android:textColor="@color/white"
-                    android:textSize="23dp"
+                    android:textSize="20dp"
                     android:textStyle="bold" />
 
                 <LinearLayout

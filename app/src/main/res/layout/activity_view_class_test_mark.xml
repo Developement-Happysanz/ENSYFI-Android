@@ -67,7 +67,8 @@
                 android:layout_alignBottom="@+id/ClassStdAdmnNo"
                 android:gravity="center"
                 android:text="ID"
-                android:textSize="18dp"/>
+                android:textSize="18dp"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/ClassStudentName"

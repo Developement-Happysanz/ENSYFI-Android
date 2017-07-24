@@ -36,7 +36,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         WebView wView = (WebView) findViewById(R.id.web);
         wView.getSettings();
         wView.setBackgroundColor(Color.TRANSPARENT);
-        wView.loadUrl("file:///android_asset/ensyfi_logo.gif");
+        wView.loadUrl("file:///android_asset/ensyfi.gif");
 
         // disable scroll on touch
         wView.setOnTouchListener(new View.OnTouchListener() {

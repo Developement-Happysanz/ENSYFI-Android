@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="70dp"
-                android:text="Name                :"
+                android:text="Name                  :"
                 android:textColor="@color/black"
                 android:textSize="18dp" />
 
@@ -88,7 +88,7 @@
                 android:layout_below="@+id/studname"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:text="Student Id         :"
+                android:text="Student Id           :"
                 android:textColor="@color/black"
                 android:textSize="18dp" />
 
@@ -132,7 +132,7 @@
                 android:layout_below="@+id/txtadmissid"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
-                android:text="Class                 :"
+                android:text="Class                   :"
                 android:textColor="@color/black"
                 android:textSize="18dp" />
 

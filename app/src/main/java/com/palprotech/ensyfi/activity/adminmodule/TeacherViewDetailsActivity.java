@@ -128,6 +128,7 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
 
         if (v == btnBack) {
             finish();
+            clearTeacherInfo();
         }
 
     }
@@ -226,4 +227,28 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
 //        teacherClassName.setText(PreferenceStorage.getTeacherClassName(getApplicationContext()));
         teacherClassTaken.setText(PreferenceStorage.getTeacherClassTaken(getApplicationContext()));
     }
+
+    private void clearTeacherInfo() {
+
+        teacherId.clearComposingText();
+        teacherName.clearComposingText();
+        teacherGender.clearComposingText();
+        teacherAge.clearComposingText();
+        teacherNationality.clearComposingText();
+        teacherReligion.clearComposingText();
+        teacherCaste.clearComposingText();
+        teacherCommunity.clearComposingText();
+        teacherAddress.clearComposingText();
+//        teacherSubject.clearComposingText();
+        classTeacher.clearComposingText();
+        teacherMobile.clearComposingText();
+        teacherSecondaryMobile.clearComposingText();
+        teacherMail.clearComposingText();
+        teacherSecondaryMail.clearComposingText();
+//        teacherSectionName.clearComposingText();
+//        teacherClassName.clearComposingText();
+        teacherClassTaken.clearComposingText();
+
+    }
+
 }

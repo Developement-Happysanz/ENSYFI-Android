@@ -123,15 +123,15 @@
 
             <TextView
                 android:id="@+id/txthwctsubject"
-                android:layout_width="120dp"
-                android:layout_height="50dp"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@color/appColor"
                 android:gravity="center"
                 android:text=""
                 android:textAllCaps="true"
                 android:textColor="@color/white"
-                android:textSize="25dp"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
             <TextView
