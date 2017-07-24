@@ -13,10 +13,13 @@ import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.app.AppController;
+import com.palprotech.ensyfi.bean.student.viewlist.DayView;
 import com.palprotech.ensyfi.bean.student.viewlist.ExamDetailsView;
 import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Created by Admin on 18-05-2017.
@@ -33,10 +36,16 @@ public class ExamDetailViewListAdapter extends BaseAdapter {
     private ArrayList<Integer> mValidSearchIndices = new ArrayList<Integer>();
     private ImageLoader imageLoader = AppController.getInstance().getUniversalImageLoader();
 
+    Comparator<ExamDetailsView> myComparator = new Comparator<ExamDetailsView>() {
+        public int compare(ExamDetailsView obj1, ExamDetailsView obj2) {
+            return obj1.getExamDate().compareTo(obj2.getExamDate());
+        }
+    };
+
     public ExamDetailViewListAdapter(Context context, ArrayList<ExamDetailsView> examDetailsViews) {
         this.context = context;
         this.examDetailsViews = examDetailsViews;
-
+        Collections.sort(examDetailsViews, myComparator);
         transformation = new RoundedTransformationBuilder()
                 .cornerRadiusDp(0)
                 .oval(false)

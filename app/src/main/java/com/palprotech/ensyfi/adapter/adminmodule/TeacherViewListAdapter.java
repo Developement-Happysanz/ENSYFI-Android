@@ -13,10 +13,13 @@ import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.app.AppController;
+import com.palprotech.ensyfi.bean.admin.viewlist.ClassStudent;
 import com.palprotech.ensyfi.bean.admin.viewlist.TeacherView;
 import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Created by Admin on 18-07-2017.
@@ -33,10 +36,16 @@ public class TeacherViewListAdapter extends BaseAdapter {
     private ArrayList<Integer> mValidSearchIndices = new ArrayList<Integer>();
     private ImageLoader imageLoader = AppController.getInstance().getUniversalImageLoader();
 
+    Comparator<TeacherView> myComparator = new Comparator<TeacherView>() {
+        public int compare(TeacherView obj1, TeacherView obj2) {
+            return obj1.getTeacherId().compareTo(obj2.getTeacherId());
+        }
+    };
+
     public TeacherViewListAdapter(Context context, ArrayList<TeacherView> teacherViews) {
         this.context = context;
         this.teacherViews = teacherViews;
-
+        Collections.sort(teacherViews, myComparator);
         transformation = new RoundedTransformationBuilder()
                 .cornerRadiusDp(0)
                 .oval(false)

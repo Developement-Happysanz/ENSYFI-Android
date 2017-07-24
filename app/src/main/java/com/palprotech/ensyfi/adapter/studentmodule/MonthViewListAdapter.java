@@ -13,10 +13,13 @@ import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.app.AppController;
+import com.palprotech.ensyfi.bean.student.viewlist.DayView;
 import com.palprotech.ensyfi.bean.student.viewlist.MonthView;
 import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Created by Admin on 12-07-2017.
@@ -33,9 +36,16 @@ public class MonthViewListAdapter extends BaseAdapter {
     private ArrayList<Integer> mValidSearchIndices = new ArrayList<Integer>();
     private ImageLoader imageLoader = AppController.getInstance().getUniversalImageLoader();
 
+    Comparator<MonthView> myComparator = new Comparator<MonthView>() {
+        public int compare(MonthView obj1, MonthView obj2) {
+            return obj1.getEnrollId().compareTo(obj2.getEnrollId());
+        }
+    };
+
     public MonthViewListAdapter(Context context, ArrayList<MonthView> monthViews) {
         this.context = context;
         this.monthViews = monthViews;
+        Collections.sort(monthViews, myComparator);
 
         transformation = new RoundedTransformationBuilder()
                 .cornerRadiusDp(0)

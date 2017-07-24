@@ -17,6 +17,8 @@ import com.palprotech.ensyfi.bean.student.viewlist.DayView;
 import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Created by Admin on 12-07-2017.
@@ -33,9 +35,16 @@ public class DayViewListAdapter extends BaseAdapter {
     private ArrayList<Integer> mValidSearchIndices = new ArrayList<Integer>();
     private ImageLoader imageLoader = AppController.getInstance().getUniversalImageLoader();
 
+    Comparator<DayView> myComparator = new Comparator<DayView>() {
+        public int compare(DayView obj1, DayView obj2) {
+            return obj1.getEnrollId().compareTo(obj2.getEnrollId());
+        }
+    };
+
     public DayViewListAdapter(Context context, ArrayList<DayView> dayViews) {
         this.context = context;
         this.dayViews = dayViews;
+        Collections.sort(dayViews, myComparator);
 
         transformation = new RoundedTransformationBuilder()
                 .cornerRadiusDp(0)
@@ -102,19 +111,16 @@ public class DayViewListAdapter extends BaseAdapter {
 
         holder.txtEnrollId.setText(dayViews.get(position).getEnrollId());
         holder.txtStudentName.setText(dayViews.get(position).getName());
-        if((dayViews.get(position).getAStatus()).contentEquals("A")) {
+        if ((dayViews.get(position).getAStatus()).contentEquals("A")) {
             holder.txtAttendanceStatus.setBackgroundResource(R.drawable.btn_attendance_absent);
             holder.txtAttendanceStatus.setText("Absent");
-        }
-        else if((dayViews.get(position).getAStatus()).contentEquals("P")) {
+        } else if ((dayViews.get(position).getAStatus()).contentEquals("P")) {
             holder.txtAttendanceStatus.setBackgroundResource(R.drawable.btn_attendance_present);
             holder.txtAttendanceStatus.setText("Present");
-        }
-        else if((dayViews.get(position).getAStatus()).contentEquals("OD")) {
+        } else if ((dayViews.get(position).getAStatus()).contentEquals("OD")) {
             holder.txtAttendanceStatus.setBackgroundResource(R.drawable.btn_attendance_od);
             holder.txtAttendanceStatus.setText("OD");
-        }
-        else {
+        } else {
             holder.txtAttendanceStatus.setBackgroundResource(R.drawable.btn_attendance_leave);
             holder.txtAttendanceStatus.setText("Leave");
         }

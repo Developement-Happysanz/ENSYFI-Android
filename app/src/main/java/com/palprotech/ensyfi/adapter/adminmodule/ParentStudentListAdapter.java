@@ -14,9 +14,12 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.app.AppController;
 import com.palprotech.ensyfi.bean.admin.viewlist.ParentStudent;
+import com.palprotech.ensyfi.bean.student.viewlist.DayView;
 import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Created by Admin on 18-07-2017.
@@ -33,10 +36,16 @@ public class ParentStudentListAdapter extends BaseAdapter {
     private ArrayList<Integer> mValidSearchIndices = new ArrayList<Integer>();
     private ImageLoader imageLoader = AppController.getInstance().getUniversalImageLoader();
 
+    Comparator<ParentStudent> myComparator = new Comparator<ParentStudent>() {
+        public int compare(ParentStudent obj1, ParentStudent obj2) {
+            return obj1.getStudentId().compareTo(obj2.getStudentId());
+        }
+    };
+
     public ParentStudentListAdapter(Context context, ArrayList<ParentStudent> parentStudents) {
         this.context = context;
         this.parentStudents = parentStudents;
-
+        Collections.sort(parentStudents, myComparator);
         transformation = new RoundedTransformationBuilder()
                 .cornerRadiusDp(0)
                 .oval(false)

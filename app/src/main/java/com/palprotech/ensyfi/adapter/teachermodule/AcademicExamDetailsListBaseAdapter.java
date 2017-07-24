@@ -8,9 +8,12 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.palprotech.ensyfi.R;
+import com.palprotech.ensyfi.bean.student.viewlist.DayView;
 import com.palprotech.ensyfi.bean.teacher.viewlist.AcademicExamDetails;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Created by Admin on 15-07-2017.
@@ -23,9 +26,16 @@ public class AcademicExamDetailsListBaseAdapter extends BaseAdapter {
     Context context;
     int[] result;
 
+    Comparator<AcademicExamDetails> myComparator = new Comparator<AcademicExamDetails>() {
+        public int compare(AcademicExamDetails obj1, AcademicExamDetails obj2) {
+            return obj1.getExamDate().compareTo(obj2.getExamDate());
+        }
+    };
+
     public AcademicExamDetailsListBaseAdapter(Context context, ArrayList<AcademicExamDetails> myList) {
         this.myList = myList;
         this.context = context;
+        Collections.sort(myList, myComparator);
         inflater = LayoutInflater.from(this.context);
     }
 
