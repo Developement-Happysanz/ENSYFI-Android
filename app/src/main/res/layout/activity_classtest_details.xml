@@ -65,15 +65,15 @@
 
                 <TextView
                     android:id="@+id/txthomeworksubject"
-                    android:layout_width="120dp"
-                    android:layout_height="50dp"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
                     android:background="@color/appColor"
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
                     android:textAllCaps="true"
                     android:text="Tamil"
                     android:textColor="@color/white"
-                    android:textSize="25dp"
+                    android:textSize="23dp"
                     android:textStyle="bold" />
 
                 <TextView
