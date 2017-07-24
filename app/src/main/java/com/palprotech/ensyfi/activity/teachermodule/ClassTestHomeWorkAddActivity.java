@@ -112,6 +112,7 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
         tobackground = (LinearLayout) findViewById(R.id.toDatee);
 
         checkDateTitle = (TextView) findViewById(R.id.checkDateTitle);
+        checkDateTitle.setText("Test Date ");
 
         getClassList();
 
