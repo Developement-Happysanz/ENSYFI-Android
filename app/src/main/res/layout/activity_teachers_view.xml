@@ -47,7 +47,6 @@
         android:layout_marginTop="50dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"
         android:background="@color/black"
         android:orientation="vertical">
 
@@ -113,7 +112,7 @@
         <ListView
             android:id="@+id/listView_events"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="367dp"
             android:divider="@color/background_grey"
             android:dividerHeight="0dp">
 

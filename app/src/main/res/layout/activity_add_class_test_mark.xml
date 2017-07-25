@@ -104,7 +104,7 @@
         <RelativeLayout
             android:id="@+id/listOfStudents"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="248dp"
             android:layout_below="@+id/classList"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
@@ -156,11 +156,11 @@
             <ListView
                 android:id="@+id/listView_students"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/attendrollnum"
                 android:layout_marginRight="1dp"
                 android:divider="@color/black"
-                android:dividerHeight="1dp">
+                android:dividerHeight="0dp">
 
             </ListView>
 

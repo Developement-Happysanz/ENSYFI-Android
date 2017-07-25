@@ -85,13 +85,6 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
 
         getClassList();
 
-        ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
-        bckbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
         spnClassList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -141,6 +134,15 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
                 startActivity(navigationIntent);
             }
         });
+
+        ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
+        bckbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
 
     private void callSpinner() {
