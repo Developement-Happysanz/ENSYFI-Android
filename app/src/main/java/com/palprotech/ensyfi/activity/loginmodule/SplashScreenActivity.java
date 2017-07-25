@@ -60,10 +60,10 @@ public class SplashScreenActivity extends AppCompatActivity {
             }
         });
 
-        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        IMEINo = telephonyManager.getDeviceId();
-
-        PreferenceStorage.saveIMEI(getApplicationContext(), IMEINo);
+//        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+//        IMEINo = telephonyManager.getDeviceId();
+//
+//        PreferenceStorage.saveIMEI(getApplicationContext(), IMEINo);
 
         //Initializing our broadcast receiver
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
