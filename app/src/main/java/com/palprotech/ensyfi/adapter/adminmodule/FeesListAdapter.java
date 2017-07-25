@@ -25,7 +25,7 @@ import java.util.Comparator;
  * Created by Admin on 19-07-2017.
  */
 
-public class FeesListAdapter extends BaseAdapter{
+public class FeesListAdapter extends BaseAdapter {
 
     private static final String TAG = ClassStudentListAdapter.class.getName();
     private final Transformation transformation;

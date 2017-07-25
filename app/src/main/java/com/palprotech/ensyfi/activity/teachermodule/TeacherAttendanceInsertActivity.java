@@ -148,7 +148,12 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
                     }
                 }
                 UpdateLastInsertedStudentAttendance(valLeave, valAbsent, valOD, valPresent, lastInsertedId);
-                btnSave.setVisibility(View.GONE);
+
+                Toast.makeText(getApplicationContext(), "Attendance Updated Successfully...",
+                        Toast.LENGTH_LONG).show();
+
+                finish();
+//                btnSave.setVisibility(View.GONE);
             }
         });
 
@@ -159,7 +164,6 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
                 finish();
             }
         });
-
     }
 
     private void UpdateLastInsertedStudentAttendance(int valLeave, int valAbsent, int valOD, int valPresent, String totalNoOfStudents) {

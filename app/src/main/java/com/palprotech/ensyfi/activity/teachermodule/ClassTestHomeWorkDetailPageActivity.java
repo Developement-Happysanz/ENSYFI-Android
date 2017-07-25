@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -101,10 +102,9 @@ public class ClassTestHomeWorkDetailPageActivity extends AppCompatActivity imple
             if (homeWorkType.equalsIgnoreCase("HT")) {
                 txtPageTitle.setText("Class Test");
                 checkMarkStatus = Integer.parseInt(markStatus);
-                txtDueDateTitle.setVisibility(View.VISIBLE);
-                txtDueDate.setVisibility(View.VISIBLE);
-                txtDueDateTitle.setText("Test Date : ");
-                txtTestDateTitle.setText("Given Date : ");
+                txtTestDateTitle.setText("Test Date : ");
+                ((LinearLayout) findViewById(R.id.dueDateLayout)).setVisibility(View.GONE);
+                ((TextView) findViewById(R.id.underlineDueDate)).setVisibility(View.GONE);
                 if (checkMarkStatus == 0) {
                     addMarks.setVisibility(View.VISIBLE);
                     viewMarks.setVisibility(View.GONE);
@@ -117,9 +117,9 @@ public class ClassTestHomeWorkDetailPageActivity extends AppCompatActivity imple
                 txtPageTitle.setText("Homework");
                 addMarks.setVisibility(View.GONE);
                 viewMarks.setVisibility(View.GONE);
-                txtDueDateTitle.setVisibility(View.VISIBLE);
-                txtDueDate.setVisibility(View.VISIBLE);
-                txtTestDateTitle.setText("Given Date :");
+                txtDueDateTitle.setText("Due Date : ");
+                ((LinearLayout) findViewById(R.id.testDateLayout)).setVisibility(View.GONE);
+                ((TextView) findViewById(R.id.underlineTestDate)).setVisibility(View.GONE);
             }
             txtSubjectName.setText(subjectName);
             clsTitle.setText(title);
