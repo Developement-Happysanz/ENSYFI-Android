@@ -231,15 +231,11 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
 
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setIndeterminate(true);
-        mProgressDialog.setMessage("Updating Profile");
+        mProgressDialog.setMessage("Updating Profile Picture...");
         mProgressDialog.show();
         if ((mActualFilePath != null)) {
             Log.d(TAG, "Update profile picture");
             saveUserImage();
-        }
-
-        if (mProgressDialog != null) {
-            mProgressDialog.cancel();
         }
 //        else {
 //            saveProfileData();
@@ -387,6 +383,13 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
                     }
                     UserPicUrl = PreferenceStorage.getUserDynamicAPI(getApplicationContext()) + imageURL + mUpdatedImageUrl; // Generate user image url
                     PreferenceStorage.saveUserPicture(ProfileActivity.this, UserPicUrl);
+
+                    if (mProgressDialog != null) {
+                        mProgressDialog.cancel();
+                    }
+
+                    Toast.makeText(ProfileActivity.this, "Profile picture updated successfully", Toast.LENGTH_SHORT).show();
+                    btnSave.setVisibility(View.GONE);
                 }
             }
 //            saveProfileData();
@@ -598,6 +601,7 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        btnSave.setVisibility(View.VISIBLE);
     }
 
     private void callGetStudentInfoService() {

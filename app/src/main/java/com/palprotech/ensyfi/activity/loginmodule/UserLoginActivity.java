@@ -114,6 +114,9 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     try {
                         jsonObject.put(EnsyfiConstants.PARAMS_USER_NAME, inputUsername.getText().toString());
                         jsonObject.put(EnsyfiConstants.PARAMS_PASSWORD, inputPassword.getText().toString());
+                        String GCMKey = PreferenceStorage.getGCM(getApplicationContext());
+                        jsonObject.put(EnsyfiConstants.GCM_KEY, GCMKey);
+                        jsonObject.put(EnsyfiConstants.MOBILE_TYPE, "1");
 
                     } catch (JSONException e) {
                         e.printStackTrace();

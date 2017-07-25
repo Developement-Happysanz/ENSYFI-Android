@@ -415,6 +415,9 @@ public class EnsyfiConstants {
     public static final String KEY_GCM_ID = "gcm_id";
     public static final String KEY_IMEI = "imei_code";
 
+    public static final String GCM_KEY = "gcm_key";
+    public static final String MOBILE_TYPE = "mobile_type";
+
     public static final long TWENTY4HOURS = 24 * 60 * 60 * 1000;//24 hours in milli seconds format
 
 }

@@ -42,6 +42,8 @@ public class SchoolIdLoginActivity extends AppCompatActivity implements View.OnC
     private EditText inputInstituteId;
     private ImageView btnSubmit;
 
+    public static final String REG_ID = "regId";
+
     //Creating a broadcast receiver for gcm registration
 //    private BroadcastReceiver mRegistrationBroadcastReceiver;
 
