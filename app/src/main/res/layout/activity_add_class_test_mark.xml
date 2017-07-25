@@ -45,135 +45,150 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/classList"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/classList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/titleLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Topic :"
+                        android:textColor="@color/appColor"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/txtTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:text="Topic"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/testDateLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/titleLayout"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Test Date :"
+                        android:textColor="@color/appColor"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/txtTestDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:text="Topic :"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+            </RelativeLayout>
 
             <LinearLayout
-                android:id="@+id/titleLayout"
+                android:id="@+id/listOfStudents"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/classList"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/black"
                 android:orientation="vertical">
 
-                <TextView
+                <LinearLayout
+                    android:id="@+id/attendrollnum"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="10dp"
-                    android:text="Topic :"
-                    android:textColor="@color/appColor"
-                    android:textSize="20sp" />
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="1dp"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/txtTitle"
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_weight="0.099"
+                        android:background="@color/appColor"
+                        android:gravity="center"
+                        android:text="ID"
+                        android:textColor="@color/white"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_weight="0.04"
+                        android:background="@color/appColor"
+                        android:gravity="center"
+                        android:text="Name"
+                        android:textColor="@color/white"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_weight="0.099"
+                        android:background="@color/appColor"
+                        android:gravity="center"
+                        android:text="Mark"
+                        android:textColor="@color/white"
+                        android:textSize="18dp" />
+
+                </LinearLayout>
+
+                <ListView
+                    android:id="@+id/listView_students"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:text="Topic"
-                    android:textColor="@color/black" />
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/attendrollnum"
+                    android:layout_marginRight="1dp"
+                    android:divider="@color/black"
+                    android:dividerHeight="0dp">
+
+                </ListView>
+
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/testDateLayout"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/titleLayout"
-                android:layout_marginBottom="10dp"
-                android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:layout_below="@+id/listOfStudents"
+                android:gravity="center">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="10dp"
-                    android:text="Test Date :"
-                    android:textColor="@color/appColor"
-                    android:textSize="20sp" />
+                <ImageView
+                    android:id="@+id/btnSave"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="25dp"
 
-                <TextView
-                    android:id="@+id/txtTestDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:text="Topic :"
-                    android:textColor="@color/black" />
-            </LinearLayout>
+                    android:src="@drawable/select_button"
+                    android:visibility="visible" />
+            </RelativeLayout>
 
         </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/listOfStudents"
-            android:layout_width="match_parent"
-            android:layout_height="248dp"
-            android:layout_below="@+id/classList"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/black">
-
-            <LinearLayout
-                android:id="@+id/attendrollnum"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="1dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="1dp"
-                    android:layout_weight="0.099"
-                    android:background="@color/appColor"
-                    android:gravity="center"
-                    android:text="ID"
-                    android:textColor="@color/white"
-                    android:textSize="18dp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="1dp"
-                    android:layout_weight="0.04"
-                    android:background="@color/appColor"
-                    android:gravity="center"
-                    android:text="Name"
-                    android:textColor="@color/white"
-                    android:textSize="18dp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="1dp"
-                    android:layout_weight="0.099"
-                    android:background="@color/appColor"
-                    android:gravity="center"
-                    android:text="Mark"
-                    android:textColor="@color/white"
-                    android:textSize="18dp" />
-
-            </LinearLayout>
-
-            <ListView
-                android:id="@+id/listView_students"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/attendrollnum"
-                android:layout_marginRight="1dp"
-                android:divider="@color/black"
-                android:dividerHeight="0dp">
-
-            </ListView>
-
-        </RelativeLayout>
-
-        <ImageView
-            android:id="@+id/btnSave"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="25dp"
-            android:layout_gravity="center"
-            android:src="@drawable/select_button"
-            android:visibility="visible" />
-
     </LinearLayout>
 </ScrollView>
+
+

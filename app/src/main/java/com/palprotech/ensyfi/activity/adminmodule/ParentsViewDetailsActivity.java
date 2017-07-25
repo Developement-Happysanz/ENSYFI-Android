@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.palprotech.ensyfi.R;
@@ -43,6 +44,7 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
     private ImageView guardianImg, fatherInfo, motherInfo, btnBack;
     private SaveStudentData studentData;
     private SaveParentData parentData;
+    private RelativeLayout info;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -114,14 +116,17 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
         }
 
         if (v == fatherInfo) {
+            info.setVisibility(View.VISIBLE);
             callFatherInfoPreferences();
         }
 
         if (v == motherInfo) {
+            info.setVisibility(View.VISIBLE);
             callMotherInfoPreferences();
         }
 
         if (v == guardianImg) {
+            info.setVisibility(View.VISIBLE);
             callGuardianInfoPreferences();
         }
     }
@@ -264,6 +269,9 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
         motherInfo.setOnClickListener(this);
         fatherInfo = (ImageView) findViewById(R.id.img_father_profile);
         fatherInfo.setOnClickListener(this);
+
+        info = (RelativeLayout) findViewById(R.id.iid);
+
     }
 
     private void saveStudentParentDetails(JSONObject response) {
