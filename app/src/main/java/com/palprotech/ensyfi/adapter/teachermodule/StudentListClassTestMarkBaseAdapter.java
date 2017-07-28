@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.palprotech.ensyfi.R;
@@ -55,6 +56,9 @@ public class StudentListClassTestMarkBaseAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.students_class_test_mark_list_item, parent, false);
             mViewHolder = new MyViewHolder(convertView);
+            mViewHolder.edtStudentMarks = (EditText)convertView.findViewById(R.id.class_test_marks);
+//            mViewHolder.edtStudentMarks.addTextChangedListener(new MeuTextWatcher(mViewHolder.edtStudentMarks));
+
             convertView.setTag(mViewHolder);
         } else {
             mViewHolder = (MyViewHolder) convertView.getTag();
@@ -74,6 +78,7 @@ public class StudentListClassTestMarkBaseAdapter extends BaseAdapter {
         TextView txtStudentId;
         TextView txtStudentName;
         TextView txtTablePrimaryKey;
+        EditText edtStudentMarks;
 
 
         public MyViewHolder(View item) {

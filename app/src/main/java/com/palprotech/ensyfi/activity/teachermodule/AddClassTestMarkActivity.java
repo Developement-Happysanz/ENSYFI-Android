@@ -28,6 +28,7 @@ import com.palprotech.ensyfi.utils.PreferenceStorage;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 
 /**
  * Created by Admin on 14-07-2017.
@@ -177,25 +178,31 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
         int getCount = 0;
         getCount = lvStudent.getCount();
 
-        EditText edtClassTestMark;
-        TextView et, et1;
+//        EditText edtClassTestMark;
+//        TextView et, et1;
         int count = 0;
         int validMark = 100;
 
-        for (int i = 0; i < lvStudent.getCount(); i++) {
-            edtClassTestMark = (EditText) lvStudent.getChildAt(i).findViewById(R.id.class_test_marks);
-            int Mark = Integer.parseInt(edtClassTestMark.getText().toString());
-            et1 = (TextView) lvStudent.getChildAt(i).findViewById(R.id.txt_studentName);
+        for (int i = 0; i < lvStudent.getAdapter().getCount(); i++) {
+//            HashMap result = (HashMap) lvStudent.getItemAtPosition(i);
+            View viewTelefone = lvStudent.getChildAt(i);
+//            if (viewTelefone.findViewById(R.id.telefone_form_tipo) != null) {
+                TextView et = (TextView) viewTelefone.findViewById(R.id.txt_studentId);
+                TextView et1 = (TextView) viewTelefone.findViewById(R.id.txt_studentName);
+                EditText edtMarks = (EditText) viewTelefone.findViewById(R.id.class_test_marks);
 
-            if (!AppValidator.checkNullString(edtClassTestMark.getText().toString().trim())) {
-                AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid marks for student - " + String.valueOf(et1.getText()));
-            }
+                int Mark = Integer.parseInt(edtMarks.getText().toString());
+
+                if (!AppValidator.checkNullString(edtMarks.getText().toString().trim())) {
+                    AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid marks for student - " + String.valueOf(et1.getText()));
+                }
 //            if (Mark <= 0 || Mark >= validMark + 1) {
 //                AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid marks for student - " + String.valueOf(et1.getText()) + " between 0 to " + validMark);
 //            }
-            else {
-                count++;
-            }
+                else {
+                    count++;
+                }
+//            }
         }
 
         if (getCount == count) {
@@ -209,18 +216,24 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
 /** get all values of the EditText-Fields */
         View view;
         ArrayList<String> mannschaftsnamen = new ArrayList<String>();
-        TextView et, et1;
-        EditText edtMarks;
+//        TextView et, et1;
+//        EditText edtMarks;
         if (validateFields()) {
-            for (int i = 0; i < lvStudent.getCount(); i++) {
-                et = (TextView) lvStudent.getChildAt(i).findViewById(R.id.txt_studentId);
-                et1 = (TextView) lvStudent.getChildAt(i).findViewById(R.id.txt_studentName);
-                edtMarks = (EditText) lvStudent.getChildAt(i).findViewById(R.id.class_test_marks);
+            for (int i = 0; i < lvStudent.getAdapter().getCount(); i++) {
+//                HashMap result = (HashMap) lvStudent.getItemAtPosition(i);
+                View viewTelefone = lvStudent.getChildAt(i);
+                TextView et = (TextView) viewTelefone.findViewById(R.id.txt_studentId);
+                TextView et1 = (TextView) viewTelefone.findViewById(R.id.txt_studentName);
+                EditText edtMarks = (EditText) viewTelefone.findViewById(R.id.class_test_marks);
+
+//            TextView et = (TextView) this.lvStudent.getChildAt(i).findViewById(R.id.txt_studentId);
+//            TextView et1 = (TextView) this.lvStudent.getChildAt(i).findViewById(R.id.txt_studentName);
+//            EditText edtMarks = (EditText) this.lvStudent.getChildAt(i).findViewById(R.id.class_test_marks);
 //            edtRemarks = (EditText) lvStudent.getChildAt(i).findViewById(R.id.class_test_marks_remarks);
                 if (et != null) {
-                    mannschaftsnamen.add(String.valueOf(et.getText()));
-                    String enrollId = String.valueOf(et.getText());
-                    String studentName = String.valueOf(et1.getText());
+                    mannschaftsnamen.add(String.valueOf(et.getText().toString()));
+                    String enrollId = String.valueOf(et.getText().toString());
+                    String studentName = String.valueOf(et1.getText().toString());
                     String marks = edtMarks.getText().toString();
                     String remarks = "";
 //                        = edtRemarks.getText().toString();

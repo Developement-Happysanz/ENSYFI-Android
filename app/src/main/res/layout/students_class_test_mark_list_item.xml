@@ -49,7 +49,7 @@
             android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:gravity="center"
             android:hint="Mark"
-            android:inputType="numberSigned"
+            android:inputType="textNoSuggestions"
             android:maxLength="3"
             android:maxLines="1"
             android:singleLine="true"
