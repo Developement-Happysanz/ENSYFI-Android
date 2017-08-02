@@ -150,6 +150,7 @@ public class AddAcademicExamMarksActivity extends AppCompatActivity implements V
             SaveStudentsAcademicExamMarks();
         } catch (Exception ex) {
             ex.printStackTrace();
+            Toast.makeText(getApplicationContext(), "Try again...", Toast.LENGTH_LONG).show();
         }
     }
 

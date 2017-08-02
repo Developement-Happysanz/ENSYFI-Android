@@ -174,6 +174,7 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
 //                btnSave.setVisibility(View.GONE);
                 } catch (Exception ex) {
                     ex.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "Try again...", Toast.LENGTH_LONG).show();
                 }
             }
 

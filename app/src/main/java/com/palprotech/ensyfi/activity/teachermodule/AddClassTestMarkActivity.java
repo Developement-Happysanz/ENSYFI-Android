@@ -260,12 +260,12 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
 
                 finish();
             } else {
-                Toast.makeText(getApplicationContext(), "Marks not updated...",
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Marks not updated...", Toast.LENGTH_LONG).show();
             }
 
         } catch (Exception ex) {
             ex.printStackTrace();
+            Toast.makeText(getApplicationContext(), "Try again...", Toast.LENGTH_LONG).show();
         }
     }
 
