@@ -44,6 +44,7 @@
             android:layout_height="match_parent"
             android:layout_marginBottom="1dp"
             android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
             android:layout_weight="0.099"
             android:background="@color/white"
             android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"

@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -45,7 +44,7 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
     ArrayAdapter<String> adptClassList;
     String set1, set2, set3, AM_PM;
     ListView lvStudent;
-    Button btnSave;
+    ImageView btnSave;
     TextView txtDateTime;
     private String storeClassId;
     String formattedServerDate;
@@ -62,7 +61,7 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
         vecClassSectionList = new Vector<String>();
         spnClassList = (Spinner) findViewById(R.id.class_list_spinner);
         lvStudent = (ListView) findViewById(R.id.listView_students);
-        btnSave = (Button) findViewById(R.id.btnSave);
+        btnSave = (ImageView) findViewById(R.id.btnSave);
         txtDateTime = (TextView) findViewById(R.id.txtDateTime);
         btnSave.setVisibility(View.VISIBLE);
         getClassList();

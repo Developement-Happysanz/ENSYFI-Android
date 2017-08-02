@@ -39,6 +39,17 @@
             android:textColor="@color/white"
             android:textSize="@dimen/actionbarTextSize" />
 
+        <ImageView
+            android:id="@+id/btnSave"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:src="@drawable/add_attendance"
+            android:visibility="visible" />
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -123,14 +134,5 @@
         </ListView>
 
     </RelativeLayout>
-
-    <ImageView
-        android:id="@+id/btnSave"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="25dp"
-        android:layout_gravity="center"
-        android:src="@drawable/select_button"
-        android:visibility="visible" />
 
 </LinearLayout>

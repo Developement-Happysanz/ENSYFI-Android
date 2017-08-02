@@ -39,6 +39,17 @@
             android:textColor="@color/white"
             android:textSize="@dimen/actionbarTextSize" />
 
+        <ImageView
+            android:id="@+id/btnSave"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:src="@drawable/add_attendance"
+            android:visibility="visible" />
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -77,7 +88,7 @@
         android:layout_width="match_parent"
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="5dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/classListSpinner"
         android:background="@color/black">
@@ -129,6 +140,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/attendrollnum"
+            android:layout_marginBottom="2dp"
             android:divider="@color/black"
             android:dividerHeight="0dp">
 
@@ -136,14 +148,5 @@
 
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/btnSave"
-        android:layout_width="120dp"
-        android:layout_centerInParent="true"
-        android:layout_height="wrap_content"
-        android:background="@drawable/btn_square_fill_color"
-        android:layout_alignParentBottom="true"
-        android:textColor="@color/white"
-        android:text="Save" />
 
 </RelativeLayout>

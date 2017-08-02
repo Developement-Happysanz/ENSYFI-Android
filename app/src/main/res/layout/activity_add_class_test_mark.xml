@@ -42,6 +42,17 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/actionbarTextSize" />
 
+            <ImageView
+                android:id="@+id/btnSave"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="5dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:src="@drawable/add_attendance"
+                android:visibility="visible" />
+
         </RelativeLayout>
 
         <RelativeLayout
@@ -101,24 +112,70 @@
 
         </RelativeLayout>
 
-        <ImageView
-            android:id="@+id/btnSave"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="25dp"
-            android:src="@drawable/select_button"
-            android:visibility="visible" />
-
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+
             android:fillViewport="true"
             android:scrollbars = "vertical"
             android:scrollbarStyle="insideInset"
             android:isScrollContainer="true">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/black">
+
+            <LinearLayout
+                android:id="@+id/layout_frame"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="1dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_weight="0.099"
+                    android:background="@color/appColor"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:text="ID"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_weight="0.04"
+                    android:background="@color/appColor"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:text="Name"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginRight="1dp"
+                    android:layout_weight="0.099"
+                    android:background="@color/appColor"
+                    android:textColor="@color/white"
+                    android:text="Mark"
+                    android:gravity="center"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
 
             <ListView
                 android:id="@+id/listView_students"
@@ -129,7 +186,7 @@
                 android:dividerHeight="0dp">
 
             </ListView>
-
+            </LinearLayout>
         </ScrollView>
 
     </LinearLayout>
