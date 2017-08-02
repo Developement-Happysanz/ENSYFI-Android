@@ -3,182 +3,134 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <RelativeLayout
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar_result"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar_result"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/appColor"
-                    android:minHeight="?attr/actionBarSize" />
-
-                <ImageView
-                    android:id="@+id/back_res"
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:minHeight="?attr/actionBarSize"
-                    android:paddingLeft="15dp"
-                    android:src="@drawable/ic_arrow_back_white_48dp" />
-
-                <TextView
-                    android:id="@+id/tvtitletext"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:fontFamily="sans-serif-medium"
-                    android:gravity="center"
-                    android:minHeight="?attr/actionBarSize"
-                    android:paddingLeft="10dp"
-                    android:text="Class Test Mark"
-                    android:textAllCaps="true"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/actionbarTextSize" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/classList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:id="@+id/titleLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginTop="10dp"
-                        android:text="Topic :"
-                        android:textColor="@color/appColor"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:id="@+id/txtTitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:text="Topic"
-                        android:textColor="@color/black" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/testDateLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/titleLayout"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginTop="10dp"
-                        android:text="Test Date :"
-                        android:textColor="@color/appColor"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:id="@+id/txtTestDate"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:text="Topic :"
-                        android:textColor="@color/black" />
-                </LinearLayout>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/listOfStudents"
-                android:layout_width="match_parent"
-                android:layout_height="248dp"
-                android:layout_below="@+id/classList"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/black">
-
-                <LinearLayout
-                    android:id="@+id/attendrollnum"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="1dp"
-                        android:layout_weight="0.099"
-                        android:background="@color/appColor"
-                        android:gravity="center"
-                        android:text="ID"
-                        android:textColor="@color/white"
-                        android:textSize="18dp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="1dp"
-                        android:layout_weight="0.04"
-                        android:background="@color/appColor"
-                        android:gravity="center"
-                        android:text="Name"
-                        android:textColor="@color/white"
-                        android:textSize="18dp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="1dp"
-                        android:layout_weight="0.099"
-                        android:background="@color/appColor"
-                        android:gravity="center"
-                        android:text="Mark"
-                        android:textColor="@color/white"
-                        android:textSize="18dp" />
-
-                </LinearLayout>
-
-                <ListView
-                    android:id="@+id/listView_students"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/attendrollnum"
-                    android:layout_marginRight="1dp"
-                    android:divider="@color/black"
-                    android:dividerHeight="0dp">
-
-                </ListView>
-
-            </RelativeLayout>
+                android:layout_height="wrap_content"
+                android:background="@color/appColor"
+                android:minHeight="?attr/actionBarSize" />
 
             <ImageView
-                android:id="@+id/btnSave"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="25dp"
-                android:src="@drawable/select_button"
-                android:visibility="visible" />
+                android:id="@+id/back_res"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:minHeight="?attr/actionBarSize"
+                android:paddingLeft="15dp"
+                android:src="@drawable/ic_arrow_back_white_48dp" />
 
-        </LinearLayout>
-    </ScrollView>
+            <TextView
+                android:id="@+id/tvtitletext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:minHeight="?attr/actionBarSize"
+                android:paddingLeft="10dp"
+                android:text="Class Test Mark"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/actionbarTextSize" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/classList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/titleLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Topic :"
+                    android:textColor="@color/appColor"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/txtTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:text="Topic"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/testDateLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/titleLayout"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Test Date :"
+                    android:textColor="@color/appColor"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/txtTestDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:text="Topic :"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/btnSave"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:src="@drawable/select_button"
+            android:visibility="visible" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true"
+            android:scrollbars = "vertical"
+            android:scrollbarStyle="insideInset"
+            android:isScrollContainer="true">
+
+
+            <ListView
+                android:id="@+id/listView_students"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="1dp"
+                android:divider="@color/black"
+                android:dividerHeight="0dp">
+
+            </ListView>
+
+        </ScrollView>
+
+    </LinearLayout>
 </LinearLayout>

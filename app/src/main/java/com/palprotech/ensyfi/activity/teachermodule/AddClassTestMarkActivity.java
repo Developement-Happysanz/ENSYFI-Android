@@ -71,7 +71,7 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
         GetHomeWorkClassTestDetails(homeWorkId);
 
         GetStudentsList(classId);
-
+        lvStudent.setItemsCanFocus(true);
         StudentListClassTestMarkBaseAdapter cadapter = new StudentListClassTestMarkBaseAdapter(AddClassTestMarkActivity.this, myList);
         lvStudent.setAdapter(cadapter);
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
@@ -187,21 +187,21 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
 //            HashMap result = (HashMap) lvStudent.getItemAtPosition(i);
             View viewTelefone = lvStudent.getChildAt(i);
 //            if (viewTelefone.findViewById(R.id.telefone_form_tipo) != null) {
-                TextView et = (TextView) viewTelefone.findViewById(R.id.txt_studentId);
-                TextView et1 = (TextView) viewTelefone.findViewById(R.id.txt_studentName);
-                EditText edtMarks = (EditText) viewTelefone.findViewById(R.id.class_test_marks);
+//            TextView et = (TextView) viewTelefone.findViewById(R.id.txt_studentId);
+            TextView et1 = (TextView) viewTelefone.findViewById(R.id.txt_studentName);
+            EditText edtMarks = (EditText) viewTelefone.findViewById(R.id.class_test_marks);
 
-                int Mark = Integer.parseInt(edtMarks.getText().toString());
+            int Mark = Integer.parseInt(edtMarks.getText().toString());
 
-                if (!AppValidator.checkNullString(edtMarks.getText().toString().trim())) {
-                    AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid marks for student - " + String.valueOf(et1.getText()));
-                }
+            if (!AppValidator.checkNullString(edtMarks.getText().toString().trim())) {
+                AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid marks for student - " + String.valueOf(et1.getText()));
+            }
 //            if (Mark <= 0 || Mark >= validMark + 1) {
 //                AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid marks for student - " + String.valueOf(et1.getText()) + " between 0 to " + validMark);
 //            }
-                else {
-                    count++;
-                }
+            else {
+                count++;
+            }
 //            }
         }
 

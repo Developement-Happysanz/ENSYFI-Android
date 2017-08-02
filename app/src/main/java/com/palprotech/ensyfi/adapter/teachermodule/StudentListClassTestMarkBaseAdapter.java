@@ -1,6 +1,9 @@
 package com.palprotech.ensyfi.adapter.teachermodule;
 
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +31,23 @@ public class StudentListClassTestMarkBaseAdapter extends BaseAdapter {
         this.myList = myList;
         this.context = context;
         inflater = LayoutInflater.from(this.context);
+//        for (int i = 0; i < 20; i++) {
+//            ListItem listItem = new ListItem();
+//            listItem.caption = "Caption" + i;
+//            this.myList.add(listItem);
+//        }
+//        notifyDataSetChanged();
     }
+
+//    public MyAdapter() {
+//        mInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        for (int i = 0; i < 20; i++) {
+//            ListItem listItem = new ListItem();
+//            listItem.caption = "Caption" + i;
+//            myItems.add(listItem);
+//        }
+//        notifyDataSetChanged();
+//    }
 
 
     @Override
@@ -64,6 +83,26 @@ public class StudentListClassTestMarkBaseAdapter extends BaseAdapter {
             mViewHolder = (MyViewHolder) convertView.getTag();
         }
 
+        mViewHolder.edtStudentMarks.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+//                String text = editable.toString();
+//                ARR[holder.getPosition()] = text;
+//                Log.e("Watcher > ", holder.getPosition()+"> "+ ARR[holder.getPosition()] );
+            }
+        });
+
         StudentsClassTestMarks currentListData = getItem(position);
 
         mViewHolder.txtStudentId.setText(currentListData.getEnrollId());
@@ -71,6 +110,10 @@ public class StudentListClassTestMarkBaseAdapter extends BaseAdapter {
 
 
         return convertView;
+    }
+
+    class ListItem {
+        String caption;
     }
 
     private class MyViewHolder {
