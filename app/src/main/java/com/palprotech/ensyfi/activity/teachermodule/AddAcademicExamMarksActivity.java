@@ -146,7 +146,11 @@ public class AddAcademicExamMarksActivity extends AppCompatActivity implements V
 
     @Override
     public void onClick(View v) {
-        SaveStudentsAcademicExamMarks();
+        try {
+            SaveStudentsAcademicExamMarks();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     private boolean validateFields() {

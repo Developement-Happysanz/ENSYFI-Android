@@ -19,7 +19,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String TAG = "SQLiteHelper.java";
 
     private static final String DATABASE_NAME = "ENSYFI.db";
-    private static final int DATABASE_VERSION = 26;
+    private static final int DATABASE_VERSION = 27;
 
     private static final String table_create_student = "Create table IF NOT EXISTS studentInfo(_id integer primary key autoincrement,"
             + "registered_id text,"
@@ -79,6 +79,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             + "updated_at text,"
             + "status text,"
             + "sync_status text);";
+
+    private static final String table_create_attendance_flag = "Create table IF NOT EXISTS attendanceFlag(_id integer primary key autoincrement,"
+            + "class_id text,"
+            + "attendance_date text,"
+            + "attend_period text,"
+            + "status text);";
 
     private static final String table_create_academic_months = "Create table IF NOT EXISTS academicMonths(_id integer primary key autoincrement,"
             + "academic_months text);";
@@ -185,6 +191,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
         db.execSQL(table_create_attendance_history);
 
+        db.execSQL(table_create_attendance_flag);
+
         db.execSQL(table_create_academic_months);
 
         db.execSQL(table_create_homework_class_test);
@@ -217,6 +225,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS attendance");
 
         db.execSQL("DROP TABLE IF EXISTS attendanceHistory");
+
+        db.execSQL("DROP TABLE IF EXISTS attendanceFlag");
 
         db.execSQL("DROP TABLE IF EXISTS academicMonths");
 
@@ -530,8 +540,55 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     */
 
     /*
-   *   Academic Store & Retrieve Functionality
-   */
+    *   Attendance History Store & Retrieve Functionality
+    */
+    public long student_attendance_flag_insert(String val1, String val2, String val3, String val4) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues initialValues = new ContentValues();
+        initialValues.put("class_id", val1);
+        initialValues.put("attendance_date", val2);
+        initialValues.put("attend_period", val3);
+        initialValues.put("status", val4);
+        long l = db.insert("attendanceFlag", "_id", initialValues);
+        db.close();
+        return l;
+    }
+
+ /*   public Cursor isAttendanceFlag(String val1, String val2, String val3) throws SQLException {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String fetch = "Select count(*) from attendanceFlag where class_id = '" + val1 + "' and attendance_date = '" + val2 + "' and attend_period = '" + val3 + "';";
+        Cursor c = db.rawQuery(fetch, null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }*/
+
+    public String isAttendanceFlag(String val1, String val2, String val3) {
+        String checkFlag = "0";
+        SQLiteDatabase database = this.getReadableDatabase();
+        String selectQuery = "Select count(*) from attendanceFlag where class_id = '" + val1 + "' and attendance_date = '" + val2 + "' and attend_period = '" + val3 + "';";
+        Cursor cursor = database.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                checkFlag = cursor.getString(0);
+            } while (cursor.moveToNext());
+        }
+        return checkFlag;
+    }
+
+    public void deleteStudentAttendanceFlag() {
+        String ok;
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("attendanceFlag", null, null);
+    }
+    /*
+    *   End
+    */
+
+    /*
+     *   Academic Store & Retrieve Functionality
+     */
     public long academic_months_insert(String val1) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues initialValues = new ContentValues();

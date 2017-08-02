@@ -85,7 +85,8 @@
                 android:paddingRight="5dp"
                 android:text="Refresh  "
                 android:textColor="@color/text_grey"
-                android:textSize="18dp" />
+                android:textSize="18dp"
+                android:visibility="gone" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -149,8 +150,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/btnRefreshClassTestHomeworkRecords"
                 android:layout_alignTop="@+id/btnSyncClassTestHomeworkRecords"
-                android:layout_toLeftOf="@+id/btnRefreshClassTestHomeworkRecords"
                 android:layout_marginLeft="10dp"
+                android:layout_toLeftOf="@+id/btnRefreshClassTestHomeworkRecords"
                 android:gravity="center|left"
                 android:text="Class Test and Homework"
                 android:textColor="@color/black"

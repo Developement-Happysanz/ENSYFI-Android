@@ -183,7 +183,7 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
         int count = 0;
         int validMark = 100;
 
-        for (int i = 0; i < lvStudent.getAdapter().getCount(); i++) {
+        for (int i = 0; i < lvStudent.getChildCount(); i++) {
 //            HashMap result = (HashMap) lvStudent.getItemAtPosition(i);
             View viewTelefone = lvStudent.getChildAt(i);
 //            if (viewTelefone.findViewById(R.id.telefone_form_tipo) != null) {
@@ -214,48 +214,58 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
 
     private void SaveStudentsClasstestMarks() {
 /** get all values of the EditText-Fields */
-        View view;
-        ArrayList<String> mannschaftsnamen = new ArrayList<String>();
+
+        try {
+
+            View view;
+            ArrayList<String> mannschaftsnamen = new ArrayList<String>();
 //        TextView et, et1;
 //        EditText edtMarks;
-        if (validateFields()) {
-            for (int i = 0; i < lvStudent.getAdapter().getCount(); i++) {
+            if (validateFields()) {
+                for (int i = 0; i < lvStudent.getAdapter().getCount(); i++) {
 //                HashMap result = (HashMap) lvStudent.getItemAtPosition(i);
-                View viewTelefone = lvStudent.getChildAt(i);
-                TextView et = (TextView) viewTelefone.findViewById(R.id.txt_studentId);
-                TextView et1 = (TextView) viewTelefone.findViewById(R.id.txt_studentName);
-                EditText edtMarks = (EditText) viewTelefone.findViewById(R.id.class_test_marks);
+                    View viewTelefone = lvStudent.getChildAt(i);
+                    TextView et = (TextView) viewTelefone.findViewById(R.id.txt_studentId);
+                    TextView et1 = (TextView) viewTelefone.findViewById(R.id.txt_studentName);
+                    EditText edtMarks = (EditText) viewTelefone.findViewById(R.id.class_test_marks);
 
 //            TextView et = (TextView) this.lvStudent.getChildAt(i).findViewById(R.id.txt_studentId);
 //            TextView et1 = (TextView) this.lvStudent.getChildAt(i).findViewById(R.id.txt_studentName);
 //            EditText edtMarks = (EditText) this.lvStudent.getChildAt(i).findViewById(R.id.class_test_marks);
 //            edtRemarks = (EditText) lvStudent.getChildAt(i).findViewById(R.id.class_test_marks_remarks);
-                if (et != null) {
-                    mannschaftsnamen.add(String.valueOf(et.getText().toString()));
-                    String enrollId = String.valueOf(et.getText().toString());
-                    String studentName = String.valueOf(et1.getText().toString());
-                    String marks = edtMarks.getText().toString();
-                    String remarks = "";
+                    if (et != null) {
+                        mannschaftsnamen.add(String.valueOf(et.getText().toString()));
+                        String enrollId = String.valueOf(et.getText().toString());
+                        String studentName = String.valueOf(et1.getText().toString());
+                        String marks = edtMarks.getText().toString();
+                        String remarks = "";
 //                        = edtRemarks.getText().toString();
-                    if (marks.isEmpty()) {
-                        marks = "0";
-                    }
+                        if (marks.isEmpty()) {
+                            marks = "0";
+                        }
 
-                    long c = db.class_test_mark_insert(enrollId, homeWorkId, serverHomeWorkId, marks, remarks, "Active", PreferenceStorage.getUserId(getApplicationContext()), formattedServerDate, PreferenceStorage.getUserId(getApplicationContext()), formattedServerDate, "NS");
-                    if (c == -1) {
-                        Toast.makeText(getApplicationContext(), "Error while marks add...",
-                                Toast.LENGTH_LONG).show();
+                        long c = db.class_test_mark_insert(enrollId, homeWorkId, serverHomeWorkId, marks, remarks, "Active", PreferenceStorage.getUserId(getApplicationContext()), formattedServerDate, PreferenceStorage.getUserId(getApplicationContext()), formattedServerDate, "NS");
+                        if (c == -1) {
+                            Toast.makeText(getApplicationContext(), "Error while marks add...",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                        /** you can try to log your values EditText */
+                        Log.v("ypgs", String.valueOf(et.getText()));
                     }
-                    /** you can try to log your values EditText */
-                    Log.v("ypgs", String.valueOf(et.getText()));
                 }
+
+                db.updateClassTestHomeWorkMarkStatus(homeWorkId);
+                Toast.makeText(getApplicationContext(), "Class Test - " + title + ".\n Marks Updated Successfully...",
+                        Toast.LENGTH_LONG).show();
+
+                finish();
+            } else {
+                Toast.makeText(getApplicationContext(), "Marks not updated...",
+                        Toast.LENGTH_LONG).show();
             }
 
-            db.updateClassTestHomeWorkMarkStatus(homeWorkId);
-            Toast.makeText(getApplicationContext(), "Class Test - " + title + ".\n Marks Updated Successfully...",
-                    Toast.LENGTH_LONG).show();
-
-            finish();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 

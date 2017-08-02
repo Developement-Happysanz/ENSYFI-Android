@@ -106,54 +106,78 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
             @Override
             public void onClick(View v1) {
 
-                /** get all values of the EditText-Fields */
-                View view;
-                ArrayList<String> mannschaftsnamen = new ArrayList<String>();
-                TextView et, et1;
-                Spinner spinner;
-                StoreStudentAttendance();
-                for (int i = 0; i < lvStudent.getCount(); i++) {
-                    et = (TextView) lvStudent.getChildAt(i).findViewById(R.id.txt_studentId);
-                    et1 = (TextView) lvStudent.getChildAt(i).findViewById(R.id.txt_studentName);
-                    spinner = (Spinner) lvStudent.getChildAt(i).findViewById(R.id.class_attendance_spinner);
-                    if (et != null) {
-                        mannschaftsnamen.add(String.valueOf(et.getText()));
-                        String enrollId = String.valueOf(et.getText());
-                        String studentName = String.valueOf(et1.getText());
-                        String attendanceStatus = String.valueOf(spinner.getSelectedItem());
-                        if (attendanceStatus.equalsIgnoreCase("Leave")) {
-                            valLeave = valLeave + 1;
-                            attendanceStatus = "L";
-                        } else if (attendanceStatus.equalsIgnoreCase("Absent")) {
-                            valAbsent = valAbsent + 1;
-                            attendanceStatus = "A";
-                        } else if (attendanceStatus.equalsIgnoreCase("OD")) {
-                            valOD = valOD + 1;
-                            attendanceStatus = "OD";
-                        } else {
-                            valPresent = valPresent + 1;
-                            attendanceStatus = "P";
-                        }
-                        SimpleDateFormat slocalDF = new SimpleDateFormat("yyyy-MM-dd");
-                        String formattedLocalInsertDate = slocalDF.format(c.getTime());
+                try {
 
-                        long c = db.student_attendance_history_insert(lastInsertedId, storeClassId, enrollId, formattedLocalInsertDate, attendanceStatus, AM_PM, "", PreferenceStorage.getTeacherId(getApplicationContext()), formattedServerDate, PreferenceStorage.getUserId(getApplicationContext()), formattedServerDate, "Active", "NS");
-                        if (c == -1) {
-                            Toast.makeText(getApplicationContext(), "Error while attendance insert...",
-                                    Toast.LENGTH_LONG).show();
-                        }
-                        /** you can try to log your values EditText */
-                        Log.v("ypgs", String.valueOf(et.getText()));
+                    /** get all values of the EditText-Fields */
+                    View view;
+                    ArrayList<String> mannschaftsnamen = new ArrayList<String>();
+                    TextView et, et1;
+                    Spinner spinner;
+                    StoreStudentAttendance();
+                    SimpleDateFormat slocalDF = new SimpleDateFormat("yyyy-MM-dd");
+                    String formattedLocalInsertDate = slocalDF.format(c.getTime());
+                    String checkFlag = "";
+                    try {
+                        checkFlag = db.isAttendanceFlag(storeClassId, formattedLocalInsertDate, AM_PM);
+                    } catch (Exception ex) {
                     }
-                }
-                UpdateLastInsertedStudentAttendance(valLeave, valAbsent, valOD, valPresent, lastInsertedId);
 
-                Toast.makeText(getApplicationContext(), "Attendance Updated Successfully...",
-                        Toast.LENGTH_LONG).show();
+                    int isAttendanceFlag = Integer.parseInt(checkFlag);
 
-                finish();
+                    if (isAttendanceFlag == 0) {
+
+
+                        for (int i = 0; i < lvStudent.getCount(); i++) {
+                            et = (TextView) lvStudent.getChildAt(i).findViewById(R.id.txt_studentId);
+                            et1 = (TextView) lvStudent.getChildAt(i).findViewById(R.id.txt_studentName);
+                            spinner = (Spinner) lvStudent.getChildAt(i).findViewById(R.id.class_attendance_spinner);
+                            if (et != null) {
+                                mannschaftsnamen.add(String.valueOf(et.getText()));
+                                String enrollId = String.valueOf(et.getText());
+                                String studentName = String.valueOf(et1.getText());
+                                String attendanceStatus = String.valueOf(spinner.getSelectedItem());
+                                if (attendanceStatus.equalsIgnoreCase("Leave")) {
+                                    valLeave = valLeave + 1;
+                                    attendanceStatus = "L";
+                                } else if (attendanceStatus.equalsIgnoreCase("Absent")) {
+                                    valAbsent = valAbsent + 1;
+                                    attendanceStatus = "A";
+                                } else if (attendanceStatus.equalsIgnoreCase("OD")) {
+                                    valOD = valOD + 1;
+                                    attendanceStatus = "OD";
+                                } else {
+                                    valPresent = valPresent + 1;
+                                    attendanceStatus = "P";
+                                }
+
+                                long c = db.student_attendance_history_insert(lastInsertedId, storeClassId, enrollId, formattedLocalInsertDate, attendanceStatus, AM_PM, "", PreferenceStorage.getTeacherId(getApplicationContext()), formattedServerDate, PreferenceStorage.getUserId(getApplicationContext()), formattedServerDate, "Active", "NS");
+                                if (c == -1) {
+                                    Toast.makeText(getApplicationContext(), "Error while attendance insert...",
+                                            Toast.LENGTH_LONG).show();
+                                }
+                                /** you can try to log your values EditText */
+                                Log.v("ypgs", String.valueOf(et.getText()));
+                            }
+                        }
+                        UpdateLastInsertedStudentAttendance(valLeave, valAbsent, valOD, valPresent, lastInsertedId);
+                        SetAttendanceFlag(storeClassId, formattedLocalInsertDate, AM_PM);
+
+                        Toast.makeText(getApplicationContext(), "Attendance Updated Successfully...",
+                                Toast.LENGTH_LONG).show();
+
+                        finish();
+
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Attendance taken for this period...",
+                                Toast.LENGTH_LONG).show();
+                    }
 //                btnSave.setVisibility(View.GONE);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             }
+
+
         });
 
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
@@ -163,6 +187,15 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
                 finish();
             }
         });
+    }
+
+    private void SetAttendanceFlag(String classId, String attendanceDate, String attendancePeriod) {
+        try {
+
+            db.student_attendance_flag_insert(classId, attendanceDate, attendancePeriod, "Active");
+
+        } catch (Exception ex) {
+        }
     }
 
     private void UpdateLastInsertedStudentAttendance(int valLeave, int valAbsent, int valOD, int valPresent, String totalNoOfStudents) {

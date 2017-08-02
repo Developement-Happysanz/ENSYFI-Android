@@ -52,7 +52,7 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
     boolean doubleBackToExitPressedOnce = false;
     private ImageView imgNavProfileImage;
     private ArrayAdapter<String> navListAdapter;
-    private String[] values = {"PROFILE", "STUDENTS", "TEACHERS", "PARENTS", "CLASSES", "EXAM", "RESULT", "EVENTS", "COMMUNICATION", "FEES STATUS", "ON DUTY", "LEAVE REQUESTS", "SETTINGS", "SIGN OUT"};
+    private String[] values = {"PROFILE", "STUDENTS", "TEACHERS", "PARENTS", "CLASSES", "EXAM", "RESULT", "EVENTS", "CIRCULAR", "FEES STATUS", "ON DUTY", "LEAVE REQUESTS", "SETTINGS", "SIGN OUT"};
     TextView navUserProfileName = null;
     LinearLayout students, teachers, parents, classes, exams, results, events, communication;
     private String mCurrentUserProfileUrl = "";
