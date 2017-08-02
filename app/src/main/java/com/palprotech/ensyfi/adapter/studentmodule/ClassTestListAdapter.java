@@ -106,14 +106,16 @@ public class ClassTestListAdapter extends BaseAdapter {
 
         if (checkClassTestType.equalsIgnoreCase("HT")) {
             isTypeChecked = "Class Test";
+            holder.txtClassTestDate.setText("Test Date : " + classTests.get(position).getHwTestDate());
         } else {
             isTypeChecked = "Home Work";
+            holder.txtClassTestDate.setText("Due Date : " + classTests.get(position).getHwDueDate());
         }
 
 
         holder.txtClassTestTitle.setText(classTests.get(position).getHwTitle());
         holder.txtClassTestSubject.setText(classTests.get(position).getHwSubjectName());
-        holder.txtClassTestDate.setText(classTests.get(position).getHwTestDate());
+
         holder.txtClassTestType.setText("-  " + isTypeChecked);
 
 

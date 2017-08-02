@@ -28,6 +28,10 @@ public class ClassTest implements Serializable{
     @Expose
     private String test_date;
 
+    @SerializedName("due_date")
+    @Expose
+    private String due_date;
+
     @SerializedName("hw_details")
     @Expose
     private String hw_details;
@@ -94,6 +98,20 @@ public class ClassTest implements Serializable{
      */
     public void setHwTestDate(String test_date) {
         this.test_date = test_date;
+    }
+
+    /**
+     * @return The due_date
+     */
+    public String getHwDueDate() {
+        return due_date;
+    }
+
+    /**
+     * @param due_date The due_date
+     */
+    public void setHwDueDate(String due_date) {
+        this.due_date = test_date;
     }
 
     /**
