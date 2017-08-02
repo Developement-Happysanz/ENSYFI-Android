@@ -13,7 +13,7 @@ android:background="@color/background_grey">
     <TextView
         android:id="@+id/txtTeacherId"
         android:layout_width="50dp"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:layout_marginLeft="2dp"
         android:background="@color/white"
         android:gravity="center"
@@ -24,7 +24,7 @@ android:background="@color/background_grey">
     <TextView
         android:id="@+id/txtTeacherName"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:layout_marginBottom="1dp"
         android:layout_marginLeft="2dp"
         android:layout_toLeftOf="@+id/txtTeacherMainSubject"
@@ -39,14 +39,14 @@ android:background="@color/background_grey">
     <TextView
         android:id="@+id/txtTeacherMainSubject"
         android:layout_width="130dp"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:layout_alignParentRight="true"
         android:layout_marginLeft="2dp"
         android:layout_marginRight="2dp"
         android:background="@color/white"
         android:gravity="left|center"
         android:paddingLeft="5dp"
-        android:text="Handling Subject"
+        android:text="Advanced Digital Signal Processing"
         android:textColor="@color/black"
         android:textSize="15dp" />
 
