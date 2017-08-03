@@ -131,6 +131,7 @@ public class SyncAttendanceHistoryRecordsActivity implements IServiceListener {
                 String latestAttendanceHistoryInsertedServerId = response.getString("last_attendance_history_id");
                 if (!latestAttendanceHistoryInsertedServerId.isEmpty()) {
                     db.updateAttendanceHistorySyncStatus(localAttendanceHistoryId);
+                    Toast.makeText(context, "Attendance synced to the server...", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(context, "Insert Error..", Toast.LENGTH_LONG).show();
                 }

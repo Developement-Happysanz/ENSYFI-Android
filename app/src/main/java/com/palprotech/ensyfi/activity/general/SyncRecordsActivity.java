@@ -167,7 +167,13 @@ public class SyncRecordsActivity extends AppCompatActivity implements IServiceLi
                         Log.d(TAG, "Show error dialog");
                         AlertDialogHelper.showSimpleAlertDialog(this, msg);
                     } else if (status.equalsIgnoreCase("AlreadyAdded")) {
-                        db.updateAttendanceSyncStatus(localAttendanceId);
+                        String latestAttendanceInsertedServerId = response.getString("last_attendance_id");
+                        if (!latestAttendanceInsertedServerId.isEmpty()) {
+                            db.updateAttendanceId(latestAttendanceInsertedServerId, localAttendanceId);
+                            db.updateAttendanceSyncStatus(localAttendanceId);
+                            db.updateAttendanceHistoryServerId(latestAttendanceInsertedServerId, localAttendanceId);
+                            syncAttendanceHistoryRecordsActivity.syncAttendanceHistoryRecords(latestAttendanceInsertedServerId);
+                        }
                         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
                     } else {
                         signInSuccess = true;
@@ -191,10 +197,10 @@ public class SyncRecordsActivity extends AppCompatActivity implements IServiceLi
                     db.updateAttendanceSyncStatus(localAttendanceId);
                     db.updateAttendanceHistoryServerId(latestAttendanceInsertedServerId, localAttendanceId);
                     syncAttendanceHistoryRecordsActivity.syncAttendanceHistoryRecords(latestAttendanceInsertedServerId);
+                    Toast.makeText(getApplicationContext(), "Attendance synced to the server...", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(getApplicationContext(), "Insert Error..", Toast.LENGTH_LONG).show();
                 }
-
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
