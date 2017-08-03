@@ -436,7 +436,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     public Cursor getAttendanceList() throws SQLException {
         SQLiteDatabase db = this.getWritableDatabase();
-        String fetch = "Select _id,ac_year, class_id, class_total, no_of_present, no_of_absent, attendance_period, created_by, created_at, status from attendance where sync_status = 'NS' order by _id;";
+        String fetch = "Select _id,ac_year,class_id,class_total,no_of_present,no_of_absent,attendance_period,created_by,created_at,status from attendance where sync_status = 'NS' order by _id;";
         Cursor c = db.rawQuery(fetch, null);
         if (c != null) {
             c.moveToFirst();
@@ -458,6 +458,19 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         values.put("sync_status", "S");
         System.out.print(val1);
         sqdb.update("attendance", values, "_id=" + val1, null);
+    }
+
+    public String isAttendanceSynced() {
+        String checkFlag = "0";
+        SQLiteDatabase database = this.getReadableDatabase();
+        String selectQuery = "Select count(*) from attendance where sync_status = 'NS'";
+        Cursor cursor = database.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                checkFlag = cursor.getString(0);
+            } while (cursor.moveToNext());
+        }
+        return checkFlag;
     }
 
     public void deleteStudentAttendance() {

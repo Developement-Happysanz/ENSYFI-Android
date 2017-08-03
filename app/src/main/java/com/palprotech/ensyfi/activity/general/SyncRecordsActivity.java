@@ -83,48 +83,53 @@ public class SyncRecordsActivity extends AppCompatActivity implements IServiceLi
     public void onClick(View v) {
         if (CommonUtils.isNetworkAvailable(this)) {
             if (v == btnSyncAttendanceRecords) {
-                try {
-                    Cursor c = db.getAttendanceList();
-                    if (c.getCount() > 0) {
-                        if (c.moveToFirst()) {
-                            do {
-                                localAttendanceId = c.getString(0);
-                                ac_year = c.getString(1);
-                                class_id = c.getString(2);
-                                class_total = c.getString(3);
-                                no_of_present = c.getString(4);
-                                no_of_absent = c.getString(5);
-                                attendance_period = c.getString(6);
-                                created_by = c.getString(7);
-                                created_at = c.getString(8);
-                                status = c.getString(9);
+                int checkSync = Integer.parseInt(db.isAttendanceSynced());
+                if (checkSync != 0) {
+                    try {
+                        Cursor c = db.getAttendanceList();
+                        if (c.getCount() > 0) {
+                            if (c.moveToFirst()) {
+                                do {
+                                    localAttendanceId = c.getString(0);
+                                    ac_year = c.getString(1);
+                                    class_id = c.getString(2);
+                                    class_total = c.getString(3);
+                                    no_of_present = c.getString(4);
+                                    no_of_absent = c.getString(5);
+                                    attendance_period = c.getString(6);
+                                    created_by = c.getString(7);
+                                    created_at = c.getString(8);
+                                    status = c.getString(9);
 
-                                JSONObject jsonObject = new JSONObject();
-                                try {
+                                    JSONObject jsonObject = new JSONObject();
+                                    try {
 
-                                    jsonObject.put(EnsyfiConstants.KEY_ATTENDANCE_AC_YEAR, ac_year);
-                                    jsonObject.put(EnsyfiConstants.KEY_ATTENDANCE_CLASS_ID, class_id);
-                                    jsonObject.put(EnsyfiConstants.KEY_ATTENDANCE_CLASS_TOTAL, class_total);
-                                    jsonObject.put(EnsyfiConstants.KEY_ATTENDANCE_NO_OF_PRESSENT, no_of_present);
-                                    jsonObject.put(EnsyfiConstants.KEY_ATTENDANCE_NO_OF_ABSENT, no_of_absent);
-                                    jsonObject.put(EnsyfiConstants.KEY_ATTENDANCE_PERIOD, attendance_period);
-                                    jsonObject.put(EnsyfiConstants.KEY_ATTENDANCE_CREATED_BY, created_by);
-                                    jsonObject.put(EnsyfiConstants.KEY_ATTENDANCE_CREATED_AT, created_at);
-                                    jsonObject.put(EnsyfiConstants.KEY_ATTENDANCE_STATUS, status);
+                                        jsonObject.put(EnsyfiConstants.KEY_ATTENDANCE_AC_YEAR, ac_year);
+                                        jsonObject.put(EnsyfiConstants.KEY_ATTENDANCE_CLASS_ID, class_id);
+                                        jsonObject.put(EnsyfiConstants.KEY_ATTENDANCE_CLASS_TOTAL, class_total);
+                                        jsonObject.put(EnsyfiConstants.KEY_ATTENDANCE_NO_OF_PRESSENT, no_of_present);
+                                        jsonObject.put(EnsyfiConstants.KEY_ATTENDANCE_NO_OF_ABSENT, no_of_absent);
+                                        jsonObject.put(EnsyfiConstants.KEY_ATTENDANCE_PERIOD, attendance_period);
+                                        jsonObject.put(EnsyfiConstants.KEY_ATTENDANCE_CREATED_BY, created_by);
+                                        jsonObject.put(EnsyfiConstants.KEY_ATTENDANCE_CREATED_AT, created_at);
+                                        jsonObject.put(EnsyfiConstants.KEY_ATTENDANCE_STATUS, status);
 
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
 
-                                progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-                                String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.GET_TEACHERS_CLASS_ATTENDANCE_API;
-                                serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
+                                    progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+                                    String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.GET_TEACHERS_CLASS_ATTENDANCE_API;
+                                    serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
-                            } while (c.moveToNext());
+                                } while (c.moveToNext());
+                            }
                         }
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
                     }
-                } catch (Exception ex) {
-                    ex.printStackTrace();
+                } else {
+                    AlertDialogHelper.showSimpleAlertDialog(this, "Nothing to sync");
                 }
             }
             if (v == btnSyncClassTestHomeworkRecords) {
