@@ -113,7 +113,6 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
                     ArrayList<String> mannschaftsnamen = new ArrayList<String>();
                     TextView et, et1;
                     Spinner spinner;
-                    StoreStudentAttendance();
                     SimpleDateFormat slocalDF = new SimpleDateFormat("yyyy-MM-dd");
                     String formattedLocalInsertDate = slocalDF.format(c.getTime());
                     String checkFlag = "";
@@ -126,6 +125,7 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
 
                     if (isAttendanceFlag == 0) {
 
+                        StoreStudentAttendance();
 
                         for (int i = 0; i < lvStudent.getCount(); i++) {
                             et = (TextView) lvStudent.getChildAt(i).findViewById(R.id.txt_studentId);
@@ -159,6 +159,8 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
                                 Log.v("ypgs", String.valueOf(et.getText()));
                             }
                         }
+//                        String totalStudentsCount = String.valueOf(lvStudent.getCount());
+
                         UpdateLastInsertedStudentAttendance(valLeave, valAbsent, valOD, valPresent, lastInsertedId);
                         SetAttendanceFlag(storeClassId, formattedLocalInsertDate, AM_PM);
 
@@ -199,7 +201,7 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
         }
     }
 
-    private void UpdateLastInsertedStudentAttendance(int valLeave, int valAbsent, int valOD, int valPresent, String totalNoOfStudents) {
+    private void UpdateLastInsertedStudentAttendance(int valLeave, int valAbsent, int valOD, int valPresent, String lastInsertedLocalId) {
         try {
             int combinePOD = valOD + valPresent;
             int combineAL = valLeave + valAbsent;
@@ -207,7 +209,7 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
             String noOfPresentOD = String.valueOf(combinePOD);
             String noOfLeaveAbsent = String.valueOf(combineAL);
 
-            db.updateAttendance(noOfPresentOD, noOfLeaveAbsent, totalNoOfStudents);
+            db.updateAttendance(noOfPresentOD, noOfLeaveAbsent, lastInsertedLocalId);
 
         } catch (Exception ex) {
         }

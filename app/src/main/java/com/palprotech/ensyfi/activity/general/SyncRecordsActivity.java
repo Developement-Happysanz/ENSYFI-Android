@@ -166,7 +166,9 @@ public class SyncRecordsActivity extends AppCompatActivity implements IServiceLi
                         signInSuccess = false;
                         Log.d(TAG, "Show error dialog");
                         AlertDialogHelper.showSimpleAlertDialog(this, msg);
-
+                    } else if (status.equalsIgnoreCase("AlreadyAdded")) {
+                        db.updateAttendanceSyncStatus(localAttendanceId);
+                        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
                     } else {
                         signInSuccess = true;
                     }

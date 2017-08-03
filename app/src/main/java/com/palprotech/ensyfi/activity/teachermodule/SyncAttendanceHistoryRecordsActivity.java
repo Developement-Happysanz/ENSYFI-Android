@@ -109,6 +109,9 @@ public class SyncAttendanceHistoryRecordsActivity implements IServiceListener {
                         Log.d(TAG, "Show error dialog");
                         AlertDialogHelper.showSimpleAlertDialog(context, msg);
 
+                    } else if (status.equalsIgnoreCase("AlreadyAdded")) {
+                        db.updateAttendanceSyncStatus(localAttendanceHistoryId);
+                        Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
                     } else {
                         signInSuccess = true;
                     }

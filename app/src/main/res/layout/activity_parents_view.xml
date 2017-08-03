@@ -97,7 +97,7 @@
                 android:background="@color/appColor"
                 android:textColor="@color/white"
                 android:gravity="center"
-                android:text="Roll NO."
+                android:text="ID"
                 android:textSize="18sp" />
 
             <TextView

@@ -64,14 +64,12 @@ public class ExamsResultActivity extends AppCompatActivity implements IServiceLi
 
         callGetExamResultService();
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
-
         bckbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-
     }
 
     public void callGetExamResultService() {
@@ -109,15 +107,10 @@ public class ExamsResultActivity extends AppCompatActivity implements IServiceLi
         String isMarkStatus = exams.getMarkStatus();
 
         if (isMarkStatus.equalsIgnoreCase("1")) {
-            if(isInternalExternal.equalsIgnoreCase("1")){
-                Intent intent = new Intent(this, ExamMarksActivity.class);
-                intent.putExtra("eventObj", exams);
-                // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(intent);
-            }else {
-
-            }
-
+            Intent intent = new Intent(this, ExamMarksActivity.class);
+            intent.putExtra("eventObj", exams);
+            // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(intent);
         } else {
             Intent intent = new Intent(this, ExamDetailActivity.class);
             intent.putExtra("eventObj", exams);
