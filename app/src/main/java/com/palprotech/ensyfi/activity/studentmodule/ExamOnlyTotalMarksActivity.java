@@ -1,9 +1,9 @@
 package com.palprotech.ensyfi.activity.studentmodule;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
@@ -11,11 +11,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.adapter.studentmodule.ExamListAdapter;
-import com.palprotech.ensyfi.bean.student.viewlist.ExamList;
+import com.palprotech.ensyfi.adapter.studentmodule.ExamOnlyTotalMarkViewListAdapter;
+import com.palprotech.ensyfi.bean.student.viewlist.ExamMark;
+import com.palprotech.ensyfi.bean.student.viewlist.ExamMarkList;
 import com.palprotech.ensyfi.bean.student.viewlist.Exams;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
@@ -32,54 +34,60 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 /**
- * Created by Narendar on 18/04/17.
+ * Created by Admin on 25-05-2017.
  */
 
-public class ExamsResultActivity extends AppCompatActivity implements IServiceListener, AdapterView.OnItemClickListener, DialogClickListener {
+public class ExamOnlyTotalMarksActivity extends AppCompatActivity implements IServiceListener, AdapterView.OnItemClickListener, DialogClickListener {
 
-    private static final String TAG = "ExamsResultActivity";
+    private static final String TAG = "ExamMarksActivity";
     ListView loadMoreListView;
     View view;
-    ExamListAdapter examListAdapter;
+    ExamOnlyTotalMarkViewListAdapter examOnlyTotalMarkViewListAdapter;
     ServiceHelper serviceHelper;
-    ArrayList<Exams> examsArrayList;
+    ArrayList<ExamMark> examMarkArrayList;
     int pageNumber = 0, totalCount = 0;
     protected ProgressDialogHelper progressDialogHelper;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
     private SearchView mSearchView = null;
+    private Exams exams;
+    String ExamId, IsInternalExternal;
+    TextView txtTotal;
 
     @Override
-
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_exams_result);
+        setContentView(R.layout.activity_exam_only_total_marks);
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
 //        loadMoreListView.setOnLoadMoreListener(this);
         loadMoreListView.setOnItemClickListener(this);
-        examsArrayList = new ArrayList<>();
+        examMarkArrayList = new ArrayList<>();
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(this);
+        txtTotal = (TextView) findViewById(R.id.txtTotal);
+        exams = (Exams) getIntent().getSerializableExtra("eventObj");
 
-        callGetExamResultService();
+        callGetExamDetailViewService();
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
-
         bckbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-
     }
 
-    public void callGetExamResultService() {
+    private void callGetExamDetailViewService() {
+
+        ExamId = exams.getExamId();
+        IsInternalExternal = exams.getIsInternalExternal();
+
         /*if(eventsListAdapter != null){
             eventsListAdapter.clearSearchFlag();
         }*/
-        if (examsArrayList != null)
-            examsArrayList.clear();
+        if (examMarkArrayList != null)
+            examMarkArrayList.clear();
 
         if (CommonUtils.isNetworkAvailable(this)) {
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
@@ -89,46 +97,20 @@ public class ExamsResultActivity extends AppCompatActivity implements IServiceLi
 //            AlertDialogHelper.showSimpleAlertDialog(this, getString(R.string.no_connectivity));
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
         }
-
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        Log.d(TAG, "onEvent list item click" + position);
-        Exams exams = null;
-        if ((examListAdapter != null) && (examListAdapter.ismSearching())) {
-            Log.d(TAG, "while searching");
-            int actualindex = examListAdapter.getActualEventPos(position);
-            Log.d(TAG, "actual index" + actualindex);
-            exams = examsArrayList.get(actualindex);
-        } else {
-            exams = examsArrayList.get(position);
-        }
+    }
 
-        String isMarkStatus = exams.getMarkStatus();
-        String isInternalExternal = exams.getIsInternalExternal();
+    @Override
+    public void onAlertPositiveClicked(int tag) {
 
-        if (isMarkStatus.equalsIgnoreCase("1")) {
-            if(isInternalExternal.equalsIgnoreCase("1")){
-                Intent intent = new Intent(this, ExamMarksActivity.class);
-                intent.putExtra("eventObj", exams);
-                // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(intent);
-            }
-            else {
-                Intent intent = new Intent(this, ExamOnlyTotalMarksActivity.class);
-                intent.putExtra("eventObj", exams);
-                // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(intent);
-            }
+    }
 
-        } else {
-            Intent intent = new Intent(this, ExamDetailActivity.class);
-            intent.putExtra("eventObj", exams);
-            // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            startActivity(intent);
-        }
+    @Override
+    public void onAlertNegativeClicked(int tag) {
 
     }
 
@@ -164,6 +146,12 @@ public class ExamsResultActivity extends AppCompatActivity implements IServiceLi
     public void onResponse(final JSONObject response) {
         if (validateSignInResponse(response)) {
             Log.d("ajazFilterresponse : ", response.toString());
+            try {
+                String totalMark = response.getString("totalMarks");
+                txtTotal.setText( totalMark);
+
+            } catch (Exception ex) {
+            }
 
             mHandler.post(new Runnable() {
                 @Override
@@ -172,11 +160,11 @@ public class ExamsResultActivity extends AppCompatActivity implements IServiceLi
 //                loadMoreListView.onLoadMoreComplete();
 
                     Gson gson = new Gson();
-                    ExamList examList = gson.fromJson(response.toString(), ExamList.class);
-                    if (examList.getExams() != null && examList.getExams().size() > 0) {
-                        totalCount = examList.getCount();
+                    ExamMarkList examMarkList = gson.fromJson(response.toString(), ExamMarkList.class);
+                    if (examMarkList.getExamMarkView() != null && examMarkList.getExamMarkView().size() > 0) {
+                        totalCount = examMarkList.getCount();
                         isLoadingForFirstTime = false;
-                        updateListAdapter(examList.getExams());
+                        updateListAdapter(examMarkList.getExamMarkView());
                     }
                 }
             });
@@ -185,13 +173,13 @@ public class ExamsResultActivity extends AppCompatActivity implements IServiceLi
         }
     }
 
-    protected void updateListAdapter(ArrayList<Exams> examsArrayList) {
-        this.examsArrayList.addAll(examsArrayList);
-        if (examListAdapter == null) {
-            examListAdapter = new ExamListAdapter(this, this.examsArrayList);
-            loadMoreListView.setAdapter(examListAdapter);
+    protected void updateListAdapter(ArrayList<ExamMark> examDetailsViewArrayList) {
+        this.examMarkArrayList.addAll(examDetailsViewArrayList);
+        if (examOnlyTotalMarkViewListAdapter == null) {
+            examOnlyTotalMarkViewListAdapter = new ExamOnlyTotalMarkViewListAdapter(this, this.examMarkArrayList);
+            loadMoreListView.setAdapter(examOnlyTotalMarkViewListAdapter);
         } else {
-            examListAdapter.notifyDataSetChanged();
+            examOnlyTotalMarkViewListAdapter.notifyDataSetChanged();
         }
     }
 
@@ -202,19 +190,9 @@ public class ExamsResultActivity extends AppCompatActivity implements IServiceLi
             public void run() {
                 progressDialogHelper.hideProgressDialog();
 //                loadMoreListView.onLoadMoreComplete();
-                AlertDialogHelper.showSimpleAlertDialog(ExamsResultActivity.this, error);
+                AlertDialogHelper.showSimpleAlertDialog(ExamOnlyTotalMarksActivity.this, error);
             }
         });
-    }
-
-    @Override
-    public void onAlertPositiveClicked(int tag) {
-
-    }
-
-    @Override
-    public void onAlertNegativeClicked(int tag) {
-
     }
 
     private class HttpAsyncTask extends AsyncTask<String, Void, Void> {
@@ -223,16 +201,17 @@ public class ExamsResultActivity extends AppCompatActivity implements IServiceLi
 
             JSONObject jsonObject = new JSONObject();
             try {
-                jsonObject.put(EnsyfiConstants.PARAM_CLASS_ID, PreferenceStorage.getStudentClassIdPreference(getApplicationContext()));
-
+                jsonObject.put(EnsyfiConstants.PARAM_EXAM_ID, ExamId);
+                jsonObject.put(EnsyfiConstants.PARAM_STUDENT_ID, PreferenceStorage.getStudentRegisteredIdPreference(getApplicationContext()));
+                jsonObject.put(EnsyfiConstants.PARAM_IS_INTERNAL_EXTERNAL, IsInternalExternal);
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_EXAM_API;
-            serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
+            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_EXAM_MARK_API;
+            serviceHelper.makeGetServiceCall(jsonObject.toString(),url);
 
             return null;
         }
@@ -243,5 +222,4 @@ public class ExamsResultActivity extends AppCompatActivity implements IServiceLi
             progressDialogHelper.cancelProgressDialog();
         }
     }
-
 }

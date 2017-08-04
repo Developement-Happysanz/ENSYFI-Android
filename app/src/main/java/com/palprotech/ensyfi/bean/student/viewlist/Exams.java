@@ -31,6 +31,10 @@ public class Exams implements Serializable {
     @Expose
     private String MarkStatus;
 
+    @SerializedName("is_internal_external")
+    @Expose
+    private String is_internal_external;
+
     @SerializedName("classmaster_id")
     @Expose
     private String classmaster_id;
@@ -104,6 +108,20 @@ public class Exams implements Serializable {
      */
     public void setMarkStatus(String MarkStatus) {
         this.MarkStatus = MarkStatus;
+    }
+
+    /**
+     * @return The is_internal_external
+     */
+    public String getIsInternalExternal() {
+        return is_internal_external;
+    }
+
+    /**
+     * @param is_internal_external The is_internal_external
+     */
+    public void setIsInternalExternal(String is_internal_external) {
+        this.is_internal_external = is_internal_external;
     }
 
     /**

@@ -36,7 +36,7 @@ public class AcademicExamDetailPage extends AppCompatActivity implements IServic
     ArrayList<AcademicExamDetails> myList = new ArrayList<AcademicExamDetails>();
     AcademicExamDetailsListBaseAdapter cadapter;
     ListView loadMoreListView;
-    String examId, examName, classMasterId, sectionName, className, fromDate, toDate, markStatus;
+    String examId, examName, isInternalExternal, classMasterId, sectionName, className, fromDate, toDate, markStatus;
     ImageView addExamMark, viewExamMark;
 
     @Override
@@ -82,12 +82,13 @@ public class AcademicExamDetailPage extends AppCompatActivity implements IServic
                     do {
                         examId = c.getString(1);
                         examName = c.getString(2);
-                        classMasterId = c.getString(3);
-                        sectionName = c.getString(4);
-                        className = c.getString(5);
-                        fromDate = c.getString(6);
-                        toDate = c.getString(7);
-                        markStatus = c.getString(8);
+                        isInternalExternal = c.getString(3);
+                        classMasterId = c.getString(4);
+                        sectionName = c.getString(5);
+                        className = c.getString(6);
+                        fromDate = c.getString(7);
+                        toDate = c.getString(8);
+                        markStatus = c.getString(9);
                     } while (c.moveToNext());
                 }
             }
@@ -138,11 +139,17 @@ public class AcademicExamDetailPage extends AppCompatActivity implements IServic
             startActivity(intent);
         }
         if (v == viewExamMark) {
-            Intent intent = new Intent(getApplicationContext(), AcademicExamResultView.class);
-            intent.putExtra("id", id);
-            startActivity(intent);
+            int checkInternalMarkStatus = Integer.parseInt(isInternalExternal);
+            if (checkInternalMarkStatus == 1) {
+                Intent intent = new Intent(getApplicationContext(), AcademicExamResultView.class);
+                intent.putExtra("id", id);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(getApplicationContext(), AcademicExamOnlyTotalResultView.class);
+                intent.putExtra("id", id);
+                startActivity(intent);
+            }
         }
-
     }
 
     @Override

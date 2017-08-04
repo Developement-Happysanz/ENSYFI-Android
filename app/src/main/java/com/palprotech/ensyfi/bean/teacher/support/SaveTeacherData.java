@@ -382,9 +382,11 @@ public class SaveTeacherData {
                 String Fromdate = "";
                 String Todate = "";
                 String MarkStatus = "";
+                String IsInternalExternal = "";
 
                 exam_id = jsonobj.getString("exam_id");
                 exam_name = jsonobj.getString("exam_name");
+                IsInternalExternal = jsonobj.getString("is_internal_external");
                 classmaster_id = jsonobj.getString("classmaster_id");
                 sec_name = jsonobj.getString("sec_name");
                 class_name = jsonobj.getString("class_name");
@@ -392,8 +394,10 @@ public class SaveTeacherData {
                 Todate = jsonobj.getString("Todate");
                 MarkStatus = jsonobj.getString("MarkStatus");
 
+
                 System.out.println("exam_id : " + i + " = " + exam_id);
                 System.out.println("exam_name : " + i + " = " + exam_name);
+                System.out.println("IsInternalExternal : " + i + " = " + IsInternalExternal);
                 System.out.println("classmaster_id : " + i + " = " + classmaster_id);
                 System.out.println("sec_name : " + i + " = " + sec_name);
                 System.out.println("class_name : " + i + " = " + class_name);
@@ -401,16 +405,18 @@ public class SaveTeacherData {
                 System.out.println("Todate : " + i + " = " + Todate);
                 System.out.println("MarkStatus : " + i + " = " + MarkStatus);
 
+
                 String v1 = exam_id,
                         v2 = exam_name,
-                        v3 = classmaster_id,
-                        v4 = sec_name,
-                        v5 = class_name,
-                        v6 = Fromdate,
-                        v7 = Todate,
-                        v8 = MarkStatus;
+                        v3 = IsInternalExternal,
+                        v4 = classmaster_id,
+                        v5 = sec_name,
+                        v6 = class_name,
+                        v7 = Fromdate,
+                        v8 = Todate,
+                        v9 = MarkStatus;
 
-                long l = database.exam_of_classes_insert(v1, v2, v3, v4, v5, v6, v7, v8);
+                long l = database.exam_of_classes_insert(v1, v2, v3, v4, v5, v6, v7, v8, v9);
 
                 System.out.println("" + l);
 

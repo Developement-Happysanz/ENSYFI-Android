@@ -51,7 +51,7 @@ public class ExamMarksActivity extends AppCompatActivity implements IServiceList
     Handler mHandler = new Handler();
     private SearchView mSearchView = null;
     private Exams exams;
-    String ExamId;
+    String ExamId, IsInternalExternal;
     TextView txtTotal;
 
     @Override
@@ -81,6 +81,7 @@ public class ExamMarksActivity extends AppCompatActivity implements IServiceList
     private void callGetExamDetailViewService() {
 
         ExamId = exams.getExamId();
+        IsInternalExternal = exams.getIsInternalExternal();
 
         /*if(eventsListAdapter != null){
             eventsListAdapter.clearSearchFlag();
@@ -202,7 +203,7 @@ public class ExamMarksActivity extends AppCompatActivity implements IServiceList
             try {
                 jsonObject.put(EnsyfiConstants.PARAM_EXAM_ID, ExamId);
                 jsonObject.put(EnsyfiConstants.PARAM_STUDENT_ID, PreferenceStorage.getStudentRegisteredIdPreference(getApplicationContext()));
-
+                jsonObject.put(EnsyfiConstants.PARAM_IS_INTERNAL_EXTERNAL, IsInternalExternal);
 
             } catch (JSONException e) {
                 e.printStackTrace();

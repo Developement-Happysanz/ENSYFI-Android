@@ -291,6 +291,7 @@ public class EnsyfiConstants {
     //Exam
     public static final String PARAM_EXAM_ID = "exam_id";
     public static final String PARAM_STUDENT_ID = "stud_id";
+    public static final String PARAM_IS_INTERNAL_EXTERNAL = "is_internal_external";
 
     //Event Organiser
     public static final String PARAM_EVENT_ID = "event_id";

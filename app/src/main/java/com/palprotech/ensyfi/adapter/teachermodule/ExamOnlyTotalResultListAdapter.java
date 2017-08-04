@@ -25,7 +25,7 @@ import java.util.Comparator;
  * Created by Admin on 19-07-2017.
  */
 
-public class ExamResultListAdapter extends BaseAdapter {
+public class ExamOnlyTotalResultListAdapter extends BaseAdapter {
 
     private static final String TAG = ClassStudentListAdapter.class.getName();
     private final Transformation transformation;
@@ -42,7 +42,7 @@ public class ExamResultListAdapter extends BaseAdapter {
         }
     };
 
-    public ExamResultListAdapter(Context context, ArrayList<ExamResult> examResults) {
+    public ExamOnlyTotalResultListAdapter(Context context, ArrayList<ExamResult> examResults) {
         this.context = context;
         this.examResults = examResults;
         Collections.sort(examResults, myComparator);
@@ -88,14 +88,10 @@ public class ExamResultListAdapter extends BaseAdapter {
         ViewHolder holder;
         if (convertView == null) {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
-            convertView = inflater.inflate(R.layout.academic_exam_result_list_item, parent, false);
+            convertView = inflater.inflate(R.layout.academic_exam_only_total_result_list_item, parent, false);
 
             holder = new ViewHolder();
             holder.txtStudentName = (TextView) convertView.findViewById(R.id.txtStudentName);
-            holder.txtInternalMark = (TextView) convertView.findViewById(R.id.txtInternalMark);
-            holder.txtExternalMark = (TextView) convertView.findViewById(R.id.txtExternalMark);
-            holder.txtInternalGrade = (TextView) convertView.findViewById(R.id.txtIntGrade);
-            holder.txtExternalGrade = (TextView) convertView.findViewById(R.id.txtExtGrade);
             holder.txtTotalMark = (TextView) convertView.findViewById(R.id.txtSubTotalMark);
             holder.txtTotalGrade = (TextView) convertView.findViewById(R.id.txtSubTotalGrade);
             convertView.setTag(holder);
@@ -114,13 +110,9 @@ public class ExamResultListAdapter extends BaseAdapter {
 
         ExamResult examResult = examResults.get(position);
 
-        holder.txtStudentName.setText(examResults.get(position).getName());
-        holder.txtInternalMark.setText(examResults.get(position).getInternalMark());
-        holder.txtInternalGrade.setText(examResults.get(position).getInternalGrade());
-        holder.txtExternalMark.setText(examResults.get(position).getExternalMark());
-        holder.txtExternalGrade.setText(examResults.get(position).getExternalGrade());
-        holder.txtTotalMark.setText(examResults.get(position).getTotalMarks());
-        holder.txtTotalGrade.setText(examResults.get(position).getTotalGrade());
+        holder.txtStudentName.setText(examResult.getName());
+        holder.txtTotalMark.setText(examResult.getTotalMarks());
+        holder.txtTotalGrade.setText(examResult.getTotalGrade());
 
         return convertView;
     }
@@ -156,8 +148,7 @@ public class ExamResultListAdapter extends BaseAdapter {
     }
 
     public class ViewHolder {
-        public TextView txtStudentName, txtInternalMark, txtExternalMark, txtInternalGrade,
-                txtExternalGrade, txtTotalMark, txtTotalGrade;
+        public TextView txtStudentName, txtTotalMark, txtTotalGrade;
     }
 
     public boolean ismSearching() {

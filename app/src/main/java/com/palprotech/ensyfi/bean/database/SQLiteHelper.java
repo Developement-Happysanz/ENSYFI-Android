@@ -19,7 +19,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String TAG = "SQLiteHelper.java";
 
     private static final String DATABASE_NAME = "ENSYFI.db";
-    private static final int DATABASE_VERSION = 27;
+    private static final int DATABASE_VERSION = 28;
 
     private static final String table_create_student = "Create table IF NOT EXISTS studentInfo(_id integer primary key autoincrement,"
             + "registered_id text,"
@@ -125,12 +125,13 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     private static final String table_create_exams_of_the_class = "Create table IF NOT EXISTS academicExams(_id integer primary key autoincrement,"
             + "exam_id text," //1
             + "exam_name text," //2
-            + "classmaster_id text," //3
-            + "sec_name text," //4
-            + "class_name text,"//5
-            + "Fromdate text,"//6
-            + "Todate text,"//7
-            + "MarkStatus text);";//8
+            + "is_internal_external text," //3
+            + "classmaster_id text," //4
+            + "sec_name text," //5
+            + "class_name text,"//6
+            + "Fromdate text,"//7
+            + "Todate text,"//8
+            + "MarkStatus text);";//9
 
     private static final String table_create_exams_details = "Create table IF NOT EXISTS academicExamsDetails(_id integer primary key autoincrement,"
             + "exam_id text," //1
@@ -793,17 +794,18 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     /*
     *   Academic Exams Store & Retrieve Functionality
     */
-    public long exam_of_classes_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7, String val8) {
+    public long exam_of_classes_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7, String val8, String val9) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues initialValues = new ContentValues();
         initialValues.put("exam_id", val1);
         initialValues.put("exam_name", val2);
-        initialValues.put("classmaster_id", val3);
-        initialValues.put("sec_name", val4);
-        initialValues.put("class_name", val5);
-        initialValues.put("Fromdate", val6);
-        initialValues.put("Todate", val7);
-        initialValues.put("MarkStatus", val8);
+        initialValues.put("is_internal_external", val3);
+        initialValues.put("classmaster_id", val4);
+        initialValues.put("sec_name", val5);
+        initialValues.put("class_name", val6);
+        initialValues.put("Fromdate", val7);
+        initialValues.put("Todate", val8);
+        initialValues.put("MarkStatus", val9);
         long l = db.insert("academicExams", "_id", initialValues);
         db.close();
         return l;

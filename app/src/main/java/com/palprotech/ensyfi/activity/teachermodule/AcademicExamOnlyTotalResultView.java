@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.adapter.teachermodule.ExamResultListAdapter;
+import com.palprotech.ensyfi.adapter.teachermodule.ExamOnlyTotalResultListAdapter;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 import com.palprotech.ensyfi.bean.student.viewlist.Exams;
 import com.palprotech.ensyfi.bean.teacher.viewlist.ExamResult;
@@ -38,7 +38,7 @@ import java.util.ArrayList;
  * Created by Admin on 19-07-2017.
  */
 
-public class AcademicExamResultView extends AppCompatActivity implements IServiceListener, DialogClickListener, AdapterView.OnItemClickListener {
+public class AcademicExamOnlyTotalResultView extends AppCompatActivity implements IServiceListener, DialogClickListener, AdapterView.OnItemClickListener {
 
     long hwId;
     String homeWorkId;
@@ -46,7 +46,7 @@ public class AcademicExamResultView extends AppCompatActivity implements IServic
     private ProgressDialogHelper progressDialogHelper;
     private ServiceHelper serviceHelper;
     ListView loadMoreListView;
-    ExamResultListAdapter examResultListAdapter;
+    ExamOnlyTotalResultListAdapter examResultListAdapter;
     ArrayList<ExamResult> examResultArrayList;
     int pageNumber = 0, totalCount = 0;
     protected boolean isLoadingForFirstTime = true;
@@ -59,7 +59,7 @@ public class AcademicExamResultView extends AppCompatActivity implements IServic
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.academic_exam_result_view);
+        setContentView(R.layout.academic_exam_only_total_result_view);
         hwId = getIntent().getExtras().getLong("id");
         homeWorkId = String.valueOf(hwId);
         String examId = String.valueOf(hwId);
@@ -218,7 +218,7 @@ public class AcademicExamResultView extends AppCompatActivity implements IServic
     protected void updateListAdapter(ArrayList<ExamResult> examResultArrayList) {
         this.examResultArrayList.addAll(examResultArrayList);
         if (examResultListAdapter == null) {
-            examResultListAdapter = new ExamResultListAdapter(this, this.examResultArrayList);
+            examResultListAdapter = new ExamOnlyTotalResultListAdapter(this, this.examResultArrayList);
             loadMoreListView.setAdapter(examResultListAdapter);
         } else {
             examResultListAdapter.notifyDataSetChanged();

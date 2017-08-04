@@ -1,4 +1,4 @@
-package com.palprotech.ensyfi.adapter.teachermodule;
+package com.palprotech.ensyfi.adapter.studentmodule;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,40 +12,30 @@ import android.widget.TextView;
 import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.adapter.adminmodule.ClassStudentListAdapter;
 import com.palprotech.ensyfi.app.AppController;
-import com.palprotech.ensyfi.bean.teacher.viewlist.ExamResult;
+import com.palprotech.ensyfi.bean.student.viewlist.ExamMark;
 import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 /**
- * Created by Admin on 19-07-2017.
+ * Created by Admin on 25-05-2017.
  */
 
-public class ExamResultListAdapter extends BaseAdapter {
+public class ExamOnlyTotalMarkViewListAdapter extends BaseAdapter {
 
-    private static final String TAG = ClassStudentListAdapter.class.getName();
+    private static final String TAG = ExamMarkViewListAdapter.class.getName();
     private final Transformation transformation;
     private Context context;
-    private ArrayList<ExamResult> examResults;
+    private ArrayList<ExamMark> examMarks;
     private boolean mSearching = false;
     private boolean mAnimateSearch = false;
     private ArrayList<Integer> mValidSearchIndices = new ArrayList<Integer>();
     private ImageLoader imageLoader = AppController.getInstance().getUniversalImageLoader();
 
-    Comparator<ExamResult> myComparator = new Comparator<ExamResult>() {
-        public int compare(ExamResult obj1, ExamResult obj2) {
-            return obj1.getName().compareTo(obj2.getName());
-        }
-    };
-
-    public ExamResultListAdapter(Context context, ArrayList<ExamResult> examResults) {
+    public ExamOnlyTotalMarkViewListAdapter(Context context, ArrayList<ExamMark> examMarks) {
         this.context = context;
-        this.examResults = examResults;
-        Collections.sort(examResults, myComparator);
+        this.examMarks = examMarks;
 
         transformation = new RoundedTransformationBuilder()
                 .cornerRadiusDp(0)
@@ -65,16 +55,16 @@ public class ExamResultListAdapter extends BaseAdapter {
 
         } else {
             // Log.d(TAG,"Normal count size");
-            return examResults.size();
+            return examMarks.size();
         }
     }
 
     @Override
     public Object getItem(int position) {
         if (mSearching) {
-            return examResults.get(mValidSearchIndices.get(position));
+            return examMarks.get(mValidSearchIndices.get(position));
         } else {
-            return examResults.get(position);
+            return examMarks.get(position);
         }
     }
 
@@ -88,16 +78,14 @@ public class ExamResultListAdapter extends BaseAdapter {
         ViewHolder holder;
         if (convertView == null) {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
-            convertView = inflater.inflate(R.layout.academic_exam_result_list_item, parent, false);
+            convertView = inflater.inflate(R.layout.exam_only_total_mark_view_list_item, parent, false);
 
             holder = new ViewHolder();
-            holder.txtStudentName = (TextView) convertView.findViewById(R.id.txtStudentName);
-            holder.txtInternalMark = (TextView) convertView.findViewById(R.id.txtInternalMark);
-            holder.txtExternalMark = (TextView) convertView.findViewById(R.id.txtExternalMark);
-            holder.txtInternalGrade = (TextView) convertView.findViewById(R.id.txtIntGrade);
-            holder.txtExternalGrade = (TextView) convertView.findViewById(R.id.txtExtGrade);
-            holder.txtTotalMark = (TextView) convertView.findViewById(R.id.txtSubTotalMark);
-            holder.txtTotalGrade = (TextView) convertView.findViewById(R.id.txtSubTotalGrade);
+            holder.txtExamSubject = (TextView) convertView.findViewById(R.id.txtExamSubject);
+            holder.txtSubjectTotalMark = (TextView) convertView.findViewById(R.id.txtSubTotalMark);
+            holder.txtSubjectTotalGrade = (TextView) convertView.findViewById(R.id.txtSubTotalGrade);
+
+
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -112,15 +100,13 @@ public class ExamResultListAdapter extends BaseAdapter {
             Log.d("Event List Adapter", "getview pos called" + position);
         }
 
-        ExamResult examResult = examResults.get(position);
+        ExamMark examMark = examMarks.get(position);
 
-        holder.txtStudentName.setText(examResults.get(position).getName());
-        holder.txtInternalMark.setText(examResults.get(position).getInternalMark());
-        holder.txtInternalGrade.setText(examResults.get(position).getInternalGrade());
-        holder.txtExternalMark.setText(examResults.get(position).getExternalMark());
-        holder.txtExternalGrade.setText(examResults.get(position).getExternalGrade());
-        holder.txtTotalMark.setText(examResults.get(position).getTotalMarks());
-        holder.txtTotalGrade.setText(examResults.get(position).getTotalGrade());
+        holder.txtExamSubject.setText(examMark.getSubjectName());
+        holder.txtSubjectTotalMark.setText(examMark.getTotalMarks());
+        holder.txtSubjectTotalGrade.setText(examMark.getTotalGrade());
+
+
 
         return convertView;
     }
@@ -130,10 +116,10 @@ public class ExamResultListAdapter extends BaseAdapter {
         mAnimateSearch = false;
         Log.d("EventListAdapter", "serach for event" + eventName);
         mValidSearchIndices.clear();
-        for (int i = 0; i < examResults.size(); i++) {
-            String classStudent = examResults.get(i).getName();
-            if ((classStudent != null) && !(classStudent.isEmpty())) {
-                if (classStudent.toLowerCase().contains(eventName.toLowerCase())) {
+        for (int i = 0; i < examMarks.size(); i++) {
+            String homeWorkTitle = examMarks.get(i).getSubjectName();
+            if ((homeWorkTitle != null) && !(homeWorkTitle.isEmpty())) {
+                if (homeWorkTitle.toLowerCase().contains(eventName.toLowerCase())) {
                     mValidSearchIndices.add(i);
                 }
 
@@ -156,8 +142,7 @@ public class ExamResultListAdapter extends BaseAdapter {
     }
 
     public class ViewHolder {
-        public TextView txtStudentName, txtInternalMark, txtExternalMark, txtInternalGrade,
-                txtExternalGrade, txtTotalMark, txtTotalGrade;
+        public TextView txtExamName, txtExamSubject, txtSubjectTotalGrade, txtSubjectTotalMark;
     }
 
     public boolean ismSearching() {
