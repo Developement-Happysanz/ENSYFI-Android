@@ -49,8 +49,7 @@ public class AcademicExamViewActivity extends AppCompatActivity implements IServ
     AcademicExamsListBaseAdapter cadapter;
     ListView loadMoreListView;
     String subjectName = "", getClassSubjectId;
-    Vector<String> vecSubjectList;
-    List<String> lsSubjectList = new ArrayList<String>();
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,7 +58,7 @@ public class AcademicExamViewActivity extends AppCompatActivity implements IServ
 
         db = new SQLiteHelper(getApplicationContext());
         vecClassList = new Vector<String>();
-        vecSubjectList = new Vector<String>();
+
 
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
@@ -134,7 +133,9 @@ public class AcademicExamViewActivity extends AppCompatActivity implements IServ
     }
 
     private void getSubjectList(String classId) {
-
+        Vector<String> vecSubjectList;
+        vecSubjectList = new Vector<String>();
+        List<String> lsSubjectList = new ArrayList<String>();
         try {
             Cursor c = db.getHandlingSubjectList(classId);
             if (c.getCount() > 0) {
