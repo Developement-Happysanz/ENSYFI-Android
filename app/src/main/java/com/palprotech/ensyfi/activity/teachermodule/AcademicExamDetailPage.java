@@ -135,9 +135,16 @@ public class AcademicExamDetailPage extends AppCompatActivity implements IServic
     @Override
     public void onClick(View v) {
         if (v == addExamMark) {
-            Intent intent = new Intent(getApplicationContext(), AddAcademicExamMarksActivity.class);
-            intent.putExtra("id", id);
-            startActivity(intent);
+            int checkInternalMarkStatus = Integer.parseInt(isInternalExternal);
+            if (checkInternalMarkStatus == 1) {
+                Intent intent = new Intent(getApplicationContext(), AddAcademicExamMarksActivity.class);
+                intent.putExtra("id", id);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(getApplicationContext(), AddAcademicExamMarksOnlyTotalActivity.class);
+                intent.putExtra("id", id);
+                startActivity(intent);
+            }
         }
         if (v == viewExamMark) {
             int checkInternalMarkStatus = Integer.parseInt(isInternalExternal);
