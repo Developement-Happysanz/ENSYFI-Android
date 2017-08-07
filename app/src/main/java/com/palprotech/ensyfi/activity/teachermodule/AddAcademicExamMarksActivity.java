@@ -77,7 +77,6 @@ public class AddAcademicExamMarksActivity extends AppCompatActivity implements V
                 finish();
             }
         });
-
     }
 
     @Override
@@ -129,12 +128,12 @@ public class AddAcademicExamMarksActivity extends AppCompatActivity implements V
                     do {
                         getExamId = c.getString(1);
                         examName = c.getString(2);
-                        getClassMasterId = c.getString(3);
-                        sectionName = c.getString(4);
-                        className = c.getString(5);
-                        fromDate = c.getString(6);
-                        toDate = c.getString(7);
-                        markStatus = c.getString(8);
+                        getClassMasterId = c.getString(4);
+                        sectionName = c.getString(5);
+                        className = c.getString(6);
+                        fromDate = c.getString(7);
+                        toDate = c.getString(8);
+                        markStatus = c.getString(9);
                     } while (c.moveToNext());
                 }
             }

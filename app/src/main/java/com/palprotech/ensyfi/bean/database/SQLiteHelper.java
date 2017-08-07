@@ -386,7 +386,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     public Cursor getStudentsOfClassBasedOnClassId(String classSectionId) throws SQLException {
         SQLiteDatabase db = this.getWritableDatabase();
-        String fetch = "Select * from teachersStudentDetails where class_id = " + classSectionId + " order by enroll_id;";
+        String fetch = "Select * from teachersStudentDetails where class_id = '" + classSectionId + "' order by enroll_id;";
         Cursor c = db.rawQuery(fetch, null);
         if (c != null) {
             c.moveToFirst();

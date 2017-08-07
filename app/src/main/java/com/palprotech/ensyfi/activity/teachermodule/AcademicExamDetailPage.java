@@ -65,6 +65,7 @@ public class AcademicExamDetailPage extends AppCompatActivity implements IServic
         }
 
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
+
         bckbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
