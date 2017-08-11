@@ -63,6 +63,7 @@ public class GroupingActivity extends AppCompatActivity implements IServiceListe
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(this);
+
         CreateNotification = (ImageView) findViewById(R.id.create_notification);
         CreateNotification.setOnClickListener(this);
 
@@ -201,7 +202,7 @@ public class GroupingActivity extends AppCompatActivity implements IServiceListe
     @Override
     public void onClick(View v) {
         if(v == CreateNotification) {
-            Intent intent = new Intent(this, GroupingSendActivity.class);
+            Intent intent = new Intent(getApplicationContext(), GroupingSendActivity.class);
             startActivity(intent);
         }
     }
