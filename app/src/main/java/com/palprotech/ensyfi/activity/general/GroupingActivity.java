@@ -63,7 +63,7 @@ public class GroupingActivity extends AppCompatActivity implements IServiceListe
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(this);
-        ImageView CreateNotification = (ImageView) findViewById(R.id.create_notification);
+        CreateNotification = (ImageView) findViewById(R.id.create_notification);
         CreateNotification.setOnClickListener(this);
 
         callGetGroupService();
