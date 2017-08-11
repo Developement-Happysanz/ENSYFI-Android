@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.activity.general.CircularActivity;
 import com.palprotech.ensyfi.activity.general.EventsActivity;
+import com.palprotech.ensyfi.activity.general.GroupingSendActivity;
 import com.palprotech.ensyfi.activity.general.LeaveStatusActivity;
 import com.palprotech.ensyfi.activity.loginmodule.ChangePasswordActivity;
 import com.palprotech.ensyfi.activity.loginmodule.ProfileActivity;
@@ -52,7 +53,7 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
     boolean doubleBackToExitPressedOnce = false;
     private ImageView imgNavProfileImage;
     private ArrayAdapter<String> navListAdapter;
-    private String[] values = {"PROFILE", "STUDENTS", "TEACHERS", "PARENTS", "CLASSES", "EXAM", "RESULT", "EVENTS", "CIRCULAR", "FEES STATUS", "ON DUTY", "LEAVE REQUESTS", "SETTINGS", "SIGN OUT"};
+    private String[] values = {"PROFILE", "STUDENTS", "TEACHERS", "PARENTS", "CLASSES", "EXAM", "RESULT", "EVENTS", "CIRCULAR", "FEES STATUS", "ON DUTY", "NOTIFICATIONS", "LEAVE REQUESTS", "SETTINGS", "SIGN OUT"};
     TextView navUserProfileName = null;
     LinearLayout students, teachers, parents, classes, exams, results, events, communication;
     private String mCurrentUserProfileUrl = "";
@@ -293,15 +294,19 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
             Intent navigationIntent = new Intent(this, OnDutyViewActivity.class);
             //navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        }else if (position == 11) {
-            Intent navigationIntent = new Intent(this, LeaveStatusActivity.class);
+        } else if (position == 11) {
+            Intent navigationIntent = new Intent(this, GroupingSendActivity.class);
             //navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 12) {
-            Intent navigationIntent = new Intent(this, ChangePasswordActivity.class);
+            Intent navigationIntent = new Intent(this, LeaveStatusActivity.class);
             //navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 13) {
+            Intent navigationIntent = new Intent(this, ChangePasswordActivity.class);
+            //navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(navigationIntent);
+        } else if (position == 14) {
             Log.d(TAG, "Perform Logout");
             doLogout();
         }

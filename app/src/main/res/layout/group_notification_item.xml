@@ -7,8 +7,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/btn_square_fill_white">
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/btn_square_fill_white"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,7 +25,8 @@
                 android:layout_marginTop="5dp"
                 android:text="BALA MURALI KRISHNA"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/group_title"
@@ -40,14 +42,17 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/mini_notes"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="18dp"
-                android:textColor="@color/black"/>
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
 
         </LinearLayout>
 

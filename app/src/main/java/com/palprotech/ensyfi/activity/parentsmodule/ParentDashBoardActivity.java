@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.activity.general.CircularActivity;
 import com.palprotech.ensyfi.activity.general.EventsActivity;
+import com.palprotech.ensyfi.activity.general.GroupingActivity;
 import com.palprotech.ensyfi.activity.general.OnDutyActivity;
 import com.palprotech.ensyfi.activity.loginmodule.ChangePasswordActivity;
 import com.palprotech.ensyfi.activity.loginmodule.ProfileActivity;
@@ -282,10 +283,14 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         }else if (position == 9) {
+            Intent navigationIntent = new Intent(this, GroupingActivity.class);
+            //navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(navigationIntent);
+        }else if (position == 10) {
             Intent navigationIntent = new Intent(this, ChangePasswordActivity.class);
             //navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 10) {
+        } else if (position == 11) {
             Log.d(TAG, "Perform Logout");
             doLogout();
         }

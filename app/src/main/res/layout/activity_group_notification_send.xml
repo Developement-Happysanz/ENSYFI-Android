@@ -57,20 +57,20 @@
                 style="@style/spinner_style"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
                 android:layout_marginBottom="10dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="sans-serif"
                 android:overlapAnchor="false"
                 android:spinnerMode="dropdown"
                 android:textColor="@color/text_gray"
                 android:textSize="15sp" />
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:orientation="vertical">
 
             <TextView
@@ -91,6 +91,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="10dp"
+                android:paddingLeft="5dp"
                 android:background="@drawable/btn_square_fill_white"
                 android:digits="aãâáàbcçdeéfghiíjklmnoõôóòpqrstuvwxyzAÃÂÁÀBCÇDEÉFGHIÍJKLMNOÕÔÓÒPQRSTUVWXYZ1234567890@-_'+=(){}[]*%$₹£¢€¥#!?,.;\n: /?\\¡¿[]•∆π™℅¶♂♀°℃®©\◆●【】&lt;&gt;&amp;"
                 android:gravity="top"
@@ -146,6 +147,7 @@
             android:gravity="center">
 
             <Button
+                android:id="@+id/send_message"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_square_fill_color"

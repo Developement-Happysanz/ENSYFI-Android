@@ -50,6 +50,11 @@ public class EnsyfiConstants {
     public static final String GET_ON_DUTY_REQUEST = "/apimain/add_Onduty/";
     public static final String GET_ON_DUTY_VIEW = "/apimain/disp_Onduty/";
 
+    // GROUP NOTIFICATION URL
+    public static final String GET_GROUP_LIST = "/apimain/disp_Grouplist/";
+    public static final String SEND_GROUP_MESSAGE = "/apimain/send_Groupmessage/";
+    public static final String GET_GROUP_MESSAGE_VIEW = "/apimain/disp_Groupmessage/";
+
     // STUDENT & PARENTS URL
     // STUDENT ATTENDANCE URL
     public static final String GET_STUDENT_ATTENDANCD_API = "/apistudent/disp_Attendence/";
@@ -329,6 +334,10 @@ public class EnsyfiConstants {
     public static final String PARAMS_OD_STATUS = "status";
     public static final String PARAMS_OD_CREATED_BY = "created_by";
     public static final String PARAMS_OD_CREATED_AT = "created_at";
+
+    //OnDuty Params
+    public static final String PARAMS_GROUP_NOTIFICATIONS_USER_TYPE = "user_type";
+    public static final String PARAMS_GROUP_NOTIFICATIONS_USER_ID = "user_id";
 
     // Attendance Params
     public static final String PARAMS_DISPLAY_TYPE = "disp_type";
