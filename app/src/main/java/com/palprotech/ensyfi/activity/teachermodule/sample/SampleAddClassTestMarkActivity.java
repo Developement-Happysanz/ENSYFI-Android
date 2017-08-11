@@ -157,7 +157,7 @@ public class SampleAddClassTestMarkActivity extends AppCompatActivity implements
                                     ViewGroup.LayoutParams.WRAP_CONTENT, 0.30f));
                             b.setGravity(Gravity.CENTER);
 
-                            String name = "" + 0;
+                            String name = "";
 
                             b.setText(name);
                             b.setId(R.id.my_edit_text_1);
@@ -268,7 +268,6 @@ public class SampleAddClassTestMarkActivity extends AppCompatActivity implements
     private void SaveStudentsClasstestMarks() {
 
         try {
-
             if (validateFields()) {
 
                 int nViews = layout_all.getChildCount();
