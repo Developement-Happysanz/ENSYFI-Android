@@ -50,11 +50,11 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
     String examMarksId, examId, teacherId, subjectId, studentId, classMasterId, internalMark, internalGrade,
             externalMark, externalGrade, totalMarks, totalGrade, createdBy, createdAt, updatedBy, updatedAt, syncStatus;
     String getExamId, examName, getClassMasterId, sectionName, className, fromDate, toDate, markStatus;
-    ListView lvStudent;
+//    ListView lvStudent;
     ImageView btnSave;
     Calendar c = Calendar.getInstance();
     String localExamId, formattedServerDate, storeClassId;
-    ArrayList<StudentsClassTestMarks> myList = new ArrayList<StudentsClassTestMarks>();
+//    ArrayList<StudentsClassTestMarks> myList = new ArrayList<StudentsClassTestMarks>();
     LinearLayout layout_all;
 
     @Override
@@ -67,7 +67,7 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
         db = new SQLiteHelper(getApplicationContext());
         localExamId = String.valueOf(hwId);
 
-        lvStudent = (ListView) findViewById(R.id.listView_students);
+//        lvStudent = (ListView) findViewById(R.id.listView_students);
 
         btnSave = (ImageView) findViewById(R.id.btnSave);
         btnSave.setOnClickListener(this);
@@ -81,8 +81,8 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
 
         GetStudentsList(getClassMasterId);
 
-        StudentsAcademicExamMarksAddBaseAdapter cadapter = new StudentsAcademicExamMarksAddBaseAdapter(SampleAddAcademicExamMarksActivity.this, myList);
-        lvStudent.setAdapter(cadapter);
+//        StudentsAcademicExamMarksAddBaseAdapter cadapter = new StudentsAcademicExamMarksAddBaseAdapter(SampleAddAcademicExamMarksActivity.this, myList);
+//        lvStudent.setAdapter(cadapter);
 
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
         bckbtn.setOnClickListener(new View.OnClickListener() {
@@ -103,7 +103,7 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
 
     private void GetStudentsList(String classSectionId) {
 
-        myList.clear();
+//        myList.clear();
         try {
 
             TableLayout layout = new TableLayout(this);
@@ -174,13 +174,6 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
                             b.setAllCaps(true);
                             b.setSingleLine(true);
                             b.setTextColor(Color.parseColor("#FF68358E"));
-                            b.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    // TODO Auto-generated method stub
-
-                                }
-                            });
                             b.setPressed(true);
                             b.setHeight(120);
                             b.setWidth(100);
@@ -194,7 +187,7 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
                             String name1 = "";
 
                             b1.setText(name1);
-                            b1.setId(R.id.my_edit_text_1);
+                            b1.setId(R.id.my_edit_text_2);
                             b1.requestFocusFromTouch();
                             b1.setTextSize(13.0f);
                             b1.setTypeface(null, Typeface.BOLD);
@@ -203,13 +196,6 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
                             b1.setAllCaps(true);
                             b1.setSingleLine(true);
                             b1.setTextColor(Color.parseColor("#FF68358E"));
-                            b1.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    // TODO Auto-generated method stub
-
-                                }
-                            });
                             b1.setPressed(true);
                             b1.setHeight(120);
                             b1.setWidth(100);
@@ -228,7 +214,6 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
                             t2.setWidth(100);
                             t2.setPadding(1, 0, 2, 0);
                             t2.setId(R.id.my_text_2);
-
 
                             cell.addView(t1);
                             cell.addView(t2);
@@ -278,12 +263,12 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
     @Override
     public void onClick(View v) {
         if (v == btnSave) {
-            String onIn = "";
-            SaveStudentsAcademicExamMarks();
+//            String onIn = "";
+//            SaveStudentsAcademicExamMarks();
         }
     }
 
-    private boolean validateFields() {
+   /* private boolean validateFields() {
         int getCount = 0;
         getCount = lvStudent.getCount();
 
@@ -327,10 +312,10 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
         } else {
             return false;
         }
-    }
+    }*/
 
     private void SaveStudentsAcademicExamMarks() {
-        String set = "";
+       /* String set = "";
         View view;
         ArrayList<String> mannschaftsnamen = new ArrayList<String>();
         TextView et, et1;
@@ -380,7 +365,7 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
                         if (c == -1) {
                             Toast.makeText(getApplicationContext(), "Error while marks add...", Toast.LENGTH_LONG).show();
                         }
-                        //** you can try to log your values EditText *//*
+                        /*//** you can try to log your values EditText *//**//*
                         Log.v("ypgs", String.valueOf(et.getText()));
                     }
                 }
@@ -390,7 +375,7 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
         } catch (Exception ex) {
             ex.printStackTrace();
             Toast.makeText(getApplicationContext(), "Try again...", Toast.LENGTH_LONG).show();
-        }
+        }*/
     }
 
     @Override
