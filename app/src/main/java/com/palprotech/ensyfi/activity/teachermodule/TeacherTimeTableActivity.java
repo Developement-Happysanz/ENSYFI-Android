@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
@@ -141,7 +142,7 @@ public class TeacherTimeTableActivity extends AppCompatActivity implements Dialo
                             || ((r == 5) && (col == 37)) || ((r == 6) && (col == 46)) || ((r == 7) && (col == 55))) {
                         b.setBackgroundColor(Color.parseColor("#708090"));
                         if ((r == 1) && (col == 1)) {
-                            b.setTextColor(Color.parseColor("#FFFFFF"));
+                            b.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                             name = "Period\n&\nDay";
                         }
                         if ((r == 1) && (col == 2)) {
@@ -170,28 +171,39 @@ public class TeacherTimeTableActivity extends AppCompatActivity implements Dialo
                         }
                         if ((r == 2) && (col == 10)) {
                             name = "Monday";
+                            b.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                         }
                         if ((r == 3) && (col == 19)) {
                             name = "Tuesday";
+                            b.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                         }
                         if ((r == 4) && (col == 28)) {
                             name = "Wednesday";
+                            b.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                         }
                         if ((r == 5) && (col == 37)) {
                             name = "Thursday";
+                            b.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                         }
                         if ((r == 6) && (col == 46)) {
                             name = "Friday";
+                            b.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                         }
                         if ((r == 7) && (col == 55)) {
                             name = "Saturday";
+                            b.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                         }
+                        if ( r == 1 ) {
+                            b.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
+                        }
+
 //                        b.setTextColor(Color.parseColor("#ffff00"));
                     } else {
 
                         String fValue = String.valueOf(f);
                         String c1Value = String.valueOf(c1);
                         Cursor c = db.getTeacherTimeTableValue(fValue, c1Value);
+                        b.setTextColor(Color.parseColor("#FF68358E"));
                         if (c.getCount() > 0) {
                             if (c.moveToFirst()) {
                                 do {
@@ -225,7 +237,7 @@ public class TeacherTimeTableActivity extends AppCompatActivity implements Dialo
                     set.setTypeface(null, Typeface.BOLD);
                     b.setAllCaps(true);
                     set.setAllCaps(true);
-                    b.setTextColor(Color.parseColor("#FF68358E"));
+
                     b.setGravity(Gravity.CENTER);
                     set.setGravity(Gravity.CENTER);
                     String userTypeString = PreferenceStorage.getUserType(getApplicationContext());
