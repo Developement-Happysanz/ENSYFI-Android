@@ -120,30 +120,11 @@
         android:fadeScrollbars="false"
         android:scrollbars="horizontal|vertical">
 
-
         <LinearLayout
             android:id="@+id/layout_timetable"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
-         <!--   <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.33"
-                android:text="Student Id" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.33"
-                android:text="Student Id" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.33"
-                android:hint="Marks" />-->
 
         </LinearLayout>
 

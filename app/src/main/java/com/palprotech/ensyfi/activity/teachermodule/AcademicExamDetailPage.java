@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
+import com.palprotech.ensyfi.activity.teachermodule.sample.SampleAddAcademicExamMarksActivity;
 import com.palprotech.ensyfi.adapter.teachermodule.AcademicExamDetailsListBaseAdapter;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 import com.palprotech.ensyfi.bean.teacher.viewlist.AcademicExamDetails;
@@ -137,7 +138,7 @@ public class AcademicExamDetailPage extends AppCompatActivity implements IServic
         if (v == addExamMark) {
             int checkInternalMarkStatus = Integer.parseInt(isInternalExternal);
             if (checkInternalMarkStatus == 1) {
-                Intent intent = new Intent(getApplicationContext(), AddAcademicExamMarksActivity.class);
+                Intent intent = new Intent(getApplicationContext(), SampleAddAcademicExamMarksActivity.class);
                 intent.putExtra("id", id);
                 startActivity(intent);
             } else {
