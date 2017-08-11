@@ -30,7 +30,9 @@ import com.palprotech.ensyfi.activity.teachermodule.AddClassTestMarkActivity;
 import com.palprotech.ensyfi.adapter.teachermodule.StudentListClassTestMarkBaseAdapter;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 import com.palprotech.ensyfi.bean.teacher.viewlist.StudentsClassTestMarks;
+import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
+import com.palprotech.ensyfi.utils.AppValidator;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 
 import java.text.SimpleDateFormat;
@@ -184,12 +186,14 @@ public class SampleAddClassTestMarkActivity extends AppCompatActivity implements
                             t1.setHeight(120);
                             t1.setWidth(100);
                             t1.setPadding(1, 0, 2, 0);
+                            t1.setId(R.id.my_text_1);
 
                             t2.setText(c.getString(4));
                             t2.setTextColor(Color.parseColor("#FF68358E"));
                             t2.setHeight(120);
                             t2.setWidth(100);
                             t2.setPadding(1, 0, 2, 0);
+                            t2.setId(R.id.my_text_2);
 
 
                             cell.addView(t1);
@@ -208,6 +212,107 @@ public class SampleAddClassTestMarkActivity extends AppCompatActivity implements
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    private boolean validateFields() {
+        int getCount = 0;
+        getCount = layout_all.getChildCount();
+
+        int count = 0;
+        int validMark = 100;
+
+        int position = 0;
+
+        int nViews = layout_all.getChildCount();
+
+        for (int i = 0; i < nViews; i++) {
+
+            View view = layout_all.getChildAt(i);
+
+            EditText ed_marks = (EditText) view.findViewById(R.id.my_edit_text_1);
+            TextView tv_studentName = (TextView) view.findViewById(R.id.my_text_2);
+
+            String getValue = ed_marks.getText().toString().trim();
+
+            int newOk = 0;
+
+            System.out.println(getValue);
+
+            if (!AppValidator.checkNullString(ed_marks.getText().toString().trim())) {
+                AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid marks for student - " + String.valueOf(tv_studentName.getText()));
+            }
+//            if (Mark <= 0 || Mark >= validMark + 1) {
+//                AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid marks for student - " + String.valueOf(et1.getText()) + " between 0 to " + validMark);
+//            }
+            else {
+                count++;
+            }
+//            }
+            position++;
+        }
+
+        if (getCount == count) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == btnSave) {
+            SaveStudentsClasstestMarks();
+        }
+    }
+
+    private void SaveStudentsClasstestMarks() {
+
+        try {
+
+            if (validateFields()) {
+
+                int nViews = layout_all.getChildCount();
+
+                for (int i = 0; i < nViews; i++) {
+
+                    View view = layout_all.getChildAt(i);
+
+                    EditText ed_marks = (EditText) view.findViewById(R.id.my_edit_text_1);
+                    TextView tv_studentName = (TextView) view.findViewById(R.id.my_text_2);
+                    TextView tv_studentId = (TextView) view.findViewById(R.id.my_text_1);
+
+                    if (tv_studentId != null) {
+                        String enrollId = String.valueOf(tv_studentId.getText().toString().trim());
+                        String studentName = String.valueOf(tv_studentName.getText().toString().trim());
+                        String marks = ed_marks.getText().toString().trim();
+                        String remarks = "";
+                        if (marks.isEmpty()) {
+                            marks = "0";
+                        }
+
+                        long c = db.class_test_mark_insert(enrollId, homeWorkId, serverHomeWorkId, marks, remarks, "Active", PreferenceStorage.getUserId(getApplicationContext()), formattedServerDate, PreferenceStorage.getUserId(getApplicationContext()), formattedServerDate, "NS");
+                        if (c == -1) {
+                            Toast.makeText(getApplicationContext(), "Error while marks add...",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                        Log.v("ypgs", String.valueOf(tv_studentId.getText()));
+                    }
+                }
+
+                db.updateClassTestHomeWorkMarkStatus(homeWorkId);
+                Toast.makeText(getApplicationContext(), "Class Test - " + title + ".\n Marks Updated Successfully...",
+                        Toast.LENGTH_LONG).show();
+
+                finish();
+
+            } else {
+                Toast.makeText(getApplicationContext(), "Marks not updated...", Toast.LENGTH_LONG).show();
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+
     }
 
     private void GetHomeWorkClassTestDetails(String homeWorkId) {
@@ -253,40 +358,6 @@ public class SampleAddClassTestMarkActivity extends AppCompatActivity implements
             Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (v == btnSave) {
-            SaveStudentsClasstestMarks();
-        }
-    }
-
-    private void SaveStudentsClasstestMarks() {
-
-        try {
-
-            int nViews = layout_all.getChildCount();
-
-            for (int i = 0; i < nViews; i++) {
-
-                View view = layout_all.getChildAt(i);
-
-                EditText ed_item = (EditText) view.findViewById(R.id.my_edit_text_1);
-
-                String getValue = ed_item.getText().toString().trim();
-
-                int newOk = 0;
-
-                System.out.println(getValue);
-
-
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-
     }
 
     @Override
