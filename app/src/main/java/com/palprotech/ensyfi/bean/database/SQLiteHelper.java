@@ -779,7 +779,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put("sync_status", "S");
         System.out.print(val1);
-        sqdb.update("classTestMark", values, "_id=" + val1, null);
+        sqdb.update("classTestMark", values, "server_hw_id=" + val1, null);
     }
 
     public void deleteClassTestMark() {

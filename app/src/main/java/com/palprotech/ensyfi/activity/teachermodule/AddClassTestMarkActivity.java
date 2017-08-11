@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
+import com.palprotech.ensyfi.adapter.teachermodule.StudentClassTestMarkAddBaseAdapter;
 import com.palprotech.ensyfi.adapter.teachermodule.StudentListClassTestMarkBaseAdapter;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 import com.palprotech.ensyfi.bean.teacher.viewlist.StudentsClassTestMarks;
@@ -47,6 +48,7 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
     private String storeClassId;
     Calendar c = Calendar.getInstance();
     String homeWorkId, formattedServerDate;
+    StudentListClassTestMarkBaseAdapter cadapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -72,7 +74,7 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
 
         GetStudentsList(classId);
         lvStudent.setItemsCanFocus(true);
-        StudentListClassTestMarkBaseAdapter cadapter = new StudentListClassTestMarkBaseAdapter(AddClassTestMarkActivity.this, myList);
+        cadapter = new StudentListClassTestMarkBaseAdapter(AddClassTestMarkActivity.this, myList);
         lvStudent.setAdapter(cadapter);
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
         bckbtn.setOnClickListener(new View.OnClickListener() {
@@ -94,10 +96,12 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
     private void GetStudentsList(String classSectionId) {
 
         myList.clear();
+
         try {
             Cursor c = db.getStudentsOfClassBasedOnClassId(classSectionId);
             if (c.getCount() > 0) {
                 if (c.moveToFirst()) {
+                    int i = 0;
                     do {
                         StudentsClassTestMarks lde = new StudentsClassTestMarks();
                         lde.setId(Integer.parseInt(c.getString(0)));
@@ -114,6 +118,7 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
                     } while (c.moveToNext());
                 }
             }
+
 
             db.close();
 
@@ -178,16 +183,32 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
         int getCount = 0;
         getCount = lvStudent.getCount();
 
-//        EditText edtClassTestMark;
-//        TextView et, et1;
         int count = 0;
         int validMark = 100;
 
+   /*     int wantedPosition = lvStudent.getAdapter().getCount();
+        int firstPosition = lvStudent.getFirstVisiblePosition() - lvStudent.getHeaderViewsCount();
+        int wantedChild = wantedPosition - firstPosition;
+        if (wantedChild < 0 || wantedChild >= lvStudent.getAdapter().getCount()) {
+//            Log.w(TAG, "Unable to get view for desired position, because it's not being displayed on screen.");
+//            return;
+        }
+
+//        View wantedView = listView.getChildAt(wantedChild);*/
+
+
+        int position = 0;
+        lvStudent.setItemChecked(position, true);
+//        View wantedView = adapter.getView(position, null, listview);
+
+
         for (int i = 0; i < lvStudent.getChildCount(); i++) {
-//            HashMap result = (HashMap) lvStudent.getItemAtPosition(i);
-            View viewTelefone = lvStudent.getChildAt(i);
-//            if (viewTelefone.findViewById(R.id.telefone_form_tipo) != null) {
-//            TextView et = (TextView) viewTelefone.findViewById(R.id.txt_studentId);
+
+
+//            View viewTelefone = lvStudent.getChildAt(i);
+//            View viewTelefone = lvStudent.getChildAt(wantedChild);
+            View viewTelefone = cadapter.getView(position, null, lvStudent);
+
             TextView et1 = (TextView) viewTelefone.findViewById(R.id.txt_studentName);
             EditText edtMarks = (EditText) viewTelefone.findViewById(R.id.class_test_marks);
 
@@ -203,6 +224,7 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
                 count++;
             }
 //            }
+            position++;
         }
 
         if (getCount == count) {
@@ -212,34 +234,37 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
         }
     }
 
+    public View getViewByPosition(int position, ListView listView) {
+        final int firstListItemPosition = listView.getFirstVisiblePosition();
+        final int lastListItemPosition = firstListItemPosition + listView.getChildCount() - 1;
+
+        if (position < firstListItemPosition || position > lastListItemPosition) {
+            return listView.getAdapter().getView(position, null, listView);
+        } else {
+            final int childIndex = position - firstListItemPosition;
+            return listView.getChildAt(childIndex);
+        }
+    }
+
     private void SaveStudentsClasstestMarks() {
-/** get all values of the EditText-Fields */
 
         try {
 
-            View view;
             ArrayList<String> mannschaftsnamen = new ArrayList<String>();
-//        TextView et, et1;
-//        EditText edtMarks;
+
             if (validateFields()) {
                 for (int i = 0; i < lvStudent.getAdapter().getCount(); i++) {
-//                HashMap result = (HashMap) lvStudent.getItemAtPosition(i);
                     View viewTelefone = lvStudent.getChildAt(i);
                     TextView et = (TextView) viewTelefone.findViewById(R.id.txt_studentId);
                     TextView et1 = (TextView) viewTelefone.findViewById(R.id.txt_studentName);
                     EditText edtMarks = (EditText) viewTelefone.findViewById(R.id.class_test_marks);
 
-//            TextView et = (TextView) this.lvStudent.getChildAt(i).findViewById(R.id.txt_studentId);
-//            TextView et1 = (TextView) this.lvStudent.getChildAt(i).findViewById(R.id.txt_studentName);
-//            EditText edtMarks = (EditText) this.lvStudent.getChildAt(i).findViewById(R.id.class_test_marks);
-//            edtRemarks = (EditText) lvStudent.getChildAt(i).findViewById(R.id.class_test_marks_remarks);
                     if (et != null) {
                         mannschaftsnamen.add(String.valueOf(et.getText().toString()));
                         String enrollId = String.valueOf(et.getText().toString());
                         String studentName = String.valueOf(et1.getText().toString());
                         String marks = edtMarks.getText().toString();
                         String remarks = "";
-//                        = edtRemarks.getText().toString();
                         if (marks.isEmpty()) {
                             marks = "0";
                         }
@@ -249,7 +274,6 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
                             Toast.makeText(getApplicationContext(), "Error while marks add...",
                                     Toast.LENGTH_LONG).show();
                         }
-                        /** you can try to log your values EditText */
                         Log.v("ypgs", String.valueOf(et.getText()));
                     }
                 }

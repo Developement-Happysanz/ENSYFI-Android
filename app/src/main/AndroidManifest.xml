@@ -3,7 +3,6 @@
     package="com.palprotech.ensyfi">
 
 
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -309,8 +308,8 @@
             android:name=".activity.teachermodule.AddClassTestMarkActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"
-            android:theme="@style/AppThemeNoActionBarGrey" />
+            android:theme="@style/AppThemeNoActionBarGrey"
+            android:windowSoftInputMode="adjustPan" />
 
         <activity
             android:name=".activity.teachermodule.ViewClassTestMarkActivity"
@@ -365,6 +364,12 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarGrey" />
+
+        <activity
+            android:name=".activity.teachermodule.sample.SampleAddClassTestMarkActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarPink" />
 
         <!--End-->
         <!---->
@@ -469,26 +474,30 @@
             android:exported="true"
             android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
-                <category android:name="com.gnirt69.gcmexample"/>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="com.gnirt69.gcmexample" />
             </intent-filter>
         </receiver>
 
         <!--
             GCM Receiver Service
         -->
-        <service android:name=".servicehelpers.gcm.GCMPushReceiverService" android:exported="false">
+        <service
+            android:name=".servicehelpers.gcm.GCMPushReceiverService"
+            android:exported="false">
             <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
         </service>
 
         <!--
             GCM Registration Intent Service
         -->
-        <service android:name=".servicehelpers.gcm.GCMRegistrationIntentService" android:exported="false">
+        <service
+            android:name=".servicehelpers.gcm.GCMRegistrationIntentService"
+            android:exported="false">
             <intent-filter>
-                <action android:name="com.google.android.gms.iid.InstanceID"/>
+                <action android:name="com.google.android.gms.iid.InstanceID" />
             </intent-filter>
         </service>
     </application>

@@ -145,11 +145,9 @@ public class AddAcademicExamMarksActivity extends AppCompatActivity implements V
 
     @Override
     public void onClick(View v) {
-        try {
+        if (v == btnSave) {
+            String onIn = "";
             SaveStudentsAcademicExamMarks();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            Toast.makeText(getApplicationContext(), "Try again...", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -200,60 +198,66 @@ public class AddAcademicExamMarksActivity extends AppCompatActivity implements V
     }
 
     private void SaveStudentsAcademicExamMarks() {
+        String set = "";
         View view;
         ArrayList<String> mannschaftsnamen = new ArrayList<String>();
         TextView et, et1;
         EditText edtInternalMarks, edtExternalMarks;
-        if (validateFields()) {
+        try {
+            if (validateFields()) {
 //            Toast.makeText(getApplicationContext(), "Error while marks add...",
 //                    Toast.LENGTH_LONG).show();
-            for (int i = 0; i < lvStudent.getCount(); i++) {
-                et = (TextView) lvStudent.getChildAt(i).findViewById(R.id.txt_studentId);
-                et1 = (TextView) lvStudent.getChildAt(i).findViewById(R.id.txt_studentName);
-                edtInternalMarks = (EditText) lvStudent.getChildAt(i).findViewById(R.id.internal_marks);
-                edtExternalMarks = (EditText) lvStudent.getChildAt(i).findViewById(R.id.external_marks);
-                if (et != null) {
-                    mannschaftsnamen.add(String.valueOf(et.getText()));
-                    String enrollId = String.valueOf(et.getText());
-                    String studentName = String.valueOf(et1.getText());
-                    String internalMarks = edtInternalMarks.getText().toString();
-                    String externalMarks = edtExternalMarks.getText().toString();
-                    if (internalMarks.isEmpty()) {
-                        internalMarks = "0";
-                    }
-                    if (externalMarks.isEmpty()) {
-                        externalMarks = "0";
-                    }
+                for (int i = 0; i < lvStudent.getCount(); i++) {
+                    et = (TextView) lvStudent.getChildAt(i).findViewById(R.id.txt_studentId);
+                    et1 = (TextView) lvStudent.getChildAt(i).findViewById(R.id.txt_studentName);
+                    edtInternalMarks = (EditText) lvStudent.getChildAt(i).findViewById(R.id.internal_marks);
+                    edtExternalMarks = (EditText) lvStudent.getChildAt(i).findViewById(R.id.external_marks);
+                    if (et != null) {
+                        mannschaftsnamen.add(String.valueOf(et.getText()));
+                        String enrollId = String.valueOf(et.getText());
+                        String studentName = String.valueOf(et1.getText());
+                        String internalMarks = edtInternalMarks.getText().toString();
+                        String externalMarks = edtExternalMarks.getText().toString();
+                        if (internalMarks.isEmpty()) {
+                            internalMarks = "0";
+                        }
+                        if (externalMarks.isEmpty()) {
+                            externalMarks = "0";
+                        }
 
-                    examId = getExamId;
-                    teacherId = PreferenceStorage.getTeacherId(this);
-                    subjectId = PreferenceStorage.getTeacherSubject(this);
-                    studentId = enrollId;
-                    classMasterId = getClassMasterId;
-                    internalMark = internalMarks;
-                    internalGrade = "A";
-                    externalMark = externalMarks;
-                    externalGrade = "A";
-                    totalMarks = "0";
-                    totalGrade = "A";
-                    createdBy = PreferenceStorage.getUserId(this);
-                    createdAt = formattedServerDate;
-                    updatedBy = PreferenceStorage.getUserId(this);
-                    updatedAt = formattedServerDate;
-                    syncStatus = "NS";
+                        examId = getExamId;
+                        teacherId = PreferenceStorage.getTeacherId(this);
+                        subjectId = PreferenceStorage.getTeacherSubject(this);
+                        studentId = enrollId;
+                        classMasterId = getClassMasterId;
+                        internalMark = internalMarks;
+                        internalGrade = "A";
+                        externalMark = externalMarks;
+                        externalGrade = "A";
+                        totalMarks = "0";
+                        totalGrade = "A";
+                        createdBy = PreferenceStorage.getUserId(this);
+                        createdAt = formattedServerDate;
+                        updatedBy = PreferenceStorage.getUserId(this);
+                        updatedAt = formattedServerDate;
+                        syncStatus = "NS";
 
-                    long c = db.academic_exam_marks_insert(examId, teacherId, subjectId, studentId, classMasterId, internalMark,
-                            internalGrade, externalMark, externalGrade, totalMarks, totalGrade, createdBy, createdAt,
-                            updatedBy, updatedAt, syncStatus);
-                    if (c == -1) {
-                        Toast.makeText(getApplicationContext(), "Error while marks add...", Toast.LENGTH_LONG).show();
+                        long c = db.academic_exam_marks_insert(examId, teacherId, subjectId, studentId, classMasterId, internalMark,
+                                internalGrade, externalMark, externalGrade, totalMarks, totalGrade, createdBy, createdAt,
+                                updatedBy, updatedAt, syncStatus);
+                        if (c == -1) {
+                            Toast.makeText(getApplicationContext(), "Error while marks add...", Toast.LENGTH_LONG).show();
+                        }
+                        //** you can try to log your values EditText *//*
+                        Log.v("ypgs", String.valueOf(et.getText()));
                     }
-                    //** you can try to log your values EditText *//*
-                    Log.v("ypgs", String.valueOf(et.getText()));
                 }
+                db.updateAcademicExamMarksStatus(getExamId, getClassMasterId);
+                finish();
             }
-            db.updateAcademicExamMarksStatus(getExamId, getClassMasterId);
-            finish();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Toast.makeText(getApplicationContext(), "Try again...", Toast.LENGTH_LONG).show();
         }
     }
 
