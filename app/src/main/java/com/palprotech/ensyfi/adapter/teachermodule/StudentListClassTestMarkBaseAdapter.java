@@ -15,6 +15,7 @@ import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.bean.teacher.viewlist.StudentsClassTestMarks;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Admin on 14-07-2017.
@@ -25,30 +26,16 @@ public class StudentListClassTestMarkBaseAdapter extends BaseAdapter {
     ArrayList<StudentsClassTestMarks> myList = new ArrayList<StudentsClassTestMarks>();
     LayoutInflater inflater;
     Context context;
-    int[] result;
+    private final String[] valueList;
+
+    private HashMap<String, String> textValues = new HashMap<String, String>();
 
     public StudentListClassTestMarkBaseAdapter(Context context, ArrayList<StudentsClassTestMarks> myList) {
         this.myList = myList;
         this.context = context;
+        valueList = new String[myList.size()];
         inflater = LayoutInflater.from(this.context);
-//        for (int i = 0; i < 20; i++) {
-//            ListItem listItem = new ListItem();
-//            listItem.caption = "Caption" + i;
-//            this.myList.add(listItem);
-//        }
-//        notifyDataSetChanged();
     }
-
-//    public MyAdapter() {
-//        mInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        for (int i = 0; i < 20; i++) {
-//            ListItem listItem = new ListItem();
-//            listItem.caption = "Caption" + i;
-//            myItems.add(listItem);
-//        }
-//        notifyDataSetChanged();
-//    }
-
 
     @Override
     public int getCount() {
@@ -75,60 +62,35 @@ public class StudentListClassTestMarkBaseAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.students_class_test_mark_list_item, parent, false);
             mViewHolder = new MyViewHolder(convertView);
-            mViewHolder.edtStudentMarks = (EditText)convertView.findViewById(R.id.class_test_marks);
-//            mViewHolder.edtStudentMarks.addTextChangedListener(new MeuTextWatcher(mViewHolder.edtStudentMarks));
-
             convertView.setTag(mViewHolder);
         } else {
             mViewHolder = (MyViewHolder) convertView.getTag();
         }
 
-        mViewHolder.edtStudentMarks.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-//                String text = editable.toString();
-//                ARR[holder.getPosition()] = text;
-//                Log.e("Watcher > ", holder.getPosition()+"> "+ ARR[holder.getPosition()] );
-            }
-        });
-
         StudentsClassTestMarks currentListData = getItem(position);
 
         mViewHolder.txtStudentId.setText(currentListData.getEnrollId());
         mViewHolder.txtStudentName.setText(currentListData.getStudentName());
-
+        mViewHolder.edtStudentMarks.setText("" + mViewHolder.defaultNumber);
 
         return convertView;
     }
 
-    class ListItem {
-        String caption;
+    public String[] getValueList(){
+        return valueList;
     }
 
     private class MyViewHolder {
 
         TextView txtStudentId;
         TextView txtStudentName;
-        TextView txtTablePrimaryKey;
         EditText edtStudentMarks;
-
+        int defaultNumber = 0;
 
         public MyViewHolder(View item) {
             txtStudentId = (TextView) item.findViewById(R.id.txt_studentId);
             txtStudentName = (TextView) item.findViewById(R.id.txt_studentName);
-
-
+            edtStudentMarks = (EditText) item.findViewById(R.id.class_test_marks);
         }
     }
 }

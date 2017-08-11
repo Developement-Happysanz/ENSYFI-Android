@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
+import com.palprotech.ensyfi.activity.teachermodule.sample.SampleAddClassTestMarkActivity;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 
 /**
@@ -136,7 +137,7 @@ public class ClassTestHomeWorkDetailPageActivity extends AppCompatActivity imple
     @Override
     public void onClick(View v) {
         if (v == addMarks) {
-            Intent intent = new Intent(getApplicationContext(), AddClassTestMarkActivity.class);
+            Intent intent = new Intent(getApplicationContext(), SampleAddClassTestMarkActivity.class);
             intent.putExtra("hw_id", id);
             startActivity(intent);
         }

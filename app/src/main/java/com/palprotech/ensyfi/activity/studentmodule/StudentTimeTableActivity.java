@@ -84,7 +84,6 @@ public class StudentTimeTableActivity extends AppCompatActivity implements IServ
             String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_STUDENT_TIME_TABLE_API;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
-
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
         }
@@ -112,6 +111,7 @@ public class StudentTimeTableActivity extends AppCompatActivity implements IServ
                     ViewGroup.LayoutParams.MATCH_PARENT);
 
             cellLp.setMargins(2, 2, 2, 2);
+
             int i = 0;
             int r = 0;
             int col = 0;
@@ -215,50 +215,51 @@ public class StudentTimeTableActivity extends AppCompatActivity implements IServ
                             name = "";
 //                            name1 = "";
                         }
-                    }db.close();
+                    }
+                    db.close();
 
 //                        name = getData.getJSONObject(i).getString("subject_name") + "";
 //                        }
 
-                        cell.setBackgroundColor(Color.WHITE);//argb(255,104,53,142)
+                    cell.setBackgroundColor(Color.WHITE);//argb(255,104,53,142)
 
-                        b.setText(name);
-                        b.setTextSize(13.0f);
-                        b.setTypeface(null, Typeface.BOLD);
-                        b.setAllCaps(true);
-                        b.setTextColor(Color.parseColor("#FF68358E"));
-                        b.setGravity(Gravity.CENTER);
-                        b.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                // TODO Auto-generated method stub
+                    b.setText(name);
+                    b.setTextSize(13.0f);
+                    b.setTypeface(null, Typeface.BOLD);
+                    b.setAllCaps(true);
+                    b.setTextColor(Color.parseColor("#FF68358E"));
+                    b.setGravity(Gravity.CENTER);
+                    b.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // TODO Auto-generated method stub
 
-                            }
-                        });
-                        b.setPressed(true);
+                        }
+                    });
+                    b.setPressed(true);
 
-                        b.setHeight(160);
-                        b.setWidth(160);
-                        b.setPadding(1, 0, 2, 0);
-                        cell.addView(b);
-                        cell.setLayoutParams(llp);//2px border on the right for the cell
+                    b.setHeight(160);
+                    b.setWidth(160);
+                    b.setPadding(1, 0, 2, 0);
+                    cell.addView(b);
+                    cell.setLayoutParams(llp);//2px border on the right for the cell
 
-                        tr.addView(cell, cellLp);
-                        i++;
-                        col++;
-                    } // for
-                    layout.addView(tr, rowLp);
-                    r++;
-                }
-                // for
+                    tr.addView(cell, cellLp);
+                    i++;
+                    col++;
+                } // for
+                layout.addView(tr, rowLp);
+                r++;
+            }
+            // for
 
-                layout_all.addView(layout);
+            layout_all.addView(layout);
 
 //                }
-            } catch(Exception ex){
-                ex.printStackTrace();
-            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
+    }
 
     private boolean validateSignInResponse(JSONObject response) {
         boolean signInsuccess = false;
