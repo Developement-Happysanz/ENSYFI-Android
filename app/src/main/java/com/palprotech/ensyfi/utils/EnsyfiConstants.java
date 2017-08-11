@@ -338,6 +338,12 @@ public class EnsyfiConstants {
     //OnDuty Params
     public static final String PARAMS_GROUP_NOTIFICATIONS_USER_TYPE = "user_type";
     public static final String PARAMS_GROUP_NOTIFICATIONS_USER_ID = "user_id";
+    public static final String PARAMS_GROUP_NOTIFICATIONS_TITLE_ID = "group_title_id";
+    public static final String PARAMS_GROUP_NOTIFICATIONS_MESSAGE_TYPE_SMS = "messagetype_sms";
+    public static final String PARAMS_GROUP_NOTIFICATIONS_MESSAGE_TYPE_MAIL = "messagetype_mail";
+    public static final String PARAMS_GROUP_NOTIFICATIONS_MESSAGE_TYPE_NOTIFICATIONS = "messagetype_notifications";
+    public static final String PARAMS_GROUP_NOTIFICATIONS_MESSAGE_DETAILS = "message_details";
+    public static final String PARAMS_GROUP_NOTIFICATIONS_CREATED_BY = "created_by";
 
     // Attendance Params
     public static final String PARAMS_DISPLAY_TYPE = "disp_type";
