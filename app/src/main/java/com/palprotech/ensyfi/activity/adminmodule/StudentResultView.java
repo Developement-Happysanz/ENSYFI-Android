@@ -16,6 +16,7 @@ import android.widget.ListView;
 import com.google.gson.Gson;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.activity.studentmodule.ExamMarksActivity;
+import com.palprotech.ensyfi.activity.studentmodule.ExamOnlyTotalMarksActivity;
 import com.palprotech.ensyfi.adapter.adminmodule.ClassStudentListAdapter;
 import com.palprotech.ensyfi.bean.admin.viewlist.ClassStudent;
 import com.palprotech.ensyfi.bean.admin.viewlist.ClassStudentList;
@@ -151,10 +152,19 @@ public class StudentResultView extends AppCompatActivity implements IServiceList
 
         PreferenceStorage.saveStudentRegisteredIdPreference(this, classStudent.getEnrollId());
 
-        Intent intent = new Intent(this, ExamMarksActivity.class);
-        intent.putExtra("eventObj", exams);
-        // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        startActivity(intent);
+        String isInternalExternal = exams.getIsInternalExternal();
+
+        if (isInternalExternal.equalsIgnoreCase("1")) {
+            Intent intent = new Intent(this, ExamMarksActivity.class);
+            intent.putExtra("eventObj", exams);
+            // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(this, ExamOnlyTotalMarksActivity.class);
+            intent.putExtra("eventObj", exams);
+            // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(intent);
+        }
     }
 
     @Override
