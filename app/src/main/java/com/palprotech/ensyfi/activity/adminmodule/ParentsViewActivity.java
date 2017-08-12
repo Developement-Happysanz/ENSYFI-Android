@@ -291,21 +291,30 @@ public class ParentsViewActivity extends AppCompatActivity implements IServiceLi
                     spnSectionList.setAdapter(adapter);
 //                spnClassList.setSelection(adapter.getPosition());//Optional to set the selected item.
                 } else {
-                    mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            progressDialogHelper.hideProgressDialog();
+                    JSONArray getData = response.getJSONArray("data");
+                    if (getData != null && getData.length() > 0) {
+                        mHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                progressDialogHelper.hideProgressDialog();
 //                loadMoreListView.onLoadMoreComplete();
 
-                            Gson gson = new Gson();
-                            ParentStudentList parentStudentList = gson.fromJson(response.toString(), ParentStudentList.class);
-                            if (parentStudentList.getParentStudent() != null && parentStudentList.getParentStudent().size() > 0) {
-                                totalCount = parentStudentList.getCount();
-                                isLoadingForFirstTime = false;
-                                updateListAdapter(parentStudentList.getParentStudent());
+                                Gson gson = new Gson();
+                                ParentStudentList parentStudentList = gson.fromJson(response.toString(), ParentStudentList.class);
+                                if (parentStudentList.getParentStudent() != null && parentStudentList.getParentStudent().size() > 0) {
+                                    totalCount = parentStudentList.getCount();
+                                    isLoadingForFirstTime = false;
+                                    updateListAdapter(parentStudentList.getParentStudent());
+                                }
                             }
+                        });
+                    } else {
+                        if (parentStudentArrayList != null) {
+                            parentStudentArrayList.clear();
+                            parentStudentListAdapter = new ParentStudentListAdapter(this, this.parentStudentArrayList);
+                            loadMoreListView.setAdapter(parentStudentListAdapter);
                         }
-                    });
+                    }
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

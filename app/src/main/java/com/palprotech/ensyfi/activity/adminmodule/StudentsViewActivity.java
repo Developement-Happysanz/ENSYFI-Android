@@ -276,21 +276,31 @@ public class StudentsViewActivity extends AppCompatActivity implements IServiceL
                     spnSectionList.setAdapter(adapter);
 //                spnClassList.setSelection(adapter.getPosition());//Optional to set the selected item.
                 } else {
-                    mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            progressDialogHelper.hideProgressDialog();
+                    JSONArray getData = response.getJSONArray("data");
+                    if (getData != null && getData.length() > 0) {
+//                        klassenID[i] = kl.getJSONObject(0).getString("id");
+                        mHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                progressDialogHelper.hideProgressDialog();
 //                loadMoreListView.onLoadMoreComplete();
 
-                            Gson gson = new Gson();
-                            ClassStudentList classStudentList = gson.fromJson(response.toString(), ClassStudentList.class);
-                            if (classStudentList.getClassStudent() != null && classStudentList.getClassStudent().size() > 0) {
-                                totalCount = classStudentList.getCount();
-                                isLoadingForFirstTime = false;
-                                updateListAdapter(classStudentList.getClassStudent());
+                                Gson gson = new Gson();
+                                ClassStudentList classStudentList = gson.fromJson(response.toString(), ClassStudentList.class);
+                                if (classStudentList.getClassStudent() != null && classStudentList.getClassStudent().size() > 0) {
+                                    totalCount = classStudentList.getCount();
+                                    isLoadingForFirstTime = false;
+                                    updateListAdapter(classStudentList.getClassStudent());
+                                }
                             }
+                        });
+                    } else {
+                        if (classStudentArrayList != null) {
+                            classStudentArrayList.clear();
+                            classStudentListAdapter = new ClassStudentListAdapter(this, this.classStudentArrayList);
+                            loadMoreListView.setAdapter(classStudentListAdapter);
                         }
-                    });
+                    }
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

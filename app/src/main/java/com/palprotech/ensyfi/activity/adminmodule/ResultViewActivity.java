@@ -292,21 +292,31 @@ public class ResultViewActivity extends AppCompatActivity implements IServiceLis
 //                spnClassList.setSelection(adapter.getPosition());//Optional to set the selected item.
                 } else {
 
-                    mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            progressDialogHelper.hideProgressDialog();
+                    JSONArray getData = response.getJSONArray("Exams");
+                    if (getData != null && getData.length() > 0) {
+
+                        mHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                progressDialogHelper.hideProgressDialog();
 //                loadMoreListView.onLoadMoreComplete();
 
-                            Gson gson = new Gson();
-                            ExamList examList = gson.fromJson(response.toString(), ExamList.class);
-                            if (examList.getExams() != null && examList.getExams().size() > 0) {
-                                totalCount = examList.getCount();
-                                isLoadingForFirstTime = false;
-                                updateListAdapter(examList.getExams());
+                                Gson gson = new Gson();
+                                ExamList examList = gson.fromJson(response.toString(), ExamList.class);
+                                if (examList.getExams() != null && examList.getExams().size() > 0) {
+                                    totalCount = examList.getCount();
+                                    isLoadingForFirstTime = false;
+                                    updateListAdapter(examList.getExams());
+                                }
                             }
+                        });
+                    } else {
+                        if (examsArrayList != null) {
+                            examsArrayList.clear();
+                            examListAdapter = new ExamListAdapter(this, this.examsArrayList);
+                            loadMoreListView.setAdapter(examListAdapter);
                         }
-                    });
+                    }
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

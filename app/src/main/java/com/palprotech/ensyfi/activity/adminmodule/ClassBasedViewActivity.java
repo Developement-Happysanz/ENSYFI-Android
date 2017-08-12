@@ -20,6 +20,7 @@ import android.widget.Spinner;
 import com.google.gson.Gson;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.adapter.adminmodule.ClassStudentListAdapter;
+import com.palprotech.ensyfi.adapter.adminmodule.ParentStudentListAdapter;
 import com.palprotech.ensyfi.adapter.adminmodule.TeacherViewListAdapter;
 import com.palprotech.ensyfi.bean.admin.support.StoreClass;
 import com.palprotech.ensyfi.bean.admin.support.StoreSection;
@@ -99,6 +100,19 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 StoreClass classList = (StoreClass) parent.getSelectedItem();
+
+                if (classStudentArrayList != null) {
+                    classStudentArrayList.clear();
+//                    classStudentListAdapter = new ClassStudentListAdapter(this, this.classStudentArrayList);
+                    loadMoreListView.setAdapter(classStudentListAdapter);
+                }
+
+                if (teacherViewArrayList != null) {
+                    teacherViewArrayList.clear();
+                   // teacherViewListAdapter = new TeacherViewListAdapter(this, this.teacherViewArrayList);
+                    loadMoreListView.setAdapter(teacherViewListAdapter);
+                }
+
 //                Toast.makeText(getApplicationContext(), "Class ID: " + classList.getClassId() + ",  Class Name : " + classList.getClassName(), Toast.LENGTH_SHORT).show();
                 storeClassId = classList.getClassId();
                 GetSectionData();
@@ -114,6 +128,19 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 StoreSection sectionList = (StoreSection) parent.getSelectedItem();
+
+                if (classStudentArrayList != null) {
+                    classStudentArrayList.clear();
+//                    classStudentListAdapter = new ClassStudentListAdapter(this, this.classStudentArrayList);
+                    loadMoreListView.setAdapter(classStudentListAdapter);
+                }
+
+                if (teacherViewArrayList != null) {
+                    teacherViewArrayList.clear();
+                    // teacherViewListAdapter = new TeacherViewListAdapter(this, this.teacherViewArrayList);
+                    loadMoreListView.setAdapter(teacherViewListAdapter);
+                }
+
 //                Toast.makeText(getApplicationContext(), "Section ID: " + sectionList.getSectionId() + ",  Section Name : " + sectionList.getSectionName(), Toast.LENGTH_SHORT).show();
                 storeSectionId = sectionList.getSectionId();
 
@@ -376,38 +403,57 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
                     spnSectionList.setAdapter(adapter);
 //                spnClassList.setSelection(adapter.getPosition());//Optional to set the selected item.
                 } else if (checkSpinner.equalsIgnoreCase("students")) {
-                    mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            progressDialogHelper.hideProgressDialog();
+
+                    JSONArray getData = response.getJSONArray("data");
+                    if (getData != null && getData.length() > 0) {
+                        mHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                progressDialogHelper.hideProgressDialog();
 //                loadMoreListView.onLoadMoreComplete();
 
-                            Gson gson = new Gson();
-                            ClassStudentList classStudentList = gson.fromJson(response.toString(), ClassStudentList.class);
-                            if (classStudentList.getClassStudent() != null && classStudentList.getClassStudent().size() > 0) {
-                                totalCount = classStudentList.getCount();
-                                isLoadingForFirstTime = false;
-                                updateListStudentAdapter(classStudentList.getClassStudent());
+                                Gson gson = new Gson();
+                                ClassStudentList classStudentList = gson.fromJson(response.toString(), ClassStudentList.class);
+                                if (classStudentList.getClassStudent() != null && classStudentList.getClassStudent().size() > 0) {
+                                    totalCount = classStudentList.getCount();
+                                    isLoadingForFirstTime = false;
+                                    updateListStudentAdapter(classStudentList.getClassStudent());
+                                }
                             }
+                        });
+                    } else {
+                        if (classStudentArrayList != null) {
+                            classStudentArrayList.clear();
+                            classStudentListAdapter = new ClassStudentListAdapter(this, this.classStudentArrayList);
+                            loadMoreListView.setAdapter(classStudentListAdapter);
                         }
-                    });
+                    }
+
                 } else {
-
-                    mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            progressDialogHelper.hideProgressDialog();
+                    JSONArray getData = response.getJSONArray("data");
+                    if (getData != null && getData.length() > 0) {
+                        mHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                progressDialogHelper.hideProgressDialog();
 //                loadMoreListView.onLoadMoreComplete();
 
-                            Gson gson = new Gson();
-                            TeacherViewList teacherViewList = gson.fromJson(response.toString(), TeacherViewList.class);
-                            if (teacherViewList.getTeacherView() != null && teacherViewList.getTeacherView().size() > 0) {
-                                totalCount = teacherViewList.getCount();
-                                isLoadingForFirstTime = false;
-                                updateListTeacherAdapter(teacherViewList.getTeacherView());
+                                Gson gson = new Gson();
+                                TeacherViewList teacherViewList = gson.fromJson(response.toString(), TeacherViewList.class);
+                                if (teacherViewList.getTeacherView() != null && teacherViewList.getTeacherView().size() > 0) {
+                                    totalCount = teacherViewList.getCount();
+                                    isLoadingForFirstTime = false;
+                                    updateListTeacherAdapter(teacherViewList.getTeacherView());
+                                }
                             }
+                        });
+                    } else {
+                        if (teacherViewArrayList != null) {
+                            teacherViewArrayList.clear();
+                            teacherViewListAdapter = new TeacherViewListAdapter(this, this.teacherViewArrayList);
+                            loadMoreListView.setAdapter(teacherViewListAdapter);
                         }
-                    });
+                    }
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -433,20 +479,20 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
     protected void updateListStudentAdapter(ArrayList<ClassStudent> classStudentArrayList) {
         this.classStudentArrayList.addAll(classStudentArrayList);
 //        if (classStudentListAdapter == null) {
-            classStudentListAdapter = new ClassStudentListAdapter(this, this.classStudentArrayList);
-            loadMoreListView.setAdapter(classStudentListAdapter);
+        classStudentListAdapter = new ClassStudentListAdapter(this, this.classStudentArrayList);
+        loadMoreListView.setAdapter(classStudentListAdapter);
 //        } else {
-            classStudentListAdapter.notifyDataSetChanged();
+        classStudentListAdapter.notifyDataSetChanged();
 //        }
     }
 
     protected void updateListTeacherAdapter(ArrayList<TeacherView> teacherViewArrayList) {
         this.teacherViewArrayList.addAll(teacherViewArrayList);
 //        if (teacherViewListAdapter == null) {
-            teacherViewListAdapter = new TeacherViewListAdapter(this, this.teacherViewArrayList);
-            loadMoreListView.setAdapter(teacherViewListAdapter);
+        teacherViewListAdapter = new TeacherViewListAdapter(this, this.teacherViewArrayList);
+        loadMoreListView.setAdapter(teacherViewListAdapter);
 //        } else {
-            teacherViewListAdapter.notifyDataSetChanged();
+        teacherViewListAdapter.notifyDataSetChanged();
 //        }
     }
 }
