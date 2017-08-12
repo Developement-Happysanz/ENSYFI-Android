@@ -1,6 +1,7 @@
 package com.palprotech.ensyfi.activity.general;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -215,31 +216,23 @@ public class GroupingSendActivity extends AppCompatActivity implements IServiceL
 
             if (checkSpinner.equalsIgnoreCase("send")) {
                 try {
+                    String status = response.getString("status");
+                    String msg = response.getString(EnsyfiConstants.PARAM_MESSAGE);
+                    Log.d(TAG, "status val" + status + "msg" + msg);
+                    if ((status != null)) {
+                        if (((status.equalsIgnoreCase("success")))) {
 
-                    JSONArray getData = response.getJSONArray("groupDetails");
-                    JSONObject userData = getData.getJSONObject(0);
-                    int getLength = getData.length();
-                    String subjectName = null;
-                    Log.d(TAG, "userData dictionary" + userData.toString());
+                            Log.d(TAG, "Show error dialog");
+                            AlertDialogHelper.showSimpleAlertDialog(this, msg);
 
-                    String groupId = "";
-                    String groupName = "";
-                    ArrayList<StoreGroup> groupList = new ArrayList<>();
+                            Intent intent = new Intent(this, GroupingActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                            finish();
 
-                    for (int i = 0; i < getLength; i++) {
-
-                        groupId = getData.getJSONObject(i).getString("id");
-                        groupName = getData.getJSONObject(i).getString("group_title");
-
-                        groupList.add(new StoreGroup(groupId, groupName));
+                        }
                     }
-
-                    //fill data in spinner
-                    ArrayAdapter<StoreGroup> adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item_ns, groupList);
-                    spnGroupList.setAdapter(adapter);
-//                spnClassList.setSelection(adapter.getPosition());//Optional to set the selected item.
-
-
+//                studentData.saveStudentProfile(getData);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -321,7 +314,7 @@ public class GroupingSendActivity extends AppCompatActivity implements IServiceL
                         jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_TITLE_ID, storeGroupId);
                         jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_MESSAGE_TYPE_SMS, message_type_sms);
                         jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_MESSAGE_TYPE_MAIL, message_type_mail);
-                        jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_MESSAGE_TYPE_NOTIFICATIONS, message_type_notification);
+                        jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_MESSAGE_TYPE_NOTIFICATION, message_type_notification);
                         jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_MESSAGE_DETAILS, message);
                         jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_CREATED_BY, PreferenceStorage.getUserId(this));
 
@@ -330,7 +323,7 @@ public class GroupingSendActivity extends AppCompatActivity implements IServiceL
                     }
 
                     progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-                    String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.GET_ON_DUTY_REQUEST;
+                    String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.SEND_GROUP_MESSAGE;
                     serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
                 } else {
 

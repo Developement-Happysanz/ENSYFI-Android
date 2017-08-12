@@ -66,6 +66,13 @@ public class GroupingActivity extends AppCompatActivity implements IServiceListe
 
         CreateNotification = (ImageView) findViewById(R.id.create_notification);
         CreateNotification.setOnClickListener(this);
+        CreateNotification.setVisibility(View.INVISIBLE);
+
+        String userTypeString = PreferenceStorage.getUserType(getApplicationContext());
+        int userType = Integer.parseInt(userTypeString);
+        if (userType == 2) {
+            CreateNotification.setVisibility(View.VISIBLE);
+        }
 
         callGetGroupService();
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
