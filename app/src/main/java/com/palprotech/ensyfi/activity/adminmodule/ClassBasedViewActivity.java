@@ -100,6 +100,19 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 StoreClass classList = (StoreClass) parent.getSelectedItem();
+
+                if (classStudentArrayList != null) {
+                    classStudentArrayList.clear();
+//                    classStudentListAdapter = new ClassStudentListAdapter(this, this.classStudentArrayList);
+                    loadMoreListView.setAdapter(classStudentListAdapter);
+                }
+
+                if (teacherViewArrayList != null) {
+                    teacherViewArrayList.clear();
+                   // teacherViewListAdapter = new TeacherViewListAdapter(this, this.teacherViewArrayList);
+                    loadMoreListView.setAdapter(teacherViewListAdapter);
+                }
+
 //                Toast.makeText(getApplicationContext(), "Class ID: " + classList.getClassId() + ",  Class Name : " + classList.getClassName(), Toast.LENGTH_SHORT).show();
                 storeClassId = classList.getClassId();
                 GetSectionData();
@@ -115,6 +128,19 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 StoreSection sectionList = (StoreSection) parent.getSelectedItem();
+
+                if (classStudentArrayList != null) {
+                    classStudentArrayList.clear();
+//                    classStudentListAdapter = new ClassStudentListAdapter(this, this.classStudentArrayList);
+                    loadMoreListView.setAdapter(classStudentListAdapter);
+                }
+
+                if (teacherViewArrayList != null) {
+                    teacherViewArrayList.clear();
+                    // teacherViewListAdapter = new TeacherViewListAdapter(this, this.teacherViewArrayList);
+                    loadMoreListView.setAdapter(teacherViewListAdapter);
+                }
+
 //                Toast.makeText(getApplicationContext(), "Section ID: " + sectionList.getSectionId() + ",  Section Name : " + sectionList.getSectionName(), Toast.LENGTH_SHORT).show();
                 storeSectionId = sectionList.getSectionId();
 

@@ -292,7 +292,7 @@ public class ResultViewActivity extends AppCompatActivity implements IServiceLis
 //                spnClassList.setSelection(adapter.getPosition());//Optional to set the selected item.
                 } else {
 
-                    JSONArray getData = response.getJSONArray("data");
+                    JSONArray getData = response.getJSONArray("Exams");
                     if (getData != null && getData.length() > 0) {
 
                         mHandler.post(new Runnable() {
