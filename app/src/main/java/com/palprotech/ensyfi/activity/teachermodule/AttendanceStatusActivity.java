@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.palprotech.ensyfi.R;
+import com.palprotech.ensyfi.activity.teachermodule.sample.SampleTeacherAttendanceInsertActivity;
 import com.palprotech.ensyfi.adapter.studentmodule.DayViewListAdapter;
 import com.palprotech.ensyfi.adapter.studentmodule.MonthViewListAdapter;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
@@ -100,7 +101,8 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
             finish();
         }
         if (v == btnAddAttendnace) {
-            Intent intent = new Intent(getApplicationContext(), TeacherAttendanceInsertActivity.class);
+            Intent intent = new Intent(getApplicationContext(), SampleTeacherAttendanceInsertActivity.class);
+//            Intent intent = new Intent(getApplicationContext(), TeacherAttendanceInsertActivity.class);
             startActivity(intent);
         }
         if (v == selectDateMonth) {
