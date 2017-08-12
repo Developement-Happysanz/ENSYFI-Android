@@ -186,6 +186,13 @@ public class ResultViewActivity extends AppCompatActivity implements IServiceLis
                 if ((status != null)) {
                     if (((status.equalsIgnoreCase("activationError")) || (status.equalsIgnoreCase("alreadyRegistered")) ||
                             (status.equalsIgnoreCase("notRegistered")) || (status.equalsIgnoreCase("error")))) {
+
+                        if (examsArrayList != null) {
+                            examsArrayList.clear();
+                            examListAdapter = new ExamListAdapter(this, this.examsArrayList);
+                            loadMoreListView.setAdapter(examListAdapter);
+                        }
+
                         signInsuccess = false;
                         Log.d(TAG, "Show error dialog");
                         AlertDialogHelper.showSimpleAlertDialog(this, msg);
