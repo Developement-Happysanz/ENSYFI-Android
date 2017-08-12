@@ -116,10 +116,6 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
         SimpleDateFormat serverDF = new SimpleDateFormat("yyyy-MM-dd");
         String formattedServerDate = serverDF.format(c.getTime());
 
-        frombackground.setBackgroundColor(Color.parseColor("#663366"));
-        dateFrom.setCompoundDrawablesWithIntrinsicBounds(R.drawable.od_from_date_selected, 0, 0, 0);
-        dateFrom.setTextColor((Color.parseColor("#663366")));
-
         ((TextView) findViewById(R.id.dateFrom)).setText(formattedDate);
 
         mFromDateVal = formattedServerDate;
@@ -130,10 +126,6 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
         String formattedDate = DF.format(c.getTime());
         SimpleDateFormat serverDF = new SimpleDateFormat("yyyy-MM-dd");
         String formattedServerDate = serverDF.format(c.getTime());
-
-        tobackground.setBackgroundColor(Color.parseColor("#663366"));
-        dateTo.setCompoundDrawablesWithIntrinsicBounds(R.drawable.od_from_date_selected, 0, 0, 0);
-        dateTo.setTextColor((Color.parseColor("#663366")));
 
         ((TextView) findViewById(R.id.dateTo)).setText(formattedDate);
 
@@ -242,6 +234,11 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
                 }
             });
             mFromDatePickerDialog.show();
+
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.
+                    INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+
         }
 
         if (v == dateTo) {
@@ -292,6 +289,10 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
                 }
             });
             dpd.show();
+
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.
+                    INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         }
 
         if (v == btnRequest) {

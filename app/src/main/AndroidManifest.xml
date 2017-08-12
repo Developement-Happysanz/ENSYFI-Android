@@ -240,7 +240,8 @@
             android:name=".activity.general.OnDutyRequestActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/AppThemeNoActionBarGrey" />
+            android:theme="@style/AppThemeNoActionBarGrey"
+            android:windowSoftInputMode="stateHidden"/>
 
         <activity
             android:name=".activity.general.CircularActivity"
