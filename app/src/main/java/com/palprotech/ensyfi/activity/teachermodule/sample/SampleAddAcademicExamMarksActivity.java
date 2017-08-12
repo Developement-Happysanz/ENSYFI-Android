@@ -54,7 +54,6 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
     ImageView btnSave;
     Calendar c = Calendar.getInstance();
     String localExamId, formattedServerDate, storeClassId;
-    //    ArrayList<StudentsClassTestMarks> myList = new ArrayList<StudentsClassTestMarks>();
     LinearLayout layout_all;
 
     @Override
@@ -62,27 +61,16 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_academic_exam_marks_sample);
 
-        Intent intent = getIntent();
         hwId = getIntent().getExtras().getLong("id");
         db = new SQLiteHelper(getApplicationContext());
         localExamId = String.valueOf(hwId);
         layout_all = (LinearLayout) findViewById(R.id.layout_timetable);
-
-//        lvStudent = (ListView) findViewById(R.id.listView_students);
-
         btnSave = (ImageView) findViewById(R.id.btnSave);
         btnSave.setOnClickListener(this);
-
-
         SimpleDateFormat serverDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         formattedServerDate = serverDF.format(c.getTime());
-
         GetAcademicExamInfo(localExamId);
-
         GetStudentsList(getClassMasterId);
-
-//        StudentsAcademicExamMarksAddBaseAdapter cadapter = new StudentsAcademicExamMarksAddBaseAdapter(SampleAddAcademicExamMarksActivity.this, myList);
-//        lvStudent.setAdapter(cadapter);
 
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
         bckbtn.setOnClickListener(new View.OnClickListener() {
@@ -251,7 +239,6 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
     @Override
     public void onClick(View v) {
         if (v == btnSave) {
-            String onIn = "";
             SaveStudentsAcademicExamMarks();
         }
     }
@@ -277,17 +264,13 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
 //            int internalMark = Integer.parseInt(edtInternalMarks.getText().toString());
             edtExternalMarks = (EditText) view.findViewById(R.id.my_edit_text_2);
 //            int externalMark = Integer.parseInt(edtExternalMarks.getText().toString());
-
-//            et = (TextView) lvStudent.getChildAt(i).findViewById(R.id.txt_studentId);
             et1 = (TextView) view.findViewById(R.id.my_text_2);
 
             if (!AppValidator.checkNullString(edtInternalMarks.getText().toString().trim())) {
                 AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid internal marks for student - " + String.valueOf(et1.getText()));
-//                return false;
             }
             if (!AppValidator.checkNullString(edtExternalMarks.getText().toString().trim())) {
                 AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid external marks for student - " + String.valueOf(et1.getText()));
-//                return false;
             }
 //            if (internalMark <= 0 || internalMark >= validInternalMark + 1) {
 //                AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid internal marks for student - " + String.valueOf(et1.getText()) + " between 0 to " + validInternalMark);
@@ -298,7 +281,6 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
 //            }
             else {
                 count++;
-//                return true;
             }
         }
 
@@ -310,16 +292,10 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
     }
 
     private void SaveStudentsAcademicExamMarks() {
-        String set = "";
-//        View view;
-        ArrayList<String> mannschaftsnamen = new ArrayList<String>();
         TextView et, et1;
         EditText edtInternalMarks, edtExternalMarks;
         try {
             if (validateFields()) {
-//            Toast.makeText(getApplicationContext(), "Error while marks add...",
-//                    Toast.LENGTH_LONG).show();
-
                 int nViews = layout_all.getChildCount();
 
                 for (int i = 0; i < nViews; i++) {
@@ -327,12 +303,11 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
                     View view = layout_all.getChildAt(i);
 
 
-                    et = (TextView)  view.findViewById(R.id.my_text_1);
+                    et = (TextView) view.findViewById(R.id.my_text_1);
                     et1 = (TextView) view.findViewById(R.id.my_text_2);
                     edtInternalMarks = (EditText) view.findViewById(R.id.my_edit_text_1);
                     edtExternalMarks = (EditText) view.findViewById(R.id.my_edit_text_2);
                     if (et != null) {
-                        mannschaftsnamen.add(String.valueOf(et.getText()));
                         String enrollId = String.valueOf(et.getText());
                         String studentName = String.valueOf(et1.getText());
                         String internalMarks = edtInternalMarks.getText().toString();
@@ -367,7 +342,6 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
                         if (c == -1) {
                             Toast.makeText(getApplicationContext(), "Error while marks add...", Toast.LENGTH_LONG).show();
                         }
-                        //** you can try to log your values EditText *//**//*
                         Log.v("ypgs", String.valueOf(et.getText()));
                     }
                 }

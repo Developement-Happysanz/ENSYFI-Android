@@ -50,7 +50,7 @@ public class SampleAddAcademicExamMarksOnlyTotalActivity extends AppCompatActivi
     String examMarksId, examId, teacherId, subjectId, studentId, classMasterId, mark, grade,
             externalMark, externalGrade, totalMarks, totalGrade, createdBy, createdAt, updatedBy, updatedAt, syncStatus;
     String getExamId, examName, getClassMasterId, sectionName, className, fromDate, toDate, markStatus;
-//    ListView lvStudent;
+    //    ListView lvStudent;
     ImageView btnSave;
     Calendar c = Calendar.getInstance();
     String localExamId, formattedServerDate, storeClassId;
@@ -62,27 +62,16 @@ public class SampleAddAcademicExamMarksOnlyTotalActivity extends AppCompatActivi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_academic_exam_marks_only_total_sample);
 
-        Intent intent = getIntent();
         hwId = getIntent().getExtras().getLong("id");
         db = new SQLiteHelper(getApplicationContext());
         localExamId = String.valueOf(hwId);
-
-//        lvStudent = (ListView) findViewById(R.id.listView_students);
-
         layout_all = (LinearLayout) findViewById(R.id.layout_timetable);
-
         btnSave = (ImageView) findViewById(R.id.btnSave);
         btnSave.setOnClickListener(this);
-
         SimpleDateFormat serverDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         formattedServerDate = serverDF.format(c.getTime());
-
         GetAcademicExamInfo(localExamId);
-
         GetStudentsList(getClassMasterId);
-
-//        StudentsAcademicExamMarksAddBaseAdapter cadapter = new StudentsAcademicExamMarksAddBaseAdapter(SampleAddAcademicExamMarksOnlyTotalActivity.this, myList);
-//        lvStudent.setAdapter(cadapter);
 
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
         bckbtn.setOnClickListener(new View.OnClickListener() {
@@ -238,13 +227,10 @@ public class SampleAddAcademicExamMarksOnlyTotalActivity extends AppCompatActivi
     private boolean validateFields() {
         int getCount = 0;
         getCount = layout_all.getChildCount();
-
-
         EditText edtMarks;
         TextView et, et1;
         int count = 0;
         int validMark = 100;
-
 
         int nViews = layout_all.getChildCount();
 
@@ -255,12 +241,10 @@ public class SampleAddAcademicExamMarksOnlyTotalActivity extends AppCompatActivi
             edtMarks = (EditText) view.findViewById(R.id.my_edit_text_1);
 //            int internalMark = Integer.parseInt(edtInternalMarks.getText().toString());
 
-//            et = (TextView) lvStudent.getChildAt(i).findViewById(R.id.txt_studentId);
             et1 = (TextView) view.findViewById(R.id.my_text_2);
 
             if (!AppValidator.checkNullString(edtMarks.getText().toString().trim())) {
                 AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid internal marks for student - " + String.valueOf(et1.getText()));
-//                return false;
             }
 //            if (internalMark <= 0 || internalMark >= validInternalMark + 1) {
 //                AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid internal marks for student - " + String.valueOf(et1.getText()) + " between 0 to " + validInternalMark);
@@ -268,7 +252,6 @@ public class SampleAddAcademicExamMarksOnlyTotalActivity extends AppCompatActivi
 
             else {
                 count++;
-//                return true;
             }
         }
 
@@ -280,15 +263,10 @@ public class SampleAddAcademicExamMarksOnlyTotalActivity extends AppCompatActivi
     }
 
     private void SaveStudentsAcademicExamMarks() {
-        String set = "";
-//        View view;
-        ArrayList<String> mannschaftsnamen = new ArrayList<String>();
+
         TextView et, et1;
         EditText edtMarks;
         if (validateFields()) {
-//            Toast.makeText(getApplicationContext(), "Error while marks add...",
-//                    Toast.LENGTH_LONG).show();
-
             int nViews = layout_all.getChildCount();
 
             for (int i = 0; i < nViews; i++) {
@@ -296,12 +274,11 @@ public class SampleAddAcademicExamMarksOnlyTotalActivity extends AppCompatActivi
                 View view = layout_all.getChildAt(i);
 
 
-                et = (TextView)  view.findViewById(R.id.my_text_1);
+                et = (TextView) view.findViewById(R.id.my_text_1);
                 et1 = (TextView) view.findViewById(R.id.my_text_2);
                 edtMarks = (EditText) view.findViewById(R.id.my_edit_text_1);
 
                 if (et != null) {
-                    mannschaftsnamen.add(String.valueOf(et.getText()));
                     String enrollId = String.valueOf(et.getText());
                     String studentName = String.valueOf(et1.getText());
                     String Marks = edtMarks.getText().toString();
@@ -333,7 +310,6 @@ public class SampleAddAcademicExamMarksOnlyTotalActivity extends AppCompatActivi
                     if (c == -1) {
                         Toast.makeText(getApplicationContext(), "Error while marks add...", Toast.LENGTH_LONG).show();
                     }
-                    //** you can try to log your values EditText *//**//*
                     Log.v("ypgs", String.valueOf(et.getText()));
                 }
             }
