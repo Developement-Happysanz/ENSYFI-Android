@@ -924,6 +924,19 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         return c;
     }
 
+    public String isInternalExternalFlag(String val1) {
+        String internalExternalFlag = "0";
+        SQLiteDatabase database = this.getReadableDatabase();
+        String selectQuery = "Select is_internal_external from academicExams where exam_id = '" + val1 + "';";
+        Cursor cursor = database.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                internalExternalFlag = cursor.getString(0);
+            } while (cursor.moveToNext());
+        }
+        return internalExternalFlag;
+    }
+
     public void updateAcademicExamMarksSyncStatus(String val1) {
         SQLiteDatabase sqdb = this.getWritableDatabase();
         ContentValues values = new ContentValues();

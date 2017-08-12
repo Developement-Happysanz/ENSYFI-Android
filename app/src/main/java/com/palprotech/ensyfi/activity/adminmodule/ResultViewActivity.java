@@ -222,7 +222,6 @@ public class ResultViewActivity extends AppCompatActivity implements IServiceLis
         intent.putExtra("storeSectionId", storeSectionId);
         // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
-
     }
 
     @Override
