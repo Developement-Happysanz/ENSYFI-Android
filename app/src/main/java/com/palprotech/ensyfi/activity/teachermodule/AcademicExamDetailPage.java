@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.activity.teachermodule.sample.SampleAddAcademicExamMarksActivity;
+import com.palprotech.ensyfi.activity.teachermodule.sample.SampleAddAcademicExamMarksOnlyTotalActivity;
 import com.palprotech.ensyfi.adapter.teachermodule.AcademicExamDetailsListBaseAdapter;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 import com.palprotech.ensyfi.bean.teacher.viewlist.AcademicExamDetails;
@@ -142,7 +143,8 @@ public class AcademicExamDetailPage extends AppCompatActivity implements IServic
                 intent.putExtra("id", id);
                 startActivity(intent);
             } else {
-                Intent intent = new Intent(getApplicationContext(), AddAcademicExamMarksOnlyTotalActivity.class);
+//                Intent intent = new Intent(getApplicationContext(), SampleAddAcademicExamMarksActivity.class);
+                Intent intent = new Intent(getApplicationContext(), SampleAddAcademicExamMarksOnlyTotalActivity.class);
                 intent.putExtra("id", id);
                 startActivity(intent);
             }

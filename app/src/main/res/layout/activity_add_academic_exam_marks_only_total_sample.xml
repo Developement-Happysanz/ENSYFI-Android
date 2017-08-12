@@ -54,8 +54,8 @@
     <RelativeLayout
         android:id="@+id/classList"
         android:layout_width="match_parent"
-        android:visibility="gone"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:visibility="gone">
 
         <LinearLayout
             android:id="@+id/titleLayout"

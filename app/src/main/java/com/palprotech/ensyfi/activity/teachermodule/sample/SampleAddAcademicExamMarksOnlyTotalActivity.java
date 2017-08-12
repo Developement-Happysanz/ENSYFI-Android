@@ -26,7 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.activity.teachermodule.AddAcademicExamMarksActivity;
+import com.palprotech.ensyfi.activity.teachermodule.AddAcademicExamMarksOnlyTotalActivity;
 import com.palprotech.ensyfi.adapter.teachermodule.StudentsAcademicExamMarksAddBaseAdapter;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 import com.palprotech.ensyfi.bean.teacher.viewlist.StudentsClassTestMarks;
@@ -40,39 +40,39 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
- * Created by Admin on 11-08-2017.
+ * Created by Admin on 12-08-2017.
  */
 
-public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implements View.OnClickListener, DialogClickListener {
+public class SampleAddAcademicExamMarksOnlyTotalActivity extends AppCompatActivity implements View.OnClickListener, DialogClickListener {
 
     long hwId;
     SQLiteHelper db;
-    String examMarksId, examId, teacherId, subjectId, studentId, classMasterId, internalMark, internalGrade,
+    String examMarksId, examId, teacherId, subjectId, studentId, classMasterId, mark, grade,
             externalMark, externalGrade, totalMarks, totalGrade, createdBy, createdAt, updatedBy, updatedAt, syncStatus;
     String getExamId, examName, getClassMasterId, sectionName, className, fromDate, toDate, markStatus;
-    //    ListView lvStudent;
+//    ListView lvStudent;
     ImageView btnSave;
     Calendar c = Calendar.getInstance();
     String localExamId, formattedServerDate, storeClassId;
-    //    ArrayList<StudentsClassTestMarks> myList = new ArrayList<StudentsClassTestMarks>();
+    ArrayList<StudentsClassTestMarks> myList = new ArrayList<StudentsClassTestMarks>();
     LinearLayout layout_all;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_academic_exam_marks_sample);
+        setContentView(R.layout.activity_add_academic_exam_marks_only_total_sample);
 
         Intent intent = getIntent();
         hwId = getIntent().getExtras().getLong("id");
         db = new SQLiteHelper(getApplicationContext());
         localExamId = String.valueOf(hwId);
-        layout_all = (LinearLayout) findViewById(R.id.layout_timetable);
 
 //        lvStudent = (ListView) findViewById(R.id.listView_students);
 
+        layout_all = (LinearLayout) findViewById(R.id.layout_timetable);
+
         btnSave = (ImageView) findViewById(R.id.btnSave);
         btnSave.setOnClickListener(this);
-
 
         SimpleDateFormat serverDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         formattedServerDate = serverDF.format(c.getTime());
@@ -81,7 +81,7 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
 
         GetStudentsList(getClassMasterId);
 
-//        StudentsAcademicExamMarksAddBaseAdapter cadapter = new StudentsAcademicExamMarksAddBaseAdapter(SampleAddAcademicExamMarksActivity.this, myList);
+//        StudentsAcademicExamMarksAddBaseAdapter cadapter = new StudentsAcademicExamMarksAddBaseAdapter(SampleAddAcademicExamMarksOnlyTotalActivity.this, myList);
 //        lvStudent.setAdapter(cadapter);
 
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
@@ -181,32 +181,9 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
                             b.setWidth(100);
                             b.setPadding(1, 0, 2, 0);
 
-                            EditText b1 = new EditText(this);
-                            b1.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                                    ViewGroup.LayoutParams.WRAP_CONTENT, 0.20f));
-                            b1.setGravity(Gravity.CENTER);
-
-                            String name1 = "";
-
-                            b1.setText(name1);
-                            b1.setId(R.id.my_edit_text_2);
-                            b1.requestFocusFromTouch();
-                            b1.setTextSize(13.0f);
-                            b1.setTypeface(null, Typeface.BOLD);
-                            b1.setKeyListener(DigitsKeyListener.getInstance("0123456789A"));
-                            b1.setInputType(InputType.TYPE_CLASS_TEXT);
-                            b1.setAllCaps(true);
-                            b1.setSingleLine(true);
-                            b1.setTextColor(Color.parseColor("#FF68358E"));
-                            b1.setPressed(true);
-                            b1.setHeight(120);
-                            b1.setWidth(100);
-                            b1.setPadding(1, 0, 2, 0);
-
                             cell.addView(t1);
                             cell.addView(t2);
                             cell.addView(b);
-                            cell.addView(b1);
 
                             layout_all.addView(cell);
                         }
@@ -250,9 +227,11 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
 
     @Override
     public void onClick(View v) {
-        if (v == btnSave) {
-            String onIn = "";
+        try {
             SaveStudentsAcademicExamMarks();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Toast.makeText(getApplicationContext(), "Try again...", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -261,11 +240,11 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
         getCount = layout_all.getChildCount();
 
 
-        EditText edtInternalMarks, edtExternalMarks;
+        EditText edtMarks;
         TextView et, et1;
         int count = 0;
-        int validInternalMark = 40;
-        int validExternalMark = 60;
+        int validMark = 100;
+
 
         int nViews = layout_all.getChildCount();
 
@@ -273,29 +252,20 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
 
             View view = layout_all.getChildAt(i);
 
-            edtInternalMarks = (EditText) view.findViewById(R.id.my_edit_text_1);
+            edtMarks = (EditText) view.findViewById(R.id.my_edit_text_1);
 //            int internalMark = Integer.parseInt(edtInternalMarks.getText().toString());
-            edtExternalMarks = (EditText) view.findViewById(R.id.my_edit_text_2);
-//            int externalMark = Integer.parseInt(edtExternalMarks.getText().toString());
 
 //            et = (TextView) lvStudent.getChildAt(i).findViewById(R.id.txt_studentId);
             et1 = (TextView) view.findViewById(R.id.my_text_2);
 
-            if (!AppValidator.checkNullString(edtInternalMarks.getText().toString().trim())) {
+            if (!AppValidator.checkNullString(edtMarks.getText().toString().trim())) {
                 AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid internal marks for student - " + String.valueOf(et1.getText()));
-//                return false;
-            }
-            if (!AppValidator.checkNullString(edtExternalMarks.getText().toString().trim())) {
-                AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid external marks for student - " + String.valueOf(et1.getText()));
 //                return false;
             }
 //            if (internalMark <= 0 || internalMark >= validInternalMark + 1) {
 //                AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid internal marks for student - " + String.valueOf(et1.getText()) + " between 0 to " + validInternalMark);
 //
-//            }
-//            if (externalMark <= 0 || externalMark >= validExternalMark + 1) {
-//                AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid external marks for student - " + String.valueOf(et1.getText()) + " between 0 to " + validExternalMark);
-//            }
+
             else {
                 count++;
 //                return true;
@@ -314,69 +284,61 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
 //        View view;
         ArrayList<String> mannschaftsnamen = new ArrayList<String>();
         TextView et, et1;
-        EditText edtInternalMarks, edtExternalMarks;
-        try {
-            if (validateFields()) {
+        EditText edtMarks;
+        if (validateFields()) {
 //            Toast.makeText(getApplicationContext(), "Error while marks add...",
 //                    Toast.LENGTH_LONG).show();
 
-                int nViews = layout_all.getChildCount();
+            int nViews = layout_all.getChildCount();
 
-                for (int i = 0; i < nViews; i++) {
+            for (int i = 0; i < nViews; i++) {
 
-                    View view = layout_all.getChildAt(i);
+                View view = layout_all.getChildAt(i);
 
 
-                    et = (TextView)  view.findViewById(R.id.my_text_1);
-                    et1 = (TextView) view.findViewById(R.id.my_text_2);
-                    edtInternalMarks = (EditText) view.findViewById(R.id.my_edit_text_1);
-                    edtExternalMarks = (EditText) view.findViewById(R.id.my_edit_text_2);
-                    if (et != null) {
-                        mannschaftsnamen.add(String.valueOf(et.getText()));
-                        String enrollId = String.valueOf(et.getText());
-                        String studentName = String.valueOf(et1.getText());
-                        String internalMarks = edtInternalMarks.getText().toString();
-                        String externalMarks = edtExternalMarks.getText().toString();
-                        if (internalMarks.isEmpty()) {
-                            internalMarks = "0";
-                        }
-                        if (externalMarks.isEmpty()) {
-                            externalMarks = "0";
-                        }
+                et = (TextView)  view.findViewById(R.id.my_text_1);
+                et1 = (TextView) view.findViewById(R.id.my_text_2);
+                edtMarks = (EditText) view.findViewById(R.id.my_edit_text_1);
 
-                        examId = getExamId;
-                        teacherId = PreferenceStorage.getTeacherId(this);
-                        subjectId = PreferenceStorage.getTeacherSubject(this);
-                        studentId = enrollId;
-                        classMasterId = getClassMasterId;
-                        internalMark = internalMarks;
-                        internalGrade = "A";
-                        externalMark = externalMarks;
-                        externalGrade = "A";
-                        totalMarks = "0";
-                        totalGrade = "A";
-                        createdBy = PreferenceStorage.getUserId(this);
-                        createdAt = formattedServerDate;
-                        updatedBy = PreferenceStorage.getUserId(this);
-                        updatedAt = formattedServerDate;
-                        syncStatus = "NS";
+                if (et != null) {
+                    mannschaftsnamen.add(String.valueOf(et.getText()));
+                    String enrollId = String.valueOf(et.getText());
+                    String studentName = String.valueOf(et1.getText());
+                    String Marks = edtMarks.getText().toString();
 
-                        long c = db.academic_exam_marks_insert(examId, teacherId, subjectId, studentId, classMasterId, internalMark,
-                                internalGrade, externalMark, externalGrade, totalMarks, totalGrade, createdBy, createdAt,
-                                updatedBy, updatedAt, syncStatus);
-                        if (c == -1) {
-                            Toast.makeText(getApplicationContext(), "Error while marks add...", Toast.LENGTH_LONG).show();
-                        }
-                        //** you can try to log your values EditText *//**//*
-                        Log.v("ypgs", String.valueOf(et.getText()));
+                    if (Marks.isEmpty()) {
+                        Marks = "0";
                     }
+
+                    examId = getExamId;
+                    teacherId = PreferenceStorage.getTeacherId(this);
+                    subjectId = PreferenceStorage.getTeacherSubject(this);
+                    studentId = enrollId;
+                    classMasterId = getClassMasterId;
+                    String internalMark = "0";
+                    String internalGrade = "A";
+                    externalMark = "0";
+                    externalGrade = "A";
+                    totalMarks = Marks;
+                    totalGrade = "A";
+                    createdBy = PreferenceStorage.getUserId(this);
+                    createdAt = formattedServerDate;
+                    updatedBy = PreferenceStorage.getUserId(this);
+                    updatedAt = formattedServerDate;
+                    syncStatus = "NS";
+
+                    long c = db.academic_exam_marks_insert(examId, teacherId, subjectId, studentId, classMasterId, internalMark,
+                            internalGrade, externalMark, externalGrade, totalMarks, totalGrade, createdBy, createdAt,
+                            updatedBy, updatedAt, syncStatus);
+                    if (c == -1) {
+                        Toast.makeText(getApplicationContext(), "Error while marks add...", Toast.LENGTH_LONG).show();
+                    }
+                    //** you can try to log your values EditText *//**//*
+                    Log.v("ypgs", String.valueOf(et.getText()));
                 }
-                db.updateAcademicExamMarksStatus(getExamId, getClassMasterId);
-                finish();
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            Toast.makeText(getApplicationContext(), "Try again...", Toast.LENGTH_LONG).show();
+            db.updateAcademicExamMarksStatus(getExamId, getClassMasterId);
+            finish();
         }
     }
 
