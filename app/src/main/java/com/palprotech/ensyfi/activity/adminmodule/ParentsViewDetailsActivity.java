@@ -87,7 +87,7 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
 
             JSONObject jsonObject = new JSONObject();
             try {
-                jsonObject.put(EnsyfiConstants.PARAMS_PARENT_ID_SHOW, parentStudent.getParentId());
+                jsonObject.put(EnsyfiConstants.PARAMS_PARENT_ID_SHOW_NEW, parentStudent.getAdmnNo());
 
             } catch (JSONException e) {
                 e.printStackTrace();

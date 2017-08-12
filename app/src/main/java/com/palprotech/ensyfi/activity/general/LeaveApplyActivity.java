@@ -210,9 +210,6 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
         SimpleDateFormat DF = new SimpleDateFormat("hh:mm a");
         String formattedTime = DF.format(c.getTime());
 
-        fromtimebackgroud.setBackgroundColor(Color.parseColor("#663366"));
-        dateFromTime.setCompoundDrawablesWithIntrinsicBounds(R.drawable.od_from_date_selected, 0, 0, 0);
-        dateFromTime.setTextColor((Color.parseColor("#663366")));
 
         dateFromTime.setText(formattedTime);
 
@@ -222,10 +219,6 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
     private void loadToTime() {
         SimpleDateFormat DF = new SimpleDateFormat("hh:mm a");
         String formattedTime = DF.format(c.getTime());
-
-        totimebackground.setBackgroundColor(Color.parseColor("#663366"));
-        timeTo.setCompoundDrawablesWithIntrinsicBounds(R.drawable.od_from_date_selected, 0, 0, 0);
-        timeTo.setTextColor((Color.parseColor("#663366")));
 
         timeTo.setText(formattedTime);
 
