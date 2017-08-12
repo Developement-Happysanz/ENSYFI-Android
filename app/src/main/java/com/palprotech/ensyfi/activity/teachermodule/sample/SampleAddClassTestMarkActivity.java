@@ -11,7 +11,6 @@ import android.text.InputType;
 import android.text.method.DigitsKeyListener;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -19,14 +18,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.activity.teachermodule.AddClassTestMarkActivity;
 import com.palprotech.ensyfi.adapter.teachermodule.StudentListClassTestMarkBaseAdapter;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 import com.palprotech.ensyfi.bean.teacher.viewlist.StudentsClassTestMarks;
@@ -178,20 +175,20 @@ public class SampleAddClassTestMarkActivity extends AppCompatActivity implements
                             });
                             b.setPressed(true);
                             b.setHeight(120);
-                            b.setWidth(100);
+                            b.setWidth(50);
                             b.setPadding(1, 0, 2, 0);
 
                             t1.setText(c.getString(1));
                             t1.setTextColor(Color.parseColor("#FF68358E"));
                             t1.setHeight(120);
-                            t1.setWidth(100);
+                            t1.setWidth(80);
                             t1.setPadding(1, 0, 2, 0);
                             t1.setId(R.id.my_text_1);
 
                             t2.setText(c.getString(4));
                             t2.setTextColor(Color.parseColor("#FF68358E"));
                             t2.setHeight(120);
-                            t2.setWidth(100);
+                            t2.setWidth(120);
                             t2.setPadding(1, 0, 2, 0);
                             t2.setId(R.id.my_text_2);
 

@@ -33,7 +33,7 @@
             android:gravity="center"
             android:minHeight="?attr/actionBarSize"
             android:paddingLeft="10dp"
-            android:text="Class Test Mark"
+            android:text="Exam Mark entry"
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="@dimen/actionbarTextSize" />
@@ -108,6 +108,65 @@
         </LinearLayout>
 
     </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/attendrollnum"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="2dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/student_id"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@color/appColor"
+            android:gravity="center"
+            android:text="ID"
+            android:textColor="@color/white"
+            android:textSize="15dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_toRightOf="@+id/student_id"
+            android:layout_toLeftOf="@+id/internalmarks"
+            android:layout_marginLeft="1dp"
+            android:layout_weight="0.05"
+            android:background="@color/appColor"
+            android:gravity="center"
+            android:text="Name"
+            android:textColor="@color/white"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/internalmarks"
+            android:layout_width="65dp"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/externalmarks"
+            android:layout_marginLeft="1dp"
+            android:background="@color/appColor"
+            android:gravity="center"
+            android:text="Internal"
+            android:textColor="@color/white"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/externalmarks"
+            android:layout_width="65dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="1dp"
+            android:layout_alignParentRight="true"
+            android:background="@color/appColor"
+            android:gravity="center"
+            android:text="External"
+            android:textColor="@color/white"
+            android:textSize="15dp" />
+
+    </RelativeLayout>
+
 
     <ScrollView
         android:id="@+id/ScrollView01"

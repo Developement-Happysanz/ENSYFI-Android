@@ -174,8 +174,8 @@ public class AcademicExamViewActivity extends AppCompatActivity implements IServ
                         AcademicExams lde = new AcademicExams();
                         lde.setId(Integer.parseInt(c.getString(0)));
                         lde.setExamName(c.getString(2));
-                        lde.setFromDate(c.getString(6));
-                        lde.setToDate(c.getString(7));
+                        lde.setFromDate(c.getString(7));
+                        lde.setToDate(c.getString(8));
 
                         // Add this object into the ArrayList myList
                         myList.add(lde);
