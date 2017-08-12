@@ -191,6 +191,13 @@ public class ParentsViewActivity extends AppCompatActivity implements IServiceLi
                 if ((status != null)) {
                     if (((status.equalsIgnoreCase("activationError")) || (status.equalsIgnoreCase("alreadyRegistered")) ||
                             (status.equalsIgnoreCase("notRegistered")) || (status.equalsIgnoreCase("error")))) {
+
+                        if (parentStudentArrayList != null) {
+                            parentStudentArrayList.clear();
+                            parentStudentListAdapter = new ParentStudentListAdapter(this, this.parentStudentArrayList);
+                            loadMoreListView.setAdapter(parentStudentListAdapter);
+                        }
+
                         signInsuccess = false;
                         Log.d(TAG, "Show error dialog");
                         AlertDialogHelper.showSimpleAlertDialog(this, msg);
