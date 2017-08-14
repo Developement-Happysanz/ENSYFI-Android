@@ -17,7 +17,6 @@ import com.palprotech.ensyfi.bean.general.viewlist.GroupList;
 import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 
 /**
@@ -44,7 +43,7 @@ public class GroupListAdapter extends BaseAdapter {
     public GroupListAdapter(Context context, ArrayList<GroupList> groupListses) {
         this.context = context;
         this.groupListses = groupListses;
-        Collections.sort(groupListses, myComparator);
+//        Collections.sort(groupListses, myComparator);
         transformation = new RoundedTransformationBuilder()
                 .cornerRadiusDp(0)
                 .oval(false)
