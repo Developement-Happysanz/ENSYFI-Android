@@ -278,7 +278,7 @@ public class SampleAddAcademicExamMarksOnlyTotalActivity extends AppCompatActivi
 
                 int mark = Integer.parseInt(edtMarks.getText().toString());
 
-                if (mark <= 0 || mark >= validMark + 1) {
+                if (mark <= -1 || mark >= validMark + 1) {
                     AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid marks for student - " + String.valueOf(et1.getText()) + " between 0 to " + validMark);
                 }
             }

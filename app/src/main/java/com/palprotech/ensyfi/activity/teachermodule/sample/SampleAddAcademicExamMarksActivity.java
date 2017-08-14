@@ -298,7 +298,7 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
             }
             if (checkInternalMarks) {
                 int mark = Integer.parseInt(edtInternalMarks.getText().toString());
-                if (mark <= 0 || mark >= validInternalMark + 1) {
+                if (mark <= -1 || mark >= validInternalMark + 1) {
                     AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid internal marks for student - " + String.valueOf(et1.getText()) + " between 0 to " + validInternalMark);
                 }
             }
@@ -313,7 +313,7 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
             }
             if (checkExternalMarks) {
                 int mark = Integer.parseInt(edtExternalMarks.getText().toString());
-                if (mark <= 0 || mark >= validExternalMark + 1) {
+                if (mark <= -1 || mark >= validExternalMark + 1) {
                     AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid external marks for student - " + String.valueOf(et1.getText()) + " between 0 to " + validExternalMark);
                 }
             }
