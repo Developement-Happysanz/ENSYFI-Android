@@ -235,12 +235,25 @@ public class SampleAddClassTestMarkActivity extends AppCompatActivity implements
 
             System.out.println(getValue);
 
+            String Marks = ed_marks.getText().toString().trim();
+
+            boolean check = Marks.matches("\\d+");
+
             if (!AppValidator.checkNullString(ed_marks.getText().toString().trim())) {
                 AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid marks for student - " + String.valueOf(tv_studentName.getText()));
             }
-//            if (Mark <= 0 || Mark >= validMark + 1) {
-//                AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid marks for student - " + String.valueOf(et1.getText()) + " between 0 to " + validMark);
-//            }
+            if (check) {
+                int mark = Integer.parseInt(ed_marks.getText().toString());
+                if (mark <= 0 || mark >= validMark + 1) {
+                    AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid marks for student - " + String.valueOf(tv_studentName.getText()) + " between 0 to " + validMark);
+                }
+            }
+            if (!check) {
+                String charString = ed_marks.getText().toString();
+                if (!charString.contentEquals("A")) {
+                    AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid leave character as 'A' for student - " + String.valueOf(tv_studentName.getText()));
+                }
+            }
             else {
                 count++;
             }
