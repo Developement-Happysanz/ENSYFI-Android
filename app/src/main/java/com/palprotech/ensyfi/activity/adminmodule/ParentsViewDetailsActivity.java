@@ -50,6 +50,7 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parents_view_details);
+
         parentStudent = (ParentStudent) getIntent().getSerializableExtra("eventObj");
 
         btnShowStudentInfo = (Button) findViewById(R.id.btnShowStudentInfo);
