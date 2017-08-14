@@ -20,6 +20,7 @@ import com.palprotech.ensyfi.bean.teacher.viewlist.AcademicExamDetails;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
 import com.palprotech.ensyfi.serviceinterfaces.IServiceListener;
+import com.palprotech.ensyfi.utils.PreferenceStorage;
 
 import org.json.JSONObject;
 
@@ -57,10 +58,17 @@ public class AcademicExamDetailPage extends AppCompatActivity implements IServic
 
         GetAcademicExamInfo(localExamId);
         loadAcademicExamDetails(classMasterId, examId);
+        String AcademicExamSubjectMarksStatus = db.isAcademicExamSubjectMarksStatusFlag(examId, PreferenceStorage.getTeacherId(getApplicationContext()), PreferenceStorage.getTeacherSubject(getApplicationContext()));
+        int checkAcademicExamSubjectMarksStatus = Integer.parseInt(AcademicExamSubjectMarksStatus);
         int checkMarkStatus = Integer.parseInt(markStatus);
         if (checkMarkStatus == 0) {
-            addExamMark.setVisibility(View.VISIBLE);
-            viewExamMark.setVisibility(View.GONE);
+            if (checkAcademicExamSubjectMarksStatus == 0) {
+                addExamMark.setVisibility(View.VISIBLE);
+                viewExamMark.setVisibility(View.GONE);
+            } else {
+                addExamMark.setVisibility(View.GONE);
+                viewExamMark.setVisibility(View.VISIBLE);
+            }
         } else {
             addExamMark.setVisibility(View.GONE);
             viewExamMark.setVisibility(View.VISIBLE);
@@ -74,7 +82,6 @@ public class AcademicExamDetailPage extends AppCompatActivity implements IServic
                 finish();
             }
         });
-
     }
 
     private void GetAcademicExamInfo(String examIdLocal) {
