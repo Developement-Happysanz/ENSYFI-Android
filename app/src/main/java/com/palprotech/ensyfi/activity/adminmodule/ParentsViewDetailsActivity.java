@@ -206,6 +206,15 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
     }
 
     private void callFatherInfoPreferences() {
+        Name.setText("");
+        Address.setText("");
+        Mail.setText("");
+        Occupation.setText("");
+        Income.setText("");
+        Mobile.setText("");
+        OfficePhone.setText("");
+        HomePhone.setText("");
+
         Name.setText(PreferenceStorage.getFatherName(getApplicationContext()));
         Address.setText(PreferenceStorage.getFatherAddress(getApplicationContext()));
         Mail.setText(PreferenceStorage.getFatherEmail(getApplicationContext()));
@@ -222,6 +231,15 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
     }
 
     private void callMotherInfoPreferences() {
+        Name.setText("");
+        Address.setText("");
+        Mail.setText("");
+        Occupation.setText("");
+        Income.setText("");
+        Mobile.setText("");
+        OfficePhone.setText("");
+        HomePhone.setText("");
+
         Name.setText(PreferenceStorage.getMotherName(getApplicationContext()));
         Address.setText(PreferenceStorage.getMotherAddress(getApplicationContext()));
         Mail.setText(PreferenceStorage.getMotherEmail(getApplicationContext()));
@@ -238,6 +256,15 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
     }
 
     private void callGuardianInfoPreferences() {
+        Name.setText("");
+        Address.setText("");
+        Mail.setText("");
+        Occupation.setText("");
+        Income.setText("");
+        Mobile.setText("");
+        OfficePhone.setText("");
+        HomePhone.setText("");
+
         Name.setText(PreferenceStorage.getGuardianName(getApplicationContext()));
         Address.setText(PreferenceStorage.getGuardianAddress(getApplicationContext()));
         Mail.setText(PreferenceStorage.getGuardianEmail(getApplicationContext()));

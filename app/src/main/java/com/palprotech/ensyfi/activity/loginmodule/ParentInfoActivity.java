@@ -82,6 +82,15 @@ public class ParentInfoActivity extends AppCompatActivity implements DialogClick
     }
 
     private void callFatherInfoPreferences() {
+        Name.setText("");
+        Address.setText("");
+        Mail.setText("");
+        Occupation.setText("");
+        Income.setText("");
+        Mobile.setText("");
+        OfficePhone.setText("");
+        HomePhone.setText("");
+
         Name.setText(PreferenceStorage.getFatherName(getApplicationContext()));
         Address.setText(PreferenceStorage.getFatherAddress(getApplicationContext()));
         Mail.setText(PreferenceStorage.getFatherEmail(getApplicationContext()));
@@ -98,6 +107,15 @@ public class ParentInfoActivity extends AppCompatActivity implements DialogClick
     }
 
     private void callMotherInfoPreferences() {
+        Name.setText("");
+        Address.setText("");
+        Mail.setText("");
+        Occupation.setText("");
+        Income.setText("");
+        Mobile.setText("");
+        OfficePhone.setText("");
+        HomePhone.setText("");
+
         Name.setText(PreferenceStorage.getMotherName(getApplicationContext()));
         Address.setText(PreferenceStorage.getMotherAddress(getApplicationContext()));
         Mail.setText(PreferenceStorage.getMotherEmail(getApplicationContext()));
