@@ -320,6 +320,7 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
 
     private void emptydata() {
         PreferenceStorage.saveFatherID(getApplicationContext(), "");
+        PreferenceStorage.saveFatherName(getApplicationContext(), "");
         PreferenceStorage.saveFatherEmail(getApplicationContext(), "");
         PreferenceStorage.saveFatherAddress(getApplicationContext(), "");
         PreferenceStorage.saveFatherOccupation(getApplicationContext(), "");
