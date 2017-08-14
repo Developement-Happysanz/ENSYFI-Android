@@ -47,6 +47,16 @@ public class GuardianInfoActivity extends AppCompatActivity implements DialogCli
     }
 
     private void callGuardianInfoPreferences() {
+
+        GName.setText("");
+        GAddress.setText("");
+        GMail.setText("");
+        GOccupation.setText("");
+        GIncome.setText("");
+        GMobile.setText("");
+        GOfficePhone.setText("");
+        GHomePhone.setText("");
+
         GName.setText(PreferenceStorage.getGuardianName(getApplicationContext()));
         GAddress.setText(PreferenceStorage.getGuardianAddress(getApplicationContext()));
         GMail.setText(PreferenceStorage.getGuardianEmail(getApplicationContext()));
@@ -55,6 +65,7 @@ public class GuardianInfoActivity extends AppCompatActivity implements DialogCli
         GMobile.setText(PreferenceStorage.getGuardianMobile(getApplicationContext()));
         GOfficePhone.setText(PreferenceStorage.getGuardianOfficePhone(getApplicationContext()));
         GHomePhone.setText(PreferenceStorage.getGuardianHomePhone(getApplicationContext()));
+
         String url = PreferenceStorage.getGuardianImg(this);
 
         if (((url != null) && !(url.isEmpty()))) {
