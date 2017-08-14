@@ -225,6 +225,26 @@ public class SampleAddAcademicExamMarksOnlyTotalActivity extends AppCompatActivi
         }
     }
 
+    public static boolean isInteger(String s) {
+        return isInteger(s, 10);
+    }
+
+    public static boolean isInteger(String s, int radix) {
+        if (s.isEmpty()) return false;
+        for (int i = 0; i < s.length(); i++) {
+            if (i == 0 && s.charAt(i) == '-') {
+                if (s.length() == 1) return false;
+                else continue;
+            }
+            if (Character.digit(s.charAt(i), radix) < 0) return false;
+        }
+        return true;
+    }
+
+    public static boolean isIntegerCheck(String s) {
+        return isInteger(s, 10);
+    }
+
     private boolean validateFields() {
         int getCount = 0;
         getCount = layout_all.getChildCount();
@@ -240,16 +260,38 @@ public class SampleAddAcademicExamMarksOnlyTotalActivity extends AppCompatActivi
             View view = layout_all.getChildAt(i);
 
             edtMarks = (EditText) view.findViewById(R.id.my_edit_text_1);
-//            int internalMark = Integer.parseInt(edtInternalMarks.getText().toString());
 
             et1 = (TextView) view.findViewById(R.id.my_text_2);
+
+//            isInteger(edtMarks.getText().toString().trim());
+
+            String okSet = edtMarks.getText().toString().trim();
+
+            boolean check = okSet.matches("\\d+");
+
 
             if (!AppValidator.checkNullString(edtMarks.getText().toString().trim())) {
                 AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid internal marks for student - " + String.valueOf(et1.getText()));
             }
-//            if (internalMark <= 0 || internalMark >= validInternalMark + 1) {
-//                AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid internal marks for student - " + String.valueOf(et1.getText()) + " between 0 to " + validInternalMark);
-//
+
+            if (check) {
+
+                int mark = Integer.parseInt(edtMarks.getText().toString());
+
+                if (mark <= 0 || mark >= validMark + 1) {
+                    AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid marks for student - " + String.valueOf(et1.getText()) + " between 0 to " + validMark);
+                }
+            }
+
+            if (!check) {
+
+                String charString = edtMarks.getText().toString();
+
+                if (!charString.contentEquals("A")) {
+                    AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid leave character as 'A' for student - " + String.valueOf(et1.getText()));
+                }
+
+            }
 
             else {
                 count++;
