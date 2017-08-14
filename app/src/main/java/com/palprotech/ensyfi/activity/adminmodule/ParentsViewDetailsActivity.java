@@ -74,8 +74,11 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
 
         progressDialogHelper = new ProgressDialogHelper(this);
 
+        emptydata();
         populateData();
         callFatherInfoPreferences();
+
+
 
         String view = "";
 
@@ -314,4 +317,43 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
         } catch (Exception ex) {
         }
     }
+
+    private void emptydata() {
+        PreferenceStorage.saveFatherID(getApplicationContext(), "");
+        PreferenceStorage.saveFatherEmail(getApplicationContext(), "");
+        PreferenceStorage.saveFatherAddress(getApplicationContext(), "");
+        PreferenceStorage.saveFatherOccupation(getApplicationContext(), "");
+        PreferenceStorage.saveFatherIncome(getApplicationContext(), "");
+        PreferenceStorage.saveFatherHomePhone(getApplicationContext(), "");
+        PreferenceStorage.saveFatherMobile(getApplicationContext(), "");
+        PreferenceStorage.saveFatherOfficePhone(getApplicationContext(), "");
+        PreferenceStorage.saveFatherRelationship(getApplicationContext(), "");
+        PreferenceStorage.saveFatherImg(getApplicationContext(), "");
+        PreferenceStorage.saveMotherID(getApplicationContext(), "");
+        PreferenceStorage.saveMotherName(getApplicationContext(), "");
+        PreferenceStorage.saveMotherHomePhone(getApplicationContext(), "");
+        PreferenceStorage.saveMotherEmail(getApplicationContext(), "");
+        PreferenceStorage.saveMotherAddress(getApplicationContext(), "");
+        PreferenceStorage.saveMotherOccupation(getApplicationContext(), "");
+        PreferenceStorage.saveMotherIncome(getApplicationContext(), "");
+        PreferenceStorage.saveMotherHomePhone(getApplicationContext(), "");
+        PreferenceStorage.saveMotherMobile(getApplicationContext(), "");
+        PreferenceStorage.saveMotherOfficePhone(getApplicationContext(), "");
+        PreferenceStorage.saveMotherRelationship(getApplicationContext(), "");
+        PreferenceStorage.saveMotherImg(getApplicationContext(), "");
+        PreferenceStorage.saveGuardianID(getApplicationContext(), "");
+        PreferenceStorage.saveGuardianName(getApplicationContext(), "");
+        PreferenceStorage.saveGuardianHomePhone(getApplicationContext(), "");
+        PreferenceStorage.saveGuardianEmail(getApplicationContext(), "");
+        PreferenceStorage.saveGuardianAddress(getApplicationContext(), "");
+        PreferenceStorage.saveGuardianOccupation(getApplicationContext(), "");
+        PreferenceStorage.saveGuardianIncome(getApplicationContext(), "");
+        PreferenceStorage.saveGuardianHomePhone(getApplicationContext(), "");
+        PreferenceStorage.saveGuardianMobile(getApplicationContext(), "");
+        PreferenceStorage.saveGuardianOfficePhone(getApplicationContext(), "");
+        PreferenceStorage.saveGuardianRelationship(getApplicationContext(), "");
+        PreferenceStorage.saveGuardianImg(getApplicationContext(), "");
+
+    }
+
 }
