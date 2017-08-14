@@ -244,7 +244,7 @@ public class SampleAddClassTestMarkActivity extends AppCompatActivity implements
             }
             if (check) {
                 int mark = Integer.parseInt(ed_marks.getText().toString());
-                if (mark <= 0 || mark >= validMark + 1) {
+                if (mark <= -1 || mark >= validMark + 1) {
                     AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid marks for student - " + String.valueOf(tv_studentName.getText()) + " between 0 to " + validMark);
                 }
             }
