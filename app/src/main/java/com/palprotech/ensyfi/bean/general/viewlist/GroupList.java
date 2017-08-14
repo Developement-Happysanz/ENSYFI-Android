@@ -16,6 +16,10 @@ public class GroupList implements Serializable{
     @Expose
     private String id;
 
+    @SerializedName("group_title_id")
+    @Expose
+    private String group_title_id;
+
     @SerializedName("group_title")
     @Expose
     private String group_title;
@@ -38,9 +42,22 @@ public class GroupList implements Serializable{
         this.id = id;
     }
 
+    /**
+     * @return The group_title_id
+     */
+    public String getGroup_title_id() {
+        return group_title_id;
+    }
 
     /**
-     * @return The group_title
+     * @param group_title_id The group_title_id
+     */
+    public void setGroup_title_id(String group_title_id) {
+        this.group_title_id = group_title_id;
+    }
+
+    /**
+     * @return The group_title_id
      */
     public String getGroup_title() {
         return group_title;
