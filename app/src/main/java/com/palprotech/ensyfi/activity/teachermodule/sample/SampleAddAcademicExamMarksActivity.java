@@ -339,7 +339,7 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
         EditText edtInternalMarks, edtExternalMarks;
         try {
             if (validateFields()) {
-        /*        int nViews = layout_all.getChildCount();
+                int nViews = layout_all.getChildCount();
 
                 for (int i = 0; i < nViews; i++) {
 
@@ -390,7 +390,7 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
                 }
 //                db.updateAcademicExamMarksStatus(getExamId, getClassMasterId);
                 db.academic_exam_subject_marks_status_insert(examId, teacherId, subjectId);
-                finish();*/
+                finish();
             }
         } catch (Exception ex) {
             ex.printStackTrace();
