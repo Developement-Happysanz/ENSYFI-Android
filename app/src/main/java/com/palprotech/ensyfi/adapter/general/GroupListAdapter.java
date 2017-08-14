@@ -17,6 +17,8 @@ import com.palprotech.ensyfi.bean.general.viewlist.GroupList;
 import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Created by Narendar on 17/05/17.
@@ -33,10 +35,16 @@ public class GroupListAdapter extends BaseAdapter {
     private ArrayList<Integer> mValidSearchIndices =new ArrayList<Integer>();
     private ImageLoader imageLoader = AppController.getInstance().getUniversalImageLoader();
 
+    Comparator<GroupList> myComparator = new Comparator<GroupList>() {
+        public int compare(GroupList obj1, GroupList obj2) {
+            return obj1.getId().compareTo(obj2.getId());
+        }
+    };
+
     public GroupListAdapter(Context context, ArrayList<GroupList> groupListses) {
         this.context = context;
         this.groupListses = groupListses;
-
+        Collections.sort(groupListses, myComparator);
         transformation = new RoundedTransformationBuilder()
                 .cornerRadiusDp(0)
                 .oval(false)
