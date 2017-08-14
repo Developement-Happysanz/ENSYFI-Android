@@ -236,6 +236,22 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
         }
     }
 
+    public static boolean isInteger(String s) {
+        return isInteger(s, 10);
+    }
+
+    public static boolean isInteger(String s, int radix) {
+        if (s.isEmpty()) return false;
+        for (int i = 0; i < s.length(); i++) {
+            if (i == 0 && s.charAt(i) == '-') {
+                if (s.length() == 1) return false;
+                else continue;
+            }
+            if (Character.digit(s.charAt(i), radix) < 0) return false;
+        }
+        return true;
+    }
+
     @Override
     public void onClick(View v) {
         if (v == btnSave) {
@@ -254,6 +270,7 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
         int validInternalMark = 40;
         int validExternalMark = 60;
 
+
         int nViews = layout_all.getChildCount();
 
         for (int i = 0; i < nViews; i++) {
@@ -266,20 +283,46 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
 //            int externalMark = Integer.parseInt(edtExternalMarks.getText().toString());
             et1 = (TextView) view.findViewById(R.id.my_text_2);
 
+//            isInteger(edtInternalMarks.getText().toString().trim());
+
+            String InternalMarks = edtInternalMarks.getText().toString().trim();
+
+            boolean checkInternalMarks = InternalMarks.matches("\\d+");
+
+            String ExternalMarks = edtExternalMarks.getText().toString().trim();
+
+            boolean checkExternalMarks = ExternalMarks.matches("\\d+");
+
             if (!AppValidator.checkNullString(edtInternalMarks.getText().toString().trim())) {
                 AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid internal marks for student - " + String.valueOf(et1.getText()));
+            }
+            if (checkInternalMarks) {
+                int mark = Integer.parseInt(edtInternalMarks.getText().toString());
+                if (mark <= 0 || mark >= validInternalMark + 1) {
+                    AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid internal marks for student - " + String.valueOf(et1.getText()) + " between 0 to " + validInternalMark);
+                }
+            }
+            if (!checkInternalMarks) {
+                String charString = edtInternalMarks.getText().toString();
+                if (!charString.contentEquals("A")) {
+                    AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid leave character as 'A' for student - " + String.valueOf(et1.getText()) + " in internal mark");
+                }
             }
             if (!AppValidator.checkNullString(edtExternalMarks.getText().toString().trim())) {
                 AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid external marks for student - " + String.valueOf(et1.getText()));
             }
-//            if (internalMark <= 0 || internalMark >= validInternalMark + 1) {
-//                AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid internal marks for student - " + String.valueOf(et1.getText()) + " between 0 to " + validInternalMark);
-//
-//            }
-//            if (externalMark <= 0 || externalMark >= validExternalMark + 1) {
-//                AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid external marks for student - " + String.valueOf(et1.getText()) + " between 0 to " + validExternalMark);
-//            }
-            else {
+            if (checkExternalMarks) {
+                int mark = Integer.parseInt(edtExternalMarks.getText().toString());
+                if (mark <= 0 || mark >= validExternalMark + 1) {
+                    AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid external marks for student - " + String.valueOf(et1.getText()) + " between 0 to " + validExternalMark);
+                }
+            }
+            if (!checkExternalMarks) {
+                String charString = edtExternalMarks.getText().toString();
+                if (!charString.contentEquals("A")) {
+                    AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid leave character as 'A' for student - " + String.valueOf(et1.getText()) + " in external mark");
+                }
+            } else {
                 count++;
             }
         }
@@ -296,7 +339,7 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
         EditText edtInternalMarks, edtExternalMarks;
         try {
             if (validateFields()) {
-                int nViews = layout_all.getChildCount();
+        /*        int nViews = layout_all.getChildCount();
 
                 for (int i = 0; i < nViews; i++) {
 
@@ -347,7 +390,7 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
                 }
 //                db.updateAcademicExamMarksStatus(getExamId, getClassMasterId);
                 db.academic_exam_subject_marks_status_insert(examId, teacherId, subjectId);
-                finish();
+                finish();*/
             }
         } catch (Exception ex) {
             ex.printStackTrace();
