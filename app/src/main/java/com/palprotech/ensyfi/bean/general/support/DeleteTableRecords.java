@@ -34,6 +34,7 @@ public class DeleteTableRecords {
             database.deleteTeacherTimeTable();
             database.deleteStudentInfo();
             database.deleteStudentAttendanceFlag();
+            database.deleteAcademicExamSubjectMarksStatus();
         } catch (Exception ex) {
             ex.printStackTrace();
         }

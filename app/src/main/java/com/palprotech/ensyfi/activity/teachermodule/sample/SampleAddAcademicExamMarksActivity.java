@@ -345,7 +345,8 @@ public class SampleAddAcademicExamMarksActivity extends AppCompatActivity implem
                         Log.v("ypgs", String.valueOf(et.getText()));
                     }
                 }
-                db.updateAcademicExamMarksStatus(getExamId, getClassMasterId);
+//                db.updateAcademicExamMarksStatus(getExamId, getClassMasterId);
+                db.academic_exam_subject_marks_status_insert(examId, teacherId, subjectId);
                 finish();
             }
         } catch (Exception ex) {

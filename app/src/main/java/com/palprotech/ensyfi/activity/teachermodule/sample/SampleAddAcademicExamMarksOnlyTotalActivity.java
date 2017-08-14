@@ -74,6 +74,7 @@ public class SampleAddAcademicExamMarksOnlyTotalActivity extends AppCompatActivi
         GetStudentsList(getClassMasterId);
 
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
+
         bckbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -313,7 +314,8 @@ public class SampleAddAcademicExamMarksOnlyTotalActivity extends AppCompatActivi
                     Log.v("ypgs", String.valueOf(et.getText()));
                 }
             }
-            db.updateAcademicExamMarksStatus(getExamId, getClassMasterId);
+//            db.updateAcademicExamMarksStatus(getExamId, getClassMasterId);
+            db.academic_exam_subject_marks_status_insert(examId, teacherId, subjectId);
             finish();
         }
     }
