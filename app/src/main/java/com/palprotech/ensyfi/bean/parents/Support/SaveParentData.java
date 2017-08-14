@@ -180,7 +180,7 @@ public class SaveParentData {
 
             // Parents Preference - Mother's Occupation
             if ((MotherOccupation != null) && !(MotherOccupation.isEmpty()) && !MotherOccupation.equalsIgnoreCase("null")) {
-                PreferenceStorage.saveFatherOccupation(context, MotherOccupation);
+                PreferenceStorage.saveMotherOccupation(context, MotherOccupation);
             }
 
             // Parents Preference - Mother's Income
