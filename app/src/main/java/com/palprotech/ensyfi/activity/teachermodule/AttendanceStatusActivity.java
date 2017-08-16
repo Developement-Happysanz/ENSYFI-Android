@@ -281,7 +281,8 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
         vecClassSectionList = new Vector<String>();
         vecAcademicMonths = new Vector<String>();
         spnClassList = (Spinner) findViewById(R.id.class_list_spinner);
-        lvStudent = (ListView) findViewById(R.id.listView_students);
+        lvStudent = (ListView) findViewById(R.id.listView_events);
+
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
         loadMoreListView.setOnItemClickListener(this);
         dayViewArrayList = new ArrayList<>();
