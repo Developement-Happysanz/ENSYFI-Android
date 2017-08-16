@@ -39,22 +39,19 @@ public class ParentsCommunicationActivity extends AppCompatActivity implements I
 
     private static final String TAG = "ParentsCommunication";
     ListView loadMoreListView;
-    View view;
     CommunicationListAdapter communicationListAdapter;
     ServiceHelper serviceHelper;
     ArrayList<Communication> communicationArrayList;
-    int pageNumber = 0, totalCount = 0;
+    int totalCount = 0;
     protected ProgressDialogHelper progressDialogHelper;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
-    private SearchView mSearchView = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parents_communication);
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
-//        loadMoreListView.setOnLoadMoreListener(this);
         loadMoreListView.setOnItemClickListener(this);
         communicationArrayList = new ArrayList<>();
         serviceHelper = new ServiceHelper(this);
@@ -72,21 +69,15 @@ public class ParentsCommunicationActivity extends AppCompatActivity implements I
     }
 
     public void callGetClassTestService() {
-        /*if(eventsListAdapter != null){
-            eventsListAdapter.clearSearchFlag();
-        }*/
         if (communicationArrayList != null)
             communicationArrayList.clear();
 
         if (CommonUtils.isNetworkAvailable(this)) {
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            //    eventServiceHelper.makeRawRequest(FindAFunConstants.GET_ADVANCE_SINGLE_SEARCH);
             new HttpAsyncTask().execute("");
         } else {
-//            AlertDialogHelper.showSimpleAlertDialog(this, getString(R.string.no_connectivity));
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
         }
-
     }
 
     @Override
@@ -105,8 +96,8 @@ public class ParentsCommunicationActivity extends AppCompatActivity implements I
 
             JSONObject jsonObject = new JSONObject();
             try {
-                jsonObject.put(EnsyfiConstants.KEY_USER_ID, PreferenceStorage.getUserId(getApplicationContext()));
 
+                jsonObject.put(EnsyfiConstants.KEY_USER_ID, PreferenceStorage.getUserId(getApplicationContext()));
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -149,7 +140,6 @@ public class ParentsCommunicationActivity extends AppCompatActivity implements I
 
                     } else {
                         signInsuccess = true;
-
                     }
                 }
             } catch (JSONException e) {
@@ -169,7 +159,6 @@ public class ParentsCommunicationActivity extends AppCompatActivity implements I
                 @Override
                 public void run() {
                     progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
 
                     Gson gson = new Gson();
                     CommunicationList communicationList = gson.fromJson(response.toString(), CommunicationList.class);
@@ -201,7 +190,6 @@ public class ParentsCommunicationActivity extends AppCompatActivity implements I
             @Override
             public void run() {
                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
                 AlertDialogHelper.showSimpleAlertDialog(ParentsCommunicationActivity.this, error);
             }
         });

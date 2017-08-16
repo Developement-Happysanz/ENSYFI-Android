@@ -170,11 +170,7 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
                         public void onSuccess() {
                             Log.d(TAG, "Image uploaded successfully using picasso");
                             try {
-                              /*  if (shouldUploadSocialNetworkPic()) {
-                                    mUpdatedImageUrl = null;
-                                    mBitmapToLoad = ((BitmapDrawable) imgNavProfileImage.getDrawable()).getBitmap();
-                                    new UploadFileToServer().execute();
-                                } */
+
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
@@ -223,11 +219,7 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
 
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         // enable ActionBar app icon to behave as action to toggle nav drawer
-        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //getSupportActionBar().setHomeButtonEnabled(true);
-        // Initialize header and listview
         navDrawerList = (ListView) findViewById(R.id.nav_drawer_options_list);
-
 
         NavDrawerAdapter navDrawerAdapter = new NavDrawerAdapter(getApplicationContext(), R.layout.nav_list_item, values);
         navListAdapter = new ArrayAdapter<String>(this, R.layout.nav_list_item, values);
@@ -281,9 +273,9 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
             Intent navigationIntent = new Intent(this, OnDutyActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        }else if (position == 9) {
+        } else if (position == 9) {
             Intent navigationIntent = new Intent(this, ChangePasswordActivity.class);
-            //navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 10) {
             Log.d(TAG, "Perform Logout");
