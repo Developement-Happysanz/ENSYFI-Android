@@ -225,26 +225,6 @@ public class SampleAddAcademicExamMarksOnlyTotalActivity extends AppCompatActivi
         }
     }
 
-    public static boolean isInteger(String s) {
-        return isInteger(s, 10);
-    }
-
-    public static boolean isInteger(String s, int radix) {
-        if (s.isEmpty()) return false;
-        for (int i = 0; i < s.length(); i++) {
-            if (i == 0 && s.charAt(i) == '-') {
-                if (s.length() == 1) return false;
-                else continue;
-            }
-            if (Character.digit(s.charAt(i), radix) < 0) return false;
-        }
-        return true;
-    }
-
-    public static boolean isIntegerCheck(String s) {
-        return isInteger(s, 10);
-    }
-
     private boolean validateFields() {
         int getCount = 0;
         getCount = layout_all.getChildCount();
@@ -265,16 +245,24 @@ public class SampleAddAcademicExamMarksOnlyTotalActivity extends AppCompatActivi
 
 //            isInteger(edtMarks.getText().toString().trim());
 
-            String okSet = edtMarks.getText().toString().trim();
+            String Marks = edtMarks.getText().toString().trim();
 
-            boolean check = okSet.matches("\\d+");
+            boolean check = Marks.matches("\\d+");
 
 
             if (!AppValidator.checkNullString(edtMarks.getText().toString().trim())) {
                 AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid internal marks for student - " + String.valueOf(et1.getText()));
             }
+            if ((AppValidator.checkEditTextValid100AndA(Marks)).equalsIgnoreCase("NotValidMark") || (AppValidator.checkEditTextValid100AndA(Marks)).equalsIgnoreCase("NotValidAbsent")) {
+                if (((AppValidator.checkEditTextValid100AndA(Marks)).equalsIgnoreCase("NotValidMark"))) {
+                    AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid marks for student - " + String.valueOf(et1.getText()) + " between 0 to " + validMark);
+                }
+                if (((AppValidator.checkEditTextValid100AndA(Marks)).equalsIgnoreCase("NotValidAbsent"))) {
+                    AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid leave character as 'A' for student - " + String.valueOf(et1.getText()));
+                }
+            }
 
-            if (check) {
+         /*   if (check) {
 
                 int mark = Integer.parseInt(edtMarks.getText().toString());
 
@@ -291,7 +279,7 @@ public class SampleAddAcademicExamMarksOnlyTotalActivity extends AppCompatActivi
                     AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid leave character as 'A' for student - " + String.valueOf(et1.getText()));
                 }
 
-            }
+            }*/
 
             else {
                 count++;

@@ -166,13 +166,6 @@ public class SampleAddClassTestMarkActivity extends AppCompatActivity implements
                             b.setAllCaps(true);
                             b.setSingleLine(true);
                             b.setTextColor(Color.parseColor("#FF68358E"));
-                            b.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    // TODO Auto-generated method stub
-
-                                }
-                            });
                             b.setPressed(true);
                             b.setHeight(120);
                             b.setWidth(50);
@@ -218,8 +211,6 @@ public class SampleAddClassTestMarkActivity extends AppCompatActivity implements
         int count = 0;
         int validMark = 100;
 
-        int position = 0;
-
         int nViews = layout_all.getChildCount();
 
         for (int i = 0; i < nViews; i++) {
@@ -229,36 +220,23 @@ public class SampleAddClassTestMarkActivity extends AppCompatActivity implements
             EditText ed_marks = (EditText) view.findViewById(R.id.my_edit_text_1);
             TextView tv_studentName = (TextView) view.findViewById(R.id.my_text_2);
 
-            String getValue = ed_marks.getText().toString().trim();
-
-            int newOk = 0;
-
-            System.out.println(getValue);
-
             String Marks = ed_marks.getText().toString().trim();
 
             boolean check = Marks.matches("\\d+");
 
-            if (!AppValidator.checkNullString(ed_marks.getText().toString().trim())) {
+            if (!AppValidator.checkNullString(Marks)) {
                 AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid marks for student - " + String.valueOf(tv_studentName.getText()));
             }
-            if (check) {
-                int mark = Integer.parseInt(ed_marks.getText().toString());
-                if (mark <= -1 || mark >= validMark + 1) {
+            if ((AppValidator.checkEditTextValid100AndA(Marks)).equalsIgnoreCase("NotValidMark") || (AppValidator.checkEditTextValid100AndA(Marks)).equalsIgnoreCase("NotValidAbsent")) {
+                if (((AppValidator.checkEditTextValid100AndA(Marks)).equalsIgnoreCase("NotValidMark"))) {
                     AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid marks for student - " + String.valueOf(tv_studentName.getText()) + " between 0 to " + validMark);
                 }
-            }
-            if (!check) {
-                String charString = ed_marks.getText().toString();
-                if (!charString.contentEquals("A")) {
+                if (((AppValidator.checkEditTextValid100AndA(Marks)).equalsIgnoreCase("NotValidAbsent"))) {
                     AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid leave character as 'A' for student - " + String.valueOf(tv_studentName.getText()));
                 }
-            }
-            else {
+            } else {
                 count++;
             }
-//            }
-            position++;
         }
 
         if (getCount == count) {
