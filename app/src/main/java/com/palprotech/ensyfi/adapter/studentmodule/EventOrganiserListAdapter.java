@@ -22,16 +22,14 @@ import java.util.ArrayList;
  * Created by Admin on 22-05-2017.
  */
 
-public class EventOrganiserListAdapter extends BaseAdapter{
+public class EventOrganiserListAdapter extends BaseAdapter {
 
-    private static final String TAG = EventOrganiserListAdapter.class.getName();
     private final Transformation transformation;
     private Context context;
     private ArrayList<EventOrganiser> eventOrganisers;
     private boolean mSearching = false;
     private boolean mAnimateSearch = false;
-    private ArrayList<Integer> mValidSearchIndices =new ArrayList<Integer>();
-    private ImageLoader imageLoader = AppController.getInstance().getUniversalImageLoader();
+    private ArrayList<Integer> mValidSearchIndices = new ArrayList<Integer>();
 
     public EventOrganiserListAdapter(Context context, ArrayList<EventOrganiser> eventOrganisers) {
         this.context = context;
@@ -46,24 +44,21 @@ public class EventOrganiserListAdapter extends BaseAdapter{
 
     @Override
     public int getCount() {
-        if(mSearching){
-            // Log.d("Event List Adapter","Search count"+mValidSearchIndices.size());
-            if(!mAnimateSearch){
+        if (mSearching) {
+            if (!mAnimateSearch) {
                 mAnimateSearch = true;
             }
             return mValidSearchIndices.size();
-
-        }else{
-            // Log.d(TAG,"Normal count size");
+        } else {
             return eventOrganisers.size();
         }
     }
 
     @Override
     public Object getItem(int position) {
-        if(mSearching){
+        if (mSearching) {
             return eventOrganisers.get(mValidSearchIndices.get(position));
-        }else {
+        } else {
             return eventOrganisers.get(position);
         }
     }
@@ -81,7 +76,6 @@ public class EventOrganiserListAdapter extends BaseAdapter{
             convertView = inflater.inflate(R.layout.event_organiser_list_item, parent, false);
 
             holder = new EventOrganiserListAdapter.ViewHolder();
-//            holder.txtClassTestTitle = (TextView) convertView.findViewById(R.id.txtClassTestTitle);
             holder.txtSubEventName = (TextView) convertView.findViewById(R.id.txtSubEventName);
             holder.txtEventOrganiserName = (TextView) convertView.findViewById(R.id.txtEventOrganiserName);
             convertView.setTag(holder);
@@ -89,51 +83,41 @@ public class EventOrganiserListAdapter extends BaseAdapter{
             holder = (ViewHolder) convertView.getTag();
         }
 
-        if(mSearching){
-            // Log.d("Event List Adapter","actual position"+ position);
+        if (mSearching) {
             position = mValidSearchIndices.get(position);
-            //Log.d("Event List Adapter", "position is"+ position);
-
-        }else{
-            Log.d("Event List Adapter","getview pos called"+ position);
+        } else {
+            Log.d("Event List Adapter", "getview pos called" + position);
         }
 
-        EventOrganiser eventOrganiser = eventOrganisers.get(position);
-
-//        holder.txtClassTestTitle.setText(classTests.get(position).getHwTitle());
         holder.txtSubEventName.setText(eventOrganisers.get(position).getSubEventName());
         holder.txtEventOrganiserName.setText(eventOrganisers.get(position).getEventOrganiserName());
 
         return convertView;
     }
 
-    public void startSearch(String eventName){
+    public void startSearch(String eventName) {
         mSearching = true;
         mAnimateSearch = false;
-        Log.d("EventListAdapter","serach for event"+eventName);
+        Log.d("EventListAdapter", "serach for event" + eventName);
         mValidSearchIndices.clear();
-        for(int i =0; i< eventOrganisers.size(); i++){
+        for (int i = 0; i < eventOrganisers.size(); i++) {
             String eventTitle = eventOrganisers.get(i).getSubEventName();
-            if((eventTitle != null) && !(eventTitle.isEmpty())){
-                if( eventTitle.toLowerCase().contains(eventName.toLowerCase())){
+            if ((eventTitle != null) && !(eventTitle.isEmpty())) {
+                if (eventTitle.toLowerCase().contains(eventName.toLowerCase())) {
                     mValidSearchIndices.add(i);
                 }
-
             }
-
         }
-        Log.d("Event List Adapter","notify"+ mValidSearchIndices.size());
-        //notifyDataSetChanged();
+        Log.d("Event List Adapter", "notify" + mValidSearchIndices.size());
     }
 
-    public void exitSearch(){
+    public void exitSearch() {
         mSearching = false;
         mValidSearchIndices.clear();
         mAnimateSearch = false;
-        // notifyDataSetChanged();
     }
 
-    public void clearSearchFlag(){
+    public void clearSearchFlag() {
         mSearching = false;
     }
 
@@ -145,10 +129,10 @@ public class EventOrganiserListAdapter extends BaseAdapter{
         return mSearching;
     }
 
-    public int getActualEventPos(int selectedSearchpos){
-        if(selectedSearchpos < mValidSearchIndices.size()) {
+    public int getActualEventPos(int selectedSearchpos) {
+        if (selectedSearchpos < mValidSearchIndices.size()) {
             return mValidSearchIndices.get(selectedSearchpos);
-        }else{
+        } else {
             return 0;
         }
     }

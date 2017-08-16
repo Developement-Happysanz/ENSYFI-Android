@@ -24,14 +24,12 @@ import java.util.ArrayList;
 
 public class MonthViewStudentLeaveDaysListAdapter extends BaseAdapter {
 
-    private static final String TAG = MonthViewListAdapter.class.getName();
     private final Transformation transformation;
     private Context context;
     private ArrayList<MonthViewStudentLeaveDays> monthViewStudentLeaveDays;
     private boolean mSearching = false;
     private boolean mAnimateSearch = false;
     private ArrayList<Integer> mValidSearchIndices = new ArrayList<Integer>();
-    private ImageLoader imageLoader = AppController.getInstance().getUniversalImageLoader();
 
     public MonthViewStudentLeaveDaysListAdapter(Context context, ArrayList<MonthViewStudentLeaveDays> monthViewStudentLeaveDays) {
         this.context = context;
@@ -47,14 +45,11 @@ public class MonthViewStudentLeaveDaysListAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         if (mSearching) {
-            // Log.d("Event List Adapter","Search count"+mValidSearchIndices.size());
             if (!mAnimateSearch) {
                 mAnimateSearch = true;
             }
             return mValidSearchIndices.size();
-
         } else {
-            // Log.d(TAG,"Normal count size");
             return monthViewStudentLeaveDays.size();
         }
     }
@@ -81,7 +76,6 @@ public class MonthViewStudentLeaveDaysListAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.month_view_student_leave_days_list_item, parent, false);
 
             holder = new ViewHolder();
-//            holder.txtEnrollId = (TextView) convertView.findViewById(R.id.txtEnrollId);
             holder.txtDuration = (TextView) convertView.findViewById(R.id.txtDuration);
             holder.txtLeaveDays = (TextView) convertView.findViewById(R.id.txtLeaveDays);
             convertView.setTag(holder);
@@ -90,17 +84,11 @@ public class MonthViewStudentLeaveDaysListAdapter extends BaseAdapter {
         }
 
         if (mSearching) {
-            // Log.d("Event List Adapter","actual position"+ position);
             position = mValidSearchIndices.get(position);
-            //Log.d("Event List Adapter", "position is"+ position);
-
         } else {
             Log.d("Event List Adapter", "getview pos called" + position);
         }
 
-        MonthViewStudentLeaveDays monthViewStudentLeaveDay = monthViewStudentLeaveDays.get(position);
-
-//        holder.txtEnrollId.setText(monthViewStudentLeaveDays.get(position).getEnrollId());
         String checkStatus = monthViewStudentLeaveDays.get(position).getLeaves();
         int status = Integer.parseInt(checkStatus);
         String leaveNos = "";
@@ -136,19 +124,15 @@ public class MonthViewStudentLeaveDaysListAdapter extends BaseAdapter {
                 if (monthViewTitle.toLowerCase().contains(eventName.toLowerCase())) {
                     mValidSearchIndices.add(i);
                 }
-
             }
-
         }
         Log.d("Event List Adapter", "notify" + mValidSearchIndices.size());
-        //notifyDataSetChanged();
     }
 
     public void exitSearch() {
         mSearching = false;
         mValidSearchIndices.clear();
         mAnimateSearch = false;
-        // notifyDataSetChanged();
     }
 
     public void clearSearchFlag() {
@@ -156,7 +140,7 @@ public class MonthViewStudentLeaveDaysListAdapter extends BaseAdapter {
     }
 
     public class ViewHolder {
-        public TextView txtEnrollId, txtStudentName, txtLeaveDays, txtDuration;
+        public TextView txtStudentName, txtLeaveDays, txtDuration;
     }
 
     public boolean ismSearching() {

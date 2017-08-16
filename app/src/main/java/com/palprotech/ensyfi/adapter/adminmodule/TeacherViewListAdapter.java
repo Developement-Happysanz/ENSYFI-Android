@@ -27,14 +27,12 @@ import java.util.Comparator;
 
 public class TeacherViewListAdapter extends BaseAdapter {
 
-    private static final String TAG = ClassStudentListAdapter.class.getName();
     private final Transformation transformation;
     private Context context;
     private ArrayList<TeacherView> teacherViews;
     private boolean mSearching = false;
     private boolean mAnimateSearch = false;
     private ArrayList<Integer> mValidSearchIndices = new ArrayList<Integer>();
-    private ImageLoader imageLoader = AppController.getInstance().getUniversalImageLoader();
 
     Comparator<TeacherView> myComparator = new Comparator<TeacherView>() {
         public int compare(TeacherView obj1, TeacherView obj2) {
@@ -56,14 +54,11 @@ public class TeacherViewListAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         if (mSearching) {
-            // Log.d("Event List Adapter","Search count"+mValidSearchIndices.size());
             if (!mAnimateSearch) {
                 mAnimateSearch = true;
             }
             return mValidSearchIndices.size();
-
         } else {
-            // Log.d(TAG,"Normal count size");
             return teacherViews.size();
         }
     }
@@ -99,16 +94,10 @@ public class TeacherViewListAdapter extends BaseAdapter {
         }
 
         if (mSearching) {
-            // Log.d("Event List Adapter","actual position"+ position);
             position = mValidSearchIndices.get(position);
-            //Log.d("Event List Adapter", "position is"+ position);
-
         } else {
             Log.d("Event List Adapter", "getview pos called" + position);
         }
-
-        TeacherView teacherView = teacherViews.get(position);
-
         holder.txtTeacherId.setText(teacherViews.get(position).getTeacherId());
         holder.txtTeacherName.setText(teacherViews.get(position).getName());
         holder.txtTeacherMainSubject.setText(teacherViews.get(position).getSubjectName());
@@ -127,19 +116,15 @@ public class TeacherViewListAdapter extends BaseAdapter {
                 if (classStudent.toLowerCase().contains(eventName.toLowerCase())) {
                     mValidSearchIndices.add(i);
                 }
-
             }
-
         }
         Log.d("Event List Adapter", "notify" + mValidSearchIndices.size());
-        //notifyDataSetChanged();
     }
 
     public void exitSearch() {
         mSearching = false;
         mValidSearchIndices.clear();
         mAnimateSearch = false;
-        // notifyDataSetChanged();
     }
 
     public void clearSearchFlag() {

@@ -11,7 +11,6 @@ public class AcademicExamDetails {
     public String exam_date;
     public String times;
 
-
     public int getId() {
         return id;
     }

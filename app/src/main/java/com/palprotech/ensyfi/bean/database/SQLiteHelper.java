@@ -300,7 +300,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     }
 
     public void deleteStudentInfo() {
-        String ok;
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("studentInfo", null, null);
     }
@@ -340,7 +339,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     }
 
     public void deleteTeacherTimeTable() {
-        String ok;
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("teacherTimeTable", null, null);
     }
@@ -405,7 +403,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     }
 
     public void deleteTeachersClassStudentDetails() {
-        String ok;
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("teachersStudentDetails", null, null);
     }
@@ -481,11 +478,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
                 checkFlag = cursor.getString(0);
             } while (cursor.moveToNext());
         }
+//        if(cursor != null)
+        cursor.close();
         return checkFlag;
     }
 
     public void deleteStudentAttendance() {
-        String ok;
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("attendance", null, null);
     }
@@ -555,7 +553,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     }
 
     public void deleteStudentAttendanceHistory() {
-        String ok;
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("attendanceHistory", null, null);
     }
@@ -598,11 +595,11 @@ public class SQLiteHelper extends SQLiteOpenHelper {
                 checkFlag = cursor.getString(0);
             } while (cursor.moveToNext());
         }
+        cursor.close();
         return checkFlag;
     }
 
     public void deleteStudentAttendanceFlag() {
-        String ok;
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("attendanceFlag", null, null);
     }
@@ -633,7 +630,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     }
 
     public void deleteAcademicMonths() {
-        String ok;
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("academicMonths", null, null);
     }
@@ -726,7 +722,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     }
 
     public void deleteHomeWorkClassTest() {
-        String ok;
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("homeWorkClassTest", null, null);
     }
@@ -793,7 +788,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     }
 
     public void deleteClassTestMark() {
-        String ok;
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("homeWorkClassTest", null, null);
     }
@@ -841,17 +835,16 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         return c;
     }
 
-    public void updateAcademicExamMarksStatus(String val1, String val2) {
+    /*public void updateAcademicExamMarksStatus(String val1, String val2) {
         SQLiteDatabase db = this.getWritableDatabase();
         String fetch = "Update academicExams SET MarkStatus = '1' where exam_id = '" + val1 + "' and classmaster_id = '" + val2 + "';";
         Cursor c = db.rawQuery(fetch, null);
         if (c != null) {
             c.moveToFirst();
         }
-    }
+    }*/
 
     public void deleteExamOfClasses() {
-        String ok;
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("academicExams", null, null);
     }
@@ -889,7 +882,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     }
 
     public void deleteExamDetails() {
-        String ok;
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("academicExamsDetails", null, null);
     }
@@ -944,6 +936,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
                 internalExternalFlag = cursor.getString(0);
             } while (cursor.moveToNext());
         }
+        cursor.close();
         return internalExternalFlag;
     }
 
@@ -956,7 +949,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     }
 
     public void deleteAcademicExamMarks() {
-        String ok;
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("academicExamMarks", null, null);
     }
@@ -999,7 +991,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     }
 
     public void deleteLeaveTypes() {
-        String ok;
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("leaveType", null, null);
     }
@@ -1046,7 +1037,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
 
     public void deleteTeacherHandlingSubjects() {
-        String ok;
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("teacherHandlingSubject", null, null);
     }
@@ -1078,12 +1068,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
                 academicExamSubjectMarksStatusFlag = cursor.getString(0);
             } while (cursor.moveToNext());
         }
+        cursor.close();
         return academicExamSubjectMarksStatusFlag;
     }
 
 
     public void deleteAcademicExamSubjectMarksStatus() {
-        String ok;
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("academicExamSubjectMarksStatus", null, null);
     }

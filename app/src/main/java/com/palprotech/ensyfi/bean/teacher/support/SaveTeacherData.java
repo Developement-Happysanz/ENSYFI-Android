@@ -419,7 +419,6 @@ public class SaveTeacherData {
                 long l = database.exam_of_classes_insert(v1, v2, v3, v4, v5, v6, v7, v8, v9);
 
                 System.out.println("" + l);
-
             }
 
         } catch (Exception ex) {
@@ -475,7 +474,6 @@ public class SaveTeacherData {
                 long l = database.exam_details_insert(v1, v2, v3, v4, v5, v6, v7, v8);
 
                 System.out.println("" + l);
-
             }
 
         } catch (Exception ex) {
@@ -523,7 +521,6 @@ public class SaveTeacherData {
                 long l = database.teacher_handling_subject_insert(v1, v2, v3, v4, v5, v6);
 
                 System.out.println("" + l);
-
             }
 
         } catch (Exception ex) {

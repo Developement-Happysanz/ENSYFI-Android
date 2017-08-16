@@ -13,7 +13,6 @@ public class StoreSection {
         this.sectionName = sectionName;
     }
 
-
     public String getSectionId() {
         return sectionId;
     }

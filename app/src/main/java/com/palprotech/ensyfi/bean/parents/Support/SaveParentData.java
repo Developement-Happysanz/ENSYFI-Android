@@ -290,6 +290,7 @@ public class SaveParentData {
                 PreferenceStorage.saveGuardianImg(context, GuardianPic);
             }
         } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 }

@@ -27,14 +27,13 @@ import java.util.Comparator;
 
 public class ParentStudentListAdapter extends BaseAdapter {
 
-    private static final String TAG = ClassStudentListAdapter.class.getName();
     private final Transformation transformation;
     private Context context;
     private ArrayList<ParentStudent> parentStudents;
     private boolean mSearching = false;
     private boolean mAnimateSearch = false;
     private ArrayList<Integer> mValidSearchIndices = new ArrayList<Integer>();
-    private ImageLoader imageLoader = AppController.getInstance().getUniversalImageLoader();
+//    private ImageLoader imageLoader = AppController.getInstance().getUniversalImageLoader();
 
     Comparator<ParentStudent> myComparator = new Comparator<ParentStudent>() {
         public int compare(ParentStudent obj1, ParentStudent obj2) {
@@ -56,14 +55,11 @@ public class ParentStudentListAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         if (mSearching) {
-            // Log.d("Event List Adapter","Search count"+mValidSearchIndices.size());
             if (!mAnimateSearch) {
                 mAnimateSearch = true;
             }
             return mValidSearchIndices.size();
-
         } else {
-            // Log.d(TAG,"Normal count size");
             return parentStudents.size();
         }
     }
@@ -99,16 +95,10 @@ public class ParentStudentListAdapter extends BaseAdapter {
         }
 
         if (mSearching) {
-            // Log.d("Event List Adapter","actual position"+ position);
             position = mValidSearchIndices.get(position);
-            //Log.d("Event List Adapter", "position is"+ position);
-
         } else {
             Log.d("Event List Adapter", "getview pos called" + position);
         }
-
-        ParentStudent parentStudent = parentStudents.get(position);
-
         holder.txtClassStudentRegId.setText(parentStudents.get(position).getStudentId());
         holder.txtClassStudentName.setText(parentStudents.get(position).getName());
         holder.txtParentName.setText(parentStudents.get(position).getFatherName());
@@ -127,19 +117,15 @@ public class ParentStudentListAdapter extends BaseAdapter {
                 if (classStudent.toLowerCase().contains(eventName.toLowerCase())) {
                     mValidSearchIndices.add(i);
                 }
-
             }
-
         }
         Log.d("Event List Adapter", "notify" + mValidSearchIndices.size());
-        //notifyDataSetChanged();
     }
 
     public void exitSearch() {
         mSearching = false;
         mValidSearchIndices.clear();
         mAnimateSearch = false;
-        // notifyDataSetChanged();
     }
 
     public void clearSearchFlag() {

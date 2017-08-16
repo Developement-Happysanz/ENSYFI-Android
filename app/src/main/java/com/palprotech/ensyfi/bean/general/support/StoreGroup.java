@@ -14,7 +14,6 @@ public class StoreGroup {
         this.groupTitle = groupTitle;
     }
 
-
     public String getGroupId() {
         return groupId;
     }

@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * Created by Admin on 15-07-2017.
  */
 
-public class StudentsAcademicExamMarksAddOnlyTotalBaseAdapter extends BaseAdapter{
+public class StudentsAcademicExamMarksAddOnlyTotalBaseAdapter extends BaseAdapter {
 
     ArrayList<StudentsClassTestMarks> myList = new ArrayList<StudentsClassTestMarks>();
     LayoutInflater inflater;
@@ -78,8 +78,6 @@ public class StudentsAcademicExamMarksAddOnlyTotalBaseAdapter extends BaseAdapte
         public MyViewHolder(View item) {
             txtStudentId = (TextView) item.findViewById(R.id.txt_studentId);
             txtStudentName = (TextView) item.findViewById(R.id.txt_studentName);
-
-
         }
     }
 }

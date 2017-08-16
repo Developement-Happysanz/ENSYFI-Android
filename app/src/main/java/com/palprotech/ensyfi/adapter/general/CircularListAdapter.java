@@ -24,14 +24,12 @@ import java.util.ArrayList;
 
 public class CircularListAdapter extends BaseAdapter {
 
-    private static final String TAG = CircularListAdapter.class.getName();
     private final Transformation transformation;
     private Context context;
     private ArrayList<Circular> circulars;
     private boolean mSearching = false;
     private boolean mAnimateSearch = false;
     private ArrayList<Integer> mValidSearchIndices = new ArrayList<Integer>();
-    private ImageLoader imageLoader = AppController.getInstance().getUniversalImageLoader();
 
     public CircularListAdapter(Context context, ArrayList<Circular> circulars) {
         this.context = context;
@@ -44,18 +42,14 @@ public class CircularListAdapter extends BaseAdapter {
         mSearching = false;
     }
 
-
     @Override
     public int getCount() {
         if (mSearching) {
-            // Log.d("Event List Adapter","Search count"+mValidSearchIndices.size());
             if (!mAnimateSearch) {
                 mAnimateSearch = true;
             }
             return mValidSearchIndices.size();
-
         } else {
-            // Log.d(TAG,"Normal count size");
             return circulars.size();
         }
     }
@@ -90,18 +84,12 @@ public class CircularListAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-
         if (mSearching) {
-            // Log.d("Event List Adapter","actual position"+ position);
             position = mValidSearchIndices.get(position);
-            //Log.d("Event List Adapter", "position is"+ position);
 
         } else {
             Log.d("Event List Adapter", "getview pos called" + position);
         }
-
-        Circular circular = circulars.get(position);
-
         holder.txtCircularType.setText(circulars.get(position).getCircularType());
         holder.txtCircularTitle.setText(circulars.get(position).getCircularTitle());
         holder.txtCircularDescription.setText(circulars.get(position).getCircularDescription());
@@ -123,14 +111,12 @@ public class CircularListAdapter extends BaseAdapter {
             }
         }
         Log.d("Event List Adapter", "notify" + mValidSearchIndices.size());
-        //notifyDataSetChanged();
     }
 
     public void exitSearch() {
         mSearching = false;
         mValidSearchIndices.clear();
         mAnimateSearch = false;
-        // notifyDataSetChanged();
     }
 
     public void clearSearchFlag() {
@@ -138,7 +124,7 @@ public class CircularListAdapter extends BaseAdapter {
     }
 
     public class ViewHolder {
-        public TextView txtCircularType, txtCircularTitle,txtCircularDescription,txtCircularDate;
+        public TextView txtCircularType, txtCircularTitle, txtCircularDescription, txtCircularDate;
     }
 
     public boolean ismSearching() {

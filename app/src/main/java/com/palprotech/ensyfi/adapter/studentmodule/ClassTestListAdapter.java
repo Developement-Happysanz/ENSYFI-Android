@@ -24,14 +24,12 @@ import java.util.ArrayList;
 
 public class ClassTestListAdapter extends BaseAdapter {
 
-    private static final String TAG = ClassTestListAdapter.class.getName();
     private final Transformation transformation;
     private Context context;
     private ArrayList<ClassTest> classTests;
     private boolean mSearching = false;
     private boolean mAnimateSearch = false;
     private ArrayList<Integer> mValidSearchIndices = new ArrayList<Integer>();
-    private ImageLoader imageLoader = AppController.getInstance().getUniversalImageLoader();
 
     public ClassTestListAdapter(Context context, ArrayList<ClassTest> classTests) {
         this.context = context;
@@ -47,14 +45,11 @@ public class ClassTestListAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         if (mSearching) {
-            // Log.d("Event List Adapter","Search count"+mValidSearchIndices.size());
             if (!mAnimateSearch) {
                 mAnimateSearch = true;
             }
             return mValidSearchIndices.size();
-
         } else {
-            // Log.d(TAG,"Normal count size");
             return classTests.size();
         }
     }
@@ -91,15 +86,11 @@ public class ClassTestListAdapter extends BaseAdapter {
         }
 
         if (mSearching) {
-            // Log.d("Event List Adapter","actual position"+ position);
             position = mValidSearchIndices.get(position);
-            //Log.d("Event List Adapter", "position is"+ position);
 
         } else {
             Log.d("Event List Adapter", "getview pos called" + position);
         }
-
-        ClassTest classTest = classTests.get(position);
 
         String checkClassTestType = classTests.get(position).getHwType();
         String isTypeChecked = "";
@@ -118,7 +109,6 @@ public class ClassTestListAdapter extends BaseAdapter {
 
         holder.txtClassTestType.setText("-  " + isTypeChecked);
 
-
         return convertView;
     }
 
@@ -133,19 +123,15 @@ public class ClassTestListAdapter extends BaseAdapter {
                 if (homeWorkTitle.toLowerCase().contains(eventName.toLowerCase())) {
                     mValidSearchIndices.add(i);
                 }
-
             }
-
         }
         Log.d("Event List Adapter", "notify" + mValidSearchIndices.size());
-        //notifyDataSetChanged();
     }
 
     public void exitSearch() {
         mSearching = false;
         mValidSearchIndices.clear();
         mAnimateSearch = false;
-        // notifyDataSetChanged();
     }
 
     public void clearSearchFlag() {

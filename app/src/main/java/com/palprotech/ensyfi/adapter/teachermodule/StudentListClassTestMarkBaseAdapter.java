@@ -76,7 +76,7 @@ public class StudentListClassTestMarkBaseAdapter extends BaseAdapter {
         return convertView;
     }
 
-    public String[] getValueList(){
+    public String[] getValueList() {
         return valueList;
     }
 

@@ -14,7 +14,6 @@ public class StoreClass {
         this.className = className;
     }
 
-
     public String getClassId() {
         return classId;
     }

@@ -25,14 +25,12 @@ import java.util.Comparator;
 
 public class GroupListAdapter extends BaseAdapter {
 
-    private static final String TAG = GroupListAdapter.class.getName();
     private final Transformation transformation;
     private Context context;
     private ArrayList<GroupList> groupListses;
     private boolean mSearching = false;
     private boolean mAnimateSearch = false;
-    private ArrayList<Integer> mValidSearchIndices =new ArrayList<Integer>();
-    private ImageLoader imageLoader = AppController.getInstance().getUniversalImageLoader();
+    private ArrayList<Integer> mValidSearchIndices = new ArrayList<Integer>();
 
     Comparator<GroupList> myComparator = new Comparator<GroupList>() {
         public int compare(GroupList obj1, GroupList obj2) {
@@ -53,24 +51,21 @@ public class GroupListAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        if(mSearching){
-            // Log.d("GroupList List Adapter","Search count"+mValidSearchIndices.size());
-            if(!mAnimateSearch){
+        if (mSearching) {
+            if (!mAnimateSearch) {
                 mAnimateSearch = true;
             }
             return mValidSearchIndices.size();
-
-        }else{
-            // Log.d(TAG,"Normal count size");
+        } else {
             return groupListses.size();
         }
     }
 
     @Override
     public Object getItem(int position) {
-        if(mSearching){
+        if (mSearching) {
             return groupListses.get(mValidSearchIndices.get(position));
-        }else {
+        } else {
             return groupListses.get(position);
         }
     }
@@ -88,59 +83,47 @@ public class GroupListAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.group_notification_item, parent, false);
 
             holder = new GroupListAdapter.ViewHolder();
-//            holder.txtClassTestTitle = (TextView) convertView.findViewById(R.id.txtClassTestTitle);
             holder.txtGroupName = (TextView) convertView.findViewById(R.id.group_title);
             holder.txtnotes = (TextView) convertView.findViewById(R.id.mini_notes);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-
-        if(mSearching){
-            // Log.d("GroupList List Adapter","actual position"+ position);
+        if (mSearching) {
             position = mValidSearchIndices.get(position);
-            //Log.d("GroupList List Adapter", "position is"+ position);
-
-        }else{
-            Log.d("GroupList List Adapter","getview pos called"+ position);
+        } else {
+            Log.d("GroupList List Adapter", "getview pos called" + position);
         }
 
-        GroupList groupList = groupListses.get(position);
-
-//        holder.txtClassTestTitle.setText(classTests.get(position).getHwTitle());
-        holder.txtGroupName.setText(groupList.getGroup_title());
-        holder.txtnotes.setText(groupList.getNotes());
+        holder.txtGroupName.setText(groupListses.get(position).getGroup_title());
+        holder.txtnotes.setText(groupListses.get(position).getNotes());
 
         return convertView;
     }
 
-    public void startSearch(String groupName){
+    public void startSearch(String groupName) {
         mSearching = true;
         mAnimateSearch = false;
-        Log.d("GroupListAdapter","serach for group"+groupName);
+        Log.d("GroupListAdapter", "serach for group" + groupName);
         mValidSearchIndices.clear();
-        for(int i = 0; i< groupListses.size(); i++){
+        for (int i = 0; i < groupListses.size(); i++) {
             String groupTitle = groupListses.get(i).getGroup_title();
-            if((groupTitle != null) && !(groupTitle.isEmpty())){
-                if( groupTitle.toLowerCase().contains(groupName.toLowerCase())){
+            if ((groupTitle != null) && !(groupTitle.isEmpty())) {
+                if (groupTitle.toLowerCase().contains(groupName.toLowerCase())) {
                     mValidSearchIndices.add(i);
                 }
-
             }
-
         }
-        Log.d("GroupList List Adapter","notify"+ mValidSearchIndices.size());
-        //notifyDataSetChanged();
+        Log.d("GroupList List Adapter", "notify" + mValidSearchIndices.size());
     }
 
-    public void exitSearch(){
+    public void exitSearch() {
         mSearching = false;
         mValidSearchIndices.clear();
         mAnimateSearch = false;
-        // notifyDataSetChanged();
     }
 
-    public void clearSearchFlag(){
+    public void clearSearchFlag() {
         mSearching = false;
     }
 
@@ -152,10 +135,10 @@ public class GroupListAdapter extends BaseAdapter {
         return mSearching;
     }
 
-    public int getActualGroupPos(int selectedSearchpos){
-        if(selectedSearchpos < mValidSearchIndices.size()) {
+    public int getActualGroupPos(int selectedSearchpos) {
+        if (selectedSearchpos < mValidSearchIndices.size()) {
             return mValidSearchIndices.get(selectedSearchpos);
-        }else{
+        } else {
             return 0;
         }
     }

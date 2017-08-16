@@ -29,9 +29,8 @@ public class SaveStudentData {
             database.deleteStudentInfo();
 
             for (int i = 0; i < studentRegistered.length(); i++) {
-                HashMap<String, String> map = new HashMap<String, String>();
-                JSONObject jsonobj = studentRegistered.getJSONObject(i);
 
+                JSONObject jsonobj = studentRegistered.getJSONObject(i);
 
                 System.out.println("registered_id : " + i + " = " + jsonobj.getString("registered_id"));
                 System.out.println("admission_id : " + i + " = " + jsonobj.getString("admission_id"));
@@ -277,6 +276,7 @@ public class SaveStudentData {
 
 
         } catch (Exception ex) {
+            ex.printStackTrace();
         }
 
     }

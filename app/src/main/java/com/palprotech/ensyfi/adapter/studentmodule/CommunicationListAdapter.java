@@ -24,14 +24,12 @@ import java.util.ArrayList;
 
 public class CommunicationListAdapter extends BaseAdapter {
 
-    private static final String TAG = ClassTestListAdapter.class.getName();
     private final Transformation transformation;
     private Context context;
     private ArrayList<Communication> communications;
     private boolean mSearching = false;
     private boolean mAnimateSearch = false;
     private ArrayList<Integer> mValidSearchIndices = new ArrayList<Integer>();
-    private ImageLoader imageLoader = AppController.getInstance().getUniversalImageLoader();
 
     public CommunicationListAdapter(Context context, ArrayList<Communication> communications) {
         this.context = context;
@@ -48,14 +46,11 @@ public class CommunicationListAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         if (mSearching) {
-            // Log.d("Event List Adapter","Search count"+mValidSearchIndices.size());
             if (!mAnimateSearch) {
                 mAnimateSearch = true;
             }
             return mValidSearchIndices.size();
-
         } else {
-            // Log.d(TAG,"Normal count size");
             return communications.size();
         }
     }
@@ -82,7 +77,6 @@ public class CommunicationListAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.communication_list_item, parent, false);
 
             holder = new ViewHolder();
-//            holder.txtClassTestTitle = (TextView) convertView.findViewById(R.id.txtClassTestTitle);
             holder.txtCommunicationTitle = (TextView) convertView.findViewById(R.id.txtCommunicationTitle);
             holder.txtCommunicationDate = (TextView) convertView.findViewById(R.id.txtCommunicationDate);
             holder.txtCommunicationDetail = (TextView) convertView.findViewById(R.id.txtCommunicationDetail);
@@ -92,17 +86,11 @@ public class CommunicationListAdapter extends BaseAdapter {
         }
 
         if (mSearching) {
-            // Log.d("Event List Adapter","actual position"+ position);
             position = mValidSearchIndices.get(position);
-            //Log.d("Event List Adapter", "position is"+ position);
-
         } else {
             Log.d("Event List Adapter", "getview pos called" + position);
         }
 
-        Communication communication = communications.get(position);
-
-//        holder.txtClassTestTitle.setText(classTests.get(position).getHwTitle());
         holder.txtCommunicationTitle.setText(communications.get(position).getCommunicationTitle());
         holder.txtCommunicationDate.setText(communications.get(position).getCommunicationDate());
         holder.txtCommunicationDetail.setText(communications.get(position).getCommunicationDetails());
@@ -123,14 +111,12 @@ public class CommunicationListAdapter extends BaseAdapter {
             }
         }
         Log.d("Event List Adapter", "notify" + mValidSearchIndices.size());
-        //notifyDataSetChanged();
     }
 
     public void exitSearch() {
         mSearching = false;
         mValidSearchIndices.clear();
         mAnimateSearch = false;
-        // notifyDataSetChanged();
     }
 
     public void clearSearchFlag() {
@@ -138,7 +124,7 @@ public class CommunicationListAdapter extends BaseAdapter {
     }
 
     public class ViewHolder {
-        public TextView txtCommunicationTitle, txtCommunicationDate,txtCommunicationDetail;
+        public TextView txtCommunicationTitle, txtCommunicationDate, txtCommunicationDetail;
     }
 
     public boolean ismSearching() {

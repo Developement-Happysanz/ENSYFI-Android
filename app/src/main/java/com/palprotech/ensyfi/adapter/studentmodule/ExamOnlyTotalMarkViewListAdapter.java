@@ -24,14 +24,12 @@ import java.util.ArrayList;
 
 public class ExamOnlyTotalMarkViewListAdapter extends BaseAdapter {
 
-    private static final String TAG = ExamMarkViewListAdapter.class.getName();
     private final Transformation transformation;
     private Context context;
     private ArrayList<ExamMark> examMarks;
     private boolean mSearching = false;
     private boolean mAnimateSearch = false;
     private ArrayList<Integer> mValidSearchIndices = new ArrayList<Integer>();
-    private ImageLoader imageLoader = AppController.getInstance().getUniversalImageLoader();
 
     public ExamOnlyTotalMarkViewListAdapter(Context context, ArrayList<ExamMark> examMarks) {
         this.context = context;
@@ -47,14 +45,11 @@ public class ExamOnlyTotalMarkViewListAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         if (mSearching) {
-            // Log.d("Event List Adapter","Search count"+mValidSearchIndices.size());
             if (!mAnimateSearch) {
                 mAnimateSearch = true;
             }
             return mValidSearchIndices.size();
-
         } else {
-            // Log.d(TAG,"Normal count size");
             return examMarks.size();
         }
     }
@@ -85,17 +80,13 @@ public class ExamOnlyTotalMarkViewListAdapter extends BaseAdapter {
             holder.txtSubjectTotalMark = (TextView) convertView.findViewById(R.id.txtSubTotalMark);
             holder.txtSubjectTotalGrade = (TextView) convertView.findViewById(R.id.txtSubTotalGrade);
 
-
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
         if (mSearching) {
-            // Log.d("Event List Adapter","actual position"+ position);
             position = mValidSearchIndices.get(position);
-            //Log.d("Event List Adapter", "position is"+ position);
-
         } else {
             Log.d("Event List Adapter", "getview pos called" + position);
         }
@@ -105,8 +96,6 @@ public class ExamOnlyTotalMarkViewListAdapter extends BaseAdapter {
         holder.txtExamSubject.setText(examMark.getSubjectName());
         holder.txtSubjectTotalMark.setText(examMark.getTotalMarks());
         holder.txtSubjectTotalGrade.setText(examMark.getTotalGrade());
-
-
 
         return convertView;
     }
@@ -122,19 +111,15 @@ public class ExamOnlyTotalMarkViewListAdapter extends BaseAdapter {
                 if (homeWorkTitle.toLowerCase().contains(eventName.toLowerCase())) {
                     mValidSearchIndices.add(i);
                 }
-
             }
-
         }
         Log.d("Event List Adapter", "notify" + mValidSearchIndices.size());
-        //notifyDataSetChanged();
     }
 
     public void exitSearch() {
         mSearching = false;
         mValidSearchIndices.clear();
         mAnimateSearch = false;
-        // notifyDataSetChanged();
     }
 
     public void clearSearchFlag() {

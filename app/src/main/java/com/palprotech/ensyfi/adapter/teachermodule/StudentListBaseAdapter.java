@@ -88,8 +88,6 @@ public class StudentListBaseAdapter extends BaseAdapter {
         public MyViewHolder(View item) {
             txtStudentId = (TextView) item.findViewById(R.id.txt_studentId);
             txtStudentName = (TextView) item.findViewById(R.id.txt_studentName);
-
-
         }
     }
 }

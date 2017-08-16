@@ -29,14 +29,12 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class OnDutyListAdapter extends BaseAdapter {
 
-    private static final String TAG = CircularListAdapter.class.getName();
     private final Transformation transformation;
     private Context context;
     private ArrayList<OnDuty> onDuty;
     private boolean mSearching = false;
     private boolean mAnimateSearch = false;
     private ArrayList<Integer> mValidSearchIndices = new ArrayList<Integer>();
-    private ImageLoader imageLoader = AppController.getInstance().getUniversalImageLoader();
 
     public OnDutyListAdapter(Context context, ArrayList<OnDuty> onDuty) {
         this.context = context;
@@ -53,14 +51,11 @@ public class OnDutyListAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         if (mSearching) {
-            // Log.d("Event List Adapter","Search count"+mValidSearchIndices.size());
             if (!mAnimateSearch) {
                 mAnimateSearch = true;
             }
             return mValidSearchIndices.size();
-
         } else {
-            // Log.d(TAG,"Normal count size");
             return onDuty.size();
         }
     }
@@ -98,15 +93,11 @@ public class OnDutyListAdapter extends BaseAdapter {
         }
 
         if (mSearching) {
-            // Log.d("Event List Adapter","actual position"+ position);
             position = mValidSearchIndices.get(position);
-            //Log.d("Event List Adapter", "position is"+ position);
-
         } else {
             Log.d("Event List Adapter", "getview pos called" + position);
         }
 
-        OnDuty onDutys = onDuty.get(position);
         if (onDuty.get(position).getStatus().contentEquals("Approved")) {
             holder.txtStatus.setTextColor(ContextCompat.getColor(context, R.color.approve));
             holder.imgStatus.setImageResource(R.drawable.od_approved);
@@ -146,14 +137,12 @@ public class OnDutyListAdapter extends BaseAdapter {
             }
         }
         Log.d("Event List Adapter", "notify" + mValidSearchIndices.size());
-        //notifyDataSetChanged();
     }
 
     public void exitSearch() {
         mSearching = false;
         mValidSearchIndices.clear();
         mAnimateSearch = false;
-        // notifyDataSetChanged();
     }
 
     public void clearSearchFlag() {

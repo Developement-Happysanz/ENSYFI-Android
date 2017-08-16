@@ -22,17 +22,14 @@ import java.util.ArrayList;
  * Created by Admin on 17-05-2017.
  */
 
-public class ExamListAdapter extends BaseAdapter{
+public class ExamListAdapter extends BaseAdapter {
 
-    private static final String TAG = ExamListAdapter.class.getName();
     private final Transformation transformation;
     private Context context;
     private ArrayList<Exams> exams;
     private boolean mSearching = false;
     private boolean mAnimateSearch = false;
-    private ArrayList<Integer> mValidSearchIndices =new ArrayList<Integer>();
-    private ImageLoader imageLoader = AppController.getInstance().getUniversalImageLoader();
-
+    private ArrayList<Integer> mValidSearchIndices = new ArrayList<Integer>();
 
     public ExamListAdapter(Context context, ArrayList<Exams> exams) {
         this.context = context;
@@ -48,24 +45,21 @@ public class ExamListAdapter extends BaseAdapter{
 
     @Override
     public int getCount() {
-        if(mSearching){
-            // Log.d("Event List Adapter","Search count"+mValidSearchIndices.size());
-            if(!mAnimateSearch){
+        if (mSearching) {
+            if (!mAnimateSearch) {
                 mAnimateSearch = true;
             }
             return mValidSearchIndices.size();
-
-        }else{
-            // Log.d(TAG,"Normal count size");
+        } else {
             return exams.size();
         }
     }
 
     @Override
     public Object getItem(int position) {
-        if(mSearching){
+        if (mSearching) {
             return exams.get(mValidSearchIndices.get(position));
-        }else {
+        } else {
             return exams.get(position);
         }
     }
@@ -91,17 +85,11 @@ public class ExamListAdapter extends BaseAdapter{
             holder = (ViewHolder) convertView.getTag();
         }
 
-        if(mSearching){
-            // Log.d("Event List Adapter","actual position"+ position);
+        if (mSearching) {
             position = mValidSearchIndices.get(position);
-            //Log.d("Event List Adapter", "position is"+ position);
-
-        }else{
-            Log.d("Event List Adapter","getview pos called"+ position);
+        } else {
+            Log.d("Event List Adapter", "getview pos called" + position);
         }
-
-
-        Exams exam = exams.get(position);
 
         holder.txtExamName.setText(exams.get(position).getExamName());
         holder.txtStartDate.setText(exams.get(position).getFromDate());
@@ -112,79 +100,72 @@ public class ExamListAdapter extends BaseAdapter{
     }
 
     //helper for parsing the date from string. Expected format "10-28-2015 00:00:00"
-    public static String getDate(String dateTime){
+    public static String getDate(String dateTime) {
         String dateVal = null;
         try {
             if ((dateTime != null) && !dateTime.isEmpty() && dateTime.length() >= 10) {
                 dateVal = dateTime.substring(0, 10);
                 String month = getMonthName(Integer.parseInt(dateVal.substring(0, 2)));
                 String day = dateVal.substring(3, 5);
-                String year = dateVal.substring(6,10);
-                if( (month != null) && (day != null) && (year != null)){
-                    dateVal = month+"  "+ day+ ","+ year+" ";
+                String year = dateVal.substring(6, 10);
+                if ((month != null) && (day != null) && (year != null)) {
+                    dateVal = month + "  " + day + "," + year + " ";
                 }
-
             }
-        }catch (NumberFormatException numE){
+        } catch (NumberFormatException numE) {
             numE.printStackTrace();
-
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         return dateVal;
     }
 
-    public void startSearch(String eventName){
+    public void startSearch(String eventName) {
         mSearching = true;
         mAnimateSearch = false;
-        Log.d("EventListAdapter","serach for event"+eventName);
+        Log.d("EventListAdapter", "serach for event" + eventName);
         mValidSearchIndices.clear();
-        for(int i =0; i< exams.size(); i++){
+        for (int i = 0; i < exams.size(); i++) {
             String homeWorkTitle = exams.get(i).getExamName();
-            if((homeWorkTitle != null) && !(homeWorkTitle.isEmpty())){
-                if( homeWorkTitle.toLowerCase().contains(eventName.toLowerCase())){
+            if ((homeWorkTitle != null) && !(homeWorkTitle.isEmpty())) {
+                if (homeWorkTitle.toLowerCase().contains(eventName.toLowerCase())) {
                     mValidSearchIndices.add(i);
                 }
-
             }
-
         }
-        Log.d("Event List Adapter","notify"+ mValidSearchIndices.size());
-        //notifyDataSetChanged();
+        Log.d("Event List Adapter", "notify" + mValidSearchIndices.size());
     }
 
-    public void exitSearch(){
+    public void exitSearch() {
         mSearching = false;
         mValidSearchIndices.clear();
         mAnimateSearch = false;
-        // notifyDataSetChanged();
     }
 
-    public void clearSearchFlag(){
+    public void clearSearchFlag() {
         mSearching = false;
     }
 
     public class ViewHolder {
-        public TextView txtExamName,txtEndDate,txtStartDate;
+        public TextView txtExamName, txtEndDate, txtStartDate;
     }
 
     public boolean ismSearching() {
         return mSearching;
     }
 
-    public int getActualEventPos(int selectedSearchpos){
-        if(selectedSearchpos < mValidSearchIndices.size()) {
+    public int getActualEventPos(int selectedSearchpos) {
+        if (selectedSearchpos < mValidSearchIndices.size()) {
             return mValidSearchIndices.get(selectedSearchpos);
-        }else{
+        } else {
             return 0;
         }
     }
 
-    private static  String getMonthName(int month){
+    private static String getMonthName(int month) {
         String monthVal = null;
-        switch (month){
+        switch (month) {
             case 1:
                 monthVal = "Jan";
                 break;
@@ -223,6 +204,6 @@ public class ExamListAdapter extends BaseAdapter{
                 break;
         }
 
-        return  monthVal;
+        return monthVal;
     }
 }

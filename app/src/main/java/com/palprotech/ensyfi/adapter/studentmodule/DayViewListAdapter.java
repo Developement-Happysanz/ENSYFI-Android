@@ -26,14 +26,12 @@ import java.util.Comparator;
 
 public class DayViewListAdapter extends BaseAdapter {
 
-    private static final String TAG = DayViewListAdapter.class.getName();
     private final Transformation transformation;
     private Context context;
     private ArrayList<DayView> dayViews;
     private boolean mSearching = false;
     private boolean mAnimateSearch = false;
     private ArrayList<Integer> mValidSearchIndices = new ArrayList<Integer>();
-    private ImageLoader imageLoader = AppController.getInstance().getUniversalImageLoader();
 
     Comparator<DayView> myComparator = new Comparator<DayView>() {
         public int compare(DayView obj1, DayView obj2) {
@@ -56,14 +54,11 @@ public class DayViewListAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         if (mSearching) {
-            // Log.d("Event List Adapter","Search count"+mValidSearchIndices.size());
             if (!mAnimateSearch) {
                 mAnimateSearch = true;
             }
             return mValidSearchIndices.size();
-
         } else {
-            // Log.d(TAG,"Normal count size");
             return dayViews.size();
         }
     }
@@ -99,15 +94,10 @@ public class DayViewListAdapter extends BaseAdapter {
         }
 
         if (mSearching) {
-            // Log.d("Event List Adapter","actual position"+ position);
             position = mValidSearchIndices.get(position);
-            //Log.d("Event List Adapter", "position is"+ position);
-
         } else {
             Log.d("Event List Adapter", "getview pos called" + position);
         }
-
-        DayView dayView = dayViews.get(position);
 
         holder.txtEnrollId.setText(dayViews.get(position).getEnrollId());
         holder.txtStudentName.setText(dayViews.get(position).getName());
@@ -138,19 +128,15 @@ public class DayViewListAdapter extends BaseAdapter {
                 if (dayViewTitle.toLowerCase().contains(eventName.toLowerCase())) {
                     mValidSearchIndices.add(i);
                 }
-
             }
-
         }
         Log.d("Event List Adapter", "notify" + mValidSearchIndices.size());
-        //notifyDataSetChanged();
     }
 
     public void exitSearch() {
         mSearching = false;
         mValidSearchIndices.clear();
         mAnimateSearch = false;
-        // notifyDataSetChanged();
     }
 
     public void clearSearchFlag() {

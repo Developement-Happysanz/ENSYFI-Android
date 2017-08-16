@@ -25,14 +25,12 @@ import java.util.ArrayList;
 
 public class FeeStatusListAdapter extends BaseAdapter {
 
-    private static final String TAG = FeeStatusListAdapter.class.getName();
     private final Transformation transformation;
     private Context context;
     private ArrayList<FeeStatus> feeStatuses;
     private boolean mSearching = false;
     private boolean mAnimateSearch = false;
     private ArrayList<Integer> mValidSearchIndices = new ArrayList<Integer>();
-    private ImageLoader imageLoader = AppController.getInstance().getUniversalImageLoader();
 
     public FeeStatusListAdapter(Context context, ArrayList<FeeStatus> feeStatuses) {
         this.context = context;
@@ -48,14 +46,11 @@ public class FeeStatusListAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         if (mSearching) {
-            // Log.d("Event List Adapter","Search count"+mValidSearchIndices.size());
             if (!mAnimateSearch) {
-                mAnimateSearch = true;
-            }
+                mAnimateSearch = true;            }
             return mValidSearchIndices.size();
 
         } else {
-            // Log.d(TAG,"Normal count size");
             return feeStatuses.size();
         }
     }
@@ -92,15 +87,10 @@ public class FeeStatusListAdapter extends BaseAdapter {
         }
 
         if (mSearching) {
-            // Log.d("Event List Adapter","actual position"+ position);
             position = mValidSearchIndices.get(position);
-            //Log.d("Event List Adapter", "position is"+ position);
-
         } else {
             Log.d("Event List Adapter", "getview pos called" + position);
         }
-
-        FeeStatus feeStatus = feeStatuses.get(position);
 
         holder.txtTermName.setText(feeStatuses.get(position).getTermName());
         holder.txtStatus.setText(feeStatuses.get(position).getStatus());
@@ -129,14 +119,12 @@ public class FeeStatusListAdapter extends BaseAdapter {
             }
         }
         Log.d("Event List Adapter", "notify" + mValidSearchIndices.size());
-        //notifyDataSetChanged();
     }
 
     public void exitSearch() {
         mSearching = false;
         mValidSearchIndices.clear();
         mAnimateSearch = false;
-        // notifyDataSetChanged();
     }
 
     public void clearSearchFlag() {

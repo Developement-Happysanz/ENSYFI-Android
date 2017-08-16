@@ -56,26 +56,16 @@ public class StudentClassTestMarkAddBaseAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         final ViewHolder holder;
 
-//        inflater = context.getLayoutInflater();
-
         if (convertView == null) {
-            //System.out.println("convertView Null ="+convertView);
             convertView = inflater.inflate(R.layout.students_class_test_mark_list_item, null);
             holder = new ViewHolder();
             holder.tvstudentid = (TextView) convertView.findViewById(R.id.txt_studentId);
             holder.tvstudentname = (TextView) convertView.findViewById(R.id.txt_studentName);
             convertView.setTag(holder);
-
         } else {
-            //System.out.println("convertView NOt Null ="+convertView);
             holder = (ViewHolder) convertView.getTag();
 
         }
-
-        /*StudentsClassTestMarks currentListData = getItem(position);
-
-        holder.tvstudentid.setText(currentListData.getEnrollId());
-        holder.tvstudentname.setText(currentListData.getStudentName());*/
 
         holder.student_mark = (EditText) convertView.findViewById(R.id.class_test_marks);
 

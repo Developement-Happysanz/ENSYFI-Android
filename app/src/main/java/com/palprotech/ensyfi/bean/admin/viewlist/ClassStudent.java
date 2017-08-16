@@ -35,8 +35,6 @@ public class ClassStudent implements Serializable {
     @Expose
     private String class_id;
 
-
-
     /**
      * @return The enroll_id
      */

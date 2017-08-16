@@ -29,14 +29,12 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class LeaveStatusListAdapter extends BaseAdapter {
 
-    private static final String TAG = LeaveStatusListAdapter.class.getName();
     private final Transformation transformation;
     private Context context;
     private ArrayList<LeaveStatus> leaveStatus;
     private boolean mSearching = false;
     private boolean mAnimateSearch = false;
     private ArrayList<Integer> mValidSearchIndices = new ArrayList<Integer>();
-    private ImageLoader imageLoader = AppController.getInstance().getUniversalImageLoader();
 
     public LeaveStatusListAdapter(Context context, ArrayList<LeaveStatus> leaveStatus) {
         this.context = context;
@@ -52,14 +50,11 @@ public class LeaveStatusListAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         if (mSearching) {
-            // Log.d("Event List Adapter","Search count"+mValidSearchIndices.size());
             if (!mAnimateSearch) {
                 mAnimateSearch = true;
             }
             return mValidSearchIndices.size();
-
         } else {
-            // Log.d(TAG,"Normal count size");
             return leaveStatus.size();
         }
     }
@@ -99,15 +94,11 @@ public class LeaveStatusListAdapter extends BaseAdapter {
         }
 
         if (mSearching) {
-            // Log.d("Event List Adapter","actual position"+ position);
             position = mValidSearchIndices.get(position);
-            //Log.d("Event List Adapter", "position is"+ position);
-
         } else {
             Log.d("Event List Adapter", "getview pos called" + position);
         }
 
-        LeaveStatus leaveStatuses = leaveStatus.get(position);
         if (leaveStatus.get(position).getStatus().contentEquals("Approved")) {
             holder.txtStatus.setTextColor(ContextCompat.getColor(context, R.color.approve));
             holder.imgStatus.setImageResource(R.drawable.od_approved);
@@ -137,7 +128,6 @@ public class LeaveStatusListAdapter extends BaseAdapter {
             holder.txtLeaveTitle.setText(leaveStatus.get(position).getLeaveTitle());
         }
 
-
         holder.txtFromLeaveDate.setText(leaveStatus.get(position).getFromLeaveDate());
         holder.txtToLeaveDate.setText(" - " + leaveStatus.get(position).getToLeaveDate());
         holder.txtFromTime.setText(leaveStatus.get(position).getFromTime());
@@ -160,14 +150,12 @@ public class LeaveStatusListAdapter extends BaseAdapter {
             }
         }
         Log.d("Event List Adapter", "notify" + mValidSearchIndices.size());
-        //notifyDataSetChanged();
     }
 
     public void exitSearch() {
         mSearching = false;
         mValidSearchIndices.clear();
         mAnimateSearch = false;
-        // notifyDataSetChanged();
     }
 
     public void clearSearchFlag() {
