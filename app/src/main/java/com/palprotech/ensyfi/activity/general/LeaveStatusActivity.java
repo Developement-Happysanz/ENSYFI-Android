@@ -46,11 +46,10 @@ public class LeaveStatusActivity extends AppCompatActivity implements View.OnCli
     LeaveStatusListAdapter leaveStatusListAdapter;
     ServiceHelper serviceHelper;
     ArrayList<LeaveStatus> leaveStatusArrayList;
-    int pageNumber = 0, totalCount = 0;
+    int totalCount = 0;
     protected ProgressDialogHelper progressDialogHelper;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
-    private SearchView mSearchView = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -80,7 +79,6 @@ public class LeaveStatusActivity extends AppCompatActivity implements View.OnCli
         } else {
             btnReqLeave.setVisibility(View.VISIBLE);
         }
-
         callLeaveStatusViewService();
     }
 
@@ -102,20 +100,6 @@ public class LeaveStatusActivity extends AppCompatActivity implements View.OnCli
 
             JSONObject jsonObject = new JSONObject();
             try {
-                /*String userTypeString = PreferenceStorage.getUserType(getApplicationContext());
-                int userType = Integer.parseInt(userTypeString);
-                if (userType == 1) {
-                    String okNew = "";
-                } else if (userType == 2) {
-                    jsonObject.put(EnsyfiConstants.PARAMS_FP_USER_ID, PreferenceStorage.getUserId(getApplicationContext()));
-                    jsonObject.put(EnsyfiConstants.KEY_USER_TYPE, PreferenceStorage.getUserType(getApplicationContext()));
-                } else if (userType == 3) {
-                    jsonObject.put(EnsyfiConstants.PARAMS_FP_USER_ID, PreferenceStorage.getUserId(getApplicationContext()));
-                    jsonObject.put(EnsyfiConstants.KEY_USER_TYPE, PreferenceStorage.getUserType(getApplicationContext()));
-                } else {
-                    jsonObject.put(EnsyfiConstants.PARAMS_FP_USER_ID, PreferenceStorage.getStudentAdmissionIdPreference(getApplicationContext()));
-                    jsonObject.put(EnsyfiConstants.KEY_USER_TYPE, PreferenceStorage.getUserType(getApplicationContext()));
-                }*/
 
                 jsonObject.put(EnsyfiConstants.PARAMS_FP_USER_ID, PreferenceStorage.getUserId(getApplicationContext()));
 
@@ -239,7 +223,6 @@ public class LeaveStatusActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void run() {
                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
                 AlertDialogHelper.showSimpleAlertDialog(LeaveStatusActivity.this, error);
             }
         });

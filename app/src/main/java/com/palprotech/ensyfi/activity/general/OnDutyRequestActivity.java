@@ -51,7 +51,6 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
     private EditText edtOnDutyRequestFor, edtOnDutyRequestDetails;
     private TextView dateFrom, dateTo;
     private Button btnRequest;
-    Context context;
     private boolean isDoneClick = false;
     String singleDate = "";
     DatePickerDialog mFromDatePickerDialog = null;
@@ -69,8 +68,6 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
         setContentView(R.layout.activity_on_duty_request);
         edtOnDutyRequestFor = (EditText) findViewById(R.id.edtOnDutyRequestFor);
         edtOnDutyRequestDetails = (EditText) findViewById(R.id.edtOnDutyRequestDetails);
-//        edtOnDutyRequestDetails.setImeOptions(EditorInfo.IME_ACTION_DONE);
-//        edtOnDutyRequestDetails.setRawInputType(InputType.TYPE_CLASS_TEXT);
 
         dateFrom = (TextView) findViewById(R.id.dateFrom);
         dateFrom.setOnClickListener(this);
@@ -89,7 +86,6 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
         loadFromDate();
         loadToDate();
 
-
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
@@ -99,7 +95,6 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
                 finish();
             }
         });
-
     }
 
     @Override
@@ -134,12 +129,6 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
 
     private static String formatDate(int year, int month, int day) {
 
-            /*Calendar cal = Calendar.getInstance();
-            cal.setTimeInMillis(0);
-            cal.set(year, month, day);
-            Date date = cal.getTime();
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-mmm-yyyy");
-            return sdf.format(date);*/
         String formattedDay = "", formattedMonth = "";
         month = month + 1;
         if (day < 10) {
@@ -159,12 +148,6 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
 
     private static String formatDateServer(int year, int month, int day) {
 
-            /*Calendar cal = Calendar.getInstance();
-            cal.setTimeInMillis(0);
-            cal.set(year, month, day);
-            Date date = cal.getTime();
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-mmm-yyyy");
-            return sdf.format(date);*/
         String formattedDay = "", formattedMonth = "";
         month = month + 1;
         if (day < 10) {
@@ -193,7 +176,6 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
 
                 public void onDateSet(DatePicker view, int year, int month, int day) {
                     Log.d(TAG, "From selected");
-                    // isdoneclick = true;
                     if (isDoneClick) {
                         ((TextView) findViewById(R.id.dateFrom)).setText(formatDate(year, month, day));
                         mFromDateVal = formatDateServer(year, month, day);
@@ -249,7 +231,6 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
             final DatePickerDialog.OnDateSetListener todate = new DatePickerDialog.OnDateSetListener() {
 
                 public void onDateSet(DatePicker view, int year, int month, int day) {
-                    // isdoneclick = true;
 
                     if (isDoneClick) {
                         ((TextView) findViewById(R.id.dateTo)).setText(formatDate(year, month, day));
@@ -305,7 +286,6 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
     private boolean validateFields() {
         int getDate = 0;
         try {
-
             DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
             Date dateFrom = format.parse(this.dateFrom.getText().toString().trim());
             Date dateTo = format.parse(this.dateTo.getText().toString().trim());
@@ -429,7 +409,6 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
 
                     }
                 }
-//                studentData.saveStudentProfile(getData);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -438,6 +417,7 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
 
     @Override
     public void onError(String error) {
-
+        progressDialogHelper.hideProgressDialog();
+        AlertDialogHelper.showSimpleAlertDialog(this, error);
     }
 }

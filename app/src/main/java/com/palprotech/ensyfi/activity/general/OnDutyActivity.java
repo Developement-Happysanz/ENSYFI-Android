@@ -36,7 +36,7 @@ import java.util.ArrayList;
  * Created by Admin on 10-07-2017.
  */
 
-public class OnDutyActivity extends AppCompatActivity implements View.OnClickListener, IServiceListener, AdapterView.OnItemClickListener,DialogClickListener {
+public class OnDutyActivity extends AppCompatActivity implements View.OnClickListener, IServiceListener, AdapterView.OnItemClickListener, DialogClickListener {
 
     private ImageView btnBack, btnReqOnDuty;
     private static final String TAG = "OnDutyActivity";
@@ -46,11 +46,10 @@ public class OnDutyActivity extends AppCompatActivity implements View.OnClickLis
     OnDutyListAdapter onDutyListAdapter;
     ServiceHelper serviceHelper;
     ArrayList<OnDuty> onDutyArrayList;
-    int pageNumber = 0, totalCount = 0;
+    int totalCount = 0;
     protected ProgressDialogHelper progressDialogHelper;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
-    private SearchView mSearchView = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -123,15 +122,14 @@ public class OnDutyActivity extends AppCompatActivity implements View.OnClickLis
                     String okNew = "";
                 } else if (userType == 2) {
                     jsonObject.put(EnsyfiConstants.PARAMS_FP_USER_ID, PreferenceStorage.getUserId(getApplicationContext()));
-                    jsonObject.put(EnsyfiConstants.KEY_USER_TYPE,PreferenceStorage.getUserType(getApplicationContext()));
+                    jsonObject.put(EnsyfiConstants.KEY_USER_TYPE, PreferenceStorage.getUserType(getApplicationContext()));
                 } else if (userType == 3) {
                     jsonObject.put(EnsyfiConstants.PARAMS_FP_USER_ID, PreferenceStorage.getUserId(getApplicationContext()));
-                    jsonObject.put(EnsyfiConstants.KEY_USER_TYPE,PreferenceStorage.getUserType(getApplicationContext()));
+                    jsonObject.put(EnsyfiConstants.KEY_USER_TYPE, PreferenceStorage.getUserType(getApplicationContext()));
                 } else {
                     jsonObject.put(EnsyfiConstants.PARAMS_FP_USER_ID, PreferenceStorage.getStudentAdmissionIdPreference(getApplicationContext()));
-                    jsonObject.put(EnsyfiConstants.KEY_USER_TYPE,PreferenceStorage.getUserType(getApplicationContext()));
+                    jsonObject.put(EnsyfiConstants.KEY_USER_TYPE, PreferenceStorage.getUserType(getApplicationContext()));
                 }
-
 
 
             } catch (JSONException e) {
@@ -235,7 +233,6 @@ public class OnDutyActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void run() {
                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
                 AlertDialogHelper.showSimpleAlertDialog(OnDutyActivity.this, error);
             }
         });

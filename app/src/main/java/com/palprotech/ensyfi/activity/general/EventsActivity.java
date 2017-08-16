@@ -42,7 +42,7 @@ public class EventsActivity extends AppCompatActivity implements IServiceListene
     EventListAdapter eventListAdapter;
     private ServiceHelper serviceHelper;
     ArrayList<Event> eventArrayList;
-    int pageNumber = 0, totalCount = 0;
+    int totalCount = 0;
 
     protected ProgressDialogHelper progressDialogHelper;
     protected boolean isLoadingForFirstTime = true;
@@ -54,7 +54,6 @@ public class EventsActivity extends AppCompatActivity implements IServiceListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
-//        loadMoreListView.setOnLoadMoreListener(this);
         loadMoreListView.setOnItemClickListener(this);
         eventArrayList = new ArrayList<>();
         serviceHelper = new ServiceHelper(this);
@@ -72,9 +71,7 @@ public class EventsActivity extends AppCompatActivity implements IServiceListene
     }
 
     public void callGetEventService() {
-        /*if(eventsListAdapter != null){
-            eventsListAdapter.clearSearchFlag();
-        }*/
+
         if (eventArrayList != null)
             eventArrayList.clear();
 
@@ -82,7 +79,6 @@ public class EventsActivity extends AppCompatActivity implements IServiceListene
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
             new HttpAsyncTask().execute("");
         } else {
-//            AlertDialogHelper.showSimpleAlertDialog(this, getString(R.string.no_connectivity));
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
         }
 
@@ -123,7 +119,6 @@ public class EventsActivity extends AppCompatActivity implements IServiceListene
 
                     } else {
                         signInsuccess = true;
-
                     }
                 }
             } catch (JSONException e) {
@@ -137,25 +132,23 @@ public class EventsActivity extends AppCompatActivity implements IServiceListene
     @Override
     public void onResponse(final JSONObject response) {
         if (validateSignInResponse(response)) {
-        Log.d("ajazFilterresponse : ", response.toString());
+            Log.d("ajazFilterresponse : ", response.toString());
 
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    progressDialogHelper.hideProgressDialog();
 
-                Gson gson = new Gson();
-                EventList eventList = gson.fromJson(response.toString(), EventList.class);
-                if (eventList.getEvents() != null && eventList.getEvents().size() > 0) {
-                    totalCount = eventList.getCount();
-                    isLoadingForFirstTime = false;
-                    updateListAdapter(eventList.getEvents());
+                    Gson gson = new Gson();
+                    EventList eventList = gson.fromJson(response.toString(), EventList.class);
+                    if (eventList.getEvents() != null && eventList.getEvents().size() > 0) {
+                        totalCount = eventList.getCount();
+                        isLoadingForFirstTime = false;
+                        updateListAdapter(eventList.getEvents());
+                    }
                 }
-            }
-        });
-        }
-        else {
+            });
+        } else {
             Log.d(TAG, "Error while sign In");
         }
     }
@@ -176,7 +169,6 @@ public class EventsActivity extends AppCompatActivity implements IServiceListene
             @Override
             public void run() {
                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
                 AlertDialogHelper.showSimpleAlertDialog(EventsActivity.this, error);
             }
         });
@@ -208,7 +200,7 @@ public class EventsActivity extends AppCompatActivity implements IServiceListene
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
             String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_EVENTS_API;
-            serviceHelper.makeGetServiceCall(jsonObject.toString(),url);
+            serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
             return null;
         }

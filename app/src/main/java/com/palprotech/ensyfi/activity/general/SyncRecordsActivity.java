@@ -103,7 +103,6 @@ public class SyncRecordsActivity extends AppCompatActivity implements IServiceLi
 
                                     JSONObject jsonObject = new JSONObject();
                                     try {
-
                                         jsonObject.put(EnsyfiConstants.KEY_ATTENDANCE_AC_YEAR, ac_year);
                                         jsonObject.put(EnsyfiConstants.KEY_ATTENDANCE_CLASS_ID, class_id);
                                         jsonObject.put(EnsyfiConstants.KEY_ATTENDANCE_CLASS_TOTAL, class_total);
@@ -209,7 +208,6 @@ public class SyncRecordsActivity extends AppCompatActivity implements IServiceLi
 
     @Override
     public void onError(String error) {
-
         progressDialogHelper.hideProgressDialog();
         AlertDialogHelper.showSimpleAlertDialog(this, error);
     }

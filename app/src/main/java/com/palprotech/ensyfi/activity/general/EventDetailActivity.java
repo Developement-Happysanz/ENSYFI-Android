@@ -52,8 +52,7 @@ public class EventDetailActivity extends AppCompatActivity implements IServiceLi
         eventoran = event.getSub_event_status();
         if (eventoran.equalsIgnoreCase("1")) {
             btnevent.setVisibility(View.VISIBLE);
-        }
-        else {
+        } else {
             btnevent.setVisibility(View.GONE);
         }
 
@@ -62,7 +61,6 @@ public class EventDetailActivity extends AppCompatActivity implements IServiceLi
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), EventOrganiserActivity.class);
                 intent.putExtra("eventId", event.getEvent_id());
-//                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }
         });
@@ -73,16 +71,6 @@ public class EventDetailActivity extends AppCompatActivity implements IServiceLi
         txtEventName.setText(event.getEvent_name());
         txtEventDate.setText(event.getEvent_date());
         txtEventDetails.setText(event.getEvent_details());
-//        btnevent.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(EventDetailActivity.this, EventOrganiserActivity.class);
-//                intent.putExtra("eventObj", event);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-//                startActivity(intent);
-//            }
-//        });
     }
 
     @Override

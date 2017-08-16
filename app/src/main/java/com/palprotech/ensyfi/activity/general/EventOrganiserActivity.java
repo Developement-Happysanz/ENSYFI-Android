@@ -42,7 +42,7 @@ public class EventOrganiserActivity extends AppCompatActivity implements DialogC
     EventOrganiserListAdapter eventOrganiserListAdapter;
     ServiceHelper serviceHelper;
     ArrayList<EventOrganiser> eventOrganiserArrayList;
-    int pageNumber = 0, totalCount = 0;
+    int totalCount = 0;
     protected ProgressDialogHelper progressDialogHelper;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
@@ -54,7 +54,6 @@ public class EventOrganiserActivity extends AppCompatActivity implements DialogC
         setContentView(R.layout.activity_event_organiser);
 
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
-//        loadMoreListView.setOnLoadMoreListener(this);
         loadMoreListView.setOnItemClickListener(this);
         eventOrganiserArrayList = new ArrayList<>();
         serviceHelper = new ServiceHelper(this);
@@ -74,9 +73,6 @@ public class EventOrganiserActivity extends AppCompatActivity implements DialogC
 
     private void callGetEventOrganiserService() {
 
-             /*if(eventsListAdapter != null){
-            eventsListAdapter.clearSearchFlag();
-        }*/
         if (eventOrganiserArrayList != null)
             eventOrganiserArrayList.clear();
 
@@ -84,7 +80,6 @@ public class EventOrganiserActivity extends AppCompatActivity implements DialogC
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
             new HttpAsyncTask().execute("");
         } else {
-//            AlertDialogHelper.showSimpleAlertDialog(this, getString(R.string.no_connectivity));
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
         }
 
@@ -117,7 +112,6 @@ public class EventOrganiserActivity extends AppCompatActivity implements DialogC
 
                     } else {
                         signInsuccess = true;
-
                     }
                 }
             } catch (JSONException e) {
@@ -129,7 +123,7 @@ public class EventOrganiserActivity extends AppCompatActivity implements DialogC
     }
 
     @Override
-    public void onResponse( final JSONObject response) {
+    public void onResponse(final JSONObject response) {
         if (validateSignInResponse(response)) {
             Log.d("ajazFilterresponse : ", response.toString());
 
@@ -137,7 +131,6 @@ public class EventOrganiserActivity extends AppCompatActivity implements DialogC
                 @Override
                 public void run() {
                     progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
 
                     Gson gson = new Gson();
                     EventOrganiserList eventOrganiserList = gson.fromJson(response.toString(), EventOrganiserList.class);
@@ -148,8 +141,7 @@ public class EventOrganiserActivity extends AppCompatActivity implements DialogC
                     }
                 }
             });
-        }
-        else {
+        } else {
             Log.d(TAG, "Error while sign In");
         }
     }
@@ -170,7 +162,6 @@ public class EventOrganiserActivity extends AppCompatActivity implements DialogC
             @Override
             public void run() {
                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
                 AlertDialogHelper.showSimpleAlertDialog(EventOrganiserActivity.this, error);
             }
         });
@@ -196,7 +187,7 @@ public class EventOrganiserActivity extends AppCompatActivity implements DialogC
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
             String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_EVENT_ORGANISER_API;
-            serviceHelper.makeGetServiceCall(jsonObject.toString(),url);
+            serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
             return null;
         }

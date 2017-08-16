@@ -48,10 +48,8 @@ public class GroupingSendActivity extends AppCompatActivity implements IServiceL
     private ServiceHelper serviceHelper;
     private Spinner spnGroupList;
     private String checkSpinner = "", storeGroupId;
-    int pageNumber = 0, totalCount = 0;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
-    private SearchView mSearchView = null;
     TextView sms, mail, notification;
     Boolean smsSelect = false, mailSelect = false, notificationSelect = false;
     Button sendNotification;
@@ -94,7 +92,6 @@ public class GroupingSendActivity extends AppCompatActivity implements IServiceL
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 StoreGroup groupList = (StoreGroup) parent.getSelectedItem();
-//                Toast.makeText(getApplicationContext(), "Class ID: " + classList.getClassId() + ",  Class Name : " + classList.getClassName(), Toast.LENGTH_SHORT).show();
                 storeGroupId = groupList.getGroupId();
             }
 
@@ -102,8 +99,6 @@ public class GroupingSendActivity extends AppCompatActivity implements IServiceL
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-
-//        GetStudentData();
     }
 
     @Override
@@ -154,7 +149,6 @@ public class GroupingSendActivity extends AppCompatActivity implements IServiceL
 
                     } else {
                         signInsuccess = true;
-
                     }
                 }
             } catch (JSONException e) {
@@ -188,7 +182,6 @@ public class GroupingSendActivity extends AppCompatActivity implements IServiceL
                     JSONArray getData = response.getJSONArray("groupDetails");
                     JSONObject userData = getData.getJSONObject(0);
                     int getLength = getData.length();
-                    String subjectName = null;
                     Log.d(TAG, "userData dictionary" + userData.toString());
 
                     String groupId = "";
@@ -206,8 +199,6 @@ public class GroupingSendActivity extends AppCompatActivity implements IServiceL
                     //fill data in spinner
                     ArrayAdapter<StoreGroup> adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item_ns, groupList);
                     spnGroupList.setAdapter(adapter);
-//                spnClassList.setSelection(adapter.getPosition());//Optional to set the selected item.
-
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -232,7 +223,6 @@ public class GroupingSendActivity extends AppCompatActivity implements IServiceL
 
                         }
                     }
-//                studentData.saveStudentProfile(getData);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -249,7 +239,6 @@ public class GroupingSendActivity extends AppCompatActivity implements IServiceL
             @Override
             public void run() {
                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
                 AlertDialogHelper.showSimpleAlertDialog(GroupingSendActivity.this, error);
             }
         });
@@ -267,7 +256,6 @@ public class GroupingSendActivity extends AppCompatActivity implements IServiceL
                 smsSelect = true;
                 message_type_sms = "1";
             }
-
         }
         if (v == mail) {
             if (mailSelect) {
@@ -279,7 +267,6 @@ public class GroupingSendActivity extends AppCompatActivity implements IServiceL
                 mailSelect = true;
                 message_type_mail = "1";
             }
-
         }
         if (v == notification) {
             if (notificationSelect) {
@@ -291,15 +278,11 @@ public class GroupingSendActivity extends AppCompatActivity implements IServiceL
                 notificationSelect = true;
                 message_type_notification = "1";
             }
-
         }
-
         if (v == sendNotification) {
             checkSpinner = "send";
             callGetStudentInfoService();
-
         }
-
     }
 
     private void callGetStudentInfoService() {

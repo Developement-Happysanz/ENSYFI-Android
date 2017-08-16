@@ -43,8 +43,7 @@ public class GroupingActivity extends AppCompatActivity implements IServiceListe
     GroupListAdapter groupListAdapter;
     private ServiceHelper serviceHelper;
     ArrayList<GroupList> groupListArrayList;
-    int pageNumber = 0, totalCount = 0;
-    Context context;
+    int totalCount = 0;
     ImageView CreateNotification;
 
     protected ProgressDialogHelper progressDialogHelper;
@@ -57,7 +56,6 @@ public class GroupingActivity extends AppCompatActivity implements IServiceListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_notification);
         loadMoreListView = (ListView) findViewById(R.id.listView_groups);
-//        loadMoreListView.setOnLoadMoreListener(this);
         loadMoreListView.setOnItemClickListener(this);
         groupListArrayList = new ArrayList<>();
         serviceHelper = new ServiceHelper(this);
@@ -85,9 +83,7 @@ public class GroupingActivity extends AppCompatActivity implements IServiceListe
     }
 
     public void callGetGroupService() {
-        /*if(groupListAdapter != null){
-            groupListAdapter.clearSearchFlag();
-        }*/
+
         if (groupListArrayList != null)
             groupListArrayList.clear();
 
@@ -95,7 +91,6 @@ public class GroupingActivity extends AppCompatActivity implements IServiceListe
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
             new HttpAsyncTask().execute("");
         } else {
-//            AlertDialogHelper.showSimpleAlertDialog(this, getString(R.string.no_connectivity));
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
         }
 
@@ -136,14 +131,12 @@ public class GroupingActivity extends AppCompatActivity implements IServiceListe
 
                     } else {
                         signInsuccess = true;
-
                     }
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
-
         return signInsuccess;
     }
 
@@ -156,8 +149,6 @@ public class GroupingActivity extends AppCompatActivity implements IServiceListe
                 @Override
                 public void run() {
                     progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
-
                     Gson gson = new Gson();
                     Group group = gson.fromJson(response.toString(), Group.class);
 
@@ -168,8 +159,7 @@ public class GroupingActivity extends AppCompatActivity implements IServiceListe
                     }
                 }
             });
-        }
-        else {
+        } else {
             Log.d(TAG, "Error while sign In");
         }
     }
@@ -190,7 +180,6 @@ public class GroupingActivity extends AppCompatActivity implements IServiceListe
             @Override
             public void run() {
                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
                 AlertDialogHelper.showSimpleAlertDialog(GroupingActivity.this, error);
             }
         });
@@ -208,7 +197,7 @@ public class GroupingActivity extends AppCompatActivity implements IServiceListe
 
     @Override
     public void onClick(View v) {
-        if(v == CreateNotification) {
+        if (v == CreateNotification) {
             Intent intent = new Intent(getApplicationContext(), GroupingSendActivity.class);
             startActivity(intent);
         }
@@ -231,7 +220,7 @@ public class GroupingActivity extends AppCompatActivity implements IServiceListe
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
             String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_GROUP_MESSAGE_VIEW;
-            serviceHelper.makeGetServiceCall(jsonObject.toString(),url);
+            serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
             return null;
         }

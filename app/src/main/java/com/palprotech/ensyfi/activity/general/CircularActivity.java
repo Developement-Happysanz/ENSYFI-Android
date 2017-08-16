@@ -43,11 +43,10 @@ public class CircularActivity extends AppCompatActivity implements IServiceListe
     CircularListAdapter circularListAdapter;
     ServiceHelper serviceHelper;
     ArrayList<Circular> circularArrayList;
-    int pageNumber = 0, totalCount = 0;
+    int totalCount = 0;
     protected ProgressDialogHelper progressDialogHelper;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
-    private SearchView mSearchView = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,13 +67,10 @@ public class CircularActivity extends AppCompatActivity implements IServiceListe
                 finish();
             }
         });
-
     }
 
     public void callGetCircularService() {
-        /*if(eventsListAdapter != null){
-            eventsListAdapter.clearSearchFlag();
-        }*/
+
         if (circularArrayList != null)
             circularArrayList.clear();
 
@@ -101,7 +97,7 @@ public class CircularActivity extends AppCompatActivity implements IServiceListe
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url="";
+            String url = "";
             String userTypeString = PreferenceStorage.getUserType(getApplicationContext());
             int userType = Integer.parseInt(userTypeString);
             if (userType == 1) {
@@ -174,7 +170,6 @@ public class CircularActivity extends AppCompatActivity implements IServiceListe
                 @Override
                 public void run() {
                     progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
 
                     Gson gson = new Gson();
                     CircularList circularList = gson.fromJson(response.toString(), CircularList.class);
@@ -206,7 +201,6 @@ public class CircularActivity extends AppCompatActivity implements IServiceListe
             @Override
             public void run() {
                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
                 AlertDialogHelper.showSimpleAlertDialog(CircularActivity.this, error);
             }
         });

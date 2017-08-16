@@ -210,7 +210,6 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
         SimpleDateFormat DF = new SimpleDateFormat("hh:mm a");
         String formattedTime = DF.format(c.getTime());
 
-
         dateFromTime.setText(formattedTime);
 
         mFromTimeVal = formattedTime;
@@ -300,7 +299,6 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
 
                 public void onDateSet(DatePicker view, int year, int month, int day) {
                     Log.d(TAG, "From selected");
-                    // isdoneclick = true;
                     if (isDoneClick) {
                         ((TextView) findViewById(R.id.dateFrom)).setText(formatDate(year, month, day));
                         mFromDateVal = formatDateServer(year, month, day);
@@ -352,7 +350,6 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
             final DatePickerDialog.OnDateSetListener todate = new DatePickerDialog.OnDateSetListener() {
 
                 public void onDateSet(DatePicker view, int year, int month, int day) {
-                    // isdoneclick = true;
 
                     if (isDoneClick) {
                         ((TextView) findViewById(R.id.dateTo)).setText(formatDate(year, month, day));
@@ -363,7 +360,6 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
                     }
                 }
             };
-
 
             final int currentYear = c.get(Calendar.YEAR);
             final int currentMonth = c.get(Calendar.MONTH);
@@ -481,14 +477,7 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
 
     private void callLeaveRequest() {
         try {
-            String user_type = "";
-            String user_id = "";
-            String leave_master_id = "";
-            String leave_type = "";
-            String date_from = "";
-            String date_to = "";
-            String fromTime = "";
-            String toTime = "";
+
             String description = "";
 
             description = edtOnDutyRequestDetails.getText().toString();
@@ -497,7 +486,6 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
                 if (CommonUtils.isNetworkAvailable(this)) {
                     JSONObject jsonObject = new JSONObject();
                     try {
-
                         jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_USER_TYPE, PreferenceStorage.getUserType(this));
                         jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_USER_ID, PreferenceStorage.getUserId(this));
                         jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_LEAVE_MASTER_ID, storeLeaveId);
@@ -526,12 +514,6 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
 
     private static String formatDate(int year, int month, int day) {
 
-            /*Calendar cal = Calendar.getInstance();
-            cal.setTimeInMillis(0);
-            cal.set(year, month, day);
-            Date date = cal.getTime();
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-mmm-yyyy");
-            return sdf.format(date);*/
         String formattedDay = "", formattedMonth = "";
         month = month + 1;
         if (day < 10) {
@@ -551,12 +533,6 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
 
     private static String formatDateServer(int year, int month, int day) {
 
-            /*Calendar cal = Calendar.getInstance();
-            cal.setTimeInMillis(0);
-            cal.set(year, month, day);
-            Date date = cal.getTime();
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-mmm-yyyy");
-            return sdf.format(date);*/
         String formattedDay = "", formattedMonth = "";
         month = month + 1;
         if (day < 10) {
@@ -647,7 +623,6 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void run() {
                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
                 AlertDialogHelper.showSimpleAlertDialog(LeaveApplyActivity.this, error);
             }
         });
@@ -658,7 +633,7 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
             database.deleteLeaveTypes();
 
             for (int i = 0; i < getLeaveTypes.length(); i++) {
-                HashMap<String, String> map = new HashMap<String, String>();
+
                 JSONObject jsonobj = getLeaveTypes.getJSONObject(i);
 
                 String id = "";
@@ -672,7 +647,6 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
                 System.out.println("id : " + i + " = " + id);
                 System.out.println("leave_title : " + i + " = " + leave_title);
                 System.out.println("leave_type : " + i + " = " + leave_type);
-
 
                 String v1 = id,
                         v2 = leave_title,
