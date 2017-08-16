@@ -47,7 +47,6 @@ public class SyncClassTestHomeWork implements IServiceListener {
 
         try {
             Cursor c = db.getClassTestHomeWorkList();
-            String newOk = "";
             if (c.getCount() > 0) {
                 if (c.moveToFirst()) {
                     do {
@@ -74,7 +73,6 @@ public class SyncClassTestHomeWork implements IServiceListener {
 
                         JSONObject jsonObject = new JSONObject();
                         try {
-
                             jsonObject.put(EnsyfiConstants.PARAMS_CTHW_CLASS_ID, classId);
                             jsonObject.put(EnsyfiConstants.PARAMS_CTHW_TEACHER_ID, teacherId);
                             jsonObject.put(EnsyfiConstants.PARAMS_CTHW_HOMEWORK_TYPE, homeWorkType);
@@ -149,6 +147,7 @@ public class SyncClassTestHomeWork implements IServiceListener {
 
     @Override
     public void onError(String error) {
-
+        progressDialogHelper.hideProgressDialog();
+        AlertDialogHelper.showSimpleAlertDialog(context, error);
     }
 }

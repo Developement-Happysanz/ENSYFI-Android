@@ -35,13 +35,11 @@ import java.util.Vector;
  * Created by Admin on 14-07-2017.
  */
 
-public class AcademicExamViewActivity extends AppCompatActivity implements IServiceListener, AdapterView.OnItemClickListener, DialogClickListener, View.OnClickListener {
+public class AcademicExamViewActivity extends AppCompatActivity implements DialogClickListener {
 
     private Spinner spnClassList, spnSubjectList;
-    private static final String TAG = "AcademicExamView";
     protected ProgressDialogHelper progressDialogHelper;
     List<String> lsClassList = new ArrayList<String>();
-    ServiceHelper serviceHelper;
     SQLiteHelper db;
     Vector<String> vecClassList;
     private String classSection, getClassSectionId;
@@ -49,7 +47,6 @@ public class AcademicExamViewActivity extends AppCompatActivity implements IServ
     AcademicExamsListBaseAdapter cadapter;
     ListView loadMoreListView;
     String subjectName = "", getClassSubjectId;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,18 +56,12 @@ public class AcademicExamViewActivity extends AppCompatActivity implements IServ
         db = new SQLiteHelper(getApplicationContext());
         vecClassList = new Vector<String>();
 
-
-        serviceHelper = new ServiceHelper(this);
-        serviceHelper.setServiceListener(this);
-
         progressDialogHelper = new ProgressDialogHelper(this);
 
         spnClassList = (Spinner) findViewById(R.id.class_list_spinner);
         spnSubjectList = (Spinner) findViewById(R.id.subject_list_spinner);
 
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
-
-        loadMoreListView.setOnItemClickListener(this);
 
         getClassList();
 
@@ -103,7 +94,6 @@ public class AcademicExamViewActivity extends AppCompatActivity implements IServ
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 subjectName = parent.getItemAtPosition(position).toString();
-//                txthwctsubject.setText(subjectName);
                 getSubjectId(subjectName, getClassSectionId);
                 PreferenceStorage.saveTeacherSubject(getApplicationContext(), getClassSubjectId);
             }
@@ -185,7 +175,6 @@ public class AcademicExamViewActivity extends AppCompatActivity implements IServ
             } else {
                 Toast.makeText(getApplicationContext(), "No records", Toast.LENGTH_LONG).show();
             }
-
             db.close();
 
         } catch (Exception e) {
@@ -249,32 +238,12 @@ public class AcademicExamViewActivity extends AppCompatActivity implements IServ
     }
 
     @Override
-    public void onClick(View v) {
-
-    }
-
-    @Override
     public void onAlertPositiveClicked(int tag) {
 
     }
 
     @Override
     public void onAlertNegativeClicked(int tag) {
-
-    }
-
-    @Override
-    public void onResponse(JSONObject response) {
-
-    }
-
-    @Override
-    public void onError(String error) {
-
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
     }
 }

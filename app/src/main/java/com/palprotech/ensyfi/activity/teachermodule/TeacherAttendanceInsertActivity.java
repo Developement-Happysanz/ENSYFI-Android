@@ -1,21 +1,25 @@
 package com.palprotech.ensyfi.activity.teachermodule;
 
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.adapter.teachermodule.StudentListBaseAdapter;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 import com.palprotech.ensyfi.bean.teacher.viewlist.Students;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
@@ -30,7 +34,7 @@ import java.util.TreeSet;
 import java.util.Vector;
 
 /**
- * Created by Admin on 05-07-2017.
+ * Created by Admin on 12-08-2017.
  */
 
 public class TeacherAttendanceInsertActivity extends AppCompatActivity implements DialogClickListener {
@@ -41,9 +45,7 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
     Vector<String> vecClassList, vecClassSectionList;
     List<String> lsClassList = new ArrayList<String>();
     ArrayList<Students> myList = new ArrayList<Students>();
-    ArrayAdapter<String> adptClassList;
-    String set1, set2, set3, AM_PM;
-    ListView lvStudent;
+    String set3, AM_PM;
     ImageView btnSave;
     TextView txtDateTime;
     private String storeClassId;
@@ -51,6 +53,7 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
     int valPresent = 0, valAbsent = 0, valLeave = 0, valOD = 0, setAM_PM;
     String lastInsertedId;
     Calendar c = Calendar.getInstance();
+    LinearLayout layout_all;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,7 +63,7 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
         vecClassList = new Vector<String>();
         vecClassSectionList = new Vector<String>();
         spnClassList = (Spinner) findViewById(R.id.class_list_spinner);
-        lvStudent = (ListView) findViewById(R.id.listView_students);
+        layout_all = (LinearLayout) findViewById(R.id.layout_timetable);
         btnSave = (ImageView) findViewById(R.id.btnSave);
         txtDateTime = (TextView) findViewById(R.id.txtDateTime);
         btnSave.setVisibility(View.VISIBLE);
@@ -88,12 +91,9 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String className = parent.getItemAtPosition(position).toString();
-
+                layout_all.removeAllViews();
                 GetStudentsList(className);
                 btnSave.setVisibility(View.VISIBLE);
-//                lvStudent.setAdapter(new StudentListClassTestMarkBaseAdapter(TeacherAttendanceInsertActivity.this, myList));
-                StudentListBaseAdapter cadapter = new StudentListBaseAdapter(TeacherAttendanceInsertActivity.this, myList);
-                lvStudent.setAdapter(cadapter);
             }
 
             @Override
@@ -108,14 +108,12 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
 
                 try {
 
-                    /** get all values of the EditText-Fields */
-                    View view;
-                    ArrayList<String> mannschaftsnamen = new ArrayList<String>();
                     TextView et, et1;
                     Spinner spinner;
                     SimpleDateFormat slocalDF = new SimpleDateFormat("yyyy-MM-dd");
                     String formattedLocalInsertDate = slocalDF.format(c.getTime());
                     String checkFlag = "";
+
                     try {
                         checkFlag = db.isAttendanceFlag(storeClassId, formattedLocalInsertDate, AM_PM);
                     } catch (Exception ex) {
@@ -127,14 +125,18 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
 
                         StoreStudentAttendance();
 
-                        for (int i = 0; i < lvStudent.getCount(); i++) {
-                            et = (TextView) lvStudent.getChildAt(i).findViewById(R.id.txt_studentId);
-                            et1 = (TextView) lvStudent.getChildAt(i).findViewById(R.id.txt_studentName);
-                            spinner = (Spinner) lvStudent.getChildAt(i).findViewById(R.id.class_attendance_spinner);
+                        int nViews = layout_all.getChildCount();
+
+                        for (int i = 0; i < nViews; i++) {
+
+                            View view = layout_all.getChildAt(i);
+
+                            et = (TextView) view.findViewById(R.id.my_text_1);
+//                            et1 = (TextView) view.findViewById(R.id.my_text_2);
+                            spinner = (Spinner) view.findViewById(R.id.my_edit_text_1);
                             if (et != null) {
-                                mannschaftsnamen.add(String.valueOf(et.getText()));
                                 String enrollId = String.valueOf(et.getText());
-                                String studentName = String.valueOf(et1.getText());
+//                                String studentName = String.valueOf(et1.getText());
                                 String attendanceStatus = String.valueOf(spinner.getSelectedItem());
                                 if (attendanceStatus.equalsIgnoreCase("Leave")) {
                                     valLeave = valLeave + 1;
@@ -155,7 +157,7 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
                                     Toast.makeText(getApplicationContext(), "Error while attendance insert...",
                                             Toast.LENGTH_LONG).show();
                                 }
-                                /** you can try to log your values EditText */
+//                                * you can try to log your values EditText
                                 Log.v("ypgs", String.valueOf(et.getText()));
                             }
                         }
@@ -173,17 +175,15 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
                         Toast.makeText(getApplicationContext(), "Attendance taken for this period...",
                                 Toast.LENGTH_LONG).show();
                     }
-//                btnSave.setVisibility(View.GONE);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                     Toast.makeText(getApplicationContext(), "Try again...", Toast.LENGTH_LONG).show();
                 }
             }
-
-
         });
 
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
+
         bckbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -193,10 +193,9 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
     }
 
     private void SetAttendanceFlag(String classId, String attendanceDate, String attendancePeriod) {
+
         try {
-
             db.student_attendance_flag_insert(classId, attendanceDate, attendancePeriod, "Active");
-
         } catch (Exception ex) {
         }
     }
@@ -217,7 +216,7 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
 
     private void StoreStudentAttendance() {
         try {
-            int totalNoOfStudents = lvStudent.getCount();
+            int totalNoOfStudents = layout_all.getChildCount();
             String convertTotalNoOfStudents = String.valueOf(totalNoOfStudents);
             String convertAM_PM = String.valueOf(setAM_PM);
 
@@ -237,6 +236,18 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
 
         myList.clear();
         try {
+            TableLayout layout = new TableLayout(this);
+            layout.setLayoutParams(new TableLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT));
+            layout_all.setScrollbarFadingEnabled(false);
+            layout.setPadding(0, 50, 0, 50);
+
+            TableRow.LayoutParams cellLp = new TableRow.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT);
+
+            cellLp.setMargins(2, 2, 2, 2);
+
             Cursor c = db.getStudentsOfClass(className);
             if (c.getCount() > 0) {
                 if (c.moveToFirst()) {
@@ -250,13 +261,56 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
                         lde.setStudentName(c.getString(4));
                         lde.setClassSection(c.getString(5));
 
-                        // Add this object into the ArrayList myList
-                        myList.add(lde);
+                        for (int c1 = 0; c1 <= 0; c1++) {
 
+                            LinearLayout cell = new LinearLayout(this);
+                            cell.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 100));
+                            cell.setOrientation(LinearLayout.HORIZONTAL);
+                            cell.setPadding(20, 5, 20, 5);
+                            cell.setBackgroundColor(Color.parseColor("#FFFFFF"));
+
+
+                            TextView t1 = new TextView(this);
+                            t1.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                                    ViewGroup.LayoutParams.WRAP_CONTENT, 0.10f));
+                            t1.setGravity(Gravity.CENTER);
+
+                            TextView t2 = new TextView(this);
+                            t2.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                                    ViewGroup.LayoutParams.WRAP_CONTENT, 0.50f));
+
+                            Spinner b1 = new Spinner(this);
+                            b1.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                                    ViewGroup.LayoutParams.WRAP_CONTENT, 0.30f));
+                            b1.setGravity(Gravity.CENTER);
+                            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.attendance, android.R.layout.simple_spinner_item);
+                            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            b1.setAdapter(adapter);
+                            b1.setId(R.id.my_edit_text_1);
+
+                            t1.setText(c.getString(1));
+                            t1.setTextColor(Color.parseColor("#FF68358E"));
+                            t1.setHeight(120);
+                            t1.setWidth(100);
+                            t1.setPadding(1, 0, 2, 0);
+                            t1.setId(R.id.my_text_1);
+
+                            t2.setText(c.getString(4));
+                            t2.setTextColor(Color.parseColor("#FF68358E"));
+                            t2.setHeight(120);
+                            t2.setWidth(100);
+                            t2.setPadding(1, 0, 2, 0);
+                            t2.setId(R.id.my_text_2);
+
+                            cell.addView(t1);
+                            cell.addView(t2);
+                            cell.addView(b1);
+
+                            layout_all.addView(cell);
+                        }
                     } while (c.moveToNext());
                 }
             }
-
             db.close();
 
         } catch (Exception e) {
@@ -275,8 +329,6 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
                     do {
                         vecClassList.add(c.getString(1));
                         set3 = c.getString(0);
-//                        vecClassSectionList.add(c.getString(1));
-
                     } while (c.moveToNext());
                 }
             }
@@ -311,4 +363,3 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
 
     }
 }
-

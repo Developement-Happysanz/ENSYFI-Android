@@ -34,18 +34,14 @@ import java.util.Vector;
 
 public class TeacherTimeTableActivity extends AppCompatActivity implements DialogClickListener {
 
-    private static final String TAG = TeacherTimeTableActivity.class.getName();
     LinearLayout layout_all;
     private ProgressDialogHelper progressDialogHelper;
     SQLiteHelper db;
     Vector<String> vecTableId, vecClassName, vecSectionName, vecSubjectName, vecDay, vecPeriod;
-    List<String> lsTeacherTimeTable = new ArrayList<String>();
-    ArrayAdapter<String> adapterTeacherTimeTable;
-    String ClassName, SectionName, SubjectName, TableId;
+    String ClassName, SectionName, SubjectName;
     String ClassId = "";
     String SubjectId = "";
     String PeriodId = "";
-    String SubjectNameVal = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -72,26 +68,14 @@ public class TeacherTimeTableActivity extends AppCompatActivity implements Dialo
         viewExamMark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(getApplicationContext(), TimeTableReview.class);
-//            intent.putExtra("id", id);
                 startActivity(intent);
-
             }
         });
     }
 
     private void GetTimeTableData() {
         try {
-
-//            JSONArray getData = response.getJSONArray("timeTable");
-//            JSONObject userData = getData.getJSONObject(0);
-            //
-
-
-//            int getLength = getData.length();
-//            String subjectName = null;
-//            Log.d(TAG, "userData dictionary" + userData.toString());
             layout_all = (LinearLayout) findViewById(R.id.layout_timetable);
             TableLayout layout = new TableLayout(this);
             layout.setLayoutParams(new TableLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
@@ -111,7 +95,6 @@ public class TeacherTimeTableActivity extends AppCompatActivity implements Dialo
             int r = 1;
             int col = 1;
             for (int f = 0; f <= 6; f++) {
-
 
                 TableRow tr = new TableRow(this);
 
@@ -193,11 +176,9 @@ public class TeacherTimeTableActivity extends AppCompatActivity implements Dialo
                             name = "Saturday";
                             b.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                         }
-                        if ( r == 1 ) {
+                        if (r == 1) {
                             b.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                         }
-
-//                        b.setTextColor(Color.parseColor("#ffff00"));
                     } else {
 
                         String fValue = String.valueOf(f);

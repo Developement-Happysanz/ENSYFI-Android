@@ -44,7 +44,6 @@ public class SyncAttendanceHistoryRecordsActivity implements IServiceListener {
         db = new SQLiteHelper(context);
         try {
             Cursor c = db.getAttendanceHistoryList(latestAttendanceInsertedServerId);
-            String newOk = "";
             if (c.getCount() > 0) {
                 if (c.moveToFirst()) {
                     do {
@@ -63,7 +62,6 @@ public class SyncAttendanceHistoryRecordsActivity implements IServiceListener {
 
                         JSONObject jsonObject = new JSONObject();
                         try {
-
                             jsonObject.put(EnsyfiConstants.KEY_ATTENDANCE_HISTORY_ATTEND_ID, history_server_attend_id);
                             jsonObject.put(EnsyfiConstants.KEY_ATTENDANCE_HISTORY_CLASS_ID, history_class_id);
                             jsonObject.put(EnsyfiConstants.KEY_ATTENDANCE_HISTORY_STUDENT_ID, history_student_id);
@@ -85,7 +83,6 @@ public class SyncAttendanceHistoryRecordsActivity implements IServiceListener {
                         } else {
                             db.updateAttendanceHistorySyncStatus(localAttendanceHistoryId);
                         }
-
                     } while (c.moveToNext());
                 }
             }

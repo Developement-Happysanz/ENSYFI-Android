@@ -38,17 +38,13 @@ import java.util.Vector;
  * Created by Admin on 13-07-2017.
  */
 
-public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity implements IServiceListener, AdapterView.OnItemClickListener, DialogClickListener {
+public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity implements DialogClickListener {
 
     private Spinner spnClassList;
     ListView loadMoreListView;
-    private static final String TAG = "ClassTestHomeWorkTeacherView";
     protected ProgressDialogHelper progressDialogHelper;
     protected boolean isLoadingForFirstTime = true;
-    Handler mHandler = new Handler();
-    private SearchView mSearchView = null;
     List<String> lsClassList = new ArrayList<String>();
-    ServiceHelper serviceHelper;
     SQLiteHelper db;
     Vector<String> vecClassList;
     String getClassSectionId;
@@ -59,7 +55,6 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
     ImageView createClassTest;
     String ClassTestOrHomeWork = "";
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,14 +63,9 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
         db = new SQLiteHelper(getApplicationContext());
         vecClassList = new Vector<String>();
 
-        serviceHelper = new ServiceHelper(this);
-        serviceHelper.setServiceListener(this);
-
         progressDialogHelper = new ProgressDialogHelper(this);
 
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
-
-        loadMoreListView.setOnItemClickListener(this);
 
         spnClassList = (Spinner) findViewById(R.id.class_list_spinner);
 
@@ -84,7 +74,6 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
         createClassTest = (ImageView) findViewById(R.id.createClassTest);
 
         getClassList();
-
 
         spnClassList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -241,27 +230,12 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-    }
-
-    @Override
     public void onAlertPositiveClicked(int tag) {
 
     }
 
     @Override
     public void onAlertNegativeClicked(int tag) {
-
-    }
-
-    @Override
-    public void onResponse(JSONObject response) {
-
-    }
-
-    @Override
-    public void onError(String error) {
 
     }
 }

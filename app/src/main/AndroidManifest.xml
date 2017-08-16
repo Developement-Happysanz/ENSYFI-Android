@@ -275,11 +275,6 @@
             android:label="@string/app_name"
 
             android:theme="@style/AppThemeNoActionBarGrey" />
-        <activity
-            android:name=".activity.teachermodule.TeacherAttendanceInsertActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeNoActionBarGrey" />
 
         <activity
             android:name=".activity.general.SyncRecordsActivity"
@@ -306,13 +301,6 @@
             android:theme="@style/AppThemeNoActionBarGrey" />
 
         <activity
-            android:name=".activity.teachermodule.AddClassTestMarkActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeNoActionBarGrey"
-            android:windowSoftInputMode="adjustPan" />
-
-        <activity
             android:name=".activity.teachermodule.ViewClassTestMarkActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
@@ -326,12 +314,6 @@
 
         <activity
             android:name=".activity.teachermodule.AcademicExamDetailPage"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeNoActionBarGrey" />
-
-        <activity
-            android:name=".activity.teachermodule.AddAcademicExamMarksActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarGrey" />
@@ -367,31 +349,25 @@
             android:theme="@style/AppThemeNoActionBarGrey" />
 
         <activity
+            android:name=".activity.teachermodule.AddClassTestMarkActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarPink" />
+
+        <activity
+            android:name=".activity.teachermodule.AddAcademicExamMarksActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarPink" />
+
+        <activity
             android:name=".activity.teachermodule.AddAcademicExamMarksOnlyTotalActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/AppThemeNoActionBarGrey" />
-
-        <activity
-            android:name=".activity.teachermodule.sample.SampleAddClassTestMarkActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarPink" />
 
         <activity
-            android:name=".activity.teachermodule.sample.SampleAddAcademicExamMarksActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeNoActionBarPink" />
-
-        <activity
-            android:name=".activity.teachermodule.sample.SampleAddAcademicExamMarksOnlyTotalActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeNoActionBarPink" />
-
-        <activity
-            android:name=".activity.teachermodule.sample.SampleTeacherAttendanceInsertActivity"
+            android:name=".activity.teachermodule.TeacherAttendanceInsertActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarPink" />

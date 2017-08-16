@@ -42,7 +42,6 @@ public class SyncClassTestMark implements IServiceListener {
         db = new SQLiteHelper(context);
         try {
             Cursor c = db.getClassTestMarkList(ServerHomeWorkId);
-            String newOk = "";
             if (c.getCount() > 0) {
                 if (c.moveToFirst()) {
                     do {
@@ -61,7 +60,6 @@ public class SyncClassTestMark implements IServiceListener {
 
                         JSONObject jsonObject = new JSONObject();
                         try {
-
                             jsonObject.put(EnsyfiConstants.PARAMS_CTMARKS_HW_SERVER_MASTER_ID, serverHwId);
                             jsonObject.put(EnsyfiConstants.PARAMS_CTMARKS_STUDENT_ID, studentId);
                             jsonObject.put(EnsyfiConstants.PARAMS_CTMARKS_MARKS, marks);
@@ -84,7 +82,6 @@ public class SyncClassTestMark implements IServiceListener {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
     }
 
     public void syncClassTestMarkToServer() {
@@ -94,7 +91,6 @@ public class SyncClassTestMark implements IServiceListener {
         db = new SQLiteHelper(context);
         try {
             Cursor c = db.getClassTestMarkListView();
-            String newOk = "";
             if (c.getCount() > 0) {
                 if (c.moveToFirst()) {
                     do {
@@ -113,7 +109,6 @@ public class SyncClassTestMark implements IServiceListener {
 
                         JSONObject jsonObject = new JSONObject();
                         try {
-
                             jsonObject.put(EnsyfiConstants.PARAMS_CTMARKS_HW_SERVER_MASTER_ID, serverHwId);
                             jsonObject.put(EnsyfiConstants.PARAMS_CTMARKS_STUDENT_ID, studentId);
                             jsonObject.put(EnsyfiConstants.PARAMS_CTMARKS_MARKS, marks);
@@ -124,19 +119,15 @@ public class SyncClassTestMark implements IServiceListener {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
                         progressDialogHelper.showProgressDialog(context.getString(R.string.progress_loading));
                         String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(context) + EnsyfiConstants.GET_CLASS_TEST_MARK_API;
                         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
-
-
                     } while (c.moveToNext());
                 }
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
     }
 
     private boolean validateSignInResponse(JSONObject response) {
@@ -182,6 +173,7 @@ public class SyncClassTestMark implements IServiceListener {
 
     @Override
     public void onError(String error) {
-
+        progressDialogHelper.hideProgressDialog();
+        AlertDialogHelper.showSimpleAlertDialog(context, error);
     }
 }

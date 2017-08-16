@@ -24,7 +24,6 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.activity.teachermodule.sample.SampleTeacherAttendanceInsertActivity;
 import com.palprotech.ensyfi.adapter.studentmodule.DayViewListAdapter;
 import com.palprotech.ensyfi.adapter.studentmodule.MonthViewListAdapter;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
@@ -101,8 +100,7 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
             finish();
         }
         if (v == btnAddAttendnace) {
-            Intent intent = new Intent(getApplicationContext(), SampleTeacherAttendanceInsertActivity.class);
-//            Intent intent = new Intent(getApplicationContext(), TeacherAttendanceInsertActivity.class);
+            Intent intent = new Intent(getApplicationContext(), TeacherAttendanceInsertActivity.class);
             startActivity(intent);
         }
         if (v == selectDateMonth) {
@@ -111,7 +109,6 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
 
                 public void onDateSet(DatePicker view, int year, int month, int day) {
                     Log.d(TAG, "From selected");
-                    // isdoneclick = true;
                     if (isDoneClick) {
                         ((Button) findViewById(R.id.btnDateMonth)).setText(formatDate(year, month, day));
                         mFromDateVal = formatDateServer(year, month, day);
@@ -194,8 +191,6 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
                 jsonObject.put(EnsyfiConstants.PARAM_CLASS_ID, storeClassId);
                 jsonObject.put(EnsyfiConstants.PARAMS_DISPLAY_TYPE, checkDayMonthType);
                 jsonObject.put(EnsyfiConstants.PARAMS_DISPLAY_MONTH_YEAR, getMonthName);
-
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -222,8 +217,6 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
                         Gson gson = new Gson();
                         DayViewList dayViewList = gson.fromJson(response.toString(), DayViewList.class);
                         if (dayViewList.getDayView() != null && dayViewList.getDayView().size() > 0) {
-//                            totalCount = dayViewList.getCount();
-//                            isLoadingForFirstTime = false;
                             updateDayViewListAdapter(dayViewList.getDayView());
                         }
                     }
@@ -237,8 +230,6 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
                         Gson gson = new Gson();
                         MonthViewList monthViewList = gson.fromJson(response.toString(), MonthViewList.class);
                         if (monthViewList.getMonthView() != null && monthViewList.getMonthView().size() > 0) {
-//                            totalCount = monthViewList.getCount();
-//                            isLoadingForFirstTime = false;
                             updateMonthViewListAdapter(monthViewList.getMonthView());
                         }
                     }
@@ -263,20 +254,20 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
     protected void updateDayViewListAdapter(ArrayList<DayView> dayViewArrayList) {
         this.dayViewArrayList.addAll(dayViewArrayList);
 //        if (dayViewListAdapter == null) {
-            dayViewListAdapter = new DayViewListAdapter(AttendanceStatusActivity.this, this.dayViewArrayList);
-            loadMoreListView.setAdapter(dayViewListAdapter);
+        dayViewListAdapter = new DayViewListAdapter(AttendanceStatusActivity.this, this.dayViewArrayList);
+        loadMoreListView.setAdapter(dayViewListAdapter);
 //        } else {
-            dayViewListAdapter.notifyDataSetChanged();
+        dayViewListAdapter.notifyDataSetChanged();
 //        }
     }
 
     protected void updateMonthViewListAdapter(ArrayList<MonthView> monthViewArrayList) {
         this.monthViewArrayList.addAll(monthViewArrayList);
 //        if (monthViewListAdapter == null) {
-            monthViewListAdapter = new MonthViewListAdapter(AttendanceStatusActivity.this, this.monthViewArrayList);
-            loadMoreListView.setAdapter(monthViewListAdapter);
+        monthViewListAdapter = new MonthViewListAdapter(AttendanceStatusActivity.this, this.monthViewArrayList);
+        loadMoreListView.setAdapter(monthViewListAdapter);
 //        } else {
-            monthViewListAdapter.notifyDataSetChanged();
+        monthViewListAdapter.notifyDataSetChanged();
 //        }
     }
 
@@ -307,12 +298,6 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
         spnClassList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-//                if (dayViewArrayList != null)
-//                    dayViewArrayList.clear();
-//
-//                if (monthViewArrayList != null)
-//                    monthViewArrayList.clear();
 
                 String className = parent.getItemAtPosition(position).toString();
                 GetClassId(className);
@@ -402,7 +387,6 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
                 if (c.moveToFirst()) {
                     do {
                         vecAcademicMonths.add(c.getString(0));
-                        //set1 = c.getString(0);
                     } while (c.moveToNext());
                 }
             }

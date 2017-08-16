@@ -51,6 +51,5 @@ public class TimeTableReviewDetails extends AppCompatActivity {
                 finish();
             }
         });
-
     }
 }

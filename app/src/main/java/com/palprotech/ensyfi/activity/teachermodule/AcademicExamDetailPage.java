@@ -6,23 +6,17 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.activity.teachermodule.sample.SampleAddAcademicExamMarksActivity;
-import com.palprotech.ensyfi.activity.teachermodule.sample.SampleAddAcademicExamMarksOnlyTotalActivity;
 import com.palprotech.ensyfi.adapter.teachermodule.AcademicExamDetailsListBaseAdapter;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 import com.palprotech.ensyfi.bean.teacher.viewlist.AcademicExamDetails;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
-import com.palprotech.ensyfi.serviceinterfaces.IServiceListener;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
-
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -30,11 +24,10 @@ import java.util.ArrayList;
  * Created by Admin on 15-07-2017.
  */
 
-public class AcademicExamDetailPage extends AppCompatActivity implements IServiceListener, AdapterView.OnItemClickListener, DialogClickListener, View.OnClickListener {
+public class AcademicExamDetailPage extends AppCompatActivity implements DialogClickListener, View.OnClickListener {
 
     long id;
     SQLiteHelper db;
-    private static final String TAG = "AcademicExamView";
     protected ProgressDialogHelper progressDialogHelper;
     ArrayList<AcademicExamDetails> myList = new ArrayList<AcademicExamDetails>();
     AcademicExamDetailsListBaseAdapter cadapter;
@@ -46,7 +39,6 @@ public class AcademicExamDetailPage extends AppCompatActivity implements IServic
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_academic_exam_details);
-        Intent intent = getIntent();
         id = getIntent().getExtras().getLong("id");
         db = new SQLiteHelper(getApplicationContext());
         String localExamId = String.valueOf(id);
@@ -146,12 +138,11 @@ public class AcademicExamDetailPage extends AppCompatActivity implements IServic
         if (v == addExamMark) {
             int checkInternalMarkStatus = Integer.parseInt(isInternalExternal);
             if (checkInternalMarkStatus == 1) {
-                Intent intent = new Intent(getApplicationContext(), SampleAddAcademicExamMarksActivity.class);
+                Intent intent = new Intent(getApplicationContext(), AddAcademicExamMarksActivity.class);
                 intent.putExtra("id", id);
                 startActivity(intent);
             } else {
-//                Intent intent = new Intent(getApplicationContext(), SampleAddAcademicExamMarksActivity.class);
-                Intent intent = new Intent(getApplicationContext(), SampleAddAcademicExamMarksOnlyTotalActivity.class);
+                Intent intent = new Intent(getApplicationContext(), AddAcademicExamMarksOnlyTotalActivity.class);
                 intent.putExtra("id", id);
                 startActivity(intent);
             }
@@ -171,27 +162,12 @@ public class AcademicExamDetailPage extends AppCompatActivity implements IServic
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-    }
-
-    @Override
     public void onAlertPositiveClicked(int tag) {
 
     }
 
     @Override
     public void onAlertNegativeClicked(int tag) {
-
-    }
-
-    @Override
-    public void onResponse(JSONObject response) {
-
-    }
-
-    @Override
-    public void onError(String error) {
 
     }
 }

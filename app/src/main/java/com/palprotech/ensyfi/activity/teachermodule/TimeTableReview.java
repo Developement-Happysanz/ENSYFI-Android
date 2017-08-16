@@ -46,12 +46,10 @@ public class TimeTableReview extends AppCompatActivity implements IServiceListen
     TTReviewListAdapter tTReviewListAdapter;
     ServiceHelper serviceHelper;
     ArrayList<TTReview> tTReviewArrayList;
-    int pageNumber = 0, totalCount = 0;
+    int totalCount = 0;
     protected ProgressDialogHelper progressDialogHelper;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
-    private SearchView mSearchView = null;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -214,7 +212,6 @@ public class TimeTableReview extends AppCompatActivity implements IServiceListen
             @Override
             public void run() {
                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
                 AlertDialogHelper.showSimpleAlertDialog(TimeTableReview.this, error);
             }
         });

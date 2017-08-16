@@ -12,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.activity.teachermodule.sample.SampleAddClassTestMarkActivity;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 
 /**
@@ -35,7 +34,6 @@ public class ClassTestHomeWorkDetailPageActivity extends AppCompatActivity imple
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_class_test_homework_detail_page);
 
-        Intent intent = getIntent();
         id = getIntent().getExtras().getLong("id");
         db = new SQLiteHelper(getApplicationContext());
         homeWorkIdLocal = String.valueOf(id);
@@ -91,7 +89,6 @@ public class ClassTestHomeWorkDetailPageActivity extends AppCompatActivity imple
                         updatedAt = c.getString(17);
                         syncStatus = c.getString(18);
 
-
                     } while (c.moveToNext());
                 }
             } else {
@@ -137,7 +134,7 @@ public class ClassTestHomeWorkDetailPageActivity extends AppCompatActivity imple
     @Override
     public void onClick(View v) {
         if (v == addMarks) {
-            Intent intent = new Intent(getApplicationContext(), SampleAddClassTestMarkActivity.class);
+            Intent intent = new Intent(getApplicationContext(), AddClassTestMarkActivity.class);
             intent.putExtra("hw_id", id);
             startActivity(intent);
         }

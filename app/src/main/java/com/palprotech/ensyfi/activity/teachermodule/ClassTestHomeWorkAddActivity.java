@@ -53,13 +53,12 @@ import java.util.Vector;
  * Created by Admin on 13-07-2017.
  */
 
-public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements IServiceListener, DialogClickListener, View.OnClickListener {
+public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements DialogClickListener, View.OnClickListener {
 
     private Spinner spnClassList, spnSubjectList;
     private static final String TAG = "CTHWTeacherView";
     protected ProgressDialogHelper progressDialogHelper;
     List<String> lsClassList = new ArrayList<String>();
-    ServiceHelper serviceHelper;
     SQLiteHelper db;
     Vector<String> vecClassList;
     EditText edtSetTitle, edtDescription;
@@ -83,9 +82,6 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
 
         db = new SQLiteHelper(getApplicationContext());
         vecClassList = new Vector<String>();
-
-        serviceHelper = new ServiceHelper(this);
-        serviceHelper.setServiceListener(this);
 
         progressDialogHelper = new ProgressDialogHelper(this);
 
@@ -127,9 +123,6 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
                 finish();
             }
         });
-
-//        String getClassId = spnClassList.getSelectedItem().toString();
-//        getClassId(getClassId);
 
         radioClassTestHomeWork.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -183,8 +176,6 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
 
         loadFromDate();
         loadToDate();
-
-
     }
 
     @Override
@@ -201,10 +192,6 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
         SimpleDateFormat serverDF = new SimpleDateFormat("yyyy-MM-dd");
         String formattedServerDate = serverDF.format(c.getTime());
 
-//        frombackground.setBackgroundColor(Color.parseColor("#663366"));
-//        dateFrom.setCompoundDrawablesWithIntrinsicBounds(R.drawable.od_from_date_selected, 0, 0, 0);
-//        dateFrom.setTextColor((Color.parseColor("#663366")));
-
         ((TextView) findViewById(R.id.dateFrom)).setText(formattedDate);
 
         mFromDateVal = formattedServerDate;
@@ -215,10 +202,6 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
         String formattedDate = DF.format(c.getTime());
         SimpleDateFormat serverDF = new SimpleDateFormat("yyyy-MM-dd");
         String formattedServerDate = serverDF.format(c.getTime());
-
-//        tobackground.setBackgroundColor(Color.parseColor("#663366"));
-//        dateTo.setCompoundDrawablesWithIntrinsicBounds(R.drawable.od_from_date_selected, 0, 0, 0);
-//        dateTo.setTextColor((Color.parseColor("#663366")));
 
         ((TextView) findViewById(R.id.dateTo)).setText(formattedDate);
 
@@ -249,7 +232,6 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
             String updatedAt = formattedServerDate;
             String syncStatus = "NS";
 
-
             long x = db.homework_class_test_insert(serverHomeWorkId, yearId, classId, teacherId, homeWorkType, subjectId,
                     SubjectName, title, testDate, dueDate, homeWorkDetails, status, markStatus,
                     createdBy, createdAt, updatedBy, updatedAt, syncStatus);
@@ -261,21 +243,6 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
     }
 
     private boolean validateFields() {
-        int getDate = 0;
-        try {
-
-            DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
-            Date dateFrom = format.parse(this.dateFrom.getText().toString().trim());
-            Date dateTo = format.parse(this.dateTo.getText().toString().trim());
-
-            DateTime dt1 = new DateTime(dateFrom);
-            DateTime dt2 = new DateTime(dateTo);
-
-            getDate = Days.daysBetween(dt1, dt2).getDays();
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
 
         if (!AppValidator.checkNullString(this.edtSetTitle.getText().toString().trim())) {
             AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid title");
@@ -283,12 +250,7 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
         } else if (!AppValidator.checkNullString(this.edtDescription.getText().toString().trim())) {
             AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid details");
             return false;
-        }
-//        else if (getDate < 0) {
-//            AlertDialogHelper.showSimpleAlertDialog(this, "Should not lesser than Today's Date");
-//            return false;
-//        }
-        else {
+        } else {
             return true;
         }
     }
@@ -399,24 +361,12 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
     }
 
     @Override
-    public void onResponse(JSONObject response) {
-
-    }
-
-    @Override
-    public void onError(String error) {
-        progressDialogHelper.hideProgressDialog();
-        AlertDialogHelper.showSimpleAlertDialog(this, error);
-    }
-
-    @Override
     public void onClick(View v) {
         if (v == dateFrom) {
             final DatePickerDialog.OnDateSetListener fromdate = new DatePickerDialog.OnDateSetListener() {
 
                 public void onDateSet(DatePicker view, int year, int month, int day) {
                     Log.d(TAG, "From selected");
-                    // isdoneclick = true;
                     if (isDoneClick) {
                         ((TextView) findViewById(R.id.dateFrom)).setText(formatDate(year, month, day));
                         mFromDateVal = formatDateServer(year, month, day);
@@ -463,7 +413,6 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
             final DatePickerDialog.OnDateSetListener todate = new DatePickerDialog.OnDateSetListener() {
 
                 public void onDateSet(DatePicker view, int year, int month, int day) {
-                    // isdoneclick = true;
 
                     if (isDoneClick) {
                         ((TextView) findViewById(R.id.dateTo)).setText(formatDate(year, month, day));
@@ -473,9 +422,7 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements I
                         mToDateVal = "";
                     }
                 }
-
             };
-
 
             final int currentYear = c.get(Calendar.YEAR);
             final int currentMonth = c.get(Calendar.MONTH);

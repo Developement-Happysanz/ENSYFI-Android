@@ -48,18 +48,17 @@ public class AcademicExamResultView extends AppCompatActivity implements IServic
     ListView loadMoreListView;
     ExamResultListAdapter examResultListAdapter;
     ArrayList<ExamResult> examResultArrayList;
-    int pageNumber = 0, totalCount = 0;
+    int totalCount = 0;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
-    private SearchView mSearchView = null;
     SQLiteHelper db;
-    private Exams exams;
     String examId, examName, isInternalExternal, classMasterId, sectionName, className, fromDate, toDate, markStatus;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.academic_exam_result_view);
+
         hwId = getIntent().getExtras().getLong("id");
         homeWorkId = String.valueOf(hwId);
         String examId = String.valueOf(hwId);
@@ -68,7 +67,6 @@ public class AcademicExamResultView extends AppCompatActivity implements IServic
         db = new SQLiteHelper(getApplicationContext());
         progressDialogHelper = new ProgressDialogHelper(this);
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
-//        loadMoreListView.setOnLoadMoreListener(this);
         loadMoreListView.setOnItemClickListener(this);
         examResultArrayList = new ArrayList<>();
         GetAcademicExamInfo(examId);
@@ -81,7 +79,6 @@ public class AcademicExamResultView extends AppCompatActivity implements IServic
                 finish();
             }
         });
-
     }
 
     private void GetAcademicExamInfo(String examIdLocal) {
@@ -154,7 +151,6 @@ public class AcademicExamResultView extends AppCompatActivity implements IServic
 
                     } else {
                         signInsuccess = true;
-
                     }
                 }
             } catch (JSONException e) {
@@ -189,7 +185,6 @@ public class AcademicExamResultView extends AppCompatActivity implements IServic
                 @Override
                 public void run() {
                     progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
 
                     Gson gson = new Gson();
                     ExamResultList examResultList = gson.fromJson(response.toString(), ExamResultList.class);
@@ -209,7 +204,6 @@ public class AcademicExamResultView extends AppCompatActivity implements IServic
             @Override
             public void run() {
                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
                 AlertDialogHelper.showSimpleAlertDialog(getApplicationContext(), error);
             }
         });

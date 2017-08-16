@@ -32,7 +32,7 @@ import java.util.Calendar;
  * Created by Admin on 19-07-2017.
  */
 
-public class TimeTableReviewAddActivity extends AppCompatActivity implements IServiceListener, DialogClickListener, View.OnClickListener{
+public class TimeTableReviewAddActivity extends AppCompatActivity implements IServiceListener, DialogClickListener {
 
     private static final String TAG = TimeTableReviewAddActivity.class.getName();
     String getTimeTableValue;
@@ -43,8 +43,6 @@ public class TimeTableReviewAddActivity extends AppCompatActivity implements ISe
     final Calendar c = Calendar.getInstance();
     protected ProgressDialogHelper progressDialogHelper;
     private ServiceHelper serviceHelper;
-    ImageView addExamMark;
-//    ClassName:X-A,ClassId:4,SubjectName:Tamil,SubjectId:1,PeriodId:2
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -70,8 +68,6 @@ public class TimeTableReviewAddActivity extends AppCompatActivity implements ISe
         sSubjectId = animalsArray[3];
         sPeriodId = animalsArray[4];
         txtPeriodId.setText(sPeriodId);
-
-        String newOk = "";
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,7 +103,6 @@ public class TimeTableReviewAddActivity extends AppCompatActivity implements ISe
                     jsonObject.put(EnsyfiConstants.PARAMS_REVIEW_COMMENTS, edtTimetableReviewDetails.getText().toString());
                     jsonObject.put(EnsyfiConstants.PARAMS_REVIEW_CREATED_AT, formattedServerDate);
 
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -129,11 +124,6 @@ public class TimeTableReviewAddActivity extends AppCompatActivity implements ISe
         } else {
             return true;
         }
-    }
-
-    @Override
-    public void onClick(View v) {
-
     }
 
     @Override
@@ -189,7 +179,6 @@ public class TimeTableReviewAddActivity extends AppCompatActivity implements ISe
 
                     }
                 }
-//                studentData.saveStudentProfile(getData);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

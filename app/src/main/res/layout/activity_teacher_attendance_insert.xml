@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -132,21 +132,32 @@
             android:background="@color/appColor"
             android:gravity="center"
             android:text="Student Attendance"
-            android:textColor="@color/white"
-            android:textSize="18dp" />
-
-        <ListView
-            android:id="@+id/listView_students"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/attendrollnum"
-            android:layout_marginBottom="2dp"
-            android:divider="@color/black"
-            android:dividerHeight="0dp">
-
-        </ListView>
+            android:textColor="@color/white"/>
 
     </RelativeLayout>
 
 
-</RelativeLayout>
+    <ScrollView
+        android:id="@+id/ScrollView01"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_weight="1"
+        android:fadeScrollbars="false"
+        android:scrollbars="horizontal|vertical">
+
+        <LinearLayout
+            android:id="@+id/layout_timetable"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

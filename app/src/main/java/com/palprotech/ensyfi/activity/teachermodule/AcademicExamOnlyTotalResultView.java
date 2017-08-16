@@ -48,12 +48,10 @@ public class AcademicExamOnlyTotalResultView extends AppCompatActivity implement
     ListView loadMoreListView;
     ExamOnlyTotalResultListAdapter examResultListAdapter;
     ArrayList<ExamResult> examResultArrayList;
-    int pageNumber = 0, totalCount = 0;
+    int totalCount = 0;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
-    private SearchView mSearchView = null;
     SQLiteHelper db;
-    private Exams exams;
     String examId, examName, isInternalExternal, classMasterId, sectionName, className, fromDate, toDate, markStatus;
 
     @Override
@@ -68,7 +66,6 @@ public class AcademicExamOnlyTotalResultView extends AppCompatActivity implement
         db = new SQLiteHelper(getApplicationContext());
         progressDialogHelper = new ProgressDialogHelper(this);
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
-//        loadMoreListView.setOnLoadMoreListener(this);
         loadMoreListView.setOnItemClickListener(this);
         examResultArrayList = new ArrayList<>();
         GetAcademicExamInfo(examId);
@@ -81,7 +78,6 @@ public class AcademicExamOnlyTotalResultView extends AppCompatActivity implement
                 finish();
             }
         });
-
     }
 
     private void GetAcademicExamInfo(String examIdLocal) {
@@ -109,7 +105,6 @@ public class AcademicExamOnlyTotalResultView extends AppCompatActivity implement
     }
 
     private void GetClassTestMarkData() {
-
 
         if (examResultArrayList != null)
             examResultArrayList.clear();
@@ -189,7 +184,6 @@ public class AcademicExamOnlyTotalResultView extends AppCompatActivity implement
                 @Override
                 public void run() {
                     progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
 
                     Gson gson = new Gson();
                     ExamResultList examResultList = gson.fromJson(response.toString(), ExamResultList.class);
@@ -209,7 +203,6 @@ public class AcademicExamOnlyTotalResultView extends AppCompatActivity implement
             @Override
             public void run() {
                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
                 AlertDialogHelper.showSimpleAlertDialog(getApplicationContext(), error);
             }
         });

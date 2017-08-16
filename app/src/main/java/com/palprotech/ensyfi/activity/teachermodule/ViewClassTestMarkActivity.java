@@ -34,7 +34,7 @@ import java.util.ArrayList;
  * Created by Admin on 14-07-2017.
  */
 
-public class ViewClassTestMarkActivity extends AppCompatActivity implements IServiceListener, DialogClickListener, AdapterView.OnItemClickListener{
+public class ViewClassTestMarkActivity extends AppCompatActivity implements IServiceListener, DialogClickListener {
 
     long hwId;
     String homeWorkId;
@@ -44,10 +44,9 @@ public class ViewClassTestMarkActivity extends AppCompatActivity implements ISer
     ListView loadMoreListView;
     ClassTestMarkListAdapter classTestMarkListAdapter;
     ArrayList<ClassTestMark> classTestMarkArrayList;
-    int pageNumber = 0, totalCount = 0;
+    int totalCount = 0;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
-    private SearchView mSearchView = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,8 +59,7 @@ public class ViewClassTestMarkActivity extends AppCompatActivity implements ISer
         serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(this);
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
-//        loadMoreListView.setOnLoadMoreListener(this);
-        loadMoreListView.setOnItemClickListener(this);
+
         classTestMarkArrayList = new ArrayList<>();
 
         GetClassTestMarkData();
@@ -72,7 +70,6 @@ public class ViewClassTestMarkActivity extends AppCompatActivity implements ISer
                 finish();
             }
         });
-
     }
 
     private void GetClassTestMarkData() {
@@ -131,11 +128,6 @@ public class ViewClassTestMarkActivity extends AppCompatActivity implements ISer
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-    }
-
-    @Override
     public void onAlertPositiveClicked(int tag) {
 
     }
@@ -154,7 +146,6 @@ public class ViewClassTestMarkActivity extends AppCompatActivity implements ISer
                 @Override
                 public void run() {
                     progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
 
                     Gson gson = new Gson();
                     ClassTestMarkList classTestMarkList = gson.fromJson(response.toString(), ClassTestMarkList.class);
@@ -175,7 +166,6 @@ public class ViewClassTestMarkActivity extends AppCompatActivity implements ISer
             @Override
             public void run() {
                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
                 AlertDialogHelper.showSimpleAlertDialog(getApplicationContext(), error);
             }
         });

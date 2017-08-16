@@ -49,7 +49,7 @@ public class AttendanceMonthViewActivity extends AppCompatActivity implements Di
     MonthViewStudentLeaveDaysListAdapter monthViewStudentLeaveDaysListAdapter;
     ServiceHelper serviceHelper;
     ArrayList<MonthViewStudentLeaveDays> monthViewStudentLeaveDaysArrayList;
-    int pageNumber = 0, totalCount = 0;
+    int totalCount = 0;
     protected ProgressDialogHelper progressDialogHelper;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
@@ -64,11 +64,9 @@ public class AttendanceMonthViewActivity extends AppCompatActivity implements Di
 
         monthView = (MonthView) getIntent().getSerializableExtra("eventObj");
         getMonthYear = intent.getStringExtra("monthYear");
-        String okNew = "";
 
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
 
-//        loadMoreListView.setOnItemClickListener(this);
         monthViewStudentLeaveDaysArrayList = new ArrayList<>();
 
         serviceHelper = new ServiceHelper(this);
@@ -232,7 +230,6 @@ public class AttendanceMonthViewActivity extends AppCompatActivity implements Di
             @Override
             public void run() {
                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
                 AlertDialogHelper.showSimpleAlertDialog(AttendanceMonthViewActivity.this, error);
             }
         });

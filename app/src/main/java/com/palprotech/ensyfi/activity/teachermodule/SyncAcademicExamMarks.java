@@ -41,7 +41,6 @@ public class SyncAcademicExamMarks implements IServiceListener {
         db = new SQLiteHelper(context);
         try {
             Cursor c = db.getAcademicExamMarksList();
-            String newOk = "";
             if (c.getCount() > 0) {
                 if (c.moveToFirst()) {
                     do {
@@ -66,7 +65,6 @@ public class SyncAcademicExamMarks implements IServiceListener {
 
                         JSONObject jsonObject = new JSONObject();
                         try {
-
                             jsonObject.put(EnsyfiConstants.PARAMS_ACADEMIC_EXAM_MARKS_EXAM_ID, examId);
                             jsonObject.put(EnsyfiConstants.PARAMS_ACADEMIC_EXAM_MARKS_TEACHER_ID, teacherId);
                             jsonObject.put(EnsyfiConstants.PARAMS_ACADEMIC_EXAM_MARKS_SUBJECT_ID, subjectId);
@@ -81,12 +79,9 @@ public class SyncAcademicExamMarks implements IServiceListener {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
                         progressDialogHelper.showProgressDialog(context.getString(R.string.progress_loading));
                         String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(context) + EnsyfiConstants.GET_ACADEMIC_EXAM_MARK_API;
                         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
-
-
                     } while (c.moveToNext());
                 }
             }
@@ -138,6 +133,7 @@ public class SyncAcademicExamMarks implements IServiceListener {
 
     @Override
     public void onError(String error) {
-
+        progressDialogHelper.hideProgressDialog();
+        AlertDialogHelper.showSimpleAlertDialog(context, error);
     }
 }

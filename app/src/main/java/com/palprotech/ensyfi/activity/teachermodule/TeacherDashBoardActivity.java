@@ -48,7 +48,6 @@ import com.squareup.picasso.Picasso;
 public class TeacherDashBoardActivity extends AppCompatActivity implements DialogClickListener {
 
     private static final String TAG = ParentDashBoardActivity.class.getName();
-    private static final int TAG_LOGOUT = 100;
     Toolbar toolbar;
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
@@ -169,11 +168,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
                         public void onSuccess() {
                             Log.d(TAG, "Image uploaded successfully using picasso");
                             try {
-                              /*  if (shouldUploadSocialNetworkPic()) {
-                                    mUpdatedImageUrl = null;
-                                    mBitmapToLoad = ((BitmapDrawable) imgNavProfileImage.getDrawable()).getBitmap();
-                                    new UploadFileToServer().execute();
-                                } */
+
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
@@ -221,10 +216,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
         };
 
         mDrawerLayout.setDrawerListener(mDrawerToggle);
-        // enable ActionBar app icon to behave as action to toggle nav drawer
-        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //getSupportActionBar().setHomeButtonEnabled(true);
-        // Initialize header and listview
+
         navDrawerList = (ListView) findViewById(R.id.nav_drawer_options_list);
 
         NavDrawerAdapter navDrawerAdapter = new NavDrawerAdapter(getApplicationContext(), R.layout.nav_list_item, values);
@@ -277,19 +269,19 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
             startActivity(navigationIntent);
         } else if (position == 8) {
             Intent navigationIntent = new Intent(this, GroupingActivity.class);
-            //navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 9) {
             Intent navigationIntent = new Intent(this, LeaveStatusActivity.class);
-            //navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 10) {
             Intent navigationIntent = new Intent(this, ChangePasswordActivity.class);
-            //navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 11) {
             Intent navigationIntent = new Intent(this, SyncRecordsActivity.class);
-            //navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 12) {
             Log.d(TAG, "Perform Logout");
