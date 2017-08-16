@@ -49,7 +49,6 @@ public class FeesStatusView extends AppCompatActivity implements IServiceListene
     int pageNumber = 0, totalCount = 0;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
-    private SearchView mSearchView = null;
     private Fees fees;
 
 
@@ -62,14 +61,12 @@ public class FeesStatusView extends AppCompatActivity implements IServiceListene
         serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(this);
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
-//        loadMoreListView.setOnLoadMoreListener(this);
         loadMoreListView.setOnItemClickListener(this);
         feesStatusArrayList = new ArrayList<>();
         fees = (Fees) getIntent().getSerializableExtra("eventObj");
         Bundle extras = getIntent().getExtras();
         storeClassId = extras.getString("storeClassId");
         storeSectionId = extras.getString("storeSectionId");
-
 
         GetFeesStatusData();
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
@@ -160,14 +157,12 @@ public class FeesStatusView extends AppCompatActivity implements IServiceListene
 
             try {
                 JSONArray getData = response.getJSONArray("data");
-                JSONObject userData = getData.getJSONObject(0);
+//                JSONObject userData = getData.getJSONObject(0);
 
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
                         progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
-
                         Gson gson = new Gson();
                         FeesStatusList feesStatusList = gson.fromJson(response.toString(), FeesStatusList.class);
                         if (feesStatusList.getFeesStatus() != null && feesStatusList.getFeesStatus().size() > 0) {
@@ -193,7 +188,6 @@ public class FeesStatusView extends AppCompatActivity implements IServiceListene
             @Override
             public void run() {
                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
                 AlertDialogHelper.showSimpleAlertDialog(FeesStatusView.this, error);
             }
         });

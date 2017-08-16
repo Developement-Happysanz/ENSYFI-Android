@@ -38,7 +38,7 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
     private static final String TAG = ParentsViewDetailsActivity.class.getName();
     private ParentStudent parentStudent;
     private TextView Name, Address, Mail, Occupation, Income, Mobile, OfficePhone, HomePhone;
-    private Button btnShowStudentInfo, btnExams, btnFees, btnAttendance, btnOnDuty;
+    private Button btnShowStudentInfo;
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper progressDialogHelper;
     private ImageView guardianImg, fatherInfo, motherInfo, btnBack;
@@ -58,15 +58,6 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
 
         findViewById();
 
-      /*  btnExams = (Button) findViewById(R.id.btnExams);
-        btnExams.setOnClickListener(this);
-
-        btnFees = (Button) findViewById(R.id.btnFees);
-        btnFees.setOnClickListener(this);
-
-        btnAttendance = (Button)findViewById(R.id.btnAttendance);
-        btnAttendance.setOnClickListener(this);*/
-
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
         studentData = new SaveStudentData(this);
@@ -74,14 +65,9 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
 
         progressDialogHelper = new ProgressDialogHelper(this);
 
-        emptydata();
+        callEmptyData();
         populateData();
         callFatherInfoPreferences();
-
-
-
-        String view = "";
-
     }
 
     private void populateData() {
@@ -150,17 +136,11 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
         progressDialogHelper.hideProgressDialog();
         if (validateSignInResponse(response)) {
 
-            String repo = response.toString();
-
-//            longInfo(repo);
 
             try {
 
                 JSONObject getParentData = response.getJSONObject("parentProfile");
 
-                JSONObject fatherData = getParentData.getJSONObject("fatherProfile");
-                JSONObject motherData = getParentData.getJSONObject("motherProfile");
-                JSONObject guardianData = getParentData.getJSONObject("guardianProfile");
                 saveStudentParentDetails(response);
 
 
@@ -282,6 +262,7 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
             Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(guardianImg);
         }
     }
+
     private void findViewById() {
         btnBack = (ImageView) findViewById(R.id.back_res);
         btnBack.setOnClickListener(this);
@@ -315,10 +296,11 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
             studentData.saveStudentRegisteredData(getStudentData);
 
         } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 
-    private void emptydata() {
+    private void callEmptyData() {
         PreferenceStorage.saveFatherID(getApplicationContext(), "");
         PreferenceStorage.saveFatherName(getApplicationContext(), "");
         PreferenceStorage.saveFatherEmail(getApplicationContext(), "");
@@ -354,7 +336,5 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
         PreferenceStorage.saveGuardianOfficePhone(getApplicationContext(), "");
         PreferenceStorage.saveGuardianRelationship(getApplicationContext(), "");
         PreferenceStorage.saveGuardianImg(getApplicationContext(), "");
-
     }
-
 }

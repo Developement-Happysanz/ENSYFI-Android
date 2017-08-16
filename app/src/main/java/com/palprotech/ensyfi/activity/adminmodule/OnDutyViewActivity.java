@@ -48,7 +48,6 @@ public class OnDutyViewActivity extends AppCompatActivity implements IServiceLis
     int pageNumber = 0, totalCount = 0;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
-    private SearchView mSearchView = null;
     private RadioGroup radioStudentsTeachersView;
     String checkStudentTeacher="student";
 
@@ -61,7 +60,6 @@ public class OnDutyViewActivity extends AppCompatActivity implements IServiceLis
         progressDialogHelper = new ProgressDialogHelper(this);
         radioStudentsTeachersView = (RadioGroup) findViewById(R.id.radioStudentsTeachersView);
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
-//        loadMoreListView.setOnLoadMoreListener(this);
         loadMoreListView.setOnItemClickListener(this);
         onDutyArrayList = new ArrayList<>();
         callOnDutyViewService();
@@ -90,8 +88,6 @@ public class OnDutyViewActivity extends AppCompatActivity implements IServiceLis
                 finish();
             }
         });
-
-
     }
 
     private void callOnDutyViewService() {

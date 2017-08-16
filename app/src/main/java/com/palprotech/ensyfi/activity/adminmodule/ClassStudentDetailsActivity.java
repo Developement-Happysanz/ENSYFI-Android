@@ -38,7 +38,6 @@ public class ClassStudentDetailsActivity extends AppCompatActivity implements IS
 
     private static final String TAG = ClassStudentDetailsActivity.class.getName();
     private ClassStudent classStudent;
-    private TextView txtStudentName, txtStudentRegId;
     private Button btnClassTestHomework, btnExams, btnFees, btnAttendance;
     ImageView btnBack, studentImg;
     private SaveStudentData studentData;
@@ -114,8 +113,6 @@ public class ClassStudentDetailsActivity extends AppCompatActivity implements IS
         progressDialogHelper = new ProgressDialogHelper(this);
 
         populateData();
-
-        String view = "";
     }
 
     private void populateData() {
@@ -145,22 +142,10 @@ public class ClassStudentDetailsActivity extends AppCompatActivity implements IS
     public void onResponse(JSONObject response) {
         progressDialogHelper.hideProgressDialog();
         if (validateSignInResponse(response)) {
-
-            String repo = response.toString();
-
-//            longInfo(repo);
-
             try {
                 JSONArray getStudentData = response.getJSONArray("studentData");
+
                 studentData.saveStudentProfile(getStudentData);
-
-                String studentMark = null, studentRemarks = null;
-
-                JSONObject getParentData = response.getJSONObject("parents_details");
-
-                JSONObject fatherData = getParentData.getJSONObject("fatherProfile");
-                JSONObject motherData = getParentData.getJSONObject("motherProfile");
-                JSONObject guardianData = getParentData.getJSONObject("guardianProfile");
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -305,11 +290,6 @@ public class ClassStudentDetailsActivity extends AppCompatActivity implements IS
         studentStatus.setText(PreferenceStorage.getStudentStatus(getApplicationContext()));
         studentParentStatus.setText(PreferenceStorage.getStudentParentStatus(getApplicationContext()));
         studentRegistered.setText(PreferenceStorage.getStudentRegistered(getApplicationContext()));
-//        String imgurl = PreferenceStorage.getStudentImg(this);
-//
-//        if (((imgurl != null) && !(imgurl.isEmpty()))) {
-//            Picasso.with(this).load(imgurl).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(studentImg);
-//        }
     }
 
     @Override

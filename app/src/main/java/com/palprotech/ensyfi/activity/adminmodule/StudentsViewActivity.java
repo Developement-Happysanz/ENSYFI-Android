@@ -44,7 +44,6 @@ import java.util.ArrayList;
 public class StudentsViewActivity extends AppCompatActivity implements IServiceListener, DialogClickListener, AdapterView.OnItemClickListener {
 
     private static final String TAG = StudentsViewActivity.class.getName();
-    LinearLayout layout_all;
     private ProgressDialogHelper progressDialogHelper;
     private ServiceHelper serviceHelper;
     private Spinner spnClassList, spnSectionList;
@@ -55,8 +54,6 @@ public class StudentsViewActivity extends AppCompatActivity implements IServiceL
     int pageNumber = 0, totalCount = 0;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
-    private SearchView mSearchView = null;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -85,7 +82,6 @@ public class StudentsViewActivity extends AppCompatActivity implements IServiceL
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 StoreClass classList = (StoreClass) parent.getSelectedItem();
-//                Toast.makeText(getApplicationContext(), "Class ID: " + classList.getClassId() + ",  Class Name : " + classList.getClassName(), Toast.LENGTH_SHORT).show();
                 storeClassId = classList.getClassId();
                 GetSectionData();
             }
@@ -100,7 +96,6 @@ public class StudentsViewActivity extends AppCompatActivity implements IServiceL
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 StoreSection sectionList = (StoreSection) parent.getSelectedItem();
-//                Toast.makeText(getApplicationContext(), "Section ID: " + sectionList.getSectionId() + ",  Section Name : " + sectionList.getSectionName(), Toast.LENGTH_SHORT).show();
                 storeSectionId = sectionList.getSectionId();
                 GetStudentData();
             }
@@ -232,7 +227,6 @@ public class StudentsViewActivity extends AppCompatActivity implements IServiceL
                     JSONArray getData = response.getJSONArray("data");
                     JSONObject userData = getData.getJSONObject(0);
                     int getLength = getData.length();
-                    String subjectName = null;
                     Log.d(TAG, "userData dictionary" + userData.toString());
 
                     String classId = "";
@@ -278,13 +272,11 @@ public class StudentsViewActivity extends AppCompatActivity implements IServiceL
                 } else {
                     JSONArray getData = response.getJSONArray("data");
                     if (getData != null && getData.length() > 0) {
-//                        klassenID[i] = kl.getJSONObject(0).getString("id");
+
                         mHandler.post(new Runnable() {
                             @Override
                             public void run() {
                                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
-
                                 Gson gson = new Gson();
                                 ClassStudentList classStudentList = gson.fromJson(response.toString(), ClassStudentList.class);
                                 if (classStudentList.getClassStudent() != null && classStudentList.getClassStudent().size() > 0) {
@@ -327,7 +319,6 @@ public class StudentsViewActivity extends AppCompatActivity implements IServiceL
             @Override
             public void run() {
                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
                 AlertDialogHelper.showSimpleAlertDialog(StudentsViewActivity.this, error);
             }
         });
@@ -347,7 +338,6 @@ public class StudentsViewActivity extends AppCompatActivity implements IServiceL
         }
         Intent intent = new Intent(this, ClassStudentDetailsActivity.class);
         intent.putExtra("eventObj", classStudent);
-        // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
     }
 }

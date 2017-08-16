@@ -60,7 +60,6 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
     int pageNumber = 0, totalCount = 0;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
-    private SearchView mSearchView = null;
     private RadioGroup radioStudentsTeachersView;
     TeacherViewListAdapter teacherViewListAdapter;
     ArrayList<TeacherView> teacherViewArrayList;
@@ -78,7 +77,6 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
         spnSectionList = (Spinner) findViewById(R.id.section_list_spinner);
         radioStudentsTeachersView = (RadioGroup) findViewById(R.id.radioStudentsTeachersView);
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
-//        loadMoreListView.setOnLoadMoreListener(this);
         loadMoreListView.setOnItemClickListener(this);
         classStudentArrayList = new ArrayList<>();
         teacherViewArrayList = new ArrayList<>();
@@ -103,17 +101,12 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
 
                 if (classStudentArrayList != null) {
                     classStudentArrayList.clear();
-//                    classStudentListAdapter = new ClassStudentListAdapter(this, this.classStudentArrayList);
                     loadMoreListView.setAdapter(classStudentListAdapter);
                 }
-
                 if (teacherViewArrayList != null) {
                     teacherViewArrayList.clear();
-                   // teacherViewListAdapter = new TeacherViewListAdapter(this, this.teacherViewArrayList);
                     loadMoreListView.setAdapter(teacherViewListAdapter);
                 }
-
-//                Toast.makeText(getApplicationContext(), "Class ID: " + classList.getClassId() + ",  Class Name : " + classList.getClassName(), Toast.LENGTH_SHORT).show();
                 storeClassId = classList.getClassId();
                 GetSectionData();
             }
@@ -131,20 +124,15 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
 
                 if (classStudentArrayList != null) {
                     classStudentArrayList.clear();
-//                    classStudentListAdapter = new ClassStudentListAdapter(this, this.classStudentArrayList);
                     loadMoreListView.setAdapter(classStudentListAdapter);
                 }
 
                 if (teacherViewArrayList != null) {
                     teacherViewArrayList.clear();
-                    // teacherViewListAdapter = new TeacherViewListAdapter(this, this.teacherViewArrayList);
                     loadMoreListView.setAdapter(teacherViewListAdapter);
                 }
 
-//                Toast.makeText(getApplicationContext(), "Section ID: " + sectionList.getSectionId() + ",  Section Name : " + sectionList.getSectionName(), Toast.LENGTH_SHORT).show();
                 storeSectionId = sectionList.getSectionId();
-
-                //GetStudentData();
             }
 
             @Override
@@ -160,21 +148,17 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
                     case R.id.radioStudent:
                         StudentList.setVisibility(View.VISIBLE);
                         TeacherList.setVisibility(View.GONE);
-//                        loadMoreListView.setAdapter(null);
                         GetStudentData();
                         break;
 
                     case R.id.radioTeachers:
                         TeacherList.setVisibility(View.VISIBLE);
                         StudentList.setVisibility(View.GONE);
-//                        loadMoreListView.setAdapter(null);
                         GetTeacherData();
                         break;
                 }
             }
         });
-
-//        GetStudentData();
     }
 
     private void GetTeacherData() {
@@ -316,7 +300,6 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
             }
             Intent intent = new Intent(this, ClassStudentDetailsActivity.class);
             intent.putExtra("eventObj", classStudent);
-            // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
         }
         if (checkSpinner.equalsIgnoreCase("teachers")) {
@@ -332,7 +315,6 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
             }
             Intent intent = new Intent(this, TeacherViewDetailsActivity.class);
             intent.putExtra("eventObj", teacherView);
-            // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
         }
     }
@@ -383,7 +365,6 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
                     JSONArray getData = response.getJSONArray("data");
                     JSONObject userData = getData.getJSONObject(0);
                     int getLength = getData.length();
-                    String subjectName = null;
                     Log.d(TAG, "userData dictionary" + userData.toString());
 
                     String sectionId = "";
@@ -410,8 +391,6 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
                             @Override
                             public void run() {
                                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
-
                                 Gson gson = new Gson();
                                 ClassStudentList classStudentList = gson.fromJson(response.toString(), ClassStudentList.class);
                                 if (classStudentList.getClassStudent() != null && classStudentList.getClassStudent().size() > 0) {
@@ -436,7 +415,6 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
                             @Override
                             public void run() {
                                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
 
                                 Gson gson = new Gson();
                                 TeacherViewList teacherViewList = gson.fromJson(response.toString(), TeacherViewList.class);
@@ -470,7 +448,6 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
             @Override
             public void run() {
                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
                 AlertDialogHelper.showSimpleAlertDialog(ClassBasedViewActivity.this, error);
             }
         });

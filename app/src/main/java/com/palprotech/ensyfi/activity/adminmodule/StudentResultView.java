@@ -43,7 +43,6 @@ import java.util.ArrayList;
 public class StudentResultView extends AppCompatActivity implements IServiceListener, DialogClickListener, AdapterView.OnItemClickListener {
 
     private static final String TAG = StudentResultView.class.getName();
-    LinearLayout layout_all;
     private ProgressDialogHelper progressDialogHelper;
     private ServiceHelper serviceHelper;
     private String checkSpinner = "", storeClassId, storeSectionId;
@@ -53,7 +52,6 @@ public class StudentResultView extends AppCompatActivity implements IServiceList
     int pageNumber = 0, totalCount = 0;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
-    private SearchView mSearchView = null;
     private Exams exams;
 
     @Override
@@ -157,12 +155,10 @@ public class StudentResultView extends AppCompatActivity implements IServiceList
         if (isInternalExternal.equalsIgnoreCase("1")) {
             Intent intent = new Intent(this, ExamMarksActivity.class);
             intent.putExtra("eventObj", exams);
-            // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
         } else {
             Intent intent = new Intent(this, ExamOnlyTotalMarksActivity.class);
             intent.putExtra("eventObj", exams);
-            // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
         }
     }
@@ -185,14 +181,11 @@ public class StudentResultView extends AppCompatActivity implements IServiceList
 
             try {
                 JSONArray getData = response.getJSONArray("data");
-                JSONObject userData = getData.getJSONObject(0);
 
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
                         progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
-
                         Gson gson = new Gson();
                         ClassStudentList classStudentList = gson.fromJson(response.toString(), ClassStudentList.class);
                         if (classStudentList.getClassStudent() != null && classStudentList.getClassStudent().size() > 0) {
@@ -218,7 +211,6 @@ public class StudentResultView extends AppCompatActivity implements IServiceList
             @Override
             public void run() {
                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
                 AlertDialogHelper.showSimpleAlertDialog(StudentResultView.this, error);
             }
         });

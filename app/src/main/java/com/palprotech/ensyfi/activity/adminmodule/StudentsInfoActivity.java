@@ -49,7 +49,6 @@ public class StudentsInfoActivity extends AppCompatActivity implements IServiceL
     int pageNumber = 0, totalCount = 0;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
-    private SearchView mSearchView = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -114,7 +113,6 @@ public class StudentsInfoActivity extends AppCompatActivity implements IServiceL
         }
         Intent intent = new Intent(this, ClassStudentDetailsActivity.class);
         intent.putExtra("eventObj", classStudent);
-        // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
     }
 
@@ -164,13 +162,11 @@ public class StudentsInfoActivity extends AppCompatActivity implements IServiceL
 
             try {
                 JSONArray getData = response.getJSONArray("data");
-                JSONObject userData = getData.getJSONObject(0);
 
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
                         progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
 
                         Gson gson = new Gson();
                         ClassStudentList classStudentList = gson.fromJson(response.toString(), ClassStudentList.class);
@@ -197,7 +193,6 @@ public class StudentsInfoActivity extends AppCompatActivity implements IServiceL
             @Override
             public void run() {
                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
                 AlertDialogHelper.showSimpleAlertDialog(StudentsInfoActivity.this, error);
             }
         });

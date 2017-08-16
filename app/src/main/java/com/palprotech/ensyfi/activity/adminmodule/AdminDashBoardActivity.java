@@ -288,23 +288,23 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
             startActivity(navigationIntent);
         } else if (position == 9) {
             Intent navigationIntent = new Intent(this, FeesViewActivity.class);
-            //navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 10) {
             Intent navigationIntent = new Intent(this, OnDutyViewActivity.class);
-            //navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 11) {
             Intent navigationIntent = new Intent(this, GroupingActivity.class);
-            //navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 12) {
             Intent navigationIntent = new Intent(this, LeaveStatusActivity.class);
-            //navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 13) {
             Intent navigationIntent = new Intent(this, ChangePasswordActivity.class);
-            //navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 14) {
             Log.d(TAG, "Perform Logout");

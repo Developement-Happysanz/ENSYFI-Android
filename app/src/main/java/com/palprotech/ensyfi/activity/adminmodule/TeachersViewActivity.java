@@ -40,15 +40,12 @@ public class TeachersViewActivity extends AppCompatActivity implements IServiceL
     private static final String TAG = TeachersViewActivity.class.getName();
     private ProgressDialogHelper progressDialogHelper;
     private ServiceHelper serviceHelper;
-    private String checkSpinner = "", storeClassId, storeSectionId;
     ListView loadMoreListView;
     TeacherViewListAdapter teacherViewListAdapter;
     ArrayList<TeacherView> teacherViewArrayList;
     int pageNumber = 0, totalCount = 0;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
-    private SearchView mSearchView = null;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -72,7 +69,6 @@ public class TeachersViewActivity extends AppCompatActivity implements IServiceL
     }
 
     private void GetTeacherData() {
-        checkSpinner = "section";
         if (CommonUtils.isNetworkAvailable(this)) {
 
             JSONObject jsonObject = new JSONObject();
@@ -134,7 +130,6 @@ public class TeachersViewActivity extends AppCompatActivity implements IServiceL
         }
         Intent intent = new Intent(this, TeacherViewDetailsActivity.class);
         intent.putExtra("eventObj", teacherView);
-        // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
     }
 
@@ -158,7 +153,6 @@ public class TeachersViewActivity extends AppCompatActivity implements IServiceL
                 @Override
                 public void run() {
                     progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
 
                     Gson gson = new Gson();
                     TeacherViewList teacherViewList = gson.fromJson(response.toString(), TeacherViewList.class);
@@ -181,7 +175,6 @@ public class TeachersViewActivity extends AppCompatActivity implements IServiceL
             @Override
             public void run() {
                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
                 AlertDialogHelper.showSimpleAlertDialog(TeachersViewActivity.this, error);
             }
         });

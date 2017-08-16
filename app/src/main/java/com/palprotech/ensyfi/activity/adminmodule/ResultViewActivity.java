@@ -53,7 +53,6 @@ public class ResultViewActivity extends AppCompatActivity implements IServiceLis
     protected ProgressDialogHelper progressDialogHelper;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
-    private SearchView mSearchView = null;
     private Spinner spnClassList, spnSectionList;
     private String checkSpinner = "", storeClassId, storeSectionId;
 
@@ -62,7 +61,6 @@ public class ResultViewActivity extends AppCompatActivity implements IServiceLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result_view);
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
-//        loadMoreListView.setOnLoadMoreListener(this);
         loadMoreListView.setOnItemClickListener(this);
         spnClassList = (Spinner) findViewById(R.id.class_list_spinner);
         spnSectionList = (Spinner) findViewById(R.id.section_list_spinner);
@@ -86,7 +84,6 @@ public class ResultViewActivity extends AppCompatActivity implements IServiceLis
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 StoreClass classList = (StoreClass) parent.getSelectedItem();
-//                Toast.makeText(getApplicationContext(), "Class ID: " + classList.getClassId() + ",  Class Name : " + classList.getClassName(), Toast.LENGTH_SHORT).show();
                 storeClassId = classList.getClassId();
                 GetSectionData();
             }
@@ -101,7 +98,6 @@ public class ResultViewActivity extends AppCompatActivity implements IServiceLis
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 StoreSection sectionList = (StoreSection) parent.getSelectedItem();
-//                Toast.makeText(getApplicationContext(), "Section ID: " + sectionList.getSectionId() + ",  Section Name : " + sectionList.getSectionName(), Toast.LENGTH_SHORT).show();
                 storeSectionId = sectionList.getSectionId();
                 callGetExamResultService();
             }
@@ -157,9 +153,6 @@ public class ResultViewActivity extends AppCompatActivity implements IServiceLis
     }
 
     public void callGetExamResultService() {
-        /*if(eventsListAdapter != null){
-            eventsListAdapter.clearSearchFlag();
-        }*/
         checkSpinner = "exams";
 
         if (examsArrayList != null)
@@ -167,10 +160,8 @@ public class ResultViewActivity extends AppCompatActivity implements IServiceLis
 
         if (CommonUtils.isNetworkAvailable(this)) {
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            //    eventServiceHelper.makeRawRequest(FindAFunConstants.GET_ADVANCE_SINGLE_SEARCH);
             new HttpAsyncTask().execute("");
         } else {
-//            AlertDialogHelper.showSimpleAlertDialog(this, getString(R.string.no_connectivity));
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
         }
     }
@@ -227,7 +218,6 @@ public class ResultViewActivity extends AppCompatActivity implements IServiceLis
         intent.putExtra("eventObj", exams);
         intent.putExtra("storeClassId", storeClassId);
         intent.putExtra("storeSectionId", storeSectionId);
-        // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
     }
 
@@ -253,7 +243,6 @@ public class ResultViewActivity extends AppCompatActivity implements IServiceLis
                     JSONArray getData = response.getJSONArray("data");
                     JSONObject userData = getData.getJSONObject(0);
                     int getLength = getData.length();
-                    String subjectName = null;
                     Log.d(TAG, "userData dictionary" + userData.toString());
 
                     String classId = "";
@@ -277,7 +266,6 @@ public class ResultViewActivity extends AppCompatActivity implements IServiceLis
                     JSONArray getData = response.getJSONArray("data");
                     JSONObject userData = getData.getJSONObject(0);
                     int getLength = getData.length();
-                    String subjectName = null;
                     Log.d(TAG, "userData dictionary" + userData.toString());
 
                     String sectionId = "";
@@ -305,7 +293,6 @@ public class ResultViewActivity extends AppCompatActivity implements IServiceLis
                             @Override
                             public void run() {
                                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
 
                                 Gson gson = new Gson();
                                 ExamList examList = gson.fromJson(response.toString(), ExamList.class);
@@ -338,7 +325,6 @@ public class ResultViewActivity extends AppCompatActivity implements IServiceLis
             @Override
             public void run() {
                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
                 AlertDialogHelper.showSimpleAlertDialog(ResultViewActivity.this, error);
             }
         });

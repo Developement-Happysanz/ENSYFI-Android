@@ -53,7 +53,6 @@ public class ParentsViewActivity extends AppCompatActivity implements IServiceLi
     int pageNumber = 0, totalCount = 0;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
-    private SearchView mSearchView = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,7 +64,6 @@ public class ParentsViewActivity extends AppCompatActivity implements IServiceLi
         spnClassList = (Spinner) findViewById(R.id.class_list_spinner);
         spnSectionList = (Spinner) findViewById(R.id.section_list_spinner);
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
-//        loadMoreListView.setOnLoadMoreListener(this);
         loadMoreListView.setOnItemClickListener(this);
         parentStudentArrayList = new ArrayList<>();
 
@@ -83,7 +81,6 @@ public class ParentsViewActivity extends AppCompatActivity implements IServiceLi
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 StoreClass classList = (StoreClass) parent.getSelectedItem();
-//                Toast.makeText(getApplicationContext(), "Class ID: " + classList.getClassId() + ",  Class Name : " + classList.getClassName(), Toast.LENGTH_SHORT).show();
                 storeClassId = classList.getClassId();
                 GetSectionData();
             }
@@ -98,7 +95,6 @@ public class ParentsViewActivity extends AppCompatActivity implements IServiceLi
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 StoreSection sectionList = (StoreSection) parent.getSelectedItem();
-//                Toast.makeText(getApplicationContext(), "Section ID: " + sectionList.getSectionId() + ",  Section Name : " + sectionList.getSectionName(), Toast.LENGTH_SHORT).show();
                 storeSectionId = sectionList.getSectionId();
                 GetStudentParentData();
             }
@@ -147,7 +143,6 @@ public class ParentsViewActivity extends AppCompatActivity implements IServiceLi
             String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_CLASS_LISTS;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
-
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
         }
@@ -173,7 +168,6 @@ public class ParentsViewActivity extends AppCompatActivity implements IServiceLi
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
             String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_PARENT_LIST;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
-
 
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
@@ -254,7 +248,6 @@ public class ParentsViewActivity extends AppCompatActivity implements IServiceLi
                     JSONArray getData = response.getJSONArray("data");
                     JSONObject userData = getData.getJSONObject(0);
                     int getLength = getData.length();
-                    String subjectName = null;
                     Log.d(TAG, "userData dictionary" + userData.toString());
 
                     String classId = "";
@@ -278,7 +271,6 @@ public class ParentsViewActivity extends AppCompatActivity implements IServiceLi
                     JSONArray getData = response.getJSONArray("data");
                     JSONObject userData = getData.getJSONObject(0);
                     int getLength = getData.length();
-                    String subjectName = null;
                     Log.d(TAG, "userData dictionary" + userData.toString());
 
                     String sectionId = "";
@@ -338,7 +330,6 @@ public class ParentsViewActivity extends AppCompatActivity implements IServiceLi
             @Override
             public void run() {
                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
                 AlertDialogHelper.showSimpleAlertDialog(ParentsViewActivity.this, error);
             }
         });

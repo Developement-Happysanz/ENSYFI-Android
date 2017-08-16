@@ -37,7 +37,6 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
 
     private static final String TAG = TeacherViewDetailsActivity.class.getName();
     private TeacherView teacherView;
-    private TextView txtTeacherName, txtTeacherId;
     private Button btnTeacherTimeTable;
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper progressDialogHelper;
@@ -54,7 +53,6 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
 
         teacherView = (TeacherView) getIntent().getSerializableExtra("eventObj");
 
-
         btnTeacherTimeTable = (Button) findViewById(R.id.btnTeacherTimeTable);
         btnTeacherTimeTable.setOnClickListener(this);
 
@@ -63,7 +61,6 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
         progressDialogHelper = new ProgressDialogHelper(this);
 
         teacherData = new SaveTeacherData(this);
-        String view = "";
 
         btnBack = (ImageView) findViewById(R.id.back_res);
         btnBack.setOnClickListener(this);
@@ -97,7 +94,6 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
 
         if (CommonUtils.isNetworkAvailable(this)) {
 
-
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_TEACHER_ID_SHOW, teacherView.getTeacherId());
@@ -130,7 +126,6 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
             finish();
             clearTeacherInfo();
         }
-
     }
 
     @Override
@@ -147,9 +142,6 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
     public void onResponse(JSONObject response) {
         progressDialogHelper.hideProgressDialog();
         if (validateSignInResponse(response)) {
-
-            String repo = response.toString();
-//            longInfo(repo);
 
             try {
                 JSONArray getTimeTable = response.getJSONArray("timeTable");
@@ -195,7 +187,6 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
 
                     } else {
                         signInsuccess = true;
-
                     }
                 }
             } catch (JSONException e) {
@@ -250,5 +241,4 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
         teacherClassTaken.clearComposingText();
 
     }
-
 }

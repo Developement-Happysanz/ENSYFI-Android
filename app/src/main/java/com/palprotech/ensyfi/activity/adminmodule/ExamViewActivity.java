@@ -55,7 +55,6 @@ public class ExamViewActivity extends AppCompatActivity implements IServiceListe
     protected ProgressDialogHelper progressDialogHelper;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
-    private SearchView mSearchView = null;
     private Spinner spnClassList, spnSectionList;
     private String checkSpinner = "", storeClassId, storeSectionId;
 
@@ -65,7 +64,6 @@ public class ExamViewActivity extends AppCompatActivity implements IServiceListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exam_view);
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
-//        loadMoreListView.setOnLoadMoreListener(this);
         loadMoreListView.setOnItemClickListener(this);
         spnClassList = (Spinner) findViewById(R.id.class_list_spinner);
         spnSectionList = (Spinner) findViewById(R.id.section_list_spinner);
@@ -89,7 +87,6 @@ public class ExamViewActivity extends AppCompatActivity implements IServiceListe
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 StoreClass classList = (StoreClass) parent.getSelectedItem();
-//                Toast.makeText(getApplicationContext(), "Class ID: " + classList.getClassId() + ",  Class Name : " + classList.getClassName(), Toast.LENGTH_SHORT).show();
                 storeClassId = classList.getClassId();
                 GetSectionData();
             }
@@ -104,7 +101,6 @@ public class ExamViewActivity extends AppCompatActivity implements IServiceListe
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 StoreSection sectionList = (StoreSection) parent.getSelectedItem();
-//                Toast.makeText(getApplicationContext(), "Section ID: " + sectionList.getSectionId() + ",  Section Name : " + sectionList.getSectionName(), Toast.LENGTH_SHORT).show();
                 storeSectionId = sectionList.getSectionId();
                 callGetExamResultService();
             }
@@ -159,9 +155,6 @@ public class ExamViewActivity extends AppCompatActivity implements IServiceListe
     }
 
     public void callGetExamResultService() {
-        /*if(eventsListAdapter != null){
-            eventsListAdapter.clearSearchFlag();
-        }*/
         checkSpinner = "exams";
 
         if (examsArrayList != null)
@@ -169,10 +162,8 @@ public class ExamViewActivity extends AppCompatActivity implements IServiceListe
 
         if (CommonUtils.isNetworkAvailable(this)) {
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            //    eventServiceHelper.makeRawRequest(FindAFunConstants.GET_ADVANCE_SINGLE_SEARCH);
             new HttpAsyncTask().execute("");
         } else {
-//            AlertDialogHelper.showSimpleAlertDialog(this, getString(R.string.no_connectivity));
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
         }
     }
@@ -230,12 +221,10 @@ public class ExamViewActivity extends AppCompatActivity implements IServiceListe
         if (isMarkStatus.equalsIgnoreCase("1")) {
             Intent intent = new Intent(this, ExamMarksActivity.class);
             intent.putExtra("eventObj", exams);
-            // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
         } else {
             Intent intent = new Intent(this, ExamDetailActivity.class);
             intent.putExtra("eventObj", exams);
-            // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
         }
     }
@@ -262,7 +251,6 @@ public class ExamViewActivity extends AppCompatActivity implements IServiceListe
                     JSONArray getData = response.getJSONArray("data");
                     JSONObject userData = getData.getJSONObject(0);
                     int getLength = getData.length();
-                    String subjectName = null;
                     Log.d(TAG, "userData dictionary" + userData.toString());
 
                     String classId = "";
@@ -314,7 +302,6 @@ public class ExamViewActivity extends AppCompatActivity implements IServiceListe
                             @Override
                             public void run() {
                                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
 
                                 Gson gson = new Gson();
                                 ExamList examList = gson.fromJson(response.toString(), ExamList.class);
@@ -347,7 +334,6 @@ public class ExamViewActivity extends AppCompatActivity implements IServiceListe
             @Override
             public void run() {
                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
                 AlertDialogHelper.showSimpleAlertDialog(ExamViewActivity.this, error);
             }
         });
