@@ -42,11 +42,10 @@ public class StudentTimeTableActivity extends AppCompatActivity implements IServ
     private ServiceHelper serviceHelper;
     private SaveTeacherData teacherData;
     SQLiteHelper db;
-    String ClassName, SectionName, SubjectName, TableId;
+    String ClassName, SectionName, SubjectName;
     String ClassId = "";
     String SubjectId = "";
     String PeriodId = "";
-    String SubjectNameVal = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,12 +89,8 @@ public class StudentTimeTableActivity extends AppCompatActivity implements IServ
     }
 
     private void GetTimeTableData() {
+
         try {
-
-//            int getLength = getData.length();
-//            String subjectName = null;
-//            Log.d(TAG, "userData dictionary" + userData.toString());
-
             layout_all = (LinearLayout) findViewById(R.id.layout_timetable);
             TableLayout layout = new TableLayout(this);
             layout.setLayoutParams(new TableLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
@@ -189,7 +184,6 @@ public class StudentTimeTableActivity extends AppCompatActivity implements IServ
                         if ((r == 6) && (col == 54)) {
                             name = "Saturday";
                         }
-//                        b.setTextColor(Color.parseColor("#ffff00"));
                     } else {
 
                         String fValue = String.valueOf(f);
@@ -218,9 +212,6 @@ public class StudentTimeTableActivity extends AppCompatActivity implements IServ
                     }
                     db.close();
 
-//                        name = getData.getJSONObject(i).getString("subject_name") + "";
-//                        }
-
                     cell.setBackgroundColor(Color.WHITE);//argb(255,104,53,142)
 
                     b.setText(name);
@@ -229,6 +220,7 @@ public class StudentTimeTableActivity extends AppCompatActivity implements IServ
                     b.setAllCaps(true);
                     b.setTextColor(Color.parseColor("#FF68358E"));
                     b.setGravity(Gravity.CENTER);
+
                     b.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -255,7 +247,6 @@ public class StudentTimeTableActivity extends AppCompatActivity implements IServ
 
             layout_all.addView(layout);
 
-//                }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -278,7 +269,6 @@ public class StudentTimeTableActivity extends AppCompatActivity implements IServ
 
                     } else {
                         signInsuccess = true;
-
                     }
                 }
             } catch (JSONException e) {
@@ -306,13 +296,8 @@ public class StudentTimeTableActivity extends AppCompatActivity implements IServ
         if (validateSignInResponse(response)) {
 
             try {
-//                JSONArray getData = response.getJSONArray("timeTable");
-//                JSONObject userData = getData.getJSONObject(0);
-
                 JSONArray getTimeTable = response.getJSONArray("timeTable");
                 teacherData.saveTeacherTimeTable(getTimeTable);
-
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }

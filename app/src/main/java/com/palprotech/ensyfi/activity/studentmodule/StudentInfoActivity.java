@@ -34,7 +34,6 @@ public class StudentInfoActivity extends AppCompatActivity {
     SQLiteHelper db;
     Vector<String> vecStudent;
     List<String> lsStudent = new ArrayList<String>();
-    ArrayAdapter<String> adptStudent;
     String StudentName, StudentId, AdmissionId, Class, Section, AdmissionNo, ClassId;
     TextView txtstudname, txtstudid, txtadmissid, txtclass, txtsec;
     Button btnContinue;
@@ -60,10 +59,6 @@ public class StudentInfoActivity extends AppCompatActivity {
                 String studentName = parent.getItemAtPosition(position).toString();
                 StudentName = studentName;
                 GetStudentDetails(studentName);
-
-//                if (pincode.length() != 0) {
-//                    GetConatctPersonDetails(CompanyName);
-//                }
             }
 
             @Override
@@ -140,10 +135,7 @@ public class StudentInfoActivity extends AppCompatActivity {
             txtstudid.setText(StudentId);
             txtadmissid.setText(AdmissionNo);
             txtclass.setText(Class);
-            txtsec.setText("-"+Section);
-
-            //
-
+            txtsec.setText("-" + Section);
 
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "Get Student Details", Toast.LENGTH_LONG).show();

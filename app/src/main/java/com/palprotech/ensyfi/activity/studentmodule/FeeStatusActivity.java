@@ -39,22 +39,19 @@ public class FeeStatusActivity extends AppCompatActivity implements IServiceList
 
     private static final String TAG = "FeeStatusActivity";
     ListView loadMoreListView;
-    View view;
     FeeStatusListAdapter feeStatusListAdapter;
     ServiceHelper serviceHelper;
     ArrayList<FeeStatus> feeStatusArrayList;
-    int pageNumber = 0, totalCount = 0;
+    int totalCount = 0;
     protected ProgressDialogHelper progressDialogHelper;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
-    private SearchView mSearchView = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fee_status);
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
-//        loadMoreListView.setOnLoadMoreListener(this);
         loadMoreListView.setOnItemClickListener(this);
         feeStatusArrayList = new ArrayList<>();
         serviceHelper = new ServiceHelper(this);
@@ -69,22 +66,16 @@ public class FeeStatusActivity extends AppCompatActivity implements IServiceList
                 finish();
             }
         });
-
     }
 
     public void callGetFeeStatusService() {
-        /*if(eventsListAdapter != null){
-            eventsListAdapter.clearSearchFlag();
-        }*/
         if (feeStatusArrayList != null)
             feeStatusArrayList.clear();
 
         if (CommonUtils.isNetworkAvailable(this)) {
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            //    eventServiceHelper.makeRawRequest(FindAFunConstants.GET_ADVANCE_SINGLE_SEARCH);
             new HttpAsyncTask().execute("");
         } else {
-//            AlertDialogHelper.showSimpleAlertDialog(this, getString(R.string.no_connectivity));
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
         }
     }
@@ -96,8 +87,6 @@ public class FeeStatusActivity extends AppCompatActivity implements IServiceList
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAM_STUDENT_ID, PreferenceStorage.getStudentRegisteredIdPreference(getApplicationContext()));
-
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -168,7 +157,6 @@ public class FeeStatusActivity extends AppCompatActivity implements IServiceList
                 @Override
                 public void run() {
                     progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
 
                     Gson gson = new Gson();
                     FeeStatusList feeStatusList = gson.fromJson(response.toString(), FeeStatusList.class);
@@ -200,7 +188,6 @@ public class FeeStatusActivity extends AppCompatActivity implements IServiceList
             @Override
             public void run() {
                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
                 AlertDialogHelper.showSimpleAlertDialog(FeeStatusActivity.this, error);
             }
         });

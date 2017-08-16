@@ -41,15 +41,13 @@ public class ExamOnlyTotalMarksActivity extends AppCompatActivity implements ISe
 
     private static final String TAG = "ExamMarksActivity";
     ListView loadMoreListView;
-    View view;
     ExamOnlyTotalMarkViewListAdapter examOnlyTotalMarkViewListAdapter;
     ServiceHelper serviceHelper;
     ArrayList<ExamMark> examMarkArrayList;
-    int pageNumber = 0, totalCount = 0;
+    int totalCount = 0;
     protected ProgressDialogHelper progressDialogHelper;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
-    private SearchView mSearchView = null;
     private Exams exams;
     String ExamId, IsInternalExternal;
     TextView txtTotal;
@@ -59,7 +57,6 @@ public class ExamOnlyTotalMarksActivity extends AppCompatActivity implements ISe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exam_only_total_marks);
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
-//        loadMoreListView.setOnLoadMoreListener(this);
         loadMoreListView.setOnItemClickListener(this);
         examMarkArrayList = new ArrayList<>();
         serviceHelper = new ServiceHelper(this);
@@ -83,18 +80,13 @@ public class ExamOnlyTotalMarksActivity extends AppCompatActivity implements ISe
         ExamId = exams.getExamId();
         IsInternalExternal = exams.getIsInternalExternal();
 
-        /*if(eventsListAdapter != null){
-            eventsListAdapter.clearSearchFlag();
-        }*/
         if (examMarkArrayList != null)
             examMarkArrayList.clear();
 
         if (CommonUtils.isNetworkAvailable(this)) {
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            //    eventServiceHelper.makeRawRequest(FindAFunConstants.GET_ADVANCE_SINGLE_SEARCH);
             new HttpAsyncTask().execute("");
         } else {
-//            AlertDialogHelper.showSimpleAlertDialog(this, getString(R.string.no_connectivity));
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
         }
     }
@@ -148,7 +140,7 @@ public class ExamOnlyTotalMarksActivity extends AppCompatActivity implements ISe
             Log.d("ajazFilterresponse : ", response.toString());
             try {
                 String totalMark = response.getString("totalMarks");
-                txtTotal.setText( totalMark);
+                txtTotal.setText(totalMark);
 
             } catch (Exception ex) {
             }
@@ -157,7 +149,6 @@ public class ExamOnlyTotalMarksActivity extends AppCompatActivity implements ISe
                 @Override
                 public void run() {
                     progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
 
                     Gson gson = new Gson();
                     ExamMarkList examMarkList = gson.fromJson(response.toString(), ExamMarkList.class);
@@ -189,7 +180,6 @@ public class ExamOnlyTotalMarksActivity extends AppCompatActivity implements ISe
             @Override
             public void run() {
                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
                 AlertDialogHelper.showSimpleAlertDialog(ExamOnlyTotalMarksActivity.this, error);
             }
         });
@@ -211,7 +201,7 @@ public class ExamOnlyTotalMarksActivity extends AppCompatActivity implements ISe
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
             String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_EXAM_MARK_API;
-            serviceHelper.makeGetServiceCall(jsonObject.toString(),url);
+            serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
             return null;
         }

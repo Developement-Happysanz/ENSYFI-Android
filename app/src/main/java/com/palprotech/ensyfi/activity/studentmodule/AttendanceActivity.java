@@ -42,14 +42,12 @@ public class AttendanceActivity extends AppCompatActivity implements IServiceLis
     private CaldroidFragment caldroidFragment;
     private CaldroidFragment dialogCaldroidFragment;
     private static final String TAG = "ClassTestHomework";
-    View view;
+
     ServiceHelper serviceHelper;
     ArrayList<Attendance> attendanceArrayList;
-    int pageNumber = 0, totalCount = 0;
     protected ProgressDialogHelper progressDialogHelper;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
-    private SearchView mSearchView = null;
     ArrayList<String> dateStrings;
     private TextView txtWorkingDays, txtPresentDays, txtODDays, txtLeaveDays, txtAbsentDays;
 
@@ -89,7 +87,6 @@ public class AttendanceActivity extends AppCompatActivity implements IServiceLis
 
         callGetAttendanceService();
 
-//        leaveDates();
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
         bckbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,20 +98,15 @@ public class AttendanceActivity extends AppCompatActivity implements IServiceLis
     }
 
     public void callGetAttendanceService() {
-        /*if(eventsListAdapter != null){
-            eventsListAdapter.clearSearchFlag();
-        }*/
         if (attendanceArrayList != null)
             attendanceArrayList.clear();
 
         if (CommonUtils.isNetworkAvailable(this)) {
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            //    eventServiceHelper.makeRawRequest(FindAFunConstants.GET_ADVANCE_SINGLE_SEARCH);
             new HttpAsyncTask().execute("");
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
         }
-
     }
 
     @Override
@@ -135,8 +127,6 @@ public class AttendanceActivity extends AppCompatActivity implements IServiceLis
             try {
                 jsonObject.put(EnsyfiConstants.PARAM_CLASS_ID, PreferenceStorage.getStudentClassIdPreference(getApplicationContext()));
                 jsonObject.put(EnsyfiConstants.PARAM_STUDENT_ID, PreferenceStorage.getStudentRegisteredIdPreference(getApplicationContext()));
-
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -154,47 +144,6 @@ public class AttendanceActivity extends AppCompatActivity implements IServiceLis
         protected void onPostExecute(Void result) {
             progressDialogHelper.cancelProgressDialog();
         }
-    }
-
-    private void leaveDates() {
-
-
-//        ArrayList<Attendance> dateStrings1 = new ArrayList<Attendance>();
-
-//        dateStrings.add("2017-05-14");
-//
-//        dateStrings.add("2017-05-16");
-//
-//        dateStrings.add("2017-05-18");
-//
-//        dateStrings.add("2017-05-20");
-//
-//        dateStrings.add("2017-05-25");
-
-        ArrayList<Date> dates = new ArrayList<>(dateStrings.size()); // ArrayList of dates
-
-        for (String s : dateStrings) {
-
-            try {
-                Date dateObj = new SimpleDateFormat("yyyy-MM-dd").parse(s);
-
-                dates.add(dateObj);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        }
-
-        for (Date d : dates) {
-            String str = new SimpleDateFormat("yyyy-MM-dd").format(d);
-
-            System.out.println(str);
-        }
-
-        // Customize
-
-        caldroidFragment.setDisableDates(dates);
-        caldroidFragment.refreshView();
-
     }
 
     @Override
@@ -225,8 +174,6 @@ public class AttendanceActivity extends AppCompatActivity implements IServiceLis
                             (status.equalsIgnoreCase("notRegistered")) || (status.equalsIgnoreCase("error")))) {
                         signInsuccess = false;
                         Log.d(TAG, "Show error dialog");
-//                        AlertDialogHelper.showSimpleAlertDialog(this, msg);
-
                     } else {
                         signInsuccess = true;
 
@@ -247,7 +194,6 @@ public class AttendanceActivity extends AppCompatActivity implements IServiceLis
 
             Log.d("ajazFilterresponse : ", response.toString());
 
-            String repo = response.toString();
             try {
                 JSONArray getData = response.getJSONArray("attendenceDetails");
                 JSONObject getAttendanceHistory = response.getJSONObject("attendenceHistory");
@@ -300,7 +246,6 @@ public class AttendanceActivity extends AppCompatActivity implements IServiceLis
                     txtAbsentDays.setText(s5);
                 }
 
-
                 for (int l = 0; l < getData.length(); l++) {
                     dateStrings.add(getData.getJSONObject(l).getString("abs_date"));
                 }
@@ -329,26 +274,10 @@ public class AttendanceActivity extends AppCompatActivity implements IServiceLis
                 caldroidFragment.setDisableDates(dates);
                 caldroidFragment.refreshView();
 
-//            JSONObject userData = getData.getJSONObject(0);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
 
-//        mHandler.post(new Runnable() {
-//            @Override
-//            public void run() {
-//                progressDialogHelper.hideProgressDialog();
-////                loadMoreListView.onLoadMoreComplete();
-//
-//                Gson gson = new Gson();
-//                AttendanceList attendanceList = gson.fromJson(response.toString(), AttendanceList.class);
-//                if (attendanceList.getAttendanceList() != null && attendanceList.getAttendanceList().size() > 0) {
-//                    totalCount = attendanceList.getCount();
-//                    isLoadingForFirstTime = false;
-//                    updateListAdapter(attendanceList.getAttendanceList());
-//                }
-//            }
-//        });
         } else {
             Log.d(TAG, "Error while sign In");
         }
@@ -356,12 +285,6 @@ public class AttendanceActivity extends AppCompatActivity implements IServiceLis
 
     protected void updateListAdapter(ArrayList<Attendance> classTestArrayList) {
         this.attendanceArrayList.addAll(classTestArrayList);
-//        if (classTestListAdapter == null) {
-//            classTestListAdapter = new ClassTestListAdapter(this, this.classTestArrayList);
-//            loadMoreListView.setAdapter(classTestListAdapter);
-//        } else {
-//            classTestListAdapter.notifyDataSetChanged();
-//        }
     }
 
     @Override
@@ -371,7 +294,6 @@ public class AttendanceActivity extends AppCompatActivity implements IServiceLis
             @Override
             public void run() {
                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
                 AlertDialogHelper.showSimpleAlertDialog(AttendanceActivity.this, error);
             }
         });

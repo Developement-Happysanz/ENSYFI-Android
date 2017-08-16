@@ -28,7 +28,7 @@ import org.json.JSONObject;
  * Created by Admin on 17-05-2017.
  */
 
-public class  ClassTestDetailActivity extends AppCompatActivity implements IServiceListener, DialogClickListener, View.OnClickListener {
+public class ClassTestDetailActivity extends AppCompatActivity implements IServiceListener, DialogClickListener, View.OnClickListener {
     private static final String TAG = ClassTestDetailActivity.class.getName();
     private ClassTest classTest;
     private TextView txtTitle, txtHomeWorkDate, txtHomeWorkDetails, txtHomeWorkSubject, tvTitleText, txtViewMarks, txtViewRemarks;
@@ -36,8 +36,6 @@ public class  ClassTestDetailActivity extends AppCompatActivity implements IServ
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper progressDialogHelper;
     String txtHomeWorkType = "0";
-    String markStatus = "0";
-    Button btnmark;
     String mStatus;
 
     @Override
@@ -90,7 +88,6 @@ public class  ClassTestDetailActivity extends AppCompatActivity implements IServ
 
             if (CommonUtils.isNetworkAvailable(this)) {
 
-
                 JSONObject jsonObject = new JSONObject();
                 try {
                     jsonObject.put(EnsyfiConstants.PARAM_HOMEWORK_ID, classTest.getHwId());
@@ -103,8 +100,6 @@ public class  ClassTestDetailActivity extends AppCompatActivity implements IServ
                 progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
                 String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_STUDENT_CLASSTEST_MARK_API;
                 serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
-
-
             } else {
                 AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
             }
@@ -113,30 +108,16 @@ public class  ClassTestDetailActivity extends AppCompatActivity implements IServ
             llMarkView.setVisibility(View.GONE);
             llMarkRemarks.setVisibility(View.GONE);
         }
-//        txtHomeWorkMarkStatus = classTest.getHwMarkStatus();
-//        if(txtHomeWorkMarkStatus.equals(1)){
-//            btnmark.setVisibility(View.VISIBLE);
-//        }
-//        else{
-//            btnmark.setVisibility(View.GONE);
-//        }
-
     }
 
     @Override
     public void onResponse(JSONObject response) {
         progressDialogHelper.hideProgressDialog();
         if (validateSignInResponse(response)) {
-
-            String repo = response.toString();
-
-//            longInfo(repo);
-
             try {
                 JSONArray getData = response.getJSONArray("ctestmarkDetails");
                 JSONObject marksData = getData.getJSONObject(0);
                 String studentMark = null, studentRemarks = null;
-
 
                 Log.d(TAG, "userData dictionary" + marksData.toString());
                 if (marksData != null) {
@@ -144,11 +125,6 @@ public class  ClassTestDetailActivity extends AppCompatActivity implements IServ
                     txtViewMarks.setText(studentMark);
                     studentRemarks = marksData.getString("remarks") + "";
                     txtViewRemarks.setText(studentRemarks);
-
-
-                    //
-
-
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

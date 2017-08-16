@@ -40,15 +40,13 @@ public class ExamDetailActivity extends AppCompatActivity implements IServiceLis
 
     private static final String TAG = "ExamDetailActivity";
     ListView loadMoreListView;
-    View view;
     ExamDetailViewListAdapter examDetailViewListAdapter;
     ServiceHelper serviceHelper;
     ArrayList<ExamDetailsView> examDetailsViewArrayList;
-    int pageNumber = 0, totalCount = 0;
+    int totalCount = 0;
     protected ProgressDialogHelper progressDialogHelper;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
-    private SearchView mSearchView = null;
     private Exams exams;
     String ExamId;
 
@@ -58,7 +56,6 @@ public class ExamDetailActivity extends AppCompatActivity implements IServiceLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exam_detail);
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
-//        loadMoreListView.setOnLoadMoreListener(this);
         loadMoreListView.setOnItemClickListener(this);
         examDetailsViewArrayList = new ArrayList<>();
         serviceHelper = new ServiceHelper(this);
@@ -81,18 +78,13 @@ public class ExamDetailActivity extends AppCompatActivity implements IServiceLis
 
         ExamId = exams.getExamId();
 
-        /*if(eventsListAdapter != null){
-            eventsListAdapter.clearSearchFlag();
-        }*/
         if (examDetailsViewArrayList != null)
             examDetailsViewArrayList.clear();
 
         if (CommonUtils.isNetworkAvailable(this)) {
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            //    eventServiceHelper.makeRawRequest(FindAFunConstants.GET_ADVANCE_SINGLE_SEARCH);
             new HttpAsyncTask().execute("");
         } else {
-//            AlertDialogHelper.showSimpleAlertDialog(this, getString(R.string.no_connectivity));
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
         }
     }
@@ -122,7 +114,7 @@ public class ExamDetailActivity extends AppCompatActivity implements IServiceLis
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
             String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_EXAM_DETAIL_API;
-            serviceHelper.makeGetServiceCall(jsonObject.toString(),url);
+            serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
             return null;
         }
@@ -170,27 +162,24 @@ public class ExamDetailActivity extends AppCompatActivity implements IServiceLis
     @Override
     public void onResponse(final JSONObject response) {
         if (validateSignInResponse(response)) {
-        Log.d("ajazFilterresponse : ", response.toString());
+            Log.d("ajazFilterresponse : ", response.toString());
 
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
-
-                Gson gson = new Gson();
-                ExamDetailsViewList examDetailsViewList = gson.fromJson(response.toString(), ExamDetailsViewList.class);
-                if (examDetailsViewList.getExamDetailView() != null && examDetailsViewList.getExamDetailView().size() > 0) {
-                    totalCount = examDetailsViewList.getCount();
-                    isLoadingForFirstTime = false;
-                    updateListAdapter(examDetailsViewList.getExamDetailView());
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    progressDialogHelper.hideProgressDialog();
+                    Gson gson = new Gson();
+                    ExamDetailsViewList examDetailsViewList = gson.fromJson(response.toString(), ExamDetailsViewList.class);
+                    if (examDetailsViewList.getExamDetailView() != null && examDetailsViewList.getExamDetailView().size() > 0) {
+                        totalCount = examDetailsViewList.getCount();
+                        isLoadingForFirstTime = false;
+                        updateListAdapter(examDetailsViewList.getExamDetailView());
+                    }
                 }
-            }
-        });
-    }
-        else {
-        Log.d(TAG, "Error while sign In");
-    }
+            });
+        } else {
+            Log.d(TAG, "Error while sign In");
+        }
     }
 
     protected void updateListAdapter(ArrayList<ExamDetailsView> examDetailsViewArrayList) {
@@ -209,7 +198,6 @@ public class ExamDetailActivity extends AppCompatActivity implements IServiceLis
             @Override
             public void run() {
                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
                 AlertDialogHelper.showSimpleAlertDialog(ExamDetailActivity.this, error);
             }
         });

@@ -41,18 +41,15 @@ public class ClassTestHomeworkActivity extends AppCompatActivity implements ISer
 
     private static final String TAG = "ClassTestHomework";
     ListView loadMoreListView;
-    View view;
     ClassTestListAdapter classTestListAdapter;
     private ServiceHelper serviceHelper;
     ArrayList<ClassTest> classTestArrayList;
-    int pageNumber = 0, totalCount = 0;
+    int totalCount = 0;
     protected ProgressDialogHelper progressDialogHelper;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
-    private SearchView mSearchView = null;
     private RadioGroup radioClassHome;
     private String isHomeWorkType = "HT";
-//    private SwitchCompat switcherClassTest, switcherHomeWork;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,9 +91,6 @@ public class ClassTestHomeworkActivity extends AppCompatActivity implements ISer
     }
 
     public void callGetClassTestService() {
-        /*if(eventsListAdapter != null){
-            eventsListAdapter.clearSearchFlag();
-        }*/
         if (classTestArrayList != null)
             classTestArrayList.clear();
 
@@ -122,7 +116,6 @@ public class ClassTestHomeworkActivity extends AppCompatActivity implements ISer
         }
         Intent intent = new Intent(this, ClassTestDetailActivity.class);
         intent.putExtra("eventObj", classTest);
-        // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
     }
 
@@ -220,14 +213,13 @@ public class ClassTestHomeworkActivity extends AppCompatActivity implements ISer
                 jsonObject.put(EnsyfiConstants.PARAM_CLASS_ID, PreferenceStorage.getStudentClassIdPreference(getApplicationContext()));
                 jsonObject.put(EnsyfiConstants.PARM_HOME_WORK_TYPE, isHomeWorkType);
 
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
             String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_STUDENT_CLASSTEST_AND_HOMEWORK_API;
-            serviceHelper.makeGetServiceCall(jsonObject.toString(),url);
+            serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
             return null;
         }

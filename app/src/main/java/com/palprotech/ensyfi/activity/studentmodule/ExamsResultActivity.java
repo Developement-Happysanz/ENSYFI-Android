@@ -39,23 +39,19 @@ public class ExamsResultActivity extends AppCompatActivity implements IServiceLi
 
     private static final String TAG = "ExamsResultActivity";
     ListView loadMoreListView;
-    View view;
     ExamListAdapter examListAdapter;
     ServiceHelper serviceHelper;
     ArrayList<Exams> examsArrayList;
-    int pageNumber = 0, totalCount = 0;
+    int totalCount = 0;
     protected ProgressDialogHelper progressDialogHelper;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
-    private SearchView mSearchView = null;
 
     @Override
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exams_result);
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
-//        loadMoreListView.setOnLoadMoreListener(this);
         loadMoreListView.setOnItemClickListener(this);
         examsArrayList = new ArrayList<>();
         serviceHelper = new ServiceHelper(this);
@@ -75,18 +71,13 @@ public class ExamsResultActivity extends AppCompatActivity implements IServiceLi
     }
 
     public void callGetExamResultService() {
-        /*if(eventsListAdapter != null){
-            eventsListAdapter.clearSearchFlag();
-        }*/
         if (examsArrayList != null)
             examsArrayList.clear();
 
         if (CommonUtils.isNetworkAvailable(this)) {
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            //    eventServiceHelper.makeRawRequest(FindAFunConstants.GET_ADVANCE_SINGLE_SEARCH);
             new HttpAsyncTask().execute("");
         } else {
-//            AlertDialogHelper.showSimpleAlertDialog(this, getString(R.string.no_connectivity));
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
         }
 
@@ -110,26 +101,20 @@ public class ExamsResultActivity extends AppCompatActivity implements IServiceLi
         String isInternalExternal = exams.getIsInternalExternal();
 
         if (isMarkStatus.equalsIgnoreCase("1")) {
-            if(isInternalExternal.equalsIgnoreCase("1")){
+            if (isInternalExternal.equalsIgnoreCase("1")) {
                 Intent intent = new Intent(this, ExamMarksActivity.class);
                 intent.putExtra("eventObj", exams);
-                // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
-            }
-            else {
+            } else {
                 Intent intent = new Intent(this, ExamOnlyTotalMarksActivity.class);
                 intent.putExtra("eventObj", exams);
-                // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }
-
         } else {
             Intent intent = new Intent(this, ExamDetailActivity.class);
             intent.putExtra("eventObj", exams);
-            // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
         }
-
     }
 
     private boolean validateSignInResponse(JSONObject response) {
@@ -169,8 +154,6 @@ public class ExamsResultActivity extends AppCompatActivity implements IServiceLi
                 @Override
                 public void run() {
                     progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
-
                     Gson gson = new Gson();
                     ExamList examList = gson.fromJson(response.toString(), ExamList.class);
                     if (examList.getExams() != null && examList.getExams().size() > 0) {
@@ -201,7 +184,6 @@ public class ExamsResultActivity extends AppCompatActivity implements IServiceLi
             @Override
             public void run() {
                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
                 AlertDialogHelper.showSimpleAlertDialog(ExamsResultActivity.this, error);
             }
         });
@@ -224,12 +206,9 @@ public class ExamsResultActivity extends AppCompatActivity implements IServiceLi
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAM_CLASS_ID, PreferenceStorage.getStudentClassIdPreference(getApplicationContext()));
-
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
             String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_EXAM_API;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
@@ -243,5 +222,4 @@ public class ExamsResultActivity extends AppCompatActivity implements IServiceLi
             progressDialogHelper.cancelProgressDialog();
         }
     }
-
 }
