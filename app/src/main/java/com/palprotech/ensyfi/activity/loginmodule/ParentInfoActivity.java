@@ -21,17 +21,10 @@ import com.squareup.picasso.Picasso;
 
 public class ParentInfoActivity extends AppCompatActivity implements DialogClickListener, View.OnClickListener {
 
-    private static final String TAG = ProfileActivity.class.getName();
     private ImageView btnBack;
-
     private TextView Name, Address, Mail, Occupation, Income, Mobile, OfficePhone, HomePhone;
-
-
-    private ServiceHelper serviceHelper;
-    private EditText txtUsrID;
     ImageView fatherInfo, motherInfo;
     protected ProgressDialogHelper progressDialogHelper;
-    LinearLayout ParentInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,20 +36,11 @@ public class ParentInfoActivity extends AppCompatActivity implements DialogClick
     private void SetUI() {
 
         findViewById();
-
-        String url = PreferenceStorage.getUserPicture(this);
-
-//        if (((url != null) && !(url.isEmpty()))) {
-//            Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(mProfileImage);
-//        }
-
         callMotherInfoPreferences();
         callFatherInfoPreferences();
     }
 
     private void findViewById() {
-//        mProfileImage = (ImageView) findViewById(R.id.image_profile_pic);
-//        mProfileImage.setOnClickListener(this);
 
         btnBack = (ImageView) findViewById(R.id.back_res);
         btnBack.setOnClickListener(this);

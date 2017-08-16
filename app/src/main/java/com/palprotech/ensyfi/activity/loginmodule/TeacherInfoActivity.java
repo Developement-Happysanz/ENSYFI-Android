@@ -23,7 +23,6 @@ public class TeacherInfoActivity extends AppCompatActivity implements DialogClic
             teacherCommunity, teacherAddress, teacherSubject, classTeacher, teacherMobile, teacherSecondaryMobile, teacherMail,
             teacherSecondaryMail, teacherSectionName, teacherClassName, teacherClassTaken;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

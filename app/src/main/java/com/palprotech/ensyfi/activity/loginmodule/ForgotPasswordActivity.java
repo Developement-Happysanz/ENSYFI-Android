@@ -36,7 +36,7 @@ import org.json.JSONObject;
 public class ForgotPasswordActivity extends AppCompatActivity implements View.OnClickListener, IServiceListener, DialogClickListener {
     private static final String TAG = ForgotPasswordActivity.class.getName();
     private Button btnReset;
-    private EditText edtUsername, edtLastRememberPassword, edtNewPassword, edtRetypePassword;
+    private EditText edtUsername;
     private ProgressDialogHelper progressDialogHelper;
     private ServiceHelper serviceHelper;
 
@@ -118,7 +118,6 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
                         if (status.equalsIgnoreCase("notRegistered")) {
 
                             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-                            //alertDialogBuilder.setTitle("Registration Successful");
                             alertDialogBuilder.setMessage(msg);
                             alertDialogBuilder.setPositiveButton("OK",
                                     new DialogInterface.OnClickListener() {
@@ -141,7 +140,6 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
 
                     } else {
                         forgotPasswordsuccess = true;
-
                     }
                 }
             } catch (JSONException e) {
@@ -171,10 +169,6 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
                     });
             AlertDialog alertDialog = alertDialogBuilder.create();
             alertDialog.show();
-            /*Intent intent = new Intent(this, SelectCityActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-            this.finish();*/
         }
     }
 

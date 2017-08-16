@@ -143,10 +143,6 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
                     });
             AlertDialog alertDialog = alertDialogBuilder.create();
             alertDialog.show();
-            /*Intent intent = new Intent(this, SelectCityActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-            this.finish();*/
         }
     }
 
@@ -164,7 +160,6 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
                         if (status.equalsIgnoreCase("notRegistered")) {
 
                             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-                            //alertDialogBuilder.setTitle("Registration Successful");
                             alertDialogBuilder.setMessage(msg);
                             alertDialogBuilder.setPositiveButton("OK",
                                     new DialogInterface.OnClickListener() {

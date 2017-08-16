@@ -39,7 +39,6 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     //Creating a broadcast receiver for gcm registration
     private BroadcastReceiver mRegistrationBroadcastReceiver;
-    String IMEINo;
     String regId;
 
     @Override
@@ -60,11 +59,6 @@ public class SplashScreenActivity extends AppCompatActivity {
             }
         });
 
-//        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-//        IMEINo = telephonyManager.getDeviceId();
-//
-//        PreferenceStorage.saveIMEI(getApplicationContext(), IMEINo);
-
         //Initializing our broadcast receiver
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
 
@@ -75,18 +69,17 @@ public class SplashScreenActivity extends AppCompatActivity {
             public void onReceive(Context context, Intent intent) {
                 //If the broadcast has received with success
                 //that means device is registered successfully
-                if(intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_SUCCESS)){
+                if (intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_SUCCESS)) {
                     //Getting the registration token from the intent
-                    String token = intent.getStringExtra("token");
+//                    String token = intent.getStringExtra("token");
 
                     regId = intent.getStringExtra("token");
 
                     PreferenceStorage.saveGCM(getApplicationContext(), regId);
                     //Displaying the token as toast
-//                    Toast.makeText(getApplicationContext(), "Registration token:" + token, Toast.LENGTH_LONG).show();
 
                     //if the intent is not with success then displaying error messages
-                } else if(intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_ERROR)){
+                } else if (intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_ERROR)) {
                     Toast.makeText(getApplicationContext(), "GCM registration error!", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(getApplicationContext(), "Error occurred", Toast.LENGTH_LONG).show();
@@ -98,9 +91,9 @@ public class SplashScreenActivity extends AppCompatActivity {
         int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
 
         //if play service is not available
-        if(ConnectionResult.SUCCESS != resultCode) {
+        if (ConnectionResult.SUCCESS != resultCode) {
             //If play service is supported but not installed
-            if(GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
+            if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
                 //Displaying message that play service is not installed
                 Toast.makeText(getApplicationContext(), "Google Play Service is not install/enabled in this device!", Toast.LENGTH_LONG).show();
                 GooglePlayServicesUtil.showErrorNotification(resultCode, getApplicationContext());
@@ -117,8 +110,6 @@ public class SplashScreenActivity extends AppCompatActivity {
             Intent itent = new Intent(this, GCMRegistrationIntentService.class);
             startService(itent);
         }
-
-
 
         new Handler().postDelayed(new Runnable() {
 
@@ -165,26 +156,14 @@ public class SplashScreenActivity extends AppCompatActivity {
                     } else if (AppValidator.checkNullString(userName)) {
                         Log.d(TAG, "No preferences, so launch preferences activity");
                         Intent intent = new Intent(getApplicationContext(), UserLoginActivity.class);
-                        //intent.putExtra("selectedCity", userName);
                         startActivity(intent);
-                        //this.overridePendingTransition(R.anim.push_up_in, R.anim.push_up_out);
                         finish();
                     }
-//                    else if(AppValidator.checkNullString(studentName)){
-//                        Log.d(TAG, "No preferences, so launch preferences activity");
-//                        Intent intent = new Intent(getApplicationContext(), StudentInfoActivity.class);
-//                        //intent.putExtra("selectedCity", userName);
-//                        startActivity(intent);
-//                        //this.overridePendingTransition(R.anim.push_up_in, R.anim.push_up_out);
-//                        finish();
-//                    }
                 } else {
                     Intent i = new Intent(SplashScreenActivity.this, SchoolIdLoginActivity.class);
                     startActivity(i);
                     finish();
                 }
-
-
             }
         }, SPLASH_TIME_OUT);
 
@@ -200,7 +179,6 @@ public class SplashScreenActivity extends AppCompatActivity {
         LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
                 new IntentFilter(GCMRegistrationIntentService.REGISTRATION_ERROR));
     }
-
 
     //Unregistering receiver on activity paused
     @Override

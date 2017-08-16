@@ -107,8 +107,6 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
             Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(mProfileImage);
         }
 
-//        callFatherInfoPreferences();
-
         String userTypeString = PreferenceStorage.getUserType(getApplicationContext());
         int userType = Integer.parseInt(userTypeString);
         if (userType == 1) {
@@ -237,9 +235,6 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
             Log.d(TAG, "Update profile picture");
             saveUserImage();
         }
-//        else {
-//            saveProfileData();
-//        }
     }
 
     /**
@@ -254,22 +249,13 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
         @Override
         protected void onPreExecute() {
             // setting progress bar to zero
-           /* progressBar.setVisibility(View.VISIBLE);
-            txtPercentage.setVisibility(View.VISIBLE);
-            progressBar.setProgress(0);*/
             super.onPreExecute();
         }
 
         @Override
         protected void onProgressUpdate(Integer... progress) {
+
             // Making progress bar visible
-            /*progressBar.setVisibility(View.VISIBLE);
-
-            // updating progress bar value
-            progressBar.setProgress(progress[0]);
-
-            // updating percentage value
-            txtPercentage.setText(String.valueOf(progress[0]) + "%");*/
         }
 
         @Override
@@ -279,12 +265,10 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
 
         @SuppressWarnings("deprecation")
         private String uploadFile() {
-            //http://heylaapp.com/app/upload.php?user_id=529
             String responseString = null;
 
             httpclient = new DefaultHttpClient();
             httppost = new HttpPost(String.format(EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.UPLOAD_PROFILE_IMAGE + Integer.parseInt(PreferenceStorage.getUserId(ProfileActivity.this)) + "/" + PreferenceStorage.getUserType(ProfileActivity.this)));
-//            httppost = new HttpPost(String.format(EnsyfiConstants.UPLOAD_PROFILE_IMAGE));
 
             try {
                 AndroidMultiPartEntity entity = new AndroidMultiPartEntity(
@@ -292,7 +276,7 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
 
                             @Override
                             public void transferred(long num) {
-                                //  publishProgress((int) ((num / (float) totalSize) * 100));
+
                             }
                         });
                 Log.d(TAG, "actual file path is" + mActualFilePath);
@@ -303,22 +287,10 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
                     // Adding file data to http body
                     //fileToUpload
                     entity.addPart("user_pic", new FileBody(sourceFile));
-                /*}else {
-                    String fileNameVal = PreferenceStorage.getUserId(ProfileActivity.this)+".png";
-                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                    mCurrentUserImageBitmap.compress(Bitmap.CompressFormat.PNG, 75, bos);
-                    byte[] data = bos.toByteArray();
-                    ByteArrayBody bab = new ByteArrayBody(data, fileNameVal);
-                    entity.addPart("fileToUpload", bab);
-                }*/
-                    //entity.addPart("image", new FileBody(sourceFile));
 
                     // Extra parameters if you want to pass to server
                     entity.addPart("user_id", new StringBody(PreferenceStorage.getUserId(ProfileActivity.this)));
                     entity.addPart("user_type", new StringBody(PreferenceStorage.getUserType(ProfileActivity.this)));
-                /*entity.addPart("website",
-                        new StringBody("www.ahmed.site40.net"));
-                entity.addPart("email", new StringBody("ahmedchoteri@gmail.com"));*/
 
                     totalSize = entity.getContentLength();
                     httppost.setEntity(entity);
@@ -392,7 +364,6 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
                     btnSave.setVisibility(View.GONE);
                 }
             }
-//            saveProfileData();
         }
 
         @Override
@@ -499,33 +470,14 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
                     mActualFilePath = getRealPathFromURI(this, selectedImageUri);
                     Log.d(TAG, "path to image is" + mActualFilePath);
 
-                    // dummyflag= true;
-
                 }
                 Log.d(TAG, "image Uri is" + selectedImageUri);
                 if (selectedImageUri != null) {
                     Log.d(TAG, "image URI is" + selectedImageUri);
-                    //if( ! dummyflag) {
                     setPic(selectedImageUri);
-                       /* }else{
-                            try {
-                               Bitmap  bm = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
-                                mUserImage.setImageBitmap(bm);
-                            } catch (FileNotFoundException e) {
-                                // TODO Auto-generated catch block
-                                e.printStackTrace();
-                            } catch (IOException e) {
-                                // TODO Auto-generated catch block
-                                e.printStackTrace();
-                            }
-                        }*/
-
-                    // mUserImage.setImageURI(selectedImageUri);
-                    // mUserImage.setScaleType(ImageView.ScaleType.FIT_XY);
                 }
             }
         }
-
     }
 
     private void galleryAddPic(Uri urirequest) {
@@ -590,13 +542,8 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
         Bitmap bitmap = null;
         try {
             bitmap = BitmapFactory.decodeStream(this.getContentResolver().openInputStream(selectedImageUri), null, bmOptions);
-            // Bitmap circlebitmap = createCircularBitmap(bitmap);
             mProfileImage.setImageBitmap(bitmap);
-            //mUserImage.setScaleType(ImageView.ScaleType.FIT_XY);
             mCurrentUserImageBitmap = bitmap;
-            //  new UploadFileToServer().execute();
-            // new Upload(bitmap,"myuserimage").execute();
-            //  ServiceLocatorUtils.getInstance().setmCurrentUserProfileImage(mCurrentUserImageBitmap);
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -622,7 +569,6 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
 
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
         }
-
     }
 
     private boolean validateSignInResponse(JSONObject response) {
@@ -707,50 +653,5 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
     public void onAlertNegativeClicked(int tag) {
 
     }
-
-//    private TextView studentAdmissionId, studentAdmissionYear, studentAdmissionNumber, studentEmsiNumber, studentAdmissionDate,
-//            studentName, studentGender, studentDateOfBirth, studentAge, studentNationality, studentReligion, studentCaste,
-//            studentCommunity, studentParentOrGuardian, studentParentOrGuardianId, studentMotherTongue, studentLanguage,
-//            studentMobile, studentSecondaryMobile, studentMail, studentSecondaryMail, studentPreviousSchool,
-//            studentPreviousClass, studentPromotionStatus, studentTransferCertificate, studentRecordSheet, studentStatus,
-//            studentParentStatus, studentRegistered;
-
-//    private void callStudentInfoPreferences() {
-//        studentAdmissionId.setText(PreferenceStorage.getStudentAdmissionID(getApplicationContext()));
-//        studentAdmissionYear.setText(PreferenceStorage.getStudentAdmissionYear(getApplicationContext()));
-//        studentAdmissionNumber.setText(PreferenceStorage.getStudentAdmissionNumber(getApplicationContext()));
-//        studentEmsiNumber.setText(PreferenceStorage.getStudentEmsiNumber(getApplicationContext()));
-//        studentAdmissionDate.setText(PreferenceStorage.getStudentAdmissionDate(getApplicationContext()));
-//        studentName.setText(PreferenceStorage.getStudentName(getApplicationContext()));
-//        studentGender.setText(PreferenceStorage.getStudentGender(getApplicationContext()));
-//        studentDateOfBirth.setText(PreferenceStorage.getStudentDateOfBirth(getApplicationContext()));
-//        studentAge.setText(PreferenceStorage.getStudentAge(getApplicationContext()));
-//        studentNationality.setText(PreferenceStorage.getStudentNationality(getApplicationContext()));
-//        studentReligion.setText(PreferenceStorage.getStudentReligion(getApplicationContext()));
-//        studentCaste.setText(PreferenceStorage.getStudentCaste(getApplicationContext()));
-//        studentCommunity.setText(PreferenceStorage.getStudentCommunity(getApplicationContext()));
-//        studentParentOrGuardian.setText(PreferenceStorage.getStudentParentOrGuardian(getApplicationContext()));
-//        studentParentOrGuardianId.setText(PreferenceStorage.getStudentParentOrGuardianID(getApplicationContext()));
-//        studentMotherTongue.setText(PreferenceStorage.getStudentMotherTongue(getApplicationContext()));
-//        studentLanguage.setText(PreferenceStorage.getStudentLanguage(getApplicationContext()));
-//        studentMobile.setText(PreferenceStorage.getStudentMobile(getApplicationContext()));
-//        studentSecondaryMobile.setText(PreferenceStorage.getStudentSecondaryMobile(getApplicationContext()));
-//        studentMail.setText(PreferenceStorage.getStudentMail(getApplicationContext()));
-//        studentSecondaryMail.setText(PreferenceStorage.getStudentSecondaryMail(getApplicationContext()));
-//        studentPreviousSchool.setText(PreferenceStorage.getStudentPreviousSchool(getApplicationContext()));
-//        studentPreviousClass.setText(PreferenceStorage.getStudentPreviousClass(getApplicationContext()));
-//        studentPromotionStatus.setText(PreferenceStorage.getStudentPromotionStatus(getApplicationContext()));
-//        studentTransferCertificate.setText(PreferenceStorage.getStudentTransferCertificate(getApplicationContext()));
-//        studentRecordSheet.setText(PreferenceStorage.getStudentRecordSheet(getApplicationContext()));
-//        studentStatus.setText(PreferenceStorage.getStudentStatus(getApplicationContext()));
-//        studentParentStatus.setText(PreferenceStorage.getStudentParentStatus(getApplicationContext()));
-//        studentRegistered.setText(PreferenceStorage.getStudentRegistered(getApplicationContext()));
-//        String url = PreferenceStorage.getStudentImg(this);
-//
-//        if (((url != null) && !(url.isEmpty()))) {
-//            Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(studentImg);
-//        }
-//    }
-
 }
 

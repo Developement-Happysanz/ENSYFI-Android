@@ -62,7 +62,6 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_login);
-//        findViewById(R.id.mainLayout).setOnTouchListener(this);
         SetUI();
     }
 
@@ -322,8 +321,6 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                 Log.d(TAG, "created user id" + user_id);
 
                 //need to re do this
-//                Log.d(TAG, "sign in response is" + response.toString());
-
                 Name = userData.getString("name"); //Get user's name
                 UserName = userData.getString("user_name"); //Get userName
                 UserImage = userData.getString("user_pic"); //Get user image

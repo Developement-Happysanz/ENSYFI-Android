@@ -37,7 +37,7 @@ import org.json.JSONObject;
  * Created by Admin on 22-03-2017.
  */
 
-public class SchoolIdLoginActivity extends AppCompatActivity implements View.OnClickListener, IServiceListener, DialogClickListener{
+public class SchoolIdLoginActivity extends AppCompatActivity implements View.OnClickListener, IServiceListener, DialogClickListener {
 
     private static final String TAG = SchoolIdLoginActivity.class.getName();
 
@@ -46,8 +46,6 @@ public class SchoolIdLoginActivity extends AppCompatActivity implements View.OnC
 
     private EditText inputInstituteId;
     private ImageView btnSubmit;
-
-    public static final String REG_ID = "regId";
 
     private static final int REQUEST_PERMISSION_All = 111;
     private static String[] PERMISSIONS_ALL = {Manifest.permission.READ_CONTACTS,

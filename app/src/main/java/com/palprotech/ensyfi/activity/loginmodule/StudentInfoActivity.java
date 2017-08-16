@@ -20,14 +20,9 @@ import com.squareup.picasso.Picasso;
 
 public class StudentInfoActivity extends AppCompatActivity implements DialogClickListener, View.OnClickListener {
 
-    private static final String TAG = StudentInfoActivity.class.getName();
-
     private ImageView btnBack;
 
     protected ProgressDialogHelper progressDialogHelper;
-
-    private ServiceHelper serviceHelper;
-    private SaveStudentData studentData;
 
     private ImageView studentImg;
 
@@ -44,7 +39,6 @@ public class StudentInfoActivity extends AppCompatActivity implements DialogClic
         setContentView(R.layout.activity_student_profile_info);
         SetUI();
         callStudentInfoPreferences();
-
     }
 
     private void SetUI() {
@@ -86,7 +80,6 @@ public class StudentInfoActivity extends AppCompatActivity implements DialogClic
 
         progressDialogHelper = new ProgressDialogHelper(this);
     }
-
 
     private void callStudentInfoPreferences() {
         studentAdmissionId.setText(PreferenceStorage.getStudentAdmissionID(getApplicationContext()));
@@ -130,7 +123,6 @@ public class StudentInfoActivity extends AppCompatActivity implements DialogClic
         if (v == btnBack) {
             finish();
         }
-
     }
 
     @Override

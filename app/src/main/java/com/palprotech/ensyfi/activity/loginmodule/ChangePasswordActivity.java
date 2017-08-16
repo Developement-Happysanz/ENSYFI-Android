@@ -84,14 +84,12 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
                         jsonObject.put(EnsyfiConstants.PARAMS_CP_CURRENT_PASSWORD, edtCurrentName.getText().toString());
                         jsonObject.put(EnsyfiConstants.PARAMS_PASSWORD, edtNewPassword.getText().toString());
 
-
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                     progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
                     String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.CHANGE_PASSWORD;
-                    serviceHelper.makeGetServiceCall(jsonObject.toString(),url);
-                    //PreferenceStorage.saveLoginMode(this, 2);
+                    serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
                 }
             } else {
                 AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
@@ -169,7 +167,6 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
                         if (status.equalsIgnoreCase("notRegistered")) {
 
                             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-                            //alertDialogBuilder.setTitle("Registration Successful");
                             alertDialogBuilder.setMessage(msg);
                             alertDialogBuilder.setPositiveButton("OK",
                                     new DialogInterface.OnClickListener() {
@@ -190,7 +187,6 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
 
                     } else {
                         forgotPasswordsuccess = true;
-
                     }
                 }
             } catch (JSONException e) {
