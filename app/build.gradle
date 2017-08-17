@@ -108,7 +108,7 @@ dependencies {
     //This line is added
     compile 'com.google.android.gms:play-services-gcm:8.3.0'
 
-    compile files('libs/apache-mime4j-0.6.jar')
+//    compile files('libs/apache-mime4j-0.6.jar')
     compile files('libs/httpclient-4.3.6.jar')
     compile files('libs/httpcore-4.3.3.jar')
     compile files('libs/httpmime-4.3.6.jar')
