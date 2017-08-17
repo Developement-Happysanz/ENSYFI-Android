@@ -40,6 +40,7 @@ import com.palprotech.ensyfi.utils.CommonUtils;
 import com.palprotech.ensyfi.utils.EnsyfiConstants;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -206,37 +207,65 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
     @Override
     public void onResponse(final JSONObject response) {
         progressDialogHelper.hideProgressDialog();
-        if (validateSignInResponse(response)) {
-            Log.d("ajazFilterresponse : ", response.toString());
-            if (checkDayMonthType.equalsIgnoreCase("day")) {
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        progressDialogHelper.hideProgressDialog();
+        try {
+            if (validateSignInResponse(response)) {
+                Log.d("ajazFilterresponse : ", response.toString());
+                if (checkDayMonthType.equalsIgnoreCase("day")) {
 
-                        Gson gson = new Gson();
-                        DayViewList dayViewList = gson.fromJson(response.toString(), DayViewList.class);
-                        if (dayViewList.getDayView() != null && dayViewList.getDayView().size() > 0) {
-                            updateDayViewListAdapter(dayViewList.getDayView());
+                    JSONArray getData = response.getJSONArray("attendenceDetails");
+                    if (getData != null && getData.length() > 0) {
+
+                        mHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                progressDialogHelper.hideProgressDialog();
+
+                                Gson gson = new Gson();
+                                DayViewList dayViewList = gson.fromJson(response.toString(), DayViewList.class);
+                                if (dayViewList.getDayView() != null && dayViewList.getDayView().size() > 0) {
+                                    updateDayViewListAdapter(dayViewList.getDayView());
+                                }
+                            }
+                        });
+
+                    } else {
+                        if (dayViewArrayList != null) {
+                            dayViewArrayList.clear();
+                            dayViewListAdapter = new DayViewListAdapter(this, this.dayViewArrayList);
+                            loadMoreListView.setAdapter(dayViewListAdapter);
                         }
                     }
-                });
+                } else {
+
+                    JSONArray getData = response.getJSONArray("attendenceDetails");
+                    if (getData != null && getData.length() > 0) {
+
+
+                        mHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                progressDialogHelper.hideProgressDialog();
+
+                                Gson gson = new Gson();
+                                MonthViewList monthViewList = gson.fromJson(response.toString(), MonthViewList.class);
+                                if (monthViewList.getMonthView() != null && monthViewList.getMonthView().size() > 0) {
+                                    updateMonthViewListAdapter(monthViewList.getMonthView());
+                                }
+                            }
+                        });
+                    } else {
+                        if (monthViewArrayList != null) {
+                            monthViewArrayList.clear();
+                            monthViewListAdapter = new MonthViewListAdapter(this, this.monthViewArrayList);
+                            loadMoreListView.setAdapter(monthViewListAdapter);
+                        }
+                    }
+                }
             } else {
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        progressDialogHelper.hideProgressDialog();
-
-                        Gson gson = new Gson();
-                        MonthViewList monthViewList = gson.fromJson(response.toString(), MonthViewList.class);
-                        if (monthViewList.getMonthView() != null && monthViewList.getMonthView().size() > 0) {
-                            updateMonthViewListAdapter(monthViewList.getMonthView());
-                        }
-                    }
-                });
+                Log.d(TAG, "Error while sign In");
             }
-        } else {
-            Log.d(TAG, "Error while sign In");
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 
@@ -473,6 +502,20 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
                         Log.d(TAG, "Show error dialog");
                         AlertDialogHelper.showSimpleAlertDialog(this, msg);
 
+                        if (checkDayMonthType.equalsIgnoreCase("day")) {
+                            if (dayViewArrayList != null) {
+                                dayViewArrayList.clear();
+                                dayViewListAdapter = new DayViewListAdapter(this, this.dayViewArrayList);
+                                loadMoreListView.setAdapter(dayViewListAdapter);
+                            }
+                        } else {
+                            if (monthViewArrayList != null) {
+                                monthViewArrayList.clear();
+                                monthViewListAdapter = new MonthViewListAdapter(this, this.monthViewArrayList);
+                                loadMoreListView.setAdapter(monthViewListAdapter);
+                            }
+                        }
+
                     } else {
                         signInsuccess = true;
                     }
@@ -532,4 +575,5 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
     public void onAlertNegativeClicked(int tag) {
 
     }
+
 }
