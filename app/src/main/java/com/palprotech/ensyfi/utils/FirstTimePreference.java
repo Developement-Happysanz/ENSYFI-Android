@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
  * Created by DataCrawl on 4/28/2016.
  */
 public class FirstTimePreference {
+
     private static final int INT_ERROR = -1;
     public static final String FIRST_TIME_PREFERENCES_KEY = "FirstKeyPreferences";
     public static final String FIRST_TIME_COUNTDOWN_KEY = "FirstCountdownKey";

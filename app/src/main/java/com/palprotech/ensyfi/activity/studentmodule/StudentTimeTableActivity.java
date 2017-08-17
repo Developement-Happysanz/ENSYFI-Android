@@ -36,6 +36,7 @@ import org.json.JSONObject;
  */
 
 public class StudentTimeTableActivity extends AppCompatActivity implements IServiceListener, DialogClickListener {
+
     private static final String TAG = StudentTimeTableActivity.class.getName();
     LinearLayout layout_all;
     private ProgressDialogHelper progressDialogHelper;
