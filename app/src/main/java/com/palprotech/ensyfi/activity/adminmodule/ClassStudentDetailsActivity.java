@@ -55,6 +55,7 @@ public class ClassStudentDetailsActivity extends AppCompatActivity implements IS
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_class_student_details);
+
         classStudent = (ClassStudent) getIntent().getSerializableExtra("eventObj");
 
         btnClassTestHomework = (Button) findViewById(R.id.btnClassTestHomework);
@@ -216,6 +217,7 @@ public class ClassStudentDetailsActivity extends AppCompatActivity implements IS
             startActivity(intent);
         }
         if (v == btnExams) {
+
             String ClassId = classStudent.getClassId();
             // Student Preference - ClassId
             if ((ClassId != null) && !(ClassId.isEmpty()) && !ClassId.equalsIgnoreCase("null")) {
@@ -243,6 +245,7 @@ public class ClassStudentDetailsActivity extends AppCompatActivity implements IS
             startActivity(intent);
         }
         if (v == btnAttendance) {
+
             String ClassId = classStudent.getClassId();
             // Student Preference - ClassId
             if ((ClassId != null) && !(ClassId.isEmpty()) && !ClassId.equalsIgnoreCase("null")) {
@@ -257,7 +260,6 @@ public class ClassStudentDetailsActivity extends AppCompatActivity implements IS
             Intent intent = new Intent(this, AttendanceActivity.class);
             startActivity(intent);
         }
-
     }
 
     private void getStudentInfo() {
