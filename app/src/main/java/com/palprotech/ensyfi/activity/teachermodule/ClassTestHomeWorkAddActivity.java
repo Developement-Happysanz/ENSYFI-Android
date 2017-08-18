@@ -34,8 +34,6 @@ import com.palprotech.ensyfi.serviceinterfaces.IServiceListener;
 import com.palprotech.ensyfi.utils.AppValidator;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 
-import org.joda.time.DateTime;
-import org.joda.time.Days;
 import org.json.JSONObject;
 
 import java.text.DateFormat;

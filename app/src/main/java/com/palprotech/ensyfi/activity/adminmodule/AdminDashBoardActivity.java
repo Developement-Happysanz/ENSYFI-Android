@@ -80,6 +80,7 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
     }
 
     private void initializeViews() {
+
         Log.d(TAG, "initializin the views");
         Log.d(TAG, "initializing view pager");
         navUserProfileName = (TextView) findViewById(R.id.user_profile_name);

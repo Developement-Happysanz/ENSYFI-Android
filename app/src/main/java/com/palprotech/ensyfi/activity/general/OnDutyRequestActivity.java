@@ -30,8 +30,8 @@ import com.palprotech.ensyfi.utils.CommonUtils;
 import com.palprotech.ensyfi.utils.EnsyfiConstants;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 
-import org.joda.time.DateTime;
-import org.joda.time.Days;
+//import org.joda.time.DateTime;
+//import org.joda.time.Days;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -284,16 +284,18 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
     }
 
     private boolean validateFields() {
-        int getDate = 0;
+        int getDate = 0, getDate1 = 0;
         try {
             DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
             Date dateFrom = format.parse(this.dateFrom.getText().toString().trim());
             Date dateTo = format.parse(this.dateTo.getText().toString().trim());
 
-            DateTime dt1 = new DateTime(dateFrom);
-            DateTime dt2 = new DateTime(dateTo);
+//            DateTime dt1 = new DateTime(dateFrom);
+//            DateTime dt2 = new DateTime(dateTo);
 
-            getDate = Days.daysBetween(dt1, dt2).getDays();
+            getDate1 = dateFrom.compareTo(dateTo);
+
+//            getDate = Days.daysBetween(dt1, dt2).getDays();
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -305,7 +307,7 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
         } else if (!AppValidator.checkNullString(this.edtOnDutyRequestDetails.getText().toString().trim())) {
             AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid reason details");
             return false;
-        } else if (getDate < 0) {
+        } else if (getDate1 > 0) {
             AlertDialogHelper.showSimpleAlertDialog(this, "ToDate should not lesser than FromDate");
             return false;
         } else {
