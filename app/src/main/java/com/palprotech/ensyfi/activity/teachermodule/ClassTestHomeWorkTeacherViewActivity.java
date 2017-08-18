@@ -3,11 +3,9 @@ package com.palprotech.ensyfi.activity.teachermodule;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,10 +21,6 @@ import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 import com.palprotech.ensyfi.bean.teacher.viewlist.ClassTestHomeWork;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
-import com.palprotech.ensyfi.servicehelpers.ServiceHelper;
-import com.palprotech.ensyfi.serviceinterfaces.IServiceListener;
-
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashSet;

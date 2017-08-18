@@ -10,11 +10,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.makeramen.roundedimageview.RoundedTransformationBuilder;
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.app.AppController;
 import com.palprotech.ensyfi.bean.admin.viewlist.ParentStudent;
-import com.palprotech.ensyfi.bean.student.viewlist.DayView;
 import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;

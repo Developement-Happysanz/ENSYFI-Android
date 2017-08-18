@@ -19,11 +19,7 @@ import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 import com.palprotech.ensyfi.bean.teacher.viewlist.AcademicExams;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
-import com.palprotech.ensyfi.servicehelpers.ServiceHelper;
-import com.palprotech.ensyfi.serviceinterfaces.IServiceListener;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
-
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashSet;

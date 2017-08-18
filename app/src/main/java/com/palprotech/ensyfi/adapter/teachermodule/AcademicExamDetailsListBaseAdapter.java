@@ -8,7 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.bean.student.viewlist.DayView;
 import com.palprotech.ensyfi.bean.teacher.viewlist.AcademicExamDetails;
 
 import java.util.ArrayList;

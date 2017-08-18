@@ -1,6 +1,5 @@
 package com.palprotech.ensyfi.adapter.teachermodule;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +9,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.bean.teacher.viewlist.StudentsClassTestMarks;
 
 /**
  * Created by Admin on 07-08-2017.

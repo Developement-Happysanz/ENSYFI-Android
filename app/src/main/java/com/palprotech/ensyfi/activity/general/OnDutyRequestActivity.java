@@ -30,8 +30,6 @@ import com.palprotech.ensyfi.utils.CommonUtils;
 import com.palprotech.ensyfi.utils.EnsyfiConstants;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 
-//import org.joda.time.DateTime;
-//import org.joda.time.Days;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -40,6 +38,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+
+//import org.joda.time.DateTime;
+//import org.joda.time.Days;
 
 /**
  * Created by Admin on 10-07-2017.

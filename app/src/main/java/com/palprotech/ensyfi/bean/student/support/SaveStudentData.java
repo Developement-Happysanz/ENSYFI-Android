@@ -8,8 +8,6 @@ import com.palprotech.ensyfi.utils.PreferenceStorage;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-
 /**
  * Created by Admin on 04-07-2017.
  */

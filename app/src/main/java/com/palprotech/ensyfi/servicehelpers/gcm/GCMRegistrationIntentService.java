@@ -9,8 +9,6 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.gms.iid.InstanceID;
 import com.palprotech.ensyfi.R;
 
-import static com.facebook.FacebookSdk.getApplicationContext;
-
 /**
  * Created by Admin on 25-07-2017.
  */
