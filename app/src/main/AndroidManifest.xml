@@ -240,7 +240,7 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarGrey"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
 
         <activity
             android:name=".activity.general.CircularActivity"
@@ -466,9 +466,7 @@
 
         <!--End-->
         <!---->
-        <!--
-                    GCM Receiver
-                -->
+        <!--                    GCM Receiver                -->
         <receiver
             android:name="com.google.android.gms.gcm.GcmReceiver"
             android:exported="true"
@@ -479,9 +477,7 @@
             </intent-filter>
         </receiver>
 
-        <!--
-            GCM Receiver Service
-        -->
+        <!--            GCM Receiver Service        -->
         <service
             android:name=".servicehelpers.gcm.GCMPushReceiverService"
             android:exported="false">
@@ -490,9 +486,7 @@
             </intent-filter>
         </service>
 
-        <!--
-            GCM Registration Intent Service
-        -->
+        <!--            GCM Registration Intent Service        -->
         <service
             android:name=".servicehelpers.gcm.GCMRegistrationIntentService"
             android:exported="false">
