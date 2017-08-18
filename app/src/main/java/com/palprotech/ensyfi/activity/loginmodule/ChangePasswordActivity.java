@@ -51,7 +51,6 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
         edtConfirmPassword = (EditText) findViewById(R.id.edtconfirmpassword);
         btnConfirm = (Button) findViewById(R.id.confirm);
         btnConfirm.setOnClickListener(this);
-
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(this);

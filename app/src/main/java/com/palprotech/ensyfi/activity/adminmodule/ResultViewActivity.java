@@ -144,8 +144,6 @@ public class ResultViewActivity extends AppCompatActivity implements IServiceLis
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
             String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_CLASS_LISTS;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
-
-
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
         }
@@ -189,7 +187,6 @@ public class ResultViewActivity extends AppCompatActivity implements IServiceLis
 
                     } else {
                         signInsuccess = true;
-
                     }
                 }
             } catch (JSONException e) {
@@ -259,8 +256,6 @@ public class ResultViewActivity extends AppCompatActivity implements IServiceLis
                     //fill data in spinner
                     ArrayAdapter<StoreClass> adapter = new ArrayAdapter<StoreClass>(getApplicationContext(), R.layout.spinner_item_ns, classesList);
                     spnClassList.setAdapter(adapter);
-//                spnClassList.setSelection(adapter.getPosition());//Optional to set the selected item.
-
                 } else if (checkSpinner.equalsIgnoreCase("section")) {
                     JSONArray getData = response.getJSONArray("data");
                     JSONObject userData = getData.getJSONObject(0);
@@ -282,7 +277,6 @@ public class ResultViewActivity extends AppCompatActivity implements IServiceLis
                     //fill data in spinner
                     ArrayAdapter<StoreSection> adapter = new ArrayAdapter<StoreSection>(getApplicationContext(), R.layout.spinner_item_ns, sectionList);
                     spnSectionList.setAdapter(adapter);
-//                spnClassList.setSelection(adapter.getPosition());//Optional to set the selected item.
                 } else {
 
                     JSONArray getData = response.getJSONArray("Exams");
@@ -347,8 +341,6 @@ public class ResultViewActivity extends AppCompatActivity implements IServiceLis
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_CLASS_ID_NEW, storeClassId);
                 jsonObject.put(EnsyfiConstants.PARAMS_SECTION_ID, storeSectionId);
-
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }

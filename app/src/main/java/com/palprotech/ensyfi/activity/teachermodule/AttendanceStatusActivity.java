@@ -240,7 +240,6 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
                     JSONArray getData = response.getJSONArray("attendenceDetails");
                     if (getData != null && getData.length() > 0) {
 
-
                         mHandler.post(new Runnable() {
                             @Override
                             public void run() {
@@ -311,7 +310,6 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
         vecAcademicMonths = new Vector<String>();
         spnClassList = (Spinner) findViewById(R.id.class_list_spinner);
         lvStudent = (ListView) findViewById(R.id.listView_events);
-
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
         loadMoreListView.setOnItemClickListener(this);
         dayViewArrayList = new ArrayList<>();
@@ -446,7 +444,6 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
                     } while (c.moveToNext());
                 }
             }
-
             db.close();
 
         } catch (Exception e) {

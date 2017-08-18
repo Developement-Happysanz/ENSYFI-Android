@@ -49,7 +49,6 @@ public class ParentInfoActivity extends AppCompatActivity implements DialogClick
         motherInfo = (ImageView) findViewById(R.id.img_mother_profile);
         motherInfo.setOnClickListener(this);
 
-
         //////For Parent and Guardian///////
         Name = (TextView) findViewById(R.id.txtfathername);
         Address = (TextView) findViewById(R.id.txtfatheraddress);
@@ -59,7 +58,6 @@ public class ParentInfoActivity extends AppCompatActivity implements DialogClick
         Mobile = (TextView) findViewById(R.id.txtfathermobile);
         OfficePhone = (TextView) findViewById(R.id.txtfatherofficephone);
         HomePhone = (TextView) findViewById(R.id.txtfatherhomephone);
-
     }
 
     private void callFatherInfoPreferences() {

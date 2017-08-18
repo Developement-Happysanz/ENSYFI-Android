@@ -8,7 +8,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -35,7 +34,7 @@ import java.util.ArrayList;
  * Created by Admin on 15-07-2017.
  */
 
-public class LeaveStatusActivity extends AppCompatActivity implements View.OnClickListener, IServiceListener, AdapterView.OnItemClickListener, DialogClickListener {
+public class LeaveStatusActivity extends AppCompatActivity implements View.OnClickListener, IServiceListener, DialogClickListener {
 
     private ImageView btnBack, btnReqLeave;
     private static final String TAG = "LeaveStatusActivity";
@@ -63,7 +62,6 @@ public class LeaveStatusActivity extends AppCompatActivity implements View.OnCli
 
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
 
-        loadMoreListView.setOnItemClickListener(this);
         leaveStatusArrayList = new ArrayList<>();
 
         serviceHelper = new ServiceHelper(this);
@@ -99,10 +97,7 @@ public class LeaveStatusActivity extends AppCompatActivity implements View.OnCli
 
             JSONObject jsonObject = new JSONObject();
             try {
-
                 jsonObject.put(EnsyfiConstants.PARAMS_FP_USER_ID, PreferenceStorage.getUserId(getApplicationContext()));
-
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -116,7 +111,6 @@ public class LeaveStatusActivity extends AppCompatActivity implements View.OnCli
             } else {
                 url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_USER_LEAVES_API;
             }
-
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
             return null;
@@ -138,11 +132,6 @@ public class LeaveStatusActivity extends AppCompatActivity implements View.OnCli
             Intent intent = new Intent(getApplicationContext(), LeaveApplyActivity.class);
             startActivity(intent);
         }
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
     }
 
     private boolean validateSignInResponse(JSONObject response) {

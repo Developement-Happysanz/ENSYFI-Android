@@ -12,15 +12,12 @@ import android.widget.TextView;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.bean.general.viewlist.Event;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
-import com.palprotech.ensyfi.serviceinterfaces.IServiceListener;
-
-import org.json.JSONObject;
 
 /**
  * Created by Admin on 18-05-2017.
  */
 
-public class EventDetailActivity extends AppCompatActivity implements IServiceListener, DialogClickListener, View.OnClickListener {
+public class EventDetailActivity extends AppCompatActivity implements DialogClickListener {
 
     private Event event;
     private TextView txtEventName, txtEventDate, txtEventDetails;
@@ -74,27 +71,12 @@ public class EventDetailActivity extends AppCompatActivity implements IServiceLi
     }
 
     @Override
-    public void onResponse(JSONObject response) {
-
-    }
-
-    @Override
-    public void onError(String error) {
-
-    }
-
-    @Override
     public void onAlertPositiveClicked(int tag) {
 
     }
 
     @Override
     public void onAlertNegativeClicked(int tag) {
-
-    }
-
-    @Override
-    public void onClick(View v) {
 
     }
 }

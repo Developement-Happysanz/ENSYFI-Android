@@ -115,13 +115,10 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
     @Override
     public void onClick(View v) {
         if (v == btnTeacherTimeTable) {
-
             PreferenceStorage.saveTeacherId(this, teacherId.getText().toString());
             Intent intent = new Intent(this, TeacherTimeTableActivity.class);
-
             startActivity(intent);
         }
-
         if (v == btnBack) {
             finish();
             clearTeacherInfo();
@@ -220,7 +217,6 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
     }
 
     private void clearTeacherInfo() {
-
         teacherId.clearComposingText();
         teacherName.clearComposingText();
         teacherGender.clearComposingText();
@@ -239,6 +235,5 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
 //        teacherSectionName.clearComposingText();
 //        teacherClassName.clearComposingText();
         teacherClassTaken.clearComposingText();
-
     }
 }

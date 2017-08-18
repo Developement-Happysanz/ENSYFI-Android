@@ -44,11 +44,9 @@ public class GroupingActivity extends AppCompatActivity implements IServiceListe
     ArrayList<GroupList> groupListArrayList;
     int totalCount = 0;
     ImageView CreateNotification;
-
     protected ProgressDialogHelper progressDialogHelper;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,7 +118,6 @@ public class GroupingActivity extends AppCompatActivity implements IServiceListe
                 String status = response.getString("status");
                 String msg = response.getString(EnsyfiConstants.PARAM_MESSAGE);
                 Log.d(TAG, "status val" + status + "msg" + msg);
-
                 if ((status != null)) {
                     if (((status.equalsIgnoreCase("activationError")) || (status.equalsIgnoreCase("alreadyRegistered")) ||
                             (status.equalsIgnoreCase("notRegistered")) || (status.equalsIgnoreCase("error")))) {
@@ -211,16 +208,12 @@ public class GroupingActivity extends AppCompatActivity implements IServiceListe
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_USER_TYPE, PreferenceStorage.getUserType(getApplicationContext()));
                 jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_USER_ID, PreferenceStorage.getUserId(getApplicationContext()));
-
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
             String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_GROUP_MESSAGE_VIEW;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
-
             return null;
         }
 

@@ -71,7 +71,6 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.new_navi);
-
         initializeNavigationDrawer();
         initializeViews();
         context = getApplicationContext();
@@ -308,7 +307,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
 
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(this);
-        sharedPreferences.edit().clear().commit();
+        sharedPreferences.edit().clear().apply();
 
         Intent homeIntent = new Intent(this, SplashScreenActivity.class);
         homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);

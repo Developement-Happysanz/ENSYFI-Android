@@ -135,20 +135,12 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
     public void onResponse(JSONObject response) {
         progressDialogHelper.hideProgressDialog();
         if (validateSignInResponse(response)) {
-
-
             try {
-
                 JSONObject getParentData = response.getJSONObject("parentProfile");
-
                 saveStudentParentDetails(response);
-
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
-
         } else {
             Log.d(TAG, "Error while sign In");
         }
@@ -177,7 +169,6 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
 
                     } else {
                         signInsuccess = true;
-
                     }
                 }
             } catch (JSONException e) {

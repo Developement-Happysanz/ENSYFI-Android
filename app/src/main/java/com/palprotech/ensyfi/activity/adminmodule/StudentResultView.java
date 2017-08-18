@@ -43,7 +43,7 @@ public class StudentResultView extends AppCompatActivity implements IServiceList
     private static final String TAG = StudentResultView.class.getName();
     private ProgressDialogHelper progressDialogHelper;
     private ServiceHelper serviceHelper;
-    private String checkSpinner = "", storeClassId, storeSectionId;
+    private String storeClassId, storeSectionId;
     ListView loadMoreListView;
     ClassStudentListAdapter classStudentListAdapter;
     ArrayList<ClassStudent> classStudentArrayList;
@@ -79,8 +79,6 @@ public class StudentResultView extends AppCompatActivity implements IServiceList
     }
 
     private void GetStudentData() {
-
-        checkSpinner = "students";
         if (classStudentArrayList != null)
             classStudentArrayList.clear();
 
@@ -90,16 +88,12 @@ public class StudentResultView extends AppCompatActivity implements IServiceList
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_CLASS_ID_LIST, storeClassId);
                 jsonObject.put(EnsyfiConstants.PARAMS_SECTION_ID_LIST, storeSectionId);
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
             String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_STUDENT_LISTS;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
-
-
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
         }
@@ -122,7 +116,6 @@ public class StudentResultView extends AppCompatActivity implements IServiceList
 
                     } else {
                         signInsuccess = true;
-
                     }
                 }
             } catch (JSONException e) {

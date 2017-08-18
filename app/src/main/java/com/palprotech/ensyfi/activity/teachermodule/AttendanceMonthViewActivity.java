@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -53,7 +52,6 @@ public class AttendanceMonthViewActivity extends AppCompatActivity implements Di
     protected ProgressDialogHelper progressDialogHelper;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
-    private SearchView mSearchView = null;
     Button btnFullAttendance;
 
     @Override
@@ -109,8 +107,6 @@ public class AttendanceMonthViewActivity extends AppCompatActivity implements Di
                 jsonObject.put(EnsyfiConstants.PARAM_CLASS_ID, monthView.getClassId());
                 jsonObject.put(EnsyfiConstants.KEY_ATTENDANCE_HISTORY_STUDENT_ID, monthView.getEnrollId());
                 jsonObject.put(EnsyfiConstants.PARAMS_DISPLAY_MONTH_YEAR, getMonthYear);
-
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }

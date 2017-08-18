@@ -113,7 +113,6 @@ public class FeesViewActivity extends AppCompatActivity implements IServiceListe
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_CLASS_ID_LIST, storeClassId);
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -134,7 +133,6 @@ public class FeesViewActivity extends AppCompatActivity implements IServiceListe
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_CLASS_ID, PreferenceStorage.getStudentClassIdPreference(getApplicationContext()));
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -169,8 +167,6 @@ public class FeesViewActivity extends AppCompatActivity implements IServiceListe
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
             String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_VIEW_FEES;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
-
-
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
         }
@@ -245,7 +241,6 @@ public class FeesViewActivity extends AppCompatActivity implements IServiceListe
                     JSONArray getData = response.getJSONArray("data");
                     JSONObject userData = getData.getJSONObject(0);
                     int getLength = getData.length();
-                    String subjectName = null;
                     Log.d(TAG, "userData dictionary" + userData.toString());
 
                     String classId = "";
@@ -263,8 +258,6 @@ public class FeesViewActivity extends AppCompatActivity implements IServiceListe
                     //fill data in spinner
                     ArrayAdapter<StoreClass> adapter = new ArrayAdapter<StoreClass>(getApplicationContext(), R.layout.spinner_item_ns, classesList);
                     spnClassList.setAdapter(adapter);
-//                spnClassList.setSelection(adapter.getPosition());//Optional to set the selected item.
-
                 } else if (checkSpinner.equalsIgnoreCase("section")) {
                     JSONArray getData = response.getJSONArray("data");
                     JSONObject userData = getData.getJSONObject(0);
@@ -286,14 +279,11 @@ public class FeesViewActivity extends AppCompatActivity implements IServiceListe
                     //fill data in spinner
                     ArrayAdapter<StoreSection> adapter = new ArrayAdapter<StoreSection>(getApplicationContext(), R.layout.spinner_item_ns, sectionList);
                     spnSectionList.setAdapter(adapter);
-//                spnClassList.setSelection(adapter.getPosition());//Optional to set the selected item.
                 } else {
                     mHandler.post(new Runnable() {
                         @Override
                         public void run() {
                             progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
-
                             Gson gson = new Gson();
                             FeesList feesList = gson.fromJson(response.toString(), FeesList.class);
                             if (feesList.getFees() != null && feesList.getFees().size() > 0) {

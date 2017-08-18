@@ -76,7 +76,6 @@ public class AttendanceActivity extends AppCompatActivity implements IServiceLis
             args.putInt(CaldroidFragment.YEAR, cal.get(Calendar.YEAR));
             args.putBoolean(CaldroidFragment.ENABLE_SWIPE, true);
             args.putBoolean(CaldroidFragment.SIX_WEEKS_IN_CALENDAR, true);
-
             caldroidFragment.setArguments(args);
         }
 
@@ -130,7 +129,6 @@ public class AttendanceActivity extends AppCompatActivity implements IServiceLis
                 e.printStackTrace();
             }
 
-
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
             String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_STUDENT_ATTENDANCD_API;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
@@ -175,7 +173,6 @@ public class AttendanceActivity extends AppCompatActivity implements IServiceLis
                         Log.d(TAG, "Show error dialog");
                     } else {
                         signInsuccess = true;
-
                     }
                 }
             } catch (JSONException e) {

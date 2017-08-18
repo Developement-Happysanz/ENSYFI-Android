@@ -104,8 +104,7 @@ public class StudentInfoActivity extends AppCompatActivity {
                 if ((Section != null) && !(Section.isEmpty()) && !Section.equalsIgnoreCase("null")) {
                     PreferenceStorage.saveStudentSectionNamePreference(getApplicationContext(), Section);
                 }
-//
-//
+
                 Intent intent = new Intent(getApplicationContext(), ParentDashBoardActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

@@ -43,11 +43,9 @@ public class EventsActivity extends AppCompatActivity implements IServiceListene
     private ServiceHelper serviceHelper;
     ArrayList<Event> eventArrayList;
     int totalCount = 0;
-
     protected ProgressDialogHelper progressDialogHelper;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +79,6 @@ public class EventsActivity extends AppCompatActivity implements IServiceListene
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
         }
-
     }
 
     @Override

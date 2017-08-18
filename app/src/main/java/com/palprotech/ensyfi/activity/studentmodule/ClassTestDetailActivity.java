@@ -27,7 +27,7 @@ import org.json.JSONObject;
  * Created by Admin on 17-05-2017.
  */
 
-public class ClassTestDetailActivity extends AppCompatActivity implements IServiceListener, DialogClickListener, View.OnClickListener {
+public class ClassTestDetailActivity extends AppCompatActivity implements IServiceListener, DialogClickListener {
     private static final String TAG = ClassTestDetailActivity.class.getName();
     private ClassTest classTest;
     private TextView txtTitle, txtHomeWorkDate, txtHomeWorkDetails, txtHomeWorkSubject, tvTitleText, txtViewMarks, txtViewRemarks;
@@ -147,11 +147,6 @@ public class ClassTestDetailActivity extends AppCompatActivity implements IServi
 
     @Override
     public void onAlertNegativeClicked(int tag) {
-
-    }
-
-    @Override
-    public void onClick(View v) {
 
     }
 

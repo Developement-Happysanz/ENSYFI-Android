@@ -263,8 +263,6 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
-
     }
 
     private void GetHomeWorkClassTestDetails(String homeWorkId) {

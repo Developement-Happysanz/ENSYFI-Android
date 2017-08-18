@@ -120,7 +120,6 @@ public class ClassStudentDetailsActivity extends AppCompatActivity implements IS
 
         if (CommonUtils.isNetworkAvailable(this)) {
 
-
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_STUDENT_ID_SHOW, classStudent.getEnrollId());
@@ -132,7 +131,6 @@ public class ClassStudentDetailsActivity extends AppCompatActivity implements IS
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
             String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_STUDENT_INFO;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
-
 
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
@@ -182,7 +180,6 @@ public class ClassStudentDetailsActivity extends AppCompatActivity implements IS
 
                     } else {
                         signInsuccess = true;
-
                     }
                 }
             } catch (JSONException e) {
@@ -199,7 +196,6 @@ public class ClassStudentDetailsActivity extends AppCompatActivity implements IS
         if (v == btnBack) {
             finish();
         }
-
         if (v == btnClassTestHomework) {
 
             String ClassId = classStudent.getClassId();

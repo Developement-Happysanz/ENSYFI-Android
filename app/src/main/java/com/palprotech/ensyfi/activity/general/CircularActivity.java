@@ -134,7 +134,6 @@ public class CircularActivity extends AppCompatActivity implements IServiceListe
 
                     } else {
                         signInsuccess = true;
-
                     }
                 }
             } catch (JSONException e) {

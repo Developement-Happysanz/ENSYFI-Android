@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -36,7 +35,7 @@ import java.util.ArrayList;
  * Created by Admin on 25-05-2017.
  */
 
-public class ExamMarksActivity extends AppCompatActivity implements IServiceListener, AdapterView.OnItemClickListener, DialogClickListener {
+public class ExamMarksActivity extends AppCompatActivity implements IServiceListener, DialogClickListener {
 
     private static final String TAG = "ExamMarksActivity";
     ListView loadMoreListView;
@@ -56,7 +55,6 @@ public class ExamMarksActivity extends AppCompatActivity implements IServiceList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exam_marks);
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
-        loadMoreListView.setOnItemClickListener(this);
         examMarkArrayList = new ArrayList<>();
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
@@ -88,11 +86,6 @@ public class ExamMarksActivity extends AppCompatActivity implements IServiceList
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
         }
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
     }
 
     @Override

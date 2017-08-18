@@ -85,7 +85,6 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
     private String mFromTimeVal = null;
     private String mToTimeVal = null;
     String singleDate = "", checkVal = "N";
-    String formattedServerDate;
     DatePickerDialog mFromDatePickerDialog = null;
 
     @Override
@@ -285,7 +284,6 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
         progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
         String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_USER_LEAVES_TYPE_API;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
-
     }
 
     @Override
@@ -613,6 +611,7 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
                     getLeaveList();
                 }
             } catch (Exception ex) {
+                ex.printStackTrace();
             }
         } else {
             Log.d(TAG, "Error while sign In");

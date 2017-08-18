@@ -114,7 +114,6 @@ public class ViewClassTestMarkActivity extends AppCompatActivity implements ISer
 
                     } else {
                         signInsuccess = true;
-
                     }
                 }
             } catch (JSONException e) {
@@ -155,7 +154,6 @@ public class ViewClassTestMarkActivity extends AppCompatActivity implements ISer
                 }
             });
         }
-
     }
 
     @Override

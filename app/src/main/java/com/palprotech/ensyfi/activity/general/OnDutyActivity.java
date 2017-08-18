@@ -41,7 +41,6 @@ public class OnDutyActivity extends AppCompatActivity implements View.OnClickLis
     private static final String TAG = "OnDutyActivity";
     ListView loadMoreListView;
     View view;
-
     OnDutyListAdapter onDutyListAdapter;
     ServiceHelper serviceHelper;
     ArrayList<OnDuty> onDutyArrayList;
@@ -129,7 +128,6 @@ public class OnDutyActivity extends AppCompatActivity implements View.OnClickLis
                     jsonObject.put(EnsyfiConstants.PARAMS_FP_USER_ID, PreferenceStorage.getStudentAdmissionIdPreference(getApplicationContext()));
                     jsonObject.put(EnsyfiConstants.KEY_USER_TYPE, PreferenceStorage.getUserType(getApplicationContext()));
                 }
-
 
             } catch (JSONException e) {
                 e.printStackTrace();

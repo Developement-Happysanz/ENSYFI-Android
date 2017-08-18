@@ -176,7 +176,6 @@ public class TimeTableReviewAddActivity extends AppCompatActivity implements ISe
                         Log.d(TAG, "Show error dialog");
                         AlertDialogHelper.showSimpleAlertDialog(this, msg);
                         finish();
-
                     }
                 }
             } catch (JSONException e) {

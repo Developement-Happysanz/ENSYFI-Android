@@ -8,7 +8,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioGroup;
@@ -36,7 +35,7 @@ import java.util.ArrayList;
  * Created by Admin on 19-07-2017.
  */
 
-public class OnDutyViewActivity extends AppCompatActivity implements IServiceListener, DialogClickListener, AdapterView.OnItemClickListener {
+public class OnDutyViewActivity extends AppCompatActivity implements IServiceListener, DialogClickListener {
 
     private static final String TAG = OnDutyViewActivity.class.getName();
     private ProgressDialogHelper progressDialogHelper;
@@ -59,7 +58,6 @@ public class OnDutyViewActivity extends AppCompatActivity implements IServiceLis
         progressDialogHelper = new ProgressDialogHelper(this);
         radioStudentsTeachersView = (RadioGroup) findViewById(R.id.radioStudentsTeachersView);
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
-        loadMoreListView.setOnItemClickListener(this);
         onDutyArrayList = new ArrayList<>();
         callOnDutyViewService();
         radioStudentsTeachersView.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -110,8 +108,6 @@ public class OnDutyViewActivity extends AppCompatActivity implements IServiceLis
             String url = "";
             try {
                 jsonObject.put(EnsyfiConstants.KEY_USER_TYPE, "1");
-
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -161,11 +157,6 @@ public class OnDutyViewActivity extends AppCompatActivity implements IServiceLis
         }
 
         return signInsuccess;
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
     }
 
     @Override

@@ -267,7 +267,6 @@ public class ExamViewActivity extends AppCompatActivity implements IServiceListe
                     //fill data in spinner
                     ArrayAdapter<StoreClass> adapter = new ArrayAdapter<StoreClass>(getApplicationContext(), R.layout.spinner_item_ns, classesList);
                     spnClassList.setAdapter(adapter);
-//                spnClassList.setSelection(adapter.getPosition());//Optional to set the selected item.
 
                 } else if (checkSpinner.equalsIgnoreCase("section")) {
                     JSONArray getData = response.getJSONArray("data");
@@ -291,7 +290,6 @@ public class ExamViewActivity extends AppCompatActivity implements IServiceListe
                     //fill data in spinner
                     ArrayAdapter<StoreSection> adapter = new ArrayAdapter<StoreSection>(getApplicationContext(), R.layout.spinner_item_ns, sectionList);
                     spnSectionList.setAdapter(adapter);
-//                spnClassList.setSelection(adapter.getPosition());//Optional to set the selected item.
                 } else {
 
                     JSONArray getData = response.getJSONArray("Exams");
@@ -356,8 +354,6 @@ public class ExamViewActivity extends AppCompatActivity implements IServiceListe
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_CLASS_ID_NEW, storeClassId);
                 jsonObject.put(EnsyfiConstants.PARAMS_SECTION_ID, storeSectionId);
-
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }

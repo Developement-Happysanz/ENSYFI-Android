@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -34,7 +33,7 @@ import java.util.ArrayList;
  * Created by Admin on 22-05-2017.
  */
 
-public class EventOrganiserActivity extends AppCompatActivity implements DialogClickListener, IServiceListener, AdapterView.OnItemClickListener {
+public class EventOrganiserActivity extends AppCompatActivity implements DialogClickListener, IServiceListener {
 
     private static final String TAG = "EventsActivity";
     ListView loadMoreListView;
@@ -54,7 +53,6 @@ public class EventOrganiserActivity extends AppCompatActivity implements DialogC
         setContentView(R.layout.activity_event_organiser);
 
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
-        loadMoreListView.setOnItemClickListener(this);
         eventOrganiserArrayList = new ArrayList<>();
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
@@ -82,7 +80,6 @@ public class EventOrganiserActivity extends AppCompatActivity implements DialogC
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
         }
-
     }
 
     @Override
@@ -167,11 +164,6 @@ public class EventOrganiserActivity extends AppCompatActivity implements DialogC
         });
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-    }
-
     private class HttpAsyncTask extends AsyncTask<String, Void, Void> {
         @Override
         protected Void doInBackground(String... urls) {
@@ -179,7 +171,6 @@ public class EventOrganiserActivity extends AppCompatActivity implements DialogC
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAM_EVENT_ID, eventId);
-
 
             } catch (JSONException e) {
                 e.printStackTrace();

@@ -221,7 +221,6 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.
                     INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-
         }
 
         if (v == dateTo) {
@@ -409,7 +408,6 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                         finish();
-
                     }
                 }
             } catch (JSONException e) {

@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -36,7 +35,7 @@ import java.util.ArrayList;
  * Created by Admin on 19-07-2017.
  */
 
-public class AcademicExamResultView extends AppCompatActivity implements IServiceListener, DialogClickListener, AdapterView.OnItemClickListener {
+public class AcademicExamResultView extends AppCompatActivity implements IServiceListener, DialogClickListener {
 
     long hwId;
     String homeWorkId;
@@ -65,7 +64,6 @@ public class AcademicExamResultView extends AppCompatActivity implements IServic
         db = new SQLiteHelper(getApplicationContext());
         progressDialogHelper = new ProgressDialogHelper(this);
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
-        loadMoreListView.setOnItemClickListener(this);
         examResultArrayList = new ArrayList<>();
         GetAcademicExamInfo(examId);
         GetClassTestMarkData();
@@ -126,7 +124,6 @@ public class AcademicExamResultView extends AppCompatActivity implements IServic
             String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_ACADEMIC_EXAM_MARK;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
-
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
         }
@@ -157,11 +154,6 @@ public class AcademicExamResultView extends AppCompatActivity implements IServic
         }
 
         return signInsuccess;
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
     }
 
     @Override

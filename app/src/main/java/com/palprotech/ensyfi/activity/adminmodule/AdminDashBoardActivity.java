@@ -45,7 +45,6 @@ import com.squareup.picasso.Picasso;
 public class AdminDashBoardActivity extends AppCompatActivity implements DialogClickListener {
 
     private static final String TAG = AdminDashBoardActivity.class.getName();
-    private static final int TAG_LOGOUT = 100;
     Toolbar toolbar;
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
@@ -229,11 +228,8 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
 
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         // enable ActionBar app icon to behave as action to toggle nav drawer
-        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //getSupportActionBar().setHomeButtonEnabled(true);
         // Initialize header and listview
         navDrawerList = (ListView) findViewById(R.id.nav_drawer_options_list);
-
 
         NavDrawerAdapter navDrawerAdapter = new NavDrawerAdapter(getApplicationContext(), R.layout.nav_list_item, values);
         navListAdapter = new ArrayAdapter<String>(this, R.layout.nav_list_item, values);
@@ -332,7 +328,7 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
 
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(this);
-        sharedPreferences.edit().clear().commit();
+        sharedPreferences.edit().clear().apply();
 
         Intent homeIntent = new Intent(this, SplashScreenActivity.class);
         homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);

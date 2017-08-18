@@ -44,7 +44,6 @@ import com.squareup.picasso.Picasso;
 public class ParentDashBoardActivity extends AppCompatActivity implements DialogClickListener {
 
     private static final String TAG = ParentDashBoardActivity.class.getName();
-    private static final int TAG_LOGOUT = 100;
     Toolbar toolbar;
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;

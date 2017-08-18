@@ -84,12 +84,14 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
 
         GetClassData();
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
-        bckbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+            bckbtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    finish();
+
+                }
+            });
 
         spnClassList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -129,7 +131,6 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
                     teacherViewArrayList.clear();
                     loadMoreListView.setAdapter(teacherViewListAdapter);
                 }
-
                 storeSectionId = sectionList.getSectionId();
             }
 
@@ -272,7 +273,6 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
 
                     } else {
                         signInsuccess = true;
-
                     }
                 }
             } catch (JSONException e) {
@@ -357,8 +357,6 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
                     //fill data in spinner
                     ArrayAdapter<StoreClass> adapter = new ArrayAdapter<StoreClass>(getApplicationContext(), R.layout.spinner_item_ns, classesList);
                     spnClassList.setAdapter(adapter);
-//                spnClassList.setSelection(adapter.getPosition());//Optional to set the selected item.
-
                 } else if (checkSpinner.equalsIgnoreCase("section")) {
                     JSONArray getData = response.getJSONArray("data");
                     JSONObject userData = getData.getJSONObject(0);
@@ -373,14 +371,12 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
 
                         sectionId = getData.getJSONObject(i).getString("sec_id");
                         sectionclass = getData.getJSONObject(i).getString("sec_name");
-
                         sectionList.add(new StoreSection(sectionId, sectionclass));
                     }
 
                     //fill data in spinner
                     ArrayAdapter<StoreSection> adapter = new ArrayAdapter<StoreSection>(getApplicationContext(), R.layout.spinner_item_ns, sectionList);
                     spnSectionList.setAdapter(adapter);
-//                spnClassList.setSelection(adapter.getPosition());//Optional to set the selected item.
                 } else if (checkSpinner.equalsIgnoreCase("students")) {
 
                     JSONArray getData = response.getJSONArray("data");

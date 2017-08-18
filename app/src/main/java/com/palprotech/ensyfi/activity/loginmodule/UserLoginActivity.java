@@ -370,6 +370,7 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                 }
             }
         } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 

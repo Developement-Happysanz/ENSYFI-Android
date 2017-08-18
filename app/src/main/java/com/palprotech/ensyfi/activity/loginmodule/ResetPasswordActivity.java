@@ -38,7 +38,6 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
 
     private static final String TAG = ResetPasswordActivity.class.getName();
     private Button btnReset;
-    private int minchar = 8;
     private EditText edtNewPassword, edtRetypePassword;
     private ProgressDialogHelper progressDialogHelper;
     private ServiceHelper serviceHelper;
@@ -96,14 +95,14 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
     }
 
     private boolean validateFields() {
-
+        int minChar = 8;
         if (!AppValidator.checkNullString(this.edtNewPassword.getText().toString().trim())) {
             AlertDialogHelper.showSimpleAlertDialog(this, this.getResources().getString(R.string.enter_password));
             return false;
         } else if (!AppValidator.checkNullString(this.edtRetypePassword.getText().toString().trim())) {
             AlertDialogHelper.showSimpleAlertDialog(this, this.getResources().getString(R.string.enter_password));
             return false;
-        } else if (!AppValidator.checkStringMinLength(minchar, this.edtNewPassword.getText().toString().trim())) {
+        } else if (!AppValidator.checkStringMinLength(minChar, this.edtNewPassword.getText().toString().trim())) {
             AlertDialogHelper.showSimpleAlertDialog(this, this.getResources().getString(R.string.min_pass_length));
             return false;
         } else if (!this.edtNewPassword.getText().toString().trim().contentEquals(this.edtRetypePassword.getText().toString().trim())) {
@@ -113,7 +112,6 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
             return true;
         }
     }
-
 
     @Override
     public void onAlertPositiveClicked(int tag) {
@@ -196,7 +194,7 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
     public void doLogout() {
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(this);
-        sharedPreferences.edit().clear().commit();
+        sharedPreferences.edit().clear().apply();
 
         Intent homeIntent = new Intent(this, SplashScreenActivity.class);
         homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);

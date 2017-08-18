@@ -264,8 +264,6 @@ public class ParentsViewActivity extends AppCompatActivity implements IServiceLi
                     //fill data in spinner
                     ArrayAdapter<StoreClass> adapter = new ArrayAdapter<StoreClass>(getApplicationContext(), R.layout.spinner_item_ns, classesList);
                     spnClassList.setAdapter(adapter);
-//                spnClassList.setSelection(adapter.getPosition());//Optional to set the selected item.
-
                 } else if (checkSpinner.equalsIgnoreCase("section")) {
                     JSONArray getData = response.getJSONArray("data");
                     JSONObject userData = getData.getJSONObject(0);
@@ -287,7 +285,6 @@ public class ParentsViewActivity extends AppCompatActivity implements IServiceLi
                     //fill data in spinner
                     ArrayAdapter<StoreSection> adapter = new ArrayAdapter<StoreSection>(getApplicationContext(), R.layout.spinner_item_ns, sectionList);
                     spnSectionList.setAdapter(adapter);
-//                spnClassList.setSelection(adapter.getPosition());//Optional to set the selected item.
                 } else {
                     JSONArray getData = response.getJSONArray("data");
                     if (getData != null && getData.length() > 0) {
@@ -295,8 +292,6 @@ public class ParentsViewActivity extends AppCompatActivity implements IServiceLi
                             @Override
                             public void run() {
                                 progressDialogHelper.hideProgressDialog();
-//                loadMoreListView.onLoadMoreComplete();
-
                                 Gson gson = new Gson();
                                 ParentStudentList parentStudentList = gson.fromJson(response.toString(), ParentStudentList.class);
                                 if (parentStudentList.getParentStudent() != null && parentStudentList.getParentStudent().size() > 0) {

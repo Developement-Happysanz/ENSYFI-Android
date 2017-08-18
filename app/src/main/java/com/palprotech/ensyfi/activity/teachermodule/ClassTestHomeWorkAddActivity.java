@@ -301,7 +301,6 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements D
             lsClassList.addAll(ts);
             db.close();
             ArrayAdapter<String> dataAdapter3 = new ArrayAdapter<String>(this, R.layout.spinner_item_ns, lsClassList);
-
             spnClassList.setAdapter(dataAdapter3);
             spnClassList.setWillNotDraw(false);
         } catch (Exception e) {

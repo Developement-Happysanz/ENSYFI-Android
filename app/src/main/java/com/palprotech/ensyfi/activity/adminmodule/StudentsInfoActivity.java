@@ -132,7 +132,6 @@ public class StudentsInfoActivity extends AppCompatActivity implements IServiceL
                 String status = response.getString("status");
                 String msg = response.getString(EnsyfiConstants.PARAM_MESSAGE);
                 Log.d(TAG, "status val" + status + "msg" + msg);
-
                 if ((status != null)) {
                     if (((status.equalsIgnoreCase("activationError")) || (status.equalsIgnoreCase("alreadyRegistered")) ||
                             (status.equalsIgnoreCase("notRegistered")) || (status.equalsIgnoreCase("error")))) {
@@ -142,7 +141,6 @@ public class StudentsInfoActivity extends AppCompatActivity implements IServiceL
 
                     } else {
                         signInsuccess = true;
-
                     }
                 }
             } catch (JSONException e) {
@@ -166,7 +164,6 @@ public class StudentsInfoActivity extends AppCompatActivity implements IServiceL
                     @Override
                     public void run() {
                         progressDialogHelper.hideProgressDialog();
-
                         Gson gson = new Gson();
                         ClassStudentList classStudentList = gson.fromJson(response.toString(), ClassStudentList.class);
                         if (classStudentList.getClassStudent() != null && classStudentList.getClassStudent().size() > 0) {

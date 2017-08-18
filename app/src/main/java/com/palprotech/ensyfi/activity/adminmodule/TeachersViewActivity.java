@@ -104,7 +104,6 @@ public class TeachersViewActivity extends AppCompatActivity implements IServiceL
 
                     } else {
                         signInsuccess = true;
-
                     }
                 }
             } catch (JSONException e) {

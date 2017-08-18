@@ -121,7 +121,6 @@ public class FeeStatusActivity extends AppCompatActivity implements IServiceList
 
                     } else {
                         signInsuccess = true;
-
                     }
                 }
             } catch (JSONException e) {

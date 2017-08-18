@@ -147,7 +147,6 @@ public class ExamDetailActivity extends AppCompatActivity implements IServiceLis
 
                     } else {
                         signInsuccess = true;
-
                     }
                 }
             } catch (JSONException e) {

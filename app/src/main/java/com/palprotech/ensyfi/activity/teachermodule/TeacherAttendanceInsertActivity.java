@@ -197,6 +197,7 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
         try {
             db.student_attendance_flag_insert(classId, attendanceDate, attendancePeriod, "Active");
         } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 

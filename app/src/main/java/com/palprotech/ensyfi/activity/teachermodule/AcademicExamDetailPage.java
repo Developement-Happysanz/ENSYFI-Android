@@ -121,7 +121,6 @@ public class AcademicExamDetailPage extends AppCompatActivity implements DialogC
             } else {
                 Toast.makeText(getApplicationContext(), "No records", Toast.LENGTH_LONG).show();
             }
-
             db.close();
 
             cadapter = new AcademicExamDetailsListBaseAdapter(AcademicExamDetailPage.this, myList);

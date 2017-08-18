@@ -41,7 +41,7 @@ public class FeesStatusView extends AppCompatActivity implements IServiceListene
 
     private ProgressDialogHelper progressDialogHelper;
     private ServiceHelper serviceHelper;
-    private String checkSpinner = "", storeClassId, storeSectionId;
+    private String storeClassId, storeSectionId;
     ListView loadMoreListView;
     FeesStatusListAdapter feesStatusListAdapter;
     ArrayList<FeesStatus> feesStatusArrayList;
@@ -79,7 +79,6 @@ public class FeesStatusView extends AppCompatActivity implements IServiceListene
 
     private void GetFeesStatusData() {
 
-        checkSpinner = "feesStatus";
         if (feesStatusArrayList != null)
             feesStatusArrayList.clear();
 
@@ -98,7 +97,6 @@ public class FeesStatusView extends AppCompatActivity implements IServiceListene
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
             String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_VIEW_FEES_STATUS;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
-
 
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
@@ -122,7 +120,6 @@ public class FeesStatusView extends AppCompatActivity implements IServiceListene
 
                     } else {
                         signInsuccess = true;
-
                     }
                 }
             } catch (JSONException e) {

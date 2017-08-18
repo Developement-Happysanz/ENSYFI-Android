@@ -122,7 +122,6 @@ public class ExamOnlyTotalMarksActivity extends AppCompatActivity implements ISe
 
                     } else {
                         signInsuccess = true;
-
                     }
                 }
             } catch (JSONException e) {
@@ -142,6 +141,7 @@ public class ExamOnlyTotalMarksActivity extends AppCompatActivity implements ISe
                 txtTotal.setText(totalMark);
 
             } catch (Exception ex) {
+                ex.printStackTrace();
             }
 
             mHandler.post(new Runnable() {

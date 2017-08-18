@@ -133,7 +133,6 @@ public class ExamsResultActivity extends AppCompatActivity implements IServiceLi
 
                     } else {
                         signInsuccess = true;
-
                     }
                 }
             } catch (JSONException e) {

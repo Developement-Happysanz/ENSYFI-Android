@@ -111,7 +111,6 @@ public class StudentsViewActivity extends AppCompatActivity implements IServiceL
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_CLASS_ID_LIST, storeClassId);
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -167,8 +166,6 @@ public class StudentsViewActivity extends AppCompatActivity implements IServiceL
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
             String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_STUDENT_LISTS;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
-
-
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
         }
@@ -188,17 +185,14 @@ public class StudentsViewActivity extends AppCompatActivity implements IServiceL
                         signInsuccess = false;
                         Log.d(TAG, "Show error dialog");
                         AlertDialogHelper.showSimpleAlertDialog(this, msg);
-
                     } else {
                         signInsuccess = true;
-
                     }
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
-
         return signInsuccess;
     }
 
@@ -242,13 +236,10 @@ public class StudentsViewActivity extends AppCompatActivity implements IServiceL
                     //fill data in spinner
                     ArrayAdapter<StoreClass> adapter = new ArrayAdapter<StoreClass>(getApplicationContext(), R.layout.spinner_item_ns, classesList);
                     spnClassList.setAdapter(adapter);
-//                spnClassList.setSelection(adapter.getPosition());//Optional to set the selected item.
-
                 } else if (checkSpinner.equalsIgnoreCase("section")) {
                     JSONArray getData = response.getJSONArray("data");
                     JSONObject userData = getData.getJSONObject(0);
                     int getLength = getData.length();
-                    String subjectName = null;
                     Log.d(TAG, "userData dictionary" + userData.toString());
 
                     String sectionId = "";
@@ -266,7 +257,6 @@ public class StudentsViewActivity extends AppCompatActivity implements IServiceL
                     //fill data in spinner
                     ArrayAdapter<StoreSection> adapter = new ArrayAdapter<StoreSection>(getApplicationContext(), R.layout.spinner_item_ns, sectionList);
                     spnSectionList.setAdapter(adapter);
-//                spnClassList.setSelection(adapter.getPosition());//Optional to set the selected item.
                 } else {
                     JSONArray getData = response.getJSONArray("data");
                     if (getData != null && getData.length() > 0) {
@@ -295,7 +285,6 @@ public class StudentsViewActivity extends AppCompatActivity implements IServiceL
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
         } else {
             Log.d(TAG, "Error while sign In");
         }
