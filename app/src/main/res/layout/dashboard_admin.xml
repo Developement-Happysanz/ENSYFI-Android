@@ -12,7 +12,7 @@
 
         <include
             android:id="@+id/activity_toolbar"
-            layout="@layout/tool_bar"></include>
+            layout="@layout/tool_bar" />
 
         <include
             android:id="@+id/dashboard_layout"

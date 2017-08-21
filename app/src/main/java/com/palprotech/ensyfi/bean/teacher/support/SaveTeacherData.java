@@ -315,7 +315,7 @@ public class SaveTeacherData {
             Calendar c = Calendar.getInstance();
             SimpleDateFormat serverDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             formattedServerDate = serverDF.format(c.getTime());
-            database.deleteHomeWorkClassTest();
+//            database.deleteHomeWorkClassTest();
 
             for (int i = 0; i < homeWorkClassTest.length(); i++) {
                 HashMap<String, String> map = new HashMap<String, String>();
@@ -355,9 +355,12 @@ public class SaveTeacherData {
                 System.out.println("homework_details : " + i + " = " + homework_details);
                 System.out.println("mark_status : " + i + " = " + mark_status);
 
-
-                long x = database.homework_class_test_insert(hw_id, PreferenceStorage.getAcademicYearId(context), class_id, PreferenceStorage.getUserId(context), homeWork_type, subject_id, subject_name, title, test_date, due_date, homework_details, "Active", mark_status, PreferenceStorage.getUserId(context), formattedServerDate, PreferenceStorage.getUserId(context), formattedServerDate, "S");
-
+                String check = database.isClassTestHomeWorkServer(hw_id);
+                int checkValue = Integer.parseInt(check);
+                long x = -1;
+                if (checkValue == 0) {
+                    x = database.homework_class_test_insert(hw_id, PreferenceStorage.getAcademicYearId(context), class_id, PreferenceStorage.getUserId(context), homeWork_type, subject_id, subject_name, title, test_date, due_date, homework_details, "Active", mark_status, PreferenceStorage.getUserId(context), formattedServerDate, PreferenceStorage.getUserId(context), formattedServerDate, "S");
+                }
                 System.out.println("Stored Id : " + x);
             }
         } catch (Exception ex) {
@@ -369,7 +372,7 @@ public class SaveTeacherData {
         database = new SQLiteHelper(context);
 
         try {
-            database.deleteExamOfClasses();
+//            database.deleteExamOfClasses();
             for (int i = 0; i < academicExams.length(); i++) {
                 HashMap<String, String> map = new HashMap<String, String>();
                 JSONObject jsonobj = academicExams.getJSONObject(i);
@@ -405,7 +408,6 @@ public class SaveTeacherData {
                 System.out.println("Todate : " + i + " = " + Todate);
                 System.out.println("MarkStatus : " + i + " = " + MarkStatus);
 
-
                 String v1 = exam_id,
                         v2 = exam_name,
                         v3 = IsInternalExternal,
@@ -416,9 +418,14 @@ public class SaveTeacherData {
                         v8 = Todate,
                         v9 = MarkStatus;
 
-                long l = database.exam_of_classes_insert(v1, v2, v3, v4, v5, v6, v7, v8, v9);
+                String check = database.isAcademicExam(exam_id, classmaster_id);
+                int checkValue = Integer.parseInt(check);
+                long x = -1;
+                if (checkValue == 0) {
+                    x = database.exam_of_classes_insert(v1, v2, v3, v4, v5, v6, v7, v8, v9);
+                }
 
-                System.out.println("" + l);
+                System.out.println("" + x);
             }
 
         } catch (Exception ex) {
@@ -430,7 +437,7 @@ public class SaveTeacherData {
         database = new SQLiteHelper(context);
 
         try {
-            database.deleteExamDetails();
+//            database.deleteExamDetails();
             for (int i = 0; i < academicExamsDetails.length(); i++) {
                 HashMap<String, String> map = new HashMap<String, String>();
                 JSONObject jsonobj = academicExamsDetails.getJSONObject(i);
@@ -471,9 +478,14 @@ public class SaveTeacherData {
                         v7 = class_name,
                         v8 = sec_name;
 
-                long l = database.exam_details_insert(v1, v2, v3, v4, v5, v6, v7, v8);
+                String check = database.isAcademicExamDetails(exam_id, subject_name, classmaster_id);
+                int checkValue = Integer.parseInt(check);
+                long x = -1;
+                if (checkValue == 0) {
+                    x = database.exam_details_insert(v1, v2, v3, v4, v5, v6, v7, v8);
+                }
 
-                System.out.println("" + l);
+                System.out.println("" + x);
             }
 
         } catch (Exception ex) {

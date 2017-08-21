@@ -86,6 +86,8 @@ public class EnsyfiConstants {
     // CLASS TEST & HOMEWORK
     public static final String GET_CLASS_TEST_HOMEWORK_API = "/apiteacher/add_Homework/";
     public static final String GET_CLASS_TEST_MARK_API = "/apiteacher/add_HWmarks/";
+    public static final String LOAD_STUDENT_CLASSTEST_AND_HOMEWORK = "/apiteacher/reloadHomework/";
+    public static final String LOAD_STUDENT_EXAM_AND_EXAM_DETAILS = "/apiteacher/reloadExam/";
 
     // EXAM & RESULT
     public static final String GET_ACADEMIC_EXAM_MARK_API = "/apiteacher/add_Exammarks/";
@@ -426,8 +428,8 @@ public class EnsyfiConstants {
     public static final String PARAMS_REVIEW_CREATED_AT = "created_at";
 
     // Timetable Review
-    public static final String GET_ON_TIME_TABLE_REVIEW_ADD= "/apiteacher/add_Timetablereview/";
-    public static final String GET_ON_TIME_TABLE_REVIEW_= "/apiteacher/disp_Timetablereview/";
+    public static final String GET_ON_TIME_TABLE_REVIEW_ADD = "/apiteacher/add_Timetablereview/";
+    public static final String GET_ON_TIME_TABLE_REVIEW_ = "/apiteacher/disp_Timetablereview/";
 
     // Google Project Number
     public static final String GOOGLE_PROJECT_ID = "56118066242";

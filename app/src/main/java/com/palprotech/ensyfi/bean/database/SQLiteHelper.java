@@ -677,6 +677,20 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         return c;
     }
 
+    public String isClassTestHomeWorkServer(String val1) {
+        String classTestHomeWorkStatusFlag = "0";
+        SQLiteDatabase database = this.getReadableDatabase();
+        String selectQuery = "Select count(*) from homeWorkClassTest where server_hw_id = '" + val1 + "';";
+        Cursor cursor = database.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                classTestHomeWorkStatusFlag = cursor.getString(0);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return classTestHomeWorkStatusFlag;
+    }
+
     public Cursor getClassTestHomeWorkDetails(String homeworkId) throws SQLException {
         SQLiteDatabase db = this.getWritableDatabase();
         String fetch = "Select * from homeWorkClassTest where _id=" + homeworkId + ";";
@@ -703,6 +717,20 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             c.moveToFirst();
         }
         return c;
+    }
+
+    public String isClassTestHomeWorkStatusFlag() {
+        String classTestHomeWorkStatusFlag = "0";
+        SQLiteDatabase database = this.getReadableDatabase();
+        String selectQuery = "Select count(*) from homeWorkClassTest where sync_status = 'NS' order by _id;";
+        Cursor cursor = database.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                classTestHomeWorkStatusFlag = cursor.getString(0);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return classTestHomeWorkStatusFlag;
     }
 
     public void updateClassTestHomeWorkServerId(String val1, String val2) {
@@ -835,6 +863,20 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         return c;
     }
 
+    public String isAcademicExam(String val1, String val2) {
+        String classTestHomeWorkStatusFlag = "0";
+        SQLiteDatabase database = this.getReadableDatabase();
+        String selectQuery = "Select count(*) from academicExams where exam_id = '" + val1 + "' and classmaster_id = '" + val2 + "';";
+        Cursor cursor = database.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                classTestHomeWorkStatusFlag = cursor.getString(0);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return classTestHomeWorkStatusFlag;
+    }
+
     /*public void updateAcademicExamMarksStatus(String val1, String val2) {
         SQLiteDatabase db = this.getWritableDatabase();
         String fetch = "Update academicExams SET MarkStatus = '1' where exam_id = '" + val1 + "' and classmaster_id = '" + val2 + "';";
@@ -879,6 +921,20 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             c.moveToFirst();
         }
         return c;
+    }
+
+    public String isAcademicExamDetails(String val1, String val2, String val3) {
+        String classTestHomeWorkStatusFlag = "0";
+        SQLiteDatabase database = this.getReadableDatabase();
+        String selectQuery = "Select count(*) from academicExamsDetails where exam_id = '" + val1 + "' and subject_name = '" + val2 + "' and classmaster_id = '" + val3 + "';";
+        Cursor cursor = database.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                classTestHomeWorkStatusFlag = cursor.getString(0);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return classTestHomeWorkStatusFlag;
     }
 
     public void deleteExamDetails() {

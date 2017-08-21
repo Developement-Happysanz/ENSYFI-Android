@@ -16,6 +16,8 @@ import com.palprotech.ensyfi.activity.teachermodule.SyncAttendanceHistoryRecords
 import com.palprotech.ensyfi.activity.teachermodule.SyncClassTestHomeWork;
 import com.palprotech.ensyfi.activity.teachermodule.SyncClassTestMark;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
+import com.palprotech.ensyfi.bean.teacher.support.RefreshExamAndExamDetails;
+import com.palprotech.ensyfi.bean.teacher.support.RefreshHomeWorkClassTestData;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
@@ -39,11 +41,15 @@ public class SyncRecordsActivity extends AppCompatActivity implements IServiceLi
     private Button btnSyncAttendanceRecords;
     private Button btnSyncClassTestHomeworkRecords;
     private Button btnSyncExamMarks;
+    private Button btnRefreshClassTestHomeworkRecords;
+    private Button btnRefreshSyncExamMarks;
     private SyncAttendanceHistoryRecordsActivity syncAttendanceHistoryRecordsActivity;
     private SyncClassTestHomeWork syncClassTestHomeWork;
     private SyncAcademicExamMarks syncAcademicExamMarks;
     private SyncClassTestMark syncClassTestMark;
+    private RefreshExamAndExamDetails refreshExamAndExamDetails;
     private ProgressDialogHelper progressDialogHelper;
+    private RefreshHomeWorkClassTestData refreshHomeWorkClassTestData;
     SQLiteHelper db;
     String localAttendanceId, ac_year, class_id, class_total, no_of_present, no_of_absent,
             attendance_period, created_by, created_at, status;
@@ -62,6 +68,12 @@ public class SyncRecordsActivity extends AppCompatActivity implements IServiceLi
         btnSyncExamMarks = (Button) findViewById(R.id.btnSyncExamMarks);
         btnSyncExamMarks.setOnClickListener(this);
 
+        btnRefreshClassTestHomeworkRecords = (Button) findViewById(R.id.btnRefreshClassTestHomeworkRecords);
+        btnRefreshClassTestHomeworkRecords.setOnClickListener(this);
+
+        btnRefreshSyncExamMarks = (Button) findViewById(R.id.btnRefreshSyncExamMarks);
+        btnRefreshSyncExamMarks.setOnClickListener(this);
+
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
         bckbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +89,8 @@ public class SyncRecordsActivity extends AppCompatActivity implements IServiceLi
         syncAcademicExamMarks = new SyncAcademicExamMarks(this);
         progressDialogHelper = new ProgressDialogHelper(this);
         syncClassTestMark = new SyncClassTestMark(this);
+        refreshHomeWorkClassTestData = new RefreshHomeWorkClassTestData(this);
+        refreshExamAndExamDetails = new RefreshExamAndExamDetails(this);
     }
 
     @Override
@@ -137,6 +151,20 @@ public class SyncRecordsActivity extends AppCompatActivity implements IServiceLi
             }
             if (v == btnSyncExamMarks) {
                 syncAcademicExamMarks.SyncAcademicMarks();
+            }
+            if (v == btnRefreshClassTestHomeworkRecords) {
+                String count = db.isClassTestHomeWorkStatusFlag();
+                int convertCount = Integer.parseInt(count);
+                if (convertCount > 0) {
+                    AlertDialogHelper.showSimpleAlertDialog(this, "Sync all homework and class test records !!!");
+                } else {
+                    refreshHomeWorkClassTestData.ReloadHomeWorkClassTest();
+                }
+            }
+            if (v == btnRefreshSyncExamMarks) {
+//                String count = db.isClassTestHomeWorkStatusFlag();
+//                int convertCount = Integer.parseInt(count);
+                refreshExamAndExamDetails.ReloadExamAndExamDetails();
             }
         }
     }
