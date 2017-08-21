@@ -11,7 +11,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
-import com.facebook.FacebookSdk;
+//import com.facebook.FacebookSdk;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -37,7 +37,7 @@ public class AppController extends android.support.multidex.MultiDexApplication 
     public void onCreate() {
         super.onCreate();
         mInstance = this;
-        FacebookSdk.sdkInitialize(getApplicationContext());
+//        FacebookSdk.sdkInitialize(getApplicationContext());
         getHashKey();
     }
 

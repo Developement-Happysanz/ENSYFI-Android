@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.makeramen.roundedimageview.RoundedTransformationBuilder;
+//import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.bean.admin.viewlist.ClassStudent;
 import com.squareup.picasso.Transformation;
@@ -24,7 +24,7 @@ import java.util.Comparator;
 
 public class ClassStudentListAdapter extends BaseAdapter {
 
-    private final Transformation transformation;
+//    private final Transformation transformation;
     private Context context;
     private ArrayList<ClassStudent> classStudents;
     private boolean mSearching = false;
@@ -41,10 +41,7 @@ public class ClassStudentListAdapter extends BaseAdapter {
         this.context = context;
         this.classStudents = classStudents;
         Collections.sort(classStudents, myComparator);
-        transformation = new RoundedTransformationBuilder()
-                .cornerRadiusDp(0)
-                .oval(false)
-                .build();
+//        transformation = new RoundedTransformationBuilder().cornerRadiusDp(0).oval(false).build();
         mSearching = false;
     }
 

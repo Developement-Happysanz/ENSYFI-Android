@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.makeramen.roundedimageview.RoundedTransformationBuilder;
+//import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.bean.student.viewlist.MonthViewStudentLeaveDays;
 import com.squareup.picasso.Transformation;
@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class MonthViewStudentLeaveDaysListAdapter extends BaseAdapter {
 
-    private final Transformation transformation;
+//    private final Transformation transformation;
     private Context context;
     private ArrayList<MonthViewStudentLeaveDays> monthViewStudentLeaveDays;
     private boolean mSearching = false;
@@ -33,10 +33,10 @@ public class MonthViewStudentLeaveDaysListAdapter extends BaseAdapter {
         this.context = context;
         this.monthViewStudentLeaveDays = monthViewStudentLeaveDays;
 
-        transformation = new RoundedTransformationBuilder()
-                .cornerRadiusDp(0)
-                .oval(false)
-                .build();
+//        transformation = new RoundedTransformationBuilder()
+//                .cornerRadiusDp(0)
+//                .oval(false)
+//                .build();
         mSearching = false;
     }
 

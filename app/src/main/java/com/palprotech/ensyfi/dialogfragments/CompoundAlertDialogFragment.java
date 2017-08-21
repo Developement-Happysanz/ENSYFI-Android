@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,12 +14,13 @@ import com.palprotech.ensyfi.activity.loginmodule.ChangePasswordActivity;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
 import com.palprotech.ensyfi.utils.EnsyfiConstants;
 
-import static com.facebook.FacebookSdk.getApplicationContext;
+//import static com.facebook.FacebookSdk.getApplicationContext;
 
 
 public class CompoundAlertDialogFragment extends DialogFragment {
     private int tag;
     DialogClickListener dialogActions;
+    private Context context;
 
     public static CompoundAlertDialogFragment newInstance(String title, String message, String posButton, String negButton, int tag) {
         CompoundAlertDialogFragment frag = new CompoundAlertDialogFragment();
@@ -74,7 +76,7 @@ public class CompoundAlertDialogFragment extends DialogFragment {
 //                        PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 //                sharedPreferences.edit().clear().commit();
 
-                Intent navigationIntent = new Intent(getApplicationContext(), ChangePasswordActivity.class);
+                Intent navigationIntent = new Intent(context, ChangePasswordActivity.class);
                 navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(navigationIntent);
                 getActivity().finish();

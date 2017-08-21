@@ -11,7 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.makeramen.roundedimageview.RoundedTransformationBuilder;
+//import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.bean.general.viewlist.OnDuty;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
@@ -19,7 +19,7 @@ import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
 
-import static com.facebook.FacebookSdk.getApplicationContext;
+//import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
  * Created by Admin on 10-07-2017.
@@ -27,7 +27,7 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class OnDutyListAdapter extends BaseAdapter {
 
-    private final Transformation transformation;
+    //    private final Transformation transformation;
     private Context context;
     private ArrayList<OnDuty> onDuty;
     private boolean mSearching = false;
@@ -38,10 +38,7 @@ public class OnDutyListAdapter extends BaseAdapter {
         this.context = context;
         this.onDuty = onDuty;
 
-        transformation = new RoundedTransformationBuilder()
-                .cornerRadiusDp(0)
-                .oval(false)
-                .build();
+//        transformation = new RoundedTransformationBuilder().cornerRadiusDp(0).oval(false).build();
         mSearching = false;
     }
 
@@ -107,7 +104,7 @@ public class OnDutyListAdapter extends BaseAdapter {
             holder.imgStatus.setImageResource(R.drawable.od_pending);
         }
 
-        String userTypeString = PreferenceStorage.getUserType(getApplicationContext());
+        String userTypeString = PreferenceStorage.getUserType(context);
         int userType = Integer.parseInt(userTypeString);
         if (userType == 1) {
             holder.txtOdFor.setText(onDuty.get(position).getName() + " - " + onDuty.get(position).getOdFor());

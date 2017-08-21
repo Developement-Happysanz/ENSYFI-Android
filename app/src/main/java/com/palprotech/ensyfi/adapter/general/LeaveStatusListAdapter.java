@@ -11,7 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.makeramen.roundedimageview.RoundedTransformationBuilder;
+//import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.bean.general.viewlist.LeaveStatus;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
@@ -19,7 +19,7 @@ import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
 
-import static com.facebook.FacebookSdk.getApplicationContext;
+//import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
  * Created by Admin on 15-07-2017.
@@ -27,7 +27,7 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class LeaveStatusListAdapter extends BaseAdapter {
 
-    private final Transformation transformation;
+//    private final Transformation transformation;
     private Context context;
     private ArrayList<LeaveStatus> leaveStatus;
     private boolean mSearching = false;
@@ -38,10 +38,10 @@ public class LeaveStatusListAdapter extends BaseAdapter {
         this.context = context;
         this.leaveStatus = leaveStatus;
 
-        transformation = new RoundedTransformationBuilder()
-                .cornerRadiusDp(0)
-                .oval(false)
-                .build();
+//        transformation = new RoundedTransformationBuilder()
+//                .cornerRadiusDp(0)
+//                .oval(false)
+//                .build();
         mSearching = false;
     }
 
@@ -118,7 +118,7 @@ public class LeaveStatusListAdapter extends BaseAdapter {
             holder.txtToTime.setVisibility(View.GONE);
         }
 
-        String userTypeString = PreferenceStorage.getUserType(getApplicationContext());
+        String userTypeString = PreferenceStorage.getUserType(context);
         int userType = Integer.parseInt(userTypeString);
         if (userType == 1) {
             holder.txtLeaveTitle.setText(leaveStatus.get(position).getName() + " - " + leaveStatus.get(position).getLeaveTitle());

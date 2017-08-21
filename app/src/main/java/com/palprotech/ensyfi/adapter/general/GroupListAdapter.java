@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.makeramen.roundedimageview.RoundedTransformationBuilder;
+//import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.bean.general.viewlist.GroupList;
 import com.squareup.picasso.Transformation;
@@ -23,7 +23,7 @@ import java.util.Comparator;
 
 public class GroupListAdapter extends BaseAdapter {
 
-    private final Transformation transformation;
+    //    private final Transformation transformation;
     private Context context;
     private ArrayList<GroupList> groupListses;
     private boolean mSearching = false;
@@ -40,10 +40,7 @@ public class GroupListAdapter extends BaseAdapter {
         this.context = context;
         this.groupListses = groupListses;
 //        Collections.sort(groupListses, myComparator);
-        transformation = new RoundedTransformationBuilder()
-                .cornerRadiusDp(0)
-                .oval(false)
-                .build();
+//        transformation = new RoundedTransformationBuilder().cornerRadiusDp(0).oval(false).build();
         mSearching = false;
     }
 
