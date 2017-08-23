@@ -82,7 +82,7 @@
                         android:layout_marginTop="2dp"
                         android:layout_weight="0.50"
                         android:background="@color/appColor"
-                        android:text="Institute No. of Work Days"
+                        android:text="No. of Work Days"
                         android:textColor="@color/white" />
 
                     <TextView
@@ -110,7 +110,7 @@
                         android:layout_marginTop="1dp"
                         android:layout_weight="0.50"
                         android:background="@color/appColor"
-                        android:text="Student Present Days"
+                        android:text="Present Days"
                         android:textColor="@color/white" />
 
                     <TextView
@@ -139,7 +139,7 @@
                         android:layout_marginTop="1dp"
                         android:layout_weight="0.50"
                         android:background="@color/appColor"
-                        android:text="Student OD Days"
+                        android:text="OD Days"
                         android:textColor="@color/white" />
 
                     <TextView
@@ -168,7 +168,7 @@
                         android:layout_marginTop="1dp"
                         android:layout_weight="0.50"
                         android:background="@color/appColor"
-                        android:text="Student Leave Days"
+                        android:text="Leave Days"
                         android:textColor="@color/white" />
 
                     <TextView
@@ -200,7 +200,7 @@
                         android:layout_marginTop="1dp"
                         android:layout_weight="0.50"
                         android:background="@color/appColor"
-                        android:text="Student Absent Days"
+                        android:text="Absent Days"
                         android:textColor="@color/white" />
 
                     <TextView
@@ -241,7 +241,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginRight="10dp"
-                        android:background="@color/caldroid_444" />
+                        android:background="#e61212" />
 
                     <TextView
                         android:layout_width="wrap_content"

@@ -1081,6 +1081,16 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         return c;
     }
 
+    public Cursor getAllHandlingSubjectList() throws SQLException {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String fetch = "Select distinct * from teacherHandlingSubject order by _id;";
+        Cursor c = db.rawQuery(fetch, null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
     public Cursor getSubjectId(String val1, String val2) throws SQLException {
         SQLiteDatabase db = this.getWritableDatabase();
         String fetch = "Select * from teacherHandlingSubject where subject_name='" + val1 + "' and class_master_id='" + val2 + "' order by _id;";
