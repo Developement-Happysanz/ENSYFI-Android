@@ -82,7 +82,7 @@
                         android:layout_marginTop="2dp"
                         android:layout_weight="0.50"
                         android:background="@color/appColor"
-                        android:text="No. of Work Days"
+                        android:text="No. of Working Days"
                         android:textColor="@color/white" />
 
                     <TextView
