@@ -74,7 +74,6 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
 
         if (CommonUtils.isNetworkAvailable(this)) {
 
-
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_PARENT_ID_SHOW_NEW, parentStudent.getAdmnNo());
@@ -86,7 +85,6 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
             String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_PARENT_INFO;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
-
 
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
