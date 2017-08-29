@@ -101,7 +101,7 @@
                 android:layout_alignTop="@+id/ClassStdAdmnNo"
                 android:layout_alignBottom="@+id/ClassStdAdmnNo"
                 android:gravity="center"
-                android:text="ID"
+                android:text="S.No."
                 android:textSize="18dp"/>
 
             <TextView

@@ -9,14 +9,14 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-//import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.bean.admin.viewlist.TeacherView;
-import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+
+//import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 
 /**
  * Created by Admin on 18-07-2017.
@@ -92,7 +92,7 @@ public class TeacherViewListAdapter extends BaseAdapter {
         } else {
             Log.d("Event List Adapter", "getview pos called" + position);
         }
-        holder.txtTeacherId.setText(teacherViews.get(position).getTeacherId());
+        holder.txtTeacherId.setText(""+(position+1));
         holder.txtTeacherName.setText(teacherViews.get(position).getName());
         holder.txtTeacherMainSubject.setText(teacherViews.get(position).getSubjectName());
 

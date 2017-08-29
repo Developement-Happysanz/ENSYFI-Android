@@ -124,7 +124,7 @@
             android:background="@color/appColor"
             android:textColor="@color/white"
             android:gravity="center"
-            android:text="ID"
+            android:text="S.No."
             android:textSize="18sp" />
 
         <TextView

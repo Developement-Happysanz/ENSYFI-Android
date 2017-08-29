@@ -9,14 +9,14 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-//import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.bean.admin.viewlist.ParentStudent;
-import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+
+//import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 
 /**
  * Created by Admin on 18-07-2017.
@@ -93,7 +93,7 @@ public class ParentStudentListAdapter extends BaseAdapter {
         } else {
             Log.d("Event List Adapter", "getview pos called" + position);
         }
-        holder.txtClassStudentRegId.setText(parentStudents.get(position).getStudentId());
+        holder.txtClassStudentRegId.setText(""+(position+1));
         holder.txtClassStudentName.setText(parentStudents.get(position).getName());
         holder.txtParentName.setText(parentStudents.get(position).getFatherName());
 

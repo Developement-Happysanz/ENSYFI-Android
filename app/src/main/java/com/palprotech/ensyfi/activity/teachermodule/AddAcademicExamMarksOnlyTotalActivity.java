@@ -98,7 +98,7 @@ public class AddAcademicExamMarksOnlyTotalActivity extends AppCompatActivity imp
                     ViewGroup.LayoutParams.MATCH_PARENT);
 
             cellLp.setMargins(2, 2, 2, 2);
-
+            int i = 1;
             Cursor c = db.getStudentsOfClassBasedOnClassId(classSectionId);
             if (c.getCount() > 0) {
                 if (c.moveToFirst()) {
@@ -114,13 +114,24 @@ public class AddAcademicExamMarksOnlyTotalActivity extends AppCompatActivity imp
                             t1.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                                     ViewGroup.LayoutParams.WRAP_CONTENT, 0.10f));
                             t1.setGravity(Gravity.CENTER);
-
+                            t1.setVisibility(View.GONE);
                             t1.setText(c.getString(1));
                             t1.setTextColor(Color.parseColor("#FF68358E"));
                             t1.setHeight(120);
                             t1.setWidth(100);
                             t1.setPadding(1, 0, 2, 0);
                             t1.setId(R.id.my_text_1);
+
+                            TextView t3 = new TextView(this);
+                            t3.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                                    ViewGroup.LayoutParams.WRAP_CONTENT, 0.10f));
+                            t3.setGravity(Gravity.CENTER);
+
+                            t3.setText(""+i);
+                            t3.setTextColor(Color.parseColor("#FF68358E"));
+                            t3.setHeight(120);
+                            t3.setWidth(80);
+                            t3.setPadding(1, 0, 2, 0);
 
                             TextView t2 = new TextView(this);
                             t2.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -161,6 +172,7 @@ public class AddAcademicExamMarksOnlyTotalActivity extends AppCompatActivity imp
 
                             layout_all.addView(cell);
                         }
+                        i++;
                     } while (c.moveToNext());
                 }
             }

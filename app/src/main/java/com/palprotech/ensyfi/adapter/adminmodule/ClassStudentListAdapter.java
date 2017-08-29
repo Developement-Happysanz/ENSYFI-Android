@@ -9,14 +9,14 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-//import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.bean.admin.viewlist.ClassStudent;
-import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+
+//import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 
 /**
  * Created by Admin on 17-07-2017.
@@ -74,6 +74,8 @@ public class ClassStudentListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        int i = 1;
+
         ViewHolder holder;
         if (convertView == null) {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
@@ -95,10 +97,11 @@ public class ClassStudentListAdapter extends BaseAdapter {
             Log.d("Event List Adapter", "getview pos called" + position);
         }
 
-        holder.txtClassStudentRegId.setText(classStudents.get(position).getEnrollId());
+        holder.txtClassStudentRegId.setText(""+(position+1));
         holder.txtClassStudentName.setText(classStudents.get(position).getName());
         holder.txtClassStudentAdmnNo.setText(classStudents.get(position).getAdmisnNo());
 
+        i++;
         return convertView;
     }
 

@@ -124,7 +124,7 @@
             android:layout_height="match_parent"
             android:background="@color/appColor"
             android:gravity="center"
-            android:text="ID"
+            android:text="S.No."
             android:textColor="@color/white"
             android:textSize="15dp" />
 

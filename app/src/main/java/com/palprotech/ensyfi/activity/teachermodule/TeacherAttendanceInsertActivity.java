@@ -248,7 +248,7 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
                     ViewGroup.LayoutParams.MATCH_PARENT);
 
             cellLp.setMargins(2, 2, 2, 2);
-
+            int i = 1;
             Cursor c = db.getStudentsOfClass(className);
             if (c.getCount() > 0) {
                 if (c.moveToFirst()) {
@@ -276,6 +276,11 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
                                     ViewGroup.LayoutParams.WRAP_CONTENT, 0.10f));
                             t1.setGravity(Gravity.CENTER);
 
+                            TextView t3 = new TextView(this);
+                            t3.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                                    ViewGroup.LayoutParams.WRAP_CONTENT, 0.10f));
+                            t3.setGravity(Gravity.CENTER);
+
                             TextView t2 = new TextView(this);
                             t2.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                                     ViewGroup.LayoutParams.WRAP_CONTENT, 0.50f));
@@ -290,11 +295,21 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
                             b1.setId(R.id.my_edit_text_1);
 
                             t1.setText(c.getString(1));
+                            t1.setVisibility(View.GONE);
+//                            t1.setText(""+i);
                             t1.setTextColor(Color.parseColor("#FF68358E"));
                             t1.setHeight(120);
-                            t1.setWidth(100);
+                            t1.setWidth(80);
                             t1.setPadding(1, 0, 2, 0);
                             t1.setId(R.id.my_text_1);
+
+//                            t3.setText(c.getString(1));
+                            t3.setText(""+i);
+                            t3.setTextColor(Color.parseColor("#FF68358E"));
+                            t3.setHeight(120);
+                            t3.setWidth(80);
+                            t3.setPadding(1, 0, 2, 0);
+//                            t1.setId(R.id.my_text_1);
 
                             t2.setText(c.getString(4));
                             t2.setTextColor(Color.parseColor("#FF68358E"));
@@ -309,6 +324,7 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
 
                             layout_all.addView(cell);
                         }
+                        i++;
                     } while (c.moveToNext());
                 }
             }
