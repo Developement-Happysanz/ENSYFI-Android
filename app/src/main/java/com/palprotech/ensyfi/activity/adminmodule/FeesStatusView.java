@@ -117,18 +117,23 @@ public class FeesStatusView extends AppCompatActivity implements IServiceListene
                         signInsuccess = false;
                         Log.d(TAG, "Show error dialog");
                         AlertDialogHelper.showSimpleAlertDialog(this, msg);
-
-                    } else {
-                        signInsuccess = true;
+                        if (feesStatusArrayList != null) {
+                            feesStatusArrayList.clear();
+                            feesStatusListAdapter = new FeesStatusListAdapter(this, this.feesStatusArrayList);
+                            loadMoreListView.setAdapter(feesStatusListAdapter);
+                        }
                     }
+
+                } else {
+                    signInsuccess = true;
                 }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+        } catch(JSONException e){
+            e.printStackTrace();
         }
+    }
 
         return signInsuccess;
-    }
+}
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

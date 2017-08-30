@@ -42,58 +42,39 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:background="@color/background_grey"
         android:gravity="center"
         android:orientation="vertical">
 
-        <!--
-        <LinearLayout
-            android:id="@+id/lllist"
-            android:layout_width="match_parent"
+        <Spinner
+            android:id="@+id/class_list_spinner"
+            style="@style/spinner_style"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="sans-serif"
+            android:overlapAnchor="false"
+            android:spinnerMode="dropdown"
+            android:textColor="@color/text_gray"
+            android:textSize="15sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="120sp"
-                android:layout_marginTop="30sp"
-                android:text="@string/class_t"
-                android:textColor="@color/appColor"
-                android:textSize="20sp" />
-
-            <android.support.v7.widget.SwitchCompat
-                android:id="@+id/switch_test"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="230sp"
-                android:layout_marginTop="-25sp"
-                android:checked="true"
-                android:clickable="false"
-                android:theme="@style/MySwitchTheme" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="120sp"
-                android:layout_marginTop="30sp"
-                android:text="@string/homework"
-                android:textColor="@color/appColor"
-                android:textSize="20sp" />
-
-
-            <android.support.v7.widget.SwitchCompat
-                android:id="@+id/switch_homwork"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="30sp"
-                android:layout_marginLeft="230sp"
-                android:layout_marginTop="-25sp"
-                android:checked="true"
-                android:clickable="false"
-                android:theme="@style/MySwitchTheme" />
-        </LinearLayout> -->
+        <Spinner
+            android:id="@+id/class_test_homework_spinner"
+            style="@style/spinner_style"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/class_list_spinner"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="sans-serif"
+            android:overlapAnchor="false"
+            android:spinnerMode="dropdown"
+            android:textColor="@color/text_gray"
+            android:textSize="15sp" />
 
         <RadioGroup
             android:id="@+id/radioClassHome"
@@ -101,7 +82,8 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerInParent="true"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:visibility="gone">
 
             <RadioButton
                 android:id="@+id/radioClassTest"

@@ -9,12 +9,13 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-//import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.bean.student.viewlist.ClassTest;
-import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
+import java.util.Collections;
+
+//import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 
 /**
  * Created by Admin on 15-05-2017.
@@ -32,7 +33,7 @@ public class ClassTestListAdapter extends BaseAdapter {
     public ClassTestListAdapter(Context context, ArrayList<ClassTest> classTests) {
         this.context = context;
         this.classTests = classTests;
-
+        Collections.reverse(classTests);
 //        transformation = new RoundedTransformationBuilder()
 //                .cornerRadiusDp(0)
 //                .oval(false)

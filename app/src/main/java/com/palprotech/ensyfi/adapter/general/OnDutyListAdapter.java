@@ -11,13 +11,14 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-//import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.bean.general.viewlist.OnDuty;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
-import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
+import java.util.Collections;
+
+//import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 
 //import static com.facebook.FacebookSdk.getApplicationContext;
 
@@ -37,7 +38,7 @@ public class OnDutyListAdapter extends BaseAdapter {
     public OnDutyListAdapter(Context context, ArrayList<OnDuty> onDuty) {
         this.context = context;
         this.onDuty = onDuty;
-
+        Collections.reverse(onDuty);
 //        transformation = new RoundedTransformationBuilder().cornerRadiusDp(0).oval(false).build();
         mSearching = false;
     }

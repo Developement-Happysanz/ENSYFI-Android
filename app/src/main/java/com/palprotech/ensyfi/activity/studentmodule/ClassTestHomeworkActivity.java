@@ -4,14 +4,15 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 
 import com.google.gson.Gson;
 import com.palprotech.ensyfi.R;
@@ -31,6 +32,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Narendar on 07/04/17.
@@ -40,6 +42,7 @@ public class ClassTestHomeworkActivity extends AppCompatActivity implements ISer
 
     private static final String TAG = "ClassTestHomework";
     ListView loadMoreListView;
+    private Spinner spnClassList, spnClassTestHomeWork;
     ClassTestListAdapter classTestListAdapter;
     private ServiceHelper serviceHelper;
     ArrayList<ClassTest> classTestArrayList;
@@ -48,7 +51,11 @@ public class ClassTestHomeworkActivity extends AppCompatActivity implements ISer
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
     private RadioGroup radioClassHome;
+    String ClassTestOrHomeWork = "";
+    String classSection;
     private String isHomeWorkType = "HT";
+    private List<String> mClassTestHomeWorkList = new ArrayList<String>();
+    String classTestHomeWork = "Class Test";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +67,9 @@ public class ClassTestHomeworkActivity extends AppCompatActivity implements ISer
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(this);
+
+        spnClassTestHomeWork = (Spinner) findViewById(R.id.class_test_homework_spinner);
+
         radioClassHome = (RadioGroup) findViewById(R.id.radioClassHome);
 
         callGetClassTestService();
@@ -72,21 +82,48 @@ public class ClassTestHomeworkActivity extends AppCompatActivity implements ISer
             }
         });
 
-        radioClassHome.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        mClassTestHomeWorkList.add("Class Test");
+        mClassTestHomeWorkList.add("Home Work");
+
+        ArrayAdapter<String> dataAdapter3 = new ArrayAdapter<String>(this, R.layout.spinner_item_ns, mClassTestHomeWorkList);
+
+        spnClassTestHomeWork.setAdapter(dataAdapter3);
+        spnClassTestHomeWork.setWillNotDraw(false);
+
+        spnClassTestHomeWork.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                switch (checkedId) {
-                    case R.id.radioClassTest:
-                        isHomeWorkType = "HT";
-                        callGetClassTestService();
-                        break;
-                    case R.id.radioHomeWork:
-                        isHomeWorkType = "HW";
-                        callGetClassTestService();
-                        break;
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                classTestHomeWork = parent.getItemAtPosition(position).toString();
+                if (classTestHomeWork.equalsIgnoreCase("Class Test")) {
+                    isHomeWorkType = "HT";
+                    callGetClassTestService();
+                } else {
+                    isHomeWorkType = "HW";
+                    callGetClassTestService();
                 }
             }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
         });
+
+//        radioClassHome.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+//                switch (checkedId) {
+//                    case R.id.radioClassTest:
+//                        isHomeWorkType = "HT";
+//                        callGetClassTestService();
+//                        break;
+//                    case R.id.radioHomeWork:
+//                        isHomeWorkType = "HW";
+//                        callGetClassTestService();
+//                        break;
+//                }
+//            }
+//        });
     }
 
     public void callGetClassTestService() {

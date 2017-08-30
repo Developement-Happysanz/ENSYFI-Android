@@ -4,54 +4,53 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/background_grey">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+        <RelativeLayout
+            android:id="@+id/tlbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <RelativeLayout
-                android:id="@+id/tlbar"
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar_result"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@color/appColor"
+                android:minHeight="?attr/actionBarSize" />
 
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar_result"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/appColor"
-                    android:minHeight="?attr/actionBarSize" />
+            <ImageView
+                android:id="@+id/back_res"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:minHeight="?attr/actionBarSize"
+                android:paddingLeft="15dp"
+                android:src="@drawable/ic_arrow_back_white_48dp" />
 
-                <ImageView
-                    android:id="@+id/back_res"
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:minHeight="?attr/actionBarSize"
-                    android:paddingLeft="15dp"
-                    android:src="@drawable/ic_arrow_back_white_48dp" />
+            <TextView
+                android:id="@+id/tvtitletext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:minHeight="?attr/actionBarSize"
+                android:paddingLeft="10dp"
+                android:text="OD Request"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/actionbarTextSize" />
 
-                <TextView
-                    android:id="@+id/tvtitletext"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:fontFamily="sans-serif-medium"
-                    android:gravity="center"
-                    android:minHeight="?attr/actionBarSize"
-                    android:paddingLeft="10dp"
-                    android:text="OD Request"
-                    android:textAllCaps="true"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/actionbarTextSize" />
+        </RelativeLayout>
+        <!--End-->
 
-            </RelativeLayout>
-            <!--End-->
-
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background_grey">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -210,6 +209,7 @@
                     android:textColor="@color/white" />
 
             </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
+        </ScrollView>
+    </LinearLayout>
+
 </LinearLayout>
