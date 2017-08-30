@@ -127,13 +127,13 @@ public class FeesStatusView extends AppCompatActivity implements IServiceListene
                 } else {
                     signInsuccess = true;
                 }
-        } catch(JSONException e){
-            e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
-    }
 
         return signInsuccess;
-}
+    }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -159,20 +159,27 @@ public class FeesStatusView extends AppCompatActivity implements IServiceListene
             try {
                 JSONArray getData = response.getJSONArray("data");
 //                JSONObject userData = getData.getJSONObject(0);
-
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        progressDialogHelper.hideProgressDialog();
-                        Gson gson = new Gson();
-                        FeesStatusList feesStatusList = gson.fromJson(response.toString(), FeesStatusList.class);
-                        if (feesStatusList.getFeesStatus() != null && feesStatusList.getFeesStatus().size() > 0) {
-                            totalCount = feesStatusList.getCount();
-                            isLoadingForFirstTime = false;
-                            updateListAdapter(feesStatusList.getFeesStatus());
+                if (getData != null && getData.length() > 0) {
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressDialogHelper.hideProgressDialog();
+                            Gson gson = new Gson();
+                            FeesStatusList feesStatusList = gson.fromJson(response.toString(), FeesStatusList.class);
+                            if (feesStatusList.getFeesStatus() != null && feesStatusList.getFeesStatus().size() > 0) {
+                                totalCount = feesStatusList.getCount();
+                                isLoadingForFirstTime = false;
+                                updateListAdapter(feesStatusList.getFeesStatus());
+                            }
                         }
+                    });
+                } else {
+                    if (feesStatusArrayList != null) {
+                        feesStatusArrayList.clear();
+                        feesStatusListAdapter = new FeesStatusListAdapter(this, this.feesStatusArrayList);
+                        loadMoreListView.setAdapter(feesStatusListAdapter);
                     }
-                });
+                }
 
             } catch (JSONException e) {
                 e.printStackTrace();

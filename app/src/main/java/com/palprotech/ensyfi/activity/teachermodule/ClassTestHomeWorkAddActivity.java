@@ -1,5 +1,6 @@
 package com.palprotech.ensyfi.activity.teachermodule;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -12,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -26,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
+import com.palprotech.ensyfi.activity.general.LeaveApplyActivity;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
@@ -115,6 +118,7 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements D
                 finish();
             }
         });
+        setupUI(findViewById(R.id.scrollID));
 
         radioClassTestHomeWork.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -176,6 +180,35 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements D
                 INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         return true;
+    }
+
+    public static void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager =
+                (InputMethodManager) activity.getSystemService(
+                        Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(
+                activity.getCurrentFocus().getWindowToken(), 0);
+    }
+
+    public void setupUI(View view) {
+
+        // Set up touch listener for non-text box views to hide keyboard.
+        if (!(view instanceof EditText)) {
+            view.setOnTouchListener(new View.OnTouchListener() {
+                public boolean onTouch(View v, MotionEvent event) {
+                    hideSoftKeyboard(ClassTestHomeWorkAddActivity.this);
+                    return false;
+                }
+            });
+        }
+
+        //If a layout container, iterate over children and seed recursion.
+        if (view instanceof ViewGroup) {
+            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+                View innerView = ((ViewGroup) view).getChildAt(i);
+                setupUI(innerView);
+            }
+        }
     }
 
     private void loadFromDate() {
