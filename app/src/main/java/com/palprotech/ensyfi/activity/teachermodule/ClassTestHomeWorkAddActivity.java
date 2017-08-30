@@ -3,6 +3,7 @@ package com.palprotech.ensyfi.activity.teachermodule;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
@@ -229,6 +230,8 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements D
 
             System.out.println("Stored Id : " + x);
 
+            Intent navigationIntent = new Intent(getApplicationContext(), ClassTestHomeWorkTeacherViewActivity.class);
+            startActivity(navigationIntent);
             finish();
         }
     }

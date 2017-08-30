@@ -12,6 +12,8 @@ import com.palprotech.ensyfi.activity.teachermodule.ClassTestHomeWorkTeacherView
 import com.palprotech.ensyfi.bean.teacher.viewlist.ClassTestHomeWork;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Created by Admin on 13-07-2017.
@@ -19,14 +21,16 @@ import java.util.ArrayList;
 
 public class ClassTestHomeWorkListBaseAdapter extends BaseAdapter {
 
-    ArrayList<ClassTestHomeWork> myList = new ArrayList<ClassTestHomeWork>();
+    ArrayList<ClassTestHomeWork> myList;
     LayoutInflater inflater;
     Context context;
     int[] result;
 
+
     public ClassTestHomeWorkListBaseAdapter(Context context, ArrayList<ClassTestHomeWork> myList) {
         this.myList = myList;
         this.context = context;
+        Collections.reverse(myList);
         inflater = LayoutInflater.from(this.context);
     }
 
