@@ -49,9 +49,6 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
         setContentView(R.layout.activity_reset_password);
         PreferenceStorage.saveForgotPasswordStatusEnable(this, "no");
         initializeViews();
-        serviceHelper = new ServiceHelper(this);
-        serviceHelper.setServiceListener(this);
-        progressDialogHelper = new ProgressDialogHelper(this);
     }
 
     @Override
@@ -64,6 +61,9 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
 
     // Initialize Views
     private void initializeViews() {
+        serviceHelper = new ServiceHelper(this);
+        serviceHelper.setServiceListener(this);
+        progressDialogHelper = new ProgressDialogHelper(this);
         btnReset = (Button) findViewById(R.id.confirm);
         btnReset.setOnClickListener(this);
         edtNewPassword = (EditText) findViewById(R.id.edtPassword);
