@@ -28,7 +28,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.activity.general.LeaveApplyActivity;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
