@@ -6,13 +6,16 @@ import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
@@ -34,7 +37,8 @@ import java.util.Vector;
 
 public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity implements DialogClickListener {
 
-    private Spinner spnClassList;
+    private static final String TAG = "ClassTestHomeWork";
+    private Spinner spnClassList, spnClassTestHomeWork;
     ListView loadMoreListView;
     protected ProgressDialogHelper progressDialogHelper;
     protected boolean isLoadingForFirstTime = true;
@@ -48,6 +52,8 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
     ClassTestHomeWorkListBaseAdapter cadapter;
     ImageView createClassTest;
     String ClassTestOrHomeWork = "";
+    private List<String> mClassTestHomeWorkList = new ArrayList<String>();
+    String classTestHomeWork = "Class Test";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,6 +69,9 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
 
         spnClassList = (Spinner) findViewById(R.id.class_list_spinner);
 
+        spnClassTestHomeWork = (Spinner) findViewById(R.id.class_test_homework_spinner);
+
+
         radioClassTestHomeWork = (RadioGroup) findViewById(R.id.radioClassTestHomeWorkView);
 
         createClassTest = (ImageView) findViewById(R.id.createClassTest);
@@ -73,6 +82,19 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 classSection = parent.getItemAtPosition(position).toString();
+                if (classTestHomeWork.equalsIgnoreCase("Class Test")) {
+                    ClassTestOrHomeWork = "HT";
+                    getClassId(classSection);
+                    GetClassTestList(getClassSectionId, ClassTestOrHomeWork);
+                    cadapter = new ClassTestHomeWorkListBaseAdapter(ClassTestHomeWorkTeacherViewActivity.this, myList);
+                    loadMoreListView.setAdapter(cadapter);
+                } else {
+                    ClassTestOrHomeWork = "HW";
+                    getClassId(classSection);
+                    GetClassTestList(getClassSectionId, ClassTestOrHomeWork);
+                    cadapter = new ClassTestHomeWorkListBaseAdapter(ClassTestHomeWorkTeacherViewActivity.this, myList);
+                    loadMoreListView.setAdapter(cadapter);
+                }
             }
 
             @Override
@@ -81,9 +103,42 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
             }
         });
 
-        callSpinner();
+//        callSpinner();
 
-        radioClassTestHomeWork.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        mClassTestHomeWorkList.add("Class Test");
+        mClassTestHomeWorkList.add("Home Work");
+
+        ArrayAdapter<String> dataAdapter3 = new ArrayAdapter<String>(this, R.layout.spinner_item_ns, mClassTestHomeWorkList);
+
+        spnClassTestHomeWork.setAdapter(dataAdapter3);
+        spnClassTestHomeWork.setWillNotDraw(false);
+
+        spnClassTestHomeWork.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                classTestHomeWork = parent.getItemAtPosition(position).toString();
+                if (classTestHomeWork.equalsIgnoreCase("Class Test")) {
+                    ClassTestOrHomeWork = "HT";
+                    getClassId(classSection);
+                    GetClassTestList(getClassSectionId, ClassTestOrHomeWork);
+                    cadapter = new ClassTestHomeWorkListBaseAdapter(ClassTestHomeWorkTeacherViewActivity.this, myList);
+                    loadMoreListView.setAdapter(cadapter);
+                } else {
+                    ClassTestOrHomeWork = "HW";
+                    getClassId(classSection);
+                    GetClassTestList(getClassSectionId, ClassTestOrHomeWork);
+                    cadapter = new ClassTestHomeWorkListBaseAdapter(ClassTestHomeWorkTeacherViewActivity.this, myList);
+                    loadMoreListView.setAdapter(cadapter);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+      /*  radioClassTestHomeWork.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
                 switch (checkedId) {
@@ -106,7 +161,7 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
                         break;
                 }
             }
-        });
+        });*/
 
         createClassTest.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -213,6 +268,7 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
             lsClassList.clear();
             lsClassList.addAll(ts);
             db.close();
+
             ArrayAdapter<String> dataAdapter3 = new ArrayAdapter<String>(this, R.layout.spinner_item_ns, lsClassList);
 
             spnClassList.setAdapter(dataAdapter3);

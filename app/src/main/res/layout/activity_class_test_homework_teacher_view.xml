@@ -42,11 +42,11 @@
         <ImageView
             android:id="@+id/createClassTest"
             android:layout_width="50dp"
-            android:layout_marginTop="5dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
             android:layout_height="50dp"
             android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
             android:src="@drawable/od_apply" />
     </RelativeLayout>
 
@@ -69,15 +69,31 @@
             android:textColor="@color/text_gray"
             android:textSize="15sp" />
 
+        <Spinner
+            android:id="@+id/class_test_homework_spinner"
+            style="@style/spinner_style"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/class_list_spinner"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="sans-serif"
+            android:overlapAnchor="false"
+            android:spinnerMode="dropdown"
+            android:textColor="@color/text_gray"
+            android:textSize="15sp" />
+
         <RadioGroup
             android:id="@+id/radioClassTestHomeWorkView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/class_list_spinner"
+            android:layout_below="@+id/class_test_homework_spinner"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:orientation="horizontal">
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <RadioButton
                 android:id="@+id/radioClassTest"
