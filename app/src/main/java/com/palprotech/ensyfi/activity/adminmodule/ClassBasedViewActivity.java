@@ -3,7 +3,6 @@ package com.palprotech.ensyfi.activity.adminmodule;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -40,6 +39,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Admin on 18-07-2017.
@@ -50,7 +50,7 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
     private static final String TAG = StudentsViewActivity.class.getName();
     private ProgressDialogHelper progressDialogHelper;
     private ServiceHelper serviceHelper;
-    private Spinner spnClassList, spnSectionList;
+    private Spinner spnClassList, spnSectionList, spnClassStudentTeacher;
     private String checkSpinner = "", storeClassId, storeSectionId;
     ListView loadMoreListView;
     ClassStudentListAdapter classStudentListAdapter;
@@ -62,6 +62,9 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
     TeacherViewListAdapter teacherViewListAdapter;
     ArrayList<TeacherView> teacherViewArrayList;
     private RelativeLayout TeacherList, StudentList;
+    private String isType = "STUD";
+    private List<String> mClassStudentTeacherList = new ArrayList<String>();
+    String classStudentTeacher = "";
 
 
     @Override
@@ -78,7 +81,7 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
         loadMoreListView.setOnItemClickListener(this);
         classStudentArrayList = new ArrayList<>();
         teacherViewArrayList = new ArrayList<>();
-
+        spnClassStudentTeacher = (Spinner) findViewById(R.id.class_student_teacher_spinner);
         TeacherList = (RelativeLayout) findViewById(R.id.layout_frame_teacher);
         StudentList = (RelativeLayout) findViewById(R.id.layout_frame_student);
 
@@ -138,26 +141,58 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+        mClassStudentTeacherList.add("Student or Teacher");
+        mClassStudentTeacherList.add("Student");
+        mClassStudentTeacherList.add("Teacher");
 
-        radioStudentsTeachersView.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        ArrayAdapter<String> dataAdapter3 = new ArrayAdapter<String>(this, R.layout.spinner_item_ns, mClassStudentTeacherList);
+
+        spnClassStudentTeacher.setAdapter(dataAdapter3);
+        spnClassStudentTeacher.setWillNotDraw(false);
+
+        spnClassStudentTeacher.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-
-                switch (checkedId) {
-                    case R.id.radioStudent:
-                        StudentList.setVisibility(View.VISIBLE);
-                        TeacherList.setVisibility(View.GONE);
-                        GetStudentData();
-                        break;
-
-                    case R.id.radioTeachers:
-                        TeacherList.setVisibility(View.VISIBLE);
-                        StudentList.setVisibility(View.GONE);
-                        GetTeacherData();
-                        break;
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                classStudentTeacher = parent.getItemAtPosition(position).toString();
+                if (classStudentTeacher.equalsIgnoreCase("Student")) {
+                    StudentList.setVisibility(View.VISIBLE);
+                    TeacherList.setVisibility(View.GONE);
+                    GetStudentData();
+                } else if (classStudentTeacher.equalsIgnoreCase("Teacher")) {
+                    TeacherList.setVisibility(View.VISIBLE);
+                    StudentList.setVisibility(View.GONE);
+                    GetTeacherData();
                 }
             }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
         });
+
+//        radioStudentsTeachersView.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+//
+//                switch (checkedId) {
+//                    case R.id.radioStudent:
+//                        StudentList.setVisibility(View.VISIBLE);
+//                        TeacherList.setVisibility(View.GONE);
+//                        GetStudentData();
+//                        break;
+//
+//                    case R.id.radioTeachers:
+//                        TeacherList.setVisibility(View.VISIBLE);
+//                        StudentList.setVisibility(View.GONE);
+//                        GetTeacherData();
+//                        break;
+//                }
+//            }
+//        });
+
+
+
     }
 
     private void GetTeacherData() {

@@ -13,8 +13,6 @@ import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.bean.admin.viewlist.ClassStudent;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 //import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 
@@ -31,16 +29,16 @@ public class ClassStudentListAdapter extends BaseAdapter {
     private boolean mAnimateSearch = false;
     private ArrayList<Integer> mValidSearchIndices = new ArrayList<Integer>();
 
-    Comparator<ClassStudent> myComparator = new Comparator<ClassStudent>() {
-        public int compare(ClassStudent obj1, ClassStudent obj2) {
-            return obj1.getEnrollId().compareTo(obj2.getEnrollId());
-        }
-    };
+//    Comparator<ClassStudent> myComparator = new Comparator<ClassStudent>() {
+//        public int compare(ClassStudent obj1, ClassStudent obj2) {
+//            return obj1.getEnrollId().compareTo(obj2.getEnrollId());
+//        }
+//    };
 
     public ClassStudentListAdapter(Context context, ArrayList<ClassStudent> classStudents) {
         this.context = context;
         this.classStudents = classStudents;
-        Collections.sort(classStudents, myComparator);
+//        Collections.sort(classStudents, myComparator);
 //        transformation = new RoundedTransformationBuilder().cornerRadiusDp(0).oval(false).build();
         mSearching = false;
     }
