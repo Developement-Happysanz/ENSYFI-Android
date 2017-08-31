@@ -191,7 +191,6 @@ public class ExamViewActivity extends AppCompatActivity implements IServiceListe
 
                     } else {
                         signInsuccess = true;
-
                     }
                 }
             } catch (JSONException e) {

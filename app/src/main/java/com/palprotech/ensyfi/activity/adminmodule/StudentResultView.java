@@ -142,15 +142,21 @@ public class StudentResultView extends AppCompatActivity implements IServiceList
         PreferenceStorage.saveStudentRegisteredIdPreference(this, classStudent.getEnrollId());
 
         String isInternalExternal = exams.getIsInternalExternal();
+        String isMarkStatus = exams.getMarkStatus();
 
-        if (isInternalExternal.equalsIgnoreCase("1")) {
-            Intent intent = new Intent(this, ExamMarksActivity.class);
-            intent.putExtra("eventObj", exams);
-            startActivity(intent);
+        if (isMarkStatus.equalsIgnoreCase("1")) {
+
+            if (isInternalExternal.equalsIgnoreCase("1")) {
+                Intent intent = new Intent(this, ExamMarksActivity.class);
+                intent.putExtra("eventObj", exams);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(this, ExamOnlyTotalMarksActivity.class);
+                intent.putExtra("eventObj", exams);
+                startActivity(intent);
+            }
         } else {
-            Intent intent = new Intent(this, ExamOnlyTotalMarksActivity.class);
-            intent.putExtra("eventObj", exams);
-            startActivity(intent);
+            AlertDialogHelper.showSimpleAlertDialog(StudentResultView.this, "Exam result not published yet !");
         }
     }
 
