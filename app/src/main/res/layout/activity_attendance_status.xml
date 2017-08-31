@@ -43,11 +43,11 @@
         <ImageView
             android:id="@+id/addAttendance"
             android:layout_width="50dp"
-            android:layout_marginTop="5dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
             android:layout_height="50dp"
             android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
             android:src="@drawable/od_apply" />
     </RelativeLayout>
     <!--End-->
@@ -69,7 +69,6 @@
             android:spinnerMode="dropdown"
             android:textColor="@color/text_gray"
             android:textSize="15sp" />
-
 
         <RadioGroup
             android:id="@+id/radioDayMonthView"
@@ -109,19 +108,19 @@
             android:layout_centerInParent="true"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
-            android:text="Select Date"
             android:background="@color/transparent"
-            android:textColor="@color/black"/>
+            android:text="Select Date"
+            android:textColor="@color/black" />
 
         <ImageView
             android:id="@+id/cal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/od_from_to"
             android:layout_alignTop="@+id/btnDateMonth"
-            android:layout_toLeftOf="@+id/btnDateMonth"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="3dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_toLeftOf="@+id/btnDateMonth"
+            android:background="@drawable/od_from_to" />
 
         <Spinner
             android:id="@+id/btnMonth"
@@ -154,11 +153,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:divider="@color/background_grey"
-            android:dividerHeight="4dp">
-
-        </ListView>
+            android:dividerHeight="4dp" />
 
     </LinearLayout>
-
 
 </LinearLayout>

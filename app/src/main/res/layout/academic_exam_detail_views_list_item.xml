@@ -16,12 +16,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:layout_marginTop="2dp"
             android:layout_weight="0.33"
             android:background="@color/white"
             android:gravity="center"
             android:paddingBottom="5dp"
-            android:text="2017-05-23"
+            android:text="@string/set_date_text"
             android:textColor="@color/black" />
 
         <TextView
@@ -29,12 +30,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:layout_marginTop="2dp"
             android:layout_weight="0.33"
             android:background="@color/white"
             android:gravity="center"
             android:paddingBottom="5dp"
-            android:text="12-12-2012"
+            android:text="@string/set_date_text"
             android:textColor="@color/black" />
 
         <TextView
@@ -48,7 +50,7 @@
             android:background="@color/white"
             android:gravity="center"
             android:paddingBottom="5dp"
-            android:text="12-12-2012"
+            android:text="@string/set_date_text"
             android:textColor="@color/black" />
 
     </LinearLayout>

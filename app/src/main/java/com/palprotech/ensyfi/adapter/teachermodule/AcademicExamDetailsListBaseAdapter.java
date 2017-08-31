@@ -61,7 +61,7 @@ public class AcademicExamDetailsListBaseAdapter extends BaseAdapter {
         MyViewHolder mViewHolder;
 
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.academic_exam_detail_vies_list_item, parent, false);
+            convertView = inflater.inflate(R.layout.academic_exam_detail_views_list_item, parent, false);
             mViewHolder = new MyViewHolder(convertView);
             convertView.setTag(mViewHolder);
         } else {

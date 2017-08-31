@@ -20,20 +20,21 @@
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:contentDescription="@string/arrow_back"
             android:minHeight="?attr/actionBarSize"
-            android:paddingLeft="15dp"
+            android:padding="5dp"
             android:src="@drawable/ic_arrow_back_white_48dp" />
 
         <TextView
             android:id="@+id/tvtitletext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:minHeight="?attr/actionBarSize"
-            android:paddingLeft="10dp"
-            android:text="Exam Result"
+            android:text="@string/title_exam_result"
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="@dimen/actionbarTextSize" />
@@ -53,7 +54,7 @@
             android:layout_gravity="center"
             android:textAllCaps="true"
             android:textColor="@color/black"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -79,55 +80,52 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
+                android:layout_marginStart="2dp"
                 android:layout_weight="0.105"
                 android:background="@color/appColor"
                 android:gravity="center"
-                android:text="Student Name"
+                android:text="@string/title_student_name"
                 android:textColor="@color/white"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/txtIntMarks"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_alignTop="@+id/da"
                 android:layout_marginLeft="2dp"
-                android:layout_toRightOf="@+id/da"
+                android:layout_marginStart="2dp"
                 android:layout_weight="0.10"
                 android:background="@color/appColor"
                 android:gravity="center"
-                android:text="Internal"
+                android:text="@string/title_internal"
                 android:textColor="@color/white"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/txtExtMarks"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_alignTop="@+id/da"
                 android:layout_marginLeft="2dp"
-                android:layout_toRightOf="@+id/da"
+                android:layout_marginStart="2dp"
                 android:layout_weight="0.10"
                 android:background="@color/appColor"
                 android:gravity="center"
-                android:text="External"
+                android:text="@string/title_external"
                 android:textColor="@color/white"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/txtMarks"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_alignTop="@+id/da"
                 android:layout_marginLeft="2dp"
                 android:layout_marginRight="2dp"
-                android:layout_toRightOf="@+id/da"
                 android:layout_weight="0.10"
                 android:background="@color/appColor"
                 android:gravity="center"
-                android:text="Total"
+                android:text="@string/title_total"
                 android:textColor="@color/white"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -136,9 +134,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:divider="@color/background_grey"
-            android:dividerHeight="0dp">
-
-        </ListView>
+            android:dividerHeight="0dp" />
 
     </LinearLayout>
 
