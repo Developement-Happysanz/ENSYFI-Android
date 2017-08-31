@@ -11,6 +11,7 @@
     <string name="app_name_display">Ensyfi</string>
     <string name="drawer_open">Drawer open</string>
     <string name="drawer_close">Drawer close</string>
+    <string name="arrow_back">Back to activity</string>
 
     <!--School Id login-->
     <!---->
@@ -94,6 +95,53 @@
     <!--live-->
     <string name="google_maps_key">AIzaSyDuPQ0xxNwxMc9zRe9mxVEbQdUSMTHkCOo</string>
     <!--live-->
+
+    <!--academic_exam_detail_views_list_item-->
+    <string name="set_date_text">12&#8211;12&#8211;2012</string>
+    <!---->
+
+    <!--academic_exam_only_total_result_list_item-->
+    <string name="set_text">name</string>
+    <!---->
+
+    <!--academic_exam_only_total_result_view-->
+    <string name="title_exam_result">Exam Result</string>
+    <string name="title_student_name">Student Name</string>
+    <string name="title_total">Total</string>
+    <!---->
+
+    <!--academic_exam_result_list_item-->
+    <string name="student_name">Siva Bala Murali Krishna</string>
+    <string name="student_grade">B1</string>
+    <string name="student_mark">100</string>
+    <!---->
+
+    <!--academic_exam_result_view-->
+    <string name="title_internal">Internal</string>
+    <string name="title_external">External</string>
+    <!---->
+
+    <!--academic_exams_list_view-->
+    <string name="title_exam_name">Exam Name</string>
+    <string name="title_exam_date">Exam date</string>
+    <string name="hyphen">&#8211;</string>
+    <!---->
+
+    <!--activity_academic_exam_details-->
+    <string name="title_exam_detail">Exam Detail</string>
+    <string name="title_date">Date</string>
+    <string name="title_time">Time</string>
+    <string name="title_subject">Subject</string>
+    <string name="title_mark">Mark</string>
+    <!---->
+
+    <!--activity_academic_exam_view_activity-->
+    <string name="title_academic_exams">Academic Exams</string>
+    <!---->
+
+    <!--activity_add_academic_exam_marks-->
+    <string name="title_exam_mark_entry">Exam Mark entry</string>
+    <!---->
 
 
 </resources>

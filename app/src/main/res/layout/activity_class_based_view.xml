@@ -126,18 +126,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/black"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:background="@color/black"
         android:orientation="vertical">
 
         <RelativeLayout
             android:id="@+id/layout_frame_teacher"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/black"
-            android:layout_marginTop="2dp"
             android:layout_marginBottom="1dp"
+            android:layout_marginTop="2dp"
+            android:background="@color/black"
             android:visibility="gone">
 
             <TextView
@@ -146,9 +146,9 @@
                 android:layout_height="30dp"
                 android:layout_marginLeft="2dp"
                 android:background="@color/appColor"
-                android:textColor="@color/white"
                 android:gravity="center"
                 android:text="ID"
+                android:textColor="@color/white"
                 android:textSize="15sp" />
 
             <TextView
@@ -160,10 +160,10 @@
                 android:layout_toLeftOf="@+id/TeacherMainSubject"
                 android:layout_toRightOf="@+id/TeacherId"
                 android:background="@color/appColor"
-                android:textColor="@color/white"
                 android:gravity="center"
                 android:paddingLeft="5dp"
                 android:text="Teacher Name"
+                android:textColor="@color/white"
                 android:textSize="15sp" />
 
             <TextView
@@ -174,10 +174,10 @@
                 android:layout_marginLeft="2dp"
                 android:layout_marginRight="2dp"
                 android:background="@color/appColor"
-                android:textColor="@color/white"
                 android:gravity="center"
                 android:paddingLeft="5dp"
                 android:text="Handling Subject"
+                android:textColor="@color/white"
                 android:textSize="15dp" />
 
             <TextView
@@ -203,43 +203,43 @@
                 android:id="@+id/ClassStudentRegId"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:layout_alignTop="@+id/ClassStdAdmnNo"
                 android:layout_alignBottom="@+id/ClassStdAdmnNo"
+                android:layout_alignTop="@+id/ClassStdAdmnNo"
+                android:layout_marginLeft="2dp"
+                android:background="@color/appColor"
                 android:gravity="center"
                 android:text="ID"
-                android:background="@color/appColor"
                 android:textColor="@color/white"
-                android:textSize="18dp"/>
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/ClassStudentName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/ClassStudentRegId"
-                android:layout_toLeftOf="@+id/ClassStdAdmnNo"
-                android:layout_marginLeft="2dp"
-                android:layout_alignTop="@+id/ClassStdAdmnNo"
                 android:layout_alignBottom="@+id/ClassStdAdmnNo"
+                android:layout_alignTop="@+id/ClassStdAdmnNo"
+                android:layout_marginLeft="2dp"
+                android:layout_toLeftOf="@+id/ClassStdAdmnNo"
+                android:layout_toRightOf="@+id/ClassStudentRegId"
+                android:background="@color/appColor"
                 android:gravity="center"
                 android:text="Student Name"
-                android:background="@color/appColor"
                 android:textColor="@color/white"
-                android:textSize="18dp"/>
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/ClassStdAdmnNo"
                 android:layout_width="130dp"
-                android:layout_alignParentRight="true"
                 android:layout_height="wrap_content"
-                android:text="Admission No."
-                android:gravity="center"
+                android:layout_alignParentRight="true"
                 android:layout_marginBottom="2dp"
                 android:layout_marginLeft="2dp"
                 android:layout_marginRight="2dp"
                 android:background="@color/appColor"
+                android:gravity="center"
+                android:text="Admission No."
                 android:textColor="@color/white"
-                android:textSize="18dp"/>
+                android:textSize="18dp" />
         </RelativeLayout>
 
         <ListView
@@ -247,9 +247,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:divider="@color/background_grey"
-            android:dividerHeight="0dp">
-
-        </ListView>
+            android:dividerHeight="0dp" />
 
     </LinearLayout>
 

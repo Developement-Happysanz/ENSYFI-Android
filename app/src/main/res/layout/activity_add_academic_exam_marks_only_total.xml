@@ -114,8 +114,8 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="2dp"
-        android:layout_marginTop="10dp"
         android:layout_marginRight="2dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <TextView
@@ -131,9 +131,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_toRightOf="@+id/student_id"
-            android:layout_toLeftOf="@+id/marks"
             android:layout_marginLeft="1dp"
+            android:layout_toLeftOf="@+id/marks"
+            android:layout_toRightOf="@+id/student_id"
             android:layout_weight="0.05"
             android:background="@color/appColor"
             android:gravity="center"
@@ -145,9 +145,9 @@
             android:id="@+id/marks"
             android:layout_width="100dp"
             android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
             android:layout_marginLeft="1dp"
             android:layout_marginRight="1dp"
-            android:layout_alignParentRight="true"
             android:background="@color/appColor"
             android:gravity="center"
             android:text="Marks"
@@ -155,7 +155,6 @@
             android:textSize="15dp" />
 
     </RelativeLayout>
-
 
     <ScrollView
         android:id="@+id/ScrollView01"

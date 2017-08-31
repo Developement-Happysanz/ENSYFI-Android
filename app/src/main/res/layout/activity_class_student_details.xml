@@ -87,8 +87,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Admission ID              :"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textSize="18dp"/>
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtstudentadminid"
@@ -111,8 +111,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Admission Number   :"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textSize="18dp"/>
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtstudentadminnum"
@@ -135,8 +135,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Admission Year          :"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textSize="18dp" />
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtstudentadminyear"
@@ -159,8 +159,8 @@
                     android:layout_marginTop="10dp"
                     android:text="EMSI Number              :"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textSize="18dp"/>
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtstudentemsinum"
@@ -183,8 +183,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Admission Date          :"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textSize="18dp" />
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtStudentAdmissionDate"
@@ -205,8 +205,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Name                           :"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textSize="18dp" />
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtStudentName"
@@ -228,8 +228,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Gender                         :"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textSize="18dp"/>
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtStudentGender"
@@ -251,8 +251,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Date Of Birth               :"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textSize="18dp" />
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtStudentDateOfBirth"
@@ -274,8 +274,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Age                               :"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textSize="18dp"/>
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
 
                 <TextView
@@ -298,8 +298,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Nationality                   :"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textSize="18dp" />
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
 
                 <TextView
@@ -322,8 +322,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Religion                        :"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textSize="18dp" />
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
 
                 <TextView
@@ -346,8 +346,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Caste                            :"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textSize="18dp" />
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtStudentCaste"
@@ -370,8 +370,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Community                  :"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textSize="18dp"/>
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtStudentCommunity"
@@ -394,8 +394,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Parent Or Guardian     :"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textSize="18dp" />
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtStudentParentOrGuardian"
@@ -418,8 +418,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Parent Or Guardian Id :"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textSize="18dp" />
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtStudentParentOrGuardianId"
@@ -442,8 +442,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Mother Tongue            :"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textSize="18dp"/>
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtStudentMotherTongue"
@@ -465,8 +465,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Language                     :"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textSize="18dp" />
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtStudentLanguage"
@@ -488,8 +488,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Mobile                          :"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textSize="18dp"/>
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtStudentMobile"
@@ -511,8 +511,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Secondary Mobile       :"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textSize="18dp"/>
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtStudentSecondaryMobile"
@@ -534,8 +534,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Mail                               :"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textSize="18dp"/>
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
 
                 <TextView
@@ -558,8 +558,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Secondary Mail           :"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textSize="18dp"/>
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
 
                 <TextView
@@ -582,8 +582,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Previous School          :"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textSize="18dp"/>
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
 
                 <TextView
@@ -606,8 +606,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Previous Class            :"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textSize="18dp" />
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtStudentPreviousClass"
@@ -630,8 +630,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Promotion Status       :"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textSize="18dp" />
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtStudentPromotionStatus"
@@ -654,8 +654,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Transfer Certificate    :"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textSize="18dp"/>
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtStudentTransferCertificate"
@@ -678,8 +678,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Record Sheet               :"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textSize="18dp"/>
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtStudentRecordSheet"
@@ -702,8 +702,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Status                           :"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textSize="18dp"/>
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtStudentStatus"
@@ -725,8 +725,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Parent Status              :"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textSize="18dp"/>
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtStudentParentStatus"
@@ -748,8 +748,8 @@
                     android:layout_marginTop="10dp"
                     android:text="Registered                    :"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textSize="18dp"/>
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtStudentRegistered"
@@ -816,11 +816,7 @@
                         android:textColor="@color/white" />
 
                 </LinearLayout>
-
-
             </RelativeLayout>
         </ScrollView>
     </RelativeLayout>
-
-
 </LinearLayout>

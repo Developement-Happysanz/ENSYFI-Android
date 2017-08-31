@@ -122,10 +122,9 @@ public class FeesStatusView extends AppCompatActivity implements IServiceListene
                             feesStatusListAdapter = new FeesStatusListAdapter(this, this.feesStatusArrayList);
                             loadMoreListView.setAdapter(feesStatusListAdapter);
                         }
+                    } else {
+                        signInsuccess = true;
                     }
-
-                } else {
-                    signInsuccess = true;
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -153,10 +152,9 @@ public class FeesStatusView extends AppCompatActivity implements IServiceListene
     @Override
     public void onResponse(final JSONObject response) {
         progressDialogHelper.hideProgressDialog();
+        try {
+            if (validateSignInResponse(response)) {
 
-        if (validateSignInResponse(response)) {
-
-            try {
                 JSONArray getData = response.getJSONArray("data");
 //                JSONObject userData = getData.getJSONObject(0);
                 if (getData != null && getData.length() > 0) {
@@ -180,13 +178,11 @@ public class FeesStatusView extends AppCompatActivity implements IServiceListene
                         loadMoreListView.setAdapter(feesStatusListAdapter);
                     }
                 }
-
-            } catch (JSONException e) {
-                e.printStackTrace();
+            } else {
+                Log.d(TAG, "Error while sign In");
             }
-
-        } else {
-            Log.d(TAG, "Error while sign In");
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 

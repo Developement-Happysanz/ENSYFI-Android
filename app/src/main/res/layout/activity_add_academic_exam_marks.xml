@@ -20,8 +20,10 @@
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:contentDescription="@string/arrow_back"
             android:minHeight="?attr/actionBarSize"
-            android:paddingLeft="15dp"
+            android:padding="5dp"
             android:src="@drawable/ic_arrow_back_white_48dp" />
 
         <TextView
@@ -32,8 +34,7 @@
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:minHeight="?attr/actionBarSize"
-            android:paddingLeft="10dp"
-            android:text="Exam Mark entry"
+            android:text="@string/title_exam_mark_entry"
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="@dimen/actionbarTextSize" />
@@ -42,8 +43,10 @@
             android:id="@+id/btnSave"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_marginTop="5dp"
+            android:contentDescription="@string/arrow_back"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:src="@drawable/add_attendance"
@@ -54,8 +57,8 @@
     <RelativeLayout
         android:id="@+id/classList"
         android:layout_width="match_parent"
-        android:visibility="gone"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:visibility="gone">
 
         <LinearLayout
             android:id="@+id/titleLayout"
@@ -67,6 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="10dp"
                 android:text="Topic :"
                 android:textColor="@color/appColor"
@@ -114,8 +118,8 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="2dp"
-        android:layout_marginTop="10dp"
         android:layout_marginRight="2dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <TextView
@@ -131,9 +135,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_toRightOf="@+id/student_id"
-            android:layout_toLeftOf="@+id/internalmarks"
             android:layout_marginLeft="1dp"
+            android:layout_toLeftOf="@+id/internalmarks"
+            android:layout_toRightOf="@+id/student_id"
             android:layout_weight="0.05"
             android:background="@color/appColor"
             android:gravity="center"
@@ -145,8 +149,8 @@
             android:id="@+id/internalmarks"
             android:layout_width="65dp"
             android:layout_height="match_parent"
-            android:layout_toLeftOf="@+id/externalmarks"
             android:layout_marginLeft="1dp"
+            android:layout_toLeftOf="@+id/externalmarks"
             android:background="@color/appColor"
             android:gravity="center"
             android:text="Internal"
@@ -157,8 +161,8 @@
             android:id="@+id/externalmarks"
             android:layout_width="65dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="1dp"
             android:layout_alignParentRight="true"
+            android:layout_marginLeft="1dp"
             android:background="@color/appColor"
             android:gravity="center"
             android:text="External"
@@ -166,7 +170,6 @@
             android:textSize="15dp" />
 
     </RelativeLayout>
-
 
     <ScrollView
         android:id="@+id/ScrollView01"
@@ -184,10 +187,6 @@
             android:id="@+id/layout_timetable"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
-        </LinearLayout>
-
+            android:orientation="vertical" />
     </ScrollView>
-
 </LinearLayout>

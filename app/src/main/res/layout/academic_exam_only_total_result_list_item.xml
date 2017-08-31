@@ -15,42 +15,42 @@
             android:id="@+id/txtStudentName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="2dp"
             android:layout_marginBottom="1dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:layout_weight="0.67"
             android:background="@color/white"
             android:gravity="center"
             android:paddingBottom="5dp"
-            android:text="Nivas Kumar Suresh Kumar"
+            android:text="@string/set_text"
             android:textColor="@color/black" />
-
-
 
         <TextView
             android:id="@+id/txtSubTotalGrade"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="2dp"
             android:layout_marginBottom="1dp"
-            android:background="@color/white"
+            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:layout_weight="1"
+            android:background="@color/white"
             android:gravity="center"
             android:paddingBottom="5dp"
-            android:text="B1"
+            android:text="@string/set_text"
             android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/txtSubTotalMark"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="2dp"
             android:layout_marginBottom="1dp"
+            android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
-            android:background="@color/white"
             android:layout_weight="1"
+            android:background="@color/white"
             android:gravity="center"
             android:paddingBottom="5dp"
-            android:text="100"
+            android:text="@string/set_text"
             android:textColor="@color/black" />
 
     </LinearLayout>

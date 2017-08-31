@@ -8,7 +8,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/round_btn_plain">
 
         <TextView
@@ -16,12 +16,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:paddingBottom="3dp"
             android:paddingTop="3dp"
-            android:text="Exam Name"
+            android:text="@string/title_exam_name"
             android:textAllCaps="true"
             android:textColor="@color/appColor"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
@@ -30,18 +31,21 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtExamName"
             android:layout_marginLeft="40dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="5dp"
-            android:text="Exam date"
+            android:text="@string/title_exam_date"
             android:textColor="@color/appColor"
-            android:textSize="15dp" />
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/hyphen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/txtFromDate"
+            android:layout_margin="2dp"
+            android:layout_toEndOf="@+id/txtFromDate"
             android:layout_toRightOf="@+id/txtFromDate"
-            android:text=" - "
+            android:text="@string/hyphen"
             android:textColor="@color/black"
             android:textStyle="bold" />
 
@@ -51,10 +55,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtExamName"
             android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/hyphen"
             android:layout_toRightOf="@+id/hyphen"
-            android:text="Exam date"
+            android:text="@string/title_exam_date"
             android:textColor="@color/appColor"
-            android:textSize="15dp" />
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/txtExamIdLocal"
@@ -62,11 +67,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtExamName"
             android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/hyphen"
             android:layout_toRightOf="@+id/hyphen"
             android:textColor="@color/appColor"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:visibility="invisible" />
-
 
         <ImageView
             android:layout_width="25dp"
@@ -74,15 +79,21 @@
             android:layout_below="@+id/txtExamName"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:contentDescription="@string/arrow_back"
             android:src="@drawable/date_calender" />
 
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_alignBottom="@+id/txtToDate"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
+            android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
+            android:contentDescription="@string/arrow_back"
             android:src="@drawable/select_button" />
+
     </RelativeLayout>
 
 </LinearLayout>
