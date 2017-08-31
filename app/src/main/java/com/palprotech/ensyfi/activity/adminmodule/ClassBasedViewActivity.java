@@ -58,13 +58,14 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
     int pageNumber = 0, totalCount = 0;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
-    private RadioGroup radioStudentsTeachersView;
+    //    private RadioGroup radioStudentsTeachersView;
     TeacherViewListAdapter teacherViewListAdapter;
     ArrayList<TeacherView> teacherViewArrayList;
     private RelativeLayout TeacherList, StudentList;
     private String isType = "STUD";
     private List<String> mClassStudentTeacherList = new ArrayList<String>();
-    String classStudentTeacher = "";
+    String classStudentTeacher = "Student", checkSpin = "no";
+    ArrayAdapter<String> dataAdapter3;
 
 
     @Override
@@ -76,25 +77,26 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
         progressDialogHelper = new ProgressDialogHelper(this);
         spnClassList = (Spinner) findViewById(R.id.class_list_spinner);
         spnSectionList = (Spinner) findViewById(R.id.section_list_spinner);
-        radioStudentsTeachersView = (RadioGroup) findViewById(R.id.radioStudentsTeachersView);
+        spnClassStudentTeacher = (Spinner) findViewById(R.id.class_student_teacher_spinner);
+//        radioStudentsTeachersView = (RadioGroup) findViewById(R.id.radioStudentsTeachersView);
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
         loadMoreListView.setOnItemClickListener(this);
         classStudentArrayList = new ArrayList<>();
         teacherViewArrayList = new ArrayList<>();
-        spnClassStudentTeacher = (Spinner) findViewById(R.id.class_student_teacher_spinner);
         TeacherList = (RelativeLayout) findViewById(R.id.layout_frame_teacher);
         StudentList = (RelativeLayout) findViewById(R.id.layout_frame_student);
 
-        GetClassData();
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
-            bckbtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+        bckbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-                    finish();
+                finish();
 
-                }
-            });
+            }
+        });
+
+        GetClassData();
 
         spnClassList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -124,41 +126,33 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 StoreSection sectionList = (StoreSection) parent.getSelectedItem();
+                storeSectionId = sectionList.getSectionId();
+
+                if (checkSpin.equalsIgnoreCase("no")) {
+                    mClassStudentTeacherList.add("Student");
+                    mClassStudentTeacherList.add("Teacher");
+
+                    dataAdapter3 = new ArrayAdapter<String>(getApplicationContext(), R.layout.spinner_item_ns, mClassStudentTeacherList);
+
+                    spnClassStudentTeacher.setAdapter(dataAdapter3);
+                    spnClassStudentTeacher.setWillNotDraw(false);
+                    checkSpin = "yes";
+                }
 
                 if (classStudentArrayList != null) {
                     classStudentArrayList.clear();
                     loadMoreListView.setAdapter(classStudentListAdapter);
                 }
-
                 if (teacherViewArrayList != null) {
                     teacherViewArrayList.clear();
                     loadMoreListView.setAdapter(teacherViewListAdapter);
                 }
-                storeSectionId = sectionList.getSectionId();
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-        mClassStudentTeacherList.add("Student or Teacher");
-        mClassStudentTeacherList.add("Student");
-        mClassStudentTeacherList.add("Teacher");
-
-        ArrayAdapter<String> dataAdapter3 = new ArrayAdapter<String>(this, R.layout.spinner_item_ns, mClassStudentTeacherList);
-
-        spnClassStudentTeacher.setAdapter(dataAdapter3);
-        spnClassStudentTeacher.setWillNotDraw(false);
-
-        spnClassStudentTeacher.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                classStudentTeacher = parent.getItemAtPosition(position).toString();
                 if (classStudentTeacher.equalsIgnoreCase("Student")) {
                     StudentList.setVisibility(View.VISIBLE);
                     TeacherList.setVisibility(View.GONE);
                     GetStudentData();
-                } else if (classStudentTeacher.equalsIgnoreCase("Teacher")) {
+                } else {
                     TeacherList.setVisibility(View.VISIBLE);
                     StudentList.setVisibility(View.GONE);
                     GetTeacherData();
@@ -167,10 +161,36 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
 
+
+//        mClassStudentTeacherList.add("Student or Teacher");
+
+
+        spnClassStudentTeacher.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                classStudentTeacher = parent.getItemAtPosition(position).toString();
+
+                if (checkSpin.equalsIgnoreCase("yes")) {
+                    if (classStudentTeacher.equalsIgnoreCase("Student")) {
+                        StudentList.setVisibility(View.VISIBLE);
+                        TeacherList.setVisibility(View.GONE);
+                        GetStudentData();
+                    } else {
+                        TeacherList.setVisibility(View.VISIBLE);
+                        StudentList.setVisibility(View.GONE);
+                        GetTeacherData();
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 //        radioStudentsTeachersView.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 //            @Override
 //            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
@@ -191,11 +211,57 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
 //            }
 //        });
 
+    }
+
+    private void GetClassData() {
+
+        checkSpinner = "class";
+
+        if (CommonUtils.isNetworkAvailable(this)) {
+
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put(EnsyfiConstants.PARAMS_CLASS_ID, PreferenceStorage.getStudentClassIdPreference(getApplicationContext()));
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_CLASS_LISTS;
+            serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
 
+        } else {
+            AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
+        }
+    }
+
+    private void GetSectionData() {
+
+        checkSpinner = "section";
+
+        if (CommonUtils.isNetworkAvailable(this)) {
+
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put(EnsyfiConstants.PARAMS_CLASS_ID_LIST, storeClassId);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_SECTION_LISTS;
+            serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
+
+        } else {
+            AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
+        }
     }
 
     private void GetTeacherData() {
+
         checkSpinner = "teachers";
 
         if (teacherViewArrayList != null)
@@ -224,6 +290,7 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
     private void GetStudentData() {
 
         checkSpinner = "students";
+
         if (classStudentArrayList != null)
             classStudentArrayList.clear();
 
@@ -241,50 +308,6 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
             String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_STUDENT_LISTS;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
-
-
-        } else {
-            AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
-        }
-    }
-
-    private void GetSectionData() {
-        checkSpinner = "section";
-        if (CommonUtils.isNetworkAvailable(this)) {
-
-            JSONObject jsonObject = new JSONObject();
-            try {
-                jsonObject.put(EnsyfiConstants.PARAMS_CLASS_ID_LIST, storeClassId);
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_SECTION_LISTS;
-            serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
-
-        } else {
-            AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
-        }
-    }
-
-    private void GetClassData() {
-        checkSpinner = "class";
-        if (CommonUtils.isNetworkAvailable(this)) {
-
-            JSONObject jsonObject = new JSONObject();
-            try {
-                jsonObject.put(EnsyfiConstants.PARAMS_CLASS_ID, PreferenceStorage.getStudentClassIdPreference(getApplicationContext()));
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_CLASS_LISTS;
-            serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
-
 
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
@@ -314,7 +337,6 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
                 e.printStackTrace();
             }
         }
-
         return signInsuccess;
     }
 
@@ -353,22 +375,11 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
     }
 
     @Override
-    public void onAlertPositiveClicked(int tag) {
-
-    }
-
-    @Override
-    public void onAlertNegativeClicked(int tag) {
-
-    }
-
-    @Override
     public void onResponse(final JSONObject response) {
         progressDialogHelper.hideProgressDialog();
+        try {
+            if (validateSignInResponse(response)) {
 
-        if (validateSignInResponse(response)) {
-
-            try {
                 if (checkSpinner.equalsIgnoreCase("class")) {
 
                     JSONArray getData = response.getJSONArray("data");
@@ -462,12 +473,12 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
                         }
                     }
                 }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
 
-        } else {
-            Log.d(TAG, "Error while sign In");
+            } else {
+                Log.d(TAG, "Error while sign In");
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 
@@ -500,5 +511,15 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
 //        } else {
         teacherViewListAdapter.notifyDataSetChanged();
 //        }
+    }
+
+    @Override
+    public void onAlertPositiveClicked(int tag) {
+
+    }
+
+    @Override
+    public void onAlertNegativeClicked(int tag) {
+
     }
 }
