@@ -123,6 +123,9 @@ public class FeeStatusActivity extends AppCompatActivity implements IServiceList
                         signInsuccess = true;
                     }
                 }
+                else {
+                    feeStatusArrayList.clear();
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -172,7 +175,7 @@ public class FeeStatusActivity extends AppCompatActivity implements IServiceList
 
     protected void updateListAdapter(ArrayList<FeeStatus> feeStatusArrayList) {
         this.feeStatusArrayList.addAll(feeStatusArrayList);
-        if (feeStatusListAdapter == null) {
+        if (feeStatusListAdapter != null) {
             feeStatusListAdapter = new FeeStatusListAdapter(this, this.feeStatusArrayList);
             loadMoreListView.setAdapter(feeStatusListAdapter);
         } else {
