@@ -33,7 +33,7 @@
             android:gravity="center"
             android:minHeight="?attr/actionBarSize"
             android:paddingLeft="10dp"
-            android:text="Class Test Mark"
+            android:text="@string/title_exam_mark_entry"
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="@dimen/actionbarTextSize" />
@@ -124,7 +124,7 @@
             android:layout_height="match_parent"
             android:background="@color/appColor"
             android:gravity="center"
-            android:text="ID"
+            android:text="S.No."
             android:textColor="@color/white"
             android:textSize="15dp" />
 

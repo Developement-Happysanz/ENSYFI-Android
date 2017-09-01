@@ -123,9 +123,6 @@ public class FeeStatusActivity extends AppCompatActivity implements IServiceList
                         signInsuccess = true;
                     }
                 }
-                else {
-                    feeStatusArrayList.clear();
-                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -165,6 +162,12 @@ public class FeeStatusActivity extends AppCompatActivity implements IServiceList
                         totalCount = feeStatusList.getCount();
                         isLoadingForFirstTime = false;
                         updateListAdapter(feeStatusList.getFeeStatus());
+                    }
+                    else {
+                        if (feeStatusArrayList != null) {
+                            feeStatusArrayList.clear();
+                            updateListAdapter(feeStatusList.getFeeStatus());
+                        }
                     }
                 }
             });

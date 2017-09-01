@@ -187,6 +187,12 @@ public class FeesViewActivity extends AppCompatActivity implements IServiceListe
                         Log.d(TAG, "Show error dialog");
                         AlertDialogHelper.showSimpleAlertDialog(this, msg);
 
+                        if (feesArrayList != null) {
+                            feesArrayList.clear();
+                            feesListAdapter = new FeesListAdapter(this, this.feesArrayList);
+                            loadMoreListView.setAdapter(feesListAdapter);
+                        }
+
                     } else {
                         signInsuccess = true;
                     }
@@ -280,19 +286,30 @@ public class FeesViewActivity extends AppCompatActivity implements IServiceListe
                     ArrayAdapter<StoreSection> adapter = new ArrayAdapter<StoreSection>(getApplicationContext(), R.layout.spinner_item_ns, sectionList);
                     spnSectionList.setAdapter(adapter);
                 } else {
-                    mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            progressDialogHelper.hideProgressDialog();
-                            Gson gson = new Gson();
-                            FeesList feesList = gson.fromJson(response.toString(), FeesList.class);
-                            if (feesList.getFees() != null && feesList.getFees().size() > 0) {
-                                totalCount = feesList.getCount();
-                                isLoadingForFirstTime = false;
-                                updateListAdapter(feesList.getFees());
+
+                    JSONArray getData = response.getJSONArray("data");
+                    if (getData != null && getData.length() > 0) {
+
+                        mHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                progressDialogHelper.hideProgressDialog();
+                                Gson gson = new Gson();
+                                FeesList feesList = gson.fromJson(response.toString(), FeesList.class);
+                                if (feesList.getFees() != null && feesList.getFees().size() > 0) {
+                                    totalCount = feesList.getCount();
+                                    isLoadingForFirstTime = false;
+                                    updateListAdapter(feesList.getFees());
+                                }
                             }
+                        });
+                    } else {
+                        if (feesArrayList != null) {
+                            feesArrayList.clear();
+                            feesListAdapter = new FeesListAdapter(this, this.feesArrayList);
+                            loadMoreListView.setAdapter(feesListAdapter);
                         }
-                    });
+                    }
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

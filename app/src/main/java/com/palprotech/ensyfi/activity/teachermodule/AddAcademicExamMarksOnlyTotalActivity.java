@@ -130,8 +130,8 @@ public class AddAcademicExamMarksOnlyTotalActivity extends AppCompatActivity imp
                             t3.setText(""+i);
                             t3.setTextColor(Color.parseColor("#FF68358E"));
                             t3.setHeight(120);
-                            t3.setWidth(80);
-                            t3.setPadding(1, 0, 2, 0);
+                            t3.setWidth(30);
+                            t3.setPadding(0, 0, 1, 0);
 
                             TextView t2 = new TextView(this);
                             t2.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -140,8 +140,8 @@ public class AddAcademicExamMarksOnlyTotalActivity extends AppCompatActivity imp
                             t2.setText(c.getString(4));
                             t2.setTextColor(Color.parseColor("#FF68358E"));
                             t2.setHeight(120);
-                            t2.setWidth(100);
-                            t2.setPadding(1, 0, 2, 0);
+                            t2.setWidth(200);
+                            t2.setPadding(20, 0, 2, 0);
                             t2.setId(R.id.my_text_2);
 
                             EditText b = new EditText(this);
@@ -167,6 +167,7 @@ public class AddAcademicExamMarksOnlyTotalActivity extends AppCompatActivity imp
                             b.setPadding(1, 0, 2, 0);
 
                             cell.addView(t1);
+                            cell.addView(t3);
                             cell.addView(t2);
                             cell.addView(b);
 

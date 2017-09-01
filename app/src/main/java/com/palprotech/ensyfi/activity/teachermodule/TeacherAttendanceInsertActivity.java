@@ -287,7 +287,7 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
 
                             Spinner b1 = new Spinner(this);
                             b1.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                                    ViewGroup.LayoutParams.WRAP_CONTENT, 0.30f));
+                                    ViewGroup.LayoutParams.WRAP_CONTENT, 0.0f));
                             b1.setGravity(Gravity.CENTER);
                             ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.attendance, android.R.layout.simple_spinner_item);
                             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -319,6 +319,7 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
                             t2.setId(R.id.my_text_2);
 
                             cell.addView(t1);
+                            cell.addView(t3);
                             cell.addView(t2);
                             cell.addView(b1);
 
