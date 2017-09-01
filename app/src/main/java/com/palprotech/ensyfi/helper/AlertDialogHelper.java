@@ -57,7 +57,7 @@ public class AlertDialogHelper {
 
     public static void showCompoundAlertDialog(Activity context, String title, String message, String posButton, String negButton, int tag) {
         CompoundAlertDialogFragment compoundDialogFragment = CompoundAlertDialogFragment.newInstance(title, message, posButton, negButton, tag);
-        Activity activity = (Activity)context;
+        final Activity activity = (Activity)context;
         if(activity != null) {
             compoundDialogFragment.show(activity.getFragmentManager(), "dialog");
         }

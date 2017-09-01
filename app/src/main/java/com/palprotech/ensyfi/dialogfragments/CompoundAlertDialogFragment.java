@@ -76,7 +76,7 @@ public class CompoundAlertDialogFragment extends DialogFragment {
 //                        PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 //                sharedPreferences.edit().clear().commit();
 
-                Intent navigationIntent = new Intent(context, ChangePasswordActivity.class);
+                Intent navigationIntent = new Intent(getActivity(), ChangePasswordActivity.class);
                 navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(navigationIntent);
                 getActivity().finish();

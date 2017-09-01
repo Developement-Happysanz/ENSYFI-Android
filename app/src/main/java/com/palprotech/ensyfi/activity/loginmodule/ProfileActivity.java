@@ -134,7 +134,7 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
             openImageIntent();
         }
         if (v == txtPassword) {
-            AlertDialogHelper.showCompoundAlertDialog(ProfileActivity.this, "Change Password", "Password will be Reset. Do you still wish to continue...", "OK", "CANCEL", 1);
+            AlertDialogHelper.showCompoundAlertDialog(this, "Change Password", "Password will be Reset. Do you still wish to continue...", "OK", "CANCEL", 1);
         }
         if (v == fatherInfo) {
 //            callFatherInfoPreferences();
