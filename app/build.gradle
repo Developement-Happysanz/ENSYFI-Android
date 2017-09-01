@@ -16,8 +16,8 @@ android {
     defaultConfig {
         applicationId "com.palprotech.ensyfi"
         minSdkVersion 15
-        versionCode 13
-        versionName "1.0.12"
+        versionCode 14
+        versionName "1.0.13"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
