@@ -79,7 +79,7 @@ public class OnDutyActivity extends AppCompatActivity implements View.OnClickLis
         } else if (userType == 2) {
             btnReqOnDuty.setVisibility(View.VISIBLE);
         } else if (userType == 3) {
-            btnReqOnDuty.setVisibility(View.VISIBLE);
+            btnReqOnDuty.setVisibility(View.GONE);
         } else {
             btnReqOnDuty.setVisibility(View.GONE);
         }

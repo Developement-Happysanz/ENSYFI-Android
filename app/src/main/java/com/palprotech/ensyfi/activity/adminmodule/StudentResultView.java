@@ -143,8 +143,9 @@ public class StudentResultView extends AppCompatActivity implements IServiceList
 
         String isInternalExternal = exams.getIsInternalExternal();
         String isMarkStatus = exams.getMarkStatus();
+        int intMarkStatus = Integer.parseInt(isMarkStatus);
 
-        if (isMarkStatus.equalsIgnoreCase("1")) {
+        if (intMarkStatus == 1) {
 
             if (isInternalExternal.equalsIgnoreCase("1")) {
                 Intent intent = new Intent(this, ExamMarksActivity.class);
