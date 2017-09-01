@@ -129,7 +129,7 @@ public class AddAcademicExamMarksActivity extends AppCompatActivity implements V
                             t3.setText(""+i);
                             t3.setTextColor(Color.parseColor("#FF68358E"));
                             t3.setHeight(120);
-                            t3.setWidth(80);
+                            t3.setWidth(30);
                             t3.setPadding(1, 0, 2, 0);
 
                             TextView t2 = new TextView(this);
@@ -164,7 +164,7 @@ public class AddAcademicExamMarksActivity extends AppCompatActivity implements V
                             b.setTextColor(Color.parseColor("#FF68358E"));
                             b.setPressed(true);
                             b.setHeight(120);
-                            b.setWidth(100);
+                            b.setWidth(1);
                             b.setPadding(1, 0, 2, 0);
 
                             EditText b1 = new EditText(this);
@@ -186,7 +186,7 @@ public class AddAcademicExamMarksActivity extends AppCompatActivity implements V
                             b1.setTextColor(Color.parseColor("#FF68358E"));
                             b1.setPressed(true);
                             b1.setHeight(120);
-                            b1.setWidth(100);
+                            b1.setWidth(1);
                             b1.setPadding(1, 0, 2, 0);
 
                             cell.addView(t1);
