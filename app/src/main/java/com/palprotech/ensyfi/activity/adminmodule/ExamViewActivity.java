@@ -214,17 +214,17 @@ public class ExamViewActivity extends AppCompatActivity implements IServiceListe
             exams = examsArrayList.get(position);
         }
 
-        String isMarkStatus = exams.getMarkStatus();
+//        String isMarkStatus = exams.getMarkStatus();
 
-        if (isMarkStatus.equalsIgnoreCase("1")) {
+       /* if (isMarkStatus.equalsIgnoreCase("1")) {
             Intent intent = new Intent(this, ExamMarksActivity.class);
             intent.putExtra("eventObj", exams);
             startActivity(intent);
-        } else {
+        } else {*/
             Intent intent = new Intent(this, ExamDetailActivity.class);
             intent.putExtra("eventObj", exams);
             startActivity(intent);
-        }
+//        }
     }
 
     @Override
