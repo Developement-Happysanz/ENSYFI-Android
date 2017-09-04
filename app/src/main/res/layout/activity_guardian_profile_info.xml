@@ -34,7 +34,7 @@
             android:gravity="center"
             android:minHeight="?attr/actionBarSize"
             android:paddingLeft="10dp"
-            android:text="Guardian Profile"
+            android:text="Guardian Info"
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="@dimen/actionbarTextSize" />
