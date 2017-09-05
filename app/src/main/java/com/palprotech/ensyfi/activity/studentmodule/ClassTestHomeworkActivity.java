@@ -46,7 +46,7 @@ public class ClassTestHomeworkActivity extends AppCompatActivity implements ISer
     ClassTestListAdapter classTestListAdapter;
     private ServiceHelper serviceHelper;
     ArrayList<ClassTest> classTestArrayList;
-    int totalCount = 0;
+    int totalCount = 0, checkrun = 0;
     protected ProgressDialogHelper progressDialogHelper;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
@@ -55,7 +55,7 @@ public class ClassTestHomeworkActivity extends AppCompatActivity implements ISer
     String classSection;
     private String isHomeWorkType = "HT";
     private List<String> mClassTestHomeWorkList = new ArrayList<String>();
-    String classTestHomeWork = "Class Test";
+    String classTestHomeWork = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,16 +93,17 @@ public class ClassTestHomeworkActivity extends AppCompatActivity implements ISer
         spnClassTestHomeWork.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                classTestHomeWork = parent.getItemAtPosition(position).toString();
-                if (classTestHomeWork.equalsIgnoreCase("Class Test")) {
-                    isHomeWorkType = "HT";
-                    callGetClassTestService();
-                } else {
-                    isHomeWorkType = "HW";
-                    callGetClassTestService();
+                if (++checkrun > 1) {
+                    classTestHomeWork = parent.getItemAtPosition(position).toString();
+                    if (classTestHomeWork.equalsIgnoreCase("Class Test")) {
+                        isHomeWorkType = "HT";
+                        callGetClassTestService();
+                    } else {
+                        isHomeWorkType = "HW";
+                        callGetClassTestService();
+                    }
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 

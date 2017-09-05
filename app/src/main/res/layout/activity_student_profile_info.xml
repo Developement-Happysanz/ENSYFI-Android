@@ -35,7 +35,7 @@
             android:gravity="center"
             android:minHeight="?attr/actionBarSize"
             android:paddingLeft="10dp"
-            android:text="Student Info"
+            android:text="Student Profile"
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="@dimen/actionbarTextSize" />
