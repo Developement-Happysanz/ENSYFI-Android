@@ -149,7 +149,7 @@
                 android:layout_marginLeft="2dp"
                 android:background="@color/appColor"
                 android:gravity="center"
-                android:text="ID"
+                android:text="S.No."
                 android:textColor="@color/white"
                 android:textSize="15sp" />
 
@@ -210,7 +210,7 @@
                 android:layout_marginLeft="2dp"
                 android:background="@color/appColor"
                 android:gravity="center"
-                android:text="ID"
+                android:text="S.No."
                 android:textColor="@color/white"
                 android:textSize="18dp" />
 
