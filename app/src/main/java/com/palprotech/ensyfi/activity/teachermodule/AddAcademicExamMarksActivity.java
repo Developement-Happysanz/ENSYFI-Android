@@ -157,7 +157,7 @@ public class AddAcademicExamMarksActivity extends AppCompatActivity implements V
                             b.requestFocusFromTouch();
                             b.setTextSize(13.0f);
                             b.setTypeface(null, Typeface.BOLD);
-                            b.setKeyListener(DigitsKeyListener.getInstance("0123456789A"));
+                            b.setKeyListener(DigitsKeyListener.getInstance("0123456789AB"));
                             b.setInputType(InputType.TYPE_CLASS_TEXT);
                             b.setAllCaps(true);
                             b.setSingleLine(true);
@@ -179,7 +179,7 @@ public class AddAcademicExamMarksActivity extends AppCompatActivity implements V
                             b1.requestFocusFromTouch();
                             b1.setTextSize(13.0f);
                             b1.setTypeface(null, Typeface.BOLD);
-                            b1.setKeyListener(DigitsKeyListener.getInstance("0123456789A"));
+                            b1.setKeyListener(DigitsKeyListener.getInstance("0123456789AB"));
                             b1.setInputType(InputType.TYPE_CLASS_TEXT);
                             b1.setAllCaps(true);
                             b1.setSingleLine(true);
@@ -332,11 +332,11 @@ public class AddAcademicExamMarksActivity extends AppCompatActivity implements V
                         studentId = enrollId;
                         classMasterId = getClassMasterId;
                         internalMark = internalMarks;
-                        internalGrade = "A";
+                        internalGrade = "AB";
                         externalMark = externalMarks;
-                        externalGrade = "A";
+                        externalGrade = "AB";
                         totalMarks = "0";
-                        totalGrade = "A";
+                        totalGrade = "AB";
                         createdBy = PreferenceStorage.getUserId(this);
                         createdAt = formattedServerDate;
                         updatedBy = PreferenceStorage.getUserId(this);

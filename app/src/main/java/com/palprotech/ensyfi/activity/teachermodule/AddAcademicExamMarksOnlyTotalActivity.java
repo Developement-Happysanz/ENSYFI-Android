@@ -156,7 +156,7 @@ public class AddAcademicExamMarksOnlyTotalActivity extends AppCompatActivity imp
                             b.requestFocusFromTouch();
                             b.setTextSize(13.0f);
                             b.setTypeface(null, Typeface.BOLD);
-                            b.setKeyListener(DigitsKeyListener.getInstance("0123456789A"));
+                            b.setKeyListener(DigitsKeyListener.getInstance("0123456789AB"));
                             b.setInputType(InputType.TYPE_CLASS_TEXT);
                             b.setAllCaps(true);
                             b.setSingleLine(true);
@@ -291,11 +291,11 @@ public class AddAcademicExamMarksOnlyTotalActivity extends AppCompatActivity imp
                     studentId = enrollId;
                     classMasterId = getClassMasterId;
                     String internalMark = "0";
-                    String internalGrade = "A";
+                    String internalGrade = "AB";
                     externalMark = "0";
-                    externalGrade = "A";
+                    externalGrade = "AB";
                     totalMarks = Marks;
-                    totalGrade = "A";
+                    totalGrade = "AB";
                     createdBy = PreferenceStorage.getUserId(this);
                     createdAt = formattedServerDate;
                     updatedBy = PreferenceStorage.getUserId(this);

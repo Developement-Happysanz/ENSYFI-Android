@@ -137,7 +137,7 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
                             b.requestFocusFromTouch();
                             b.setTextSize(13.0f);
                             b.setTypeface(null, Typeface.BOLD);
-                            b.setKeyListener(DigitsKeyListener.getInstance("0123456789A"));
+                            b.setKeyListener(DigitsKeyListener.getInstance("0123456789AB"));
                             b.setInputType(InputType.TYPE_CLASS_TEXT);
                             b.setAllCaps(true);
                             b.setSingleLine(true);
@@ -157,7 +157,7 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
                             t1.setId(R.id.my_text_1);
 
 //                            t3.setText(c.getString(1));
-                            t3.setText(""+i);
+                            t3.setText("" + i);
                             t3.setTextColor(Color.parseColor("#FF68358E"));
                             t3.setHeight(120);
                             t3.setWidth(80);
@@ -218,7 +218,7 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
                     AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid marks for student - " + String.valueOf(tv_studentName.getText()) + " between 0 to " + validMark);
                 }
                 if (((AppValidator.checkEditTextValid100AndA(Marks)).equalsIgnoreCase("NotValidAbsent"))) {
-                    AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid leave character as 'A' for student - " + String.valueOf(tv_studentName.getText()));
+                    AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid leave character as 'AB' for student - " + String.valueOf(tv_studentName.getText()));
                 }
             } else {
                 count++;
