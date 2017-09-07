@@ -393,6 +393,7 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
         Log.d(TAG, "onEvent list item click" + position);
         if (checkDayMonthType.equalsIgnoreCase("month")) {
             MonthView monthView = null;
+
             if ((monthViewListAdapter != null) && (monthViewListAdapter.ismSearching())) {
                 Log.d(TAG, "while searching");
                 int actualindex = monthViewListAdapter.getActualEventPos(position);
@@ -401,10 +402,16 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
             } else {
                 monthView = monthViewArrayList.get(position);
             }
-            Intent intent = new Intent(this, AttendanceMonthViewActivity.class);
-            intent.putExtra("eventObj", monthView);
-            intent.putExtra("monthYear", getMonthName);
-            startActivity(intent);
+            String ab_status = monthView.getAStatus();
+            if (ab_status.equalsIgnoreCase("P")) {
+                AlertDialogHelper.showSimpleAlertDialog(this, "No Leaves");
+            }
+            else {
+                Intent intent = new Intent(this, AttendanceMonthViewActivity.class);
+                intent.putExtra("eventObj", monthView);
+                intent.putExtra("monthYear", getMonthName);
+                startActivity(intent);
+            }
         }
     }
 

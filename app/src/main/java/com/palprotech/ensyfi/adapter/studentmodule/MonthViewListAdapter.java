@@ -2,6 +2,7 @@ package com.palprotech.ensyfi.adapter.studentmodule;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -102,7 +103,16 @@ public class MonthViewListAdapter extends BaseAdapter {
         Double leave = Double.parseDouble(monthViews.get(position).getLeaves());
         double roundOff = (double) Math.round(leave * 100) / 100;
         String roundLeaves = String.valueOf(roundOff);
-        holder.txtLeaves.setText(roundLeaves + " Days Leave");
+        if ((monthViews.get(position).getAStatus().equalsIgnoreCase("P"))) {
+            holder.txtLeaves.setText("No Leave");
+            holder.txtLeaves.setTextColor(ContextCompat.getColor(context, R.color.approve));
+        }
+        else {
+            holder.txtLeaves.setText(roundLeaves + " Days Leave");
+            holder.txtLeaves.setTextColor(ContextCompat.getColor(context, R.color.reject));
+        }
+
+
         return convertView;
     }
 
