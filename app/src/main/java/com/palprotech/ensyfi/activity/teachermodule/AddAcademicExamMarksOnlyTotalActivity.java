@@ -246,7 +246,7 @@ public class AddAcademicExamMarksOnlyTotalActivity extends AppCompatActivity imp
                     AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid marks for student - " + String.valueOf(et1.getText()) + " between 0 to " + validMark);
                 }
                 if (((AppValidator.checkEditTextValid100AndA(Marks)).equalsIgnoreCase("NotValidAbsent"))) {
-                    AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid leave character as 'A' for student - " + String.valueOf(et1.getText()));
+                    AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid leave character as 'AB' for student - " + String.valueOf(et1.getText()));
                 }
             } else {
                 count++;

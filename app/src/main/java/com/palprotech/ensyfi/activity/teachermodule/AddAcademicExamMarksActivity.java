@@ -276,7 +276,7 @@ public class AddAcademicExamMarksActivity extends AppCompatActivity implements V
                     AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid internal marks for student - " + String.valueOf(et1.getText()) + " between 0 to " + validInternalMark);
                 }
                 if (((AppValidator.checkEditTextValidInternalAndA(InternalMarks)).equalsIgnoreCase("NotValidAbsent"))) {
-                    AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid leave character as 'A' for student - " + String.valueOf(et1.getText()));
+                    AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid leave character as 'AB' for student - " + String.valueOf(et1.getText()));
                 }
             } else if (!AppValidator.checkNullString(edtExternalMarks.getText().toString().trim())) {
                 AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid external marks for student - " + String.valueOf(et1.getText()));
@@ -285,7 +285,7 @@ public class AddAcademicExamMarksActivity extends AppCompatActivity implements V
                     AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid external marks for student - " + String.valueOf(et1.getText()) + " between 0 to " + validExternalMark);
                 }
                 if (((AppValidator.checkEditTextValidExternalAndA(ExternalMarks)).equalsIgnoreCase("NotValidAbsent"))) {
-                    AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid leave character as 'A' for student - " + String.valueOf(et1.getText()));
+                    AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid leave character as 'AB' for student - " + String.valueOf(et1.getText()));
                 }
             } else {
                 count++;
