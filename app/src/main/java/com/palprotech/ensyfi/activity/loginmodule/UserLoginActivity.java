@@ -201,8 +201,12 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
 
 
                 if (userType == 1) {
+
                     saveUserData(userData);
-                } else if (userType == 2) {
+
+                }
+
+                else if (userType == 2) {
 
                     saveUserData(userData);
 
