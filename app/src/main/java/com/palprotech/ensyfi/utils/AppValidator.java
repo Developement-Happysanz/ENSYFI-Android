@@ -52,7 +52,7 @@ public class AppValidator {
                 EditTextValid = "valid";
             }
         } else {
-            if (!value.contentEquals("A")) {
+            if (!value.contentEquals("AB")) {
                 EditTextValid = "NotValidAbsent";
             } else {
                 EditTextValid = "valid";
@@ -73,7 +73,7 @@ public class AppValidator {
                 EditTextValid = "valid";
             }
         } else {
-            if (!value.contentEquals("A")) {
+            if (!value.contentEquals("AB")) {
                 EditTextValid = "NotValidAbsent";
             } else {
                 EditTextValid = "valid";
