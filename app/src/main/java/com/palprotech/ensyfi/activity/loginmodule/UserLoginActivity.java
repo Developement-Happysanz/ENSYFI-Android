@@ -257,13 +257,13 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                         }
                     }
 
-                    JSONObject getAcademicMonth = response.getJSONObject("academic_month");
-                    if (validateResponse(getAcademicMonth)) {
-                        JSONArray getAcademicMonthArray = getAcademicMonth.getJSONArray("data");
+//                    JSONObject getAcademicMonth = response.getJSONObject("academic_month");
+//                    if (validateResponse(getAcademicMonth)) {
+                        JSONArray getAcademicMonthArray = response.getJSONArray("academic_month");
                         if (getAcademicMonthArray != null && getAcademicMonthArray.length() > 0) {
                             teacherData.saveAcademicMonth(getAcademicMonthArray);
                         }
-                    }
+//                    }
 
                     JSONObject getHomeWorkClassTest = response.getJSONObject("homeWork");
                     if (validateResponse(getHomeWorkClassTest)) {
