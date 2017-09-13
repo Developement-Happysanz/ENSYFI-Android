@@ -182,6 +182,32 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
         return signInSuccess;
     }
 
+    private boolean validateResponse(JSONObject response) {
+        boolean signInSuccess = false;
+        if ((response != null)) {
+            try {
+                String status = response.getString("status");
+                String msg = response.getString(EnsyfiConstants.PARAM_MESSAGE);
+                Log.d(TAG, "status val" + status + "msg" + msg);
+
+                if ((status != null)) {
+                    if (((status.equalsIgnoreCase("activationError")) || (status.equalsIgnoreCase("alreadyRegistered")) ||
+                            (status.equalsIgnoreCase("notRegistered")) || (status.equalsIgnoreCase("error")))) {
+                        signInSuccess = false;
+                        Log.d(TAG, "Show error dialog");
+                        AlertDialogHelper.showSimpleAlertDialog(this, msg);
+
+                    } else {
+                        signInSuccess = true;
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return signInSuccess;
+    }
+
     @Override
     public void onResponse(JSONObject response) {
 
@@ -211,28 +237,65 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     saveUserData(userData);
 
                     JSONArray getTeacherProfile = response.getJSONArray("teacherProfile");
-                    teacherData.saveTeacherProfile(getTeacherProfile);
+                    if(getTeacherProfile != null && getTeacherProfile.length() > 0) {
+                        teacherData.saveTeacherProfile(getTeacherProfile);
+                    }
 
-                    JSONArray getTimeTable = response.getJSONArray("timeTable");
-                    teacherData.saveTeacherTimeTable(getTimeTable);
+                    JSONObject getTimeTable = response.getJSONObject("timeTable");
+                    if (validateResponse(getTimeTable)) {
+                        JSONArray getTimeTableArray = getTimeTable.getJSONArray("data");
+                        if (getTimeTableArray != null && getTimeTableArray.length() > 0) {
+                        teacherData.saveTeacherTimeTable(getTimeTableArray);
+                        }
+                    }
 
-                    JSONArray getTeacherClassStudentsDetails = response.getJSONArray("studDetails");
-                    teacherData.saveStudentDetails(getTeacherClassStudentsDetails);
+                    JSONObject getTeacherClassStudentsDetails = response.getJSONObject("studDetails");
+                    if (validateResponse(getTeacherClassStudentsDetails)) {
+                        JSONArray getTeacherClassStudentsDetailsArray = getTeacherClassStudentsDetails.getJSONArray("data");
+                        if (getTeacherClassStudentsDetailsArray != null && getTeacherClassStudentsDetailsArray.length() > 0) {
+                            teacherData.saveStudentDetails(getTeacherClassStudentsDetailsArray);
+                        }
+                    }
 
-                    JSONArray getAcademicMonth = response.getJSONArray("academic_month");
-                    teacherData.saveAcademicMonth(getAcademicMonth);
+                    JSONObject getAcademicMonth = response.getJSONObject("academic_month");
+                    if (validateResponse(getAcademicMonth)) {
+                        JSONArray getAcademicMonthArray = getAcademicMonth.getJSONArray("data");
+                        if (getAcademicMonthArray != null && getAcademicMonthArray.length() > 0) {
+                            teacherData.saveAcademicMonth(getAcademicMonthArray);
+                        }
+                    }
 
-                    JSONArray getHomeWorkClassTest = response.getJSONArray("homeWork");
-                    teacherData.saveHomeWorkClassTest(getHomeWorkClassTest);
+                    JSONObject getHomeWorkClassTest = response.getJSONObject("homeWork");
+                    if (validateResponse(getHomeWorkClassTest)) {
+                        JSONArray getHomeWorkClassTestArray = getHomeWorkClassTest.getJSONArray("data");
+                        if (getHomeWorkClassTestArray != null && getHomeWorkClassTestArray.length() > 0) {
+                            teacherData.saveHomeWorkClassTest(getHomeWorkClassTestArray);
+                        }
+                    }
 
-                    JSONArray getExamsOfClass = response.getJSONArray("Exams");
-                    teacherData.saveExamsOfClass(getExamsOfClass);
+                    JSONObject getExamsOfClass = response.getJSONObject("Exams");
+                    if (validateResponse(getExamsOfClass)) {
+                        JSONArray getExamsOfClassArray = getExamsOfClass.getJSONArray("data");
+                        if (getExamsOfClassArray != null && getExamsOfClassArray.length() > 0) {
+                            teacherData.saveExamsOfClass(getExamsOfClassArray);
+                        }
+                    }
 
-                    JSONArray getAcademicExamDetails = response.getJSONArray("examDetails");
-                    teacherData.saveExamsDetails(getAcademicExamDetails);
+                    JSONObject getAcademicExamDetails = response.getJSONObject("examDetails");
+                    if (validateResponse(getAcademicExamDetails)) {
+                        JSONArray getAcademicExamDetailsArray = getAcademicExamDetails.getJSONArray("data");
+                        if (getAcademicExamDetailsArray != null && getAcademicExamDetailsArray.length() > 0) {
+                            teacherData.saveExamsDetails(getAcademicExamDetailsArray);
+                        }
+                    }
 
-                    JSONArray getClassSubject = response.getJSONArray("classSubject");
-                    teacherData.saveTeacherHandlingSubject(getClassSubject);
+                    JSONObject getClassSubject = response.getJSONObject("classSubject");
+                    if (validateResponse(getClassSubject)) {
+                        JSONArray getClassSubjectArray = getClassSubject.getJSONArray("data");
+                        if (getClassSubjectArray != null && getClassSubjectArray.length() > 0) {
+                            teacherData.saveTeacherHandlingSubject(getClassSubjectArray);
+                        }
+                    }
 
                 } else if (userType == 3) {
 
