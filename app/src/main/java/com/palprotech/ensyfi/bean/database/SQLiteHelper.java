@@ -799,6 +799,20 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         return c;
     }
 
+    public String isClassTestMarkStatusFlag() {
+        String classTestMarkStatusFlag = "0";
+        SQLiteDatabase database = this.getReadableDatabase();
+        String selectQuery = "Select count(*) from classTestMark where sync_status = 'NS' order by _id;";
+        Cursor cursor = database.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                classTestMarkStatusFlag = cursor.getString(0);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return classTestMarkStatusFlag;
+    }
+
     public void updateClassTestMarkServerId(String val1, String val2) {
         SQLiteDatabase sqdb = this.getWritableDatabase();
         ContentValues values = new ContentValues();

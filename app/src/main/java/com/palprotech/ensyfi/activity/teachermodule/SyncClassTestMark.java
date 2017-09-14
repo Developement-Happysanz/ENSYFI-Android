@@ -75,7 +75,6 @@ public class SyncClassTestMark implements IServiceListener {
                         String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(context) + EnsyfiConstants.GET_CLASS_TEST_MARK_API;
                         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
-
                     } while (c.moveToNext());
                 }
             }

@@ -137,7 +137,10 @@ public class SyncClassTestHomeWork implements IServiceListener {
 
                 if (homeWorkType.equalsIgnoreCase("HT")) {
                     db.updateClassTestMarkServerId(classTestHomeworkServerId, homeWorkId);
-                    syncClassTestMark.syncClassTestMark(classTestHomeworkServerId);
+                    int ClassTestMark = Integer.parseInt(db.isClassTestMarkStatusFlag());
+                    if (ClassTestMark > 0) {
+                        syncClassTestMark.syncClassTestMark(classTestHomeworkServerId);
+                    }
                 }
             } catch (Exception ex) {
                 ex.printStackTrace();

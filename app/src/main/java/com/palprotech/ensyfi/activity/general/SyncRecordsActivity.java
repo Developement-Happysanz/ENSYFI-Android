@@ -146,8 +146,14 @@ public class SyncRecordsActivity extends AppCompatActivity implements IServiceLi
                 }
             }
             if (v == btnSyncClassTestHomeworkRecords) {
-                syncClassTestHomeWork.syncClassTestHomeWorkRecords();
-                syncClassTestMark.syncClassTestMarkToServer();
+                int ClassTestHomeWorkCount = Integer.parseInt(db.isClassTestHomeWorkStatusFlag());
+                if (ClassTestHomeWorkCount > 0) {
+                    syncClassTestHomeWork.syncClassTestHomeWorkRecords();
+                }
+                int ClassTestMark = Integer.parseInt(db.isClassTestMarkStatusFlag());
+                if (ClassTestMark > 0) {
+                    syncClassTestMark.syncClassTestMarkToServer();
+                }
             }
             if (v == btnSyncExamMarks) {
                 syncAcademicExamMarks.SyncAcademicMarks();
