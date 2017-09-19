@@ -168,7 +168,7 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
             public void onClick(View v) {
 
                 Intent navigationIntent = new Intent(getApplicationContext(), ClassTestHomeWorkAddActivity.class);
-//                navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(navigationIntent);
             }
         });

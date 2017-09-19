@@ -263,6 +263,7 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements D
             System.out.println("Stored Id : " + x);
 
             Intent navigationIntent = new Intent(getApplicationContext(), ClassTestHomeWorkTeacherViewActivity.class);
+            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
             finish();
         }

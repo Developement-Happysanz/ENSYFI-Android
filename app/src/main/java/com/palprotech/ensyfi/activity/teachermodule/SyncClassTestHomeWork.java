@@ -46,9 +46,10 @@ public class SyncClassTestHomeWork implements IServiceListener {
         db = new SQLiteHelper(context);
 
         try {
-            Cursor c = db.getClassTestHomeWorkList();
+            Cursor c = db.getLoadOneByOneClassTestHomeWorkList();
             if (c.getCount() > 0) {
                 if (c.moveToFirst()) {
+
                     do {
 
                         homeWorkId = c.getString(0);
@@ -72,7 +73,9 @@ public class SyncClassTestHomeWork implements IServiceListener {
                         syncStatus = c.getString(18);
 
                         JSONObject jsonObject = new JSONObject();
+
                         try {
+
                             jsonObject.put(EnsyfiConstants.PARAMS_CTHW_CLASS_ID, classId);
                             jsonObject.put(EnsyfiConstants.PARAMS_CTHW_TEACHER_ID, teacherId);
                             jsonObject.put(EnsyfiConstants.PARAMS_CTHW_HOMEWORK_TYPE, homeWorkType);
@@ -136,11 +139,19 @@ public class SyncClassTestHomeWork implements IServiceListener {
                 db.updateClassTestHomeWorkSyncStatus(homeWorkId);
 
                 if (homeWorkType.equalsIgnoreCase("HT")) {
-                    db.updateClassTestMarkServerId(classTestHomeworkServerId, homeWorkId);
                     int ClassTestMark = Integer.parseInt(db.isClassTestMarkStatusFlag());
                     if (ClassTestMark > 0) {
-                        syncClassTestMark.syncClassTestMark(classTestHomeworkServerId);
+                        db.updateClassTestMarkServerId(classTestHomeworkServerId, homeWorkId);
                     }
+//                    int ClassTestMark = Integer.parseInt(db.isClassTestMarkStatusFlag());
+//                    if (ClassTestMark > 0) {
+//                        syncClassTestMark.syncClassTestMark(classTestHomeworkServerId);
+//                    }
+                }
+
+                int ClassTestHomeWorkCount = Integer.parseInt(db.isClassTestHomeWorkStatusFlag());
+                if (ClassTestHomeWorkCount > 0) {
+                    syncClassTestHomeWorkRecords();
                 }
             } catch (Exception ex) {
                 ex.printStackTrace();

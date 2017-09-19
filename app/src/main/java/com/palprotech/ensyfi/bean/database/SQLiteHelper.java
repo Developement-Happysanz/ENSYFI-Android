@@ -719,6 +719,16 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         return c;
     }
 
+    public Cursor getLoadOneByOneClassTestHomeWorkList() throws SQLException {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String fetch = "Select * from homeWorkClassTest where sync_status = 'NS' limit 1;";
+        Cursor c = db.rawQuery(fetch, null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
     public String isClassTestHomeWorkStatusFlag() {
         String classTestHomeWorkStatusFlag = "0";
         SQLiteDatabase database = this.getReadableDatabase();
@@ -799,6 +809,16 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         return c;
     }
 
+    public Cursor getLoadOneByOneClassTestMarkListView() throws SQLException {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String fetch = "Select * from classTestMark where sync_status = 'NS' limit 1;";
+        Cursor c = db.rawQuery(fetch, null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
     public String isClassTestMarkStatusFlag() {
         String classTestMarkStatusFlag = "0";
         SQLiteDatabase database = this.getReadableDatabase();
@@ -826,7 +846,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put("sync_status", "S");
         System.out.print(val1);
-        sqdb.update("classTestMark", values, "server_hw_id=" + val1, null);
+        sqdb.update("classTestMark", values, "_id=" + val1, null);
     }
 
     public void deleteClassTestMark() {

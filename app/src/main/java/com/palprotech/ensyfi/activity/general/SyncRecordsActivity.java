@@ -42,7 +42,7 @@ public class SyncRecordsActivity extends AppCompatActivity implements IServiceLi
     private Button btnSyncClassTestHomeworkRecords;
     private Button btnSyncExamMarks;
     private Button btnRefreshClassTestHomeworkRecords;
-    private Button btnRefreshSyncExamMarks;
+    private Button btnRefreshSyncExamMarks, btnSyncClassTestMarksRecords;
     private SyncAttendanceHistoryRecordsActivity syncAttendanceHistoryRecordsActivity;
     private SyncClassTestHomeWork syncClassTestHomeWork;
     private SyncAcademicExamMarks syncAcademicExamMarks;
@@ -70,6 +70,9 @@ public class SyncRecordsActivity extends AppCompatActivity implements IServiceLi
 
         btnRefreshClassTestHomeworkRecords = (Button) findViewById(R.id.btnRefreshClassTestHomeworkRecords);
         btnRefreshClassTestHomeworkRecords.setOnClickListener(this);
+
+        btnSyncClassTestMarksRecords = (Button) findViewById(R.id.btnSyncClassTestMarksRecords);
+        btnSyncClassTestMarksRecords.setOnClickListener(this);
 
         btnRefreshSyncExamMarks = (Button) findViewById(R.id.btnRefreshSyncExamMarks);
         btnRefreshSyncExamMarks.setOnClickListener(this);
@@ -145,14 +148,22 @@ public class SyncRecordsActivity extends AppCompatActivity implements IServiceLi
                     AlertDialogHelper.showSimpleAlertDialog(this, "Nothing to sync");
                 }
             }
+
             if (v == btnSyncClassTestHomeworkRecords) {
+
                 int ClassTestHomeWorkCount = Integer.parseInt(db.isClassTestHomeWorkStatusFlag());
                 if (ClassTestHomeWorkCount > 0) {
                     syncClassTestHomeWork.syncClassTestHomeWorkRecords();
+                } else {
+                    AlertDialogHelper.showSimpleAlertDialog(this, "Nothing to sync");
                 }
+            }
+            if (v == btnSyncClassTestMarksRecords) {
                 int ClassTestMark = Integer.parseInt(db.isClassTestMarkStatusFlag());
                 if (ClassTestMark > 0) {
                     syncClassTestMark.syncClassTestMarkToServer();
+                } else {
+                    AlertDialogHelper.showSimpleAlertDialog(this, "Nothing to sync");
                 }
             }
             if (v == btnSyncExamMarks) {
