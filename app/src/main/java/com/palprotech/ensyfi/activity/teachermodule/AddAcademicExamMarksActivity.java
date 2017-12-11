@@ -40,6 +40,9 @@ import java.util.Calendar;
 public class AddAcademicExamMarksActivity extends AppCompatActivity implements View.OnClickListener, DialogClickListener {
 
     long hwId;
+    String classSubjectId;
+    String classId;
+    String examsId;
     SQLiteHelper db;
     String examMarksId, examId, teacherId, subjectId, studentId, classMasterId, internalMark, internalGrade,
             externalMark, externalGrade, totalMarks, totalGrade, createdBy, createdAt, updatedBy, updatedAt, syncStatus;
@@ -55,6 +58,10 @@ public class AddAcademicExamMarksActivity extends AppCompatActivity implements V
         setContentView(R.layout.activity_add_academic_exam_marks);
 
         hwId = getIntent().getExtras().getLong("id");
+        classSubjectId = getIntent().getExtras().getString("subject_id");
+        classId = getIntent().getExtras().getString("classMasterId");
+        examsId = getIntent().getExtras().getString("examId");
+
         db = new SQLiteHelper(getApplicationContext());
         localExamId = String.valueOf(hwId);
         layout_all = (LinearLayout) findViewById(R.id.layout_timetable);
@@ -126,7 +133,7 @@ public class AddAcademicExamMarksActivity extends AppCompatActivity implements V
                                     ViewGroup.LayoutParams.WRAP_CONTENT, 0.10f));
                             t3.setGravity(Gravity.CENTER);
 
-                            t3.setText(""+i);
+                            t3.setText("" + i);
                             t3.setTextColor(Color.parseColor("#FF68358E"));
                             t3.setHeight(120);
                             t3.setWidth(30);
@@ -136,13 +143,12 @@ public class AddAcademicExamMarksActivity extends AppCompatActivity implements V
                             t2.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                                     ViewGroup.LayoutParams.WRAP_CONTENT, 0.40f));
 
-                            t2.setText(c.getString(4));
+                            t2.setText(c.getString(4) + " - " + c.getString(6));
                             t2.setTextColor(Color.parseColor("#FF68358E"));
                             t2.setHeight(120);
                             t2.setWidth(100);
                             t2.setPadding(1, 0, 2, 0);
                             t2.setId(R.id.my_text_2);
-
 
 
                             EditText b = new EditText(this);
@@ -250,8 +256,8 @@ public class AddAcademicExamMarksActivity extends AppCompatActivity implements V
         EditText edtInternalMarks, edtExternalMarks;
         TextView et, et1;
         int count = 0;
-        int validInternalMark = 40;
-        int validExternalMark = 60;
+        int validInternalMark = Integer.parseInt(db.internalMark(classId, examsId, classSubjectId));
+        int validExternalMark = Integer.parseInt(db.externalMark(classId, examsId, classSubjectId));
 
 
         int nViews = layout_all.getChildCount();
@@ -271,20 +277,20 @@ public class AddAcademicExamMarksActivity extends AppCompatActivity implements V
 
             if (!AppValidator.checkNullString(edtInternalMarks.getText().toString().trim())) {
                 AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid internal marks for student - " + String.valueOf(et1.getText()));
-            } else if ((AppValidator.checkEditTextValidInternalAndA(InternalMarks)).equalsIgnoreCase("NotValidMark") || (AppValidator.checkEditTextValidInternalAndA(InternalMarks)).equalsIgnoreCase("NotValidAbsent")) {
-                if (((AppValidator.checkEditTextValidInternalAndA(InternalMarks)).equalsIgnoreCase("NotValidMark"))) {
+            } else if ((AppValidator.checkEditTextValidInternalAndA(InternalMarks, validInternalMark)).equalsIgnoreCase("NotValidMark") || (AppValidator.checkEditTextValidInternalAndA(InternalMarks, validInternalMark)).equalsIgnoreCase("NotValidAbsent")) {
+                if (((AppValidator.checkEditTextValidInternalAndA(InternalMarks, validInternalMark)).equalsIgnoreCase("NotValidMark"))) {
                     AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid internal marks for student - " + String.valueOf(et1.getText()) + " between 0 to " + validInternalMark);
                 }
-                if (((AppValidator.checkEditTextValidInternalAndA(InternalMarks)).equalsIgnoreCase("NotValidAbsent"))) {
+                if (((AppValidator.checkEditTextValidInternalAndA(InternalMarks, validInternalMark)).equalsIgnoreCase("NotValidAbsent"))) {
                     AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid leave character as 'AB' for student - " + String.valueOf(et1.getText()));
                 }
             } else if (!AppValidator.checkNullString(edtExternalMarks.getText().toString().trim())) {
                 AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid external marks for student - " + String.valueOf(et1.getText()));
-            } else if ((AppValidator.checkEditTextValidExternalAndA(ExternalMarks)).equalsIgnoreCase("NotValidMark") || (AppValidator.checkEditTextValidExternalAndA(ExternalMarks)).equalsIgnoreCase("NotValidAbsent")) {
-                if (((AppValidator.checkEditTextValidExternalAndA(ExternalMarks)).equalsIgnoreCase("NotValidMark"))) {
+            } else if ((AppValidator.checkEditTextValidExternalAndA(ExternalMarks, validExternalMark)).equalsIgnoreCase("NotValidMark") || (AppValidator.checkEditTextValidExternalAndA(ExternalMarks, validExternalMark)).equalsIgnoreCase("NotValidAbsent")) {
+                if (((AppValidator.checkEditTextValidExternalAndA(ExternalMarks, validExternalMark)).equalsIgnoreCase("NotValidMark"))) {
                     AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid external marks for student - " + String.valueOf(et1.getText()) + " between 0 to " + validExternalMark);
                 }
-                if (((AppValidator.checkEditTextValidExternalAndA(ExternalMarks)).equalsIgnoreCase("NotValidAbsent"))) {
+                if (((AppValidator.checkEditTextValidExternalAndA(ExternalMarks, validExternalMark)).equalsIgnoreCase("NotValidAbsent"))) {
                     AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid leave character as 'AB' for student - " + String.valueOf(et1.getText()));
                 }
             } else {

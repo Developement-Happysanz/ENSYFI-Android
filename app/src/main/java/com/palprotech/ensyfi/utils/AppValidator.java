@@ -19,11 +19,11 @@ public class AppValidator {
         return value.trim().length() >= minValue;
     }
 
-    public static String checkEditTextValid100AndA(String value) {
+    public static String checkEditTextValid100AndA(String value,int totalMark) {
         boolean check = value.matches("\\d+");
         String EditTextValid;
         if (check) {
-            int validMark = 100;
+            int validMark = totalMark;
             int mark = Integer.parseInt(value);
             if (mark <= -1 || mark >= validMark + 1) {
                 EditTextValid = "NotValidMark";
@@ -40,11 +40,11 @@ public class AppValidator {
         return EditTextValid;
     }
 
-    public static String checkEditTextValidInternalAndA(String value) {
+    public static String checkEditTextValidInternalAndA(String value, int internalMark) {
         boolean check = value.matches("\\d+");
         String EditTextValid;
         if (check) {
-            int validMark = 40;
+            int validMark = internalMark;
             int mark = Integer.parseInt(value);
             if (mark <= -1 || mark >= validMark + 1) {
                 EditTextValid = "NotValidMark";
@@ -61,11 +61,11 @@ public class AppValidator {
         return EditTextValid;
     }
 
-    public static String checkEditTextValidExternalAndA(String value) {
+    public static String checkEditTextValidExternalAndA(String value, int externalMark) {
         boolean check = value.matches("\\d+");
         String EditTextValid;
         if (check) {
-            int validMark = 60;
+            int validMark = externalMark;
             int mark = Integer.parseInt(value);
             if (mark <= -1 || mark >= validMark + 1) {
                 EditTextValid = "NotValidMark";

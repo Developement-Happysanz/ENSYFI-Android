@@ -230,6 +230,7 @@ public class AcademicExamViewActivity extends AppCompatActivity implements Dialo
     public void viewAcademicExamsDetailPage(long id) {
         Intent intent = new Intent(this, AcademicExamDetailPage.class);
         intent.putExtra("id", id);
+        intent.putExtra("subject_id", getClassSubjectId);
         startActivityForResult(intent, 0);
     }
 

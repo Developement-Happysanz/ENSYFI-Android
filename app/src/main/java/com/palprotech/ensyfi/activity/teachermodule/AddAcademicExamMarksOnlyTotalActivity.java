@@ -40,6 +40,9 @@ import java.util.Calendar;
 public class AddAcademicExamMarksOnlyTotalActivity extends AppCompatActivity implements View.OnClickListener, DialogClickListener {
 
     long hwId;
+    String classSubjectId;
+    String classId;
+    String examsId;
     SQLiteHelper db;
     String examMarksId, examId, teacherId, subjectId, studentId, classMasterId, mark, grade,
             externalMark, externalGrade, totalMarks, totalGrade, createdBy, createdAt, updatedBy, updatedAt, syncStatus;
@@ -55,6 +58,9 @@ public class AddAcademicExamMarksOnlyTotalActivity extends AppCompatActivity imp
         setContentView(R.layout.activity_add_academic_exam_marks_only_total);
 
         hwId = getIntent().getExtras().getLong("id");
+        classSubjectId = getIntent().getExtras().getString("subject_id");
+        classId = getIntent().getExtras().getString("classMasterId");
+        examsId = getIntent().getExtras().getString("examId");
         db = new SQLiteHelper(getApplicationContext());
         localExamId = String.valueOf(hwId);
         layout_all = (LinearLayout) findViewById(R.id.layout_timetable);
@@ -127,7 +133,7 @@ public class AddAcademicExamMarksOnlyTotalActivity extends AppCompatActivity imp
                                     ViewGroup.LayoutParams.WRAP_CONTENT, 0.10f));
                             t3.setGravity(Gravity.CENTER);
 
-                            t3.setText(""+i);
+                            t3.setText("" + i);
                             t3.setTextColor(Color.parseColor("#FF68358E"));
                             t3.setHeight(120);
                             t3.setWidth(30);
@@ -137,7 +143,7 @@ public class AddAcademicExamMarksOnlyTotalActivity extends AppCompatActivity imp
                             t2.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                                     ViewGroup.LayoutParams.WRAP_CONTENT, 0.40f));
 
-                            t2.setText(c.getString(4));
+                            t2.setText(c.getString(4) + " - " + c.getString(6));
                             t2.setTextColor(Color.parseColor("#FF68358E"));
                             t2.setHeight(120);
                             t2.setWidth(200);
@@ -225,7 +231,8 @@ public class AddAcademicExamMarksOnlyTotalActivity extends AppCompatActivity imp
         EditText edtMarks;
         TextView et, et1;
         int count = 0;
-        int validMark = 100;
+        int validMark = Integer.parseInt(db.totalMark(classId, examsId, classSubjectId));
+        ;
 
         int nViews = layout_all.getChildCount();
 
@@ -241,11 +248,11 @@ public class AddAcademicExamMarksOnlyTotalActivity extends AppCompatActivity imp
 
             if (!AppValidator.checkNullString(edtMarks.getText().toString().trim())) {
                 AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid internal marks for student - " + String.valueOf(et1.getText()));
-            } else if ((AppValidator.checkEditTextValid100AndA(Marks)).equalsIgnoreCase("NotValidMark") || (AppValidator.checkEditTextValid100AndA(Marks)).equalsIgnoreCase("NotValidAbsent")) {
-                if (((AppValidator.checkEditTextValid100AndA(Marks)).equalsIgnoreCase("NotValidMark"))) {
+            } else if ((AppValidator.checkEditTextValid100AndA(Marks, validMark)).equalsIgnoreCase("NotValidMark") || (AppValidator.checkEditTextValid100AndA(Marks, validMark)).equalsIgnoreCase("NotValidAbsent")) {
+                if (((AppValidator.checkEditTextValid100AndA(Marks, validMark)).equalsIgnoreCase("NotValidMark"))) {
                     AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid marks for student - " + String.valueOf(et1.getText()) + " between 0 to " + validMark);
                 }
-                if (((AppValidator.checkEditTextValid100AndA(Marks)).equalsIgnoreCase("NotValidAbsent"))) {
+                if (((AppValidator.checkEditTextValid100AndA(Marks, validMark)).equalsIgnoreCase("NotValidAbsent"))) {
                     AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid leave character as 'AB' for student - " + String.valueOf(et1.getText()));
                 }
             } else {

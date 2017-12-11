@@ -213,11 +213,11 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
 
             if (!AppValidator.checkNullString(Marks)) {
                 AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid marks for student - " + String.valueOf(tv_studentName.getText()));
-            } else if ((AppValidator.checkEditTextValid100AndA(Marks)).equalsIgnoreCase("NotValidMark") || (AppValidator.checkEditTextValid100AndA(Marks)).equalsIgnoreCase("NotValidAbsent")) {
-                if (((AppValidator.checkEditTextValid100AndA(Marks)).equalsIgnoreCase("NotValidMark"))) {
+            } else if ((AppValidator.checkEditTextValid100AndA(Marks,validMark)).equalsIgnoreCase("NotValidMark") || (AppValidator.checkEditTextValid100AndA(Marks,validMark)).equalsIgnoreCase("NotValidAbsent")) {
+                if (((AppValidator.checkEditTextValid100AndA(Marks,validMark)).equalsIgnoreCase("NotValidMark"))) {
                     AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid marks for student - " + String.valueOf(tv_studentName.getText()) + " between 0 to " + validMark);
                 }
-                if (((AppValidator.checkEditTextValid100AndA(Marks)).equalsIgnoreCase("NotValidAbsent"))) {
+                if (((AppValidator.checkEditTextValid100AndA(Marks,validMark)).equalsIgnoreCase("NotValidAbsent"))) {
                     AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid leave character as 'AB' for student - " + String.valueOf(tv_studentName.getText()));
                 }
             } else {

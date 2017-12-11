@@ -258,28 +258,31 @@ public class SaveTeacherData {
                 String class_id = "";
                 String name = "";
                 String class_section = "";
-
+                String preference_language = "";
 
                 enroll_id = jsonobj.getString("enroll_id");
                 admission_id = jsonobj.getString("admission_id");
                 class_id = jsonobj.getString("class_id");
                 name = jsonobj.getString("name");
                 class_section = jsonobj.getString("class_section");
+                preference_language = jsonobj.getString("pref_language");
 
                 System.out.println("enroll_id : " + i + " = " + enroll_id);
                 System.out.println("admission_id : " + i + " = " + admission_id);
                 System.out.println("class_id : " + i + " = " + class_id);
                 System.out.println("name : " + i + " = " + name);
                 System.out.println("class_section : " + i + " = " + class_section);
+                System.out.println("preference_language : " + i + " = " + preference_language);
 
 
                 String v1 = enroll_id,
                         v2 = admission_id,
                         v3 = class_id,
                         v4 = name,
-                        v5 = class_section;
+                        v5 = class_section,
+                        v6 = preference_language;
 
-                database.teachers_class_students_details_insert(v1, v2, v3, v4, v5);
+                database.teachers_class_students_details_insert(v1, v2, v3, v4, v5, v6);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -450,6 +453,12 @@ public class SaveTeacherData {
                 String classmaster_id = "";
                 String class_name = "";
                 String sec_name = "";
+                String is_internal_external = "";
+                String subject_total = "";
+                String internal_mark = "";
+                String external_mark = "";
+                String subject_id = "";
+
 
                 exam_id = jsonobj.getString("exam_id");
                 exam_name = jsonobj.getString("exam_name");
@@ -459,6 +468,11 @@ public class SaveTeacherData {
                 classmaster_id = jsonobj.getString("classmaster_id");
                 class_name = jsonobj.getString("class_name");
                 sec_name = jsonobj.getString("sec_name");
+                is_internal_external = jsonobj.getString("is_internal_external");
+                subject_total = jsonobj.getString("subject_total");
+                internal_mark = jsonobj.getString("internal_mark");
+                external_mark = jsonobj.getString("external_mark");
+                subject_id = jsonobj.getString("subject_id");
 
                 System.out.println("exam_id : " + i + " = " + exam_id);
                 System.out.println("exam_name : " + i + " = " + exam_name);
@@ -468,6 +482,11 @@ public class SaveTeacherData {
                 System.out.println("classmaster_id : " + i + " = " + classmaster_id);
                 System.out.println("class_name : " + i + " = " + class_name);
                 System.out.println("sec_name : " + i + " = " + sec_name);
+                System.out.println("is_internal_external : " + i + " = " + is_internal_external);
+                System.out.println("subject_total : " + i + " = " + subject_total);
+                System.out.println("internal_mark : " + i + " = " + internal_mark);
+                System.out.println("external_mark : " + i + " = " + external_mark);
+                System.out.println("subject_id : " + i + " = " + subject_id);
 
                 String v1 = exam_id,
                         v2 = exam_name,
@@ -476,13 +495,18 @@ public class SaveTeacherData {
                         v5 = times,
                         v6 = classmaster_id,
                         v7 = class_name,
-                        v8 = sec_name;
+                        v8 = sec_name,
+                        v9 = is_internal_external,
+                        v10 = subject_total,
+                        v11 = internal_mark,
+                        v12 = external_mark,
+                        v13 = subject_id;
 
                 String check = database.isAcademicExamDetails(exam_id, subject_name, classmaster_id);
                 int checkValue = Integer.parseInt(check);
                 long x = -1;
                 if (checkValue == 0) {
-                    x = database.exam_details_insert(v1, v2, v3, v4, v5, v6, v7, v8);
+                    x = database.exam_details_insert(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13);
                 }
 
                 System.out.println("" + x);

@@ -27,19 +27,23 @@ import java.util.ArrayList;
 public class AcademicExamDetailPage extends AppCompatActivity implements DialogClickListener, View.OnClickListener {
 
     long id;
+    String subjectId;
     SQLiteHelper db;
     protected ProgressDialogHelper progressDialogHelper;
     ArrayList<AcademicExamDetails> myList = new ArrayList<AcademicExamDetails>();
     AcademicExamDetailsListBaseAdapter cadapter;
     ListView loadMoreListView;
-    String examId, examName, isInternalExternal, classMasterId, sectionName, className, fromDate, toDate, markStatus;
+    String examId, examName, isInternalExternal, classMasterId, sectionName, className, fromDate, toDate,
+            markStatus, isInternalExternalSubject;
     ImageView addExamMark, viewExamMark;
+    int isInternalExternalForTheSubject;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_academic_exam_details);
         id = getIntent().getExtras().getLong("id");
+        subjectId = getIntent().getExtras().getString("subject_id");
         db = new SQLiteHelper(getApplicationContext());
         String localExamId = String.valueOf(id);
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
@@ -50,6 +54,7 @@ public class AcademicExamDetailPage extends AppCompatActivity implements DialogC
 
         GetAcademicExamInfo(localExamId);
         loadAcademicExamDetails(classMasterId, examId);
+        isInternalExternalForTheSubject = Integer.parseInt(db.getAcademicExamsInternalExternalMarkStatus(classMasterId, examId, subjectId));
         String AcademicExamSubjectMarksStatus = db.isAcademicExamSubjectMarksStatusFlag(examId, PreferenceStorage.getTeacherId(getApplicationContext()), PreferenceStorage.getTeacherSubject(getApplicationContext()));
         int checkAcademicExamSubjectMarksStatus = Integer.parseInt(AcademicExamSubjectMarksStatus);
         int checkMarkStatus = Integer.parseInt(markStatus);
@@ -136,25 +141,37 @@ public class AcademicExamDetailPage extends AppCompatActivity implements DialogC
     public void onClick(View v) {
         if (v == addExamMark) {
             int checkInternalMarkStatus = Integer.parseInt(isInternalExternal);
-            if (checkInternalMarkStatus == 1) {
+            if (isInternalExternalForTheSubject == 1) {
                 Intent intent = new Intent(getApplicationContext(), AddAcademicExamMarksActivity.class);
                 intent.putExtra("id", id);
+                intent.putExtra("subject_id", subjectId);
+                intent.putExtra("classMasterId", classMasterId);
+                intent.putExtra("examId", examId);
                 startActivity(intent);
             } else {
                 Intent intent = new Intent(getApplicationContext(), AddAcademicExamMarksOnlyTotalActivity.class);
                 intent.putExtra("id", id);
+                intent.putExtra("subject_id", subjectId);
+                intent.putExtra("classMasterId", classMasterId);
+                intent.putExtra("examId", examId);
                 startActivity(intent);
             }
         }
         if (v == viewExamMark) {
             int checkInternalMarkStatus = Integer.parseInt(isInternalExternal);
-            if (checkInternalMarkStatus == 1) {
+            if (isInternalExternalForTheSubject == 1) {
                 Intent intent = new Intent(getApplicationContext(), AcademicExamResultView.class);
                 intent.putExtra("id", id);
+                intent.putExtra("subject_id", subjectId);
+                intent.putExtra("classMasterId", classMasterId);
+                intent.putExtra("examId", examId);
                 startActivity(intent);
             } else {
                 Intent intent = new Intent(getApplicationContext(), AcademicExamOnlyTotalResultView.class);
                 intent.putExtra("id", id);
+                intent.putExtra("subject_id", subjectId);
+                intent.putExtra("classMasterId", classMasterId);
+                intent.putExtra("examId", examId);
                 startActivity(intent);
             }
         }
