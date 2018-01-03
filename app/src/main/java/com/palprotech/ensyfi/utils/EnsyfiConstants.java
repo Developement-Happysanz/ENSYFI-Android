@@ -382,7 +382,7 @@ public class EnsyfiConstants {
     public static final String PARAMS_ACADEMIC_EXAM_MARKS_INTERNAL_MARK = "internal_mark";
     public static final String PARAMS_ACADEMIC_EXAM_MARKS_EXTERNAL_MARK = "external_mark";
     public static final String PARAMS_ACADEMIC_EXAM_MARKS_TOTAL_MARK = "marks";
-    public static final String PARAMS_ACADEMIC_INTERNAL_EXTERNAL_MARK = "is_internal_external";
+    public static final String PARAMS_ACADEMIC_INTERNAL_EXTERNAL_MARK_STATUS = "is_internal_external";
     public static final String PARAMS_ACADEMIC_EXAM_MARKS_CREATED_BY = "created_by";
 
     //Leave Params

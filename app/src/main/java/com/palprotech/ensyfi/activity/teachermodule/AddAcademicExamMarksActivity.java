@@ -377,4 +377,5 @@ public class AddAcademicExamMarksActivity extends AppCompatActivity implements V
     public void onAlertNegativeClicked(int tag) {
 
     }
+
 }

@@ -215,7 +215,6 @@ public class TeacherTimeTableActivity extends AppCompatActivity implements Dialo
                     set.setTypeface(null, Typeface.BOLD);
                     b.setAllCaps(true);
                     set.setAllCaps(true);
-
                     b.setGravity(Gravity.CENTER);
                     set.setGravity(Gravity.CENTER);
                     String userTypeString = PreferenceStorage.getUserType(getApplicationContext());

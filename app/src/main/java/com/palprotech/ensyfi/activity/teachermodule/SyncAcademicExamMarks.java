@@ -61,7 +61,8 @@ public class SyncAcademicExamMarks implements IServiceListener {
                         updatedBy = c.getString(14);
                         updatedAt = c.getString(15);
                         syncStatus = c.getString(16);
-                        String internalExternal = db.isInternalExternalFlag(examId);
+//                        String internalExternal = db.isInternalExternalFlag(examId);
+                        int isInternalExternalForTheSubject = Integer.parseInt(db.getAcademicExamsInternalExternalMarkStatus(classMasterId, examId, subjectId));
 
                         JSONObject jsonObject = new JSONObject();
                         try {
@@ -73,7 +74,7 @@ public class SyncAcademicExamMarks implements IServiceListener {
                             jsonObject.put(EnsyfiConstants.PARAMS_ACADEMIC_EXAM_MARKS_INTERNAL_MARK, internalMark);
                             jsonObject.put(EnsyfiConstants.PARAMS_ACADEMIC_EXAM_MARKS_EXTERNAL_MARK, externalMark);
                             jsonObject.put(EnsyfiConstants.PARAMS_ACADEMIC_EXAM_MARKS_TOTAL_MARK, totalMarks);
-                            jsonObject.put(EnsyfiConstants.PARAMS_ACADEMIC_INTERNAL_EXTERNAL_MARK, internalExternal);
+                            jsonObject.put(EnsyfiConstants.PARAMS_ACADEMIC_INTERNAL_EXTERNAL_MARK_STATUS, isInternalExternalForTheSubject);
                             jsonObject.put(EnsyfiConstants.PARAMS_ACADEMIC_EXAM_MARKS_CREATED_BY, createdBy);
 
                         } catch (JSONException e) {
