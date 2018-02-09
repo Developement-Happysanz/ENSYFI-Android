@@ -45,12 +45,12 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
     Vector<String> vecClassList, vecClassSectionList;
     List<String> lsClassList = new ArrayList<String>();
     ArrayList<Students> myList = new ArrayList<Students>();
-    String set3, AM_PM;
+    String set3, AM_PM = "0";
     ImageView btnSave;
     TextView txtDateTime;
     private String storeClassId;
     String formattedServerDate;
-    int valPresent = 0, valAbsent = 0, valLeave = 0, valOD = 0, setAM_PM;
+    int valPresent = 0, valAbsent = 0, valLeave = 0, valOD = 0, setAM_PM = 0;
     String lastInsertedId;
     Calendar c = Calendar.getInstance();
     LinearLayout layout_all;
@@ -82,10 +82,12 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
         if (a == Calendar.AM) {
             setAM_PM = a;
             AM_PM = String.valueOf(setAM_PM);
-        } else {
-            setAM_PM = a;
-            AM_PM = String.valueOf(setAM_PM);
         }
+
+//        else {
+//            setAM_PM = a;
+//            AM_PM = String.valueOf(setAM_PM);
+//        }
 
         spnClassList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -172,8 +174,8 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
                         finish();
 
                     } else {
-                        Toast.makeText(getApplicationContext(), "Attendance taken for this period...",
-                                Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getApplicationContext(), "Attendance taken for this period...", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Attendance taken for the day...", Toast.LENGTH_LONG).show();
                     }
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -304,7 +306,7 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
                             t1.setId(R.id.my_text_1);
 
 //                            t3.setText(c.getString(1));
-                            t3.setText(""+i);
+                            t3.setText("" + i);
                             t3.setTextColor(Color.parseColor("#FF68358E"));
                             t3.setHeight(120);
                             t3.setWidth(80);
