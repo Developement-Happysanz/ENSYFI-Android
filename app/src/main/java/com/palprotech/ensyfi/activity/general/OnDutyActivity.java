@@ -153,9 +153,29 @@ public class OnDutyActivity extends AppCompatActivity implements View.OnClickLis
             finish();
         }
         if (v == btnReqOnDuty) {
-            Intent intent = new Intent(getApplicationContext(), OnDutyRequestActivity.class);
-            startActivity(intent);
+            startOnDutyRequestActivity(0);
         }
+    }
+
+    public void startOnDutyRequestActivity(long id) {
+        Intent intent = new Intent(getApplicationContext(), OnDutyRequestActivity.class);
+        startActivityForResult(intent, 0);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+            if (onDutyArrayList != null) {
+                onDutyArrayList.clear();
+                onDutyListAdapter = new OnDutyListAdapter(getApplicationContext(), this.onDutyArrayList);
+                loadMoreListView.setAdapter(onDutyListAdapter);
+                isLoadingForFirstTime = true;
+                callOnDutyViewService();
+            }
+        }
+
     }
 
     @Override
@@ -216,12 +236,12 @@ public class OnDutyActivity extends AppCompatActivity implements View.OnClickLis
 
     protected void updateListAdapter(ArrayList<OnDuty> onDutyArrayList) {
         this.onDutyArrayList.addAll(onDutyArrayList);
-        if (onDutyListAdapter == null) {
+//        if (onDutyListAdapter == null) {
             onDutyListAdapter = new OnDutyListAdapter(this, this.onDutyArrayList);
             loadMoreListView.setAdapter(onDutyListAdapter);
-        } else {
-            onDutyListAdapter.notifyDataSetChanged();
-        }
+//        } else {
+//            onDutyListAdapter.notifyDataSetChanged();
+//        }
     }
 
     @Override

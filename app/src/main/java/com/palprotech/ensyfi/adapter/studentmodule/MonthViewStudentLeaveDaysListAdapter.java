@@ -91,7 +91,8 @@ public class MonthViewStudentLeaveDaysListAdapter extends BaseAdapter {
         int status = Integer.parseInt(checkStatus);
         String leaveNos = "";
         if (status == 1) {
-            leaveNos = "Half day";
+//            leaveNos = "Half day";
+            leaveNos = "Full day";
         } else {
             leaveNos = "Full day";
         }

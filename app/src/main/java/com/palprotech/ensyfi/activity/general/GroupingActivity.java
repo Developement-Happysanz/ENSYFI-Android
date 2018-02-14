@@ -162,12 +162,12 @@ public class GroupingActivity extends AppCompatActivity implements IServiceListe
 
     protected void updateListAdapter(ArrayList<GroupList> groupListArrayList) {
         this.groupListArrayList.addAll(groupListArrayList);
-        if (groupListAdapter == null) {
-            groupListAdapter = new GroupListAdapter(this, this.groupListArrayList);
-            loadMoreListView.setAdapter(groupListAdapter);
-        } else {
-            groupListAdapter.notifyDataSetChanged();
-        }
+//        if (groupListAdapter == null) {
+        groupListAdapter = new GroupListAdapter(this, this.groupListArrayList);
+        loadMoreListView.setAdapter(groupListAdapter);
+//        } else {
+//            groupListAdapter.notifyDataSetChanged();
+//        }
     }
 
     @Override
@@ -194,9 +194,33 @@ public class GroupingActivity extends AppCompatActivity implements IServiceListe
     @Override
     public void onClick(View v) {
         if (v == CreateNotification) {
-            Intent intent = new Intent(getApplicationContext(), GroupingSendActivity.class);
-            startActivity(intent);
+
+            startGroupingSendActivity(0);
+
+//            Intent intent = new Intent(getApplicationContext(), GroupingSendActivity.class);
+//            startActivity(intent);
         }
+    }
+
+    public void startGroupingSendActivity(long id) {
+        Intent intent = new Intent(getApplicationContext(), GroupingSendActivity.class);
+        startActivityForResult(intent, 0);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+            if (groupListArrayList != null) {
+                groupListArrayList.clear();
+                groupListAdapter = new GroupListAdapter(getApplicationContext(), this.groupListArrayList);
+                loadMoreListView.setAdapter(groupListAdapter);
+                isLoadingForFirstTime = true;
+                callGetGroupService();
+            }
+        }
+
     }
 
 

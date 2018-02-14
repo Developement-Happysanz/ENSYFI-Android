@@ -632,7 +632,10 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
                         if (((status.equalsIgnoreCase("success")))) {
 
                             Log.d(TAG, "Show error dialog");
-                            AlertDialogHelper.showSimpleAlertDialog(this, msg);
+//                            AlertDialogHelper.showSimpleAlertDialog(this, msg);
+//                            finish();
+
+                            setResult(RESULT_OK);
                             finish();
                         }
                     }

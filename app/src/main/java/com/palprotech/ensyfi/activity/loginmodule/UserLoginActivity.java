@@ -128,7 +128,7 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
             if (v == txtForgotPassword) {
                 Intent intent = new Intent(this, ForgotPasswordActivity.class);
                 startActivity(intent);
-                finish();
+//                finish();
             }
 
         } else {

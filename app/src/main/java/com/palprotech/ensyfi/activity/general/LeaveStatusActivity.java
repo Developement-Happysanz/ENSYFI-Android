@@ -111,6 +111,7 @@ public class LeaveStatusActivity extends AppCompatActivity implements View.OnCli
             } else {
                 url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_USER_LEAVES_API;
             }
+
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
             return null;
@@ -129,8 +130,31 @@ public class LeaveStatusActivity extends AppCompatActivity implements View.OnCli
             finish();
         }
         if (v == btnReqLeave) {
-            Intent intent = new Intent(getApplicationContext(), LeaveApplyActivity.class);
-            startActivity(intent);
+
+            startLeaveApplyActivity(0);
+
+            /*Intent intent = new Intent(getApplicationContext(), LeaveApplyActivity.class);
+            startActivity(intent);*/
+        }
+    }
+
+    public void startLeaveApplyActivity(long id) {
+        Intent intent = new Intent(getApplicationContext(), LeaveApplyActivity.class);
+        startActivityForResult(intent, 0);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+            if (leaveStatusArrayList != null) {
+                leaveStatusArrayList.clear();
+                leaveStatusListAdapter = new LeaveStatusListAdapter(getApplicationContext(), this.leaveStatusArrayList);
+                loadMoreListView.setAdapter(leaveStatusListAdapter);
+                isLoadingForFirstTime = true;
+                callLeaveStatusViewService();
+            }
         }
     }
 
@@ -197,12 +221,12 @@ public class LeaveStatusActivity extends AppCompatActivity implements View.OnCli
 
     protected void updateListAdapter(ArrayList<LeaveStatus> leaveStatusArrayList) {
         this.leaveStatusArrayList.addAll(leaveStatusArrayList);
-        if (leaveStatusListAdapter == null) {
+//        if (leaveStatusListAdapter == null) {
             leaveStatusListAdapter = new LeaveStatusListAdapter(this, this.leaveStatusArrayList);
             loadMoreListView.setAdapter(leaveStatusListAdapter);
-        } else {
-            leaveStatusListAdapter.notifyDataSetChanged();
-        }
+//        } else {
+//            leaveStatusListAdapter.notifyDataSetChanged();
+//        }
     }
 
     @Override

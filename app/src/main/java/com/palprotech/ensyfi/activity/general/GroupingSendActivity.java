@@ -213,11 +213,14 @@ public class GroupingSendActivity extends AppCompatActivity implements IServiceL
                         if (((status.equalsIgnoreCase("success")))) {
 
                             Log.d(TAG, "Show error dialog");
-                            AlertDialogHelper.showSimpleAlertDialog(this, msg);
-
+//                            AlertDialogHelper.showSimpleAlertDialog(this, msg);
+/*
                             Intent intent = new Intent(this, GroupingActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
+//                            finish();*/
+
+                            setResult(RESULT_OK);
                             finish();
 
                         }

@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
@@ -434,11 +435,15 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
                     if (((status.equalsIgnoreCase("success")))) {
 
                         Log.d(TAG, "Show error dialog");
-                        AlertDialogHelper.showSimpleAlertDialog(this, msg);
+                        Toast.makeText(getApplicationContext(), "On Duty request submitted...", Toast.LENGTH_SHORT).show();
+//                        AlertDialogHelper.showSimpleAlertDialog(this, msg);
 
-                        Intent intent = new Intent(this, OnDutyActivity.class);
+                        /*Intent intent = new Intent(this, OnDutyActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
+//                        finish();*/
+
+                        setResult(RESULT_OK);
                         finish();
                     }
                 }
