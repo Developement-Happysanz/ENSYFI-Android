@@ -9,12 +9,16 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-//import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.bean.general.viewlist.Circular;
-import com.squareup.picasso.Transformation;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
+//import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 
 /**
  * Created by Admin on 08-07-2017.
@@ -88,6 +92,22 @@ public class CircularListAdapter extends BaseAdapter {
         holder.txtCircularType.setText(circulars.get(position).getCircularType());
         holder.txtCircularTitle.setText(circulars.get(position).getCircularTitle());
         holder.txtCircularDescription.setText(circulars.get(position).getCircularDescription());
+
+        String start = circulars.get(position).getCircularDate();
+        try {
+            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            Date date = formatter.parse(start);
+            SimpleDateFormat sent_date = new SimpleDateFormat("dd-MM-yyyy hh:mm a");
+            String sent_date_name = sent_date.format(date.getTime());
+            if (start != null) {
+                holder.txtCircularDate.setText(sent_date_name);
+            } else {
+                holder.txtCircularDate.setText("N/A");
+            }
+        } catch (final ParseException e) {
+            e.printStackTrace();
+        }
+
         holder.txtCircularDate.setText(circulars.get(position).getCircularDate());
         return convertView;
     }

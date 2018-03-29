@@ -95,22 +95,13 @@ public class GroupListAdapter extends BaseAdapter {
             Log.d("GroupList List Adapter", "getview pos called" + position);
         }
         String start = groupListses.get(position).getCreated_at();
-        String end = groupListses.get(position).getCreated_at();
         try {
             DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-            Date date = (Date) formatter.parse(start);
-            Date date1 = (Date) formatter.parse(end);
-            SimpleDateFormat sent_date = new SimpleDateFormat("dd-MM-yyyy");
+            Date date = formatter.parse(start);
+            SimpleDateFormat sent_date = new SimpleDateFormat("dd-MM-yyyy hh:mm a");
             String sent_date_name = sent_date.format(date.getTime());
-//            SimpleDateFormat sent_time = new SimpleDateFormat();
-//            String date_name = event_date.format(date.getTime());
-//            String month_end_name = month_date.format(date1.getTime());
-//            String date_end_name = event_date.format(date1.getTime());
-            if ((start != null) && (end != null)) {
+            if (start != null) {
                 holder.txtDateTime.setText(sent_date_name);
-//                holder.txtMonth.setText(month_name);
-//                holder.txtEndDate.setText(date_end_name);
-//                holder.txtEndMonth.setText(month_end_name);
             } else {
                 holder.txtDateTime.setText("N/A");
             }

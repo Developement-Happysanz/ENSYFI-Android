@@ -168,22 +168,22 @@ public class StudentTimeTableActivity extends AppCompatActivity implements IServ
                             name = "" + 8;
                         }
                         if ((r == 1) && (col == 9)) {
-                            name = "Monday";
+                            name = "Mon";
                         }
                         if ((r == 2) && (col == 18)) {
-                            name = "Tuesday";
+                            name = "Tues";
                         }
                         if ((r == 3) && (col == 27)) {
-                            name = "Wednesday";
+                            name = "Wed";
                         }
                         if ((r == 4) && (col == 36)) {
-                            name = "Thursday";
+                            name = "Thurs";
                         }
                         if ((r == 5) && (col == 45)) {
-                            name = "Friday";
+                            name = "Fri";
                         }
                         if ((r == 6) && (col == 54)) {
-                            name = "Saturday";
+                            name = "Sat";
                         }
                     } else {
 
@@ -216,7 +216,7 @@ public class StudentTimeTableActivity extends AppCompatActivity implements IServ
                     cell.setBackgroundColor(Color.WHITE);//argb(255,104,53,142)
 
                     b.setText(name);
-                    b.setTextSize(13.0f);
+                    b.setTextSize(8.0f);
                     b.setTypeface(null, Typeface.BOLD);
                     b.setAllCaps(true);
                     b.setTextColor(Color.parseColor("#FF68358E"));
@@ -231,8 +231,8 @@ public class StudentTimeTableActivity extends AppCompatActivity implements IServ
                     });
                     b.setPressed(true);
 
-                    b.setHeight(160);
-                    b.setWidth(160);
+                    b.setHeight(100);
+                    b.setWidth(75);
                     b.setPadding(1, 0, 2, 0);
                     cell.addView(b);
                     cell.setLayoutParams(llp);//2px border on the right for the cell

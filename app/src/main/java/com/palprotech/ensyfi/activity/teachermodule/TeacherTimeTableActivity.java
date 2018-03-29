@@ -150,27 +150,27 @@ public class TeacherTimeTableActivity extends AppCompatActivity implements Dialo
                             name = "" + 8;
                         }
                         if ((r == 2) && (col == 10)) {
-                            name = "Monday";
+                            name = "Mon";
                             b.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                         }
                         if ((r == 3) && (col == 19)) {
-                            name = "Tuesday";
+                            name = "Tues";
                             b.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                         }
                         if ((r == 4) && (col == 28)) {
-                            name = "Wednesday";
+                            name = "Wed";
                             b.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                         }
                         if ((r == 5) && (col == 37)) {
-                            name = "Thursday";
+                            name = "Thurs";
                             b.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                         }
                         if ((r == 6) && (col == 46)) {
-                            name = "Friday";
+                            name = "Fri";
                             b.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                         }
                         if ((r == 7) && (col == 55)) {
-                            name = "Saturday";
+                            name = "Sat";
                             b.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                         }
                         if (r == 1) {
@@ -209,8 +209,8 @@ public class TeacherTimeTableActivity extends AppCompatActivity implements Dialo
 
                     set.setText(name1);
                     b.setText(name);
-                    b.setTextSize(11.0f);
-                    set.setTextSize(11.0f);
+                    b.setTextSize(8.0f);
+                    set.setTextSize(8.0f);
                     b.setTypeface(null, Typeface.BOLD);
                     set.setTypeface(null, Typeface.BOLD);
                     b.setAllCaps(true);
@@ -237,9 +237,9 @@ public class TeacherTimeTableActivity extends AppCompatActivity implements Dialo
                     }
 
                     b.setPressed(true);
-                    b.setHeight(140);
+                    b.setHeight(100);
                     set.setHeight(0);
-                    b.setWidth(140);
+                    b.setWidth(75);
                     set.setWidth(0);
                     b.setPadding(1, 0, 2, 0);
                     set.setPadding(0, 0, 0, 0);
