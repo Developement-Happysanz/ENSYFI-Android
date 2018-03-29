@@ -28,6 +28,10 @@ public class GroupList implements Serializable{
     @Expose
     private String notes;
 
+    @SerializedName("created_at")
+    @Expose
+    private String created_at;
+
     /**
      * @return The id
      */
@@ -82,6 +86,20 @@ public class GroupList implements Serializable{
      */
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    /**
+     * @return The created_at
+     */
+    public String getCreated_at() {
+        return created_at;
+    }
+
+    /**
+     * @param created_at The created_at
+     */
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
     }
 
 }

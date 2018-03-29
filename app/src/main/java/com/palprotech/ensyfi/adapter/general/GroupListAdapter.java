@@ -9,13 +9,17 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-//import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.bean.general.viewlist.GroupList;
-import com.squareup.picasso.Transformation;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Date;
+
+//import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 
 /**
  * Created by Narendar on 17/05/17.
@@ -80,6 +84,7 @@ public class GroupListAdapter extends BaseAdapter {
             holder = new GroupListAdapter.ViewHolder();
             holder.txtGroupName = (TextView) convertView.findViewById(R.id.group_title);
             holder.txtnotes = (TextView) convertView.findViewById(R.id.mini_notes);
+            holder.txtDateTime = (TextView) convertView.findViewById(R.id.sent_time_date);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -89,9 +94,33 @@ public class GroupListAdapter extends BaseAdapter {
         } else {
             Log.d("GroupList List Adapter", "getview pos called" + position);
         }
+        String start = groupListses.get(position).getCreated_at();
+        String end = groupListses.get(position).getCreated_at();
+        try {
+            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            Date date = (Date) formatter.parse(start);
+            Date date1 = (Date) formatter.parse(end);
+            SimpleDateFormat sent_date = new SimpleDateFormat("dd-MM-yyyy");
+            String sent_date_name = sent_date.format(date.getTime());
+//            SimpleDateFormat sent_time = new SimpleDateFormat();
+//            String date_name = event_date.format(date.getTime());
+//            String month_end_name = month_date.format(date1.getTime());
+//            String date_end_name = event_date.format(date1.getTime());
+            if ((start != null) && (end != null)) {
+                holder.txtDateTime.setText(sent_date_name);
+//                holder.txtMonth.setText(month_name);
+//                holder.txtEndDate.setText(date_end_name);
+//                holder.txtEndMonth.setText(month_end_name);
+            } else {
+                holder.txtDateTime.setText("N/A");
+            }
+        } catch (final ParseException e) {
+            e.printStackTrace();
+        }
 
         holder.txtGroupName.setText(groupListses.get(position).getGroup_title());
         holder.txtnotes.setText(groupListses.get(position).getNotes());
+//        holder.txtDateTime.setText(groupListses.get(position).getCreated_at());
 
         return convertView;
     }
@@ -123,7 +152,7 @@ public class GroupListAdapter extends BaseAdapter {
     }
 
     public class ViewHolder {
-        public TextView txtGroupName, txtnotes;
+        public TextView txtGroupName, txtnotes, txtDateTime;
     }
 
     public boolean ismSearching() {

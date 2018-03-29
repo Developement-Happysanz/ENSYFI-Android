@@ -73,10 +73,14 @@ public class AppValidator {
                 EditTextValid = "valid";
             }
         } else {
-            if (!value.contentEquals("AB")) {
-                EditTextValid = "NotValidAbsent";
-            } else {
+            if (value.contentEquals("AB")) {
                 EditTextValid = "valid";
+            }
+            else if (value.contentEquals("NA")) {
+                EditTextValid = "valid";
+            }
+            else {
+                EditTextValid = "NotValidAbsent";
             }
         }
         return EditTextValid;
