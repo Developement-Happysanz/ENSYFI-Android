@@ -96,7 +96,7 @@ public class GroupListAdapter extends BaseAdapter {
         }
         String start = groupListses.get(position).getCreated_at();
         try {
-            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date date = formatter.parse(start);
             SimpleDateFormat sent_date = new SimpleDateFormat("dd-MM-yyyy hh:mm a");
             String sent_date_name = sent_date.format(date.getTime());
