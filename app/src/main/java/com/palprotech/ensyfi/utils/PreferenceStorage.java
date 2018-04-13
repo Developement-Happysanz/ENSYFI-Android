@@ -1655,6 +1655,54 @@ public class PreferenceStorage {
         return teacherClassTaken ;
     }
 
+    public static void saveTeacherSkillSet(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.TEACHER_SKILL_SET, name);
+        editor.apply();
+    }
+
+    public static String getTeacherSkillSet(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String teacherSkillSet;
+        teacherSkillSet = sharedPreferences.getString(EnsyfiConstants.TEACHER_SKILL_SET, "");
+        return teacherSkillSet ;
+    }
+
+    public static void saveTeacherPreviousInstitute(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.TEACHER_PREVIOUS_INSTITUTE, name);
+        editor.apply();
+    }
+
+    public static String getTeacherPreviousInstitute(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String teacherSkillSet;
+        teacherSkillSet = sharedPreferences.getString(EnsyfiConstants.TEACHER_PREVIOUS_INSTITUTE, "");
+        return teacherSkillSet ;
+    }
+
+    public static void saveTeacherTotalExperience(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.TEACHER_TOTAL_EXP, name);
+        editor.apply();
+    }
+
+    public static String getTeacherTotalExperience(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String teacherSkillSet;
+        teacherSkillSet = sharedPreferences.getString(EnsyfiConstants.TEACHER_TOTAL_EXP, "");
+        return teacherSkillSet ;
+    }
+
     public static void saveTeacherSubjectName(Context context, String name) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);

@@ -232,7 +232,6 @@ public class AddAcademicExamMarksOnlyTotalActivity extends AppCompatActivity imp
         TextView et, et1;
         int count = 0;
         int validMark = Integer.parseInt(db.totalMark(classId, examsId, classSubjectId));
-        ;
 
         int nViews = layout_all.getChildCount();
 

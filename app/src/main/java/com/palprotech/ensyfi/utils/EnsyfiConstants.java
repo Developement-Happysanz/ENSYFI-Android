@@ -245,6 +245,9 @@ public class EnsyfiConstants {
     public static final String TEACHER_IMAGE = "teacher_pic";
     public static final String TEACHER_SUBJECT = "teacher_subject";
     public static final String TEACHER_CLASS_TAKEN = "teacher_class_taken";
+    public static final String TEACHER_SKILL_SET = "teacher_skill_set";
+    public static final String TEACHER_PREVIOUS_INSTITUTE = "teacher_previous_institute";
+    public static final String TEACHER_TOTAL_EXP = "teacher_total_exp";
     public static final String TEACHER_SUBJECT_NAME = "teacher_subject_name";
     public static final String TEACHER_SECTION = "teacher_sec_name";
     public static final String TEACHER_CLASS_NAME = "teacher_class_name";

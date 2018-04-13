@@ -15,14 +15,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/appColor"
-            android:minHeight="?attr/actionBarSize" />
+            android:minHeight="?android:attr/actionBarSize" />
 
         <ImageView
             android:id="@+id/back_res"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:minHeight="?attr/actionBarSize"
+            android:minHeight="?android:attr/actionBarSize"
             android:paddingLeft="15dp"
             android:src="@drawable/ic_arrow_back_white_48dp" />
 
@@ -33,7 +33,7 @@
             android:layout_centerHorizontal="true"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
-            android:minHeight="?attr/actionBarSize"
+            android:minHeight="?android:attr/actionBarSize"
             android:paddingLeft="10dp"
             android:text=""
             android:textAllCaps="true"

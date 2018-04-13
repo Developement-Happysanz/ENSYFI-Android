@@ -54,6 +54,9 @@ public class SaveTeacherData {
 //            String TeacherClassName = "";
             String TeacherClassTaken = "";
 //            String TeacherSubjectName = "";
+            String TeacherSkillSet = "";
+            String TeacherPreviousInstitute = "";
+            String TeacherTotalExp = "";
 
             TeacherId = getTeacherProfile.getString("teacher_id");
             TeacherName = getTeacherProfile.getString("name");
@@ -72,6 +75,9 @@ public class SaveTeacherData {
             TeacherSubject = getTeacherProfile.getString("subject");
             TeacherClassTaken = getTeacherProfile.getString("class_taken");
             ClassTeacher = getTeacherProfile.getString("class_teacher");
+            TeacherSkillSet = getTeacherProfile.getString("skill_set");
+            TeacherPreviousInstitute = getTeacherProfile.getString("previous_institute");
+            TeacherTotalExp = getTeacherProfile.getString("total_exp");
 //            TeacherSubjectName = getTeacherProfile.getString("subject_name");
 //            TeacherSectionName = getTeacherProfile.getString("sec_name");
 //            TeacherClassName = getTeacherProfile.getString("class_name");
@@ -177,6 +183,21 @@ public class SaveTeacherData {
             if ((TeacherSubjectName != null) && !(TeacherSubjectName.isEmpty()) && !TeacherSubjectName.equalsIgnoreCase("null")) {
                 PreferenceStorage.saveTeacherSubjectName(context, TeacherSubjectName);
             }*/
+
+            // Parents Preference - Student Secondary Mobile
+            if ((TeacherSkillSet != null) && !(TeacherSkillSet.isEmpty()) && !TeacherSkillSet.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveTeacherSkillSet(context, TeacherSkillSet);
+            }
+
+            // Parents Preference - Student Secondary Mobile
+            if ((TeacherPreviousInstitute != null) && !(TeacherPreviousInstitute.isEmpty()) && !TeacherPreviousInstitute.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveTeacherPreviousInstitute(context, TeacherPreviousInstitute);
+            }
+
+            // Parents Preference - Student Secondary Mobile
+            if ((TeacherTotalExp != null) && !(TeacherTotalExp.isEmpty()) && !TeacherTotalExp.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveTeacherTotalExperience(context, TeacherTotalExp);
+            }
 
         } catch (Exception ex) {
             ex.printStackTrace();

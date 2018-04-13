@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/appColor"
-            android:minHeight="?attr/actionBarSize" />
+            android:minHeight="?android:attr/actionBarSize" />
 
         <ImageView
             android:id="@+id/back_res"
@@ -22,7 +22,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:contentDescription="@string/arrow_back"
-            android:minHeight="?attr/actionBarSize"
+            android:minHeight="?android:attr/actionBarSize"
             android:padding="5dp"
             android:src="@drawable/ic_arrow_back_white_48dp" />
 
@@ -33,7 +33,7 @@
             android:layout_centerHorizontal="true"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
-            android:minHeight="?attr/actionBarSize"
+            android:minHeight="?android:attr/actionBarSize"
             android:text="@string/title_exam_mark_entry"
             android:textAllCaps="true"
             android:textColor="@color/white"

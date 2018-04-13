@@ -34,7 +34,8 @@ public class TeacherInfoActivity extends AppCompatActivity implements DialogClic
 
     private TextView teacherId, teacherName, teacherGender, teacherAge, teacherNationality, teacherReligion, teacherCaste,
             teacherCommunity, teacherAddress, teacherSubject, classTeacher, teacherMobile, teacherSecondaryMobile, teacherMail,
-            teacherSecondaryMail, teacherSectionName, teacherClassName, teacherClassTaken;
+            teacherSecondaryMail, teacherSectionName, teacherClassName, teacherClassTaken, teacherSkillSet, teacherPreviousExp,
+            teacherTotalExp;
     ArrayList<String> lsSubjectList;
     SQLiteHelper db;
     private TeacherHandlingSubjectSpinnerAdapter teacherHandlingSubjectSpinnerAdapter;
@@ -78,6 +79,10 @@ public class TeacherInfoActivity extends AppCompatActivity implements DialogClic
         teacherSectionName = (TextView) findViewById(R.id.txtTeacherSectionName);
         teacherClassName = (TextView) findViewById(R.id.txtTeacherClassName);
         teacherClassTaken = (TextView) findViewById(R.id.txtTeacherClassTaken);
+        teacherSkillSet = (TextView) findViewById(R.id.txtTeacherSkillSet);
+        teacherPreviousExp = (TextView) findViewById(R.id.txtTeacherPreviousExp);
+        teacherTotalExp = (TextView) findViewById(R.id.txtTeacherTotalExp);
+
 
         getSubjectList();
     }
@@ -134,7 +139,11 @@ public class TeacherInfoActivity extends AppCompatActivity implements DialogClic
         teacherSectionName.setText(PreferenceStorage.getTeacherSectionName(getApplicationContext()));
         teacherClassName.setText(PreferenceStorage.getTeacherClassName(getApplicationContext()));
         teacherClassTaken.setText(PreferenceStorage.getTeacherClassTaken(getApplicationContext()));
+        teacherSkillSet.setText(PreferenceStorage.getTeacherSkillSet(getApplicationContext()));
+        teacherPreviousExp.setText(PreferenceStorage.getTeacherPreviousInstitute(getApplicationContext()));
+        teacherTotalExp.setText(PreferenceStorage.getTeacherTotalExperience(getApplicationContext()));
         String url = PreferenceStorage.getTeacherPic(this);
+
 
         if (((url != null) && !(url.isEmpty()))) {
             Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(teacherImg);

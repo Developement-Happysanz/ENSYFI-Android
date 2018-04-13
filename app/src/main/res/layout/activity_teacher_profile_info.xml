@@ -15,14 +15,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/appColor"
-            android:minHeight="?attr/actionBarSize" />
+            android:minHeight="?android:attr/actionBarSize" />
 
         <ImageView
             android:id="@+id/back_res"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:minHeight="?attr/actionBarSize"
+            android:minHeight="?android:attr/actionBarSize"
             android:paddingLeft="15dp"
             android:src="@drawable/ic_arrow_back_white_48dp" />
 
@@ -33,7 +33,7 @@
             android:layout_centerHorizontal="true"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
-            android:minHeight="?attr/actionBarSize"
+            android:minHeight="?android:attr/actionBarSize"
             android:paddingLeft="10dp"
             android:text="Teacher Profile"
             android:textAllCaps="true"
@@ -498,6 +498,75 @@
                     android:layout_alignTop="@id/TeacherClassTaken"
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/TeacherClassTaken"
+                    android:paddingTop="2dp"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/TeacherSkillSet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtTeacherClassTaken"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Class Skill Set            :"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtTeacherSkillSet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/TeacherSkillSet"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/TeacherSkillSet"
+                    android:paddingTop="2dp"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/TeacherPreviousExp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtTeacherSkillSet"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Class Previous Exp         :"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtTeacherPreviousExp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/TeacherPreviousExp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/TeacherPreviousExp"
+                    android:paddingTop="2dp"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/TeacherTotalExp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtTeacherPreviousExp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Class Total Exp         :"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtTeacherTotalExp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/TeacherTotalExp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/TeacherTotalExp"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
                     android:textSize="18dp" />
