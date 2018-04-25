@@ -509,7 +509,7 @@
                     android:layout_below="@+id/txtTeacherClassTaken"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Class Skill Set            :"
+                    android:text="Skill Set            :"
                     android:textColor="@color/black"
                     android:textSize="18dp"
                     android:textStyle="bold" />
@@ -532,7 +532,7 @@
                     android:layout_below="@+id/txtTeacherSkillSet"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Class Previous Exp         :"
+                    android:text="Previous Exp         :"
                     android:textColor="@color/black"
                     android:textSize="18dp"
                     android:textStyle="bold" />
@@ -555,7 +555,7 @@
                     android:layout_below="@+id/txtTeacherPreviousExp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Class Total Exp         :"
+                    android:text="Total Exp         :"
                     android:textColor="@color/black"
                     android:textSize="18dp"
                     android:textStyle="bold" />

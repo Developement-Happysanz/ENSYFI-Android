@@ -10,7 +10,7 @@ import java.io.Serializable;
  * Created by Admin on 15-05-2017.
  */
 
-public class Event implements Serializable{
+public class Event implements Serializable {
 
     @SerializedName("event_id")
     @Expose
@@ -35,6 +35,14 @@ public class Event implements Serializable{
     @SerializedName("status")
     @Expose
     private String status;
+
+    @SerializedName("latitude")
+    @Expose
+    private String latitude = "0.0";
+
+    @SerializedName("longitude")
+    @Expose
+    private String longitude = "0.0";
 
     @SerializedName("sub_event_status")
     @Expose
@@ -126,6 +134,34 @@ public class Event implements Serializable{
      */
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    /**
+     * @return The latitude
+     */
+    public String getLatitude() {
+        return latitude;
+    }
+
+    /**
+     * @param latitude The latitude
+     */
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    /**
+     * @return The longitude
+     */
+    public String getLongitude() {
+        return longitude;
+    }
+
+    /**
+     * @param longitude The longitude
+     */
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 
     /**
