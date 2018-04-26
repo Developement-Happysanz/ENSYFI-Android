@@ -212,6 +212,12 @@
             android:theme="@style/AppThemeNoActionBarGrey" />
 
         <activity
+            android:name=".activity.general.LeaveCalendarActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarGrey" />
+
+        <activity
             android:name=".activity.general.EventOrganiserActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
@@ -271,6 +277,12 @@
 
         <activity
             android:name=".activity.teachermodule.TeacherTimeTableActivity"
+            android:label="@string/app_name"
+
+            android:theme="@style/AppThemeNoActionBarGrey" />
+
+        <activity
+            android:name=".activity.teachermodule.TeacherTimeTableNew"
             android:label="@string/app_name"
 
             android:theme="@style/AppThemeNoActionBarGrey" />

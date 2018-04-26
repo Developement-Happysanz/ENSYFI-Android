@@ -27,6 +27,7 @@ import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.activity.general.CircularActivity;
 import com.palprotech.ensyfi.activity.general.EventsActivity;
 import com.palprotech.ensyfi.activity.general.GroupingActivity;
+import com.palprotech.ensyfi.activity.general.LeaveCalendarActivity;
 import com.palprotech.ensyfi.activity.general.LeaveStatusActivity;
 import com.palprotech.ensyfi.activity.general.OnDutyActivity;
 import com.palprotech.ensyfi.activity.general.SyncRecordsActivity;
@@ -55,7 +56,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
     boolean doubleBackToExitPressedOnce = false;
     private ImageView imgNavProfileImage;
     private ArrayAdapter<String> navListAdapter;
-    private String[] values = {"PROFILE", "ATTENDANCE", "CLASS TEST & HOMEWORK", "EXAM & RESULT", "TIME TABLE", "EVENT", "CIRCULAR", "ON DUTY", "NOTIFICATION", "APPLY LEAVE", "SETTINGS", "SYNC", "SIGN OUT"};
+    private String[] values = {"PROFILE", "ATTENDANCE", "CLASS TEST & HOMEWORK", "EXAM & RESULT", "TIME TABLE", "EVENT", "CIRCULAR", "ON DUTY", "NOTIFICATION", "APPLY LEAVE", "HOLIDAY CALENDAR", "SETTINGS", "SYNC", "SIGN OUT"};
     TextView navUserProfileName = null;
     LinearLayout dashAttendance, dashTimeTable, dashClassTest, dashExam, dashEvent, dashCommunication;
     private String mCurrentUserProfileUrl = "";
@@ -129,7 +130,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
         dashTimeTable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), TeacherTimeTableActivity.class);
+                Intent intent = new Intent(getApplicationContext(), TeacherTimeTableNew.class);
                 startActivity(intent);
             }
         });
@@ -274,15 +275,19 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
             Intent navigationIntent = new Intent(this, LeaveStatusActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 10) {
-            Intent navigationIntent = new Intent(this, ChangePasswordActivity.class);
+        }else if (position == 10) {
+            Intent navigationIntent = new Intent(this, LeaveCalendarActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 11) {
-            Intent navigationIntent = new Intent(this, SyncRecordsActivity.class);
+            Intent navigationIntent = new Intent(this, ChangePasswordActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 12) {
+            Intent navigationIntent = new Intent(this, SyncRecordsActivity.class);
+            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(navigationIntent);
+        } else if (position == 13) {
             Log.d(TAG, "Perform Logout");
             doLogout();
         }

@@ -33,6 +33,11 @@ public class EnsyfiConstants {
     // EVENTS URL
     public static final String GET_EVENTS_API = "/apimain/disp_Events/";
 
+    //HOLIDAY LIST URL
+    public static final String GET_ALL_HOLIDAY_API = "/apistudent/disp_Leaves/";
+    public static final String GET_UPCOMING_HOLIDAY_API = "/apistudent/disp_upcomingLeaves/";
+
+
     //EVENT ORGANISER URL
     public static final String GET_EVENT_ORGANISER_API = "/apimain/disp_subEvents/";
 
