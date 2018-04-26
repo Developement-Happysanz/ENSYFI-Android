@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.palprotech.ensyfi.fragments.TimeTableFragment;
+import com.palprotech.ensyfi.fragments.TimeTableDayOneFragment;
 
 public class TeacherTimeTableAdapter  extends FragmentStatePagerAdapter {
 
@@ -14,7 +14,7 @@ public class TeacherTimeTableAdapter  extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return TimeTableFragment.newInstance(position + 1);
+        return TimeTableDayOneFragment.newInstance(position + 1);
     }
 
 

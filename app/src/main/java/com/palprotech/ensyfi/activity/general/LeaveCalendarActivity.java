@@ -5,25 +5,36 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.View;
 
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.adapter.general.HolidayListAdapter;
+import com.palprotech.ensyfi.adapter.general.HolidayFragmentAdapter;
+import com.palprotech.ensyfi.helper.AlertDialogHelper;
+import com.palprotech.ensyfi.helper.ProgressDialogHelper;
+import com.palprotech.ensyfi.interfaces.DialogClickListener;
+import com.palprotech.ensyfi.servicehelpers.ServiceHelper;
+import com.palprotech.ensyfi.serviceinterfaces.IServiceListener;
+import com.palprotech.ensyfi.utils.EnsyfiConstants;
+import com.palprotech.ensyfi.utils.PreferenceStorage;
 
-public class LeaveCalendarActivity extends AppCompatActivity {
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class LeaveCalendarActivity extends AppCompatActivity implements DialogClickListener {
 
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    ServiceHelper serviceHelper;
+
+    private static final String TAG = LeaveCalendarActivity.class.getName();
+    private ProgressDialogHelper progressDialogHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_holiday_calendar_tabs);
-
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
 
@@ -34,7 +45,7 @@ public class LeaveCalendarActivity extends AppCompatActivity {
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 
-        final HolidayListAdapter adapter = new HolidayListAdapter
+        final HolidayFragmentAdapter adapter = new HolidayFragmentAdapter
                 (getSupportFragmentManager());
 
         viewPager.setAdapter(adapter);
@@ -55,5 +66,16 @@ public class LeaveCalendarActivity extends AppCompatActivity {
 
             }
         });
+        progressDialogHelper = new ProgressDialogHelper(this);
+    }
+
+    @Override
+    public void onAlertPositiveClicked(int tag) {
+
+    }
+
+    @Override
+    public void onAlertNegativeClicked(int tag) {
+
     }
 }

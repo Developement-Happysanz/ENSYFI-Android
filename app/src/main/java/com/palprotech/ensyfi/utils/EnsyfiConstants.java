@@ -199,6 +199,8 @@ public class EnsyfiConstants {
     // Get Student Time table
     public static final String PARAMS_CLASS_ID = "class_id";
 
+    // Get AllHoliday list
+    public static final String PARAMS_HDAY_CLASS_ID = "clss_id";
 
     //User Profile details
     //Student Details
