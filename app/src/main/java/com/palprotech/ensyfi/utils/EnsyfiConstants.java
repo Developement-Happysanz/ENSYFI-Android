@@ -139,6 +139,9 @@ public class EnsyfiConstants {
 
     public static final String GET_VIEW_FEES_STATUS = "/apiadmin/get_fees_status/";
 
+    //Exam duty
+    public static final String GET_EXAM_DUTY = "/apiteacher/view_Examduty/";
+
     // PARAMETERS
     //Service Params
     public static String PARAM_MESSAGE = "msg";

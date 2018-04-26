@@ -383,6 +383,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarPink" />
 
+        <activity
+            android:name=".activity.teachermodule.ExamDutyActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarPink">
+
+        </activity>
+
         <!--End-->
         <!---->
         <!--Admin Module-->
