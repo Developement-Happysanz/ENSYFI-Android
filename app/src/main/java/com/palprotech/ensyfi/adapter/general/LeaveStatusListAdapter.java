@@ -109,8 +109,8 @@ public class LeaveStatusListAdapter extends BaseAdapter {
             holder.imgStatus.setImageResource(R.drawable.od_pending);
         }
 
-        int leaveType = Integer.parseInt(leaveStatus.get(position).getLeaveType());
-        if (leaveType == 0) {
+        String leaveType = leaveStatus.get(position).getLeaveType();
+        if (leaveType == "0") {
             holder.txtFromTime.setVisibility(View.VISIBLE);
             holder.txtToTime.setVisibility(View.VISIBLE);
             holder.txtToLeaveDate.setVisibility(View.GONE);
