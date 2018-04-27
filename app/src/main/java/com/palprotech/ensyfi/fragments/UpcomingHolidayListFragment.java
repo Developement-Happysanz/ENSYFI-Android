@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.activity.general.LeaveCalendarActivity;
 import com.palprotech.ensyfi.adapter.general.UpcomingHolidayListAdapter;
 import com.palprotech.ensyfi.bean.general.viewlist.UpcomingHoliday;
 import com.palprotech.ensyfi.bean.general.viewlist.UpcomingHolidayList;
@@ -50,34 +49,25 @@ public class UpcomingHolidayListFragment extends Fragment implements AdapterView
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_upcoming_holiday, container, false);
-
-        ((LeaveCalendarActivity) getActivity()).setFragmentRefreshListener(new LeaveCalendarActivity.FragmentRefreshListener() {
-            @Override
-            public void onRefresh() {
-                getFragmentManager().beginTransaction().detach(getTargetFragment()).attach(getTargetFragment()).commit();
-                userType = PreferenceStorage.getUserType(getActivity());
-                Bundle bundle = getArguments();
-                if (userType.equals("1") || userType.equals("2")) {
-                    if (bundle != null) {
-                        classId = getArguments().getString("class_id");
-                        sectionId = getArguments().getString("section_id");
-                        classSectionId = getArguments().getString("class_sec_id");
-                    } else {
-                        classId = "";
-                        sectionId = "";
-                        classSectionId = "";
-                    }
-                } else {
-                    classId = "";
-                    sectionId = "";
-                    classSectionId = PreferenceStorage.getStudentClassIdPreference(getActivity());
-                }
+        userType = PreferenceStorage.getUserType(getActivity());
+        Bundle bundle = getArguments();
+        if (userType.equals("1")||userType.equals("2")){
+            if(bundle != null) {
+                classId = getArguments().getString("class_id");
+                sectionId = getArguments().getString("section_id");
+                classSectionId = getArguments().getString("class_sec_id");
+            } else {
+                classId = "";
+                sectionId = "";
+                classSectionId = "";
             }
-        });
-
+        } else {
+            classId = "";
+            sectionId = "";
+            classSectionId = PreferenceStorage.getStudentClassIdPreference(getActivity());
+        }
         initializeViews();
         initializeEventHelpers();
-
         return rootView;
     }
 
@@ -137,11 +127,13 @@ public class UpcomingHolidayListFragment extends Fragment implements AdapterView
 //        updateListAdapter(eventsList.getEvents());
         int totalNearbyCount = 0;
         if (upcomingHolidayList.getUpcomingHolidays() != null && upcomingHolidayList.getUpcomingHolidays().size() > 0) {
+
+
+            isLoadingForFirstTime = false;
             totalCount = upcomingHolidayList.getCount();
             updateListAdapter(upcomingHolidayList.getUpcomingHolidays());
         }
-    }
-
+}
     protected void updateListAdapter(ArrayList<UpcomingHoliday> upcomingHolidayArrayList) {
         this.upcomingHolidayArrayList.addAll(upcomingHolidayArrayList);
        /* if (mNoEventsFound != null)
@@ -154,7 +146,6 @@ public class UpcomingHolidayListFragment extends Fragment implements AdapterView
             upcomingHolidayListAdapter.notifyDataSetChanged();
         }
     }
-
     @Override
     public void onError(String error) {
         progressDialogHelper.hideProgressDialog();

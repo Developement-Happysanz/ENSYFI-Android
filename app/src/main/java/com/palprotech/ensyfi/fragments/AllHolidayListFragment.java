@@ -48,12 +48,12 @@ public class AllHolidayListFragment extends Fragment implements AdapterView.OnIt
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_all_holiday, container, false);
         userType = PreferenceStorage.getUserType(getActivity());
-        Bundle bundle = getArguments();
+        Bundle bundle = this.getArguments();
         if (userType.equals("1")||userType.equals("2")){
             if(bundle != null) {
-                classId = getArguments().getString("class_id");
-                sectionId = getArguments().getString("section_id");
-                classSectionId = getArguments().getString("class_sec_id");
+                classId = this.getArguments().getString("class_id");
+                sectionId = this.getArguments().getString("section_id");
+                classSectionId = this.getArguments().getString("class_sec_id");
             } else {
                 classId = "";
                 sectionId = "";
@@ -123,6 +123,8 @@ public class AllHolidayListFragment extends Fragment implements AdapterView.OnIt
         int totalNearbyCount = 0;
         if (allHolidayList.getAllHolidays() != null && allHolidayList.getAllHolidays().size() > 0) {
 
+
+            isLoadingForFirstTime = false;
             totalCount = allHolidayList.getCount();
             updateListAdapter(allHolidayList.getAllHolidays());
         }
