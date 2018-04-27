@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.palprotech.ensyfi.R;
+import com.palprotech.ensyfi.activity.general.LeaveCalendarActivity;
 import com.palprotech.ensyfi.adapter.general.UpcomingHolidayListAdapter;
 import com.palprotech.ensyfi.bean.general.viewlist.UpcomingHoliday;
 import com.palprotech.ensyfi.bean.general.viewlist.UpcomingHolidayList;
@@ -40,16 +41,9 @@ public class UpcomingHolidayListFragment extends Fragment implements AdapterView
     private ServiceHelper serviceHelper;
     protected boolean isLoadingForFirstTime = true;
     int pageNumber = 0, totalCount = 0;
+    String classId = "", sectionId = "", classSectionId = "", userType = "";
 
     public UpcomingHolidayListFragment() {
-    }
-
-    public static UpcomingHolidayListFragment newInstance(int sectionNumber) {
-        UpcomingHolidayListFragment fragment = new UpcomingHolidayListFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
@@ -57,11 +51,33 @@ public class UpcomingHolidayListFragment extends Fragment implements AdapterView
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_upcoming_holiday, container, false);
 
-        sectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
-        TextView textView = (TextView) rootView.findViewById(R.id.txtTabItemNumber);
-        textView.setText("TAB " + sectionNumber);
+        ((LeaveCalendarActivity) getActivity()).setFragmentRefreshListener(new LeaveCalendarActivity.FragmentRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getFragmentManager().beginTransaction().detach(getTargetFragment()).attach(getTargetFragment()).commit();
+                userType = PreferenceStorage.getUserType(getActivity());
+                Bundle bundle = getArguments();
+                if (userType.equals("1") || userType.equals("2")) {
+                    if (bundle != null) {
+                        classId = getArguments().getString("class_id");
+                        sectionId = getArguments().getString("section_id");
+                        classSectionId = getArguments().getString("class_sec_id");
+                    } else {
+                        classId = "";
+                        sectionId = "";
+                        classSectionId = "";
+                    }
+                } else {
+                    classId = "";
+                    sectionId = "";
+                    classSectionId = PreferenceStorage.getStudentClassIdPreference(getActivity());
+                }
+            }
+        });
+
         initializeViews();
         initializeEventHelpers();
+
         return rootView;
     }
 
@@ -86,8 +102,10 @@ public class UpcomingHolidayListFragment extends Fragment implements AdapterView
     public void getHolsList() {
         JSONObject jsonObject = new JSONObject();
         try {
-//            jsonObject.put(EnsyfiConstants.PARAMS_HDAY_CLASS_ID, PreferenceStorage.getStudentClassIdPreference(getApplicationContext()));
-            jsonObject.put(EnsyfiConstants.PARAMS_HDAY_CLASS_ID, "1");
+            jsonObject.put(EnsyfiConstants.PARAMS_HDAY_USER_TYPE, PreferenceStorage.getUserType(getActivity()));
+            jsonObject.put(EnsyfiConstants.PARAMS_HDAY_CLASS_ID, classId);
+            jsonObject.put(EnsyfiConstants.PARAMS_HDAY_SEC_ID, sectionId);
+            jsonObject.put(EnsyfiConstants.PARAMS_HDAY_CLASS_SEC_ID, classSectionId);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -119,13 +137,11 @@ public class UpcomingHolidayListFragment extends Fragment implements AdapterView
 //        updateListAdapter(eventsList.getEvents());
         int totalNearbyCount = 0;
         if (upcomingHolidayList.getUpcomingHolidays() != null && upcomingHolidayList.getUpcomingHolidays().size() > 0) {
-
-
-            isLoadingForFirstTime = false;
             totalCount = upcomingHolidayList.getCount();
             updateListAdapter(upcomingHolidayList.getUpcomingHolidays());
         }
-}
+    }
+
     protected void updateListAdapter(ArrayList<UpcomingHoliday> upcomingHolidayArrayList) {
         this.upcomingHolidayArrayList.addAll(upcomingHolidayArrayList);
        /* if (mNoEventsFound != null)
@@ -138,6 +154,7 @@ public class UpcomingHolidayListFragment extends Fragment implements AdapterView
             upcomingHolidayListAdapter.notifyDataSetChanged();
         }
     }
+
     @Override
     public void onError(String error) {
         progressDialogHelper.hideProgressDialog();

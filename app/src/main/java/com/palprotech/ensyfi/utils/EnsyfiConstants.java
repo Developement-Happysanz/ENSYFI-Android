@@ -34,8 +34,8 @@ public class EnsyfiConstants {
     public static final String GET_EVENTS_API = "/apimain/disp_Events/";
 
     //HOLIDAY LIST URL
-    public static final String GET_ALL_HOLIDAY_API = "/apistudent/disp_Leaves/";
-    public static final String GET_UPCOMING_HOLIDAY_API = "/apistudent/disp_upcomingLeaves/";
+    public static final String GET_ALL_HOLIDAY_API = "/apimain/disp_Leaves/";
+    public static final String GET_UPCOMING_HOLIDAY_API = "/apimain/disp_upcomingLeaves/";
 
 
     //EVENT ORGANISER URL
@@ -200,7 +200,10 @@ public class EnsyfiConstants {
     public static final String PARAMS_CLASS_ID = "class_id";
 
     // Get AllHoliday list
-    public static final String PARAMS_HDAY_CLASS_ID = "clss_id";
+    public static final String PARAMS_HDAY_USER_TYPE = "user_type";
+    public static final String PARAMS_HDAY_CLASS_ID = "class_id";
+    public static final String PARAMS_HDAY_SEC_ID = "sec_id";
+    public static final String PARAMS_HDAY_CLASS_SEC_ID = "class_sec_id";
 
     //User Profile details
     //Student Details

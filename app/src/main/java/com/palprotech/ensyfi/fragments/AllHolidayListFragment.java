@@ -30,8 +30,6 @@ import java.util.ArrayList;
 public class AllHolidayListFragment extends Fragment implements AdapterView.OnItemClickListener, IServiceListener {
 
     private static final String TAG = AllHolidayListFragment.class.getName();
-    private static final String ARG_SECTION_NUMBER = "section_number";
-    private int sectionNumber;
     private View rootView;
     protected ListView loadMoreListView;
     protected AllHolidayListAdapter allHolidayListAdapter;
@@ -39,39 +37,42 @@ public class AllHolidayListFragment extends Fragment implements AdapterView.OnIt
     protected ProgressDialogHelper progressDialogHelper;
     private ServiceHelper serviceHelper;
     protected boolean isLoadingForFirstTime = true;
+    String classId = "", sectionId = "", classSectionId = "", userType = "";
     int pageNumber = 0, totalCount = 0;
 
     public AllHolidayListFragment() {
-    }
-
-    public static AllHolidayListFragment newInstance(int sectionNumber) {
-        AllHolidayListFragment fragment = new AllHolidayListFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_all_holiday, container, false);
-
-        sectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
-        TextView textView = (TextView) rootView.findViewById(R.id.txtTabItemNumber);
-        textView.setText("TAB " + sectionNumber);
+        userType = PreferenceStorage.getUserType(getActivity());
+        Bundle bundle = getArguments();
+        if (userType.equals("1")||userType.equals("2")){
+            if(bundle != null) {
+                classId = getArguments().getString("class_id");
+                sectionId = getArguments().getString("section_id");
+                classSectionId = getArguments().getString("class_sec_id");
+            } else {
+                classId = "";
+                sectionId = "";
+                classSectionId = "";
+            }
+        } else {
+            classId = "";
+            sectionId = "";
+            classSectionId = PreferenceStorage.getStudentClassIdPreference(getActivity());
+        }
         initializeViews();
         initializeEventHelpers();
         return rootView;
+
     }
 
     protected void initializeViews() {
         Log.d(TAG, "initialize pull to refresh view");
         loadMoreListView = (ListView) rootView.findViewById(R.id.listView_holidays);
-       /* mNoEventsFound = (TextView) view.findViewById(R.id.no_home_events);
-        if (mNoEventsFound != null)
-            mNoEventsFound.setVisibility(View.GONE);
-        loadMoreListView.setOnLoadMoreListener(this); */
         loadMoreListView.setOnItemClickListener(this);
         allHolidayArrayList = new ArrayList<>();
     }
@@ -86,15 +87,17 @@ public class AllHolidayListFragment extends Fragment implements AdapterView.OnIt
     public void getHolsList() {
         JSONObject jsonObject = new JSONObject();
         try {
-//            jsonObject.put(EnsyfiConstants.PARAMS_HDAY_CLASS_ID, PreferenceStorage.getStudentClassIdPreference(getApplicationContext()));
-            jsonObject.put(EnsyfiConstants.PARAMS_HDAY_CLASS_ID, "1");
+            jsonObject.put(EnsyfiConstants.PARAMS_HDAY_USER_TYPE, PreferenceStorage.getUserType(getActivity()));
+            jsonObject.put(EnsyfiConstants.PARAMS_HDAY_CLASS_ID, classId);
+            jsonObject.put(EnsyfiConstants.PARAMS_HDAY_SEC_ID, sectionId);
+            jsonObject.put(EnsyfiConstants.PARAMS_HDAY_CLASS_SEC_ID, classSectionId);
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getActivity()) + EnsyfiConstants.GET_UPCOMING_HOLIDAY_API;
+        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getActivity()) + EnsyfiConstants.GET_ALL_HOLIDAY_API;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 
@@ -120,8 +123,6 @@ public class AllHolidayListFragment extends Fragment implements AdapterView.OnIt
         int totalNearbyCount = 0;
         if (allHolidayList.getAllHolidays() != null && allHolidayList.getAllHolidays().size() > 0) {
 
-
-            isLoadingForFirstTime = false;
             totalCount = allHolidayList.getCount();
             updateListAdapter(allHolidayList.getAllHolidays());
         }
