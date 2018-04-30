@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.activity.adminmodule.AdminDashBoardActivity;
 import com.palprotech.ensyfi.activity.parentsmodule.ParentDashBoardActivity;
@@ -44,6 +45,12 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
+        String GCMKey = PreferenceStorage.getGCM(getApplicationContext());
+        if (GCMKey.equalsIgnoreCase("")) {
+            String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+            PreferenceStorage.saveGCM(getApplicationContext(), refreshedToken);
+        }
 
         WebView wView = (WebView) findViewById(R.id.web);
         wView.getSettings();
