@@ -104,10 +104,12 @@ public class EnsyfiConstants {
     public static final String GET_USER_LEAVES_APPLY_API = "/apiteacher/add_Userleaves/";
 
     public static final String GET_USER_LEAVES_STATUS_ADMIN_API = "/apiadmin/get_teachers_leaves/";
+    public static final String APPROVE_LEAVES_API = "/apiadmin/update_teachers_leaves/";
 
     //OD Admin urls
     public static final String GET_OD_STUDENT_API = "/apiadmin/get_students_od_view/";
     public static final String GET_OD_TEACHER_API = "/apiadmin/get_teachers_od_view/";
+    public static final String APPROVE_OD_API = "/apiadmin/update_teachers_od/";
 
     // ADMIN URLS
     // CLASS LIST URL
@@ -361,6 +363,10 @@ public class EnsyfiConstants {
     public static final String PARAMS_GROUP_NOTIFICATIONS_MESSAGE_DETAILS = "message_details";
     public static final String PARAMS_GROUP_NOTIFICATIONS_CREATED_BY = "created_by";
 
+    //On Duty Approval
+    public static final String PARAMS_OD_APPROVAL_STATUS = "status";
+    public static final String PARAMS_OD_ID = "od_id";
+
     // Attendance Params
     public static final String PARAMS_DISPLAY_TYPE = "disp_type";
     public static final String PARAMS_DISPLAY_DATE = "disp_date";
@@ -408,6 +414,10 @@ public class EnsyfiConstants {
     public static final String PARAMS_LEAVE_FROM_TIME = "fromTime";
     public static final String PARAMS_LEAVE_TO_TIME = "toTime";
     public static final String PARAMS_LEAVE_DESCRIPTION = "description";
+
+    //Leave Approval
+    public static final String PARAMS_LEAVE_APPROVAL_STATUS = "status";
+    public static final String PARAMS_LEAVE_ID = "leave_id";
 
     //Class and Section Params
     public static final String PARAMS_CLASS_ID_LIST = "class_id";

@@ -11,6 +11,10 @@ import java.io.Serializable;
 
 public class LeaveStatus implements Serializable {
 
+    @SerializedName("leave_id")
+    @Expose
+    private String leave_id;
+
     @SerializedName("leave_title")
     @Expose
     private String leave_title;
@@ -55,6 +59,20 @@ public class LeaveStatus implements Serializable {
      */
     public void setLeaveTitle(String leave_title) {
         this.leave_title = leave_title;
+    }
+
+    /**
+     * @return The leave_id
+     */
+    public String getLeave_id() {
+        return leave_id;
+    }
+
+    /**
+     * @param leave_id The leave_id
+     */
+    public void setLeave_id(String leave_id) {
+        this.leave_id = leave_id;
     }
 
     /**

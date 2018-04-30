@@ -1,5 +1,6 @@
 package com.palprotech.ensyfi.activity.adminmodule;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioGroup;
@@ -35,7 +37,7 @@ import java.util.ArrayList;
  * Created by Admin on 19-07-2017.
  */
 
-public class OnDutyViewActivity extends AppCompatActivity implements IServiceListener, DialogClickListener {
+public class OnDutyViewActivity extends AppCompatActivity implements IServiceListener, AdapterView.OnItemClickListener, DialogClickListener {
 
     private static final String TAG = OnDutyViewActivity.class.getName();
     private ProgressDialogHelper progressDialogHelper;
@@ -58,6 +60,7 @@ public class OnDutyViewActivity extends AppCompatActivity implements IServiceLis
         progressDialogHelper = new ProgressDialogHelper(this);
         radioStudentsTeachersView = (RadioGroup) findViewById(R.id.radioStudentsTeachersView);
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
+        loadMoreListView.setOnItemClickListener(this);
         onDutyArrayList = new ArrayList<>();
         callOnDutyViewService();
         radioStudentsTeachersView.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -157,6 +160,24 @@ public class OnDutyViewActivity extends AppCompatActivity implements IServiceLis
         }
 
         return signInsuccess;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Log.d(TAG, "onOD list item clicked" + position);
+        OnDuty onDuty = null;
+        if ((onDutyListAdapter != null) && (onDutyListAdapter.ismSearching())) {
+            Log.d(TAG, "while searching");
+            int actualindex = onDutyListAdapter.getActualEventPos(position);
+            Log.d(TAG, "actual index" + actualindex);
+            onDuty = onDutyArrayList.get(actualindex);
+        } else {
+            onDuty = onDutyArrayList.get(position);
+        }
+        Intent intent = new Intent(this, OnDutyDetailActivity.class);
+        intent.putExtra("onDutyObj", onDuty);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(intent);
     }
 
     @Override
