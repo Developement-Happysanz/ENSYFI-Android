@@ -86,8 +86,8 @@ public class AllHolidayListAdapter extends BaseAdapter {
             Log.d("Event List Adapter", "getview pos called" + position);
         }
 
-        holder.txtTitle.setText(allHoliday.get(position).getTitle());
-        holder.txtDescription.setText(allHoliday.get(position).getDescription());
+        holder.txtTitle.setText("Title : " + allHoliday.get(position).getTitle());
+        holder.txtDescription.setText("Reason : " + allHoliday.get(position).getDescription());
         String start = allHoliday.get(position).getSTART();
         try {
             DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -103,7 +103,7 @@ public class AllHolidayListAdapter extends BaseAdapter {
             e.printStackTrace();
         }
 
-        holder.txtDay.setText("(" + allHoliday.get(position).getDay() + ")");
+        holder.txtDay.setText("- " + allHoliday.get(position).getDay());
         return convertView;
     }
 

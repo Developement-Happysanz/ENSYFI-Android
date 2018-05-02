@@ -88,8 +88,8 @@ public class UpcomingHolidayListAdapter extends BaseAdapter {
             Log.d("Event List Adapter", "getview pos called" + position);
         }
 
-        holder.txtTitle.setText(upcomingHoliday.get(position).getTitle());
-        holder.txtDescription.setText(upcomingHoliday.get(position).getDescription());
+        holder.txtTitle.setText("Title : " + upcomingHoliday.get(position).getTitle());
+        holder.txtDescription.setText("Reason : " + upcomingHoliday.get(position).getDescription());
         String start = upcomingHoliday.get(position).getSTART();
         try {
             DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -105,7 +105,7 @@ public class UpcomingHolidayListAdapter extends BaseAdapter {
             e.printStackTrace();
         }
 
-        holder.txtDay.setText("(" + upcomingHoliday.get(position).getDay() + ")");
+        holder.txtDay.setText("- " + upcomingHoliday.get(position).getDay());
         return convertView;
     }
 

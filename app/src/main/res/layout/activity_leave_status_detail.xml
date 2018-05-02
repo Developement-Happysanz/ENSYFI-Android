@@ -82,7 +82,7 @@
                 android:id="@+id/txtFromDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="15dp"
                 android:gravity="bottom"
                 android:text="  16 June 2017"
                 android:textAllCaps="true"
@@ -93,8 +93,8 @@
                 android:id="@+id/txtToDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="bottom"
                 android:layout_marginLeft="15dp"
+                android:gravity="bottom"
                 android:text="16 June 2017"
                 android:textColor="@color/black"
                 android:textSize="15dp" />
@@ -111,17 +111,17 @@
                 android:id="@+id/txtLeaveFor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:layout_marginTop="10dp"
-                android:textSize="18dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="18dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="5dp"
-                android:background="@color/text_gray"/>
+                android:background="@color/text_gray" />
 
         </LinearLayout>
 
@@ -129,9 +129,9 @@
             android:id="@+id/status_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_below="@+id/leave_reason_layout"
             android:gravity="center"
-            android:layout_below="@+id/leave_reason_layout">
+            android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/txtStatusDecline"
@@ -139,8 +139,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_marginBottom="15dp"
-                android:layout_marginTop="25dp"
                 android:layout_marginRight="25dp"
+                android:layout_marginTop="25dp"
                 android:text="Decline"
                 android:textSize="20dp" />
 
@@ -159,10 +159,12 @@
             android:id="@+id/send_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:layout_below="@+id/status_layout"
             android:layout_centerHorizontal="true"
-            android:text="Send" />
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_square_fill_color"
+            android:text="ok"
+            android:textColor="@color/white" />
 
     </RelativeLayout>
 

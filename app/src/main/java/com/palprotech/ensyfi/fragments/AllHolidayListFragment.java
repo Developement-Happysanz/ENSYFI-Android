@@ -56,7 +56,7 @@ public class AllHolidayListFragment extends Fragment implements AdapterView.OnIt
 
     private Spinner spnClassList, spnSectionList, spnClassSecList;
     RelativeLayout adminView, teacherView;
-    private String checkSpinner = "", storeClassId, storeSectionId;
+    private String checkSpinner = "", storeClassId, storeSectionId, getClassSectionId;
     SQLiteHelper db;
     Vector<String> vecClassList, vecClassSectionList;
     List<String> lsClassList = new ArrayList<String>();
@@ -129,16 +129,17 @@ public class AllHolidayListFragment extends Fragment implements AdapterView.OnIt
                 }
             });
         } else if (userId.equals("2")) {
+            teacherView.setVisibility(View.VISIBLE);
+            spnClassSecList = (Spinner) rootView.findViewById(R.id.class_section_list_spinner);
             db = new SQLiteHelper(getActivity());
             vecClassList = new Vector<String>();
             getClassSectionList();
-            teacherView.setVisibility(View.VISIBLE);
-            spnClassSecList = (Spinner) rootView.findViewById(R.id.class_section_list_spinner);
             spnClassSecList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     String classSeactionName = parent.getItemAtPosition(position).toString();
-                    classSectionId = classSeactionName;
+                    getClassId(classSeactionName);
+                    classSectionId = getClassSectionId;
                     getHolsList();
                 }
 
@@ -243,8 +244,25 @@ public class AllHolidayListFragment extends Fragment implements AdapterView.OnIt
             ArrayAdapter<String> dataAdapter3 = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item_ns, lsClassList);
 //            adptStudent = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, lsStudent);
 //            adptStudent.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spnClassList.setAdapter(dataAdapter3);
-            spnClassList.setWillNotDraw(false);
+            spnClassSecList.setAdapter(dataAdapter3);
+            spnClassSecList.setWillNotDraw(false);
+        } catch (Exception e) {
+            Toast.makeText(getActivity(), "Error", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
+    }
+
+    private void getClassId(String classSectionName) {
+
+        try {
+            Cursor c = db.getClassId(classSectionName);
+            if (c.getCount() > 0) {
+                if (c.moveToFirst()) {
+                    do {
+                        getClassSectionId = c.getString(0);
+                    } while (c.moveToNext());
+                }
+            }
         } catch (Exception e) {
             Toast.makeText(getActivity(), "Error", Toast.LENGTH_LONG).show();
             e.printStackTrace();
