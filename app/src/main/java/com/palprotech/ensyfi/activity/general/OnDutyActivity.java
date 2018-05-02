@@ -180,7 +180,6 @@ public class OnDutyActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
     }
 
     private boolean validateSignInResponse(JSONObject response) {

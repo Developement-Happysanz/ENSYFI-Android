@@ -8,14 +8,17 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
 import com.palprotech.ensyfi.R;
+import com.palprotech.ensyfi.activity.adminmodule.OnDutyDetailActivity;
 import com.palprotech.ensyfi.adapter.general.LeaveStatusListAdapter;
 import com.palprotech.ensyfi.bean.general.viewlist.LeaveStatus;
 import com.palprotech.ensyfi.bean.general.viewlist.LeaveStatusList;
+import com.palprotech.ensyfi.bean.general.viewlist.OnDuty;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
@@ -34,7 +37,7 @@ import java.util.ArrayList;
  * Created by Admin on 15-07-2017.
  */
 
-public class LeaveStatusActivity extends AppCompatActivity implements View.OnClickListener, IServiceListener, DialogClickListener {
+public class LeaveStatusActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener, IServiceListener, DialogClickListener {
 
     private ImageView btnBack, btnReqLeave;
     private static final String TAG = "LeaveStatusActivity";
@@ -61,6 +64,7 @@ public class LeaveStatusActivity extends AppCompatActivity implements View.OnCli
         btnReqLeave.setOnClickListener(this);
 
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
+        loadMoreListView.setOnItemClickListener(this);
 
         leaveStatusArrayList = new ArrayList<>();
 
@@ -183,6 +187,25 @@ public class LeaveStatusActivity extends AppCompatActivity implements View.OnCli
         }
 
         return signInsuccess;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Log.d(TAG, "onOD list item clicked" + position);
+        LeaveStatus leaveStatus = null;
+        if ((leaveStatusListAdapter != null) && (leaveStatusListAdapter.ismSearching())) {
+            Log.d(TAG, "while searching");
+            int actualindex = leaveStatusListAdapter.getActualEventPos(position);
+            Log.d(TAG, "actual index" + actualindex);
+            leaveStatus = leaveStatusArrayList.get(actualindex);
+        } else {
+            leaveStatus = leaveStatusArrayList.get(position);
+        }
+        finish();
+        Intent intent = new Intent(this, LeaveStatusDetailActivity.class);
+        intent.putExtra("leaveObj", leaveStatus);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(intent);
     }
 
     @Override

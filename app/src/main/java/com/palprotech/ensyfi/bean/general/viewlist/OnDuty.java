@@ -11,6 +11,10 @@ import java.io.Serializable;
 
 public class OnDuty implements Serializable {
 
+    @SerializedName("id")
+    @Expose
+    private String id;
+
     @SerializedName("od_for")
     @Expose
     private String od_for;
@@ -34,6 +38,20 @@ public class OnDuty implements Serializable {
     @SerializedName("name")
     @Expose
     private String name;
+
+    /**
+     * @return The id
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * @param id The id
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
 
     /**
      * @return The od_for

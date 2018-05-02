@@ -6,14 +6,15 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_btn_plain">
 
         <TextView
             android:id="@+id/holiday_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Title"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:textColor="@color/black"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"/>
@@ -23,21 +24,33 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Reason"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textColor="@color/black"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_below="@+id/holiday_title"
             android:layout_alignLeft="@+id/holiday_title"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_above="@+id/holiday_date"
+            android:background="@color/text_gray" />
 
         <TextView
             android:id="@+id/holiday_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="DD-MM-YYYY"
-            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:drawableLeft="@drawable/od_from_to"
+            android:drawablePadding="5dp"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:layout_below="@+id/holiday_reason"
+            android:layout_marginBottom="5dp"
             android:layout_alignLeft="@+id/holiday_reason"/>
 
         <TextView
@@ -45,12 +58,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Monday"
-            android:layout_marginTop="10dp"
             android:textSize="18sp"
             android:textColor="@color/black"
-            android:layout_below="@+id/holiday_reason"
+            android:gravity="center"
+            android:layout_alignTop="@id/holiday_date"
+            android:layout_alignBottom="@id/holiday_date"
             android:layout_toRightOf="@id/holiday_date"
-            android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"/>
 
     </RelativeLayout>

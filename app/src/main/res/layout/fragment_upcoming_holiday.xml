@@ -1,9 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.palprotech.ensyfi.fragments.UpcomingHolidayListFragment">
+
+    <RelativeLayout
+        android:id="@+id/admin_view_holiday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:visibility="gone">
+
+        <Spinner
+            android:id="@+id/class_list_spinner"
+            style="@style/spinner_style"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="sans-serif"
+            android:overlapAnchor="false"
+            android:spinnerMode="dropdown"
+            android:textColor="@color/text_gray"
+            android:textSize="15sp" />
+
+        <Spinner
+            android:id="@+id/section_list_spinner"
+            style="@style/spinner_style"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/class_list_spinner"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif"
+            android:overlapAnchor="false"
+            android:spinnerMode="dropdown"
+            android:textColor="@color/text_gray"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/teacher_view_holiday"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:visibility="gone">
+
+        <Spinner
+            android:id="@+id/class_section_list_spinner"
+            style="@style/spinner_style"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:fontFamily="sans-serif"
+            android:overlapAnchor="false"
+            android:spinnerMode="dropdown"
+            android:textColor="@color/text_gray"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/txtTabItemNumber"
@@ -22,6 +82,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_margin="5dp"
-        android:divider="@color/black"
-        android:dividerHeight="1dp"/>
-</RelativeLayout>
+        android:divider="@color/transparent"
+        android:dividerHeight="0dp"/>
+</LinearLayout>

@@ -261,6 +261,12 @@
             android:theme="@style/AppThemeNoActionBarGrey" />
 
         <activity
+            android:name=".activity.general.LeaveStatusDetailActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarGrey" />
+
+        <activity
             android:name=".activity.general.LeaveApplyActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
@@ -480,6 +486,12 @@
 
         <activity
             android:name=".activity.adminmodule.OnDutyViewActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarGrey" />
+
+        <activity
+            android:name=".activity.adminmodule.OnDutyDetailActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarGrey" />
