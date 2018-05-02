@@ -174,6 +174,7 @@ public class OnDutyViewActivity extends AppCompatActivity implements IServiceLis
         } else {
             onDuty = onDutyArrayList.get(position);
         }
+        finish();
         Intent intent = new Intent(this, OnDutyDetailActivity.class);
         intent.putExtra("onDutyObj", onDuty);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);

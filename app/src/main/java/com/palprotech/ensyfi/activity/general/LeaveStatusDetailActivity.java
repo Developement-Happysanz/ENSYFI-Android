@@ -1,11 +1,15 @@
 package com.palprotech.ensyfi.activity.general;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.palprotech.ensyfi.R;
@@ -26,8 +30,9 @@ import org.json.JSONObject;
 public class LeaveStatusDetailActivity extends AppCompatActivity implements IServiceListener, DialogClickListener {
 
     private LeaveStatus leaveStatus;
-    private TextView txtLeaveReason, txtLeaveStartDate, txtLeaveEndDate, txtLeaveStartTime, txtLeaveEndTime;
-    private Button btnApprove, getBtnDecline;
+    private TextView txtLeaveReason, txtLeaveStartDate, txtLeaveEndDate, txtLeaveStartTime, txtLeaveEndTime, txtLeaveType;
+    private Button btnSend;
+    private RadioGroup approve;
     protected ProgressDialogHelper progressDialogHelper;
     private ServiceHelper serviceHelper;
     String leaveApprovalStatus = "";
@@ -59,38 +64,52 @@ public class LeaveStatusDetailActivity extends AppCompatActivity implements ISer
 
     private void initializeViews() {
         txtLeaveReason = (TextView) findViewById(R.id.txtLeaveFor);
+        txtLeaveType = (TextView) findViewById(R.id.txtLeaveType);
         txtLeaveStartDate = (TextView) findViewById(R.id.txtFromDate);
         txtLeaveEndDate = (TextView) findViewById(R.id.txtToDate);
-        txtLeaveStartTime = (TextView) findViewById(R.id.txtFromTime);
-        txtLeaveEndTime = (TextView) findViewById(R.id.txtToTime);
-        getBtnDecline = (Button) findViewById(R.id.txtStatusDecline);
-        btnApprove = (Button) findViewById(R.id.txtStatusApprove);
-
-        btnApprove.setOnClickListener(new View.OnClickListener() {
+        approve = findViewById(R.id.status_layout);
+        approve.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
             @Override
-            public void onClick(View v) {
-                leaveApprovalStatus = "Approved";
-                sendLeaveStatus();
-                finish();
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+
+                switch (checkedId) {
+                    case R.id.txtStatusDecline:
+                        leaveApprovalStatus = "Rejected";
+                        break;
+
+                    case R.id.txtStatusApprove:
+                        leaveApprovalStatus = "Approved";
+                        break;
+                }
             }
         });
+        btnSend = (Button) findViewById(R.id.send_status);
 
-        getBtnDecline.setOnClickListener(new View.OnClickListener() {
+        btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                leaveApprovalStatus = "Rejected";
                 sendLeaveStatus();
                 finish();
+                Intent intent = new Intent(getApplicationContext(), LeaveStatusActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
             }
         });
     }
 
     private void populateData() {
-        txtLeaveReason.setText(leaveStatus.getLeaveTitle());
-        txtLeaveStartDate.setText(leaveStatus.getFromLeaveDate());
-        txtLeaveEndDate.setText(leaveStatus.getToLeaveDate());
-        txtLeaveEndDate.setText(leaveStatus.getFromTime());
-        txtLeaveEndDate.setText(leaveStatus.getToTime());
+        txtLeaveType.setText(leaveStatus.getLeaveTitle());
+        String leaveType = leaveStatus.getLeaveType();
+        if (leaveType.equals("0")) {
+            txtLeaveStartDate.setText("From : " + leaveStatus.getFromTime());
+            txtLeaveEndDate.setText("To : " + leaveStatus.getToTime());
+        }
+        else {
+            txtLeaveStartDate.setText("From : " + leaveStatus.getFromLeaveDate());
+            txtLeaveEndDate.setText("To : " + leaveStatus.getToLeaveDate());
+        }
+        txtLeaveReason.setText(leaveStatus.getLeaveDescription());
     }
 
     @Override
@@ -109,7 +128,7 @@ public class LeaveStatusDetailActivity extends AppCompatActivity implements ISer
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_APPROVAL_STATUS, leaveApprovalStatus);
-                jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_ID, leaveStatus.getLeave_id());
+                jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_ID, leaveStatus.getLeaveId());
             } catch (JSONException e) {
                 e.printStackTrace();
             }

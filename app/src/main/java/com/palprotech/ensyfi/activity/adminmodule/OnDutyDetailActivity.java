@@ -1,14 +1,18 @@
 package com.palprotech.ensyfi.activity.adminmodule;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.palprotech.ensyfi.R;
+import com.palprotech.ensyfi.activity.general.LeaveStatusActivity;
 import com.palprotech.ensyfi.bean.general.viewlist.OnDuty;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
@@ -25,11 +29,12 @@ import org.json.JSONObject;
 public class OnDutyDetailActivity extends AppCompatActivity implements IServiceListener, DialogClickListener {
 
     private OnDuty onDuty;
-    private TextView txtOnDutyReason, txtOnDutyStartDate, txtOnDutyEndDate;
-    private Button btnApprove, getBtnDecline;
+    private TextView txtOnDutyReason, txtOnDutyStartDate, txtOnDutyEndDate, txtOnDutyNotes;
+    private Button btnSend;
+    private RadioGroup approve;
     protected ProgressDialogHelper progressDialogHelper;
     private ServiceHelper serviceHelper;
-    String odApprovalStatus = "";
+    String onDutyApprovalStatus = "";
 
 
     @Override
@@ -58,34 +63,45 @@ public class OnDutyDetailActivity extends AppCompatActivity implements IServiceL
 
     private void initializeViews() {
         txtOnDutyReason = (TextView) findViewById(R.id.txtOdFor);
+        txtOnDutyNotes = (TextView) findViewById(R.id.txtOdNotes);
         txtOnDutyStartDate = (TextView) findViewById(R.id.txtFromDate);
         txtOnDutyEndDate = (TextView) findViewById(R.id.txtToDate);
-        getBtnDecline = (Button) findViewById(R.id.txtStatusDecline);
-        btnApprove = (Button) findViewById(R.id.txtStatusApprove);
-
-        btnApprove.setOnClickListener(new View.OnClickListener() {
+        approve = findViewById(R.id.status_layout);
+        approve.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
             @Override
-            public void onClick(View v) {
-                odApprovalStatus = "Approved";
-                sendOdStatus();
-                finish();
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+
+                switch (checkedId) {
+                    case R.id.txtStatusDecline:
+                        onDutyApprovalStatus = "Rejected";
+                        break;
+
+                    case R.id.txtStatusApprove:
+                        onDutyApprovalStatus = "Approved";
+                        break;
+                }
             }
         });
+        btnSend = (Button) findViewById(R.id.send_status);
 
-        getBtnDecline.setOnClickListener(new View.OnClickListener() {
+        btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                odApprovalStatus = "Rejected";
                 sendOdStatus();
                 finish();
+                Intent intent = new Intent(getApplicationContext(), OnDutyViewActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
             }
         });
     }
 
     private void populateData() {
         txtOnDutyReason.setText(onDuty.getOdFor());
-        txtOnDutyStartDate.setText(onDuty.getFromDate());
-        txtOnDutyEndDate.setText(onDuty.getToDate());
+        txtOnDutyNotes.setText(onDuty.getNotes());
+        txtOnDutyStartDate.setText("From : " + onDuty.getFromDate());
+        txtOnDutyEndDate.setText("To : " + onDuty.getToDate());
     }
 
     @Override
@@ -103,7 +119,7 @@ public class OnDutyDetailActivity extends AppCompatActivity implements IServiceL
 
             JSONObject jsonObject = new JSONObject();
             try {
-                jsonObject.put(EnsyfiConstants.PARAMS_OD_APPROVAL_STATUS, odApprovalStatus);
+                jsonObject.put(EnsyfiConstants.PARAMS_OD_APPROVAL_STATUS, onDutyApprovalStatus);
                 jsonObject.put(EnsyfiConstants.PARAMS_OD_ID, onDuty.getId());
             } catch (JSONException e) {
                 e.printStackTrace();

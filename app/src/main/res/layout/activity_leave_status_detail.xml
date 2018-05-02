@@ -46,13 +46,27 @@
         android:background="@drawable/round_btn_plain">
 
         <TextView
-            android:id="@+id/txtLeaveFor"
-            android:layout_width="match_parent"
+            android:id="@+id/LeaveType"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:paddingBottom="3dp"
             android:paddingTop="3dp"
-            android:text="REASON ON DUTY"
+            android:text="Type :"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="22dp" />
+
+        <TextView
+            android:id="@+id/txtLeaveType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/LeaveType"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/LeaveType"
+            android:paddingBottom="3dp"
+            android:paddingTop="3dp"
+            android:text=""
             android:textAllCaps="true"
             android:textColor="@color/black"
             android:textSize="22dp" />
@@ -61,7 +75,7 @@
             android:id="@+id/fromto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtLeaveFor"
+            android:layout_below="@+id/LeaveType"
             android:layout_marginTop="10dp">
 
             <TextView
@@ -69,89 +83,87 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:drawableLeft="@drawable/od_from_to"
                 android:gravity="bottom"
                 android:text="  16 June 2017"
                 android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="15dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" - "
-                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/txtToDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="bottom"
+                android:layout_marginLeft="15dp"
                 android:text="16 June 2017"
                 android:textColor="@color/black"
                 android:textSize="15dp" />
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/fromtotime"
-            android:layout_width="wrap_content"
+            android:id="@+id/leave_reason_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/fromto"
-            android:layout_marginTop="10dp">
+            android:layout_below="@id/fromto"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txtFromTime"
-                android:layout_width="wrap_content"
+                android:id="@+id/txtLeaveFor"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:drawableLeft="@drawable/od_from_to"
-                android:gravity="bottom"
-                android:text="  16 June 2017"
-                android:textAllCaps="true"
-                android:textColor="@color/black"
-                android:textSize="15dp" />
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:textSize="18dp"
+                android:textColor="@color/black" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" - "
-                android:textSize="20dp" />
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/text_gray"/>
 
-            <TextView
-                android:id="@+id/txtToTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="bottom"
-                android:text="16 June 2017"
-                android:textColor="@color/black"
-                android:textSize="15dp" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/txtStatusDecline"
-            android:layout_width="wrap_content"
+        <RadioGroup
+            android:id="@+id/status_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/fromtotime"
-            android:layout_marginBottom="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="25dp"
-            android:text="Decline"
-            android:textColor="@color/reject"
-            android:textSize="20dp" />
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_below="@+id/leave_reason_layout">
+
+            <RadioButton
+                android:id="@+id/txtStatusDecline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="25dp"
+                android:text="Decline"
+                android:textSize="20dp" />
+
+            <RadioButton
+                android:id="@+id/txtStatusApprove"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="25dp"
+                android:text="Approve"
+                android:textSize="20dp" />
+        </RadioGroup>
 
         <Button
-            android:id="@+id/txtStatusApprove"
+            android:id="@+id/send_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/fromtotime"
-            android:layout_marginBottom="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="25dp"
-            android:text="Approve"
-            android:textColor="@color/approve"
-            android:textSize="20dp" />
-
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/status_layout"
+            android:layout_centerHorizontal="true"
+            android:text="Send" />
 
     </RelativeLayout>
+
 </LinearLayout>
