@@ -94,12 +94,10 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
 
         String url = PreferenceStorage.getInstituteLogoPicUrl(this);
         if ((url == null) || (url.isEmpty())) {
-
         }
         if (((url != null) && !(url.isEmpty()))) {
             Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(mProfileImage);
         }
-
     }
 
     @Override

@@ -67,6 +67,7 @@ public class StudentsViewActivity extends AppCompatActivity implements IServiceL
         classStudentArrayList = new ArrayList<>();
 
         GetClassData();
+
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
         bckbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,7 +163,6 @@ public class StudentsViewActivity extends AppCompatActivity implements IServiceL
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
             String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_STUDENT_LISTS;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
