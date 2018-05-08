@@ -61,6 +61,11 @@ public class EnsyfiConstants {
     public static final String SEND_GROUP_MESSAGE = "/apimain/send_Groupmessage/";
     public static final String GET_GROUP_MESSAGE_VIEW = "/apimain/disp_Groupmessage/";
 
+    // GROUP NOTIFICATION ADMIN URL
+    public static final String GET_ADMIN_GROUP_LIST = "/apimain/disp_Grouplist/";
+    public static final String SEND_ADMIN_GROUP_MESSAGE = "/apimain/send_Groupmessage/";
+    public static final String GET_ADMIN_GROUP_MESSAGE_VIEW = "/apimain/disp_Groupmessage/";
+
     // STUDENT & PARENTS URL
     // STUDENT ATTENDANCE URL
     public static final String GET_STUDENT_ATTENDANCD_API = "/apistudent/disp_Attendence/";
@@ -81,6 +86,8 @@ public class EnsyfiConstants {
 
     // STUDENT TIMETABLE URL
     public static final String GET_STUDENT_TIME_TABLE_API = "/apistudent/disp_Timetable/";
+    public static final String GET_TIME_TABLE_DAYS_API = "/apimain/disp_timetabledays/";
+    public static final String GET_TIME_TABLE_API = "/apimain/disp_timetable/";
 
     // STUDENT ATTENDANCE URL
     public static final String GET_STUDENT_ATTENDANCE_API = "/apiteacher/disp_Attendence/";
@@ -203,6 +210,8 @@ public class EnsyfiConstants {
 
     // Get Student Time table
     public static final String PARAMS_CLASS_ID = "class_id";
+    public static final String PARAMS_TEACHER_ID = "teacher_id";
+    public static final String PARAMS_DAY_ID = "day_id";
 
     // Get AllHoliday list
     public static final String PARAMS_HDAY_USER_TYPE = "user_type";
@@ -356,7 +365,7 @@ public class EnsyfiConstants {
     public static final String PARAMS_OD_CREATED_BY = "created_by";
     public static final String PARAMS_OD_CREATED_AT = "created_at";
 
-    //OnDuty Params
+    //Group notifications Params
     public static final String PARAMS_GROUP_NOTIFICATIONS_USER_TYPE = "user_type";
     public static final String PARAMS_GROUP_NOTIFICATIONS_USER_ID = "user_id";
     public static final String PARAMS_GROUP_NOTIFICATIONS_TITLE_ID = "group_title_id";

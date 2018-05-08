@@ -43,10 +43,11 @@ public class StudentTimeTableActivity extends AppCompatActivity implements IServ
     private ServiceHelper serviceHelper;
     private SaveTeacherData teacherData;
     SQLiteHelper db;
-    String ClassName, SectionName, SubjectName;
+    String ClassName, SectionName, SubjectName, fromTime, toTime;
     String ClassId = "";
     String SubjectId = "";
     String PeriodId = "";
+    String isBreak = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -193,12 +194,15 @@ public class StudentTimeTableActivity extends AppCompatActivity implements IServ
                         if (c.getCount() > 0) {
                             if (c.moveToFirst()) {
                                 do {
-                                    ClassName = c.getString(0);
-                                    SectionName = c.getString(1);
-                                    SubjectName = c.getString(2);
-                                    ClassId = c.getString(3);
-                                    SubjectId = c.getString(4);
-                                    PeriodId = c.getString(5);
+                                    isBreak = c.getString(0);
+                                    toTime = c.getString(1);
+                                    fromTime = c.getString(2);
+                                    ClassName = c.getString(3);
+                                    SectionName = c.getString(4);
+                                    SubjectName = c.getString(5);
+                                    ClassId = c.getString(6);
+                                    SubjectId = c.getString(7);
+                                    PeriodId = c.getString(8);
                                 } while (c.moveToNext());
                             }
                             name = SubjectName;

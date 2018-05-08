@@ -350,7 +350,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     /*
      *   Teacher's TimeTable Store & Retrieve Functionality
      */
-    public long teacher_timetable_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7, String val8, String val9, String val10, String val11, String val12, String val13) {
+    public long teacher_timetable_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7, String val8, String val9, String val10) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues initialValues = new ContentValues();
         initialValues.put("table_id", val1);
@@ -363,9 +363,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         initialValues.put("period", val8);
         initialValues.put("sec_name", val9);
         initialValues.put("class_name", val10);
-        initialValues.put("from_time", val11);
-        initialValues.put("to_time", val12);
-        initialValues.put("is_break", val13);
         long l = db.insert("teacherTimeTable", null, initialValues);
         db.close();
         return l;
