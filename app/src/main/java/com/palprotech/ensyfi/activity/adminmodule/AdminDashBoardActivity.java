@@ -98,7 +98,8 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
         students.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), StudentsViewActivity.class);
+//                Intent intent = new Intent(getApplicationContext(), StudentsViewActivity.class);
+                Intent intent = new Intent(getApplicationContext(), GroupNotificationCreationActivity.class);
                 startActivity(intent);
             }
         });
@@ -300,7 +301,7 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
             Intent navigationIntent = new Intent(this, LeaveStatusActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        }else if (position == 13) {
+        } else if (position == 13) {
             Intent navigationIntent = new Intent(this, LeaveCalendarActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);

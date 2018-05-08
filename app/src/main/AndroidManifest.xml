@@ -496,10 +496,16 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarGrey" />
 
+        <activity
+            android:name=".activity.adminmodule.GroupNotificationCreationActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarGrey" />
+
         <!--End-->
         <!---->
         <!--                    GCM Receiver                -->
-        <receiver
+        <!--<receiver
             android:name="com.google.android.gms.gcm.GcmReceiver"
             android:exported="true"
             android:permission="com.google.android.c2dm.permission.SEND">
@@ -507,25 +513,25 @@
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <category android:name="com.gnirt69.gcmexample" />
             </intent-filter>
-        </receiver>
+        </receiver>-->
 
         <!--            GCM Receiver Service        -->
-        <service
+        <!--<service
             android:name=".servicehelpers.gcm.GCMPushReceiverService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
-        </service>
+        </service>-->
 
         <!--            GCM Registration Intent Service        -->
-        <service
+        <!--<service
             android:name=".servicehelpers.gcm.GCMRegistrationIntentService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.android.gms.iid.InstanceID" />
             </intent-filter>
-        </service>
+        </service>-->
 
         <service android:name=".servicehelpers.fcm.MyFirebaseInstanceIDService">
             <intent-filter>
