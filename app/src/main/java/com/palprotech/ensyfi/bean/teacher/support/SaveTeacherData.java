@@ -207,6 +207,32 @@ public class SaveTeacherData {
         }
     }
 
+    public void saveTimeTableDays(JSONArray timetableDays) {
+        database = new SQLiteHelper(context);
+        try {
+            database.deleteTimeTableDays();
+
+            for (int i = 0; i < timetableDays.length(); i++) {
+                JSONObject jsonObject = timetableDays.getJSONObject(i);
+
+                String dayId = "";
+                String dayName = "";
+
+                dayId = jsonObject.getString("day_id");
+                dayName = jsonObject.getString("list_day");
+
+                System.out.println("Day Id :" + dayId);
+                System.out.println("Day Name :" + dayName);
+
+                String v1 = dayId, v2 = dayName;
+
+                database.timetable_days_insert(v1, v2);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public void saveTeacherTimeTable(JSONArray timeTable) {
         database = new SQLiteHelper(context);
         try {
@@ -224,6 +250,9 @@ public class SaveTeacherData {
                 String name = "";
                 String day = "";
                 String period = "";
+                String from_time = "";
+                String to_time = "";
+                String is_break = "";
                 String sec_name = "";
                 String class_name = "";
 
@@ -235,6 +264,9 @@ public class SaveTeacherData {
                 name = jsonobj.getString("name");
                 day = jsonobj.getString("day");
                 period = jsonobj.getString("period");
+                from_time = jsonobj.getString("from_time");
+                to_time = jsonobj.getString("to_time");
+                is_break = jsonobj.getString("is_break");
                 sec_name = jsonobj.getString("sec_name");
                 class_name = jsonobj.getString("class_name");
 
@@ -246,6 +278,9 @@ public class SaveTeacherData {
                 System.out.println("name : " + i + " = " + name);
                 System.out.println("day : " + i + " = " + day);
                 System.out.println("period : " + i + " = " + period);
+                System.out.println("from_time : " + i + " = " + from_time);
+                System.out.println("to_time : " + i + " = " + to_time);
+                System.out.println("period : " + i + " = " + is_break);
                 System.out.println("sec_name : " + i + " = " + sec_name);
                 System.out.println("class_name : " + i + " = " + class_name);
 
@@ -258,9 +293,12 @@ public class SaveTeacherData {
                         v7 = day,
                         v8 = period,
                         v9 = sec_name,
-                        v10 = class_name;
+                        v10 = class_name,
+                        v11 = from_time,
+                        v12 = to_time,
+                        v13 = is_break;
 
-                database.teacher_timetable_insert(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10);
+                database.teacher_timetable_insert(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13);
             }
         } catch (Exception ex) {
             ex.printStackTrace();

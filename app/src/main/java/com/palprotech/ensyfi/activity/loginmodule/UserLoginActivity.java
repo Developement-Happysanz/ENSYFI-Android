@@ -230,22 +230,37 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
 
                     saveUserData(userData);
 
-                }
-
-                else if (userType == 2) {
+                } else if (userType == 2) {
 
                     saveUserData(userData);
 
                     JSONArray getTeacherProfile = response.getJSONArray("teacherProfile");
-                    if(getTeacherProfile != null && getTeacherProfile.length() > 0) {
+                    if (getTeacherProfile != null && getTeacherProfile.length() > 0) {
                         teacherData.saveTeacherProfile(getTeacherProfile);
                     }
 
+                    JSONObject getClassSubject = response.getJSONObject("classSubject");
+                    if (validateResponse(getClassSubject)) {
+                        JSONArray getClassSubjectArray = getClassSubject.getJSONArray("data");
+                        if (getClassSubjectArray != null && getClassSubjectArray.length() > 0) {
+                            teacherData.saveTeacherHandlingSubject(getClassSubjectArray);
+                        }
+                    }
+
+//
+                    JSONObject getTimeTableDays = response.getJSONObject("timeTabledays");
+                    if (validateResponse(getTimeTableDays)) {
+                        JSONArray getTimeTableDaysArray = getTimeTableDays.getJSONArray("data");
+                        if (getTimeTableDaysArray != null && getTimeTableDaysArray.length() > 0) {
+                            teacherData.saveTimeTableDays(getTimeTableDaysArray);
+                        }
+                    }
+//
                     JSONObject getTimeTable = response.getJSONObject("timeTable");
                     if (validateResponse(getTimeTable)) {
                         JSONArray getTimeTableArray = getTimeTable.getJSONArray("data");
                         if (getTimeTableArray != null && getTimeTableArray.length() > 0) {
-                        teacherData.saveTeacherTimeTable(getTimeTableArray);
+                            teacherData.saveTeacherTimeTable(getTimeTableArray);
                         }
                     }
 
@@ -254,22 +269,6 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                         JSONArray getTeacherClassStudentsDetailsArray = getTeacherClassStudentsDetails.getJSONArray("data");
                         if (getTeacherClassStudentsDetailsArray != null && getTeacherClassStudentsDetailsArray.length() > 0) {
                             teacherData.saveStudentDetails(getTeacherClassStudentsDetailsArray);
-                        }
-                    }
-
-//                    JSONObject getAcademicMonth = response.getJSONObject("academic_month");
-//                    if (validateResponse(getAcademicMonth)) {
-                        JSONArray getAcademicMonthArray = response.getJSONArray("academic_month");
-                        if (getAcademicMonthArray != null && getAcademicMonthArray.length() > 0) {
-                            teacherData.saveAcademicMonth(getAcademicMonthArray);
-                        }
-//                    }
-
-                    JSONObject getHomeWorkClassTest = response.getJSONObject("homeWork");
-                    if (validateResponse(getHomeWorkClassTest)) {
-                        JSONArray getHomeWorkClassTestArray = getHomeWorkClassTest.getJSONArray("data");
-                        if (getHomeWorkClassTestArray != null && getHomeWorkClassTestArray.length() > 0) {
-                            teacherData.saveHomeWorkClassTest(getHomeWorkClassTestArray);
                         }
                     }
 
@@ -289,13 +288,21 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                         }
                     }
 
-                    JSONObject getClassSubject = response.getJSONObject("classSubject");
-                    if (validateResponse(getClassSubject)) {
-                        JSONArray getClassSubjectArray = getClassSubject.getJSONArray("data");
-                        if (getClassSubjectArray != null && getClassSubjectArray.length() > 0) {
-                            teacherData.saveTeacherHandlingSubject(getClassSubjectArray);
+                    JSONObject getHomeWorkClassTest = response.getJSONObject("homeWork");
+                    if (validateResponse(getHomeWorkClassTest)) {
+                        JSONArray getHomeWorkClassTestArray = getHomeWorkClassTest.getJSONArray("data");
+                        if (getHomeWorkClassTestArray != null && getHomeWorkClassTestArray.length() > 0) {
+                            teacherData.saveHomeWorkClassTest(getHomeWorkClassTestArray);
                         }
                     }
+
+//                    JSONObject getAcademicMonth = response.getJSONObject("academic_month");
+//                    if (validateResponse(getAcademicMonth)) {
+                    JSONArray getAcademicMonthArray = response.getJSONArray("academic_month");
+                    if (getAcademicMonthArray != null && getAcademicMonthArray.length() > 0) {
+                        teacherData.saveAcademicMonth(getAcademicMonthArray);
+                    }
+//                    }
 
                 } else if (userType == 3) {
 

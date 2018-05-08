@@ -19,7 +19,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String TAG = "SQLiteHelper.java";
 
     private static final String DATABASE_NAME = "ENSYFI.db";
-    private static final int DATABASE_VERSION = 35;
+    private static final int DATABASE_VERSION = 36;
 
     private static final String table_create_student = "Create table IF NOT EXISTS studentInfo(_id integer primary key autoincrement,"
             + "registered_id text,"
@@ -29,6 +29,10 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             + "name text,"
             + "class_name text,"
             + "sec_name text);";
+
+    private static final String table_create_timetable_days = "Create table IF NOT EXISTS timeTableDays(_id integer primary key autoincrement,"
+            + "day_id text, " //1
+            + "day_name text);"; //2
 
     private static final String table_create_teacher_timetable = "Create table IF NOT EXISTS teacherTimeTable(_id integer primary key autoincrement,"
             + "table_id text,"
@@ -40,7 +44,10 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             + "day text,"
             + "period text,"
             + "sec_name text,"
-            + "class_name text);";
+            + "class_name text,"
+            + "from_time text,"
+            + "to_time text,"
+            + "is_break text);";
 
     private static final String table_create_teacher_student_details = "Create table IF NOT EXISTS teachersStudentDetails(_id integer primary key autoincrement,"
             + "enroll_id text,"
@@ -194,6 +201,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         //Student Details
         db.execSQL(table_create_student);
+        // Time Table Days
+        db.execSQL(table_create_timetable_days);
         //Teacher Time Table
         db.execSQL(table_create_teacher_timetable);
         //Teacher's Class Student
@@ -231,6 +240,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
                 + ", which will destroy all old data");
         //Student Details
         db.execSQL("DROP TABLE IF EXISTS studentInfo");
+        //Time Table Days
+        db.execSQL("DROP TABLE IF EXISTS timeTableDays");
         //Teacher's Time Table
         db.execSQL("DROP TABLE IF EXISTS teacherTimeTable");
         //Teacher's Class Student
@@ -267,8 +278,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     }
 
     /*
-    *   Student Info Data Store and Retrieve Functionality
-    */
+     *   Student Info Data Store and Retrieve Functionality
+     */
     public long student_details_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues initialValues = new ContentValues();
@@ -309,14 +320,37 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("studentInfo", null, null);
     }
-    /*
-    *   End
-    */
 
     /*
-    *   Teacher's TimeTable Store & Retrieve Functionality
-    */
-    public long teacher_timetable_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7, String val8, String val9, String val10) {
+     *   End
+     */
+
+    /*
+     *  Time Table Days Store & Retrieve Functionality
+     */
+    public long timetable_days_insert(String val1, String val2) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues initialValues = new ContentValues();
+        initialValues.put("day_id", val1);
+        initialValues.put("day_name", val2);
+        long l = db.insert("timeTableDays", null, initialValues);
+        db.close();
+        return l;
+    }
+
+    public void deleteTimeTableDays() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("timeTableDays", null, null);
+    }
+    /*
+     * End
+     */
+
+
+    /*
+     *   Teacher's TimeTable Store & Retrieve Functionality
+     */
+    public long teacher_timetable_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7, String val8, String val9, String val10, String val11, String val12, String val13) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues initialValues = new ContentValues();
         initialValues.put("table_id", val1);
@@ -329,6 +363,9 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         initialValues.put("period", val8);
         initialValues.put("sec_name", val9);
         initialValues.put("class_name", val10);
+        initialValues.put("from_time", val11);
+        initialValues.put("to_time", val12);
+        initialValues.put("is_break", val13);
         long l = db.insert("teacherTimeTable", null, initialValues);
         db.close();
         return l;
@@ -349,12 +386,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.delete("teacherTimeTable", null, null);
     }
     /*
-    *   End
-    */
+     *   End
+     */
 
     /*
-    *   Teacher's Class Students Details Store & Retrieve Functionality
-    */
+     *   Teacher's Class Students Details Store & Retrieve Functionality
+     */
     public long teachers_class_students_details_insert(String val1, String val2, String val3, String val4, String val5, String val6) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues initialValues = new ContentValues();
@@ -414,12 +451,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.delete("teachersStudentDetails", null, null);
     }
     /*
-    *   End
-    */
+     *   End
+     */
 
     /*
-    *   Attendance Store & Retrieve Functionality
-    */
+     *   Attendance Store & Retrieve Functionality
+     */
     public long student_attendance_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7, String val8, String val9, String val10, String val11, String val12) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues initialValues = new ContentValues();
@@ -495,12 +532,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.delete("attendance", null, null);
     }
     /*
-    *   End
-    */
+     *   End
+     */
 
     /*
-    *   Attendance History Store & Retrieve Functionality
-    */
+     *   Attendance History Store & Retrieve Functionality
+     */
     public long student_attendance_history_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7, String val8, String val9, String val10, String val11, String val12, String val13) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues initialValues = new ContentValues();
@@ -564,12 +601,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.delete("attendanceHistory", null, null);
     }
     /*
-    *   End
-    */
+     *   End
+     */
 
     /*
-    *   Attendance History Store & Retrieve Functionality
-    */
+     *   Attendance History Store & Retrieve Functionality
+     */
     public long student_attendance_flag_insert(String val1, String val2, String val3, String val4) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues initialValues = new ContentValues();
@@ -611,8 +648,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.delete("attendanceFlag", null, null);
     }
     /*
-    *   End
-    */
+     *   End
+     */
 
     /*
      *   Academic Store & Retrieve Functionality
@@ -641,12 +678,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.delete("academicMonths", null, null);
     }
     /*
-    *   End
-    */
+     *   End
+     */
 
     /*
-  *   Homework Class Test Store & Retrieve Functionality
-  */
+     *   Homework Class Test Store & Retrieve Functionality
+     */
     public long homework_class_test_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7, String val8, String val9, String val10, String val11, String val12, String val13, String val14, String val15, String val16, String val17, String val18) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues initialValues = new ContentValues();
@@ -771,12 +808,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.delete("homeWorkClassTest", null, null);
     }
     /*
-    *   End
-    */
+     *   End
+     */
 
     /*
- *   Class Test Marks Store & Retrieve Functionality
- */
+     *   Class Test Marks Store & Retrieve Functionality
+     */
     public long class_test_mark_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7, String val8, String val9, String val10, String val11) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues initialValues = new ContentValues();
@@ -861,12 +898,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.delete("homeWorkClassTest", null, null);
     }
     /*
-    *   End
-    */
+     *   End
+     */
 
     /*
-    *   Academic Exams Store & Retrieve Functionality
-    */
+     *   Academic Exams Store & Retrieve Functionality
+     */
     public long exam_of_classes_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7, String val8, String val9) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues initialValues = new ContentValues();
@@ -932,12 +969,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.delete("academicExams", null, null);
     }
     /*
-    *   End
-    */
+     *   End
+     */
 
     /*
-    *   Academic Exams Details Store & Retrieve Functionality
-    */
+     *   Academic Exams Details Store & Retrieve Functionality
+     */
     public long exam_details_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7, String val8, String val9, String val10, String val11, String val12, String val13) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues initialValues = new ContentValues();
@@ -1044,12 +1081,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.delete("academicExamsDetails", null, null);
     }
     /*
-    *   End
-    */
+     *   End
+     */
 
     /*
-  *   Homework Class Test Store & Retrieve Functionality
-  */
+     *   Homework Class Test Store & Retrieve Functionality
+     */
     public long academic_exam_marks_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7, String val8, String val9, String val10, String val11, String val12, String val13, String val14, String val15, String val16) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues initialValues = new ContentValues();
@@ -1111,12 +1148,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.delete("academicExamMarks", null, null);
     }
     /*
-    *   End
-    */
+     *   End
+     */
 
     /*
-  *   Homework Class Test Store & Retrieve Functionality
-  */
+     *   Homework Class Test Store & Retrieve Functionality
+     */
     public long leave_type_insert(String val1, String val2, String val3) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues initialValues = new ContentValues();
@@ -1153,12 +1190,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.delete("leaveType", null, null);
     }
     /*
-    *   End
-    */
+     *   End
+     */
 
     /*
-  *   Homework Class Test Store & Retrieve Functionality
-  */
+     *   Homework Class Test Store & Retrieve Functionality
+     */
     public long teacher_handling_subject_insert(String val1, String val2, String val3, String val4, String val5, String val6) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues initialValues = new ContentValues();
@@ -1209,12 +1246,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.delete("teacherHandlingSubject", null, null);
     }
     /*
-    *   End
-    */
+     *   End
+     */
 
     /*
-  *   Academic Exam Subject Marks Status Functionality
-  */
+     *   Academic Exam Subject Marks Status Functionality
+     */
     public long academic_exam_subject_marks_status_insert(String val1, String val2, String val3) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues initialValues = new ContentValues();
@@ -1246,7 +1283,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.delete("academicExamSubjectMarksStatus", null, null);
     }
     /*
-    *   End
-    */
+     *   End
+     */
 
 }
