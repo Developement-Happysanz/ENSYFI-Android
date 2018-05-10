@@ -63,6 +63,11 @@
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
 
+    <!--Group Notification-->
+    <!---->
+    <string name="group_title">Group title cannot be empty</string>
+
+
     <!--Custom calendar view-->
     <!---->
     <string name="customize">Customize</string>

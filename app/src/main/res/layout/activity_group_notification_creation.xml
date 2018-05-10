@@ -34,7 +34,7 @@
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:minHeight="?android:attr/actionBarSize"
-            android:text="Group notification"
+            android:text="New Group"
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="@dimen/actionbarTextSize" />
@@ -63,7 +63,7 @@
             android:textSize="22dp"
             android:layout_alignTop="@id/group_title"
             android:layout_toRightOf="@id/group_title"
-            android:layout_alignLeft="@id/lead_type_txt"
+            android:layout_alignLeft="@id/group_lead_spinner"
             android:layout_marginRight="20dp"/>
 
         <TextView
@@ -79,23 +79,73 @@
             android:layout_marginLeft="20dp"/>
 
 
-        <EditText
-            android:id="@+id/lead_type_txt"
+        <Spinner
+            android:id="@+id/group_lead_spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="22dp"
             android:layout_marginLeft="10dp"
-            android:clickable="false"
             android:layout_alignTop="@id/lead_type"
+            android:layout_alignBottom="@id/lead_type"
             android:layout_toRightOf="@id/lead_type"
             android:layout_marginRight="20dp"/>
 
-        <Spinner
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/group_status_txt"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_below="@id/lead_type_txt"
-            android:layout_alignLeft="@id/group_title"
-            android:layout_alignRight="@id/group_title"/>
+            android:text="Status             :"
+            android:gravity="center"
+            android:textSize="22dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
+            android:layout_below="@id/lead_type"
+            android:layout_marginLeft="20dp"/>
+
+        <RadioGroup
+            android:id="@+id/radioStatusView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lead_type"
+            android:layout_marginTop="10dp"
+            android:layout_alignLeft="@id/group_lead_spinner"
+            android:layout_alignTop="@id/group_status_txt"
+            android:layout_toRightOf="@id/group_status_txt"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/radioDeactive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Deactive"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:theme="@style/MySwitchTheme" />
+
+            <RadioButton
+                android:id="@+id/radioActive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Active"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:theme="@style/MySwitchTheme" />
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/create_group"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/radioStatusView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="50dp"
+            android:text="create"
+            android:background="@drawable/round_btn"
+            android:textColor="@color/colour_pick" />
 
     </RelativeLayout>
 

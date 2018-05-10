@@ -61,10 +61,12 @@ public class EnsyfiConstants {
     public static final String SEND_GROUP_MESSAGE = "/apimain/send_Groupmessage/";
     public static final String GET_GROUP_MESSAGE_VIEW = "/apimain/disp_Groupmessage/";
 
-    // GROUP NOTIFICATION ADMIN URL
-    public static final String GET_ADMIN_GROUP_LIST = "/apimain/disp_Grouplist/";
-    public static final String SEND_ADMIN_GROUP_MESSAGE = "/apimain/send_Groupmessage/";
-    public static final String GET_ADMIN_GROUP_MESSAGE_VIEW = "/apimain/disp_Groupmessage/";
+    // GROUP NOTIFICATION CREATION AND UPDATION ADMIN URL
+    public static final String GET_ADMIN_GROUP_LIST = "/apiadmin/list_groupmaster/";
+    public static final String CREATE_GROUP = "/apiadmin/add_groupmaster/";
+    public static final String GET_ADMIN_GROUP_VIEW = "/apiadmin/view_groupmaster/";
+    public static final String GET_ADMIN_GROUP_LEAD_TEACHER_VIEW = "/apiadmin/get_allteachersuserid/";
+    public static final String UPDATE_GROUP= "/apiadmin/update_groupmaster/";
 
     // STUDENT & PARENTS URL
     // STUDENT ATTENDANCE URL
@@ -374,6 +376,14 @@ public class EnsyfiConstants {
     public static final String PARAMS_GROUP_NOTIFICATIONS_MESSAGE_TYPE_NOTIFICATION = "messagetype_notification";
     public static final String PARAMS_GROUP_NOTIFICATIONS_MESSAGE_DETAILS = "message_details";
     public static final String PARAMS_GROUP_NOTIFICATIONS_CREATED_BY = "created_by";
+
+    //Group notifications creation Params
+    public static final String PARAMS_GROUP_NOTIFICATIONS_CREATION_USER_ID = "user_id";
+    public static final String PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_ID = "group_id";
+    public static final String PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_TITLE = "group_title";
+    public static final String PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_LEAD_ID = "group_lead_id";
+    public static final String PARAMS_GROUP_NOTIFICATIONS_CREATION_STATUS = "status";
+    public static final String PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_USER_TYPE_ID = "user_id";
 
     //On Duty Approval
     public static final String PARAMS_OD_APPROVAL_STATUS = "status";

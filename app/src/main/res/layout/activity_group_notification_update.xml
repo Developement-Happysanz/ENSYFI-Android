@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/appColor"
+            android:minHeight="?android:attr/actionBarSize" />
+
+        <ImageView
+            android:id="@+id/back_res"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:contentDescription="@string/arrow_back"
+            android:minHeight="?android:attr/actionBarSize"
+            android:padding="5dp"
+            android:src="@drawable/ic_arrow_back_white_48dp" />
+
+        <TextView
+            android:id="@+id/tvtitletext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:minHeight="?android:attr/actionBarSize"
+            android:paddingRight="10dp"
+            android:text="update Group"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/actionbarTextSize" />
+
+        <RelativeLayout
+            android:id="@+id/ic_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/back_res"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/back_res">
+
+            <ImageView
+                android:id="@+id/updateGroup"
+                android:layout_width="40dp"
+                android:layout_height="60dp"
+                android:layout_toLeftOf="@+id/addGroupMembers"
+                android:paddingBottom="15dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="15dp"
+                android:src="@drawable/ic_group_edit" />
+
+            <ImageView
+                android:id="@+id/addGroupMembers"
+                android:layout_width="40dp"
+                android:layout_height="60dp"
+                android:layout_toLeftOf="@+id/vierwGroupNotification"
+                android:paddingBottom="15dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="15dp"
+                android:src="@drawable/ic_group_add_member" />
+
+            <ImageView
+                android:id="@+id/vierwGroupNotification"
+                android:layout_width="40dp"
+                android:layout_height="60dp"
+                android:layout_alignParentRight="true"
+                android:paddingBottom="15dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="15dp"
+                android:src="@drawable/ic_notification" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/group_title"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="Title              :"
+            android:textColor="@color/black"
+            android:textSize="22dp" />
+
+        <EditText
+            android:id="@+id/group_title_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/group_lead_spinner"
+            android:layout_alignTop="@id/group_title"
+            android:layout_alignBottom="@id/group_title"
+            android:layout_marginRight="20dp"
+            android:layout_toRightOf="@id/group_title"
+            android:textSize="20dp"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/group_title_txt_disp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_alignTop="@id/group_title"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:hint="ABBDKJANKJDBKAJDN"
+            android:layout_alignBottom="@id/group_title"
+            android:layout_toRightOf="@id/group_title"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/lead_type"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_below="@id/group_title"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="Group Lead    :"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+
+        <Spinner
+            android:id="@+id/group_lead_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/lead_type"
+            android:layout_alignTop="@id/lead_type"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_toRightOf="@id/lead_type"
+            android:textSize="20dp"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/group_lead_spinner_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/lead_type"
+            android:layout_alignTop="@id/lead_type"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_toRightOf="@id/lead_type"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:hint="ABBDKJANKJDBKAJDN"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/group_status_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_below="@id/lead_type"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="Status             :"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+        <RadioGroup
+            android:id="@+id/radioStatusView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_alignTop="@id/group_status_txt"
+            android:layout_below="@+id/lead_type"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"
+            android:layout_toRightOf="@id/group_status_txt"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/radioDeactive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Deactive"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:theme="@style/MySwitchTheme" />
+
+            <RadioButton
+                android:id="@+id/radioActive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Active"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:theme="@style/MySwitchTheme" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/radioStatusViewTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_alignTop="@id/group_status_txt"
+            android:layout_alignBottom="@id/group_status_txt"
+            android:layout_below="@+id/lead_type"
+            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@id/group_status_txt"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:hint="ABBDKJANKJDBKAJDN"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/create_group"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/radioStatusView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/round_btn"
+            android:text="create"
+            android:visibility="gone"
+            android:textColor="@color/colour_pick" />
+
+    </RelativeLayout>
+
+</LinearLayout>
