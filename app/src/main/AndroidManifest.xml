@@ -509,6 +509,12 @@
             android:theme="@style/AppThemeNoActionBarGrey" />
 
         <activity
+            android:name=".activity.adminmodule.GroupNotificationUpdateActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarGrey" />
+
+        <activity
             android:name=".activity.adminmodule.CircularMasterCreationActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
@@ -520,6 +526,7 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarGrey" />
+
 
         <!--End-->
         <!---->

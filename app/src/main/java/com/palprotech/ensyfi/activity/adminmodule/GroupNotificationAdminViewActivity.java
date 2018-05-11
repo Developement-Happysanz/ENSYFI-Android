@@ -130,7 +130,6 @@ public class GroupNotificationAdminViewActivity extends AppCompatActivity implem
         } else {
             groups = groupsArrayList.get(position);
         }
-        finish();
         Intent intent = new Intent(this, GroupNotificationUpdateActivity.class);
         intent.putExtra("groupsObj", groups);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
