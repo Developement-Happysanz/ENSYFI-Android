@@ -149,9 +149,9 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/btn_square_fill_color"
             android:text="ok"
-            android:textColor="@color/white" />
+            android:background="@drawable/round_btn"
+            android:textColor="@color/colour_pick" />
 
 
     </RelativeLayout>

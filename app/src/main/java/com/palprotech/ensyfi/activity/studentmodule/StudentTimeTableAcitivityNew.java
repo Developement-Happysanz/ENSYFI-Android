@@ -56,7 +56,7 @@ public class StudentTimeTableAcitivityNew  extends AppCompatActivity implements 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
 
         final TeacherTimeTableAdapter adapter = new TeacherTimeTableAdapter
-                (getSupportFragmentManager());
+                (this, getSupportFragmentManager(), tabLayout);
 
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));

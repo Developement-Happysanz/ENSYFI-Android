@@ -37,9 +37,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class GroupNotificationCreationActivity extends AppCompatActivity implements IServiceListener, DialogClickListener {
+public class GroupNotificationUpdateActivity extends AppCompatActivity implements IServiceListener, DialogClickListener, View.OnClickListener {
 
-    private static final String TAG = GroupNotificationCreationActivity.class.getName();
+    private static final String TAG = GroupNotificationUpdateActivity.class.getName();
     private Groups groups;
     private EditText txtGroupTitle;
     private Spinner spnGroupLeadList;
@@ -52,12 +52,14 @@ public class GroupNotificationCreationActivity extends AppCompatActivity impleme
     String groupRes = "";
     String groupLead = "";
     String storeGroupId;
-
+    TextView groupTitleDisp, groupLeadDisp, groupStatusDisp;
+    ImageView groupUpdate, groupMemberAdd, groupNotification;
+    Boolean update = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_group_notification_creation);
+        setContentView(R.layout.activity_group_notification_update);
         groups = (Groups) getIntent().getSerializableExtra("groupsObj");
         initializeEventHelpers();
         GetGroupData();
@@ -78,7 +80,36 @@ public class GroupNotificationCreationActivity extends AppCompatActivity impleme
         progressDialogHelper = new ProgressDialogHelper(this);
     }
 
+    private void getVisibileViews() {
+        if (update) {
+            txtGroupTitle.setVisibility(View.GONE);
+            spnGroupLeadList.setVisibility(View.GONE);
+            radioGroupStatus.setVisibility(View.GONE);
+            btnSend.setVisibility(View.GONE);
+            groupTitleDisp.setVisibility(View.VISIBLE);
+            groupLeadDisp.setVisibility(View.VISIBLE);
+            groupStatusDisp.setVisibility(View.VISIBLE);
+        } else {
+            txtGroupTitle.setVisibility(View.VISIBLE);
+            spnGroupLeadList.setVisibility(View.VISIBLE);
+            radioGroupStatus.setVisibility(View.VISIBLE);
+            btnSend.setVisibility(View.VISIBLE);
+            groupTitleDisp.setVisibility(View.GONE);
+            groupLeadDisp.setVisibility(View.GONE);
+            groupStatusDisp.setVisibility(View.GONE);
+        }
+    }
+
     private void initializeViews() {
+        groupTitleDisp = findViewById(R.id.group_title_txt_disp);
+        groupLeadDisp = findViewById(R.id.group_lead_spinner_txt);
+        groupStatusDisp = findViewById(R.id.radioStatusViewTxt);
+        groupUpdate = findViewById(R.id.updateGroup);
+        groupUpdate.setOnClickListener(this);
+        groupMemberAdd = findViewById(R.id.addGroupMembers);
+        groupMemberAdd.setOnClickListener(this);
+        groupNotification = findViewById(R.id.vierwGroupNotification);
+        groupNotification.setOnClickListener(this);
         txtGroupTitle = findViewById(R.id.group_title_txt);
         spnGroupLeadList = findViewById(R.id.group_lead_spinner);
         spnGroupLeadList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -118,6 +149,7 @@ public class GroupNotificationCreationActivity extends AppCompatActivity impleme
                 sendGroupStatus();
             }
         });
+        getVisibileViews();
     }
 
     @Override
@@ -261,4 +293,23 @@ public class GroupNotificationCreationActivity extends AppCompatActivity impleme
     public void onError(String error) {
 
     }
+
+    @Override
+    public void onClick(View v) {
+        if ( v == groupUpdate) {
+            update = !update;
+            getVisibileViews();
+        } else if (v == groupMemberAdd) {
+            Intent intent = new Intent(getApplicationContext(), GroupNotificationAddMemberActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(intent);
+            finish();
+        } else if (v == groupNotification) {
+            Intent intent = new Intent(getApplicationContext(), GroupNotificationActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(intent);
+            finish();
+        }
+    }
 }
+

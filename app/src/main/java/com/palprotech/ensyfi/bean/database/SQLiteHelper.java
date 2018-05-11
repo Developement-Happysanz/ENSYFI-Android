@@ -338,6 +338,16 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         return l;
     }
 
+    public Cursor selectTimeTableDays() throws SQLException {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String fetch = "Select day_id, day_name from timeTableDays";
+        Cursor c = db.rawQuery(fetch, null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
     public void deleteTimeTableDays() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("timeTableDays", null, null);

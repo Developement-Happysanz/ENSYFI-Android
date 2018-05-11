@@ -1,5 +1,6 @@
 package com.palprotech.ensyfi.activity.teachermodule;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.design.widget.TabLayout;
@@ -11,6 +12,7 @@ import android.view.View;
 import com.google.gson.Gson;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.adapter.teachermodule.TeacherTimeTableAdapter;
+import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 import com.palprotech.ensyfi.bean.student.viewlist.FeeStatusList;
 import com.palprotech.ensyfi.bean.teacher.viewlist.TTDays;
 import com.palprotech.ensyfi.bean.teacher.viewlist.TTDaysList;
@@ -26,6 +28,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class TeacherTimeTableNew extends AppCompatActivity implements DialogClickListener, IServiceListener, View.OnClickListener {
@@ -33,43 +36,43 @@ public class TeacherTimeTableNew extends AppCompatActivity implements DialogClic
     private static final String TAG = TeacherTimeTableNew.class.getName();
     ServiceHelper serviceHelper;
     protected ProgressDialogHelper progressDialogHelper;
-    int totalCount = 0;
     protected boolean isLoadingForFirstTime = true;
     ArrayList<TTDays> dayDetailsArrayList;
+    SQLiteHelper db;
+    String [] DayName;
+    String [] DayId;
+    List<String> list = new ArrayList<String>();
+    List<String> list1 = new ArrayList<String>();
+    int dayCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.time_table_new);
-
+        db = new SQLiteHelper(getApplicationContext());
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         dayDetailsArrayList = new ArrayList<>();
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(this);
-        getTimeTableDays();
-        for (int i = 0; i <= totalCount; i++){
-            String abc = Integer.toString(totalCount);
-        }
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+//        getTimeTableDays();
+        getDaysfromDB();
 
-        tabLayout.addTab(tabLayout.newTab().setText("Monday"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tuesday"));
-        tabLayout.addTab(tabLayout.newTab().setText("Wednesday"));
-        tabLayout.addTab(tabLayout.newTab().setText("Thursday"));
-        tabLayout.addTab(tabLayout.newTab().setText("Friday"));
-        tabLayout.addTab(tabLayout.newTab().setText("Saturday"));
-        tabLayout.addTab(tabLayout.newTab().setText("Sunday"));
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        for (int i = 0; i < dayCount; i++) {
+            tabLayout.addTab(tabLayout.newTab().setText(list1.get(i)));
+        }
 
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
 
         final TeacherTimeTableAdapter adapter = new TeacherTimeTableAdapter
-                (getSupportFragmentManager());
+                (this, getSupportFragmentManager(), tabLayout);
 
         viewPager.setAdapter(adapter);
+        viewPager.setCurrentItem(0);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -100,19 +103,32 @@ public class TeacherTimeTableNew extends AppCompatActivity implements DialogClic
 
     }
 
-    private void getTimeTableDays() {
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put(EnsyfiConstants.PARAMS_CLASS_ID, "1");
-//            jsonObject.put(EnsyfiConstants.PARAMS_CLASS_ID, PreferenceStorage.getTeacherId(this));
+//    private void getTimeTableDays() {
+//        JSONObject jsonObject = new JSONObject();
+//        try {
+//            jsonObject.put(EnsyfiConstants.PARAMS_CLASS_ID, "1");
+////            jsonObject.put(EnsyfiConstants.PARAMS_CLASS_ID, PreferenceStorage.getTeacherId(this));
+//
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//
+//        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+//        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_TIME_TABLE_DAYS_API;
+//        serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
+//    }
 
-        } catch (JSONException e) {
-            e.printStackTrace();
+    private void getDaysfromDB() {
+        Cursor c = db.selectTimeTableDays();
+        dayCount = c.getCount();
+        if (c.getCount() > 0) {
+            if (c.moveToFirst()) {
+                do {
+                    list.add("" + c.getString(0)) ;
+                    list1.add("" + c.getString(1)) ;
+                } while (c.moveToNext());
+            }
         }
-
-        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_TIME_TABLE_DAYS_API;
-        serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 
     private boolean validateSignInResponse(JSONObject response) {
@@ -144,28 +160,6 @@ public class TeacherTimeTableNew extends AppCompatActivity implements DialogClic
     @Override
     public void onResponse(JSONObject response) {
         progressDialogHelper.hideProgressDialog();
-
-        if (validateSignInResponse(response)) {
-            try {
-                JSONObject userData = response.getJSONObject("timetableDays");
-
-                Gson gson = new Gson();
-                TTDaysList daysList = gson.fromJson(response.toString(), TTDaysList.class);
-                if (daysList.getTTDays() != null && daysList.getTTDays().size() > 0) {
-                    totalCount = daysList.getCount();
-                    isLoadingForFirstTime = false;
-                }
-                else {
-                    if (dayDetailsArrayList != null) {
-                        dayDetailsArrayList.clear();
-                    }
-                }
-
-
-            } catch (JSONException ex) {
-                ex.printStackTrace();
-            }
-        }
     }
 
     @Override

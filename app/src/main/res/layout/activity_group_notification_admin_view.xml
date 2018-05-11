@@ -34,13 +34,13 @@
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:minHeight="?android:attr/actionBarSize"
-            android:text="Group notification"
+            android:text="Group list"
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="@dimen/actionbarTextSize" />
 
         <ImageView
-            android:id="@+id/createClassTest"
+            android:id="@+id/createNewGroup"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentRight="true"
