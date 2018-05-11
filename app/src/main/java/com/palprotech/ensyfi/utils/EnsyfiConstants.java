@@ -467,6 +467,14 @@ public class EnsyfiConstants {
     public static final String GET_ON_TIME_TABLE_REVIEW_ADD = "/apiteacher/add_Timetablereview/";
     public static final String GET_ON_TIME_TABLE_REVIEW_ = "/apiteacher/disp_Timetablereview/";
 
+    // Circular Params
+    public static final String PARAMS_CIRCULAR_TITLE = "circular_title";
+    public static final String PARAMS_CIRCUALR_DETAILS = "circular_description";
+    public static final String PARAMS_CIRCULAR_STATUS = "status";
+
+    // Circular
+    public static final String GET_CIRCULAR_MASTER_ADD = "/apiadmin/add_circular/";
+
     // Google Project Number
     public static final String GOOGLE_PROJECT_ID = "56118066242";
     public static final String MESSAGE_KEY = "message";
