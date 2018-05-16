@@ -36,7 +36,7 @@ import java.util.ArrayList;
 
 public class GroupNotificationAdminViewActivity extends AppCompatActivity implements IServiceListener, DialogClickListener, AdapterView.OnItemClickListener, View.OnClickListener {
 
-    private static final String TAG = StudentsViewActivity.class.getName();
+    private static final String TAG = GroupNotificationAdminViewActivity.class.getName();
     private ProgressDialogHelper progressDialogHelper;
     private ServiceHelper serviceHelper;
     ListView loadMoreListView;

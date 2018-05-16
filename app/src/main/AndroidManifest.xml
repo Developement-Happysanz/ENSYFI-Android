@@ -515,6 +515,18 @@
             android:theme="@style/AppThemeNoActionBarGrey" />
 
         <activity
+            android:name=".activity.adminmodule.GroupNotificationViewMemberActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarGrey" />
+
+        <activity
+            android:name=".activity.adminmodule.GroupNotificationAddMemberActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarGrey" />
+
+        <activity
             android:name=".activity.adminmodule.CircularMasterCreationActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"

@@ -67,6 +67,12 @@ public class EnsyfiConstants {
     public static final String GET_ADMIN_GROUP_VIEW = "/apiadmin/view_groupmaster/";
     public static final String GET_ADMIN_GROUP_LEAD_TEACHER_VIEW = "/apiadmin/get_allteachersuserid/";
     public static final String UPDATE_GROUP= "/apiadmin/update_groupmaster/";
+    public static final String GET_GROUP_MEMBER_ROLES = "/apiadmin/list_roles/";
+    public static final String GET_GROUP_CLASS_SECTION = "/apiadmin/list_class_section/";
+    public static final String GET_GROUP_MEMBER_STAFF = "/apiadmin/gn_stafflist/";
+    public static final String GET_GROUP_MEMBER_STUDENTS = "/apiadmin/gn_studentlist/";
+    public static final String SEND_GROUP_MEMBERS = "/apiadmin/add_gn_members/";
+    public static final String VIEW_GROUP_MEMBERS = "/apiadmin/list_gn_members/";
 
     // STUDENT & PARENTS URL
     // STUDENT ATTENDANCE URL
@@ -383,7 +389,9 @@ public class EnsyfiConstants {
     public static final String PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_TITLE = "group_title";
     public static final String PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_LEAD_ID = "group_lead_id";
     public static final String PARAMS_GROUP_NOTIFICATIONS_CREATION_STATUS = "status";
-    public static final String PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_USER_TYPE_ID = "user_id";
+    public static final String PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_USER_TYPE_ID = "group_user_type";
+    public static final String PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_MEMBER_ID = "group_member_id";
+    public static final String PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_STUDENT_CLASS_ID = "class_id";
 
     //On Duty Approval
     public static final String PARAMS_OD_APPROVAL_STATUS = "status";

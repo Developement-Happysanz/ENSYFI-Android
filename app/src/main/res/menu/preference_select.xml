@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.palprotech.heylaapp.activity.SetUpPreferenceActivity">
+
+    <item
+        android:id="@+id/action_select"
+        android:orderInCategory="100"
+        android:title="Select all" />
+    <item
+        android:id="@+id/action_deselect"
+        android:orderInCategory="100"
+        android:title="Deselect all"/>
+
+</menu>
