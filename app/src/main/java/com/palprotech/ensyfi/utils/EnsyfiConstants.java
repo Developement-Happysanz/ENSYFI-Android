@@ -73,6 +73,7 @@ public class EnsyfiConstants {
     public static final String GET_GROUP_MEMBER_STUDENTS = "/apiadmin/gn_studentlist/";
     public static final String SEND_GROUP_MEMBERS = "/apiadmin/add_gn_members/";
     public static final String VIEW_GROUP_MEMBERS = "/apiadmin/list_gn_members/";
+    public static final String VIEW_GROUP_MESSAGE_HISTORY = "/apimain/grp_messsage_history/";
 
     // STUDENT & PARENTS URL
     // STUDENT ATTENDANCE URL

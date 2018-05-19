@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -53,17 +54,26 @@ public class GroupNotificationAddMemberActivity extends AppCompatActivity implem
     GroupMemberListAdapter groupMemberListAdapter;
     ArrayList<GroupStaffMembers> groupStaffMembersArrayList;
     ArrayList<Integer> selectedMembers;
+    ArrayList<Integer> removeMembers;
     Handler mHandler = new Handler();
     protected boolean isLoadingForFirstTime = true;
     int pageNumber = 0, totalCount = 0;
     TextView create, groupTitleDisp, groupLeadDisp;
     Spinner spnMemberType, spnStudentClass;
     String res = "", roleId, roleName, classSecName, classSectionId;
+    boolean selval = false;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_notification_add_members);
+
+        toolbar = (Toolbar) findViewById(R.id.activity_toolbar);
+        setSupportActionBar(toolbar);
+        TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        mTitle.setText("ADD MEMBERS");
+
         groups = (Groups) getIntent().getSerializableExtra("groupsObj");
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
@@ -71,7 +81,7 @@ public class GroupNotificationAddMemberActivity extends AppCompatActivity implem
         GetMemberRolesData();
         initializeViews();
 
-        ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
+        ImageView bckbtn = (ImageView) toolbar.findViewById(R.id.back_res);
         bckbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,6 +150,7 @@ public class GroupNotificationAddMemberActivity extends AppCompatActivity implem
         });
 
         selectedMembers = new ArrayList<>();
+        removeMembers = new ArrayList<>();
 
         create = (TextView) findViewById(R.id.add_members);
 
@@ -152,6 +163,7 @@ public class GroupNotificationAddMemberActivity extends AppCompatActivity implem
     }
 
     private void sendGroupMenbers() {
+        selectedMembers.removeAll(removeMembers);
         ArrayList<String> rollRdList = new ArrayList();
         for (int i = 0; i < selectedMembers.size(); i++) {
             if (!(rollRdList.contains(selectedMembers.get(i)))) {
@@ -283,23 +295,27 @@ public class GroupNotificationAddMemberActivity extends AppCompatActivity implem
         int id = item.getItemId();
 
 //        noinspection SimplifiableIfStatement
-//        if (id == R.id.action_select) {
-//            selval = true;
-//            for (int pos = 0; pos < totalCount; pos++) {
-//                selectedMembers.add(pos);
-//                preferenceAdatper.notifyDataSetChanged();
-//            }
-//            return true;
-//        } else if (id == R.id.action_deselect) {
-//            selval = false;
-//            for (pos = 0; pos < categoryArrayList.size(); pos++) {
-//                Category tag = preferenceAdatper.getItem(pos);
-//                tag.setCategoryPreference("N");
-//                selectedList.removeAll(selectedList);
-//                preferenceAdatper.notifyDataSetChanged();
-//            }
-//            return true;
-//        }
+        if (id == R.id.action_select) {
+            selval = true;
+            for (int pos = 0; pos < totalCount; pos++) {
+                selectedMembers.add(pos);
+                groupStaffMembersArrayList.get(pos).setStatus("1");
+//                loadMoreListView.getChildAt(pos).getRootView().findViewById(R.id.status_selected).setVisibility(View.VISIBLE);
+//                loadMoreListView.getChildAt(pos).getRootView().findViewById(R.id.status_deselected).setVisibility(View.INVISIBLE);
+                groupMemberListAdapter.notifyDataSetChanged();
+            }
+            return true;
+        } else if (id == R.id.action_deselect) {
+            selval = false;
+            for (int pos = 0; pos < totalCount; pos++) {
+                removeMembers.add(pos);
+                groupStaffMembersArrayList.get(pos).setStatus("0");
+//                loadMoreListView.getChildAt(pos).getRootView().findViewById(R.id.status_deselected).setVisibility(View.VISIBLE);
+//                loadMoreListView.getChildAt(pos).getRootView().findViewById(R.id.status_selected).setVisibility(View.INVISIBLE);
+                groupMemberListAdapter.notifyDataSetChanged();
+            }
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -312,28 +328,31 @@ public class GroupNotificationAddMemberActivity extends AppCompatActivity implem
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Log.d(TAG, "onOD list item clicked" + position);
-        setClickStatus(position);
+        setClickStatus(view, position);
 
     }
 
-    private void setClickStatus(int pos) {
+    private void setClickStatus(View view, int pos) {
         if (!(selectedMembers.isEmpty())) {
             if (selectedMembers.contains(pos)) {
                 groupStaffMembersArrayList.get(pos).setStatus("0");
-                loadMoreListView.getChildAt(pos).findViewById(R.id.status_selected).setVisibility(View.INVISIBLE);
-                loadMoreListView.getChildAt(pos).findViewById(R.id.status_deselected).setVisibility(View.VISIBLE);
-                selectedMembers.remove(pos);
+                view.findViewById(R.id.status_selected).setVisibility(View.INVISIBLE);
+                view.findViewById(R.id.status_deselected).setVisibility(View.VISIBLE);
+                removeMembers.add(pos);
+                groupMemberListAdapter.notifyDataSetChanged();
             } else {
                 selectedMembers.add(pos);
                 groupStaffMembersArrayList.get(pos).setStatus("1");
-                loadMoreListView.getChildAt(pos).findViewById(R.id.status_selected).setVisibility(View.VISIBLE);
-                loadMoreListView.getChildAt(pos).findViewById(R.id.status_deselected).setVisibility(View.INVISIBLE);
+                view.findViewById(R.id.status_selected).setVisibility(View.VISIBLE);
+                view.findViewById(R.id.status_deselected).setVisibility(View.INVISIBLE);
+                groupMemberListAdapter.notifyDataSetChanged();
             }
         } else {
             selectedMembers.add(pos);
             groupStaffMembersArrayList.get(pos).setStatus("1");
-            loadMoreListView.getChildAt(pos).findViewById(R.id.status_selected).setVisibility(View.VISIBLE);
-            loadMoreListView.getChildAt(pos).findViewById(R.id.status_deselected).setVisibility(View.INVISIBLE);
+            view.findViewById(R.id.status_selected).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.status_deselected).setVisibility(View.INVISIBLE);
+            groupMemberListAdapter.notifyDataSetChanged();
         }
     }
 

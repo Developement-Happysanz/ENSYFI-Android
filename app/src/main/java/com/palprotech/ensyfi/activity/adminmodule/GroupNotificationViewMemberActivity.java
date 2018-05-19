@@ -36,26 +36,26 @@ import java.util.ArrayList;
 
 public class GroupNotificationViewMemberActivity extends AppCompatActivity implements IServiceListener, DialogClickListener, View.OnClickListener {
 
-    private static final String TAG = GroupNotificationUpdateActivity.class.getName();
-    private Groups groups;
-    protected ProgressDialogHelper progressDialogHelper;
-    private ProgressDialog mProgressDialog = null;
-    private ServiceHelper serviceHelper;
-    GroupMemberListViewAdapter groupMemberListViewAdapter;
-    ListView loadMoreListView;
-    ArrayList<GroupMembersView> groupMembersArrayList;
-    String groupStatus = "";
-    String groupRes = "";
-    String groupLead = "";
-    String storeGroupId;
-    TextView mamberName, membertype;
-    Handler mHandler = new Handler();
-    protected boolean isLoadingForFirstTime = true;
-    Boolean update = false;
-    int totalCount = 0;
+private static final String TAG = GroupNotificationUpdateActivity.class.getName();
+private Groups groups;
+protected ProgressDialogHelper progressDialogHelper;
+private ProgressDialog mProgressDialog = null;
+private ServiceHelper serviceHelper;
+        GroupMemberListViewAdapter groupMemberListViewAdapter;
+        ListView loadMoreListView;
+        ArrayList<GroupMembersView> groupMembersArrayList;
+        String groupStatus = "";
+        String groupRes = "";
+        String groupLead = "";
+        String storeGroupId;
+        TextView mamberName, membertype;
+        Handler mHandler = new Handler();
+protected boolean isLoadingForFirstTime = true;
+        Boolean update = false;
+        int totalCount = 0;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+@Override
+protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_notification_view_members);
         groups = (Groups) getIntent().getSerializableExtra("groupsObj");
@@ -65,140 +65,140 @@ public class GroupNotificationViewMemberActivity extends AppCompatActivity imple
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
 
         bckbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
+@Override
+public void onClick(View v) {
+        finish();
+        }
         });
-    }
+        }
 
-    protected void initializeEventHelpers() {
+protected void initializeEventHelpers() {
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(this);
-    }
+        }
 
-    private void initializeViews() {
+private void initializeViews() {
         loadMoreListView = (ListView) findViewById(R.id.listView_members);
         groupMembersArrayList = new ArrayList<>();
-    }
+        }
 
-    @Override
-    public void onAlertPositiveClicked(int tag) {
+@Override
+public void onAlertPositiveClicked(int tag) {
 
-    }
+        }
 
-    @Override
-    public void onAlertNegativeClicked(int tag) {
+@Override
+public void onAlertNegativeClicked(int tag) {
 
-    }
+        }
 
-    private void GetGroupData() {
+private void GetGroupData() {
 
         if (CommonUtils.isNetworkAvailable(this)) {
 
-            JSONObject jsonObject = new JSONObject();
-            try {
-                jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_ID, groups.getId());
+        JSONObject jsonObject = new JSONObject();
+        try {
+        jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_ID, groups.getId());
 
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+        } catch (JSONException e) {
+        e.printStackTrace();
+        }
 
-            progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.VIEW_GROUP_MEMBERS;
-            serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
+        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.VIEW_GROUP_MEMBERS;
+        serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
 
         } else {
-            AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
+        AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
         }
-    }
+        }
 
-    private boolean validateSignInResponse(JSONObject response) {
+private boolean validateSignInResponse(JSONObject response) {
         boolean signInsuccess = false;
         if ((response != null)) {
-            try {
-                String status = response.getString("status");
-                String msg = response.getString(EnsyfiConstants.PARAM_MESSAGE);
-                Log.d(TAG, "status val" + status + "msg" + msg);
+        try {
+        String status = response.getString("status");
+        String msg = response.getString(EnsyfiConstants.PARAM_MESSAGE);
+        Log.d(TAG, "status val" + status + "msg" + msg);
 
-                if ((status != null)) {
-                    if (((status.equalsIgnoreCase("activationError")) || (status.equalsIgnoreCase("alreadyRegistered")) ||
-                            (status.equalsIgnoreCase("notRegistered")) || (status.equalsIgnoreCase("error")))) {
-                        signInsuccess = false;
-                        Log.d(TAG, "Show error dialog");
-                        AlertDialogHelper.showSimpleAlertDialog(this, msg);
-                    } else {
-                        signInsuccess = true;
-                    }
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+        if ((status != null)) {
+        if (((status.equalsIgnoreCase("activationError")) || (status.equalsIgnoreCase("alreadyRegistered")) ||
+        (status.equalsIgnoreCase("notRegistered")) || (status.equalsIgnoreCase("error")))) {
+        signInsuccess = false;
+        Log.d(TAG, "Show error dialog");
+        AlertDialogHelper.showSimpleAlertDialog(this, msg);
+        } else {
+        signInsuccess = true;
+        }
+        }
+        } catch (JSONException e) {
+        e.printStackTrace();
+        }
         }
         return signInsuccess;
-    }
+        }
 
-    @Override
-    public void onResponse(final JSONObject response) {
+@Override
+public void onResponse(final JSONObject response) {
 
         progressDialogHelper.hideProgressDialog();
 
         if (validateSignInResponse(response)) {
 
-            try {
-                JSONArray getData = response.getJSONArray("memberList");
-                if (getData != null && getData.length() > 0) {
+        try {
+        JSONArray getData = response.getJSONArray("memberList");
+        if (getData != null && getData.length() > 0) {
 
-                    mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            progressDialogHelper.hideProgressDialog();
-                            Gson gson = new Gson();
-                            GroupMembersViewList groupMembersViewList = gson.fromJson(response.toString(), GroupMembersViewList.class);
-                            if (groupMembersViewList.getGroups() != null && groupMembersViewList.getGroups().size() > 0) {
-                                totalCount = groupMembersViewList.getCount();
-                                isLoadingForFirstTime = false;
-                                updateListAdapter(groupMembersViewList.getGroups());
-                            }
-                        }
-                    });
-                } else {
-                    if (groupMembersArrayList != null) {
-                        groupMembersArrayList.clear();
-                        groupMemberListViewAdapter = new GroupMemberListViewAdapter(this, this.groupMembersArrayList);
-                        loadMoreListView.setAdapter(groupMemberListViewAdapter);
-                    }
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+        mHandler.post(new Runnable() {
+@Override
+public void run() {
+        progressDialogHelper.hideProgressDialog();
+        Gson gson = new Gson();
+        GroupMembersViewList groupMembersViewList = gson.fromJson(response.toString(), GroupMembersViewList.class);
+        if (groupMembersViewList.getGroups() != null && groupMembersViewList.getGroups().size() > 0) {
+        totalCount = groupMembersViewList.getCount();
+        isLoadingForFirstTime = false;
+        updateListAdapter(groupMembersViewList.getGroups());
+        }
+        }
+        });
+        } else {
+        if (groupMembersArrayList != null) {
+        groupMembersArrayList.clear();
+        groupMemberListViewAdapter = new GroupMemberListViewAdapter(this, this.groupMembersArrayList);
+        loadMoreListView.setAdapter(groupMemberListViewAdapter);
+        }
+        }
+        } catch (JSONException e) {
+        e.printStackTrace();
+        }
         } else
 
         {
-            Log.d(TAG, "Error while sign In");
+        Log.d(TAG, "Error while sign In");
         }
 
-    }
+        }
 
-    protected void updateListAdapter(ArrayList<GroupMembersView> groupMembersArrayList) {
+protected void updateListAdapter(ArrayList<GroupMembersView> groupMembersArrayList) {
         this.groupMembersArrayList.addAll(groupMembersArrayList);
         if (groupMemberListViewAdapter == null) {
-            groupMemberListViewAdapter = new GroupMemberListViewAdapter(this, this.groupMembersArrayList);
-            loadMoreListView.setAdapter(groupMemberListViewAdapter);
+        groupMemberListViewAdapter = new GroupMemberListViewAdapter(this, this.groupMembersArrayList);
+        loadMoreListView.setAdapter(groupMemberListViewAdapter);
         } else {
-            groupMemberListViewAdapter.notifyDataSetChanged();
+        groupMemberListViewAdapter.notifyDataSetChanged();
         }
-    }
+        }
 
-    @Override
-    public void onError(String error) {
+@Override
+public void onError(String error) {
 
-    }
+        }
 
-    @Override
-    public void onClick(View v) {
+@Override
+public void onClick(View v) {
 
-    }
-}
+        }
+        }
