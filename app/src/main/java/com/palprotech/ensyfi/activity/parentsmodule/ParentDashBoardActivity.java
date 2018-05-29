@@ -273,7 +273,7 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
             Intent navigationIntent = new Intent(this, OnDutyActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        }else if (position == 9) {
+        } else if (position == 9) {
             Intent navigationIntent = new Intent(this, LeaveCalendarActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);

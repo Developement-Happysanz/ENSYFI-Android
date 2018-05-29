@@ -140,7 +140,7 @@ public class CircularMasterCreationActivity extends AppCompatActivity implements
                     if (Status) {
                         CircularStatus = "Active";
                     } else {
-                        CircularStatus = "Inactive";
+                        CircularStatus = "Deactive";
                     }
                     String AllValue = "";
 
