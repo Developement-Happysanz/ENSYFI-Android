@@ -132,6 +132,17 @@
         <item name="android:paddingBottom">5dp</item>
     </style>
 
+    <style name="ThemeOverlay.MyApp.ActionBarSameColor" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <!-- Parent theme sets colorControlNormal to textColorPrimary. -->
+        <item name="titleTextColor">@color/appColorBase</item>
+        <!--<item name="logo">@drawable/ab_hobbistan_logo</item>-->
+    </style>
+
+    <style name="ToolBarStyle.EventWithOutTitle" parent="ToolBarStyle">
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!--<item name="titleTextAppearance">@style/TextAppearance.Widget.Event.Toolbar.Title</item>-->
+    </style>
+
     <!-- Dark theme. -->
     <style name="CaldroidDefaultDark" parent="CaldroidDefault">
         <item name="styleCaldroidViewLayout">@style/CaldroidDefaultDarkCalendarViewLayout</item>

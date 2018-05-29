@@ -11,10 +11,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,11 +45,11 @@ public class GroupNotificationUpdateActivity extends AppCompatActivity implement
     private Groups groups;
     private EditText txtGroupTitle;
     private Spinner spnGroupLeadList;
-    private Button btnSend;
-    private RadioGroup radioGroupStatus;
+    private Button btnSend, viewMembers;
     protected ProgressDialogHelper progressDialogHelper;
     private ProgressDialog mProgressDialog = null;
     private ServiceHelper serviceHelper;
+    private Switch swStatus;
     String groupStatus = "";
     String groupRes = "";
     String groupLead = "";
@@ -81,10 +83,10 @@ public class GroupNotificationUpdateActivity extends AppCompatActivity implement
     }
 
     private void getVisibileViews() {
-        if (update) {
+        if (!update) {
             txtGroupTitle.setVisibility(View.GONE);
             spnGroupLeadList.setVisibility(View.GONE);
-            radioGroupStatus.setVisibility(View.GONE);
+            swStatus.setVisibility(View.GONE);
             btnSend.setVisibility(View.GONE);
             groupTitleDisp.setVisibility(View.VISIBLE);
             groupLeadDisp.setVisibility(View.VISIBLE);
@@ -92,7 +94,7 @@ public class GroupNotificationUpdateActivity extends AppCompatActivity implement
         } else {
             txtGroupTitle.setVisibility(View.VISIBLE);
             spnGroupLeadList.setVisibility(View.VISIBLE);
-            radioGroupStatus.setVisibility(View.VISIBLE);
+            swStatus.setVisibility(View.VISIBLE);
             btnSend.setVisibility(View.VISIBLE);
             groupTitleDisp.setVisibility(View.GONE);
             groupLeadDisp.setVisibility(View.GONE);
@@ -102,8 +104,11 @@ public class GroupNotificationUpdateActivity extends AppCompatActivity implement
 
     private void initializeViews() {
         groupTitleDisp = findViewById(R.id.group_title_txt_disp);
+        groupTitleDisp.setText(groups.getGroup_title());
         groupLeadDisp = findViewById(R.id.group_lead_spinner_txt);
+        groupLeadDisp.setText(groups.getLead_name());
         groupStatusDisp = findViewById(R.id.radioStatusViewTxt);
+        groupStatusDisp.setText(groups.getStatus());
         groupUpdate = findViewById(R.id.updateGroup);
         groupUpdate.setOnClickListener(this);
         groupMemberAdd = findViewById(R.id.addGroupMembers);
@@ -111,6 +116,7 @@ public class GroupNotificationUpdateActivity extends AppCompatActivity implement
         groupNotification = findViewById(R.id.vierwGroupNotification);
         groupNotification.setOnClickListener(this);
         txtGroupTitle = findViewById(R.id.group_title_txt);
+        txtGroupTitle.setText(groups.getGroup_title());
         spnGroupLeadList = findViewById(R.id.group_lead_spinner);
         spnGroupLeadList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -125,28 +131,26 @@ public class GroupNotificationUpdateActivity extends AppCompatActivity implement
             }
         });
 
-        radioGroupStatus = findViewById(R.id.radioStatusView);
-        radioGroupStatus.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        viewMembers = findViewById(R.id.view_group_members);
+        viewMembers.setOnClickListener(this);
+
+        swStatus = findViewById(R.id.swStatus);
+        swStatus.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-
-                switch (checkedId) {
-                    case R.id.radioDeactive:
-                        groupStatus = "Deactive";
-                        break;
-
-                    case R.id.radioActive:
-                        groupStatus = "Active";
-                        break;
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    swStatus.setText("Active");
                 }
             }
         });
-        btnSend = (Button) findViewById(R.id.create_group);
+        btnSend = (Button) findViewById(R.id.update_group);
 
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 sendGroupStatus();
+                update = !update;
+                getVisibileViews();
             }
         });
         getVisibileViews();
@@ -189,9 +193,17 @@ public class GroupNotificationUpdateActivity extends AppCompatActivity implement
         if (CommonUtils.isNetworkAvailable(this)) {
 
             if (validateFields()) {
+                boolean Status = false;
+                Status = swStatus.isChecked();
+                if (Status) {
+                    groupStatus = "Active";
+                } else {
+                    groupStatus = "Deactive";
+                }
                 JSONObject jsonObject = new JSONObject();
                 try {
-                    jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_USER_ID, PreferenceStorage.getUserId(this));
+                    jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_CREATION_USER_ID, PreferenceStorage.getUserId(this));
+                    jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_ID, groups.getId());
                     jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_TITLE, txtGroupTitle.getText().toString());
                     jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_LEAD_ID, storeGroupId);
                     jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_CREATION_STATUS, groupStatus);
@@ -199,7 +211,7 @@ public class GroupNotificationUpdateActivity extends AppCompatActivity implement
                     e.printStackTrace();
                 }
 
-                String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.CREATE_GROUP;
+                String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.UPDATE_GROUP;
                 serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
             }
 
@@ -272,7 +284,7 @@ public class GroupNotificationUpdateActivity extends AppCompatActivity implement
                     ArrayAdapter<StoreTeacherId> adapter = new ArrayAdapter<StoreTeacherId>(getApplicationContext(), R.layout.spinner_item_ns, classesList);
                     spnGroupLeadList.setAdapter(adapter);
                 } else if (groupRes.equalsIgnoreCase("groupdata")) {
-                    Toast.makeText(this,"Group Added!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this,"Group Updated!!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(), GroupNotificationAdminViewActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     startActivity(intent);
@@ -301,14 +313,20 @@ public class GroupNotificationUpdateActivity extends AppCompatActivity implement
             getVisibileViews();
         } else if (v == groupMemberAdd) {
             Intent intent = new Intent(getApplicationContext(), GroupNotificationAddMemberActivity.class);
+            intent.putExtra("groupsObj", groups);
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
-            finish();
         } else if (v == groupNotification) {
             Intent intent = new Intent(getApplicationContext(), GroupNotificationActivity.class);
+            intent.putExtra("groupsObj", groups);
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
             finish();
+        } else if (v == viewMembers) {
+            Intent intent = new Intent(getApplicationContext(), GroupNotificationViewMemberActivity.class);
+            intent.putExtra("groupsObj", groups);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(intent);
         }
     }
 }

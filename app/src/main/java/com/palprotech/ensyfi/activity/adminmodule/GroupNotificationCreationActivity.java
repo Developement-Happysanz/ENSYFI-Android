@@ -11,10 +11,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,8 +45,8 @@ public class GroupNotificationCreationActivity extends AppCompatActivity impleme
     private Groups groups;
     private EditText txtGroupTitle;
     private Spinner spnGroupLeadList;
-    private Button btnSend;
-    private RadioGroup radioGroupStatus;
+    private ImageView createGroup;
+    private Switch swStatus;
     protected ProgressDialogHelper progressDialogHelper;
     private ProgressDialog mProgressDialog = null;
     private ServiceHelper serviceHelper;
@@ -94,25 +96,18 @@ public class GroupNotificationCreationActivity extends AppCompatActivity impleme
             }
         });
 
-        radioGroupStatus = findViewById(R.id.radioStatusView);
-        radioGroupStatus.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        swStatus = findViewById(R.id.swStatus);
+        swStatus.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-
-                switch (checkedId) {
-                    case R.id.radioDeactive:
-                        groupStatus = "Deactive";
-                        break;
-
-                    case R.id.radioActive:
-                        groupStatus = "Active";
-                        break;
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    swStatus.setText("Active");
                 }
             }
         });
-        btnSend = (Button) findViewById(R.id.create_group);
+        createGroup = (ImageView) findViewById(R.id.createNewGroup);
 
-        btnSend.setOnClickListener(new View.OnClickListener() {
+        createGroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 sendGroupStatus();
@@ -157,6 +152,14 @@ public class GroupNotificationCreationActivity extends AppCompatActivity impleme
         if (CommonUtils.isNetworkAvailable(this)) {
 
             if (validateFields()) {
+                boolean Status = false;
+                Status = swStatus.isChecked();
+                String CircularStatus = "";
+                if (Status) {
+                    groupStatus = "Active";
+                } else {
+                    groupStatus = "Deactive";
+                }
                 JSONObject jsonObject = new JSONObject();
                 try {
                     jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_USER_ID, PreferenceStorage.getUserId(this));

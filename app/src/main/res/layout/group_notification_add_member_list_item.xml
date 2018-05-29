@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background_grey"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/black"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp">
+
+            <TextView
+                android:id="@+id/member_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Name"
+                android:background="@color/white"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@+id/group_lead"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+
+
+            <TextView
+                android:id="@+id/group_lead"
+                android:layout_width="125dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="1dp"
+                android:background="@color/white"
+                android:layout_toLeftOf="@+id/group_status"
+                android:gravity="center"
+                android:text="Lead"
+                android:textColor="@color/black"
+                android:textSize="18sp"/>
+
+            <RelativeLayout
+                android:id="@+id/group_status"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="1dp"
+                android:gravity="center"
+                android:background="@color/white">
+
+                <ImageView
+                    android:id="@+id/status_selected"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="1dp"
+                    android:gravity="center"
+                    android:visibility="invisible"
+                    android:background="@drawable/ic_select"/>
+
+                <ImageView
+                    android:id="@+id/status_deselected"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="1dp"
+                    android:visibility="invisible"
+                    android:gravity="center"
+                    android:background="@drawable/ic_de_select"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</LinearLayout>
