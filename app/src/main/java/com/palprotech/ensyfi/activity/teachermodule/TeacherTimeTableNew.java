@@ -163,7 +163,7 @@ public class TeacherTimeTableNew extends AppCompatActivity implements DialogClic
                             lde.setSubjectName(c.getString(2));
                             lde.setClassId(c.getString(3));
                             lde.setSubjectId(c.getString(4));
-                            lde.setPeriod(c.getString(5));
+                            lde.setName(c.getString(5));
                             lde.setSubjectName(c.getString(6));
                             lde.setFromTime(c.getString(7));
                             lde.setToTime(c.getString(8));

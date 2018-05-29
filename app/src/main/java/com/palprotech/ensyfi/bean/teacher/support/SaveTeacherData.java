@@ -263,8 +263,7 @@ public class SaveTeacherData {
                 teacher_id = jsonobj.getString("teacher_id");
                 name = jsonobj.getString("name");
                 day = jsonobj.getString("day_id");
-                period = String.valueOf(i);
-//                period = jsonobj.getString("period");
+                period = jsonobj.getString("period");
                 from_time = jsonobj.getString("from_time");
                 to_time = jsonobj.getString("to_time");
                 is_break = jsonobj.getString("is_break");

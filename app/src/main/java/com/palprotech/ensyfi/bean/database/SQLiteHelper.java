@@ -371,11 +371,11 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         initialValues.put("name", val6);
         initialValues.put("day", val7);
         initialValues.put("period", val8);
-        initialValues.put("from_time", val8);
-        initialValues.put("to_time", val8);
-        initialValues.put("is_break", val8);
-        initialValues.put("sec_name", val9);
-        initialValues.put("class_name", val10);
+        initialValues.put("from_time", val9);
+        initialValues.put("to_time", val10);
+        initialValues.put("is_break", val11);
+        initialValues.put("sec_name", val12);
+        initialValues.put("class_name", val13);
         long l = db.insert("teacherTimeTable", null, initialValues);
         db.close();
         return l;
@@ -383,7 +383,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     public Cursor getTeacherTimeTableValue(String days, String periods) throws SQLException {
         SQLiteDatabase db = this.getWritableDatabase();
-        String fetch = "Select class_name,sec_name,subject_name,class_id,subject_id,subject_name,period,from_time,to_time,is_break,day from teacherTimeTable where day = '" + days + "' and period = '" + periods + "';";
+        String fetch = "Select class_name,sec_name,subject_name,class_id,subject_id,name,subject_name,from_time,to_time,is_break FROM teacherTimeTable WHERE day = '" + days + "' and period = '" + periods + "';";
         Cursor c = db.rawQuery(fetch, null);
         if (c != null) {
             c.moveToFirst();
