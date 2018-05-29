@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.palprotech.ensyfi.R;
@@ -16,6 +17,7 @@ import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 import com.palprotech.ensyfi.bean.student.viewlist.FeeStatusList;
 import com.palprotech.ensyfi.bean.teacher.viewlist.TTDays;
 import com.palprotech.ensyfi.bean.teacher.viewlist.TTDaysList;
+import com.palprotech.ensyfi.bean.teacher.viewlist.TimeTable;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
@@ -38,12 +40,15 @@ public class TeacherTimeTableNew extends AppCompatActivity implements DialogClic
     protected ProgressDialogHelper progressDialogHelper;
     protected boolean isLoadingForFirstTime = true;
     ArrayList<TTDays> dayDetailsArrayList;
+    ArrayList<TimeTable> ttArrayList = new ArrayList<>();
     SQLiteHelper db;
     String [] DayName;
     String [] DayId;
     List<String> list = new ArrayList<String>();
     List<String> list1 = new ArrayList<String>();
-    int dayCount = 0;
+    int dayCount = 0, currentTab = 0;
+    int periodsCount = 0;
+    String currentday;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,11 +78,17 @@ public class TeacherTimeTableNew extends AppCompatActivity implements DialogClic
 
         viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(0);
+        periodsCount = db.getProfilesCount(String.valueOf(1));
+        loadTimeTable(0);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
+
+                currentTab = tab.getPosition();
+                periodsCount = db.getProfilesCount(String.valueOf(currentTab+1));
+                currentday = tab.getText().toString();
+                loadTimeTable(currentTab);
             }
 
             @Override
@@ -87,7 +98,11 @@ public class TeacherTimeTableNew extends AppCompatActivity implements DialogClic
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
+                currentTab = tab.getPosition();
+                periodsCount = db.getProfilesCount(String.valueOf(currentTab+1));
+                tab.getText();
+                currentday = tab.getText().toString();
+                loadTimeTable(currentTab);
             }
         });
 
@@ -131,6 +146,45 @@ public class TeacherTimeTableNew extends AppCompatActivity implements DialogClic
         }
     }
 
+    private void loadTimeTable(int i) {
+        ttArrayList.clear();
+        try {
+            String f1Value = list1.get(i);
+            for (int abc = 0; abc < periodsCount; abc++) {
+                String c1Value = String.valueOf(abc);
+                Cursor c = db.getTeacherTimeTableValue(f1Value, c1Value);
+                dayCount = c.getCount();
+                if (c.getCount() > 0) {
+                    if (c.moveToFirst()) {
+                        do {
+                            TimeTable lde = new TimeTable();
+                            lde.setClassName(c.getString(0));
+                            lde.setSecName(c.getString(1));
+                            lde.setSubjectName(c.getString(2));
+                            lde.setClassId(c.getString(3));
+                            lde.setSubjectId(c.getString(4));
+                            lde.setPeriod(c.getString(5));
+                            lde.setSubjectName(c.getString(6));
+                            lde.setFromTime(c.getString(7));
+                            lde.setToTime(c.getString(8));
+                            lde.setIsBreak(c.getString(9));
+
+                            // Add this object into the ArrayList myList
+                            ttArrayList.add(lde);
+                        } while (c.moveToNext());
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), "No records found", Toast.LENGTH_LONG).show();
+                }
+                db.close();
+            }
+
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
+    }
+
     private boolean validateSignInResponse(JSONObject response) {
         boolean signInSuccess = false;
         if ((response != null)) {
@@ -160,6 +214,9 @@ public class TeacherTimeTableNew extends AppCompatActivity implements DialogClic
     @Override
     public void onResponse(JSONObject response) {
         progressDialogHelper.hideProgressDialog();
+        if (validateSignInResponse(response)) {
+
+        }
     }
 
     @Override

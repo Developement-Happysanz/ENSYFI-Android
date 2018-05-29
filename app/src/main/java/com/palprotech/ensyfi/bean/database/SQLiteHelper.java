@@ -360,7 +360,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     /*
      *   Teacher's TimeTable Store & Retrieve Functionality
      */
-    public long teacher_timetable_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7, String val8, String val9, String val10) {
+    public long teacher_timetable_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7, String val8, String val9, String val10, String val11, String val12, String val13) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues initialValues = new ContentValues();
         initialValues.put("table_id", val1);
@@ -371,6 +371,9 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         initialValues.put("name", val6);
         initialValues.put("day", val7);
         initialValues.put("period", val8);
+        initialValues.put("from_time", val8);
+        initialValues.put("to_time", val8);
+        initialValues.put("is_break", val8);
         initialValues.put("sec_name", val9);
         initialValues.put("class_name", val10);
         long l = db.insert("teacherTimeTable", null, initialValues);
@@ -378,9 +381,9 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         return l;
     }
 
-    public Cursor getTeacherTimeTableValue(String day, String period) throws SQLException {
+    public Cursor getTeacherTimeTableValue(String days, String periods) throws SQLException {
         SQLiteDatabase db = this.getWritableDatabase();
-        String fetch = "Select class_name,sec_name,subject_name,class_id,subject_id,period,subject_name from teacherTimeTable where day = '" + day + "' and period = '" + period + "';";
+        String fetch = "Select class_name,sec_name,subject_name,class_id,subject_id,subject_name,period,from_time,to_time,is_break,day from teacherTimeTable where day = '" + days + "' and period = '" + periods + "';";
         Cursor c = db.rawQuery(fetch, null);
         if (c != null) {
             c.moveToFirst();
@@ -392,6 +395,16 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("teacherTimeTable", null, null);
     }
+
+    public int getProfilesCount(String days) {
+        String countQuery = "SELECT  * FROM " + "teacherTimeTable where day ='"+ days + "'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
+
     /*
      *   End
      */
