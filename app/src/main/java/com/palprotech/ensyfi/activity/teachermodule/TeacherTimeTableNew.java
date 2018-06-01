@@ -42,8 +42,8 @@ public class TeacherTimeTableNew extends AppCompatActivity implements DialogClic
     ArrayList<TTDays> dayDetailsArrayList;
     ArrayList<TimeTable> ttArrayList = new ArrayList<>();
     SQLiteHelper db;
-    String [] DayName;
-    String [] DayId;
+    String[] DayName;
+    String[] DayId;
     List<String> list = new ArrayList<String>();
     List<String> list1 = new ArrayList<String>();
     int dayCount = 0, currentTab = 0;
@@ -86,7 +86,7 @@ public class TeacherTimeTableNew extends AppCompatActivity implements DialogClic
             public void onTabSelected(TabLayout.Tab tab) {
 
                 currentTab = tab.getPosition();
-                periodsCount = db.getProfilesCount(String.valueOf(currentTab+1));
+                periodsCount = db.getProfilesCount(String.valueOf(currentTab + 1));
                 currentday = tab.getText().toString();
                 loadTimeTable(currentTab);
             }
@@ -99,13 +99,12 @@ public class TeacherTimeTableNew extends AppCompatActivity implements DialogClic
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
                 currentTab = tab.getPosition();
-                periodsCount = db.getProfilesCount(String.valueOf(currentTab+1));
+                periodsCount = db.getProfilesCount(String.valueOf(currentTab + 1));
                 tab.getText();
                 currentday = tab.getText().toString();
                 loadTimeTable(currentTab);
             }
         });
-
     }
 
     @Override
@@ -139,8 +138,8 @@ public class TeacherTimeTableNew extends AppCompatActivity implements DialogClic
         if (c.getCount() > 0) {
             if (c.moveToFirst()) {
                 do {
-                    list.add("" + c.getString(0)) ;
-                    list1.add("" + c.getString(1)) ;
+                    list.add("" + c.getString(0));
+                    list1.add("" + c.getString(1));
                 } while (c.moveToNext());
             }
         }
@@ -150,9 +149,10 @@ public class TeacherTimeTableNew extends AppCompatActivity implements DialogClic
         ttArrayList.clear();
         try {
             String f1Value = list1.get(i);
+            String dayId = db.getTimeTableDayId(f1Value);
             for (int abc = 0; abc < periodsCount; abc++) {
                 String c1Value = String.valueOf(abc);
-                Cursor c = db.getTeacherTimeTableValue(f1Value, c1Value);
+                Cursor c = db.getTeacherTimeTableValueNew(dayId);
                 dayCount = c.getCount();
                 if (c.getCount() > 0) {
                     if (c.moveToFirst()) {

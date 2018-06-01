@@ -98,8 +98,8 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
         students.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), StudentsViewActivity.class);
-                Intent intent = new Intent(getApplicationContext(), GroupNotificationCreationActivity.class);
+                Intent intent = new Intent(getApplicationContext(), StudentsViewActivity.class);
+//                Intent intent = new Intent(getApplicationContext(), GroupNotificationCreationActivity.class);
                 startActivity(intent);
             }
         });

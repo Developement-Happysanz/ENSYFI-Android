@@ -62,17 +62,17 @@ public class GroupNotificationAddMemberActivity extends AppCompatActivity implem
     Spinner spnMemberType, spnStudentClass;
     String res = "", roleId, roleName, classSecName, classSectionId;
     boolean selval = false;
-    Toolbar toolbar;
+//    Toolbar toolbar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_notification_add_members);
 
-        toolbar = (Toolbar) findViewById(R.id.activity_toolbar);
+        /*toolbar = (Toolbar) findViewById(R.id.activity_toolbar);
         setSupportActionBar(toolbar);
         TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
-        mTitle.setText("ADD MEMBERS");
+        mTitle.setText("ADD MEMBERS");*/
 
         groups = (Groups) getIntent().getSerializableExtra("groupsObj");
         serviceHelper = new ServiceHelper(this);
@@ -81,14 +81,13 @@ public class GroupNotificationAddMemberActivity extends AppCompatActivity implem
         GetMemberRolesData();
         initializeViews();
 
-        ImageView bckbtn = (ImageView) toolbar.findViewById(R.id.back_res);
+        ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
         bckbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-
     }
 
     private void initializeViews() {

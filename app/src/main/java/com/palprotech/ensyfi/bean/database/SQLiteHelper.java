@@ -348,6 +348,21 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         return c;
     }
 
+    public String getTimeTableDayId(String val1) {
+        String checkFlag = "0";
+        SQLiteDatabase database = this.getReadableDatabase();
+        String selectQuery = "Select day_id from timeTableDays where day_name = '" + val1 + "';";
+        Cursor cursor = database.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                checkFlag = cursor.getString(0);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return checkFlag;
+    }
+
+
     public void deleteTimeTableDays() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("timeTableDays", null, null);
@@ -391,13 +406,23 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         return c;
     }
 
+    public Cursor getTeacherTimeTableValueNew(String dayId) throws SQLException {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String fetch = "Select class_name,sec_name,subject_name,class_id,subject_id,name,subject_name,from_time,to_time,is_break FROM teacherTimeTable WHERE day = '" + dayId + "';";
+        Cursor c = db.rawQuery(fetch, null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
     public void deleteTeacherTimeTable() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("teacherTimeTable", null, null);
     }
 
     public int getProfilesCount(String days) {
-        String countQuery = "SELECT  * FROM " + "teacherTimeTable where day ='"+ days + "'";
+        String countQuery = "SELECT  * FROM " + "teacherTimeTable where day ='" + days + "'";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
         int count = cursor.getCount();
