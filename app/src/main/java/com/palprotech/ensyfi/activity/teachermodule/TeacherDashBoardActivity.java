@@ -130,7 +130,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
         dashTimeTable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), TeacherTimeTableNew.class);
+                Intent intent = new Intent(getApplicationContext(), TeacherTimeTableActivity.class);
                 startActivity(intent);
             }
         });
