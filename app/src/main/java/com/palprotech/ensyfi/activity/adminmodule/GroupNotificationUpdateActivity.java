@@ -3,7 +3,6 @@ package com.palprotech.ensyfi.activity.adminmodule;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -14,7 +13,6 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -110,6 +108,9 @@ public class GroupNotificationUpdateActivity extends AppCompatActivity implement
         groupStatusDisp = findViewById(R.id.radioStatusViewTxt);
         groupStatusDisp.setText(groups.getStatus());
         groupUpdate = findViewById(R.id.updateGroup);
+        if (PreferenceStorage.getUserType(this).equalsIgnoreCase("2")) {
+            groupUpdate.setVisibility(View.GONE);
+        }
         groupUpdate.setOnClickListener(this);
         groupMemberAdd = findViewById(R.id.addGroupMembers);
         groupMemberAdd.setOnClickListener(this);

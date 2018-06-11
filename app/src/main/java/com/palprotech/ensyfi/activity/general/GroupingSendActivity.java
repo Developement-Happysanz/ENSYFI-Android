@@ -17,8 +17,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
+import com.palprotech.ensyfi.activity.adminmodule.GroupNotificationActivity;
+import com.palprotech.ensyfi.activity.adminmodule.GroupNotificationAdminViewActivity;
 import com.palprotech.ensyfi.bean.general.support.StoreGroup;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
@@ -53,7 +56,9 @@ public class GroupingSendActivity extends AppCompatActivity implements IServiceL
     Boolean smsSelect = false, mailSelect = false, notificationSelect = false;
     Button sendNotification;
     EditText notes;
-    private String message = "", message_type_sms = "0", message_type_mail = "0", message_type_notification = "0";
+    private String message = "";
+    ArrayList <String> notificationTypes = new ArrayList<>();
+  private String message_type_sms = "SMS", message_type_mail = "Mail", message_type_notification = "Notification";
 
 
     @Override
@@ -170,13 +175,13 @@ public class GroupingSendActivity extends AppCompatActivity implements IServiceL
 
     @Override
     public void onResponse(final JSONObject response) {
-        progressDialogHelper.hideProgressDialog();
 
         if (validateSignInResponse(response)) {
 
             if (checkSpinner.equalsIgnoreCase("group")) {
 
                 try {
+                    progressDialogHelper.hideProgressDialog();
 
                     JSONArray getData = response.getJSONArray("groupDetails");
                     JSONObject userData = getData.getJSONObject(0);
@@ -206,24 +211,12 @@ public class GroupingSendActivity extends AppCompatActivity implements IServiceL
 
             if (checkSpinner.equalsIgnoreCase("send")) {
                 try {
+                    progressDialogHelper.hideProgressDialog();
                     String status = response.getString("status");
                     String msg = response.getString(EnsyfiConstants.PARAM_MESSAGE);
-                    Log.d(TAG, "status val" + status + "msg" + msg);
-                    if ((status != null)) {
-                        if (((status.equalsIgnoreCase("success")))) {
-
-                            Log.d(TAG, "Show error dialog");
-//                            AlertDialogHelper.showSimpleAlertDialog(this, msg);
-/*
-                            Intent intent = new Intent(this, GroupingActivity.class);
-//                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
-//                            finish();*/
-
-                            setResult(RESULT_OK);
-                            finish();
-
-                        }
+                    if (status.equalsIgnoreCase("sucess") && msg.equalsIgnoreCase("Group Notification Send Sucessfully")) {
+                        Toast.makeText(this, "Notification sent!!", Toast.LENGTH_SHORT).show();
+                        finish();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -252,33 +245,34 @@ public class GroupingSendActivity extends AppCompatActivity implements IServiceL
             if (smsSelect) {
                 sms.setCompoundDrawablesWithIntrinsicBounds(R.drawable.grouping_unchecked, 0, 0, 0);
                 smsSelect = false;
-                message_type_sms = "0";
+                notificationTypes.remove(message_type_sms);
             } else {
                 sms.setCompoundDrawablesWithIntrinsicBounds(R.drawable.grouping_checked, 0, 0, 0);
                 smsSelect = true;
-                message_type_sms = "1";
+                notificationTypes.add(message_type_sms);
+
             }
         }
         if (v == mail) {
             if (mailSelect) {
                 mail.setCompoundDrawablesWithIntrinsicBounds(R.drawable.grouping_unchecked, 0, 0, 0);
                 mailSelect = false;
-                message_type_mail = "0";
+                notificationTypes.remove(message_type_mail);
             } else {
                 mail.setCompoundDrawablesWithIntrinsicBounds(R.drawable.grouping_checked, 0, 0, 0);
                 mailSelect = true;
-                message_type_mail = "1";
+                notificationTypes.add(message_type_mail);
             }
         }
         if (v == notification) {
             if (notificationSelect) {
                 notification.setCompoundDrawablesWithIntrinsicBounds(R.drawable.grouping_unchecked, 0, 0, 0);
                 notificationSelect = false;
-                message_type_notification = "0";
+                notificationTypes.remove(message_type_notification);
             } else {
                 notification.setCompoundDrawablesWithIntrinsicBounds(R.drawable.grouping_checked, 0, 0, 0);
                 notificationSelect = true;
-                message_type_notification = "1";
+                notificationTypes.add(message_type_notification);
             }
         }
         if (v == sendNotification) {
@@ -296,12 +290,10 @@ public class GroupingSendActivity extends AppCompatActivity implements IServiceL
                 if (CommonUtils.isNetworkAvailable(this)) {
                     JSONObject jsonObject = new JSONObject();
                     try {
-                        jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_TITLE_ID, storeGroupId);
-                        jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_MESSAGE_TYPE_SMS, message_type_sms);
-                        jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_MESSAGE_TYPE_MAIL, message_type_mail);
-                        jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_MESSAGE_TYPE_NOTIFICATION, message_type_notification);
+                        jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_ID, storeGroupId);
+                        jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_TYPE_NOTIFICATION, notificationTypes.toString().replace("[", "").replace("]", ""));
                         jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_MESSAGE_DETAILS, message);
-                        jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_CREATED_BY, PreferenceStorage.getUserId(this));
+                        jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_USER_ID, PreferenceStorage.getUserId(this));
 
                     } catch (JSONException e) {
                         e.printStackTrace();

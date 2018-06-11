@@ -51,6 +51,9 @@ public class GroupNotificationAdminViewActivity extends AppCompatActivity implem
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_notification_admin_view);
         create = findViewById(R.id.createNewGroup);
+        if (PreferenceStorage.getUserType(this).equalsIgnoreCase("2")) {
+            create.setVisibility(View.GONE);
+        }
         create.setOnClickListener(this);
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);

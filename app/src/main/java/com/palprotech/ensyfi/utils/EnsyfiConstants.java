@@ -58,7 +58,7 @@ public class EnsyfiConstants {
 
     // GROUP NOTIFICATION URL
     public static final String GET_GROUP_LIST = "/apimain/disp_Grouplist/";
-    public static final String SEND_GROUP_MESSAGE = "/apimain/send_Groupmessage/";
+    public static final String SEND_GROUP_MESSAGE = "/apiadmin/group_msg_send/";
     public static final String GET_GROUP_MESSAGE_VIEW = "/apimain/disp_Groupmessage/";
 
     // GROUP NOTIFICATION CREATION AND UPDATION ADMIN URL
@@ -381,7 +381,7 @@ public class EnsyfiConstants {
     public static final String PARAMS_GROUP_NOTIFICATIONS_MESSAGE_TYPE_SMS = "messagetype_sms";
     public static final String PARAMS_GROUP_NOTIFICATIONS_MESSAGE_TYPE_MAIL = "messagetype_mail";
     public static final String PARAMS_GROUP_NOTIFICATIONS_MESSAGE_TYPE_NOTIFICATION = "messagetype_notification";
-    public static final String PARAMS_GROUP_NOTIFICATIONS_MESSAGE_DETAILS = "message_details";
+    public static final String PARAMS_GROUP_NOTIFICATIONS_MESSAGE_DETAILS = "notes";
     public static final String PARAMS_GROUP_NOTIFICATIONS_CREATED_BY = "created_by";
 
     //Group notifications creation Params
@@ -393,6 +393,7 @@ public class EnsyfiConstants {
     public static final String PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_USER_TYPE_ID = "group_user_type";
     public static final String PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_MEMBER_ID = "group_member_id";
     public static final String PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_STUDENT_CLASS_ID = "class_id";
+    public static final String PARAMS_GROUP_NOTIFICATIONS_TYPE_NOTIFICATION = "notification_type";
 
     //On Duty Approval
     public static final String PARAMS_OD_APPROVAL_STATUS = "status";

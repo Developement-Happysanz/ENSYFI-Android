@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
+import com.palprotech.ensyfi.activity.adminmodule.GroupNotificationAdminViewActivity;
 import com.palprotech.ensyfi.activity.general.CircularActivity;
 import com.palprotech.ensyfi.activity.general.EventsActivity;
 import com.palprotech.ensyfi.activity.general.GroupingActivity;
@@ -272,7 +273,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 9) {
-            Intent navigationIntent = new Intent(this, GroupingActivity.class);
+            Intent navigationIntent = new Intent(this, GroupNotificationAdminViewActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 10) {

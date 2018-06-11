@@ -186,16 +186,27 @@
 
         </RelativeLayout>
 
-        <ListView
-            android:id="@+id/listView_members"
+        <ScrollView
+            android:id="@+id/ScrollView01"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@id/add_members"
-            android:layout_below="@id/attendrollnum"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fadeScrollbars="false"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
-            android:divider="@color/white"
-            android:dividerHeight="0dp" />
+            android:layout_below="@+id/attendrollnum"
+            android:layout_above="@+id/add_members">
+
+
+            <LinearLayout
+                android:id="@+id/layout_member_list"
+                android:layout_marginBottom="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                android:orientation="vertical" />
+
+        </ScrollView>
 
         <TextView
             android:id="@+id/add_members"
