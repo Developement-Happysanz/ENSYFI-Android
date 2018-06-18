@@ -101,6 +101,19 @@ public class EnsyfiConstants {
     // STUDENT ATTENDANCE URL
     public static final String GET_STUDENT_ATTENDANCE_API = "/apiteacher/disp_Attendence/";
 
+// CLASS TEACHER ATTENDANCE URL
+    public static final String GET_CLASS_TEACHER_ATTENDANCE_VIEW = "/apiteacher/disp_Attendence_classteacher/";
+    public static final String GET_CLASS_TEACHER_ATTENEE_VIEW = "/apiteacher/list_Studentattend_classteacher/";
+    public static final String SEND_ATTENDANCE_VIEW = "/apiteacher/send_attendance_parents/";
+
+
+    // CLASS TEACHER CLASSTEXT & HOMEWORK URL
+    public static final String GET_CLASS_TEACHER_CT_HW_OVERVIEW = "/apiteacher/daywisect_homework/";
+    public static final String GET_CLASS_TEACHER_CT_HW_DAYWISE = "/apiteacher/daywisect_allhomework/";
+    public static final String GET_CLASS_TEACHER_CT_HW_SEND_ALL = "/apiteacher/send_allhw_parents/";
+    public static final String GET_CLASS_TEACHER_CT_HW_SEND_SINGLE = "/apiteacher/send_singlehw_parents/";
+
+
     //TEACHER'S URL
     public static final String GET_TEACHERS_CLASS_ATTENDANCE_API = "/apiteacher/sync_Attendance/";
     public static final String GET_TEACHERS_CLASS_ATTENDANCE_HISTORY_API = "/apiteacher/sync_Attendancehistory/";
@@ -339,6 +352,17 @@ public class EnsyfiConstants {
 
     //Event Organiser
     public static final String PARAM_EVENT_ID = "event_id";
+
+    //Teacher's Class Teacher Attendance view
+    public static final String KEY_ATTENDANCE_ID = "attend_id";
+    public static final String KEY_ATTENDANCE_MESSAGE_TYPE = "msg_type";
+
+    //Teacher's Class Teacher Attendance view
+    public static final String CT_HW_CLASS_ID = "class_id";
+    public static final String CT_HW_HOMEWORK_DATE = "hw_date";
+    public static final String CT_HW_HOMEWORK_CREATED_DATE = "hw_created_date";
+    public static final String CT_HW_HOMEWORK_SEND_TYPE = "msg_type";
+    public static final String CT_HW_HOMEWORK_ID = "hw_id";
 
     //Teacher's Class Students Attendance
     public static final String KEY_ATTENDANCE_AC_YEAR = "ac_year";

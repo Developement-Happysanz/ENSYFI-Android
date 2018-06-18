@@ -89,6 +89,7 @@ public class GroupNotificationUpdateActivity extends AppCompatActivity implement
             groupTitleDisp.setVisibility(View.VISIBLE);
             groupLeadDisp.setVisibility(View.VISIBLE);
             groupStatusDisp.setVisibility(View.VISIBLE);
+            viewMembers.setVisibility(View.VISIBLE);
         } else {
             txtGroupTitle.setVisibility(View.VISIBLE);
             spnGroupLeadList.setVisibility(View.VISIBLE);
@@ -97,6 +98,7 @@ public class GroupNotificationUpdateActivity extends AppCompatActivity implement
             groupTitleDisp.setVisibility(View.GONE);
             groupLeadDisp.setVisibility(View.GONE);
             groupStatusDisp.setVisibility(View.GONE);
+            viewMembers.setVisibility(View.GONE);
         }
     }
 

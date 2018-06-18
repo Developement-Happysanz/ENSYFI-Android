@@ -58,8 +58,8 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
     private ImageView imgNavProfileImage;
     private ArrayAdapter<String> navListAdapter;
     private String[] values = {"PROFILE", "ATTENDANCE", "CLASS TEST & HOMEWORK", "EXAM & RESULT", "EXAM DUTY", "TIME TABLE", "EVENT", "CIRCULAR", "ON DUTY", "NOTIFICATION", "APPLY LEAVE", "HOLIDAY CALENDAR", "SETTINGS", "SYNC", "SIGN OUT"};
-    TextView navUserProfileName = null;
-    LinearLayout dashAttendance, dashTimeTable, dashClassTest, dashExam, dashEvent, dashCommunication;
+    TextView navUserProfileName = null, classAttendanceInfo, classWorkInfo;
+    LinearLayout dashAttendance, dashTimeTable, dashClassTest, dashExam, dashEvent, dashCommunication, classinfo;
     private String mCurrentUserProfileUrl = "";
     Context context;
     private DeleteTableRecords deleteTableRecords;
@@ -94,6 +94,28 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
         Log.d(TAG, "initializin the views");
         Log.d(TAG, "initializing view pager");
         navUserProfileName = (TextView) findViewById(R.id.user_profile_name);
+
+        classinfo = (LinearLayout) findViewById(R.id.class_info);
+        classAttendanceInfo = (TextView) findViewById(R.id.class_attendance_info);
+        classAttendanceInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ClassTeacherAttendanceView.class);
+                startActivity(intent);
+            }
+        });
+        classWorkInfo = (TextView) findViewById(R.id.class_work_info);
+        classWorkInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ClassTeacherCtHwOverallView.class);
+                startActivity(intent);
+            }
+        });
+
+        if (PreferenceStorage.getClassTeacher(this).equalsIgnoreCase("")) {
+            classinfo.setVisibility(View.GONE);
+        }
 
         dashAttendance = (LinearLayout) findViewById(R.id.attendance);
         dashClassTest = (LinearLayout) findViewById(R.id.class_test);

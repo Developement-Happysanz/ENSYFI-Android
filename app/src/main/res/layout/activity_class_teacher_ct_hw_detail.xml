@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/tlbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/appColor"
+            android:minHeight="?android:attr/actionBarSize" />
+
+        <ImageView
+            android:id="@+id/back_res"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:minHeight="?android:attr/actionBarSize"
+            android:paddingLeft="15dp"
+            android:src="@drawable/ic_arrow_back_white_48dp" />
+
+        <TextView
+            android:id="@+id/tvtitletext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:minHeight="?android:attr/actionBarSize"
+            android:paddingLeft="10dp"
+            android:text="Work Detail"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/actionbarTextSize" />
+
+        <ImageView
+            android:id="@+id/send"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:layout_alignParentRight="true"
+            android:padding="10dp"
+            android:src="@drawable/grouping_send" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tlbar"
+        android:background="@color/background_grey">
+
+        <TextView
+            android:id="@+id/ct_hw_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="Title"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/txt_ct_hw_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/ct_hw_title"
+            android:layout_alignLeft="@id/txt_ct_hw_teacher_name"
+            android:layout_alignTop="@id/ct_hw_title"
+            android:layout_toRightOf="@id/ct_hw_title"
+            android:gravity="center"
+            android:text="DD-MM-YYYY"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/ct_hw_subject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/ct_hw_title"
+            android:layout_below="@id/ct_hw_title"
+            android:layout_marginTop="10dp"
+            android:text="Subject"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/txt_ct_hw_subject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/txt_ct_hw_teacher_name"
+            android:layout_alignTop="@id/ct_hw_subject"
+            android:layout_toRightOf="@id/ct_hw_subject"
+            android:text="000"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/ct_hw_teacher_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/ct_hw_title"
+            android:layout_below="@id/ct_hw_subject"
+            android:layout_marginTop="10dp"
+            android:text="Teacher Name"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/txt_ct_hw_teacher_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/ct_hw_teacher_name"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/ct_hw_teacher_name"
+            android:text="ABC"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/ct_hw_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/ct_hw_title"
+            android:layout_below="@id/txt_ct_hw_teacher_name"
+            android:layout_marginTop="10dp"
+            android:text="Type"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/txt_ct_hw_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/txt_ct_hw_teacher_name"
+            android:layout_alignTop="@+id/ct_hw_type"
+            android:layout_toRightOf="@id/ct_hw_type"
+            android:text="100"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/ct_hw_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/ct_hw_title"
+            android:layout_below="@id/ct_hw_type"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"
+            android:text="Description"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/txt_ct_hw_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/txt_ct_hw_teacher_name"
+            android:layout_alignTop="@+id/ct_hw_description"
+            android:layout_toRightOf="@id/ct_hw_description"
+            android:text="ABCDEFGH"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <RelativeLayout
+            android:id="@+id/report_popup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:visibility="gone"
+            android:background="@drawable/popup_btn"
+            android:layout_centerInParent="true">
+
+            <ImageView
+                android:id="@+id/close_popup"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:padding="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/ic_close"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true">
+
+                <TextView
+                    android:id="@+id/sms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:drawableLeft="@drawable/grouping_unchecked"
+                    android:text="SMS"
+                    android:drawablePadding="10dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/mail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/sms"
+                    android:layout_marginLeft="40dp"
+                    android:drawablePadding="10dp"
+                    android:layout_alignTop="@+id/sms"
+                    android:drawableLeft="@drawable/grouping_unchecked"
+                    android:text="Mail"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/notification"
+                    android:layout_width="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/sms"
+                    android:drawablePadding="10dp"
+                    android:drawableLeft="@drawable/grouping_unchecked"
+                    android:text="Notification"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"/>
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/send_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_square_fill_color"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginTop="200dp"
+                android:layout_marginBottom="10dp"
+                android:layout_centerHorizontal="true"
+                android:text="SEND "
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
