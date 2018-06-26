@@ -53,7 +53,7 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
     boolean doubleBackToExitPressedOnce = false;
     private ImageView imgNavProfileImage;
     private ArrayAdapter<String> navListAdapter;
-    private String[] values = {"PROFILE", "STUDENTS", "TEACHERS", "PARENTS", "CLASSES", "EXAM", "RESULT", "EVENTS", "CIRCULAR", "FEES STATUS", "ON DUTY", "NOTIFICATIONS", "LEAVE REQUESTS", "HOLIDAY CALENDAR", "SETTINGS", "SIGN OUT"};
+    private String[] values = {"Profile", "Students", "Teachers", "Parents", "Classes", "Exam", "Result", "Events", "Circular", "Fee Status", "On Duty", "Notifications", "Leave Requests", "Settings", "Sign Out"};
     TextView navUserProfileName = null;
     LinearLayout students, teachers, parents, classes, exams, results, events, communication;
     private String mCurrentUserProfileUrl = "";
@@ -282,7 +282,7 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 8) {
-            Intent navigationIntent = new Intent(this, CircularMasterListActivity.class);
+            Intent navigationIntent = new Intent(this, CircularActivity.class);
 //            Intent navigationIntent = new Intent(this, CircularActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
@@ -295,22 +295,24 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 11) {
-            Intent navigationIntent = new Intent(this, GroupNotificationAdminViewActivity.class);
+            Intent navigationIntent = new Intent(this, GroupingActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 12) {
             Intent navigationIntent = new Intent(this, LeaveStatusActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 13) {
-            Intent navigationIntent = new Intent(this, LeaveCalendarActivity.class);
-            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(navigationIntent);
-        } else if (position == 14) {
+        }
+//        else if (position == 13) {
+//            Intent navigationIntent = new Intent(this, LeaveCalendarActivity.class);
+//            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            startActivity(navigationIntent);
+//        }
+        else if (position == 13) {
             Intent navigationIntent = new Intent(this, ChangePasswordActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 15) {
+        } else if (position == 14) {
             Log.d(TAG, "Perform Logout");
             doLogout();
         }

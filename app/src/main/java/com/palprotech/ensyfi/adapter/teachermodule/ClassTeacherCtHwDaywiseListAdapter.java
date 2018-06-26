@@ -87,7 +87,12 @@ public class ClassTeacherCtHwDaywiseListAdapter extends BaseAdapter {
 
         holder.classTestTeacherName.setText(": " + classTeacherCtHwDaywise.get(position).getName());
         holder.txtclassTestSubject.setText(": " + classTeacherCtHwDaywise.get(position).getSubject_name());
-        holder.txtclassTestType.setText(": " + classTeacherCtHwDaywise.get(position).getHw_type());
+
+        if (classTeacherCtHwDaywise.get(position).getHw_type().equalsIgnoreCase("HT")) {
+            holder.txtclassTestType.setText(": Classtest");
+        } else {
+            holder.txtclassTestType.setText(": Homework");
+        }
 
         if (classTeacherCtHwDaywise.get(position).getSend_option_status().equalsIgnoreCase("1")) {
             holder.sentLayout.setVisibility(View.VISIBLE);

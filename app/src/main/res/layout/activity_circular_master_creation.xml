@@ -21,9 +21,25 @@
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:contentDescription="@string/arrow_back"
             android:minHeight="?android:attr/actionBarSize"
-            android:paddingLeft="15dp"
+            android:padding="5dp"
             android:src="@drawable/ic_arrow_back_white_48dp" />
+
+        <TextView
+            android:id="@+id/tvtitletext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/back_res"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:minHeight="?android:attr/actionBarSize"
+            android:text="Circular"
+            android:textColor="@color/white"
+            android:textSize="@dimen/menuTextSize"
+            android:textStyle="bold" />
+
 
         <ImageView
             android:id="@+id/icon"
@@ -33,20 +49,6 @@
             android:layout_toRightOf="@id/back_res"
             android:minHeight="?android:attr/actionBarSize"
             android:src="@drawable/ab_logo" />
-
-        <TextView
-            android:id="@+id/tvtitletext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="sans-serif-medium"
-            android:gravity="center"
-            android:minHeight="?android:attr/actionBarSize"
-            android:padding="5dp"
-            android:text="Circular"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:textSize="@dimen/actionbarTextSize" />
 
         <ImageView
             android:id="@+id/save_checked"
@@ -78,7 +80,7 @@
                 android:layout_marginTop="10dp"
                 android:text="Title"
                 android:textColor="@color/appColor"
-                android:textSize="22dp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <EditText
@@ -88,6 +90,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:focusable="true"
+                android:textSize="14sp"
                 android:focusableInTouchMode="true"
                 android:digits="aãâáàbcçdeéfghiíjklmnoõôóòpqrstuvwxyzAÃÂÁÀBCÇDEÉFGHIÍJKLMNOÕÔÓÒPQRSTUVWXYZ1234567890@-_'+=(){}[]*%$₹£¢€¥#!?,.;: /?\\¡¿[]•∆π™℅¶♂♀°℃®©\◆●【】&lt;&gt;&amp;" />
 
@@ -98,7 +101,7 @@
                 android:layout_marginTop="10dp"
                 android:text="Details"
                 android:textColor="@color/appColor"
-                android:textSize="22dp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <EditText
@@ -110,6 +113,7 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:clickable="false"
+                android:textSize="14sp"
                 android:digits="aãâáàbcçdeéfghiíjklmnoõôóòpqrstuvwxyzAÃÂÁÀBCÇDEÉFGHIÍJKLMNOÕÔÓÒPQRSTUVWXYZ1234567890@-_'+=(){}[]*%$₹£¢€¥#!?,.;\n: /?\\¡¿[]•∆π™℅¶♂♀°℃®©\◆●【】&lt;&gt;&amp;"
                 android:selectAllOnFocus="false" />
 

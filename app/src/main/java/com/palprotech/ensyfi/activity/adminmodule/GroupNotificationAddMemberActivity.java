@@ -188,6 +188,7 @@ public class GroupNotificationAddMemberActivity extends AppCompatActivity implem
                 jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_ID, groups.getId());
                 jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_MEMBER_ID, rollRdList.toString().replace("[", "").replace("]", ""));
                 jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_USER_TYPE_ID, roleId);
+                jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_CLASS_SEC_ID, classSectionId);
                 jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_CREATION_STATUS, groups.getStatus());
 
             } catch (JSONException e) {

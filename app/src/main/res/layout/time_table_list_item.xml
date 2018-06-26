@@ -22,7 +22,7 @@
             android:paddingTop="3dp"
             android:text="Computer Science"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/class_name"
@@ -36,7 +36,7 @@
             android:text="XII"
             android:textAllCaps="true"
             android:textColor="@color/black"
-            android:textSize="18dp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/section_name"
@@ -50,7 +50,7 @@
             android:text="A1"
             android:textAllCaps="true"
             android:textColor="@color/black"
-            android:textSize="18dp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/teacher_name"
@@ -62,7 +62,7 @@
             android:layout_toLeftOf="@id/vr_line"
             android:text="Balamuralikrishna"
             android:textColor="@color/black"
-            android:textSize="18dp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/hz_line"
@@ -95,7 +95,8 @@
             android:paddingBottom="20dp"
             android:text="01"
             android:textColor="@color/black"
-            android:textSize="30sp" />
+            android:textStyle="bold"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/txtPeriod"
@@ -108,8 +109,9 @@
             android:layout_marginBottom="5dp"
             android:gravity="bottom|center_horizontal"
             android:text="Period"
+            android:textStyle="bold"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/period_start_time"
@@ -121,7 +123,7 @@
             android:gravity="center_vertical"
             android:text="9:00"
             android:textColor="@color/black"
-            android:textSize="15dp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/period_end_time"
@@ -133,7 +135,7 @@
             android:gravity="center_vertical"
             android:text="10:00"
             android:textColor="@color/black"
-            android:textSize="15dp" />
+            android:textSize="14sp" />
 
         <ImageView
             android:id="@+id/period_duration"

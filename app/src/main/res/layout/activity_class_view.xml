@@ -21,23 +21,24 @@
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:contentDescription="@string/arrow_back"
             android:minHeight="?android:attr/actionBarSize"
-            android:paddingLeft="15dp"
+            android:padding="5dp"
             android:src="@drawable/ic_arrow_back_white_48dp" />
 
         <TextView
             android:id="@+id/tvtitletext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@+id/back_res"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:minHeight="?android:attr/actionBarSize"
-            android:paddingLeft="10dp"
             android:text="Student List"
-            android:textAllCaps="true"
             android:textColor="@color/white"
-            android:textSize="@dimen/actionbarTextSize" />
+            android:textSize="@dimen/menuTextSize"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 
@@ -58,7 +59,7 @@
             android:overlapAnchor="false"
             android:spinnerMode="dropdown"
             android:textColor="@color/text_gray"
-            android:textSize="15sp" />
+            android:textSize="14sp" />
 
         <Spinner
             android:id="@+id/section_list_spinner"
@@ -73,7 +74,7 @@
             android:overlapAnchor="false"
             android:spinnerMode="dropdown"
             android:textColor="@color/text_gray"
-            android:textSize="15sp" />
+            android:textSize="14sp" />
 
     </RelativeLayout>
 
@@ -94,7 +95,7 @@
             <TextView
                 android:id="@+id/ClassStudentRegId"
                 android:layout_width="50dp"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:layout_marginLeft="2dp"
                 android:background="@color/appColor"
                 android:textColor="@color/white"
@@ -102,12 +103,12 @@
                 android:layout_alignBottom="@+id/ClassStdAdmnNo"
                 android:gravity="center"
                 android:text="S.No."
-                android:textSize="18dp"/>
+                android:textSize="16sp"/>
 
             <TextView
                 android:id="@+id/ClassStudentName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:layout_toRightOf="@+id/ClassStudentRegId"
                 android:layout_toLeftOf="@+id/ClassStdAdmnNo"
                 android:layout_marginLeft="2dp"
@@ -117,13 +118,13 @@
                 android:text="Student Name"
                 android:background="@color/appColor"
                 android:textColor="@color/white"
-                android:textSize="18dp"/>
+                android:textSize="16sp"/>
 
             <TextView
                 android:id="@+id/ClassStdAdmnNo"
                 android:layout_width="130dp"
                 android:layout_alignParentRight="true"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:text="Admission No."
                 android:gravity="center"
                 android:layout_marginBottom="2dp"
@@ -131,7 +132,7 @@
                 android:layout_marginRight="2dp"
                 android:background="@color/appColor"
                 android:textColor="@color/white"
-                android:textSize="18dp"/>
+                android:textSize="16sp"/>
         </RelativeLayout>
 
         <ListView

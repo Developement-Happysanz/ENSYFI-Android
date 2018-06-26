@@ -22,6 +22,7 @@ import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
 import com.palprotech.ensyfi.servicehelpers.ServiceHelper;
 import com.palprotech.ensyfi.serviceinterfaces.IServiceListener;
+import com.palprotech.ensyfi.utils.AppValidator;
 import com.palprotech.ensyfi.utils.CommonUtils;
 import com.palprotech.ensyfi.utils.EnsyfiConstants;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
@@ -91,9 +92,9 @@ public class ClassTeacherAttendanceOverview extends AppCompatActivity implements
             }
         });
         if (classTeacherAttendance.getSent_status().equalsIgnoreCase("1")) {
-            sendReport.setVisibility(View.VISIBLE);
-        } else {
             sendReport.setVisibility(View.GONE);
+        } else {
+            sendReport.setVisibility(View.VISIBLE);
         }
         viewAttendance = (LinearLayout) findViewById(R.id.view_attendance);
         viewAttendance.setOnClickListener(new View.OnClickListener() {
@@ -185,7 +186,19 @@ public class ClassTeacherAttendanceOverview extends AppCompatActivity implements
         }
         if (v == sendNotification) {
             checkSpinner = "send";
-            sendReportService();
+            if (validateFields()) {
+                sendReportService();
+
+            }
+        }
+    }
+
+    private boolean validateFields() {
+        if (!(smsSelect || mailSelect || notificationSelect)) {
+            AlertDialogHelper.showSimpleAlertDialog(this, "Select at least one mode");
+            return false;
+        } else {
+            return true;
         }
     }
 

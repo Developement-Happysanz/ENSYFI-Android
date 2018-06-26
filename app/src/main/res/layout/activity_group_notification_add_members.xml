@@ -34,15 +34,14 @@
             android:id="@+id/tvtitletext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@+id/back_res"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:minHeight="?android:attr/actionBarSize"
-            android:paddingRight="10dp"
             android:text="Add member"
-            android:textAllCaps="true"
             android:textColor="@color/white"
-            android:textSize="20dp" />
+            android:textSize="@dimen/menuTextSize"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 
@@ -64,7 +63,7 @@
                 android:gravity="center"
                 android:text="Title                 :"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/group_title_txt_disp"
@@ -79,7 +78,7 @@
                 android:hint="ABBDKJANKJDBKAJDN"
                 android:singleLine="true"
                 android:textColor="@color/black"
-                android:textSize="18dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/lead_type"
@@ -91,7 +90,7 @@
                 android:gravity="center"
                 android:text="Group Lead    :"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/group_lead_spinner_txt"
@@ -106,7 +105,7 @@
                 android:hint="ABBDKJANKJDBKAJDN"
                 android:singleLine="true"
                 android:textColor="@color/black"
-                android:textSize="18dp" />
+                android:textSize="16sp" />
 
         </RelativeLayout>
 
@@ -133,14 +132,14 @@
                 android:layout_below="@+id/group_member_type_spinner"
                 android:layout_marginLeft="80dp"
                 android:layout_marginRight="80dp"
-                android:textSize="20dp"
+                android:textSize="16sp"
                 android:visibility="gone" />
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/attendrollnum"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="35dp"
             android:layout_below="@id/spinner_layout"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
@@ -150,19 +149,19 @@
             <TextView
                 android:id="@+id/name"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="35dp"
                 android:layout_alignParentLeft="true"
                 android:layout_toLeftOf="@+id/id"
                 android:background="@color/appColor"
                 android:gravity="center"
                 android:text="Name"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/id"
                 android:layout_width="125dp"
-                android:layout_height="50dp"
+                android:layout_height="35dp"
                 android:layout_marginLeft="1dp"
                 android:layout_toLeftOf="@+id/group_status"
                 android:layout_weight="0.05"
@@ -170,7 +169,7 @@
                 android:gravity="center"
                 android:text="ID"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/group_status"
@@ -182,7 +181,7 @@
                 android:gravity="center"
                 android:text="Status"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
 
         </RelativeLayout>
 
@@ -215,7 +214,8 @@
             android:layout_alignParentBottom="true"
             android:background="@color/appColor"
             android:gravity="center"
-            android:text="ADD"
+            android:text="Add"
+            android:textSize="16sp"
             android:textColor="@color/white" />
 
     </RelativeLayout>

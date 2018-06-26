@@ -146,7 +146,6 @@ public class ClassTeacherCtHwDaywiseView extends AppCompatActivity implements IS
         intent.putExtra("attendanceObj", classTeacherCtHwDaywise);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
-        finish();
     }
 
     private class HttpAsyncTask extends AsyncTask<String, Void, Void> {
@@ -291,7 +290,18 @@ public class ClassTeacherCtHwDaywiseView extends AppCompatActivity implements IS
         }
         if (v == sendNotification) {
             checkSpinner = "send";
-            sendReportService();
+            if (validateFields()) {
+                sendReportService();
+            }
+        }
+    }
+
+    private boolean validateFields() {
+        if (!(smsSelect || mailSelect || notificationSelect)) {
+            AlertDialogHelper.showSimpleAlertDialog(this, "Select at least one mode");
+            return false;
+        } else {
+            return true;
         }
     }
 

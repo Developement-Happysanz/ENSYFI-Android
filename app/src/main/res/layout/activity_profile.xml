@@ -26,23 +26,25 @@
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:contentDescription="@string/arrow_back"
                 android:minHeight="?android:attr/actionBarSize"
-                android:paddingLeft="15dp"
+                android:padding="5dp"
                 android:src="@drawable/ic_arrow_back_white_48dp" />
 
             <TextView
                 android:id="@+id/tvtitletext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
+                android:layout_toRightOf="@+id/back_res"
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center"
                 android:minHeight="?android:attr/actionBarSize"
-                android:paddingLeft="10dp"
                 android:text="Profile"
-                android:textAllCaps="true"
                 android:textColor="@color/white"
-                android:textSize="@dimen/actionbarTextSize" />
+                android:textSize="@dimen/menuTextSize"
+                android:textStyle="bold" />
+
         </RelativeLayout>
         <!--End-->
 
@@ -111,7 +113,7 @@
                 android:layout_marginLeft="20dp"
                 android:text="@string/user_name"
                 android:textColor="@color/appColor"
-                android:textSize="18dp" />
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/userid"
@@ -119,6 +121,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
+                android:textSize="14sp"
                 android:digits="aãâáàbcçdeéfghiíjklmnoõôóòpqrstuvwxyzAÃÂÁÀBCÇDEÉFGHIÍJKLMNOÕÔÓÒPQRSTUVWXYZ1234567890@-_'+=(){}[]*%$₹£¢€¥#!?,.;: /?\\¡¿[]•∆π™℅¶♂♀°℃®©\◆●【】&lt;&gt;&amp;"
                 android:focusableInTouchMode="true"
                 android:inputType="textEmailAddress" />
@@ -131,7 +134,7 @@
                 android:layout_marginTop="20dp"
                 android:text="Change Password"
                 android:textColor="@color/appColor"
-                android:textSize="18dp" />
+                android:textSize="16sp" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -188,7 +191,7 @@
                 android:gravity="center"
                 android:text="Guardian"
                 android:textColor="@color/black"
-                android:textSize="15dp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/ic_studentprofile"
@@ -199,7 +202,7 @@
                 android:gravity="center"
                 android:text="Student"
                 android:textColor="@color/black"
-                android:textSize="15dp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/ic_feestatus"
@@ -210,7 +213,7 @@
                 android:gravity="center"
                 android:text="Fees"
                 android:textColor="@color/black"
-                android:textSize="15dp" />
+                android:textSize="14sp" />
 
         </LinearLayout>
         <!--End-->
@@ -234,7 +237,7 @@
                 android:gravity="center"
                 android:text="Personal Info"
                 android:textColor="@color/black"
-                android:textSize="15dp" />
+                android:textSize="14sp" />
 
         </RelativeLayout>
 

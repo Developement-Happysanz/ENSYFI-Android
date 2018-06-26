@@ -22,23 +22,24 @@
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:contentDescription="@string/arrow_back"
             android:minHeight="?android:attr/actionBarSize"
-            android:paddingLeft="15dp"
+            android:padding="5dp"
             android:src="@drawable/ic_arrow_back_white_48dp" />
 
         <TextView
             android:id="@+id/tvtitletext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@+id/back_res"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:minHeight="?android:attr/actionBarSize"
-            android:paddingLeft="10dp"
             android:text=""
-            android:textAllCaps="true"
             android:textColor="@color/white"
-            android:textSize="@dimen/actionbarTextSize" />
+            android:textSize="@dimen/menuTextSize"
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/addMarks"
@@ -95,7 +96,7 @@
                     android:text=""
                     android:textAllCaps="true"
                     android:textColor="@color/white"
-                    android:textSize="20dp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
                 <!--End of Title Part-->
 
@@ -116,7 +117,7 @@
                         android:layout_marginTop="20dp"
                         android:text="Topic :"
                         android:textColor="@color/appColor"
-                        android:textSize="23sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -129,7 +130,7 @@
                         android:layout_marginTop="10dp"
                         android:text=""
                         android:textColor="@color/black"
-                        android:textSize="18dp" />
+                        android:textSize="14sp" />
                 </LinearLayout>
                 <!--End of Topic portion-->
 
@@ -170,7 +171,7 @@
                             android:layout_marginTop="20dp"
                             android:text="Test Date :"
                             android:textColor="@color/appColor"
-                            android:textSize="23sp"
+                            android:textSize="14sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -214,7 +215,7 @@
                             android:layout_marginTop="20dp"
                             android:text="Due Date :"
                             android:textColor="@color/appColor"
-                            android:textSize="23sp"
+                            android:textSize="16sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -226,7 +227,7 @@
                             android:layout_marginTop="10dp"
                             android:text=""
                             android:textColor="@color/black"
-                            android:textSize="18sp" />
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/underlineDueDate"
@@ -268,7 +269,7 @@
                         android:layout_marginTop="20dp"
                         android:text="Description : "
                         android:textColor="@color/appColor"
-                        android:textSize="23sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -280,7 +281,7 @@
                         android:layout_marginTop="10dp"
                         android:text="Description :"
                         android:textColor="@color/black"
-                        android:textSize="18sp" />
+                        android:textSize="14sp" />
                 </LinearLayout>
 
                 <TextView

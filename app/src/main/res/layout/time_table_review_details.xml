@@ -20,9 +20,24 @@
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:contentDescription="@string/arrow_back"
             android:minHeight="?android:attr/actionBarSize"
-            android:paddingLeft="15dp"
+            android:padding="5dp"
             android:src="@drawable/ic_arrow_back_white_48dp" />
+
+        <TextView
+            android:id="@+id/tvtitletext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/back_res"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:minHeight="?android:attr/actionBarSize"
+            android:text="Notes"
+            android:textColor="@color/white"
+            android:textSize="@dimen/menuTextSize"
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/icon"
@@ -33,19 +48,6 @@
             android:minHeight="?android:attr/actionBarSize"
             android:src="@drawable/ab_logo" />
 
-        <TextView
-            android:id="@+id/tvtitletext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="sans-serif-medium"
-            android:gravity="center"
-            android:minHeight="?android:attr/actionBarSize"
-            android:padding="5dp"
-            android:text="Notes"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:textSize="@dimen/actionbarTextSize" />
 
     </RelativeLayout>
 
@@ -65,7 +67,7 @@
                 android:layout_marginTop="20dp"
                 android:text="Class"
                 android:textColor="@color/appColor"
-                android:textSize="22dp" />
+                android:textSize="16sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -87,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -95,7 +97,7 @@
                     android:layout_marginLeft="5dp"
                     android:text="-"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="14sp" />
 
 
                 <TextView
@@ -104,7 +106,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
@@ -123,7 +125,7 @@
                 android:layout_marginTop="20dp"
                 android:text="Subject"
                 android:textColor="@color/appColor"
-                android:textSize="22dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/txtsubject_name"
@@ -132,7 +134,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -149,7 +151,7 @@
                 android:layout_marginTop="20dp"
                 android:text="Period"
                 android:textColor="@color/appColor"
-                android:textSize="22dp" />
+                android:textSize="16sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -164,7 +166,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/txttime_date"
@@ -173,7 +175,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
@@ -192,7 +194,7 @@
                 android:layout_marginTop="20dp"
                 android:text="Details"
                 android:textColor="@color/appColor"
-                android:textSize="22dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/txtcomments"
@@ -202,7 +204,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -219,7 +221,7 @@
                 android:layout_marginTop="20dp"
                 android:text="Remarks"
                 android:textColor="@color/appColor"
-                android:textSize="22dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/txtremarks"
@@ -229,7 +231,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:layout_width="match_parent"

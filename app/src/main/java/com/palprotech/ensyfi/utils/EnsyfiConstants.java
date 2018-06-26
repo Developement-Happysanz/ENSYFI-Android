@@ -415,6 +415,7 @@ public class EnsyfiConstants {
     public static final String PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_LEAD_ID = "group_lead_id";
     public static final String PARAMS_GROUP_NOTIFICATIONS_CREATION_STATUS = "status";
     public static final String PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_USER_TYPE_ID = "group_user_type";
+    public static final String PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_CLASS_SEC_ID = "class_sec_id";
     public static final String PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_MEMBER_ID = "group_member_id";
     public static final String PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_STUDENT_CLASS_ID = "class_id";
     public static final String PARAMS_GROUP_NOTIFICATIONS_TYPE_NOTIFICATION = "notification_type";

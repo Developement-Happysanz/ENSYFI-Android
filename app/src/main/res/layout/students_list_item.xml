@@ -22,7 +22,7 @@
             android:gravity="center"
             android:text="ID"
             android:textColor="@color/black"
-            android:textSize="15sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/txt_studentName"
@@ -37,7 +37,7 @@
             android:gravity="center"
             android:text="Student Name"
             android:textColor="@color/black"
-            android:textSize="15sp" />
+            android:textSize="14sp" />
 
         <Spinner
             android:id="@+id/class_attendance_spinner"
@@ -52,7 +52,7 @@
             android:overlapAnchor="false"
             android:spinnerMode="dialog"
             android:textColor="@color/text_gray"
-            android:textSize="15sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/txt_tblPKey"
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="no"
-            android:textSize="16dp"
+            android:textSize="14sp"
             android:visibility="gone" />
 
     </RelativeLayout>

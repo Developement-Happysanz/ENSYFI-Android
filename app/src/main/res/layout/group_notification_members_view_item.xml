@@ -28,7 +28,7 @@
                 android:background="@color/white"
                 android:layout_alignParentLeft="true"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
 
 
@@ -42,7 +42,7 @@
                 android:gravity="center"
                 android:text="Board Member"
                 android:textColor="@color/black"
-                android:textSize="18sp"/>
+                android:textSize="16sp"/>
 
 
         </RelativeLayout>

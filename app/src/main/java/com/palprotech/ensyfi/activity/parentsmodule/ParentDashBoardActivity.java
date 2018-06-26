@@ -52,7 +52,7 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
     boolean doubleBackToExitPressedOnce = false;
     private ImageView imgNavProfileImage;
     private ArrayAdapter<String> navListAdapter;
-    private String[] values = {"PROFILE", "ATTENDANCE", "CLASS TEST & HOMEWORK", "EXAM & RESULT", "TIME TABLE", "EVENT", "CIRCULAR", "STUDENT INFO", "ON DUTY", "HOLIDAY CALENDAR", "SETTINGS", "SIGN OUT"};
+    private String[] values = {"Profile", "Attendance", "Class Test & Homework", "Exam & Result", "Time Table", "Events", "Circular", "Student Info", "On Duty", "Settings", "Sign Out"};
     TextView navUserProfileName = null;
     LinearLayout dashAttendance, dashTimeTable, dashClassTest, dashExam, dashEvent, dashCommunication;
     private String mCurrentUserProfileUrl = "";
@@ -273,15 +273,17 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
             Intent navigationIntent = new Intent(this, OnDutyActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 9) {
-            Intent navigationIntent = new Intent(this, LeaveCalendarActivity.class);
-            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(navigationIntent);
-        } else if (position == 10) {
+        }
+//        else if (position == 9) {
+//            Intent navigationIntent = new Intent(this, LeaveCalendarActivity.class);
+//            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            startActivity(navigationIntent);
+//        }
+        else if (position == 9) {
             Intent navigationIntent = new Intent(this, ChangePasswordActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 11) {
+        } else if (position == 10) {
             Log.d(TAG, "Perform Logout");
             doLogout();
         }

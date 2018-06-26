@@ -21,23 +21,24 @@
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:contentDescription="@string/arrow_back"
             android:minHeight="?android:attr/actionBarSize"
-            android:paddingLeft="15dp"
+            android:padding="5dp"
             android:src="@drawable/ic_arrow_back_white_48dp" />
 
         <TextView
             android:id="@+id/tvtitletext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@+id/back_res"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:minHeight="?android:attr/actionBarSize"
-            android:paddingLeft="10dp"
             android:text="Work Detail"
-            android:textAllCaps="true"
             android:textColor="@color/white"
-            android:textSize="@dimen/actionbarTextSize" />
+            android:textSize="@dimen/menuTextSize"
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/send"
@@ -77,7 +78,7 @@
             android:gravity="center"
             android:text="DD-MM-YYYY"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/ct_hw_subject"
@@ -99,7 +100,7 @@
             android:layout_toRightOf="@id/ct_hw_subject"
             android:text="000"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/ct_hw_teacher_name"
@@ -121,7 +122,7 @@
             android:layout_toRightOf="@id/ct_hw_teacher_name"
             android:text="ABC"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/ct_hw_type"
@@ -143,7 +144,7 @@
             android:layout_toRightOf="@id/ct_hw_type"
             android:text="100"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/ct_hw_description"
@@ -166,7 +167,7 @@
             android:layout_toRightOf="@id/ct_hw_description"
             android:text="ABCDEFGH"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
         <RelativeLayout
             android:id="@+id/report_popup"

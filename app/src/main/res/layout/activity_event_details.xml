@@ -20,23 +20,25 @@
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:contentDescription="@string/arrow_back"
             android:minHeight="?android:attr/actionBarSize"
-            android:paddingLeft="15dp"
+            android:padding="5dp"
             android:src="@drawable/ic_arrow_back_white_48dp" />
 
         <TextView
             android:id="@+id/tvtitletext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@+id/back_res"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:minHeight="?android:attr/actionBarSize"
-            android:paddingLeft="10dp"
             android:text="Event Detail"
-            android:textAllCaps="true"
             android:textColor="@color/white"
-            android:textSize="@dimen/actionbarTextSize" />
+            android:textSize="@dimen/menuTextSize"
+            android:textStyle="bold" />
+
     </RelativeLayout>
 
 
@@ -71,7 +73,7 @@
             android:layout_centerInParent="true"
             android:layout_gravity="center"
             android:layout_toRightOf="@+id/loc"
-            android:paddingLeft="15dp"
+            android:paddingLeft="14sp"
             android:text="Location"
             android:textColor="@color/white" />
 
@@ -97,7 +99,7 @@
             android:layout_marginLeft="15dp"
             android:gravity="center"
             android:textColor="@color/white"
-            android:textSize="20dp" />
+            android:textSize="16sp" />
 
     </LinearLayout>
 
@@ -118,7 +120,8 @@
                 android:layout_marginTop="10dp"
                 android:text="DESCRIPTION"
                 android:textColor="@color/black"
-                android:textSize="25dp" />
+                android:textStyle="bold"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/eventdetail"

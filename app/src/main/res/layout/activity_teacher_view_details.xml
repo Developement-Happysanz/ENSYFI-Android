@@ -21,23 +21,25 @@
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:contentDescription="@string/arrow_back"
             android:minHeight="?android:attr/actionBarSize"
-            android:paddingLeft="15dp"
+            android:padding="5dp"
             android:src="@drawable/ic_arrow_back_white_48dp" />
 
         <TextView
             android:id="@+id/tvtitletext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@+id/back_res"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:minHeight="?android:attr/actionBarSize"
-            android:paddingLeft="10dp"
             android:text="Teacher Info"
-            android:textAllCaps="true"
             android:textColor="@color/white"
-            android:textSize="@dimen/actionbarTextSize" />
+            android:textSize="@dimen/menuTextSize"
+            android:textStyle="bold" />
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -85,7 +87,7 @@
                     android:text="Id                               :"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:textSize="18dp"/>
+                    android:textSize="16sp"/>
 
                 <TextView
                     android:id="@+id/txtTeacherid"
@@ -109,7 +111,7 @@
                     android:text="Name                        :"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:textSize="18dp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/txtTeacherName"
@@ -120,7 +122,7 @@
                     android:layout_toRightOf="@+id/TeacherName"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
-                    android:textSize="18dp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/TeacherGender"
@@ -132,7 +134,7 @@
                     android:text="Gender                      :"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:textSize="18dp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/txtTeacherGender"
@@ -143,7 +145,7 @@
                     android:layout_toRightOf="@+id/TeacherGender"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
-                    android:textSize="18dp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/TeacherAddress"
@@ -155,7 +157,7 @@
                     android:text="Address                    :"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:textSize="18dp"/>
+                    android:textSize="16sp"/>
 
                 <TextView
                     android:id="@+id/txtTeacherAddress"
@@ -166,7 +168,7 @@
                     android:layout_toRightOf="@+id/TeacherAddress"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
-                    android:textSize="18dp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/TeacherAge"
@@ -178,7 +180,7 @@
                     android:text="Age                            :"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:textSize="18dp" />
+                    android:textSize="16sp" />
 
 
                 <TextView
@@ -190,7 +192,7 @@
                     android:layout_toRightOf="@+id/TeacherAge"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
-                    android:textSize="18dp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/TeacherNationality"
@@ -202,7 +204,7 @@
                     android:text="Nationality                :"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:textSize="18dp"/>
+                    android:textSize="16sp"/>
 
 
                 <TextView
@@ -214,7 +216,7 @@
                     android:layout_toRightOf="@+id/TeacherNationality"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
-                    android:textSize="18dp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/TeacherReligion"
@@ -226,7 +228,7 @@
                     android:text="Religion                     :"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:textSize="18dp"/>
+                    android:textSize="16sp"/>
 
 
                 <TextView
@@ -238,7 +240,7 @@
                     android:layout_toRightOf="@+id/TeacherReligion"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
-                    android:textSize="18dp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/TeacherCaste"
@@ -250,7 +252,7 @@
                     android:text="Caste                         :"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:textSize="18dp"/>
+                    android:textSize="16sp"/>
 
                 <TextView
                     android:id="@+id/txtTeacherCaste"
@@ -262,7 +264,7 @@
                     android:layout_toRightOf="@+id/TeacherCaste"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
-                    android:textSize="18dp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/TeacherCommunity"
@@ -274,7 +276,7 @@
                     android:text="Community              :"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:textSize="18dp"/>
+                    android:textSize="16sp"/>
 
                 <TextView
                     android:id="@+id/txtTeacherCommunity"
@@ -286,7 +288,7 @@
                     android:layout_toRightOf="@+id/TeacherCommunity"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
-                    android:textSize="18dp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/TeacherSubject"
@@ -298,7 +300,7 @@
                     android:text="Handling Subject     :"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:textSize="18dp"/>
+                    android:textSize="16sp"/>
 
                 <TextView
                     android:id="@+id/txtTeacherSubject"
@@ -310,7 +312,7 @@
                     android:layout_toRightOf="@+id/TeacherSubject"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
-                    android:textSize="18dp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/ClassTeacher"
@@ -322,7 +324,7 @@
                     android:text="Class Teacher          :"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:textSize="18dp"/>
+                    android:textSize="16sp"/>
 
                 <TextView
                     android:id="@+id/txtClassTeacher"
@@ -334,7 +336,7 @@
                     android:layout_toRightOf="@+id/ClassTeacher"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
-                    android:textSize="18dp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/TeacherSectionName"
@@ -346,7 +348,7 @@
                     android:text="Class Section           :"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:textSize="18dp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/txtTeacherSectionName"
@@ -357,7 +359,7 @@
                     android:layout_toRightOf="@+id/TeacherSectionName"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
-                    android:textSize="18dp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/TeacherClassName"
@@ -369,7 +371,7 @@
                     android:text="Class Name              :"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:textSize="18dp"/>
+                    android:textSize="16sp"/>
 
                 <TextView
                     android:id="@+id/txtTeacherClassName"
@@ -380,7 +382,7 @@
                     android:layout_toRightOf="@+id/TeacherClassName"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
-                    android:textSize="18dp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/TeacherMobile"
@@ -392,7 +394,7 @@
                     android:text="Mobile                       :"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:textSize="18dp"/>
+                    android:textSize="16sp"/>
 
                 <TextView
                     android:id="@+id/txtTeacherMobile"
@@ -403,7 +405,7 @@
                     android:layout_toRightOf="@+id/TeacherMobile"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
-                    android:textSize="18dp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/TeacherSecondaryMobile"
@@ -415,7 +417,7 @@
                     android:text="Secondary Mobile   :"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:textSize="18dp"/>
+                    android:textSize="16sp"/>
 
                 <TextView
                     android:id="@+id/txtTeacherSecondaryMobile"
@@ -426,7 +428,7 @@
                     android:layout_toRightOf="@+id/TeacherSecondaryMobile"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
-                    android:textSize="18dp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/TeacherMail"
@@ -438,7 +440,7 @@
                     android:text="Mail                            :"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:textSize="18dp"/>
+                    android:textSize="16sp"/>
 
 
                 <TextView
@@ -450,7 +452,7 @@
                     android:layout_toRightOf="@+id/TeacherMail"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
-                    android:textSize="18dp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/TeacherSecondaryMail"
@@ -462,7 +464,7 @@
                     android:text="Secondary Mail        :"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:textSize="18dp"/>
+                    android:textSize="16sp"/>
 
                 <TextView
                     android:id="@+id/txtTeacherSecondaryMail"
@@ -473,7 +475,7 @@
                     android:layout_toRightOf="@+id/TeacherSecondaryMail"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
-                    android:textSize="18dp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/TeacherClassTaken"
@@ -485,7 +487,7 @@
                     android:text="Class Taken              :"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:textSize="18dp"/>
+                    android:textSize="16sp"/>
 
 
                 <TextView
@@ -497,7 +499,7 @@
                     android:layout_toRightOf="@+id/TeacherClassTaken"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
-                    android:textSize="18dp" />
+                    android:textSize="16sp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"

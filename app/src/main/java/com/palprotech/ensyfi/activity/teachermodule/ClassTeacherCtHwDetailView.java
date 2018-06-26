@@ -84,10 +84,14 @@ public class ClassTeacherCtHwDetailView extends AppCompatActivity implements ISe
         txtSubject = (TextView) findViewById(R.id.txt_ct_hw_subject);
         txtSubject.setText(": " + classTeacherCtHwDaywise.getSubject_name());
 
-        txtType = (TextView) findViewById(R.id.txt_ct_hw_teacher_name);
-        txtType.setText(": " + classTeacherCtHwDaywise.getHw_type());
+        txtType = (TextView) findViewById(R.id.txt_ct_hw_type);
+        if (classTeacherCtHwDaywise.getHw_type().equalsIgnoreCase("HT")) {
+            txtType.setText(": Classtest");
+        } else {
+            txtType.setText(": Homework");
+        }
 
-        txtName = (TextView) findViewById(R.id.txt_ct_hw_type);
+        txtName = (TextView) findViewById(R.id.txt_ct_hw_teacher_name);
         txtName.setText(": " + classTeacherCtHwDaywise.getName());
 
         txtDescription = (TextView) findViewById(R.id.txt_ct_hw_description);
@@ -164,7 +168,18 @@ public class ClassTeacherCtHwDetailView extends AppCompatActivity implements ISe
         }
         if (v == sendNotification) {
             checkSpinner = "send";
-            sendReportService();
+            if (validateFields()) {
+                sendReportService();
+            }
+        }
+    }
+
+    private boolean validateFields() {
+        if (!(smsSelect || mailSelect || notificationSelect)) {
+            AlertDialogHelper.showSimpleAlertDialog(this, "Select at least one mode");
+            return false;
+        } else {
+            return true;
         }
     }
 

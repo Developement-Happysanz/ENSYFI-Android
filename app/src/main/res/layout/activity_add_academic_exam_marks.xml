@@ -30,14 +30,14 @@
             android:id="@+id/tvtitletext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@+id/back_res"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:minHeight="?android:attr/actionBarSize"
             android:text="@string/title_exam_mark_entry"
-            android:textAllCaps="true"
             android:textColor="@color/white"
-            android:textSize="@dimen/actionbarTextSize" />
+            android:textSize="@dimen/menuTextSize"
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/btnSave"
@@ -130,7 +130,7 @@
             android:gravity="center"
             android:text="S.No."
             android:textColor="@color/white"
-            android:textSize="15dp" />
+            android:textSize="16dp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -143,7 +143,7 @@
             android:gravity="center"
             android:text="Name"
             android:textColor="@color/white"
-            android:textSize="15dp" />
+            android:textSize="16dp" />
 
         <TextView
             android:id="@+id/internalmarks"
@@ -155,7 +155,7 @@
             android:gravity="center"
             android:text="Internal"
             android:textColor="@color/white"
-            android:textSize="15dp" />
+            android:textSize="16dp" />
 
         <TextView
             android:id="@+id/externalmarks"
@@ -167,7 +167,7 @@
             android:gravity="center"
             android:text="External"
             android:textColor="@color/white"
-            android:textSize="15dp" />
+            android:textSize="16dp" />
 
     </RelativeLayout>
 
