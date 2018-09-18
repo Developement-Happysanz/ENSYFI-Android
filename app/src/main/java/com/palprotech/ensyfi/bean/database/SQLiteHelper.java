@@ -408,7 +408,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     public Cursor getTeacherTimeTableValueNew(String dayId) throws SQLException {
         SQLiteDatabase db = this.getWritableDatabase();
-        String fetch = "Select class_name,sec_name,subject_name,class_id,subject_id,name,subject_name,from_time,to_time,is_break FROM teacherTimeTable WHERE day = '" + dayId + "';";
+        String fetch = "Select class_name,sec_name,subject_name,class_id,subject_id,name,from_time,to_time,is_break FROM teacherTimeTable WHERE day = '" + dayId + "';";
         Cursor c = db.rawQuery(fetch, null);
         if (c != null) {
             c.moveToFirst();
@@ -483,7 +483,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     public Cursor getStudentsOfClassBasedOnClassId(String classSectionId) throws SQLException {
         SQLiteDatabase db = this.getWritableDatabase();
-        String fetch = "Select * from teachersStudentDetails where class_id = '" + classSectionId + "' order by enroll_id;";
+        String fetch = "Select * from teachersStudentDetails where class_id = '" + classSectionId + "' order by name;";
         Cursor c = db.rawQuery(fetch, null);
         if (c != null) {
             c.moveToFirst();

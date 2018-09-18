@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.activity.teachermodule.TeacherTimeTableActivity;
+import com.palprotech.ensyfi.activity.teachermodule.TeacherTimeTableNew;
 import com.palprotech.ensyfi.bean.admin.viewlist.TeacherView;
 import com.palprotech.ensyfi.bean.teacher.support.SaveTeacherData;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
@@ -116,7 +117,7 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
     public void onClick(View v) {
         if (v == btnTeacherTimeTable) {
             PreferenceStorage.saveTeacherId(this, teacherId.getText().toString());
-            Intent intent = new Intent(this, TeacherTimeTableActivity.class);
+            Intent intent = new Intent(this, TeacherTimeTableNew.class);
             startActivity(intent);
         }
         if (v == btnBack) {
@@ -149,6 +150,12 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
 
                 JSONArray getTeacherProfile = response.getJSONArray("teacherProfile");
                 teacherData.saveTeacherProfile(getTeacherProfile);
+
+                JSONObject getTimeTableDays = response.getJSONObject("timeTabledays");
+                JSONArray getTimeTableDaysArray = getTimeTableDays.getJSONArray("data");
+                if (getTimeTableDaysArray != null && getTimeTableDaysArray.length() > 0) {
+                    teacherData.saveTimeTableDays(getTimeTableDaysArray);
+                }
 
             } catch (JSONException e) {
                 e.printStackTrace();

@@ -1,7 +1,9 @@
 package com.palprotech.ensyfi.activity.teachermodule;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.os.StrictMode;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -18,6 +20,7 @@ import com.palprotech.ensyfi.bean.student.viewlist.FeeStatusList;
 import com.palprotech.ensyfi.bean.teacher.viewlist.TTDays;
 import com.palprotech.ensyfi.bean.teacher.viewlist.TTDaysList;
 import com.palprotech.ensyfi.bean.teacher.viewlist.TimeTable;
+import com.palprotech.ensyfi.fragments.TimeTableDayOneFragment;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
@@ -164,10 +167,9 @@ public class TeacherTimeTableNew extends AppCompatActivity implements DialogClic
                             lde.setClassId(c.getString(3));
                             lde.setSubjectId(c.getString(4));
                             lde.setName(c.getString(5));
-                            lde.setSubjectName(c.getString(6));
-                            lde.setFromTime(c.getString(7));
-                            lde.setToTime(c.getString(8));
-                            lde.setIsBreak(c.getString(9));
+                            lde.setFromTime(c.getString(6));
+                            lde.setToTime(c.getString(7));
+                            lde.setIsBreak(c.getString(8));
 
                             // Add this object into the ArrayList myList
                             ttArrayList.add(lde);
@@ -183,6 +185,10 @@ public class TeacherTimeTableNew extends AppCompatActivity implements DialogClic
             Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
+        TimeTableDayOneFragment fragment = new TimeTableDayOneFragment();
+        Bundle bundle = new Bundle();
+//        bundle.putParcelableArrayList("arraylist", (ArrayList<? extends Parcelable>) ttArrayList);
+        fragment.setArguments(bundle);
     }
 
     private boolean validateSignInResponse(JSONObject response) {

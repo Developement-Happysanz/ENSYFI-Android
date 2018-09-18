@@ -137,7 +137,7 @@ public class ExamOnlyTotalMarksActivity extends AppCompatActivity implements ISe
         if (validateSignInResponse(response)) {
             Log.d("ajazFilterresponse : ", response.toString());
             try {
-                String totalMark = response.getString("totalMarks");
+                String totalMark = response.getString("total_points");
                 txtTotal.setText(totalMark);
 
             } catch (Exception ex) {
