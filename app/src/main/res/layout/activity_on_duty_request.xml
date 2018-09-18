@@ -26,23 +26,24 @@
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:contentDescription="@string/arrow_back"
                 android:minHeight="?android:attr/actionBarSize"
-                android:paddingLeft="15dp"
+                android:padding="5dp"
                 android:src="@drawable/ic_arrow_back_white_48dp" />
 
             <TextView
                 android:id="@+id/tvtitletext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
+                android:layout_toRightOf="@+id/back_res"
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center"
                 android:minHeight="?android:attr/actionBarSize"
-                android:paddingLeft="10dp"
-                android:text="OD Request"
-                android:textAllCaps="true"
+                android:text="On Duty Request"
                 android:textColor="@color/white"
-                android:textSize="@dimen/actionbarTextSize" />
+                android:textSize="@dimen/menuTextSize"
+                android:textStyle="bold" />
 
         </RelativeLayout>
         <!--End-->
@@ -71,7 +72,7 @@
                         android:layout_marginTop="20dp"
                         android:text="Reason :"
                         android:textColor="@color/black"
-                        android:textSize="22dp" />
+                        android:textSize="16sp" />
 
                     <EditText
                         android:id="@+id/edtOnDutyRequestFor"
@@ -81,6 +82,7 @@
                         android:digits="aãâáàbcçdeéfghiíjklmnoõôóòpqrstuvwxyzAÃÂÁÀBCÇDEÉFGHIÍJKLMNOÕÔÓÒPQRSTUVWXYZ1234567890@-_'+=(){}[]*%$₹£¢€¥#!?,.;: /?\\¡¿[]•∆π™℅¶♂♀°℃®©\◆●【】&lt;&gt;&amp;"
                         android:hint="Reason for OD request"
                         android:maxLines="1"
+                        android:textSize="14sp"
                         android:singleLine="true"
                         android:textColor="@color/black" />
 
@@ -102,7 +104,7 @@
                             android:layout_marginTop="20dp"
                             android:text="Start Date"
                             android:textColor="@color/black"
-                            android:textSize="22dp" />
+                            android:textSize="16sp" />
 
                         <LinearLayout
                             android:id="@+id/fromDatee"
@@ -121,7 +123,7 @@
                                 android:drawableLeft="@drawable/od_from_date_unselected"
                                 android:gravity="center"
                                 android:text="Select date"
-                                android:textSize="20dp" />
+                                android:textSize="16sp" />
 
                         </LinearLayout>
 
@@ -140,7 +142,7 @@
                             android:layout_height="wrap_content"
                             android:text="To :"
                             android:textColor="@color/black"
-                            android:textSize="22dp" />
+                            android:textSize="16sp" />
 
                         <LinearLayout
                             android:id="@+id/toDatee"
@@ -159,7 +161,7 @@
                                 android:drawableLeft="@drawable/od_from_date_unselected"
                                 android:gravity="center"
                                 android:text="Select date"
-                                android:textSize="20dp" />
+                                android:textSize="16sp" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -178,7 +180,7 @@
                         android:layout_marginTop="20dp"
                         android:text="Details :"
                         android:textColor="@color/black"
-                        android:textSize="22dp" />
+                        android:textSize="16sp" />
 
                     <EditText
                         android:id="@+id/edtOnDutyRequestDetails"
@@ -190,6 +192,7 @@
                         android:background="@drawable/btn_square_fill_white"
                         android:digits="aãâáàbcçdeéfghiíjklmnoõôóòpqrstuvwxyzAÃÂÁÀBCÇDEÉFGHIÍJKLMNOÕÔÓÒPQRSTUVWXYZ1234567890@-_'+=(){}[]*%$₹£¢€¥#!?,.;\n: /?\\¡¿[]•∆π™℅¶♂♀°℃®©\◆●【】&lt;&gt;&amp;"
                         android:gravity="top"
+                        android:textSize="14sp"
                         android:hint="Description"
                         android:imeOptions="actionDone"
                         android:inputType="textImeMultiLine"
@@ -207,6 +210,7 @@
                     android:layout_marginTop="30dp"
                     android:background="@drawable/btn_square_fill_color"
                     android:text="Request"
+                    android:textAllCaps="false"
                     android:textColor="@color/white" />
 
             </LinearLayout>

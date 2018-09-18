@@ -32,14 +32,14 @@
             android:id="@+id/tvtitletext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_toRightOf="@+id/back_res"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:minHeight="?android:attr/actionBarSize"
             android:text="Holiday Calendar"
-            android:textAllCaps="true"
             android:textColor="@color/white"
-            android:textSize="@dimen/actionbarTextSize" />
+            android:textSize="@dimen/menuTextSize"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 

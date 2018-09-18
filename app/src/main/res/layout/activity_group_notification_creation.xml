@@ -30,14 +30,14 @@
             android:id="@+id/tvtitletext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@+id/back_res"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:minHeight="?android:attr/actionBarSize"
             android:text="New Group"
-            android:textAllCaps="true"
             android:textColor="@color/white"
-            android:textSize="@dimen/actionbarTextSize" />
+            android:textSize="@dimen/menuTextSize"
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/createNewGroup"
@@ -64,7 +64,7 @@
             android:gravity="center"
             android:text="Title"
             android:textColor="@color/appColor"
-            android:textSize="22dp" />
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/group_title_txt"
@@ -74,7 +74,7 @@
             android:layout_below="@+id/group_title"
             android:textColor="@color/black"
             android:layout_marginRight="20dp"
-            android:textSize="22dp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/lead_type"
@@ -86,7 +86,7 @@
             android:gravity="center"
             android:text="Group Lead"
             android:textColor="@color/appColor"
-            android:textSize="22dp" />
+            android:textSize="16sp" />
 
 
         <Spinner
@@ -96,7 +96,7 @@
             android:layout_alignLeft="@id/group_title_txt"
             android:layout_below="@id/lead_type"
             android:layout_marginRight="20dp"
-            android:textSize="22dp" />
+            android:textSize="14sp" />
 
         <Switch
             android:id="@+id/swStatus"
@@ -110,7 +110,7 @@
             android:checked="false"
             android:text="Active"
             android:textColor="@color/appColor"
-            android:textSize="22dp" />
+            android:textSize="16sp" />
 
     </RelativeLayout>
 

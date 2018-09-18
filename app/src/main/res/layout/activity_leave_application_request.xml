@@ -1,56 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/tlbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/appColor"
+            android:minHeight="?android:attr/actionBarSize" />
+
+        <ImageView
+            android:id="@+id/back_res"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:contentDescription="@string/arrow_back"
+            android:minHeight="?android:attr/actionBarSize"
+            android:padding="5dp"
+            android:src="@drawable/ic_arrow_back_white_48dp" />
+
+        <TextView
+            android:id="@+id/tvtitletext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/back_res"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:minHeight="?android:attr/actionBarSize"
+            android:text="Leave Request"
+            android:textColor="@color/white"
+            android:textSize="@dimen/menuTextSize"
+            android:textStyle="bold" />
+        <!--End-->
+
+    </RelativeLayout>
 
     <ScrollView
+        android:id="@+id/scrollID"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/scrollID"
         android:background="@color/background_grey">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <RelativeLayout
-                android:id="@+id/tlbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar_result"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/appColor"
-                    android:minHeight="?android:attr/actionBarSize" />
-
-                <ImageView
-                    android:id="@+id/back_res"
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:minHeight="?android:attr/actionBarSize"
-                    android:paddingLeft="15dp"
-                    android:src="@drawable/ic_arrow_back_white_48dp" />
-
-                <TextView
-                    android:id="@+id/tvtitletext"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:fontFamily="sans-serif-medium"
-                    android:gravity="center"
-                    android:minHeight="?android:attr/actionBarSize"
-                    android:paddingLeft="10dp"
-                    android:text="Leave Request"
-                    android:textAllCaps="true"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/actionbarTextSize" />
-
-            </RelativeLayout>
-            <!--End-->
 
 
             <LinearLayout
@@ -75,7 +77,7 @@
                         android:overlapAnchor="false"
                         android:spinnerMode="dropdown"
                         android:textColor="@color/text_gray"
-                        android:textSize="15sp" />
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
@@ -98,7 +100,7 @@
                             android:layout_marginTop="20dp"
                             android:text="From Date"
                             android:textColor="@color/black"
-                            android:textSize="22dp" />
+                            android:textSize="16sp" />
 
                         <LinearLayout
                             android:id="@+id/fromDatee"
@@ -117,7 +119,7 @@
                                 android:drawableLeft="@drawable/od_from_date_unselected"
                                 android:gravity="center"
                                 android:text="Select date"
-                                android:textSize="20dp" />
+                                android:textSize="16sp" />
 
                         </LinearLayout>
 
@@ -136,7 +138,7 @@
                             android:layout_height="wrap_content"
                             android:text="To Date"
                             android:textColor="@color/black"
-                            android:textSize="22dp" />
+                            android:textSize="16sp" />
 
                         <LinearLayout
                             android:id="@+id/toDatee"
@@ -155,7 +157,7 @@
                                 android:drawableLeft="@drawable/od_from_date_unselected"
                                 android:gravity="center"
                                 android:text="Select date"
-                                android:textSize="20dp" />
+                                android:textSize="16sp" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -180,7 +182,7 @@
                             android:layout_marginTop="20dp"
                             android:text="From Time"
                             android:textColor="@color/black"
-                            android:textSize="22dp" />
+                            android:textSize="16sp" />
 
                         <LinearLayout
                             android:id="@+id/fromTimee"
@@ -199,7 +201,7 @@
                                 android:drawableLeft="@drawable/od_from_date_unselected"
                                 android:gravity="center"
                                 android:text="Select time"
-                                android:textSize="20dp" />
+                                android:textSize="16sp" />
 
                         </LinearLayout>
 
@@ -219,7 +221,7 @@
                             android:layout_height="wrap_content"
                             android:text="To Time"
                             android:textColor="@color/black"
-                            android:textSize="22dp" />
+                            android:textSize="16sp" />
 
                         <LinearLayout
                             android:id="@+id/toTimee"
@@ -238,7 +240,7 @@
                                 android:drawableLeft="@drawable/od_from_date_unselected"
                                 android:gravity="center"
                                 android:text="Select time"
-                                android:textSize="20dp" />
+                                android:textSize="16sp" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -257,7 +259,7 @@
                         android:layout_marginTop="20dp"
                         android:text="Details :"
                         android:textColor="@color/black"
-                        android:textSize="22dp" />
+                        android:textSize="16sp" />
 
                     <EditText
                         android:id="@+id/edtOnDutyRequestDetails"

@@ -22,23 +22,24 @@
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:contentDescription="@string/arrow_back"
             android:minHeight="?android:attr/actionBarSize"
-            android:paddingLeft="15dp"
+            android:padding="5dp"
             android:src="@drawable/ic_arrow_back_white_48dp" />
 
         <TextView
             android:id="@+id/tvtitletext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@+id/back_res"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:minHeight="?android:attr/actionBarSize"
-            android:paddingLeft="10dp"
             android:text="Send message"
-            android:textAllCaps="true"
             android:textColor="@color/white"
-            android:textSize="@dimen/actionbarTextSize" />
+            android:textSize="@dimen/menuTextSize"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 
@@ -63,7 +64,7 @@
                 android:overlapAnchor="false"
                 android:spinnerMode="dropdown"
                 android:textColor="@color/text_gray"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
 
         </LinearLayout>
 
@@ -80,7 +81,7 @@
                 android:layout_marginLeft="20dp"
                 android:text="Description :"
                 android:textColor="@color/black"
-                android:textSize="20dp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <EditText
@@ -112,8 +113,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:drawableLeft="@drawable/grouping_unchecked"
-                android:text="  SMS"
-                android:textSize="20dp"
+                android:text="SMS"
+                android:drawablePadding="10dp"
+                android:textSize="16sp"
                 android:textColor="@color/black"/>
 
             <TextView
@@ -124,7 +126,8 @@
                 android:layout_marginLeft="40dp"
                 android:drawableLeft="@drawable/grouping_unchecked"
                 android:text="  Mail"
-                android:textSize="20dp"
+                android:drawablePadding="10dp"
+                android:textSize="16sp"
                 android:textColor="@color/black"/>
 
             <TextView
@@ -135,7 +138,8 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/grouping_unchecked"
                 android:text="  Notification"
-                android:textSize="20dp"
+                android:drawablePadding="10dp"
+                android:textSize="16sp"
                 android:textColor="@color/black"/>
 
         </RelativeLayout>
@@ -156,7 +160,7 @@
                 android:paddingRight="10dp"
                 android:text="SEND  "
                 android:textColor="@color/white"
-                android:textSize="20dp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
         </LinearLayout>

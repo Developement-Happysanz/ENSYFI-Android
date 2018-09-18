@@ -1,32 +1,32 @@
 package com.palprotech.ensyfi.activity.adminmodule;
 
-import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.adapter.adminmodule.GroupMemberListAdapter;
-import com.palprotech.ensyfi.adapter.adminmodule.GroupsListAdapter;
 import com.palprotech.ensyfi.bean.admin.support.StoreClassSectionId;
 import com.palprotech.ensyfi.bean.admin.support.StoreRoleId;
 import com.palprotech.ensyfi.bean.admin.viewlist.GroupStaffMembers;
 import com.palprotech.ensyfi.bean.admin.viewlist.GroupStaffMembersList;
-import com.palprotech.ensyfi.bean.admin.viewlist.GroupStudentMembersList;
 import com.palprotech.ensyfi.bean.admin.viewlist.Groups;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
@@ -42,7 +42,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class GroupNotificationAddMemberActivity extends AppCompatActivity implements IServiceListener, DialogClickListener, AdapterView.OnItemClickListener, View.OnClickListener {
 
@@ -51,10 +50,10 @@ public class GroupNotificationAddMemberActivity extends AppCompatActivity implem
     private ProgressDialogHelper progressDialogHelper;
     private ServiceHelper serviceHelper;
     ListView loadMoreListView;
-    GroupMemberListAdapter groupMemberListAdapter;
     ArrayList<GroupStaffMembers> groupStaffMembersArrayList;
-    ArrayList<Integer> selectedMembers;
-    ArrayList<Integer> removeMembers;
+
+    GroupStaffMembersList gnStaffList = new GroupStaffMembersList();
+
     Handler mHandler = new Handler();
     protected boolean isLoadingForFirstTime = true;
     int pageNumber = 0, totalCount = 0;
@@ -62,6 +61,9 @@ public class GroupNotificationAddMemberActivity extends AppCompatActivity implem
     Spinner spnMemberType, spnStudentClass;
     String res = "", roleId, roleName, classSecName, classSectionId;
     boolean selval = false;
+
+    LinearLayout layout_all;
+
 //    Toolbar toolbar;
 
     @Override
@@ -95,14 +97,16 @@ public class GroupNotificationAddMemberActivity extends AppCompatActivity implem
         groupTitleDisp.setText(groups.getGroup_title());
         groupLeadDisp = findViewById(R.id.group_lead_spinner_txt);
         groupLeadDisp.setText(groups.getLead_name());
-        loadMoreListView = (ListView) findViewById(R.id.listView_members);
-        loadMoreListView.setOnItemClickListener(this);
+//        loadMoreListView = (ListView) findViewById(R.id.listView_members);
+//        loadMoreListView.setOnItemClickListener(this);
         groupStaffMembersArrayList = new ArrayList<>();
+
+        layout_all = findViewById(R.id.layout_member_list);
+
         spnMemberType = findViewById(R.id.group_member_type_spinner);
         spnMemberType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedMembers.clear();
                 roleName = parent.getSelectedItem().toString();
                 StoreRoleId teacherName = (StoreRoleId) parent.getSelectedItem();
                 roleId = teacherName.getRoleId();
@@ -110,18 +114,26 @@ public class GroupNotificationAddMemberActivity extends AppCompatActivity implem
                 switch (sRole) {
                     case 2:
                         spnStudentClass.setVisibility(View.GONE);
+
+                        layout_all.removeAllViews();
                         getTeacherList();
                         break;
                     case 3:
+
+                        layout_all.removeAllViews();
                         GetClassSectionData();
                         spnStudentClass.setVisibility(View.VISIBLE);
                         break;
                     case 4:
+
+                        layout_all.removeAllViews();
                         GetClassSectionData();
                         spnStudentClass.setVisibility(View.VISIBLE);
                         break;
                     case 5:
                         spnStudentClass.setVisibility(View.GONE);
+
+                        layout_all.removeAllViews();
                         getTeacherList();
                         break;
                     default:
@@ -139,6 +151,7 @@ public class GroupNotificationAddMemberActivity extends AppCompatActivity implem
                 classSecName = parent.getSelectedItem().toString();
                 StoreClassSectionId className = (StoreClassSectionId) parent.getSelectedItem();
                 classSectionId = className.getClassSectionId();
+                layout_all.removeAllViews();
                 getStudentList();
 
             }
@@ -148,8 +161,6 @@ public class GroupNotificationAddMemberActivity extends AppCompatActivity implem
             }
         });
 
-        selectedMembers = new ArrayList<>();
-        removeMembers = new ArrayList<>();
 
         create = (TextView) findViewById(R.id.add_members);
 
@@ -162,11 +173,11 @@ public class GroupNotificationAddMemberActivity extends AppCompatActivity implem
     }
 
     private void sendGroupMenbers() {
-        selectedMembers.removeAll(removeMembers);
+
         ArrayList<String> rollRdList = new ArrayList();
-        for (int i = 0; i < selectedMembers.size(); i++) {
-            if (!(rollRdList.contains(selectedMembers.get(i)))) {
-                rollRdList.add(groupStaffMembersArrayList.get(selectedMembers.get(i)).getId());
+        for (int i = 0; i < gnStaffList.getGroups().size(); i++) {
+            if ((gnStaffList.getGroups().get(i).getStatus().equalsIgnoreCase("1"))) {
+                rollRdList.add(gnStaffList.getGroups().get(i).getId());
             }
         }
         if (CommonUtils.isNetworkAvailable(this)) {
@@ -175,8 +186,9 @@ public class GroupNotificationAddMemberActivity extends AppCompatActivity implem
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_USER_ID, PreferenceStorage.getUserId(this));
                 jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_ID, groups.getId());
-                jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_MEMBER_ID, rollRdList);
+                jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_MEMBER_ID, rollRdList.toString().replace("[", "").replace("]", ""));
                 jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_USER_TYPE_ID, roleId);
+                jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_CLASS_SEC_ID, classSectionId);
                 jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_CREATION_STATUS, groups.getStatus());
 
             } catch (JSONException e) {
@@ -297,22 +309,24 @@ public class GroupNotificationAddMemberActivity extends AppCompatActivity implem
         if (id == R.id.action_select) {
             selval = true;
             for (int pos = 0; pos < totalCount; pos++) {
-                selectedMembers.add(pos);
+
                 groupStaffMembersArrayList.get(pos).setStatus("1");
 //                loadMoreListView.getChildAt(pos).getRootView().findViewById(R.id.status_selected).setVisibility(View.VISIBLE);
 //                loadMoreListView.getChildAt(pos).getRootView().findViewById(R.id.status_deselected).setVisibility(View.INVISIBLE);
-                groupMemberListAdapter.notifyDataSetChanged();
+//                groupMemberListAdapter.notifyDataSetChanged();
             }
+//            loadMembersList(totalCount);
             return true;
         } else if (id == R.id.action_deselect) {
             selval = false;
             for (int pos = 0; pos < totalCount; pos++) {
-                removeMembers.add(pos);
+
                 groupStaffMembersArrayList.get(pos).setStatus("0");
 //                loadMoreListView.getChildAt(pos).getRootView().findViewById(R.id.status_deselected).setVisibility(View.VISIBLE);
 //                loadMoreListView.getChildAt(pos).getRootView().findViewById(R.id.status_selected).setVisibility(View.INVISIBLE);
-                groupMemberListAdapter.notifyDataSetChanged();
+//                groupMemberListAdapter.notifyDataSetChanged();
             }
+//            loadMembersList(totalCount);
             return true;
         }
 
@@ -327,33 +341,9 @@ public class GroupNotificationAddMemberActivity extends AppCompatActivity implem
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Log.d(TAG, "onOD list item clicked" + position);
-        setClickStatus(view, position);
 
     }
 
-    private void setClickStatus(View view, int pos) {
-        if (!(selectedMembers.isEmpty())) {
-            if (selectedMembers.contains(pos)) {
-                groupStaffMembersArrayList.get(pos).setStatus("0");
-                view.findViewById(R.id.status_selected).setVisibility(View.INVISIBLE);
-                view.findViewById(R.id.status_deselected).setVisibility(View.VISIBLE);
-                removeMembers.add(pos);
-                groupMemberListAdapter.notifyDataSetChanged();
-            } else {
-                selectedMembers.add(pos);
-                groupStaffMembersArrayList.get(pos).setStatus("1");
-                view.findViewById(R.id.status_selected).setVisibility(View.VISIBLE);
-                view.findViewById(R.id.status_deselected).setVisibility(View.INVISIBLE);
-                groupMemberListAdapter.notifyDataSetChanged();
-            }
-        } else {
-            selectedMembers.add(pos);
-            groupStaffMembersArrayList.get(pos).setStatus("1");
-            view.findViewById(R.id.status_selected).setVisibility(View.VISIBLE);
-            view.findViewById(R.id.status_deselected).setVisibility(View.INVISIBLE);
-            groupMemberListAdapter.notifyDataSetChanged();
-        }
-    }
 
     @Override
     public void onAlertPositiveClicked(int tag) {
@@ -392,13 +382,13 @@ public class GroupNotificationAddMemberActivity extends AppCompatActivity implem
 
     @Override
     public void onResponse(final JSONObject response) {
+        progressDialogHelper.hideProgressDialog();
 
 
         if (validateSignInResponse(response)) {
 
             try {
                 if (res.equalsIgnoreCase("roles")) {
-                    progressDialogHelper.hideProgressDialog();
                     JSONArray getData = response.getJSONArray("roleList");
                     JSONObject userData = getData.getJSONObject(0);
                     int getLength = getData.length();
@@ -420,37 +410,32 @@ public class GroupNotificationAddMemberActivity extends AppCompatActivity implem
                     ArrayAdapter<StoreRoleId> adapter = new ArrayAdapter<StoreRoleId>(getApplicationContext(), R.layout.spinner_item_ns, rolesList);
                     spnMemberType.setAdapter(adapter);
                 } else if (res.equalsIgnoreCase("teacher")) {
-                    final JSONArray getData = response.getJSONArray("gnStafflist");
+                    final JSONArray getData = response.getJSONArray("gnMemberlist");
                     if (getData != null && getData.length() > 0) {
 
                         mHandler.post(new Runnable() {
                             @Override
                             public void run() {
-                                progressDialogHelper.hideProgressDialog();
                                 Gson gson = new Gson();
-                                GroupStaffMembersList groupStaffMembersList = gson.fromJson(response.toString(), GroupStaffMembersList.class);
-                                if (groupStaffMembersList.getGroups() != null && groupStaffMembersList.getGroups().size() > 0) {
+                                gnStaffList = gson.fromJson(response.toString(), GroupStaffMembersList.class);
+                                if (gnStaffList.getGroups() != null && gnStaffList.getGroups().size() > 0) {
                                     totalCount = getData.length();
-                                    for (int i = 0; i < totalCount; i++) {
-                                        String status = groupStaffMembersList.getGroups().get(i).getStatus();
-                                        if (status.equals("1")) {
-                                            selectedMembers.add(i);
-                                        }
-                                    }
+
                                     isLoadingForFirstTime = false;
-                                    updateListAdapter(groupStaffMembersList.getGroups());
+//                                    updateListAdapter(groupStaffMembersList.getGroups());
+                                    loadMembersList(totalCount);
+
                                 }
                             }
                         });
                     } else {
                         if (groupStaffMembersArrayList != null) {
                             groupStaffMembersArrayList.clear();
-                            groupMemberListAdapter = new GroupMemberListAdapter(this, this.groupStaffMembersArrayList);
-                            loadMoreListView.setAdapter(groupMemberListAdapter);
+//                            groupMemberListAdapter = new GroupMemberListAdapter(this, this.groupStaffMembersArrayList);
+//                            loadMoreListView.setAdapter(groupMemberListAdapter);
                         }
                     }
                 } else if (res.equalsIgnoreCase("classSection")) {
-                    progressDialogHelper.hideProgressDialog();
                     JSONArray getData = response.getJSONArray("listClasssection");
                     JSONObject userData = getData.getJSONObject(0);
                     int getLength = getData.length();
@@ -468,40 +453,37 @@ public class GroupNotificationAddMemberActivity extends AppCompatActivity implem
                     ArrayAdapter<StoreClassSectionId> adapter = new ArrayAdapter<StoreClassSectionId>(getApplicationContext(), R.layout.spinner_item_ns, classList);
                     spnStudentClass.setAdapter(adapter);
                 } else if (res.equalsIgnoreCase("student")) {
-                    final JSONArray getData = response.getJSONArray("gnStudentlist");
+                    final JSONArray getData = response.getJSONArray("gnMemberlist");
                     if (getData != null && getData.length() > 0) {
 
                         mHandler.post(new Runnable() {
                             @Override
                             public void run() {
-                                progressDialogHelper.hideProgressDialog();
                                 Gson gson = new Gson();
-                                GroupStaffMembersList groupStudentMembersList = gson.fromJson(response.toString(), GroupStaffMembersList.class);
-                                if (groupStudentMembersList.getGroups() != null && groupStudentMembersList.getGroups().size() > 0) {
+                                gnStaffList = gson.fromJson(response.toString(), GroupStaffMembersList.class);
+                                if (gnStaffList.getGroups() != null && gnStaffList.getGroups().size() > 0) {
                                     totalCount = getData.length();
-                                    for (int i = 0; i < totalCount; i++) {
-                                        String status = groupStudentMembersList.getGroups().get(i).getStatus();
-                                        if (status.equals("1")) {
-                                            selectedMembers.add(i);
-                                        }
-                                    }
+
                                     isLoadingForFirstTime = false;
-                                    updateListAdapter(groupStudentMembersList.getGroups());
+//                                    updateListAdapter(groupStudentMembersList.getGroups());
+                                    loadMembersList(totalCount);
+
                                 }
                             }
                         });
                     } else {
                         if (groupStaffMembersArrayList != null) {
                             groupStaffMembersArrayList.clear();
-                            groupMemberListAdapter = new GroupMemberListAdapter(this, this.groupStaffMembersArrayList);
-                            loadMoreListView.setAdapter(groupMemberListAdapter);
+                            totalCount = 0;
+//                            groupMemberListAdapter = new GroupMemberListAdapter(this, this.groupStaffMembersArrayList);
+//                            loadMoreListView.setAdapter(groupMemberListAdapter);
                         }
                     }
                 } else if (res.equalsIgnoreCase("memberList")) {
                     String status = response.getString("status");
                     String msg = response.getString(EnsyfiConstants.PARAM_MESSAGE);
                     if (status.equalsIgnoreCase("success") && msg.equalsIgnoreCase("Group Members Added")) {
-                        Toast.makeText(this,"Group Members Added!!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Group Members Added!!", Toast.LENGTH_SHORT).show();
                         finish();
                     }
                 }
@@ -521,13 +503,132 @@ public class GroupNotificationAddMemberActivity extends AppCompatActivity implem
 
     }
 
-    protected void updateListAdapter(ArrayList<GroupStaffMembers> groupStaffMembersArrayList) {
-        this.groupStaffMembersArrayList.addAll(groupStaffMembersArrayList);
-        if (groupMemberListAdapter == null) {
-            groupMemberListAdapter = new GroupMemberListAdapter(this, this.groupStaffMembersArrayList);
-            loadMoreListView.setAdapter(groupMemberListAdapter);
-        } else {
-            groupMemberListAdapter.notifyDataSetChanged();
+    private void loadMembersList(int memberCount) {
+
+        try {
+
+            for (int c1 = 0; c1 < memberCount; c1++) {
+
+                RelativeLayout cell = new RelativeLayout(this);
+                cell.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 100));
+                cell.setPadding(0, 0, 0, 0);
+                cell.setBackgroundColor(Color.parseColor("#000000"));
+
+//                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 100);
+//                params.setMargins(01, 01, 0, 01);
+//
+//                LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(250, 100);
+//                params1.setMargins(01, 01, 01, 01);
+//
+//                LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(140, 100);
+//                params2.setMargins(01, 01, 0, 01);
+
+
+                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 100);
+                params.setMargins(1,1,0,1);
+                params.addRule(RelativeLayout.LEFT_OF, R.id.member_id_txt);
+
+
+                RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(250, 100);
+                params1.setMargins(1, 1, 1, 1);
+                params1.addRule(RelativeLayout.LEFT_OF, R.id.member_status);
+
+
+                RelativeLayout.LayoutParams params2 = new RelativeLayout.LayoutParams(140, 100);
+                params2.setMargins(0, 1, 1, 1);
+                params2.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+
+//                TextView title = new TextView(this);
+//                title.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+//                        ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f));
+//                title.setTextColor(Color.BLACK);
+//                title.setText("Attendee Details " + c1);
+//                title.setLayoutParams(params2);
+
+                TextView line1 = new TextView(this);
+                line1.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT, 2.0f));
+
+                line1.setText(gnStaffList.getGroups().get(c1).getName());
+
+
+                line1.setId(R.id.member_name_txt);
+                line1.setHint("Member Name");
+                line1.requestFocusFromTouch();
+                line1.setTextSize(18.0f);
+                line1.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                line1.setSingleLine(true);
+                line1.setTextColor(Color.parseColor("#000000"));
+                line1.setGravity(Gravity.CENTER);
+                line1.setPadding(15, 0, 15, 0);
+                line1.setLayoutParams(params);
+
+                TextView line2 = new TextView(this);
+                line2.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT, 2.0f));
+
+                line2.setText(gnStaffList.getGroups().get(c1).getId());
+
+                line2.setId(R.id.member_id_txt);
+                line2.setHint("Member Id");
+                line2.requestFocusFromTouch();
+                line2.setTextSize(18.0f);
+                line2.setAllCaps(true);
+                line2.setGravity(Gravity.CENTER);
+                line2.setSingleLine(true);
+                line2.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                line2.setTextColor(Color.parseColor("#000000"));
+                line2.setPadding(15, 0, 15, 0);
+                line2.setLayoutParams(params1);
+
+                final ImageView line3 = new ImageView(this);
+                line3.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT, 2.0f));
+
+
+                line3.setId(R.id.member_status);
+                line3.setBackgroundColor(Color.parseColor("#FFFFFF"));
+
+                line3.requestFocusFromTouch();
+                line3.setPressed(true);
+                if (gnStaffList.getGroups().get(c1).getStatus().equalsIgnoreCase("1")) {
+                    line3.setImageResource(R.drawable.ic_select);
+                } else {
+                    line3.setImageResource(R.drawable.ic_de_select);
+                }
+                line3.setPadding(50, 0, 50, 0);
+                line3.setLayoutParams(params2);
+                final int finalC = c1;
+                line3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (gnStaffList.getGroups().get(finalC).getStatus().equalsIgnoreCase("1")) {
+                            line3.setImageResource(R.drawable.ic_de_select);
+                            gnStaffList.getGroups().get(finalC).setStatus("0");
+                        } else {
+                            line3.setImageResource(R.drawable.ic_select);
+                            gnStaffList.getGroups().get(finalC).setStatus("1");
+                        }
+                    }
+                });
+
+//                TextView border = new TextView(this);
+//                border.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+//                        ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+//                border.setHeight(1);
+//                border.setBackgroundColor(Color.BLACK);
+
+                cell.addView(line1);
+                cell.addView(line2);
+                cell.addView(line3);
+//                cell.addView(border);
+
+                layout_all.addView(cell);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
+
+
 }

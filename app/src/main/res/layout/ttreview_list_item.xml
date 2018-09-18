@@ -21,7 +21,7 @@
             android:text="Test"
             android:textAllCaps="true"
             android:textColor="@color/appColor"
-            android:textSize="20dp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
@@ -34,8 +34,9 @@
             android:paddingTop="3dp"
             android:text="Test"
             android:textAllCaps="true"
-            android:textColor="@color/appColor"
-            android:textSize="15dp" />
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txtDay"
@@ -45,8 +46,8 @@
             android:layout_marginLeft="40dp"
             android:layout_marginTop="5dp"
             android:text="Test"
-            android:textColor="@color/appColor"
-            android:textSize="15dp" />
+            android:textColor="@color/black"
+            android:textSize="14sp" />
 
         <ImageView
             android:layout_width="25dp"
@@ -64,8 +65,8 @@
             android:layout_marginLeft="40dp"
             android:layout_marginTop="5dp"
             android:text="Test"
-            android:textColor="@color/appColor"
-            android:textSize="15dp" />
+            android:textColor="@color/black"
+            android:textSize="14sp" />
 
 
         <ImageView
@@ -75,6 +76,6 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
             android:src="@drawable/select_button"
-            android:visibility="gone" />
+    android:visibility="gone" />
     </RelativeLayout>
-</LinearLayout>
+    </LinearLayout>

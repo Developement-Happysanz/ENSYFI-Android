@@ -30,15 +30,15 @@
             android:id="@+id/tvtitletext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@+id/back_res"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:minHeight="?android:attr/actionBarSize"
-            android:paddingRight="10dp"
-            android:text="View members"
-            android:textAllCaps="true"
+            android:text="View member"
             android:textColor="@color/white"
-            android:textSize="20dp" />
+            android:textSize="@dimen/menuTextSize"
+            android:textStyle="bold" />
+
 
     </RelativeLayout>
 
@@ -68,7 +68,7 @@
                 android:gravity="center"
                 android:text="Name"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/type_name"
@@ -80,7 +80,7 @@
                 android:gravity="center"
                 android:text="Type"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
 
         </RelativeLayout>
 

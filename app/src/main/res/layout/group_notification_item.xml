@@ -13,7 +13,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:background="@drawable/btn_square_fill_color"
             android:gravity="center"
             android:orientation="vertical">
@@ -38,7 +38,7 @@
                 android:layout_marginTop="5dp"
                 android:text="BALA MURALI KRISHNA"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/sent_time_date"
@@ -51,7 +51,7 @@
                 android:layout_marginTop="5dp"
                 android:text="YYYY-MM-DD"
                 android:textColor="@color/white"
-                android:textSize="15dp" />
+                android:textSize="14sp" />
         </RelativeLayout>
 
         <LinearLayout

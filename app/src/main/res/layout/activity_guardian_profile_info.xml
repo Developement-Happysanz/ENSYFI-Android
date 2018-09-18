@@ -21,23 +21,25 @@
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:contentDescription="@string/arrow_back"
             android:minHeight="?android:attr/actionBarSize"
-            android:paddingLeft="15dp"
+            android:padding="5dp"
             android:src="@drawable/ic_arrow_back_white_48dp" />
 
         <TextView
             android:id="@+id/tvtitletext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@+id/back_res"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:minHeight="?android:attr/actionBarSize"
-            android:paddingLeft="10dp"
             android:text="Guardian Profile"
-            android:textAllCaps="true"
             android:textColor="@color/white"
-            android:textSize="@dimen/actionbarTextSize" />
+            android:textSize="@dimen/menuTextSize"
+            android:textStyle="bold" />
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -92,7 +94,7 @@
                 android:text="Name               :"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:textSize="18dp"/>
+                android:textSize="16sp"/>
 
             <TextView
                 android:id="@+id/txtmothername"
@@ -104,7 +106,7 @@
                 android:layout_toRightOf="@+id/mothername"
                 android:paddingTop="2dp"
                 android:textColor="@color/black"
-                android:textSize="18dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/motheraddress"
@@ -116,7 +118,7 @@
                 android:text="Address           :"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:textSize="18dp"/>
+                android:textSize="16sp"/>
 
             <TextView
                 android:id="@+id/txtmotheraddress"
@@ -127,7 +129,7 @@
                 android:layout_toRightOf="@+id/motheraddress"
                 android:paddingTop="2dp"
                 android:textColor="@color/black"
-                android:textSize="18dp"/>
+                android:textSize="16sp"/>
 
             <TextView
                 android:id="@+id/mothermail"
@@ -139,7 +141,7 @@
                 android:text="Mail                  :"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:textSize="18dp"/>
+                android:textSize="16sp"/>
 
             <TextView
                 android:id="@+id/txtmothermail"
@@ -150,7 +152,7 @@
                 android:layout_toRightOf="@+id/mothermail"
                 android:paddingTop="2dp"
                 android:textColor="@color/black"
-                android:textSize="18dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/motheroccupation"
@@ -162,7 +164,7 @@
                 android:text="Occupation     :"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:textSize="18dp"/>
+                android:textSize="16sp"/>
 
             <TextView
                 android:id="@+id/txtmotheroccupation"
@@ -173,7 +175,7 @@
                 android:layout_toRightOf="@+id/motheroccupation"
                 android:paddingTop="2dp"
                 android:textColor="@color/black"
-                android:textSize="18dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/motherincome"
@@ -185,7 +187,7 @@
                 android:text="Income            :"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:textSize="18dp"/>
+                android:textSize="16sp"/>
 
             <TextView
                 android:id="@+id/txtmotherincome"
@@ -196,7 +198,7 @@
                 android:layout_toRightOf="@+id/motherincome"
                 android:paddingTop="2dp"
                 android:textColor="@color/black"
-                android:textSize="18dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/mothermobile"
@@ -208,7 +210,7 @@
                 android:text="Mobile             :"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:textSize="18dp"/>
+                android:textSize="16sp"/>
 
             <TextView
                 android:id="@+id/txtmothermobile"
@@ -219,7 +221,7 @@
                 android:layout_toRightOf="@+id/mothermobile"
                 android:paddingTop="2dp"
                 android:textColor="@color/black"
-                android:textSize="18dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/motherhomephone"
@@ -231,7 +233,7 @@
                 android:text="Home Phone  :"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:textSize="18dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/txtmotherhomephone"
@@ -242,7 +244,7 @@
                 android:layout_toRightOf="@+id/motherhomephone"
                 android:paddingTop="2dp"
                 android:textColor="@color/black"
-                android:textSize="18dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/motherofficephone"
@@ -255,7 +257,7 @@
                 android:text="Office Phone  :"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:textSize="18dp"/>
+                android:textSize="16sp"/>
 
             <TextView
                 android:id="@+id/txtmotherofficephone"
@@ -266,7 +268,7 @@
                 android:layout_toRightOf="@+id/motherofficephone"
                 android:paddingTop="2dp"
                 android:textColor="@color/black"
-                android:textSize="18dp" />
+                android:textSize="16sp" />
 
             </RelativeLayout>
 

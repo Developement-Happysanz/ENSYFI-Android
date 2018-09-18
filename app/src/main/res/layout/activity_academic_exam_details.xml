@@ -30,14 +30,14 @@
             android:id="@+id/tvtitletext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@+id/back_res"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:minHeight="?android:attr/actionBarSize"
-            android:text="@string/title_exam_detail"
-            android:textAllCaps="true"
+            android:text="@string/title_exam_result"
             android:textColor="@color/white"
-            android:textSize="@dimen/actionbarTextSize" />
+            android:textSize="@dimen/menuTextSize"
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/addExamMarks"
@@ -84,7 +84,7 @@
             <TextView
                 android:id="@+id/da"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_marginLeft="2dp"
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="2dp"
@@ -94,12 +94,12 @@
                 android:text="@string/title_date"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/ti"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_marginLeft="2dp"
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="2dp"
@@ -109,12 +109,12 @@
                 android:text="@string/title_time"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/sub"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_marginLeft="2dp"
                 android:layout_marginRight="2dp"
                 android:layout_marginTop="2dp"
@@ -124,7 +124,7 @@
                 android:text="@string/title_subject"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="match_parent"

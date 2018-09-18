@@ -30,15 +30,14 @@
             android:id="@+id/tvtitletext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@+id/back_res"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:minHeight="?android:attr/actionBarSize"
-            android:paddingRight="10dp"
-            android:text="update Group"
-            android:textAllCaps="true"
+            android:text="Update Group"
             android:textColor="@color/white"
-            android:textSize="18dp" />
+            android:textSize="@dimen/menuTextSize"
+            android:textStyle="bold" />
 
         <RelativeLayout
             android:id="@+id/ic_layout"
@@ -98,7 +97,7 @@
             android:gravity="center"
             android:text="Title              :"
             android:textColor="@color/black"
-            android:textSize="22dp" />
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/group_title_txt"
@@ -125,7 +124,7 @@
             android:gravity="center_vertical"
             android:hint="ABBDKJANKJDBKAJDN"
             android:singleLine="true"
-            android:textSize="20dp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/lead_type"
@@ -137,7 +136,7 @@
             android:gravity="center"
             android:text="Group Lead    :"
             android:textColor="@color/black"
-            android:textSize="20dp" />
+            android:textSize="16sp" />
 
 
         <Spinner
@@ -149,7 +148,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="20dp"
             android:layout_toRightOf="@id/lead_type"
-            android:textSize="20dp"
+            android:textSize="16sp"
             android:visibility="gone" />
 
         <TextView
@@ -165,7 +164,7 @@
             android:gravity="center_vertical"
             android:hint="ABBDKJANKJDBKAJDN"
             android:singleLine="true"
-            android:textSize="20dp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/group_status_txt"
@@ -177,7 +176,7 @@
             android:gravity="center"
             android:text="Status             :"
             android:textColor="@color/black"
-            android:textSize="20dp" />
+            android:textSize="16sp" />
 
         <Switch
             android:id="@+id/swStatus"
@@ -192,7 +191,7 @@
             android:text="Active"
             android:visibility="gone"
             android:textColor="@color/appColor"
-            android:textSize="22dp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/radioStatusViewTxt"
@@ -209,7 +208,7 @@
             android:gravity="center_vertical"
             android:hint="ABBDKJANKJDBKAJDN"
             android:singleLine="true"
-            android:textSize="20dp" />
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/update_group"

@@ -12,7 +12,7 @@
         android:layout_marginLeft="5dp"
         android:padding="15dp"
         android:text="Bang"
-        android:textSize="20dp"
+        android:textSize="16sp"
         android:fontFamily="sans-serif-medium"/>
 
     <View

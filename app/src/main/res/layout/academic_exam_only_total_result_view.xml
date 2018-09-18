@@ -15,6 +15,7 @@
             android:background="@color/appColor"
             android:minHeight="?android:attr/actionBarSize" />
 
+
         <ImageView
             android:id="@+id/back_res"
             android:layout_width="40dp"
@@ -30,14 +31,14 @@
             android:id="@+id/tvtitletext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_toRightOf="@+id/back_res"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:minHeight="?android:attr/actionBarSize"
             android:text="@string/title_exam_result"
-            android:textAllCaps="true"
             android:textColor="@color/white"
-            android:textSize="@dimen/actionbarTextSize" />
+            android:textSize="@dimen/menuTextSize"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 
@@ -60,7 +61,7 @@
             <TextView
                 android:id="@+id/txtSubject"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_marginLeft="2dp"
                 android:layout_marginStart="2dp"
                 android:layout_weight="0.5"
@@ -73,7 +74,7 @@
             <TextView
                 android:id="@+id/txtMarks"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_marginLeft="2dp"
                 android:layout_marginRight="2dp"
                 android:layout_weight="0.5"

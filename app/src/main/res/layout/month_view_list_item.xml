@@ -7,7 +7,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/round_btn_plain"
         android:gravity="center">
@@ -27,7 +27,7 @@
             android:text="2"
             android:textAllCaps="true"
             android:textColor="@color/black"
-            android:textSize="20dp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/hyphen"
@@ -38,7 +38,7 @@
             android:layout_toRightOf="@+id/txtEnrollId"
             android:gravity="center"
             android:text="-"
-            android:textSize="20dp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/txtStudentName"
@@ -53,7 +53,7 @@
             android:gravity="center"
             android:text="Bala Murali Krishna"
             android:textColor="@color/black"
-            android:textSize="20dp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/hyphen1"
@@ -65,7 +65,7 @@
             android:layout_toRightOf="@+id/txtStudentName"
             android:gravity="center"
             android:text="-"
-            android:textSize="20dp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/txtLeaves"
@@ -77,7 +77,7 @@
             android:layout_alignParentEnd="true"
             android:gravity="center"
             android:text="5 Days Leave"
-            android:textSize="20dp" />
+            android:textSize="16sp" />
 
     </RelativeLayout>
 </LinearLayout>

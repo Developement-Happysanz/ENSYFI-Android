@@ -21,7 +21,7 @@
             android:gravity="center"
             android:text="ID"
             android:textColor="@color/black"
-            android:textSize="15sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/txt_studentName"
@@ -37,7 +37,7 @@
             android:paddingLeft="10dp"
             android:text="Name"
             android:textColor="@color/black"
-            android:textSize="15sp" />
+            android:textSize="14sp" />
 
         <EditText
             android:id="@+id/marks"
@@ -57,7 +57,7 @@
             android:text="0"
             android:textColor="@color/black"
             android:textColorHint="@color/gray_2"
-            android:textSize="15sp" />
+            android:textSize="14sp" />
 
     </RelativeLayout>
 

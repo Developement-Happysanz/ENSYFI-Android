@@ -22,7 +22,7 @@
             android:text="@string/title_exam_name"
             android:textAllCaps="true"
             android:textColor="@color/appColor"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
@@ -34,8 +34,8 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="5dp"
             android:text="@string/title_exam_date"
-            android:textColor="@color/appColor"
-            android:textSize="15sp" />
+            android:textColor="@color/black"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/hyphen"
@@ -58,8 +58,8 @@
             android:layout_toEndOf="@+id/hyphen"
             android:layout_toRightOf="@+id/hyphen"
             android:text="@string/title_exam_date"
-            android:textColor="@color/appColor"
-            android:textSize="15sp" />
+            android:textColor="@color/black"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/txtExamIdLocal"
@@ -86,7 +86,7 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_alignBottom="@+id/txtToDate"
+            android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_marginEnd="20dp"

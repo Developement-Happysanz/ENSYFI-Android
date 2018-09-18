@@ -24,9 +24,24 @@
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:contentDescription="@string/arrow_back"
                 android:minHeight="?android:attr/actionBarSize"
-                android:paddingLeft="15dp"
+                android:padding="5dp"
                 android:src="@drawable/ic_arrow_back_white_48dp" />
+
+            <TextView
+                android:id="@+id/tvtitletext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/back_res"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:minHeight="?android:attr/actionBarSize"
+                android:text="Sync Date"
+                android:textColor="@color/white"
+                android:textSize="@dimen/menuTextSize"
+                android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/icon"
@@ -37,24 +52,12 @@
                 android:minHeight="?android:attr/actionBarSize"
                 android:src="@drawable/ab_logo" />
 
-            <TextView
-                android:id="@+id/tvtitletext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:fontFamily="sans-serif-medium"
-                android:gravity="center"
-                android:minHeight="?android:attr/actionBarSize"
-                android:padding="5dp"
-                android:text="SYNC DATA"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="@dimen/actionbarTextSize" />
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_marginTop="20dp">
 
             <Button
@@ -62,6 +65,7 @@
                 android:layout_width="130dp"
                 android:layout_height="40dp"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/btn_square_fill_color"
@@ -69,7 +73,7 @@
                 android:paddingRight="5dp"
                 android:text="Sync  "
                 android:textColor="@color/white"
-                android:textSize="18dp" />
+                android:textSize="16sp" />
 
             <Button
                 android:id="@+id/btnRefreshAttendanceRecords"
@@ -95,9 +99,10 @@
                 android:layout_alignTop="@+id/btnSyncAttendanceRecords"
                 android:layout_marginLeft="10dp"
                 android:gravity="center"
+                android:layout_centerVertical="true"
                 android:text="Attendance"
                 android:textColor="@color/black"
-                android:textSize="20dp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -127,7 +132,7 @@
                 android:paddingRight="5dp"
                 android:text="Sync  "
                 android:textColor="@color/white"
-                android:textSize="18dp" />
+                android:textSize="16sp" />
 
             <Button
                 android:id="@+id/btnRefreshClassTestHomeworkRecords"
@@ -143,7 +148,7 @@
                 android:paddingRight="5dp"
                 android:text="Refresh  "
                 android:textColor="@color/text_grey"
-                android:textSize="18dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -153,9 +158,10 @@
                 android:layout_marginLeft="10dp"
                 android:layout_toLeftOf="@+id/btnRefreshClassTestHomeworkRecords"
                 android:gravity="center|left"
+                android:layout_centerVertical="true"
                 android:text="Class Test and Homework"
                 android:textColor="@color/black"
-                android:textSize="20dp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -185,7 +191,7 @@
                 android:paddingRight="5dp"
                 android:text="Sync  "
                 android:textColor="@color/white"
-                android:textSize="18dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -197,7 +203,7 @@
                 android:gravity="center|left"
                 android:text="Class Test Marks"
                 android:textColor="@color/black"
-                android:textSize="20dp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -227,7 +233,7 @@
                 android:paddingRight="5dp"
                 android:text="Sync  "
                 android:textColor="@color/white"
-                android:textSize="18dp" />
+                android:textSize="16sp" />
 
             <Button
                 android:id="@+id/btnRefreshSyncExamMarks"
@@ -255,7 +261,7 @@
                 android:gravity="center"
                 android:text="Exam Marks"
                 android:textColor="@color/black"
-                android:textSize="20dp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -287,7 +293,7 @@
                 android:paddingRight="5dp"
                 android:text="Sync  "
                 android:textColor="@color/white"
-                android:textSize="18dp" />
+                android:textSize="16sp" />
 
             <Button
                 android:id="@+id/btnRefreshReminder"
@@ -303,7 +309,7 @@
                 android:paddingRight="5dp"
                 android:text="Refresh  "
                 android:textColor="@color/text_grey"
-                android:textSize="18dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -314,7 +320,7 @@
                 android:gravity="center"
                 android:text="Reminder"
                 android:textColor="@color/black"
-                android:textSize="20dp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView

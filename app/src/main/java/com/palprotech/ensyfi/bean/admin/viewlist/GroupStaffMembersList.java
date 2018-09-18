@@ -10,7 +10,7 @@ public class GroupStaffMembersList {
     @SerializedName("count")
     @Expose
     private int count;
-    @SerializedName("gnStafflist")
+    @SerializedName("gnMemberlist")
     @Expose
     private ArrayList<GroupStaffMembers> groupList = new ArrayList<GroupStaffMembers>();
 

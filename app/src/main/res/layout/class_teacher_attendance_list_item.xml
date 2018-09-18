@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/round_btn_plain">
+
+        <ImageView
+            android:id="@+id/day_img"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/classtest_calendar" />
+
+        <TextView
+            android:id="@+id/attendance_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/day_img"
+            android:layout_alignTop="@id/day_img"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/day_img"
+            android:gravity="center"
+            android:text="DD-MM-YYYY"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/class_strength"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@id/day_img"
+            android:layout_marginRight="10dp"
+            android:text="000"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/class_strength"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/class_strength"
+            android:text="Class Strength  :" />
+
+        <RelativeLayout
+            android:id="@+id/sent_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:visibility="gone"
+            android:layout_below="@id/day_img"
+            android:layout_marginRight="10dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@id/sent"
+                android:src="@drawable/ic_tick"/>
+
+            <TextView
+                android:id="@+id/sent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sent"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/black" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/day_img"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:id="@+id/no_present"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="No. of Present :"
+                android:textColor="@color/present" />
+
+            <TextView
+                android:id="@+id/txt_no_present"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/no_present"
+                android:text="100"
+                android:textColor="@color/present" />
+
+            <TextView
+                android:id="@+id/no_absent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/txt_no_present"
+                android:text="No. of Absent :"
+                android:textColor="@color/absent" />
+
+            <TextView
+                android:id="@+id/txt_no_absent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/no_absent"
+                android:text="100"
+                android:textColor="@color/absent" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

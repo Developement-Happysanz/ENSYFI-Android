@@ -8,4 +8,4 @@
     android:padding="5dip"
     android:singleLine="true"
     android:textColor="@color/black"
-    android:textSize="18dp" />
+    android:textSize="16dp" />

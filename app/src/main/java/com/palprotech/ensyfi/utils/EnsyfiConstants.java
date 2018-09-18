@@ -58,7 +58,7 @@ public class EnsyfiConstants {
 
     // GROUP NOTIFICATION URL
     public static final String GET_GROUP_LIST = "/apimain/disp_Grouplist/";
-    public static final String SEND_GROUP_MESSAGE = "/apimain/send_Groupmessage/";
+    public static final String SEND_GROUP_MESSAGE = "/apiadmin/group_msg_send/";
     public static final String GET_GROUP_MESSAGE_VIEW = "/apimain/disp_Groupmessage/";
 
     // GROUP NOTIFICATION CREATION AND UPDATION ADMIN URL
@@ -100,6 +100,19 @@ public class EnsyfiConstants {
 
     // STUDENT ATTENDANCE URL
     public static final String GET_STUDENT_ATTENDANCE_API = "/apiteacher/disp_Attendence/";
+
+// CLASS TEACHER ATTENDANCE URL
+    public static final String GET_CLASS_TEACHER_ATTENDANCE_VIEW = "/apiteacher/disp_Attendence_classteacher/";
+    public static final String GET_CLASS_TEACHER_ATTENEE_VIEW = "/apiteacher/list_Studentattend_classteacher/";
+    public static final String SEND_ATTENDANCE_VIEW = "/apiteacher/send_attendance_parents/";
+
+
+    // CLASS TEACHER CLASSTEXT & HOMEWORK URL
+    public static final String GET_CLASS_TEACHER_CT_HW_OVERVIEW = "/apiteacher/daywisect_homework/";
+    public static final String GET_CLASS_TEACHER_CT_HW_DAYWISE = "/apiteacher/daywisect_allhomework/";
+    public static final String GET_CLASS_TEACHER_CT_HW_SEND_ALL = "/apiteacher/send_allhw_parents/";
+    public static final String GET_CLASS_TEACHER_CT_HW_SEND_SINGLE = "/apiteacher/send_singlehw_parents/";
+
 
     //TEACHER'S URL
     public static final String GET_TEACHERS_CLASS_ATTENDANCE_API = "/apiteacher/sync_Attendance/";
@@ -340,6 +353,17 @@ public class EnsyfiConstants {
     //Event Organiser
     public static final String PARAM_EVENT_ID = "event_id";
 
+    //Teacher's Class Teacher Attendance view
+    public static final String KEY_ATTENDANCE_ID = "attend_id";
+    public static final String KEY_ATTENDANCE_MESSAGE_TYPE = "msg_type";
+
+    //Teacher's Class Teacher Attendance view
+    public static final String CT_HW_CLASS_ID = "class_id";
+    public static final String CT_HW_HOMEWORK_DATE = "hw_date";
+    public static final String CT_HW_HOMEWORK_CREATED_DATE = "hw_created_date";
+    public static final String CT_HW_HOMEWORK_SEND_TYPE = "msg_type";
+    public static final String CT_HW_HOMEWORK_ID = "hw_id";
+
     //Teacher's Class Students Attendance
     public static final String KEY_ATTENDANCE_AC_YEAR = "ac_year";
     public static final String KEY_ATTENDANCE_CLASS_ID = "class_id";
@@ -381,7 +405,7 @@ public class EnsyfiConstants {
     public static final String PARAMS_GROUP_NOTIFICATIONS_MESSAGE_TYPE_SMS = "messagetype_sms";
     public static final String PARAMS_GROUP_NOTIFICATIONS_MESSAGE_TYPE_MAIL = "messagetype_mail";
     public static final String PARAMS_GROUP_NOTIFICATIONS_MESSAGE_TYPE_NOTIFICATION = "messagetype_notification";
-    public static final String PARAMS_GROUP_NOTIFICATIONS_MESSAGE_DETAILS = "message_details";
+    public static final String PARAMS_GROUP_NOTIFICATIONS_MESSAGE_DETAILS = "notes";
     public static final String PARAMS_GROUP_NOTIFICATIONS_CREATED_BY = "created_by";
 
     //Group notifications creation Params
@@ -391,8 +415,10 @@ public class EnsyfiConstants {
     public static final String PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_LEAD_ID = "group_lead_id";
     public static final String PARAMS_GROUP_NOTIFICATIONS_CREATION_STATUS = "status";
     public static final String PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_USER_TYPE_ID = "group_user_type";
+    public static final String PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_CLASS_SEC_ID = "class_sec_id";
     public static final String PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_MEMBER_ID = "group_member_id";
     public static final String PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_STUDENT_CLASS_ID = "class_id";
+    public static final String PARAMS_GROUP_NOTIFICATIONS_TYPE_NOTIFICATION = "notification_type";
 
     //On Duty Approval
     public static final String PARAMS_OD_APPROVAL_STATUS = "status";

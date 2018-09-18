@@ -23,7 +23,7 @@
             android:text="12"
             android:textAllCaps="true"
             android:textColor="@color/black"
-            android:textSize="20dp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/hyphen"
@@ -34,7 +34,7 @@
             android:layout_toRightOf="@+id/txtEnrollId"
             android:gravity="center"
             android:text="-"
-            android:textSize="20dp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/txtStudentName"
@@ -51,7 +51,7 @@
             android:gravity="left|center"
             android:text="Bala Murali Krishna"
             android:textColor="@color/black"
-            android:textSize="20dp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/txtAttendanceStatus"
@@ -67,7 +67,7 @@
             android:paddingLeft="10dp"
             android:background="@drawable/btn_attendance_absent"
             android:textColor="@color/white"
-            android:textSize="20dp"/>
+            android:textSize="16sp"/>
 
     </RelativeLayout>
 </LinearLayout>

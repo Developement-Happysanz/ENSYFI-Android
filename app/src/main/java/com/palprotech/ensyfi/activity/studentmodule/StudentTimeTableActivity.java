@@ -82,7 +82,7 @@ public class StudentTimeTableActivity extends AppCompatActivity implements IServ
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_STUDENT_TIME_TABLE_API;
+            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_TIME_TABLE_API;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
         } else {
@@ -196,10 +196,10 @@ public class StudentTimeTableActivity extends AppCompatActivity implements IServ
                                 do {
                                     isBreak = c.getString(0);
                                     toTime = c.getString(1);
-                                    fromTime = c.getString(2);
-                                    ClassName = c.getString(3);
-                                    SectionName = c.getString(4);
-                                    SubjectName = c.getString(5);
+                                    fromTime = c.getString(4);
+                                    ClassName = c.getString(5);
+                                    SectionName = c.getString(3);
+                                    SubjectName = c.getString(2);
                                     ClassId = c.getString(6);
                                     SubjectId = c.getString(7);
                                     PeriodId = c.getString(8);
