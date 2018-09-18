@@ -45,6 +45,7 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
     private TextView teacherId, teacherName, teacherGender, teacherAge, teacherNationality, teacherReligion, teacherCaste,
             teacherCommunity, teacherAddress, teacherSubject, classTeacher, teacherMobile, teacherSecondaryMobile, teacherMail,
             teacherSecondaryMail, teacherSectionName, teacherClassName, teacherClassTaken;
+    private boolean checkTimeTable = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -115,9 +116,11 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
     @Override
     public void onClick(View v) {
         if (v == btnTeacherTimeTable) {
-            PreferenceStorage.saveTeacherId(this, teacherId.getText().toString());
-            Intent intent = new Intent(this, TeacherTimeTableActivity.class);
-            startActivity(intent);
+            if (checkTimeTable) {
+                PreferenceStorage.saveTeacherId(this, teacherId.getText().toString());
+                Intent intent = new Intent(this, TeacherTimeTableActivity.class);
+                startActivity(intent);
+            }
         }
         if (v == btnBack) {
             finish();
@@ -139,16 +142,27 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
     public void onResponse(JSONObject response) {
         progressDialogHelper.hideProgressDialog();
         if (validateSignInResponse(response)) {
-
             try {
-                JSONArray getTimeTable = response.getJSONArray("timeTable");
-                teacherData.saveTeacherTimeTable(getTimeTable);
+                JSONObject getTimeTable = response.getJSONObject("timeTable");
+                if (validateSignInResponse(getTimeTable)) {
+                    JSONArray getTimeTableDaysArray = getTimeTable.getJSONArray("data");
+                    if (getTimeTableDaysArray != null && getTimeTableDaysArray.length() > 0) {
+                        teacherData.saveTeacherTimeTable(getTimeTableDaysArray);
+                    }
+                    checkTimeTable = true;
+                } else {
+                    checkTimeTable = false;
+                }
 
                 JSONArray getClassSubject = response.getJSONArray("class_name");
-                teacherData.saveTeacherHandlingSubject(getClassSubject);
+                if (getClassSubject != null && getClassSubject.length() > 0) {
+                    teacherData.saveTeacherHandlingSubject(getClassSubject);
+                }
 
                 JSONArray getTeacherProfile = response.getJSONArray("teacherProfile");
-                teacherData.saveTeacherProfile(getTeacherProfile);
+                if (getTeacherProfile != null && getTeacherProfile.length() > 0) {
+                    teacherData.saveTeacherProfile(getTeacherProfile);
+                }
 
             } catch (JSONException e) {
                 e.printStackTrace();

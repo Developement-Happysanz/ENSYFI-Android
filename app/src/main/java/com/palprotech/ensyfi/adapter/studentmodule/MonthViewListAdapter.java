@@ -41,7 +41,7 @@ public class MonthViewListAdapter extends BaseAdapter {
     public MonthViewListAdapter(Context context, ArrayList<MonthView> monthViews) {
         this.context = context;
         this.monthViews = monthViews;
-        Collections.sort(monthViews, myComparator);
+//        Collections.sort(monthViews, myComparator);
 
 //        transformation = new RoundedTransformationBuilder()
 //                .cornerRadiusDp(0)

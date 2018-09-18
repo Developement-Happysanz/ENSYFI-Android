@@ -19,7 +19,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String TAG = "SQLiteHelper.java";
 
     private static final String DATABASE_NAME = "ENSYFI.db";
-    private static final int DATABASE_VERSION = 36;
+    private static final int DATABASE_VERSION = 37;
 
     private static final String table_create_student = "Create table IF NOT EXISTS studentInfo(_id integer primary key autoincrement,"
             + "registered_id text,"
@@ -55,7 +55,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             + "class_id text,"
             + "name text,"
             + "class_section text,"
-            + "pref_language text);";
+            + "pref_language text,"
+            + "sex text);";
 
     private static final String table_create_attendance = "Create table IF NOT EXISTS attendance(_id integer primary key autoincrement,"
             + "server_at_id text,"
@@ -437,7 +438,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     /*
      *   Teacher's Class Students Details Store & Retrieve Functionality
      */
-    public long teachers_class_students_details_insert(String val1, String val2, String val3, String val4, String val5, String val6) {
+    public long teachers_class_students_details_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues initialValues = new ContentValues();
         initialValues.put("enroll_id", val1);
@@ -446,6 +447,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         initialValues.put("name", val4);
         initialValues.put("class_section", val5);
         initialValues.put("pref_language", val6);
+        initialValues.put("sex", val7);
         long l = db.insert("teachersStudentDetails", null, initialValues);
         db.close();
         return l;
@@ -473,7 +475,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     public Cursor getStudentsOfClass(String classSection) throws SQLException {
         SQLiteDatabase db = this.getWritableDatabase();
-        String fetch = "Select * from teachersStudentDetails where class_section = '" + classSection + "' order by enroll_id;";
+        String fetch = "Select * from teachersStudentDetails where class_section = '" + classSection + "' order by sex DESC, name ASC;";
         Cursor c = db.rawQuery(fetch, null);
         if (c != null) {
             c.moveToFirst();
@@ -483,7 +485,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     public Cursor getStudentsOfClassBasedOnClassId(String classSectionId) throws SQLException {
         SQLiteDatabase db = this.getWritableDatabase();
-        String fetch = "Select * from teachersStudentDetails where class_id = '" + classSectionId + "' order by enroll_id;";
+        String fetch = "Select * from teachersStudentDetails where class_id = '" + classSectionId + "' order by sex DESC, name ASC;";
         Cursor c = db.rawQuery(fetch, null);
         if (c != null) {
             c.moveToFirst();
