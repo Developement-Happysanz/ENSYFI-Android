@@ -40,7 +40,7 @@ public class DayViewListAdapter extends BaseAdapter {
     public DayViewListAdapter(Context context, ArrayList<DayView> dayViews) {
         this.context = context;
         this.dayViews = dayViews;
-        Collections.sort(dayViews, myComparator);
+//        Collections.sort(dayViews, myComparator);
 
 //        transformation = new RoundedTransformationBuilder()
 //                .cornerRadiusDp(0)

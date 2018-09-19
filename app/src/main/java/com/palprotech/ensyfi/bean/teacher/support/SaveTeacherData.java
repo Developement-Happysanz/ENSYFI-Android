@@ -296,7 +296,7 @@ public class SaveTeacherData {
                         v10 = to_time,
                         v11 = is_break,
                         v12 = sec_name,
-                        v13= class_name;
+                        v13 = class_name;
 
                 database.teacher_timetable_insert(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13);
             }
@@ -321,6 +321,7 @@ public class SaveTeacherData {
                 String name = "";
                 String class_section = "";
                 String preference_language = "";
+                String sex = "";
 
                 enroll_id = jsonobj.getString("enroll_id");
                 admission_id = jsonobj.getString("admission_id");
@@ -328,6 +329,7 @@ public class SaveTeacherData {
                 name = jsonobj.getString("name");
                 class_section = jsonobj.getString("class_section");
                 preference_language = jsonobj.getString("pref_language");
+                sex = jsonobj.getString("sex");
 
                 System.out.println("enroll_id : " + i + " = " + enroll_id);
                 System.out.println("admission_id : " + i + " = " + admission_id);
@@ -335,6 +337,7 @@ public class SaveTeacherData {
                 System.out.println("name : " + i + " = " + name);
                 System.out.println("class_section : " + i + " = " + class_section);
                 System.out.println("preference_language : " + i + " = " + preference_language);
+                System.out.println("sex : " + i + " = " + sex);
 
 
                 String v1 = enroll_id,
@@ -342,9 +345,10 @@ public class SaveTeacherData {
                         v3 = class_id,
                         v4 = name,
                         v5 = class_section,
-                        v6 = preference_language;
+                        v6 = preference_language,
+                        v7 = sex;
 
-                database.teachers_class_students_details_insert(v1, v2, v3, v4, v5, v6);
+                database.teachers_class_students_details_insert(v1, v2, v3, v4, v5, v6, v7);
             }
         } catch (Exception ex) {
             ex.printStackTrace();

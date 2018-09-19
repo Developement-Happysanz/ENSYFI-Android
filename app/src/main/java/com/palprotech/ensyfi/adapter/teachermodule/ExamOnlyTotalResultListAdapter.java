@@ -40,7 +40,7 @@ public class ExamOnlyTotalResultListAdapter extends BaseAdapter {
     public ExamOnlyTotalResultListAdapter(Context context, ArrayList<ExamResult> examResults) {
         this.context = context;
         this.examResults = examResults;
-        Collections.sort(examResults, myComparator);
+//        Collections.sort(examResults, myComparator);
 
 //        transformation = new RoundedTransformationBuilder()
 //                .cornerRadiusDp(0)
