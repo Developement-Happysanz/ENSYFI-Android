@@ -113,8 +113,8 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
             }
         });
 
-        if (PreferenceStorage.getClassTeacher(this).equalsIgnoreCase("")) {
-            classinfo.setVisibility(View.GONE);
+        if (PreferenceStorage.getClassTeacher(this).equalsIgnoreCase("1")) {
+            classinfo.setVisibility(View.VISIBLE);
         }
 
         dashAttendance = (LinearLayout) findViewById(R.id.attendance);
