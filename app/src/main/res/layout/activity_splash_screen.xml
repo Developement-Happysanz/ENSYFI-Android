@@ -3,32 +3,67 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/appColor">
+    android:background="@drawable/ic_background">
 
-    <TextView
-        android:id="@+id/splash"
-        android:layout_width="wrap_content"
+    <!--<TextView-->
+        <!--android:id="@+id/splash"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:fontFamily="sans-serif"-->
+        <!--android:shadowColor="@color/text_shadow"-->
+        <!--android:shadowDx="5"-->
+        <!--android:shadowDy="7"-->
+        <!--android:shadowRadius="3"-->
+        <!--android:text="@string/app_name_display"-->
+        <!--android:textAllCaps="true"-->
+        <!--android:textColor="@color/transparent"-->
+        <!--android:textSize="80sp"-->
+        <!--android:textStyle="bold"-->
+        <!--android:visibility="gone" />-->
+
+    <!--<WebView-->
+        <!--android:id="@+id/web"-->
+        <!--android:layout_width="400dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:background="@color/transparent"-->
+        <!--android:scrollbars="none">-->
+
+    <!--</WebView>-->
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/ic_splash_logo"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:shadowColor="@color/text_shadow"
-        android:shadowDx="5"
-        android:shadowDy="7"
-        android:shadowRadius="3"
-        android:text="@string/app_name_display"
-        android:textAllCaps="true"
-        android:textColor="@color/transparent"
-        android:textSize="80sp"
-        android:textStyle="bold"
-        android:visibility="gone" />
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal">
 
-    <WebView
-        android:id="@+id/web"
-        android:layout_width="400dp"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:background="@color/transparent"
-        android:scrollbars="none">
+        <TextView
+            android:id="@+id/txtDevBy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="Developed by: "
 
-    </WebView>
+            android:textSize="12sp"
+            android:textColor="@color/new_gray" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="Happy Sanz Tech"
+            android:layout_toRightOf="@id/txtDevBy"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            android:textColor="@color/new_gray" />
+
+    </RelativeLayout>
 
 </RelativeLayout>

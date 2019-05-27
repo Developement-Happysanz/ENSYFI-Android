@@ -2,27 +2,65 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_grey"
+    android:background="@drawable/ic_background"
     android:gravity="center_vertical"
     android:orientation="vertical">
 
-    <ScrollView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
+            android:layout_height="match_parent"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:background="@color/appColorBase"
+                android:orientation="vertical" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:orientation="vertical" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/ic_background"
+            android:orientation="vertical"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="58dp"
+                android:layout_marginBottom="10dp"
+                android:text="Welcome to ENSYFI"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
             <LinearLayout
                 android:id="@+id/class_info"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="2dp"
-                android:visibility="gone"
-                android:background="@color/colorPrimary">
+                android:layout_marginTop="0dp"
+                android:background="@color/white"
+                android:layout_gravity="top"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/class_attendance_info"
@@ -31,6 +69,8 @@
                     android:layout_weight="0.5"
                     android:gravity="center"
                     android:text="Class Attendance"
+                    android:layout_margin="0.5dp"
+                    android:background="@color/colorPrimaryDark"
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -41,17 +81,30 @@
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
                     android:gravity="center"
+                    android:background="@color/colorPrimaryDark"
                     android:text="Class Assignment"
+                    android:layout_margin="0.5dp"
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="center"
+            android:background="@drawable/shadow_round_grey"
+            android:elevation="12dp"
+            android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20sp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -59,10 +112,9 @@
                     android:id="@+id/attendance"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="1dp"
                     android:layout_weight="0.50"
-                    android:background="@drawable/round_btn_plain"
+                    android:background="@color/white"
                     android:orientation="vertical">
 
                     <ImageView
@@ -71,7 +123,8 @@
                         android:layout_height="80sp"
                         android:layout_gravity="top|center"
                         android:layout_marginTop="5dp"
-                        android:background="@drawable/attendance" />
+                        android:padding="10dp"
+                        android:src="@drawable/ic_dashboard_attendance" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -79,23 +132,25 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:text="@string/attendance"
-                        android:textSize="14sp" />
+                        android:textColor="@color/new_gray"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/class_test"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:layout_marginRight="20dp"
                     android:layout_weight="0.50"
-                    android:background="@drawable/round_btn_plain"
+                    android:background="@color/white"
                     android:orientation="vertical">
 
                     <ImageView
                         android:layout_width="80sp"
                         android:layout_height="80sp"
                         android:layout_gravity="top|center"
-                        android:background="@drawable/classtest" />
+                        android:padding="10dp"
+                        android:src="@drawable/ic_dashboard_exam" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -103,14 +158,16 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:text="@string/class_test"
-                        android:textSize="14sp" />
+                        android:textColor="@color/new_gray"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15sp"
+                android:layout_marginTop="1sp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -118,17 +175,17 @@
                     android:id="@+id/exam"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="1dp"
                     android:layout_weight="0.50"
-                    android:background="@drawable/round_btn_plain"
+                    android:background="@color/white"
                     android:orientation="vertical">
 
                     <ImageView
                         android:layout_width="80sp"
                         android:layout_height="80sp"
                         android:layout_gravity="top|center"
-                        android:background="@drawable/exam" />
+                        android:padding="10dp"
+                        android:src="@drawable/ic_dashboard_result" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -136,24 +193,25 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:text="@string/exam"
-                        android:textSize="14sp" />
+                        android:textColor="@color/new_gray"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/time_table"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:layout_marginRight="20dp"
                     android:layout_weight="0.50"
-                    android:background="@drawable/round_btn_plain"
+                    android:background="@color/white"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="90sp"
-                        android:layout_height="90sp"
+                        android:layout_width="80sp"
+                        android:layout_height="80sp"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="-5dp"
-                        android:background="@drawable/timetable" />
+                        android:padding="10dp"
+                        android:src="@drawable/ic_dashboard_timetable" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -162,14 +220,16 @@
                         android:layout_marginTop="1dp"
                         android:gravity="center"
                         android:text="@string/time_table"
-                        android:textSize="14sp" />
+                        android:textColor="@color/new_gray"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15sp"
+                android:layout_marginTop="1sp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -177,17 +237,17 @@
                     android:id="@+id/events"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="1dp"
                     android:layout_weight="0.50"
-                    android:background="@drawable/round_btn_plain"
+                    android:background="@color/white"
                     android:orientation="vertical">
 
                     <ImageView
                         android:layout_width="80sp"
                         android:layout_height="80sp"
                         android:layout_gravity="top|center"
-                        android:background="@drawable/events" />
+                        android:padding="10dp"
+                        android:src="@drawable/ic_dashboard_events" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -195,23 +255,25 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:text="@string/events"
-                        android:textSize="14sp" />
+                        android:textColor="@color/new_gray"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/communication"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:layout_marginRight="20dp"
                     android:layout_weight="0.50"
-                    android:background="@drawable/round_btn_plain"
+                    android:background="@color/white"
                     android:orientation="vertical">
 
                     <ImageView
                         android:layout_width="80sp"
                         android:layout_height="80sp"
                         android:layout_gravity="top|center"
-                        android:background="@drawable/communication" />
+                        android:padding="10dp"
+                        android:src="@drawable/ic_dashboard_circular" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -219,12 +281,14 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:text="@string/communication"
-                        android:textSize="14sp" />
+                        android:textColor="@color/new_gray"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>
 
-    </ScrollView>
+    </FrameLayout>
 
 </LinearLayout>

@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/ic_background">
 
     <RelativeLayout
         android:id="@+id/tlbar"
@@ -45,15 +46,22 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="20dp"
+        android:elevation="12dp"
+        android:background="@drawable/shadow_round">
 
         <Spinner
             android:id="@+id/class_list_spinner"
             style="@style/spinner_style"
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="10dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:layout_marginTop="30dp"
             android:fontFamily="sans-serif"
             android:overlapAnchor="false"
@@ -64,9 +72,11 @@
         <Spinner
             android:id="@+id/section_list_spinner"
             style="@style/spinner_style"
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/class_list_spinner"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="10dp"
@@ -83,21 +93,18 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:background="@color/black"
+        android:background="@color/new_gray"
         android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="1dp"
-            android:layout_marginTop="2dp">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/ClassStudentRegId"
                 android:layout_width="50dp"
                 android:layout_height="35dp"
-                android:layout_marginLeft="2dp"
-                android:background="@color/appColor"
+                android:background="@color/new_gray"
                 android:textColor="@color/white"
                 android:layout_alignTop="@+id/ClassStdAdmnNo"
                 android:layout_alignBottom="@+id/ClassStdAdmnNo"
@@ -111,12 +118,11 @@
                 android:layout_height="35dp"
                 android:layout_toRightOf="@+id/ClassStudentRegId"
                 android:layout_toLeftOf="@+id/ClassStdAdmnNo"
-                android:layout_marginLeft="2dp"
                 android:layout_alignTop="@+id/ClassStdAdmnNo"
                 android:layout_alignBottom="@+id/ClassStdAdmnNo"
                 android:gravity="center"
                 android:text="Student Name"
-                android:background="@color/appColor"
+                android:background="@color/new_gray"
                 android:textColor="@color/white"
                 android:textSize="16sp"/>
 
@@ -127,10 +133,7 @@
                 android:layout_height="35dp"
                 android:text="Admission No."
                 android:gravity="center"
-                android:layout_marginBottom="2dp"
-                android:layout_marginLeft="2dp"
-                android:layout_marginRight="2dp"
-                android:background="@color/appColor"
+                android:background="@color/new_gray"
                 android:textColor="@color/white"
                 android:textSize="16sp"/>
         </RelativeLayout>

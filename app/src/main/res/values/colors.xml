@@ -2,18 +2,19 @@
 <resources>
 
     <!--App Base Colors-->
-    <color name="colorPrimary">#663366</color>
+    <color name="colorPrimary">#642160</color>
     <color name="colorPrimaryDark">#481747</color>
     <color name="colorAccent">#9E9E9E</color>
     <!---->
 
     <!--Support Colors-->
-    <color name="appColor">#663366</color>
-    <color name="appColorBase">#663366</color>
+    <color name="appColor">#642160</color>
+    <color name="appColorBase">#642160</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="light_font">#85f4f4f4</color>
     <color name="text_gray">#9B9B9B</color>
+    <color name="new_gray">#58595b</color>
     <!---->
     <color name="nav_row_color">#1b1b1b</color>
     <color name="nav_back_ground_color">#202630</color>

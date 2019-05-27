@@ -52,18 +52,18 @@ public class SplashScreenActivity extends AppCompatActivity {
             PreferenceStorage.saveGCM(getApplicationContext(), refreshedToken);
         }
 
-        WebView wView = (WebView) findViewById(R.id.web);
-        wView.getSettings();
-        wView.setBackgroundColor(Color.TRANSPARENT);
-        wView.loadUrl("file:///android_asset/ensyfi.gif");
-
-        // disable scroll on touch
-        wView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return (event.getAction() == MotionEvent.ACTION_MOVE);
-            }
-        });
+//        WebView wView = (WebView) findViewById(R.id.web);
+//        wView.getSettings();
+//        wView.setBackgroundColor(Color.TRANSPARENT);
+//        wView.loadUrl("file:///android_asset/ensyfi.gif");
+//
+//        // disable scroll on touch
+//        wView.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                return (event.getAction() == MotionEvent.ACTION_MOVE);
+//            }
+//        });
 
         //Initializing our broadcast receiver
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
