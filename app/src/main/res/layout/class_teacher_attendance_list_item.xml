@@ -7,8 +7,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/round_btn_plain">
+        android:layout_margin="10dp"
+        android:elevation="12dp"
+        android:background="@drawable/shadow_round">
 
         <ImageView
             android:id="@+id/day_img"
@@ -30,25 +31,25 @@
             android:layout_toRightOf="@id/day_img"
             android:gravity="center"
             android:text="DD-MM-YYYY"
-            android:textColor="@color/black"
+            android:textColor="@color/new_gray"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/class_strength"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignTop="@id/day_img"
-            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@id/txt_class_strength"
+            android:layout_alignTop="@+id/txt_class_strength"
             android:text="000"
-            android:textColor="@color/black" />
+            android:textColor="@color/new_gray" />
 
         <TextView
+            android:id="@+id/txt_class_strength"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@id/class_strength"
-            android:layout_marginRight="10dp"
-            android:layout_toLeftOf="@id/class_strength"
+            android:layout_below="@id/day_img"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
             android:text="Class Strength  :" />
 
         <RelativeLayout
@@ -73,19 +74,26 @@
                 android:layout_height="wrap_content"
                 android:text="Sent"
                 android:layout_alignParentRight="true"
-                android:textColor="@color/black" />
+                android:textColor="@color/new_gray" />
 
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/day_img"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
             android:layout_marginBottom="15dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="15dp">
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+                android:background="@color/new_gray_bg"/>
 
             <TextView
                 android:id="@+id/no_present"
@@ -93,14 +101,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:text="No. of Present :"
+                android:layout_toLeftOf="@+id/txt_no_present"
                 android:textColor="@color/present" />
 
             <TextView
                 android:id="@+id/txt_no_present"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
                 android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@id/no_present"
                 android:text="100"
                 android:textColor="@color/present" />
 
@@ -108,8 +118,9 @@
                 android:id="@+id/no_absent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/txt_no_present"
+                android:layout_alignLeft="@+id/no_present"
+                android:layout_toLeftOf="@id/txt_no_absent"
+                android:layout_alignTop="@id/txt_no_absent"
                 android:text="No. of Absent :"
                 android:textColor="@color/absent" />
 
@@ -118,7 +129,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@id/no_absent"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/txt_no_present"
                 android:text="100"
                 android:textColor="@color/absent" />
 

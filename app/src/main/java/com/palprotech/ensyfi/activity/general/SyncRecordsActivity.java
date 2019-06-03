@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
@@ -38,11 +39,11 @@ public class SyncRecordsActivity extends AppCompatActivity implements IServiceLi
 
     private static final String TAG = SyncRecordsActivity.class.getName();
     private ServiceHelper serviceHelper;
-    private Button btnSyncAttendanceRecords;
-    private Button btnSyncClassTestHomeworkRecords;
-    private Button btnSyncExamMarks;
-    private Button btnRefreshClassTestHomeworkRecords;
-    private Button btnRefreshSyncExamMarks, btnSyncClassTestMarksRecords;
+    private LinearLayout btnSyncAttendanceRecords;
+    private LinearLayout btnSyncClassTestHomeworkRecords;
+    private LinearLayout btnSyncExamMarks;
+    private LinearLayout btnRefreshClassTestHomeworkRecords;
+    private LinearLayout btnRefreshSyncExamMarks, btnSyncClassTestMarksRecords;
     private SyncAttendanceHistoryRecordsActivity syncAttendanceHistoryRecordsActivity;
     private SyncClassTestHomeWork syncClassTestHomeWork;
     private SyncAcademicExamMarks syncAcademicExamMarks;
@@ -59,23 +60,23 @@ public class SyncRecordsActivity extends AppCompatActivity implements IServiceLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sync_records);
         db = new SQLiteHelper(getApplicationContext());
-        btnSyncAttendanceRecords = (Button) findViewById(R.id.btnSyncAttendanceRecords);
+        btnSyncAttendanceRecords = (LinearLayout) findViewById(R.id.btnSyncAttendanceRecords);
         btnSyncAttendanceRecords.setOnClickListener(this);
 
-        btnSyncClassTestHomeworkRecords = (Button) findViewById(R.id.btnSyncClassTestHomeworkRecords);
+        btnSyncClassTestHomeworkRecords = (LinearLayout) findViewById(R.id.btnSyncClassTestHomeworkRecords);
         btnSyncClassTestHomeworkRecords.setOnClickListener(this);
 
-        btnSyncExamMarks = (Button) findViewById(R.id.btnSyncExamMarks);
+        btnSyncExamMarks = (LinearLayout) findViewById(R.id.btnSyncExamMarks);
         btnSyncExamMarks.setOnClickListener(this);
 
-        btnRefreshClassTestHomeworkRecords = (Button) findViewById(R.id.btnRefreshClassTestHomeworkRecords);
+        btnRefreshClassTestHomeworkRecords = (LinearLayout) findViewById(R.id.btnRefreshClassTestHomeworkRecords);
         btnRefreshClassTestHomeworkRecords.setOnClickListener(this);
 
-        btnSyncClassTestMarksRecords = (Button) findViewById(R.id.btnSyncClassTestMarksRecords);
+        btnSyncClassTestMarksRecords = (LinearLayout) findViewById(R.id.btnSyncClassTestMarksRecords);
         btnSyncClassTestMarksRecords.setOnClickListener(this);
 
-        btnRefreshSyncExamMarks = (Button) findViewById(R.id.btnRefreshSyncExamMarks);
-        btnRefreshSyncExamMarks.setOnClickListener(this);
+//        btnRefreshSyncExamMarks = (LinearLayout) findViewById(R.id.btnRefreshSyncExamMarks);
+//        btnRefreshSyncExamMarks.setOnClickListener(this);
 
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
         bckbtn.setOnClickListener(new View.OnClickListener() {
@@ -178,11 +179,11 @@ public class SyncRecordsActivity extends AppCompatActivity implements IServiceLi
                     refreshHomeWorkClassTestData.ReloadHomeWorkClassTest();
                 }
             }
-            if (v == btnRefreshSyncExamMarks) {
-//                String count = db.isClassTestHomeWorkStatusFlag();
-//                int convertCount = Integer.parseInt(count);
-                refreshExamAndExamDetails.ReloadExamAndExamDetails();
-            }
+//            if (v == btnRefreshSyncExamMarks) {
+////                String count = db.isClassTestHomeWorkStatusFlag();
+////                int convertCount = Integer.parseInt(count);
+//                refreshExamAndExamDetails.ReloadExamAndExamDetails();
+//            }
         }
     }
 

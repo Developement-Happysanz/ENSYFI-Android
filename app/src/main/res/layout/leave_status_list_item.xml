@@ -2,102 +2,112 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/background_grey"
     android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/status_color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/round_btn_plain">
+        android:layout_margin ="10dp"
+        android:background="@color/approve">
 
-        <TextView
-            android:id="@+id/txtLeaveTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:paddingBottom="3dp"
-            android:paddingTop="3dp"
-            android:text="REASON ON DUTY"
-            android:textAllCaps="true"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
-
-        <LinearLayout
-            android:id="@+id/fromto"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtLeaveTitle">
+            android:elevation="6dp"
+            android:layout_marginLeft="2dp"
+            android:background="@color/white">
+
             <TextView
-                android:id="@+id/txtFromLeaveDate"
-                android:layout_width="wrap_content"
+                android:id="@+id/txtLeaveTitle"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:drawableLeft="@drawable/od_from_to"
-                android:gravity="bottom"
-                android:text="  16 June 2017"
+                android:layout_marginLeft="10dp"
+                android:paddingBottom="3dp"
+                android:paddingTop="3dp"
+                android:text="REASON ON DUTY"
                 android:textAllCaps="true"
                 android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/txtToLeaveDate"
+            <LinearLayout
+                android:id="@+id/fromto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="bottom"
-                android:text="16 June 2017"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
-        </LinearLayout>
+                android:layout_below="@+id/txtLeaveTitle">
+                <TextView
+                    android:id="@+id/txtFromLeaveDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:drawableLeft="@drawable/od_from_to"
+                    android:gravity="bottom"
+                    android:text="  16 June 2017"
+                    android:textAllCaps="true"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
-        <LinearLayout
-            android:id="@+id/fromtotime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/fromto">
-            <TextView
-                android:id="@+id/txtFromTime"
+                <TextView
+                    android:id="@+id/txtToLeaveDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom"
+                    android:text="16 June 2017"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fromtotime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:drawableLeft="@drawable/od_from_to"
-                android:gravity="bottom"
-                android:text="  16 June 2017"
-                android:textAllCaps="true"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/fromto">
+                <TextView
+                    android:id="@+id/txtFromTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:drawableLeft="@drawable/od_from_to"
+                    android:gravity="bottom"
+                    android:text="  16 June 2017"
+                    android:textAllCaps="true"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/txtToTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom"
+                    android:text="16 June 2017"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/txtToTime"
+                android:id="@+id/txtStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/fromtotime"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:text="Test"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/imgStatus"
+                android:layout_alignTop="@id/txtStatus"
+                android:layout_alignBottom="@id/txtStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="bottom"
-                android:text="16 June 2017"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
-        </LinearLayout>
+                android:layout_below="@+id/fromto"
+                android:layout_marginLeft="20dp"/>
 
-        <TextView
-            android:id="@+id/txtStatus"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/fromtotime"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="5dp"
-            android:text="Test"
-            android:textSize="16sp" />
 
-        <ImageView
-            android:id="@+id/imgStatus"
-            android:layout_alignTop="@id/txtStatus"
-            android:layout_alignBottom="@id/txtStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/fromto"
-            android:layout_marginLeft="20dp"/>
-
+        </RelativeLayout>
 
     </RelativeLayout>
+
 </LinearLayout>

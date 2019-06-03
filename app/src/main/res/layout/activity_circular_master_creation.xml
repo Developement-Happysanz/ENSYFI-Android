@@ -20,8 +20,8 @@
             android:id="@+id/back_res"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
             android:contentDescription="@string/arrow_back"
             android:minHeight="?android:attr/actionBarSize"
             android:padding="5dp"
@@ -50,15 +50,6 @@
             android:minHeight="?android:attr/actionBarSize"
             android:src="@drawable/ab_logo" />
 
-        <ImageView
-            android:id="@+id/save_checked"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:minHeight="?android:attr/actionBarSize"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/ic_check_white_24dp" />
 
     </RelativeLayout>
 
@@ -70,7 +61,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/shadow_round"
+            android:elevation="12dp"
             android:orientation="vertical">
 
             <TextView
@@ -89,10 +83,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:digits="aãâáàbcçdeéfghiíjklmnoõôóòpqrstuvwxyzAÃÂÁÀBCÇDEÉFGHIÍJKLMNOÕÔÓÒPQRSTUVWXYZ1234567890@-_'+=(){}[]*%$₹£¢€¥#!?,.;: /?\\¡¿[]•∆π™℅¶♂♀°℃®©\◆●【】&lt;&gt;&amp;"
                 android:focusable="true"
-                android:textSize="14sp"
                 android:focusableInTouchMode="true"
-                android:digits="aãâáàbcçdeéfghiíjklmnoõôóòpqrstuvwxyzAÃÂÁÀBCÇDEÉFGHIÍJKLMNOÕÔÓÒPQRSTUVWXYZ1234567890@-_'+=(){}[]*%$₹£¢€¥#!?,.;: /?\\¡¿[]•∆π™℅¶♂♀°℃®©\◆●【】&lt;&gt;&amp;" />
+                android:textSize="14sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -110,25 +104,27 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:clickable="false"
+                android:digits="aãâáàbcçdeéfghiíjklmnoõôóòpqrstuvwxyzAÃÂÁÀBCÇDEÉFGHIÍJKLMNOÕÔÓÒPQRSTUVWXYZ1234567890@-_'+=(){}[]*%$₹£¢€¥#!?,.;\n: /?\\¡¿[]•∆π™℅¶♂♀°℃®©\◆●【】&lt;&gt;&amp;"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
-                android:clickable="false"
-                android:textSize="14sp"
-                android:digits="aãâáàbcçdeéfghiíjklmnoõôóòpqrstuvwxyzAÃÂÁÀBCÇDEÉFGHIÍJKLMNOÕÔÓÒPQRSTUVWXYZ1234567890@-_'+=(){}[]*%$₹£¢€¥#!?,.;\n: /?\\¡¿[]•∆π™℅¶♂♀°℃®©\◆●【】&lt;&gt;&amp;"
-                android:selectAllOnFocus="false" />
+                android:selectAllOnFocus="false"
+                android:textSize="14sp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical">
 
 
                 <LinearLayout
                     android:id="@+id/llAttachFile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
+                    android:layout_width="130dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/round_btn_plain"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -136,8 +132,8 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginRight="5dp"
-                        android:minHeight="?android:attr/actionBarSize"
-                        android:src="@drawable/ic_file_attachement" />
+                        android:padding="5dp"
+                        android:src="@drawable/ic_attach_file" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -151,19 +147,12 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/llAttachFile"
+                    android:layout_alignBottom="@+id/llAttachFile"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="10dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginRight="2dp"
-                        android:text="Active"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:visibility="gone" />
 
                     <Switch
                         android:id="@+id/swStatus"
@@ -177,15 +166,16 @@
 
             </RelativeLayout>
 
-            <TextView
-                android:id="@+id/txtAttachedFile"
+            <Button
+                android:id="@+id/save_checked"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10sp"
-                android:text="Attach file"
-                android:textColor="@color/blue"
-                android:textSize="14sp" />
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/round_btn_color"
+                android:text="done"
+                android:textColor="@color/white" />
 
         </LinearLayout>
 

@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/background_grey"
+    android:background="@color/new_gray"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/black"
+        android:background="@color/new_gray"
         android:orientation="horizontal">
 
         <TextView
@@ -22,7 +22,7 @@
             android:gravity="center"
             android:paddingBottom="5dp"
             android:text="2017-05-23"
-            android:textColor="@color/black" />
+            android:textColor="@color/new_gray" />
 
         <TextView
             android:id="@+id/txtSubTime"
@@ -35,7 +35,7 @@
             android:gravity="center"
             android:paddingBottom="5dp"
             android:text="12-12-2012"
-            android:textColor="@color/black" />
+            android:textColor="@color/new_gray" />
 
         <TextView
             android:id="@+id/txtSubName"
@@ -49,7 +49,7 @@
             android:gravity="center"
             android:paddingBottom="5dp"
             android:text="12-12-2012"
-            android:textColor="@color/black" />
+            android:textColor="@color/new_gray" />
 
         <TextView
             android:id="@+id/txtSubMark"
@@ -62,7 +62,7 @@
             android:gravity="center"
             android:paddingBottom="5dp"
             android:text="-"
-            android:textColor="@color/black"
+            android:textColor="@color/new_gray"
             android:visibility="gone" />
 
     </LinearLayout>

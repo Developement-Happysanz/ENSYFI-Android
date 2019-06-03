@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ic_background"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -53,8 +54,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/tlbar"
-        android:background="@color/background_grey">
+        android:layout_below="@+id/tlbar">
 
         <TextView
             android:id="@+id/ct_hw_title"
@@ -64,7 +64,7 @@
             android:layout_marginTop="30dp"
             android:gravity="center"
             android:text="Title"
-            android:textColor="@color/black"
+            android:textColor="@color/new_gray"
             android:textSize="16sp" />
 
         <TextView
@@ -77,7 +77,7 @@
             android:layout_toRightOf="@id/ct_hw_title"
             android:gravity="center"
             android:text="DD-MM-YYYY"
-            android:textColor="@color/black"
+            android:textColor="@color/new_gray"
             android:textSize="14sp" />
 
         <TextView
@@ -88,7 +88,7 @@
             android:layout_below="@id/ct_hw_title"
             android:layout_marginTop="10dp"
             android:text="Subject"
-            android:textColor="@color/black"
+            android:textColor="@color/new_gray"
             android:textSize="16sp" />
 
         <TextView
@@ -99,7 +99,7 @@
             android:layout_alignTop="@id/ct_hw_subject"
             android:layout_toRightOf="@id/ct_hw_subject"
             android:text="000"
-            android:textColor="@color/black"
+            android:textColor="@color/new_gray"
             android:textSize="14sp" />
 
         <TextView
@@ -110,7 +110,7 @@
             android:layout_below="@id/ct_hw_subject"
             android:layout_marginTop="10dp"
             android:text="Teacher Name"
-            android:textColor="@color/black"
+            android:textColor="@color/new_gray"
             android:textSize="16sp" />
 
         <TextView
@@ -121,7 +121,7 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/ct_hw_teacher_name"
             android:text="ABC"
-            android:textColor="@color/black"
+            android:textColor="@color/new_gray"
             android:textSize="14sp" />
 
         <TextView
@@ -132,7 +132,7 @@
             android:layout_below="@id/txt_ct_hw_teacher_name"
             android:layout_marginTop="10dp"
             android:text="Type"
-            android:textColor="@color/black"
+            android:textColor="@color/new_gray"
             android:textSize="16sp" />
 
         <TextView
@@ -143,7 +143,7 @@
             android:layout_alignTop="@+id/ct_hw_type"
             android:layout_toRightOf="@id/ct_hw_type"
             android:text="100"
-            android:textColor="@color/black"
+            android:textColor="@color/new_gray"
             android:textSize="14sp" />
 
         <TextView
@@ -155,7 +155,7 @@
             android:layout_marginBottom="20dp"
             android:layout_marginTop="10dp"
             android:text="Description"
-            android:textColor="@color/black"
+            android:textColor="@color/new_gray"
             android:textSize="16sp" />
 
         <TextView
@@ -166,7 +166,7 @@
             android:layout_alignTop="@+id/ct_hw_description"
             android:layout_toRightOf="@id/ct_hw_description"
             android:text="ABCDEFGH"
-            android:textColor="@color/black"
+            android:textColor="@color/new_gray"
             android:textSize="14sp" />
 
         <RelativeLayout
@@ -204,7 +204,7 @@
                     android:text="SMS"
                     android:drawablePadding="10dp"
                     android:textSize="16sp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/new_gray"/>
 
                 <TextView
                     android:id="@+id/mail"
@@ -217,7 +217,7 @@
                     android:drawableLeft="@drawable/grouping_unchecked"
                     android:text="Mail"
                     android:textSize="16sp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/new_gray"/>
 
                 <TextView
                     android:id="@+id/notification"
@@ -230,7 +230,7 @@
                     android:drawableLeft="@drawable/grouping_unchecked"
                     android:text="Notification"
                     android:textSize="16sp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/new_gray"/>
 
             </RelativeLayout>
 

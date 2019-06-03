@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ic_background"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -25,8 +26,8 @@
                 android:id="@+id/back_res"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
                 android:contentDescription="@string/arrow_back"
                 android:minHeight="?android:attr/actionBarSize"
                 android:padding="5dp"
@@ -46,176 +47,271 @@
                 android:textStyle="bold" />
 
         </RelativeLayout>
-        <!--End-->
 
-        <!--Profile Picture background-->
-        <LinearLayout
-            android:id="@+id/profile_bg"
+        <RelativeLayout
+            android:id="@+id/pic_layout"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/tlbar"
-            android:background="@drawable/profile_bg"
-            android:orientation="vertical" />
-
-        <com.palprotech.ensyfi.customview.CircleImageView
-            android:id="@+id/image_profile_pic"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_below="@+id/profile_bg"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="-60dp"
-            android:fitsSystemWindows="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_profile" />
-
-        <Button
-            android:id="@+id/btnSave"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:visibility="gone"
-            android:layout_below="@+id/profile_bg"
-            android:text="Save" />
-
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal"
             android:gravity="center"
-            android:layout_marginTop="100dp"
-            android:textColor="@color/white"
-            android:textSize="30sp" />
+            android:layout_centerHorizontal="true">
 
-        <TextView
-            android:id="@+id/typename"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/name"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:textColor="@color/white" />
+            <com.palprotech.ensyfi.customview.CircleImageView
+                android:id="@+id/image_profile_pic"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:fitsSystemWindows="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="50dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_profile" />
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="Save"
+                android:visibility="gone" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_toRightOf="@+id/image_profile_pic"
+                android:layout_centerVertical="true"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Sample"
+                    android:textColor="@color/new_gray"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/typename"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/name"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/new_gray" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
         <!--End-->
 
         <!--User Info-->
-        <LinearLayout
-            android:id="@+id/userdetails"
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/image_profile_pic"
-            android:orientation="vertical">
+            android:layout_below="@id/pic_layout"
+            android:layout_margin="40dp"
+            android:background="@drawable/shadow_round"
+            android:elevation="12dp">
 
-            <TextView
-                android:id="@+id/username"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="@string/user_name"
-                android:textColor="@color/appColor"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/userid"
+            <LinearLayout
+                android:id="@+id/userdetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-                android:textSize="14sp"
-                android:digits="aãâáàbcçdeéfghiíjklmnoõôóòpqrstuvwxyzAÃÂÁÀBCÇDEÉFGHIÍJKLMNOÕÔÓÒPQRSTUVWXYZ1234567890@-_'+=(){}[]*%$₹£¢€¥#!?,.;: /?\\¡¿[]•∆π™℅¶♂♀°℃®©\◆●【】&lt;&gt;&amp;"
-                android:focusableInTouchMode="true"
-                android:inputType="textEmailAddress" />
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/password"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/user_name"
+                    android:textColor="@color/appColor"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/userid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:digits="aãâáàbcçdeéfghiíjklmnoõôóòpqrstuvwxyzAÃÂÁÀBCÇDEÉFGHIÍJKLMNOÕÔÓÒPQRSTUVWXYZ1234567890@-_'+=(){}[]*%$₹£¢€¥#!?,.;: /?\\¡¿[]•∆π™℅¶♂♀°℃®©\◆●【】&lt;&gt;&amp;"
+                    android:focusableInTouchMode="true"
+                    android:inputType="textEmailAddress"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Change Password"
+                    android:textColor="@color/appColor"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="80dp"
+                    android:layout_marginTop="40dp"
+                    android:background="@drawable/textcolorborder"
+                    android:text="Student 1"
+                    android:textColor="@color/appColor"
+                    android:visibility="gone" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="48dp"
+                    android:layout_marginRight="80dp"
+                    android:background="@drawable/textcolorborder"
+                    android:text="Student 2"
+                    android:textColor="@color/appColor"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+            <!--End-->
+
+            <!--Parents, Students, Guardian Info and Fees Status-->
+            <LinearLayout
+                android:id="@+id/parentStudentView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_below="@+id/userdetails"
                 android:layout_marginTop="20dp"
-                android:text="Change Password"
-                android:textColor="@color/appColor"
-                android:textSize="16sp" />
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginLeft="80dp"
-                android:layout_marginTop="40dp"
-                android:background="@drawable/textcolorborder"
-                android:text="Student 1"
-                android:textColor="@color/appColor"
-                android:visibility="gone" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginRight="80dp"
-                android:layout_marginTop="-48dp"
-                android:background="@drawable/textcolorborder"
-                android:text="Student 2"
-                android:textColor="@color/appColor"
-                android:visibility="gone" />
 
-        </LinearLayout>
-        <!--End-->
+                    <LinearLayout
+                        android:id="@+id/ic_parentprofile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:orientation="horizontal">
 
-        <!--Parents, Students, Guardian Info and Fees Status-->
-        <LinearLayout
-            android:id="@+id/parentStudentView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_below="@+id/userdetails"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="20dp">
+                        <ImageView
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
+                            android:padding="20dp"
+                            android:background="@drawable/shadow_round"
+                            android:elevation="6dp"
+                            android:src="@drawable/ic_parent"/>
 
-            <TextView
-                android:id="@+id/ic_parentprofile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25"
-                android:drawableTop="@drawable/ic_parents"
-                android:gravity="center"
-                android:text="Parents"
-                android:textColor="@color/black"
-                android:textSize="15dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Parents"
+                            android:layout_gravity="center_vertical"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/ic_guardianprofile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25"
-                android:drawableTop="@drawable/ic_guardian"
-                android:gravity="center"
-                android:text="Guardian"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                    </LinearLayout>
 
-            <TextView
-                android:id="@+id/ic_studentprofile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25"
-                android:drawableTop="@drawable/ic_student"
-                android:gravity="center"
-                android:text="Student"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                    <LinearLayout
+                        android:id="@+id/ic_guardianprofile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/ic_feestatus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25"
-                android:drawableTop="@drawable/ic_feestatus"
-                android:gravity="center"
-                android:text="Fees"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                        <ImageView
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
+                            android:padding="20dp"
+                            android:background="@drawable/shadow_round"
+                            android:elevation="6dp"
+                            android:src="@drawable/ic_guardian"/>
 
-        </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Guardian"
+                            android:layout_gravity="center_vertical"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+                    <LinearLayout
+                        android:id="@+id/ic_studentprofile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
+                            android:padding="10dp"
+                            android:background="@drawable/shadow_round"
+                            android:elevation="6dp"
+                            android:src="@drawable/ic_students"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Student"
+                            android:layout_gravity="center_vertical"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ic_feestatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
+                            android:padding="20dp"
+                            android:background="@drawable/shadow_round"
+                            android:elevation="6dp"
+                            android:src="@drawable/ic_fees"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Fees"
+                            android:layout_gravity="center_vertical"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
         <!--End-->
 
         <!--Teacher Info-->
@@ -224,7 +320,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_below="@+id/userdetails"
             android:layout_marginBottom="10dp"
             android:visibility="gone">
 

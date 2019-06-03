@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ic_background"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -70,7 +71,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
                 android:text="Topic :"
-                android:textColor="@color/appColor"
+                android:textColor="@color/new_gray"
                 android:textSize="20sp" />
 
             <TextView
@@ -79,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:text="Topic"
-                android:textColor="@color/black" />
+                android:textColor="@color/new_gray" />
         </LinearLayout>
 
         <LinearLayout
@@ -96,7 +97,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
                 android:text="Test Date :"
-                android:textColor="@color/appColor"
+                android:textColor="@color/new_gray"
                 android:textSize="20sp" />
 
             <TextView
@@ -105,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:text="Topic :"
-                android:textColor="@color/black" />
+                android:textColor="@color/new_gray" />
         </LinearLayout>
 
     </RelativeLayout>
@@ -123,7 +124,7 @@
             android:id="@+id/student_id"
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:background="@color/appColor"
+            android:background="@color/new_gray"
             android:gravity="center"
             android:text="S.No."
             android:textColor="@color/white"
@@ -136,7 +137,7 @@
             android:layout_toLeftOf="@+id/marks"
             android:layout_toRightOf="@+id/student_id"
             android:layout_weight="0.05"
-            android:background="@color/appColor"
+            android:background="@color/new_gray"
             android:gravity="center"
             android:text="Name"
             android:textColor="@color/white"
@@ -149,7 +150,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginLeft="1dp"
             android:layout_marginRight="1dp"
-            android:background="@color/appColor"
+            android:background="@color/new_gray"
             android:gravity="center"
             android:text="Marks"
             android:textColor="@color/white"

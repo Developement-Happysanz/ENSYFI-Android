@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_grey"
+    android:background="@drawable/ic_background"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -48,8 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tlbar"
-        android:layout_marginTop="10dp"
-        android:background="@color/background_grey">
+        android:layout_marginTop="10dp">
 
         <RelativeLayout
             android:id="@+id/userimage2"
@@ -71,13 +70,17 @@
         <ScrollView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
             android:layout_below="@id/userimage2">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@color/background_grey"
+                android:background="@drawable/shadow_round"
+                android:elevation="12dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
                 android:paddingBottom="20dp">
 
                 <TextView

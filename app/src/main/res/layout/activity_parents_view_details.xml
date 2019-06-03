@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_grey"
+    android:background="@drawable/ic_background"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -124,13 +124,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/userimage"
-            android:layout_marginTop="15dp"
-            android:background="@color/background_grey">
+            android:layout_marginTop="15dp">
 
             <RelativeLayout
                 android:id="@+id/iid"
+                android:layout_margin="40dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shadow_round"
                 android:visibility="invisible">
 
                 <TextView

@@ -15,8 +15,7 @@
                 </shape>
             </item>
             <item>
-                <bitmap android:gravity="bottom|right" android:src="@drawable/ic_down_arrow" />
-                <padding android:bottom="31dp" android:left="31dp" android:right="31dp" android:top="31dp" />
+                <bitmap android:gravity="bottom|right" android:src="@drawable/spinner_down_arrow" />
             </item>
         </layer-list>
     </item>

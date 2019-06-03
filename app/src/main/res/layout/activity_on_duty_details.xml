@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ic_background"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -43,8 +44,9 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/round_btn_plain">
+        android:layout_margin="20dp"
+        android:elevation="12dp"
+        android:background="@drawable/shadow_round">
 
         <TextView
             android:id="@+id/txtOdFor"
@@ -129,6 +131,7 @@
                 android:layout_marginRight="25dp"
                 android:layout_marginTop="25dp"
                 android:text="Decline"
+                android:buttonTint="@color/reject"
                 android:textSize="16sp" />
 
             <RadioButton
@@ -139,6 +142,7 @@
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="25dp"
                 android:text="Approve"
+                android:buttonTint="@color/approve"
                 android:textSize="16sp" />
         </RadioGroup>
 
@@ -151,8 +155,8 @@
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:text="ok"
-            android:background="@drawable/round_btn"
-            android:textColor="@color/colour_pick" />
+            android:background="@drawable/round_btn_color"
+            android:textColor="@color/white" />
 
 
     </RelativeLayout>

@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/background_grey">
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:id="@+id/layout_frame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/black">
+        android:background="@color/new_gray">
 
         <TextView
             android:id="@+id/txtClassStudentRegId"
@@ -18,7 +17,7 @@
             android:background="@color/white"
             android:gravity="center"
             android:text="Roll NO."
-            android:textColor="@color/black"
+            android:textColor="@color/new_gray"
             android:textSize="14sp" />
 
         <TextView
@@ -33,7 +32,7 @@
             android:gravity="left|center"
             android:paddingLeft="5dp"
             android:text="Student Name"
-            android:textColor="@color/black"
+            android:textColor="@color/new_gray"
             android:textSize="14sp" />
 
         <TextView
@@ -47,7 +46,7 @@
             android:gravity="left|center"
             android:paddingLeft="5dp"
             android:text="Parent Name"
-            android:textColor="@color/black"
+            android:textColor="@color/new_gray"
             android:textSize="14sp" />
 
         <TextView

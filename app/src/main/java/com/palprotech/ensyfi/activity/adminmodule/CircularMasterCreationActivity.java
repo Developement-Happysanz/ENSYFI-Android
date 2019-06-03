@@ -36,7 +36,7 @@ public class CircularMasterCreationActivity extends AppCompatActivity implements
 
     private static final String TAG = CircularMasterCreationActivity.class.getName();
     private ImageView btnBack;
-    private ImageView btnSave;
+    private Button btnSave;
     private EditText etCircularTitle;
     private EditText etCircularDetails;
     private TextView tvAttachedFileName;
@@ -66,8 +66,6 @@ public class CircularMasterCreationActivity extends AppCompatActivity implements
 
         llAttachedFile = findViewById(R.id.llAttachFile);
         llAttachedFile.setOnClickListener(this);
-
-        tvAttachedFileName = findViewById(R.id.txtAttachedFile);
 
         setupUI(findViewById(R.id.scrollID));
 

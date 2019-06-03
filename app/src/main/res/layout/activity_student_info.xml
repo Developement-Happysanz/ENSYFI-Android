@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ic_background"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -56,7 +57,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="100dp"
-        android:background="@color/black"
+        android:background="@color/new_gray"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -72,7 +73,7 @@
                 android:layout_alignBottom="@+id/ClassStdAdmnNo"
                 android:layout_alignTop="@+id/ClassStdAdmnNo"
                 android:layout_marginLeft="2dp"
-                android:background="@color/appColor"
+                android:background="@color/new_gray"
                 android:gravity="center"
                 android:text="ID"
                 android:textColor="@color/white"
@@ -87,7 +88,7 @@
                 android:layout_marginLeft="2dp"
                 android:layout_toLeftOf="@+id/ClassStdAdmnNo"
                 android:layout_toRightOf="@+id/ClassStudentRegId"
-                android:background="@color/appColor"
+                android:background="@color/new_gray"
                 android:gravity="center"
                 android:text="Student Name"
                 android:textColor="@color/white"
@@ -101,7 +102,7 @@
                 android:layout_marginBottom="2dp"
                 android:layout_marginLeft="2dp"
                 android:layout_marginRight="2dp"
-                android:background="@color/appColor"
+                android:background="@color/new_gray"
                 android:gravity="center"
                 android:text="Admission No."
                 android:textColor="@color/white"

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/popup_bg">
+    android:background="@drawable/ic_background">
     <RelativeLayout
         android:id="@+id/tlbar"
         android:layout_width="match_parent"
@@ -82,8 +82,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/userimage1"
-            android:layout_marginTop="15dp"
-            android:background="@color/white">
+            android:layout_margin="40dp"
+            android:background="@drawable/shadow_round"
+            android:elevation="12dp">
 
             <TextView
                 android:id="@+id/mothername"

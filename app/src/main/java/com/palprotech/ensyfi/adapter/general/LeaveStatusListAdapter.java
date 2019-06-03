@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.palprotech.ensyfi.R;
@@ -87,6 +88,7 @@ public class LeaveStatusListAdapter extends BaseAdapter {
             holder.txtToTime = (TextView) convertView.findViewById(R.id.txtToTime);
             holder.txtStatus = (TextView) convertView.findViewById(R.id.txtStatus);
             holder.imgStatus = (ImageView) convertView.findViewById(R.id.imgStatus);
+            holder.statusColorBG = (RelativeLayout) convertView.findViewById(R.id.status_color);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -100,12 +102,15 @@ public class LeaveStatusListAdapter extends BaseAdapter {
 
         if (leaveStatus.get(position).getStatus().contentEquals("Approved")) {
             holder.txtStatus.setTextColor(ContextCompat.getColor(context, R.color.approve));
+            holder.statusColorBG.setBackgroundColor(ContextCompat.getColor(context, R.color.approve));
             holder.imgStatus.setImageResource(R.drawable.od_approved);
         } else if (leaveStatus.get(position).getStatus().contentEquals("Rejected")) {
             holder.txtStatus.setTextColor(ContextCompat.getColor(context, R.color.reject));
+            holder.statusColorBG.setBackgroundColor(ContextCompat.getColor(context, R.color.reject));
             holder.imgStatus.setImageResource(R.drawable.od_rejected);
         } else {
             holder.txtStatus.setTextColor(ContextCompat.getColor(context, R.color.pending));
+            holder.statusColorBG.setBackgroundColor(ContextCompat.getColor(context, R.color.pending));
             holder.imgStatus.setImageResource(R.drawable.od_pending);
         }
 
@@ -164,6 +169,7 @@ public class LeaveStatusListAdapter extends BaseAdapter {
     public class ViewHolder {
         public TextView txtLeaveTitle, txtFromLeaveDate, txtToLeaveDate, txtFromTime, txtToTime, txtStatus;
         public ImageView imgStatus;
+        public RelativeLayout statusColorBG;
     }
 
     public boolean ismSearching() {

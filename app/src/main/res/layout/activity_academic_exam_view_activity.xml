@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ic_background"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -44,6 +45,9 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_margin="40dp"
+        android:background="@drawable/shadow_round"
+        android:elevation="12dp"
         android:layout_height="wrap_content">
 
         <Spinner

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ic_background"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -54,7 +55,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_grey">
+        android:layout_margin="40dp"
+        android:elevation="12dp"
+        android:background="@drawable/shadow_round">
 
         <Spinner
             android:id="@+id/class_list_spinner"
@@ -128,7 +131,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:divider="@color/background_grey"
-            android:dividerHeight="4dp">
+            android:dividerHeight="0dp">
 
         </ListView>
 

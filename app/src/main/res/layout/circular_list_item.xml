@@ -2,20 +2,31 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/background_grey"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/round_btn_plain">
+        android:layout_margin="10dp"
+        android:elevation="12dp"
+        android:padding="10dp"
+        android:background="@drawable/shadow_round">
+
+        <ImageView
+            android:id="@+id/img_mail"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/ic_circular_email"/>
 
         <TextView
             android:id="@+id/txtCircularType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:layout_alignTop="@+id/img_mail"
+            android:layout_toRightOf="@+id/img_mail"
             android:paddingBottom="3dp"
             android:paddingTop="3dp"
             android:text="Test"
@@ -42,26 +53,28 @@
             android:id="@+id/txtCircularDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtCircularTitle"
+            android:layout_below="@+id/txtCircularDate"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="5dp"
             android:text="Test"
+            android:layout_marginBottom="10dp"
             android:textColor="@color/black"
             android:textSize="14sp" />
 
         <ImageView
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/txtCircularDescription"
+            android:layout_below="@+id/txtCircularTitle"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/date_calender" />
+            android:padding="3dp"
+            android:src="@drawable/ic_date" />
 
         <TextView
             android:id="@+id/txtCircularDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtCircularDescription"
+            android:layout_below="@+id/txtCircularTitle"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="5dp"
             android:text="Test"

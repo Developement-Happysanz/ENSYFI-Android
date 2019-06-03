@@ -45,7 +45,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_grey"
+        android:background="@drawable/shadow_round"
+        android:layout_margin="40dp"
+        android:elevation="12dp"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -61,8 +63,7 @@
             android:overlapAnchor="false"
             android:spinnerMode="dropdown"
             android:textColor="@color/text_gray"
-            android:textSize="15sp"
-            android:visibility="gone" />
+            android:textSize="15sp" />
 
         <Spinner
             android:id="@+id/class_test_homework_spinner"

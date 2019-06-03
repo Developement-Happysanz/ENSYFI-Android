@@ -2,12 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ic_background"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background_grey"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -61,7 +61,10 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_margin="40dp"
+                    android:elevation="12dp"
+                    android:background="@drawable/shadow_round">
 
                     <Spinner
                         android:id="@+id/class_list_spinner"
@@ -85,7 +88,7 @@
                         android:layout_below="@+id/class_list_spinner"
                         android:layout_centerHorizontal="true"
                         android:layout_marginBottom="20dp"
-                        android:layout_marginTop="30dp"
+                        android:layout_marginTop="10dp"
                         android:fontFamily="sans-serif"
                         android:overlapAnchor="false"
                         android:spinnerMode="dropdown"
@@ -99,7 +102,7 @@
                         android:layout_below="@+id/subject_list_spinner"
                         android:layout_centerHorizontal="true"
                         android:layout_marginBottom="20dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="10dp"
                         android:orientation="horizontal">
 
                         <RadioButton
@@ -131,6 +134,7 @@
                     android:layout_marginBottom="20dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
+                    android:elevation="12dp"
                     android:background="@drawable/btn_square_fill_white"
                     android:orientation="vertical">
 

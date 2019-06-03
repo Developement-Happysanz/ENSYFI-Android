@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ic_background"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -48,7 +49,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="40dp"
-        android:background="@color/black"
+        android:background="@color/new_gray"
         android:orientation="vertical">
 
         <LinearLayout
@@ -61,7 +62,7 @@
                 android:layout_marginLeft="2dp"
                 android:layout_marginTop="2dp"
                 android:layout_weight="0.5"
-                android:background="@color/appColor"
+                android:background="@color/new_gray"
                 android:gravity="center"
                 android:text="Date"
                 android:textColor="@color/white"
@@ -74,7 +75,7 @@
                 android:layout_marginRight="2dp"
                 android:layout_marginTop="2dp"
                 android:layout_weight="0.5"
-                android:background="@color/appColor"
+                android:background="@color/new_gray"
                 android:gravity="center"
                 android:text="Duration"
                 android:textColor="@color/white"

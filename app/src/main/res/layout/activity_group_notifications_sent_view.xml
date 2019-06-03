@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_background"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,8 +20,8 @@
             android:id="@+id/back_res"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
             android:contentDescription="@string/arrow_back"
             android:minHeight="?android:attr/actionBarSize"
             android:padding="5dp"
@@ -44,8 +46,8 @@
             android:layout_height="50dp"
             android:layout_alignParentRight="true"
             android:layout_marginTop="5dp"
-            android:paddingBottom="10dp"
             android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:src="@drawable/ic_group_add_send" />
 
     </RelativeLayout>
@@ -54,9 +56,6 @@
         android:id="@+id/listView_groups"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="2dp"
-        android:layout_marginRight="2dp"
-        android:background="@color/black"
         android:divider="@color/white"
         android:dividerHeight="0dp" />
 

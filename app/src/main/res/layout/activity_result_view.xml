@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ic_background"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -20,8 +21,8 @@
             android:id="@+id/back_res"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
             android:contentDescription="@string/arrow_back"
             android:minHeight="?android:attr/actionBarSize"
             android:padding="5dp"
@@ -44,16 +45,21 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/shadow_round"
+        android:elevation="12dp"
+        android:layout_margin="40dp">
 
         <Spinner
             android:id="@+id/class_list_spinner"
             style="@style/spinner_style"
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="60dp"
             android:layout_marginTop="30dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginBottom="10dp"
             android:fontFamily="sans-serif"
             android:overlapAnchor="false"
             android:spinnerMode="dropdown"
@@ -67,8 +73,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/class_list_spinner"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="60dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginBottom="30dp"
             android:fontFamily="sans-serif"
             android:overlapAnchor="false"
             android:spinnerMode="dropdown"
@@ -86,7 +94,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:divider="@color/background_grey"
-            android:dividerHeight="4dp">
+            android:dividerHeight="0dp">
 
         </ListView>
 

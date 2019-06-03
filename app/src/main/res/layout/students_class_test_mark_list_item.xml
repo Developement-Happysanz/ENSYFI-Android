@@ -8,7 +8,7 @@
         android:id="@+id/layout_frame"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/black"
+        android:background="@color/new_gray"
         android:orientation="horizontal">
 
         <TextView
@@ -21,7 +21,7 @@
             android:background="@color/white"
             android:gravity="center"
             android:text="ID"
-            android:textColor="@color/black"
+            android:textColor="@color/new_gray"
             android:textSize="14sp" />
 
         <TextView
@@ -35,7 +35,7 @@
             android:gravity="left|center"
             android:paddingLeft="10dp"
             android:text="Name"
-            android:textColor="@color/black"
+            android:textColor="@color/new_gray"
             android:textSize="14sp" />
 
         <EditText
@@ -55,7 +55,7 @@
             android:maxLines="1"
             android:singleLine="true"
             android:text="0"
-            android:textColor="@color/black"
+            android:textColor="@color/new_gray"
             android:textColorHint="@color/gray_2"
             android:textSize="14sp" />
 

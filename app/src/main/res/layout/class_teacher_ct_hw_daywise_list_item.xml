@@ -18,7 +18,7 @@
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="Teacher Name"
-            android:textColor="@color/black"
+            android:textColor="@color/new_gray"
             android:textSize="16sp" />
 
         <TextView
@@ -31,7 +31,7 @@
             android:layout_toRightOf="@id/ct_hw_name"
             android:gravity="center"
             android:text="ABCD"
-            android:textColor="@color/black"
+            android:textColor="@color/new_gray"
             android:textSize="16sp" />
 
 
@@ -43,7 +43,7 @@
             android:layout_below="@id/ct_hw_name"
             android:layout_marginTop="10dp"
             android:text="Subject"
-            android:textColor="@color/black"
+            android:textColor="@color/new_gray"
             android:textSize="16sp" />
 
         <TextView
@@ -54,7 +54,7 @@
             android:layout_toRightOf="@id/ct_hw_subject"
             android:layout_alignLeft="@+id/txt_ct_hw_name"
             android:text="000"
-            android:textColor="@color/black"
+            android:textColor="@color/new_gray"
             android:textSize="16sp" />
         <TextView
             android:id="@+id/ct_hw_type"
@@ -64,7 +64,7 @@
             android:layout_below="@id/ct_hw_subject"
             android:layout_marginTop="10dp"
             android:text="Type"
-            android:textColor="@color/black"
+            android:textColor="@color/new_gray"
             android:textSize="16sp" />
 
         <TextView
@@ -76,7 +76,7 @@
             android:layout_toRightOf="@id/ct_hw_type"
             android:text="100"
             android:layout_marginBottom="10dp"
-            android:textColor="@color/black"
+            android:textColor="@color/new_gray"
             android:textSize="16sp" />
 
         <RelativeLayout
@@ -102,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:text="Sent"
                 android:layout_alignParentRight="true"
-                android:textColor="@color/black" />
+                android:textColor="@color/new_gray" />
 
 
         </RelativeLayout>

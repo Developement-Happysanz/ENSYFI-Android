@@ -2,13 +2,13 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
 android:layout_width="match_parent"
 android:layout_height="wrap_content"
-android:background="@color/background_grey">
+android:background="@color/new_gray">
 
 <RelativeLayout
     android:id="@+id/layout_frame"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/black">
+    android:background="@color/new_gray">
 
     <TextView
         android:id="@+id/txtTeacherId"
@@ -18,7 +18,7 @@ android:background="@color/background_grey">
         android:background="@color/white"
         android:gravity="center"
         android:text="Roll No."
-        android:textColor="@color/black"
+        android:textColor="@color/new_gray"
         android:textSize="14sp" />
 
     <TextView
@@ -33,7 +33,7 @@ android:background="@color/background_grey">
         android:gravity="left|center"
         android:paddingLeft="5dp"
         android:text="Teacher Name"
-        android:textColor="@color/black"
+        android:textColor="@color/new_gray"
         android:textSize="14sp" />
 
     <TextView
@@ -47,7 +47,7 @@ android:background="@color/background_grey">
         android:gravity="left|center"
         android:paddingLeft="5dp"
         android:text="Advanced Digital Signal Processing"
-        android:textColor="@color/black"
+        android:textColor="@color/new_gray"
         android:textSize="14sp" />
 
     <TextView

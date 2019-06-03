@@ -2,14 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/background_grey"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/round_btn_plain">
+        android:layout_margin="10dp"
+        android:elevation="6dp"
+        android:background="@drawable/shadow_round">
 
         <TextView
             android:id="@+id/txtCommunicationTitle"
@@ -54,7 +54,7 @@
             android:layout_below="@+id/txtCommunicationDetail"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/date_calender" />
+            android:src="@drawable/ic_date" />
 
 
         <ImageView

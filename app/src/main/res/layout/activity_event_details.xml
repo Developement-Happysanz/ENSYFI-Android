@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ic_background"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -82,21 +83,21 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/appColor"
         android:orientation="horizontal">
 
-        <ImageView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingLeft="5dp"
-            android:src="@drawable/eventcalender" />
+            android:text="Date: "
+            android:layout_marginLeft="10dp"
+            android:textSize="16sp"
+            android:textColor="@color/appColor"/>
 
         <TextView
             android:id="@+id/eventdate"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="5dp"
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="16sp" />
@@ -105,8 +106,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/background_grey">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -119,8 +119,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:text="DESCRIPTION"
-                android:textColor="@color/black"
-                android:textStyle="bold"
+                android:textColor="@color/appColor"
                 android:textSize="16sp" />
 
             <TextView
@@ -135,11 +134,13 @@
                 android:id="@+id/eventorg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
+                android:layout_gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:layout_marginRight="15dp"
-                android:background="@color/transparent"
+                android:background="@drawable/round_btn_color"
                 android:text="View Event Organiser"
-                android:textColor="@color/appColor"
+                android:textColor="@color/white"
                 android:textStyle="bold" />
 
         </LinearLayout>

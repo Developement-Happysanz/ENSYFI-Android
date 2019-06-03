@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ic_background"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -49,10 +50,10 @@
             android:id="@+id/attendrollnum"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_below="@id/spinner_layout"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_marginTop="5dp"
+            android:background="@color/new_gray"
             android:orientation="horizontal">
 
             <TextView
@@ -61,7 +62,7 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentLeft="true"
                 android:layout_toLeftOf="@+id/type_name"
-                android:background="@color/appColor"
+                android:background="@color/new_gray"
                 android:gravity="center"
                 android:text="Name"
                 android:textColor="@color/white"
@@ -73,7 +74,7 @@
                 android:layout_height="50dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginLeft="1dp"
-                android:background="@color/appColor"
+                android:background="@color/new_gray"
                 android:gravity="center"
                 android:text="Status"
                 android:textColor="@color/white"
@@ -85,7 +86,6 @@
             android:id="@+id/listView_students"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@id/add_members"
             android:layout_below="@id/attendrollnum"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"

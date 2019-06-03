@@ -70,7 +70,7 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
     private ImageView mProfileImage = null, btnBack;
     private TextView txtUsrName, txtUserType, txtPassword;
 
-    private TextView ParentProfile, GuardianProfile, StudentProfile, FeeStatusView, TeacherProfile;
+    private TextView  TeacherProfile;
 
     private ServiceHelper serviceHelper;
     private SaveStudentData studentData;
@@ -80,7 +80,7 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
     static final int REQUEST_IMAGE_GET = 1;
     protected ProgressDialogHelper progressDialogHelper;
     RelativeLayout TeacherInfo, parentInfoPopup, guardianInfoPopup, studentInfoPopup, teacherInfoPopup;
-    LinearLayout ParentInfo;
+    LinearLayout ParentInfo, ParentProfile, GuardianProfile, StudentProfile, FeeStatusView;
     Button btnCancel, GbtnCancel, tbtnCancel, SbtnCancel, btnSave;
     private String mActualFilePath = null;
     private Uri mSelectedImageUri = null;
@@ -621,19 +621,19 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
         btnSave = (Button) findViewById(R.id.btnSave);
         btnSave.setOnClickListener(this);
 
-        ParentProfile = (TextView) findViewById(R.id.ic_parentprofile);
+        ParentProfile = (LinearLayout) findViewById(R.id.ic_parentprofile);
         ParentProfile.setOnClickListener(this);
 
-        GuardianProfile = (TextView) findViewById(R.id.ic_guardianprofile);
+        GuardianProfile = (LinearLayout) findViewById(R.id.ic_guardianprofile);
         GuardianProfile.setOnClickListener(this);
 
         TeacherProfile = (TextView) findViewById(R.id.ic_teacherprofile);
         TeacherProfile.setOnClickListener(this);
 
-        StudentProfile = (TextView) findViewById(R.id.ic_studentprofile);
+        StudentProfile = (LinearLayout) findViewById(R.id.ic_studentprofile);
         StudentProfile.setOnClickListener(this);
 
-        FeeStatusView = (TextView) findViewById(R.id.ic_feestatus);
+        FeeStatusView = (LinearLayout) findViewById(R.id.ic_feestatus);
         FeeStatusView.setOnClickListener(this);
 
         serviceHelper = new ServiceHelper(this);

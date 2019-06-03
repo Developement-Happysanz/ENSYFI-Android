@@ -4,7 +4,7 @@
             <item>
                 <shape>
                     <corners android:radius="4dp"  />
-                    <solid android:color="@color/new_gray" />
+                    <solid android:color="@color/new_gray_bg" />
                 </shape>
             </item>
         </layer-list>

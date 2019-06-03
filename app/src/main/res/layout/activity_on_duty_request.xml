@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@drawable/ic_background"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -25,8 +25,8 @@
                 android:id="@+id/back_res"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
                 android:contentDescription="@string/arrow_back"
                 android:minHeight="?android:attr/actionBarSize"
                 android:padding="5dp"
@@ -49,15 +49,17 @@
         <!--End-->
 
         <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:id="@+id/scrollID"
-            android:background="@color/background_grey">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
+                android:layout_margin="40dp"
+                android:background="@drawable/shadow_round"
+                android:elevation="12dp"
                 android:paddingBottom="10dp">
 
                 <LinearLayout
@@ -82,9 +84,9 @@
                         android:digits="aãâáàbcçdeéfghiíjklmnoõôóòpqrstuvwxyzAÃÂÁÀBCÇDEÉFGHIÍJKLMNOÕÔÓÒPQRSTUVWXYZ1234567890@-_'+=(){}[]*%$₹£¢€¥#!?,.;: /?\\¡¿[]•∆π™℅¶♂♀°℃®©\◆●【】&lt;&gt;&amp;"
                         android:hint="Reason for OD request"
                         android:maxLines="1"
-                        android:textSize="14sp"
                         android:singleLine="true"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
@@ -133,8 +135,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="20dp"
                         android:layout_marginTop="20dp"
+                        android:layout_marginRight="20dp"
                         android:orientation="vertical">
 
                         <TextView
@@ -187,18 +189,18 @@
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
                         android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
                         android:background="@drawable/btn_square_fill_white"
                         android:digits="aãâáàbcçdeéfghiíjklmnoõôóòpqrstuvwxyzAÃÂÁÀBCÇDEÉFGHIÍJKLMNOÕÔÓÒPQRSTUVWXYZ1234567890@-_'+=(){}[]*%$₹£¢€¥#!?,.;\n: /?\\¡¿[]•∆π™℅¶♂♀°℃®©\◆●【】&lt;&gt;&amp;"
                         android:gravity="top"
-                        android:textSize="14sp"
                         android:hint="Description"
                         android:imeOptions="actionDone"
                         android:inputType="textImeMultiLine"
                         android:lines="3"
                         android:scrollHorizontally="false"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 

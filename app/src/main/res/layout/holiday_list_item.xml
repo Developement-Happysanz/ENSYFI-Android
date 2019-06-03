@@ -7,7 +7,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/round_btn_plain">
+        android:layout_margin="10dp"
+        android:elevation="6dp"
+        android:background="@drawable/shadow_round">
 
         <TextView
             android:id="@+id/holiday_title"
@@ -15,7 +17,7 @@
             android:layout_height="wrap_content"
             android:text="Title"
             android:textSize="16sp"
-            android:textColor="@color/black"
+            android:textColor="@color/new_gray"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"/>
 
@@ -26,7 +28,7 @@
             android:text="Reason"
             android:textStyle="bold"
             android:textSize="14sp"
-            android:textColor="@color/black"
+            android:textColor="@color/new_gray"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:layout_below="@+id/holiday_title"
@@ -48,7 +50,7 @@
             android:gravity="center"
             android:drawableLeft="@drawable/od_from_to"
             android:drawablePadding="5dp"
-            android:textColor="@color/black"
+            android:textColor="@color/new_gray"
             android:textSize="14sp"
             android:layout_below="@+id/holiday_reason"
             android:layout_marginBottom="5dp"
@@ -60,7 +62,7 @@
             android:layout_height="wrap_content"
             android:text="Monday"
             android:textSize="14sp"
-            android:textColor="@color/black"
+            android:textColor="@color/new_gray"
             android:gravity="center"
             android:layout_alignTop="@id/holiday_date"
             android:layout_alignBottom="@id/holiday_date"

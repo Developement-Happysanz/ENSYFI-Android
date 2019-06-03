@@ -15,6 +15,7 @@
     <color name="light_font">#85f4f4f4</color>
     <color name="text_gray">#9B9B9B</color>
     <color name="new_gray">#58595b</color>
+    <color name="new_gray_bg">#6358595B</color>
     <!---->
     <color name="nav_row_color">#1b1b1b</color>
     <color name="nav_back_ground_color">#202630</color>
@@ -59,9 +60,9 @@
     <!---->
 
     <!--OD Approval colors-->
-    <color name="approve">#089F49</color>
-    <color name="reject">#D85B4A</color>
-    <color name="pending">#BEC031</color>
+    <color name="approve">#8dc63f</color>
+    <color name="reject">#ed1c24</color>
+    <color name="pending">#f7941e</color>
     <!---->
 
     <!--Attendance colors-->

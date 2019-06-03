@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ic_background"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -46,8 +47,7 @@
     <ScrollView
         android:id="@+id/scrollID"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/background_grey">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -59,7 +59,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:paddingBottom="10dp">
+                android:layout_margin="20dp"
+                android:background="@drawable/shadow_round"
+                android:elevation="12dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_grey"
+    android:background="@drawable/ic_background"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -51,12 +51,13 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="165dp"
             android:layout_marginBottom="15dp"
-            android:background="@drawable/round_btn_plain">
+            android:elevation="12dp"
+            android:background="@drawable/shadow_round">
 
             <TextView
                 android:id="@+id/studname"
@@ -159,13 +160,16 @@
 
             <Button
                 android:id="@+id/btnContinue"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="10dp"
-                android:layout_marginBottom="5dp"
-                android:background="@color/appColor"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_below="@+id/txtsec"
+                android:background="@drawable/round_btn_color"
                 android:text="Continue"
                 android:fontFamily="sans-serif-condensed"
                 android:textSize="16sp"

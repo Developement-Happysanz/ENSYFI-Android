@@ -21,6 +21,8 @@
     <!---->
     <string name="user_name">Username</string>
     <string name="password">Password</string>
+    <string name="new_password">New Password</string>
+    <string name="con_password">Confirm Password</string>
     <string name="forgot">Forgot Password</string>
     <string name="forgot_content">We will send a code to your registered EMAIL or MOBILE, using which you can login to create a new password.</string>
     <string name="sign_in">Sign In</string>

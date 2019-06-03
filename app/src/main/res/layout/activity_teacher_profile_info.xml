@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/popup_bg"
+    android:background="@drawable/ic_background"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -68,16 +68,20 @@
         </RelativeLayout>
 
         <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/userimage3">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/userimage3"
+            android:paddingTop="0dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/shadow_round"
+            android:elevation="12dp"
+            android:layout_marginBottom="20dp">
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@color/white"
-                android:paddingBottom="20dp">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/Teacherid"
@@ -312,7 +316,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/TeacherSubject"
                     android:paddingTop="2dp"
-                    android:text="Click to view"
+                    android:text=""
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 

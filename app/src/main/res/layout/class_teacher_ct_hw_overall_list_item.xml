@@ -2,15 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/background_grey"
     android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/period_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/round_btn_plain">
+        android:layout_margin="10dp"
+        android:elevation="6dp"
+        android:background="@drawable/shadow_round">
 
         <TextView
             android:id="@+id/classtest_date"
@@ -21,7 +21,7 @@
             android:layout_marginLeft="40dp"
             android:gravity="center_vertical"
             android:text="DD-MM-YYYY"
-            android:textColor="@color/black"
+            android:textColor="@color/new_gray"
             android:textSize="14sp" />
 
 
@@ -40,13 +40,13 @@
             android:layout_height="1dp"
             android:layout_below="@id/classtest_date_img"
             android:layout_marginTop="10dp"
-            android:background="@color/black"
+            android:background="@color/new_gray"
             android:gravity="center_vertical" />
 
         <TextView
             android:id="@+id/classtest"
             android:text="Classtest"
-            android:textColor="@color/black"
+            android:textColor="@color/new_gray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/hz_line"
@@ -55,7 +55,7 @@
         <TextView
             android:id="@+id/txt_classtest"
             android:text="000"
-            android:textColor="@color/black"
+            android:textColor="@color/new_gray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/classtest"
@@ -65,7 +65,7 @@
         <TextView
             android:id="@+id/txt_homework"
             android:text="000"
-            android:textColor="@color/black"
+            android:textColor="@color/new_gray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -75,7 +75,7 @@
         <TextView
             android:id="@+id/homework"
             android:text="Homework"
-            android:textColor="@color/black"
+            android:textColor="@color/new_gray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/txt_homework"
@@ -106,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:text="Sent"
                 android:layout_alignParentRight="true"
-                android:textColor="@color/black" />
+                android:textColor="@color/new_gray" />
 
 
         </RelativeLayout>
