@@ -54,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_gravity="center"
-            android:background="@color/appColor"
+            android:background="@color/new_gray"
             android:elevation="6dp"
             android:minHeight="?attr/actionBarSize"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"

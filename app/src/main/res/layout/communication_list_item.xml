@@ -54,6 +54,7 @@
             android:layout_below="@+id/txtCommunicationDetail"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
+            android:padding="3dp"
             android:src="@drawable/ic_date" />
 
 

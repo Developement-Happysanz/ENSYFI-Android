@@ -8,6 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:elevation="6dp"
         android:background="@drawable/shadow_round">
 
         <TextView
@@ -39,8 +40,9 @@
             android:layout_height="25dp"
             android:layout_below="@+id/txtSubEventName"
             android:layout_marginBottom="10dp"
+            android:padding="3dp"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/date_calender" />
+            android:src="@drawable/ic_date" />
 
     </RelativeLayout>
 </LinearLayout>

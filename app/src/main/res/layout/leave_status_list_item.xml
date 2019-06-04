@@ -35,12 +35,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txtLeaveTitle">
+
+                <ImageView
+                    android:id="@+id/date_icon"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_below="@+id/holiday_reason"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:padding="3dp"
+                    android:src="@drawable/ic_date" />
+
                 <TextView
                     android:id="@+id/txtFromLeaveDate"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:drawableLeft="@drawable/od_from_to"
+                    android:layout_height="25dp"
                     android:gravity="bottom"
                     android:text="  16 June 2017"
                     android:textAllCaps="true"
@@ -63,12 +72,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_below="@+id/fromto">
+
+                <ImageView
+                    android:id="@+id/date_icon"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_below="@+id/holiday_reason"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:padding="3dp"
+                    android:src="@drawable/ic_date" />
+
                 <TextView
                     android:id="@+id/txtFromTime"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:drawableLeft="@drawable/od_from_to"
+                    android:layout_height="25dp"
                     android:gravity="bottom"
                     android:text="  16 June 2017"
                     android:textAllCaps="true"

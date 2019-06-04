@@ -120,6 +120,7 @@
         android:layout_height="50dp"
         android:layout_marginLeft="2dp"
         android:layout_marginRight="2dp"
+        android:background="@color/new_gray"
         android:layout_marginTop="10dp"
         android:orientation="horizontal">
 

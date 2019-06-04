@@ -140,8 +140,8 @@
 
                     <TextView
                         android:id="@+id/txthwctsubject"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
                         android:layout_gravity="center"
                         android:background="@color/appColor"
                         android:gravity="center"
@@ -281,11 +281,10 @@
                         android:layout_gravity="center"
                         android:layout_marginBottom="10dp"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/btn_square_fill_color"
+                        android:background="@drawable/round_btn_color"
                         android:text="Submit"
-                        android:textAllCaps="false"
                         android:textColor="@color/white"
-                        android:textSize="14sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

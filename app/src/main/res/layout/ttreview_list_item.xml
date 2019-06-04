@@ -55,7 +55,8 @@
             android:layout_below="@+id/txtDay"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/date_calender" />
+            android:padding="3dp"
+            android:src="@drawable/ic_date" />
 
         <TextView
             android:id="@+id/txtTimeDate"

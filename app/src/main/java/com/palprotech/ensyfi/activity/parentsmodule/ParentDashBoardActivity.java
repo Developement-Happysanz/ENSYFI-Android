@@ -34,6 +34,7 @@ import com.palprotech.ensyfi.activity.studentmodule.AttendanceActivity;
 import com.palprotech.ensyfi.activity.studentmodule.ClassTestHomeworkActivity;
 import com.palprotech.ensyfi.activity.studentmodule.ExamsResultActivity;
 import com.palprotech.ensyfi.activity.studentmodule.StudentInfoActivity;
+import com.palprotech.ensyfi.activity.studentmodule.StudentTimeTableAcitivityNew;
 import com.palprotech.ensyfi.activity.studentmodule.StudentTimeTableActivity;
 import com.palprotech.ensyfi.adapter.NavDrawerAdapter;
 import com.palprotech.ensyfi.bean.general.support.DeleteTableRecords;
@@ -132,7 +133,7 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
         dashTimeTable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), StudentTimeTableActivity.class);
+                Intent intent = new Intent(getApplicationContext(), StudentTimeTableAcitivityNew.class);
                 startActivity(intent);
             }
         });

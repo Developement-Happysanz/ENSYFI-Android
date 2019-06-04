@@ -89,8 +89,8 @@
                 <!--Title Part-->
                 <TextView
                     android:id="@+id/txthomeworksubject"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
                     android:layout_centerHorizontal="true"
                     android:background="@color/appColor"
                     android:gravity="center"

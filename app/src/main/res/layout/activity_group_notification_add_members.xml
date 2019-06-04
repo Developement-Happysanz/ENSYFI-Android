@@ -120,11 +120,12 @@
 
             <Spinner
                 android:id="@+id/group_member_type_spinner"
+                style="@style/spinner_style"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="80dp"
                 android:layout_marginRight="80dp"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <Spinner
                 android:id="@+id/group_student_class_spinner"
@@ -145,6 +146,7 @@
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_marginTop="5dp"
+            android:background="@color/new_gray"
             android:orientation="horizontal">
 
             <TextView

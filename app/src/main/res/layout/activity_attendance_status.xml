@@ -58,6 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="40dp"
+        android:elevation="12dp"
         android:background="@drawable/shadow_round">
 
         <Spinner
@@ -126,8 +127,7 @@
             android:layout_alignTop="@+id/btnDateMonth"
             android:layout_marginRight="10dp"
             android:layout_marginTop="3dp"
-            android:layout_toLeftOf="@+id/btnDateMonth"
-            android:background="@drawable/od_from_to" />
+            android:layout_toLeftOf="@+id/btnDateMonth" />
 
         <Spinner
             android:id="@+id/btnMonth"
@@ -160,7 +160,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:divider="@color/background_grey"
-            android:dividerHeight="4dp" />
+            android:dividerHeight="0dp" />
 
     </LinearLayout>
 

@@ -75,9 +75,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="40dp"
+
                 android:elevation="12dp"
                 android:background="@drawable/shadow_round"
-                android:paddingBottom="20dp">
+                android:paddingBottom="40dp">
 
                 <TextView
                     android:id="@+id/Teacherid"

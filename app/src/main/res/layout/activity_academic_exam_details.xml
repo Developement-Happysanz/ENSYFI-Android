@@ -74,12 +74,12 @@
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="50dp"
-        android:background="@color/new_gray">
+        android:layout_marginTop="50dp">
 
         <LinearLayout
             android:id="@+id/llTitle"
             android:layout_width="match_parent"
+            android:background="@color/new_gray"
             android:layout_height="wrap_content">
 
             <TextView
@@ -145,6 +145,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/llTitle"
+            android:dividerHeight="0dp"
             android:paddingBottom="2dp" />
 
     </RelativeLayout>

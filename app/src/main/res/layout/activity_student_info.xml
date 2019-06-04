@@ -57,13 +57,13 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="100dp"
-        android:background="@color/new_gray"
         android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:layout_marginBottom="1dp"
+            android:background="@color/new_gray"
             android:layout_marginTop="2dp">
 
             <TextView

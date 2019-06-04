@@ -2,15 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_grey"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:elevation="12dp"
-        android:background="@drawable/round_btn_plain">
+        android:elevation="6dp"
+        android:background="@drawable/shadow_round">
 
         <TextView
             android:id="@+id/txtExamName"
@@ -81,8 +80,9 @@
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
+            android:padding="3dp"
             android:contentDescription="@string/arrow_back"
-            android:src="@drawable/date_calender" />
+            android:src="@drawable/ic_date" />
 
         <ImageView
             android:layout_width="30dp"
@@ -93,7 +93,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
             android:contentDescription="@string/arrow_back"
-            android:src="@drawable/select_button" />
+            android:src="@drawable/ic_circle_with_right_arrow" />
 
     </RelativeLayout>
 

@@ -93,11 +93,11 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:background="@color/new_gray"
         android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
+            android:background="@color/new_gray"
             android:layout_height="wrap_content">
 
             <TextView

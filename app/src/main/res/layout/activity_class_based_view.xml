@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ic_background"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -137,7 +138,6 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:background="@color/new_gray"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -255,7 +255,6 @@
             android:id="@+id/listView_events"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:divider="@color/new_gray"
             android:dividerHeight="0dp" />
 
     </LinearLayout>

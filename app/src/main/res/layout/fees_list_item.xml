@@ -62,7 +62,8 @@
             android:layout_below="@+id/txtTermName"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/date_calender" />
+            android:padding="3dp"
+            android:src="@drawable/ic_date" />
 
         <ImageView
             android:layout_width="30dp"
@@ -70,7 +71,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
-            android:src="@drawable/select_button" />
+            android:src="@drawable/ic_circle_with_right_arrow" />
     </RelativeLayout>
 
 </LinearLayout>

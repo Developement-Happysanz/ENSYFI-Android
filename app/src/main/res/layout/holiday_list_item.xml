@@ -42,18 +42,28 @@
             android:layout_above="@+id/holiday_date"
             android:background="@color/text_gray" />
 
+        <ImageView
+            android:id="@+id/date_icon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/holiday_reason"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:padding="3dp"
+            android:src="@drawable/ic_date" />
+
         <TextView
             android:id="@+id/holiday_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="DD-MM-YYYY"
+            android:layout_alignTop="@id/date_icon"
+            android:layout_alignBottom="@id/date_icon"
             android:gravity="center"
-            android:drawableLeft="@drawable/od_from_to"
-            android:drawablePadding="5dp"
+            android:layout_marginLeft="30dp"
             android:textColor="@color/new_gray"
             android:textSize="14sp"
             android:layout_below="@+id/holiday_reason"
-            android:layout_marginBottom="5dp"
             android:layout_alignLeft="@+id/holiday_reason"/>
 
         <TextView

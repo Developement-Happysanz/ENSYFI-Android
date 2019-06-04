@@ -68,7 +68,8 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
 
     private static final String TAG = ProfileActivity.class.getName();
     private ImageView mProfileImage = null, btnBack;
-    private TextView txtUsrName, txtUserType, txtPassword;
+    private TextView txtUsrName, txtUserType;
+    private Button txtPassword;
 
     private TextView  TeacherProfile;
 
@@ -608,7 +609,7 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
         txtUsrID = (EditText) findViewById(R.id.userid);
         txtUsrID.setEnabled(false);
 
-        txtPassword = (TextView) findViewById(R.id.password);
+        txtPassword = (Button) findViewById(R.id.password);
         txtPassword.setOnClickListener(this);
 
         txtUsrName = (TextView) findViewById(R.id.name);

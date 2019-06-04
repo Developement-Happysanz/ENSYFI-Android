@@ -8,6 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_margin="10dp"
+        android:elevation="6dp"
         android:background="@drawable/shadow_round"
         android:gravity="center">
 

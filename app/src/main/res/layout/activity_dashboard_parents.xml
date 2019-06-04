@@ -68,7 +68,6 @@
                     android:id="@+id/attendance"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:layout_marginRight="1dp"
                     android:layout_weight="0.50"
                     android:background="@color/white"
                     android:orientation="vertical">
@@ -123,7 +122,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="1sp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -131,7 +129,6 @@
                     android:id="@+id/exam"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:layout_marginRight="1dp"
                     android:layout_weight="0.50"
                     android:background="@color/white"
                     android:orientation="vertical">
@@ -185,7 +182,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="1sp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -193,7 +189,6 @@
                     android:id="@+id/events"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:layout_marginRight="1dp"
                     android:layout_weight="0.50"
                     android:background="@color/white"
                     android:orientation="vertical">

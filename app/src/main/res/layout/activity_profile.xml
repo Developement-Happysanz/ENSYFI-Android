@@ -143,14 +143,17 @@
                     android:inputType="textEmailAddress"
                     android:textSize="14sp" />
 
-                <TextView
+                <Button
                     android:id="@+id/password"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:text="Change Password"
-                    android:textColor="@color/appColor"
+                    android:background="@drawable/round_btn_color"
+                    android:textColor="@color/white"
                     android:textSize="16sp" />
 
                 <Button
@@ -215,7 +218,7 @@
                             android:layout_marginLeft="10dp"
                             android:text="Parents"
                             android:layout_gravity="center_vertical"
-                            android:textColor="@color/black"
+                            android:textColor="@color/new_gray"
                             android:textSize="16sp" />
 
                     </LinearLayout>
@@ -241,7 +244,7 @@
                             android:layout_marginLeft="10dp"
                             android:text="Guardian"
                             android:layout_gravity="center_vertical"
-                            android:textColor="@color/black"
+                            android:textColor="@color/new_gray"
                             android:textSize="16sp" />
 
                     </LinearLayout>
@@ -275,7 +278,7 @@
                             android:layout_marginLeft="10dp"
                             android:text="Student"
                             android:layout_gravity="center_vertical"
-                            android:textColor="@color/black"
+                            android:textColor="@color/new_gray"
                             android:textSize="16sp" />
 
                     </LinearLayout>
@@ -301,7 +304,7 @@
                             android:layout_marginLeft="10dp"
                             android:text="Fees"
                             android:layout_gravity="center_vertical"
-                            android:textColor="@color/black"
+                            android:textColor="@color/new_gray"
                             android:textSize="16sp" />
 
                     </LinearLayout>
@@ -331,7 +334,7 @@
                 android:drawableTop="@drawable/ic_teachers"
                 android:gravity="center"
                 android:text="Personal Info"
-                android:textColor="@color/black"
+                android:textColor="@color/new_gray"
                 android:textSize="14sp" />
 
         </RelativeLayout>

@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/ic_background"
     tools:context="com.palprotech.ensyfi.fragments.UpcomingHolidayListFragment">
 
     <RelativeLayout
@@ -11,6 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
+        android:layout_margin="40dp"
+        android:elevation="12dp"
         android:visibility="gone">
 
         <Spinner
@@ -48,6 +51,8 @@
         android:id="@+id/teacher_view_holiday"
         android:layout_width="match_parent"
         android:layout_height="130dp"
+        android:layout_margin="40dp"
+        android:elevation="12dp"
         android:visibility="gone">
 
         <Spinner

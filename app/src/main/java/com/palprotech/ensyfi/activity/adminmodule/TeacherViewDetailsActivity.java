@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.activity.teachermodule.TeacherTimeTableActivity;
+import com.palprotech.ensyfi.activity.teachermodule.TeacherTimeTableNew;
 import com.palprotech.ensyfi.bean.admin.viewlist.TeacherView;
 import com.palprotech.ensyfi.bean.teacher.support.SaveTeacherData;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
@@ -118,7 +119,7 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
         if (v == btnTeacherTimeTable) {
             if (checkTimeTable) {
                 PreferenceStorage.saveTeacherId(this, teacherId.getText().toString());
-                Intent intent = new Intent(this, TeacherTimeTableActivity.class);
+                Intent intent = new Intent(this, TeacherTimeTableNew.class);
                 startActivity(intent);
             }
         }
