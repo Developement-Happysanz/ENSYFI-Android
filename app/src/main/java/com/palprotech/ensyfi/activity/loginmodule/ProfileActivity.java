@@ -1,6 +1,8 @@
 package com.palprotech.ensyfi.activity.loginmodule;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.CursorLoader;
@@ -79,6 +81,7 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
     private ImageView fatherInfo, motherInfo, guardianImg, studentImg, teacherImg;
     private Uri outputFileUri;
     static final int REQUEST_IMAGE_GET = 1;
+    static final int RESULT_CROP = 99;
     protected ProgressDialogHelper progressDialogHelper;
     RelativeLayout TeacherInfo, parentInfoPopup, guardianInfoPopup, studentInfoPopup, teacherInfoPopup;
     LinearLayout ParentInfo, ParentProfile, GuardianProfile, StudentProfile, FeeStatusView;
@@ -105,7 +108,7 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
         String url = PreferenceStorage.getUserPicture(this);
 
         if (((url != null) && !(url.isEmpty()))) {
-            Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(mProfileImage);
+            Picasso.with(this).load(url).placeholder(R.drawable.ic_profile).error(R.drawable.ic_profile).into(mProfileImage);
         }
 
         String userTypeString = PreferenceStorage.getUserType(getApplicationContext());
@@ -475,9 +478,54 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
                 Log.d(TAG, "image Uri is" + selectedImageUri);
                 if (selectedImageUri != null) {
                     Log.d(TAG, "image URI is" + selectedImageUri);
-                    setPic(selectedImageUri);
+//                    setPic(selectedImageUri);
+                    performCrop(mActualFilePath);
                 }
             }
+            if (requestCode == RESULT_CROP ) {
+                if(resultCode == Activity.RESULT_OK){
+                    Bundle extras = data.getExtras();
+                    Bitmap selectedBitmap = extras.getParcelable("data");
+                    // Set The Bitmap Data To ImageView
+                    mProfileImage.setImageBitmap(selectedBitmap);
+                    mProfileImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                    setPic(selectedImageUri);
+                    saveUserProfile();
+                }
+            }
+        }
+    }
+
+    private void performCrop(String picUri) {
+        try {
+            //Start Crop Activity
+
+            Intent cropIntent = new Intent("com.android.camera.action.CROP");
+            // indicate image type and Uri
+            File f = new File(picUri);
+            Uri contentUri = Uri.fromFile(f);
+
+            cropIntent.setDataAndType(contentUri, "image/*");
+            // set crop properties
+            cropIntent.putExtra("crop", "true");
+            // indicate aspect of desired crop
+            cropIntent.putExtra("aspectX", 1);
+            cropIntent.putExtra("aspectY", 1);
+            // indicate output X and Y
+            cropIntent.putExtra("outputX", 280);
+            cropIntent.putExtra("outputY", 280);
+
+            // retrieve data on return
+            cropIntent.putExtra("return-data", true);
+            // start the activity - we handle returning in onActivityResult
+            startActivityForResult(cropIntent, RESULT_CROP);
+        }
+        // respond to users whose devices do not support the crop action
+        catch (ActivityNotFoundException anfe) {
+            // display an error message
+            String errorMessage = "your device doesn't support the crop action!";
+            Toast toast = Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT);
+            toast.show();
         }
     }
 

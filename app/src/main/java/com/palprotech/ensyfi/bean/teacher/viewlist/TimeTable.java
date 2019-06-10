@@ -14,6 +14,7 @@ public class TimeTable {
     private String from_time;
     private String to_time;
     private String is_break;
+    private String break_name;
 
     public String getClassId() {
         return class_id;
@@ -109,5 +110,12 @@ public class TimeTable {
 
     public void setIsBreak(String is_break) {
         this.is_break = is_break;
+    }
+    public String getBreakName() {
+        return break_name;
+    }
+
+    public void setBreakName(String break_name) {
+        this.break_name = break_name;
     }
 }

@@ -185,8 +185,9 @@
             android:layout_marginTop="20dp"
             android:fitsSystemWindows="true"
             android:scaleType="centerCrop"
-
+            android:elevation="12dp"
             android:src="@drawable/ic_profile" />
+
     </RelativeLayout>
 
 </LinearLayout>

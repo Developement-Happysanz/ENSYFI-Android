@@ -76,22 +76,14 @@ public class TeacherTimeTableNew extends AppCompatActivity implements DialogClic
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
 
-        final TeacherTimeTableAdapter adapter = new TeacherTimeTableAdapter
-                (this, getSupportFragmentManager(), tabLayout);
+        final TeacherTimeTableAdapter adapter = new TeacherTimeTableAdapter(getSupportFragmentManager());
 
         viewPager.setAdapter(adapter);
-        viewPager.setCurrentItem(0);
-        periodsCount = db.getProfilesCount(String.valueOf(1));
-        loadTimeTable(0);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-
-                currentTab = tab.getPosition();
-                periodsCount = db.getProfilesCount(String.valueOf(currentTab + 1));
-                currentday = tab.getText().toString();
-                loadTimeTable(currentTab);
+                viewPager.setCurrentItem(tab.getPosition());
             }
 
             @Override
@@ -101,13 +93,45 @@ public class TeacherTimeTableNew extends AppCompatActivity implements DialogClic
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-                currentTab = tab.getPosition();
-                periodsCount = db.getProfilesCount(String.valueOf(currentTab + 1));
-                tab.getText();
-                currentday = tab.getText().toString();
-                loadTimeTable(currentTab);
+                viewPager.setCurrentItem(tab.getPosition());
             }
         });
+
+//        final ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
+//
+//        final TeacherTimeTableAdapter adapter = new TeacherTimeTableAdapter(getSupportFragmentManager());
+//
+//        viewPager.setAdapter(adapter);
+//        viewPager.setCurrentItem(0);
+//        periodsCount = db.getProfilesCount(String.valueOf(1));
+////        loadTimeTable(0);
+//        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+//        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+//            @Override
+//            public void onTabSelected(TabLayout.Tab tab) {
+//                viewPager.setCurrentItem(tab.getPosition());
+////                currentTab = tab.getPosition();
+////                periodsCount = db.getProfilesCount(String.valueOf(currentTab + 1));
+////                currentday = tab.getText().toString();
+////                loadTimeTable(currentTab);
+//            }
+//
+//            @Override
+//            public void onTabUnselected(TabLayout.Tab tab) {
+//
+//            }
+//
+//            @Override
+//            public void onTabReselected(TabLayout.Tab tab) {
+//                viewPager.setCurrentItem(tab.getPosition());
+//
+////                currentTab = tab.getPosition();
+////                periodsCount = db.getProfilesCount(String.valueOf(currentTab + 1));
+////                tab.getText();
+////                currentday = tab.getText().toString();
+////                loadTimeTable(currentTab);
+//            }
+//        });
     }
 
     @Override
@@ -147,49 +171,49 @@ public class TeacherTimeTableNew extends AppCompatActivity implements DialogClic
             }
         }
     }
-
-    private void loadTimeTable(int i) {
-        ttArrayList.clear();
-        try {
-            String f1Value = list1.get(i);
-            String dayId = db.getTimeTableDayId(f1Value);
-            for (int abc = 0; abc < periodsCount; abc++) {
-                String c1Value = String.valueOf(abc);
-                Cursor c = db.getTeacherTimeTableValueNew(dayId);
-                dayCount = c.getCount();
-                if (c.getCount() > 0) {
-                    if (c.moveToFirst()) {
-                        do {
-                            TimeTable lde = new TimeTable();
-                            lde.setClassName(c.getString(0));
-                            lde.setSecName(c.getString(1));
-                            lde.setSubjectName(c.getString(2));
-                            lde.setClassId(c.getString(3));
-                            lde.setSubjectId(c.getString(4));
-                            lde.setName(c.getString(5));
-                            lde.setFromTime(c.getString(6));
-                            lde.setToTime(c.getString(7));
-                            lde.setIsBreak(c.getString(8));
-
-                            // Add this object into the ArrayList myList
-                            ttArrayList.add(lde);
-                        } while (c.moveToNext());
-                    }
-                } else {
-                    Toast.makeText(getApplicationContext(), "No records found", Toast.LENGTH_LONG).show();
-                }
-                db.close();
-            }
-
-        } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
-            e.printStackTrace();
-        }
-        TimeTableDayOneFragment fragment = new TimeTableDayOneFragment();
-        Bundle bundle = new Bundle();
-//        bundle.putParcelableArrayList("arraylist", (ArrayList<? extends Parcelable>) ttArrayList);
-        fragment.setArguments(bundle);
-    }
+//
+//    private void loadTimeTable(int i) {
+//        ttArrayList.clear();
+//        try {
+//            String f1Value = list1.get(i);
+//            String dayId = db.getTimeTableDayId(f1Value);
+//            for (int abc = 0; abc < periodsCount; abc++) {
+//                String c1Value = String.valueOf(abc);
+//                Cursor c = db.getTeacherTimeTableValueNew(dayId);
+//                dayCount = c.getCount();
+//                if (c.getCount() > 0) {
+//                    if (c.moveToFirst()) {
+//                        do {
+//                            TimeTable lde = new TimeTable();
+//                            lde.setClassName(c.getString(0));
+//                            lde.setSecName(c.getString(1));
+//                            lde.setSubjectName(c.getString(2));
+//                            lde.setClassId(c.getString(3));
+//                            lde.setSubjectId(c.getString(4));
+//                            lde.setName(c.getString(5));
+//                            lde.setFromTime(c.getString(6));
+//                            lde.setToTime(c.getString(7));
+//                            lde.setIsBreak(c.getString(8));
+//
+//                            // Add this object into the ArrayList myList
+//                            ttArrayList.add(lde);
+//                        } while (c.moveToNext());
+//                    }
+//                } else {
+//                    Toast.makeText(getApplicationContext(), "No records found", Toast.LENGTH_LONG).show();
+//                }
+//                db.close();
+//            }
+//
+//        } catch (Exception e) {
+//            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+//            e.printStackTrace();
+//        }
+//        TimeTableDayOneFragment fragment = new TimeTableDayOneFragment();
+//        Bundle bundle = new Bundle();
+////        bundle.putParcelableArrayList("arraylist", (ArrayList<? extends Parcelable>) ttArrayList);
+//        fragment.setArguments(bundle);
+//    }
 
     private boolean validateSignInResponse(JSONObject response) {
         boolean signInSuccess = false;

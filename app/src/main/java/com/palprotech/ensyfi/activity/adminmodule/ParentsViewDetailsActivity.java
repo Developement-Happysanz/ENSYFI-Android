@@ -198,7 +198,7 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
         String url = PreferenceStorage.getFatherImg(this);
 
         if (((url != null) && !(url.isEmpty()))) {
-            Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(fatherInfo);
+            Picasso.with(this).load(url).placeholder(R.drawable.ic_father).error(R.drawable.ic_father).into(fatherInfo);
         }
     }
 
@@ -223,7 +223,7 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
         String url = PreferenceStorage.getMotherImg(this);
 
         if (((url != null) && !(url.isEmpty()))) {
-            Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(motherInfo);
+            Picasso.with(this).load(url).placeholder(R.drawable.ic_mother).error(R.drawable.ic_mother).into(motherInfo);
         }
     }
 
@@ -248,7 +248,7 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
         String url = PreferenceStorage.getGuardianImg(this);
 
         if (((url != null) && !(url.isEmpty()))) {
-            Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(guardianImg);
+            Picasso.with(this).load(url).placeholder(R.drawable.ic_profile).error(R.drawable.ic_profile).into(guardianImg);
         }
     }
 

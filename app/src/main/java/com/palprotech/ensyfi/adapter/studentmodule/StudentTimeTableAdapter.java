@@ -1,13 +1,12 @@
-package com.palprotech.ensyfi.adapter.teachermodule;
+package com.palprotech.ensyfi.adapter.studentmodule;
 
 import android.content.Context;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
-
-
 import com.palprotech.ensyfi.fragments.TimeTableDayFiveFragment;
 import com.palprotech.ensyfi.fragments.TimeTableDayFourFragment;
 import com.palprotech.ensyfi.fragments.TimeTableDayOneFragment;
@@ -16,24 +15,14 @@ import com.palprotech.ensyfi.fragments.TimeTableDaySixFragment;
 import com.palprotech.ensyfi.fragments.TimeTableDayThreeFragment;
 import com.palprotech.ensyfi.fragments.TimeTableDayTwoFragment;
 
-import java.util.List;
+public class StudentTimeTableAdapter extends FragmentStatePagerAdapter {
 
-public class TeacherTimeTableAdapter  extends FragmentStatePagerAdapter {
-    SQLiteHelper db;
-    private Context context;
-    private TabLayout data;
-    private Fragment[] fragments;
-
-    public TeacherTimeTableAdapter(FragmentManager fm) {
+    public StudentTimeTableAdapter(FragmentManager fm) {
         super(fm);
-//        this.context = context;
-//        this.data = data;
-//        fragments = new Fragment[data.getTabCount()];
     }
 
     @Override
     public Fragment getItem(int position) {
-//        return TimeTableDayOneFragment.newInstance(position + 1);
         switch (position) {
             case 0:
                 return new TimeTableDayOneFragment();
@@ -45,10 +34,10 @@ public class TeacherTimeTableAdapter  extends FragmentStatePagerAdapter {
                 return new TimeTableDayFourFragment();
             case 4:
                 return new TimeTableDayFiveFragment();
-            case 5:
-                return new TimeTableDaySixFragment();
-            case 6:
-                return new TimeTableDaySevenFragment();
+//            case 5:
+//                return new TimeTableDaySixFragment();
+//            case 6:
+//                return new TimeTableDaySevenFragment();
         }
         return null;
     }
@@ -56,12 +45,7 @@ public class TeacherTimeTableAdapter  extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 7;
-
-//        if (data != null) {
-//            return data.getTabCount();
-//        } else {
-//            return 0;
-//        }
+        return 5;
+//        return 7;
     }
 }

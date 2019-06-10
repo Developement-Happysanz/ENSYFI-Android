@@ -7,8 +7,7 @@
         android:right="0dp"
         android:top="0dp">
         <shape android:shape="rectangle">
-            <solid android:color="#f22121" />
-            <!--<solid android:color="#FFDDDDDD" />-->
+            <solid android:color="@color/reject" />
         </shape>
     </item>
 

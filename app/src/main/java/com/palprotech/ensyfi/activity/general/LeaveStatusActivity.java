@@ -201,11 +201,13 @@ public class LeaveStatusActivity extends AppCompatActivity implements View.OnCli
         } else {
             leaveStatus = leaveStatusArrayList.get(position);
         }
-        finish();
-        Intent intent = new Intent(this, LeaveStatusDetailActivity.class);
-        intent.putExtra("leaveObj", leaveStatus);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        startActivity(intent);
+
+        if (PreferenceStorage.getUserType(this).equalsIgnoreCase("1")) {
+            Intent intent = new Intent(this, LeaveStatusDetailActivity.class);
+            intent.putExtra("leaveObj", leaveStatus);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(intent);
+            finish();}
     }
 
     @Override

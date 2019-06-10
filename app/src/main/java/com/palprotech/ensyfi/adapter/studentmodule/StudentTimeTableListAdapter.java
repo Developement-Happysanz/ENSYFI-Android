@@ -1,10 +1,7 @@
-package com.palprotech.ensyfi.adapter.teachermodule;
+package com.palprotech.ensyfi.adapter.studentmodule;
 
 import android.app.Activity;
 import android.content.Context;
-import android.database.Cursor;
-import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,26 +10,20 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.bean.database.SQLiteHelper;
-import com.palprotech.ensyfi.bean.teacher.viewlist.TimeTable;
+import com.palprotech.ensyfi.bean.student.viewlist.StudentTimeTable;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
 
-public class TeacherTimetableListAdapter extends BaseAdapter {
+public class StudentTimeTableListAdapter extends BaseAdapter {
 
     //    private final Transformation transformation;
     private Context context;
     LayoutInflater inflater;
-    ArrayList<TimeTable> teacherTimeTable = new ArrayList<TimeTable>();;
+    ArrayList<StudentTimeTable> teacherTimeTable = new ArrayList<StudentTimeTable>();;
     String isBreak = "";
 
 
-    public TeacherTimetableListAdapter(Context context, ArrayList<TimeTable> teacherTimeTable) {
+    public StudentTimeTableListAdapter(Context context, ArrayList<StudentTimeTable> teacherTimeTable) {
         this.teacherTimeTable = teacherTimeTable;
         this.context = context;
         inflater = LayoutInflater.from(this.context);
@@ -45,7 +36,7 @@ public class TeacherTimetableListAdapter extends BaseAdapter {
     }
 
     @Override
-    public TimeTable getItem(int position) {
+    public StudentTimeTable getItem(int position) {
         return teacherTimeTable.get(position);
     }
 
@@ -56,11 +47,11 @@ public class TeacherTimetableListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        TeacherTimetableListAdapter.ViewHolder holder;
+        StudentTimeTableListAdapter.ViewHolder holder;
         if (convertView == null) {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
             convertView = inflater.inflate(R.layout.time_table_list_item, parent, false);
-            holder = new TeacherTimetableListAdapter.ViewHolder();
+            holder = new StudentTimeTableListAdapter.ViewHolder();
             holder.periodLayout = (RelativeLayout) convertView.findViewById(R.id.period_layout);
             holder.breakLayout = (RelativeLayout) convertView.findViewById(R.id.break_layout);
             holder.txtSubjectName = (TextView) convertView.findViewById(R.id.subject_name);
@@ -75,10 +66,10 @@ public class TeacherTimetableListAdapter extends BaseAdapter {
             holder.txtBreakEndTime = (TextView) convertView.findViewById(R.id.break_end_time);
             convertView.setTag(holder);
         } else {
-            holder = (TeacherTimetableListAdapter.ViewHolder) convertView.getTag();
+            holder = (StudentTimeTableListAdapter.ViewHolder) convertView.getTag();
         }
 
-        TimeTable currentListData = getItem(position);
+        StudentTimeTable currentListData = getItem(position);
 
         isBreak = currentListData.getIsBreak();
 

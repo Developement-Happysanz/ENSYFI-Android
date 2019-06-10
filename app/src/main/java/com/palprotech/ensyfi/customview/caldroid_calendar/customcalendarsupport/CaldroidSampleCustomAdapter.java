@@ -65,7 +65,20 @@ public class CaldroidSampleCustomAdapter extends CaldroidGridAdapter {
 				|| (disableDates != null && disableDates.indexOf(dateTime) != -1)) {
 
 			tv1.setTextColor(CaldroidFragment.disabledTextColor);
+
 			if (CaldroidFragment.disabledBackgroundDrawable == -1) {
+				cellView.setBackgroundResource(R.drawable.disable_cell);
+			} else {
+				cellView.setBackgroundResource(CaldroidFragment.disabledBackgroundDrawable);
+			}
+
+			if (CaldroidFragment.odBackgroundDrawable == -1) {
+				cellView.setBackgroundResource(R.drawable.disable_cell);
+			} else {
+				cellView.setBackgroundResource(CaldroidFragment.disabledBackgroundDrawable);
+			}
+
+			if (CaldroidFragment.leaveBackgroundDrawable == -1) {
 				cellView.setBackgroundResource(R.drawable.disable_cell);
 			} else {
 				cellView.setBackgroundResource(CaldroidFragment.disabledBackgroundDrawable);
@@ -90,10 +103,30 @@ public class CaldroidSampleCustomAdapter extends CaldroidGridAdapter {
 			shouldResetSelectedView = true;
 		}
 
+		// Customize for abs dates
+		if (disableDates != null && disableDates.indexOf(dateTime) != -1) {
+			cellView.setBackgroundColor(resources
+					.getColor(R.color.green));
+
+			tv1.setTextColor(Color.BLACK);
+
+		} else {
+			shouldResetSelectedView = true;
+		}
+
+		// Customize for od dates
+		if (odDates != null && odDates.indexOf(dateTime) != -1) {
+			cellView.setBackgroundColor(R.drawable.disable_cell);
+
+			tv1.setTextColor(Color.BLACK);
+
+		} else {
+			shouldResetSelectedView = true;
+		}
+
 		// Customize for leave dates
 		if (leaveDates != null && leaveDates.indexOf(dateTime) != -1) {
-			cellView.setBackgroundColor(resources
-					.getColor(R.color.caldroid_444));
+			cellView.setBackgroundColor(R.drawable.disable_cell);
 
 			tv1.setTextColor(Color.BLACK);
 

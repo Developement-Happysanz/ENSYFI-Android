@@ -55,6 +55,10 @@ public class StudentTimeTable implements Serializable {
     @Expose
     private String is_break;
 
+    @SerializedName("break_name")
+    @Expose
+    private String break_name;
+
     /**
      * @return The class_id
      */
@@ -221,5 +225,18 @@ public class StudentTimeTable implements Serializable {
      */
     public void setIsBreak(String is_break) {
         this.is_break = is_break;
+    }
+    /**
+     * @return The break_name
+     */
+    public String getBreakName() {
+        return break_name;
+    }
+
+    /**
+     * @param break_name The break_name
+     */
+    public void setBreakName(String break_name) {
+        this.break_name = break_name;
     }
 }

@@ -43,303 +43,317 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/popup_parent"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/tlbar"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="20dp">
+        android:layout_gravity="center"
+        android:layout_below="@+id/tlbar">
 
         <RelativeLayout
-            android:id="@+id/userimage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-
-            <com.palprotech.ensyfi.customview.CircleImageView
-                android:id="@+id/img_father_profile"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginRight="30dp"
-                android:fitsSystemWindows="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_profile" />
-
-            <com.palprotech.ensyfi.customview.CircleImageView
-                android:id="@+id/img_mother_profile"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginRight="30dp"
-                android:layout_toRightOf="@+id/img_father_profile"
-                android:fitsSystemWindows="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_profile" />
-
-            <com.palprotech.ensyfi.customview.CircleImageView
-                android:id="@+id/img_guardian_profile"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:fitsSystemWindows="true"
-                android:layout_toRightOf="@+id/img_mother_profile"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_profile" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@id/img_guardian_profile"
-                android:layout_alignRight="@id/img_guardian_profile"
-                android:layout_below="@id/img_guardian_profile"
-                android:gravity="center"
-                android:text="Guardian"
-                android:textColor="@color/new_gray"
-                android:textSize="18dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@id/img_father_profile"
-                android:layout_alignRight="@id/img_father_profile"
-                android:layout_below="@id/img_father_profile"
-                android:gravity="center"
-                android:text="Father"
-                android:textColor="@color/new_gray"
-                android:textSize="18dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@id/img_mother_profile"
-                android:layout_alignRight="@id/img_mother_profile"
-                android:layout_below="@id/img_mother_profile"
-                android:gravity="center"
-                android:text="Mother"
-                android:textColor="@color/new_gray"
-                android:textSize="18dp" />
-
-        </RelativeLayout>
-
-        <ScrollView
+            android:id="@+id/popup_parent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/userimage"
-            android:layout_marginTop="15dp">
+            android:gravity="center">
 
-            <RelativeLayout
-                android:id="@+id/iid"
-                android:layout_margin="40dp"
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shadow_round"
-                android:visibility="invisible">
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="150dp">
 
-                <TextView
-                    android:id="@+id/fathername"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="30dp"
-                    android:text="Name               :"
-                    android:textColor="@color/new_gray"
-                    android:textStyle="bold"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/txtfathername"
+                <RelativeLayout
+                    android:id="@+id/iid"
+                    android:layout_margin="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/fathername"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/fathername"
-                    android:paddingTop="2dp"
-                    android:textColor="@color/new_gray"
-                    android:textSize="16sp" />
+                    android:elevation="12dp"
+                    android:padding="20dp"
+                    android:background="@drawable/shadow_round"
+                    android:visibility="invisible">
 
-                <TextView
-                    android:id="@+id/fatheraddress"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtfathername"
-                    android:layout_alignLeft="@id/fathername"
-                    android:layout_marginTop="10dp"
-                    android:text="Address           :"
-                    android:textColor="@color/new_gray"
-                    android:textStyle="bold"
-                    android:textSize="16sp"/>
-
-                <TextView
-                    android:id="@+id/txtfatheraddress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/fatheraddress"
-                    android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/fatheraddress"
-                    android:paddingTop="2dp"
-                    android:textColor="@color/new_gray"
-                    android:textSize="16sp"/>
-
-                <TextView
-                    android:id="@+id/fathermail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtfatheraddress"
-                    android:layout_alignLeft="@id/fathername"
-                    android:layout_marginTop="10dp"
-                    android:text="Mail                  :"
-                    android:textColor="@color/new_gray"
-                    android:textStyle="bold"
-                    android:textSize="16sp"/>
-
-                <TextView
-                    android:id="@+id/txtfathermail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/fathermail"
-                    android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/fathermail"
-                    android:paddingTop="2dp"
-                    android:textColor="@color/new_gray"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/fatheroccupation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtfathermail"
-                    android:layout_alignLeft="@id/fathername"
-                    android:layout_marginTop="10dp"
-                    android:text="Occupation     :"
-                    android:textColor="@color/new_gray"
-                    android:textStyle="bold"
-                    android:textSize="16sp"/>
-
-                <TextView
-                    android:id="@+id/txtfatheroccupation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/fatheroccupation"
-                    android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/fatheroccupation"
-                    android:paddingTop="2dp"
-                    android:textColor="@color/new_gray"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/income"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtfatheroccupation"
-                    android:layout_alignLeft="@id/fathername"
-                    android:layout_marginTop="10dp"
-                    android:text="Income            :"
-                    android:textColor="@color/new_gray"
-                    android:textStyle="bold"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/txtincome"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/income"
-                    android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/income"
-                    android:paddingTop="2dp"
-                    android:textColor="@color/new_gray"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/fathermobile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtincome"
-                    android:layout_alignLeft="@id/fathername"
-                    android:layout_marginTop="10dp"
-                    android:text="Mobile             :"
-                    android:textColor="@color/new_gray"
-                    android:textStyle="bold"
-                    android:textSize="16sp"/>
-
-                <TextView
-                    android:id="@+id/txtfathermobile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@id/fathermobile"
-                    android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/fathermobile"
-                    android:paddingTop="2dp"
-                    android:textColor="@color/new_gray"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/fatherhomephone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtfathermobile"
-                    android:layout_alignLeft="@id/fathername"
-                    android:layout_marginTop="10dp"
-                    android:text="Home Phone  :"
-                    android:textColor="@color/new_gray"
-                    android:textStyle="bold"
-                    android:textSize="16sp"/>
-
-                <TextView
-                    android:id="@+id/txtfatherhomephone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@id/fatherhomephone"
-                    android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/fatherhomephone"
-                    android:paddingTop="2dp"
-                    android:textColor="@color/new_gray"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/fatherofficephone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtfatherhomephone"
-                    android:layout_marginBottom="20dp"
-                    android:layout_alignLeft="@id/fathername"
-                    android:layout_marginTop="10dp"
-                    android:text="Office Phone  :"
-                    android:textColor="@color/new_gray"
-                    android:textStyle="bold"
-                    android:textSize="16sp"/>
-
-                <TextView
-                    android:id="@+id/txtfatherofficephone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@id/fatherofficephone"
-                    android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/fatherofficephone"
-                    android:paddingTop="2dp"
-                    android:textColor="@color/new_gray"
-                    android:textSize="16sp" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/txtfatherofficephone"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:layout_centerHorizontal="true">
-
-                    <Button
-                        android:id="@+id/btnShowStudentInfo"
+                    <TextView
+                        android:id="@+id/fathername"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="View Students info" />
-                </LinearLayout>
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="50dp"
+                        android:text="Name               :"
+                        android:textColor="@color/new_gray"
+                        android:textStyle="bold"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/txtfathername"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/fathername"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@+id/fathername"
+                        android:paddingTop="2dp"
+                        android:textColor="@color/new_gray"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/fatheraddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txtfathername"
+                        android:layout_alignLeft="@id/fathername"
+                        android:layout_marginTop="10dp"
+                        android:text="Address           :"
+                        android:textColor="@color/new_gray"
+                        android:textStyle="bold"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:id="@+id/txtfatheraddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/fatheraddress"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@+id/fatheraddress"
+                        android:paddingTop="2dp"
+                        android:textColor="@color/new_gray"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:id="@+id/fathermail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txtfatheraddress"
+                        android:layout_alignLeft="@id/fathername"
+                        android:layout_marginTop="10dp"
+                        android:text="Mail                  :"
+                        android:textColor="@color/new_gray"
+                        android:textStyle="bold"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:id="@+id/txtfathermail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/fathermail"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@+id/fathermail"
+                        android:paddingTop="2dp"
+                        android:textColor="@color/new_gray"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/fatheroccupation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txtfathermail"
+                        android:layout_alignLeft="@id/fathername"
+                        android:layout_marginTop="10dp"
+                        android:text="Occupation     :"
+                        android:textColor="@color/new_gray"
+                        android:textStyle="bold"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:id="@+id/txtfatheroccupation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/fatheroccupation"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@+id/fatheroccupation"
+                        android:paddingTop="2dp"
+                        android:textColor="@color/new_gray"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/income"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txtfatheroccupation"
+                        android:layout_alignLeft="@id/fathername"
+                        android:layout_marginTop="10dp"
+                        android:text="Income            :"
+                        android:textColor="@color/new_gray"
+                        android:textStyle="bold"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/txtincome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/income"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@+id/income"
+                        android:paddingTop="2dp"
+                        android:textColor="@color/new_gray"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/fathermobile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txtincome"
+                        android:layout_alignLeft="@id/fathername"
+                        android:layout_marginTop="10dp"
+                        android:text="Mobile             :"
+                        android:textColor="@color/new_gray"
+                        android:textStyle="bold"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:id="@+id/txtfathermobile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@id/fathermobile"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@+id/fathermobile"
+                        android:paddingTop="2dp"
+                        android:textColor="@color/new_gray"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/fatherhomephone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txtfathermobile"
+                        android:layout_alignLeft="@id/fathername"
+                        android:layout_marginTop="10dp"
+                        android:text="Home Phone  :"
+                        android:textColor="@color/new_gray"
+                        android:textStyle="bold"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:id="@+id/txtfatherhomephone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@id/fatherhomephone"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@+id/fatherhomephone"
+                        android:paddingTop="2dp"
+                        android:textColor="@color/new_gray"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/fatherofficephone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txtfatherhomephone"
+                        android:layout_marginBottom="20dp"
+                        android:layout_alignLeft="@id/fathername"
+                        android:layout_marginTop="10dp"
+                        android:text="Office Phone  :"
+                        android:textColor="@color/new_gray"
+                        android:textStyle="bold"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:id="@+id/txtfatherofficephone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@id/fatherofficephone"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@+id/fatherofficephone"
+                        android:paddingTop="2dp"
+                        android:textColor="@color/new_gray"
+                        android:textSize="16sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/txtfatherofficephone"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:layout_centerHorizontal="true">
+
+                        <Button
+                            android:id="@+id/btnShowStudentInfo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="View Students info" />
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </ScrollView>
+
+            <RelativeLayout
+                android:id="@+id/userimage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:gravity="center">
+
+                <com.palprotech.ensyfi.customview.CircleImageView
+                    android:id="@+id/img_father_profile"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginRight="30dp"
+                    android:fitsSystemWindows="true"
+                    android:scaleType="centerCrop"
+                    android:elevation="12dp"
+                    android:src="@drawable/ic_father" />
+
+                <com.palprotech.ensyfi.customview.CircleImageView
+                    android:id="@+id/img_mother_profile"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_toRightOf="@+id/img_father_profile"
+                    android:fitsSystemWindows="true"
+                    android:elevation="12dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_mother" />
+
+                <com.palprotech.ensyfi.customview.CircleImageView
+                    android:id="@+id/img_guardian_profile"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:fitsSystemWindows="true"
+                    android:layout_toRightOf="@+id/img_mother_profile"
+                    android:elevation="12dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_profile" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/img_guardian_profile"
+                    android:layout_alignRight="@id/img_guardian_profile"
+                    android:layout_below="@id/img_guardian_profile"
+                    android:gravity="center"
+                    android:text="Guardian"
+                    android:textColor="@color/new_gray"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/img_father_profile"
+                    android:layout_alignRight="@id/img_father_profile"
+                    android:layout_below="@id/img_father_profile"
+                    android:gravity="center"
+                    android:text="Father"
+                    android:textColor="@color/new_gray"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/img_mother_profile"
+                    android:layout_alignRight="@id/img_mother_profile"
+                    android:layout_below="@id/img_mother_profile"
+                    android:gravity="center"
+                    android:text="Mother"
+                    android:textColor="@color/new_gray"
+                    android:textSize="18dp" />
 
             </RelativeLayout>
 
-        </ScrollView>
+
+        </RelativeLayout>
+
+    </FrameLayout>
 
 
-    </RelativeLayout>
 
 </LinearLayout>
 

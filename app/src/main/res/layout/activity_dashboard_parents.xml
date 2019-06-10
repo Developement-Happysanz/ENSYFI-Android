@@ -54,7 +54,8 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_gravity="center"
-            android:background="@drawable/shadow_round_grey"
+            android:padding="12dp"
+            android:background="@drawable/shadow_round"
             android:elevation="12dp"
             android:orientation="vertical">
 

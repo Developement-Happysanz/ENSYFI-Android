@@ -36,12 +36,14 @@ public class CaldroidGridAdapter extends BaseAdapter {
     protected Context context;
     protected ArrayList<DateTime> disableDates;
     protected ArrayList<DateTime> leaveDates;
+    protected ArrayList<DateTime> odDates;
     protected ArrayList<DateTime> selectedDates;
 
     // Use internally, to make the search for date faster instead of using
     // indexOf methods on ArrayList
     protected Map<DateTime, Integer> disableDatesMap = new HashMap<>();
     protected Map<DateTime, Integer> leaveDatesMap = new HashMap<>();
+    protected Map<DateTime, Integer> odDatesMap = new HashMap<>();
     protected Map<DateTime, Integer> selectedDatesMap = new HashMap<>();
 
     protected DateTime minDateTime;
@@ -202,6 +204,15 @@ public class CaldroidGridAdapter extends BaseAdapter {
             }
         }
 
+        odDates = (ArrayList<DateTime>) caldroidData
+                .get(CaldroidFragment.OD_DATES);
+        if (odDates != null) {
+            odDatesMap.clear();
+            for (DateTime dateTime : odDates) {
+                odDatesMap.put(dateTime, 1);
+            }
+        }
+
         minDateTime = (DateTime) caldroidData
                 .get(CaldroidFragment._MIN_DATE_TIME);
         maxDateTime = (DateTime) caldroidData
@@ -340,7 +351,15 @@ public class CaldroidGridAdapter extends BaseAdapter {
                 || (leaveDates != null && leaveDatesMap
                 .containsKey(dateTime))) {
 
-            cellView.addCustomState(CellView.STATE_DISABLED);
+            cellView.addCustomState(CellView.STATE_LEAVE);
+        }
+        // Customize for leave dates and date outside min/max dates
+        if ((minDateTime != null && dateTime.lt(minDateTime))
+                || (maxDateTime != null && dateTime.gt(maxDateTime))
+                || (odDates != null && odDatesMap
+                .containsKey(dateTime))) {
+
+            cellView.addCustomState(CellView.STATE_OD);
         }
 
         // Customize for selected dates

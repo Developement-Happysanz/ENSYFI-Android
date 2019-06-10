@@ -88,8 +88,9 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_gravity="center"
-            android:background="@drawable/shadow_round_grey"
+            android:background="@drawable/shadow_round"
             android:elevation="12dp"
+            android:padding="12dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -101,7 +102,7 @@
                 <LinearLayout
                     android:id="@+id/attendance"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="130dp"
                     android:layout_weight="0.50"
                     android:background="@color/white"
                     android:orientation="vertical">
@@ -129,7 +130,7 @@
                 <LinearLayout
                     android:id="@+id/class_test"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="130dp"
                     android:layout_weight="0.50"
                     android:background="@color/white"
                     android:orientation="vertical">
@@ -162,7 +163,7 @@
                 <LinearLayout
                     android:id="@+id/exam"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="130dp"
                     android:layout_weight="0.50"
                     android:background="@color/white"
                     android:orientation="vertical">
@@ -188,7 +189,7 @@
                 <LinearLayout
                     android:id="@+id/time_table"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="130dp"
                     android:layout_weight="0.50"
                     android:background="@color/white"
                     android:orientation="vertical">
@@ -222,7 +223,7 @@
                 <LinearLayout
                     android:id="@+id/events"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="130dp"
                     android:layout_weight="0.50"
                     android:background="@color/white"
                     android:orientation="vertical">
@@ -248,7 +249,7 @@
                 <LinearLayout
                     android:id="@+id/communication"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="130dp"
                     android:layout_weight="0.50"
                     android:background="@color/white"
                     android:orientation="vertical">

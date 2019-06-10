@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_gravity="center"
     android:layout_height="match_parent">
 
     <FrameLayout
@@ -32,17 +33,20 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/ic_background"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:orientation="vertical" />
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:gravity="center_vertical"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <TextView
@@ -50,6 +54,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="58dp"
+                    android:gravity="left"
+                    android:layout_gravity="left"
                     android:layout_marginBottom="10dp"
                     android:text="Welcome to ENSYFI"
                     android:textColor="@color/white"
@@ -59,10 +65,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="40dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="20dp"
-                    android:background="@drawable/shadow_round_grey"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:background="@drawable/shadow_round"
                     android:elevation="12dp"
                     android:orientation="vertical">
 
@@ -70,12 +79,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:padding="10dp"
                         android:orientation="horizontal">
 
                         <LinearLayout
                             android:id="@+id/students"
                             android:layout_width="match_parent"
-                            android:layout_height="150dp"
+                            android:layout_height="130dp"
                             android:background="@color/white"
                             android:layout_weight="0.50"
                             android:orientation="vertical">
@@ -103,7 +113,7 @@
                         <LinearLayout
                             android:id="@+id/teachers"
                             android:layout_width="match_parent"
-                            android:layout_height="150dp"
+                            android:layout_height="130dp"
                             android:background="@color/white"
                             android:layout_weight="0.50"
                             android:orientation="vertical">
@@ -136,7 +146,7 @@
                         <LinearLayout
                             android:id="@+id/parents"
                             android:layout_width="match_parent"
-                            android:layout_height="150dp"
+                            android:layout_height="130dp"
                             android:background="@color/white"
                             android:layout_weight="0.50"
                             android:orientation="vertical">
@@ -162,7 +172,7 @@
                         <LinearLayout
                             android:id="@+id/classes"
                             android:layout_width="match_parent"
-                            android:layout_height="150dp"
+                            android:layout_height="130dp"
                             android:background="@color/white"
                             android:layout_weight="0.50"
                             android:orientation="vertical">
@@ -196,7 +206,7 @@
                         <LinearLayout
                             android:id="@+id/exams"
                             android:layout_width="match_parent"
-                            android:layout_height="150dp"
+                            android:layout_height="130dp"
                             android:background="@color/white"
                             android:layout_weight="0.50"
                             android:orientation="vertical">
@@ -222,7 +232,7 @@
                         <LinearLayout
                             android:id="@+id/results"
                             android:layout_width="match_parent"
-                            android:layout_height="150dp"
+                            android:layout_height="130dp"
                             android:background="@color/white"
                             android:layout_weight="0.50"
                             android:orientation="vertical">
@@ -256,7 +266,7 @@
                         <LinearLayout
                             android:id="@+id/events"
                             android:layout_width="match_parent"
-                            android:layout_height="150dp"
+                            android:layout_height="130dp"
                             android:background="@color/white"
                             android:layout_weight="0.50"
                             android:orientation="vertical">
@@ -282,7 +292,7 @@
                         <LinearLayout
                             android:id="@+id/communication"
                             android:layout_width="match_parent"
-                            android:layout_height="150dp"
+                            android:layout_height="130dp"
                             android:background="@color/white"
                             android:layout_weight="0.50"
                             android:orientation="vertical">

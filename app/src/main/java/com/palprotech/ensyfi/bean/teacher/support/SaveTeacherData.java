@@ -255,6 +255,7 @@ public class SaveTeacherData {
                 String is_break = "";
                 String sec_name = "";
                 String class_name = "";
+                String break_name = "";
 
                 table_id = jsonobj.getString("table_id");
                 class_id = jsonobj.getString("class_id");
@@ -267,6 +268,7 @@ public class SaveTeacherData {
                 from_time = jsonobj.getString("from_time");
                 to_time = jsonobj.getString("to_time");
                 is_break = jsonobj.getString("is_break");
+                break_name = jsonobj.getString("break_name");
                 sec_name = jsonobj.getString("sec_name");
                 class_name = jsonobj.getString("class_name");
 
@@ -281,6 +283,7 @@ public class SaveTeacherData {
                 System.out.println("from_time : " + i + " = " + from_time);
                 System.out.println("to_time : " + i + " = " + to_time);
                 System.out.println("is_break : " + i + " = " + is_break);
+                System.out.println("break_name : " + i + " = " + break_name);
                 System.out.println("sec_name : " + i + " = " + sec_name);
                 System.out.println("class_name : " + i + " = " + class_name);
 
@@ -295,10 +298,11 @@ public class SaveTeacherData {
                         v9 = from_time,
                         v10 = to_time,
                         v11 = is_break,
-                        v12 = sec_name,
-                        v13 = class_name;
+                        v12 = break_name,
+                        v13 = sec_name,
+                        v14 = class_name;
 
-                database.teacher_timetable_insert(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13);
+                database.teacher_timetable_insert(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14);
             }
         } catch (Exception ex) {
             ex.printStackTrace();

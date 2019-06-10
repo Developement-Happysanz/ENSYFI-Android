@@ -5,77 +5,99 @@
     android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/status_color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:elevation="6dp"
-        android:background="@drawable/shadow_round">
+        android:background="@color/approve"
+        android:elevation="6dp">
 
-        <TextView
-            android:id="@+id/txtOdFor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:paddingBottom="3dp"
-            android:paddingTop="3dp"
-            android:text="REASON ON DUTY"
-            android:textAllCaps="true"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
-
-        <LinearLayout
-            android:id="@+id/fromto"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtOdFor">
-        <TextView
-            android:id="@+id/txtFromDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_marginLeft="20dp"
-            android:gravity="bottom"
-            android:text="  16 June 2017"
-            android:textAllCaps="true"
-            android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:layout_marginLeft="2dp"
+            android:background="@color/white">
 
             <TextView
+                android:id="@+id/txtOdFor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:text="REASON ON DUTY"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:id="@+id/fromto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" - "
-                android:textSize="20dp" />
+                android:layout_below="@+id/txtOdFor"
+                android:gravity="center">
 
-        <TextView
-            android:id="@+id/txtToDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="bottom"
-            android:text="16 June 2017"
-            android:textColor="@color/black"
-            android:textSize="14sp" />
-        </LinearLayout>
 
-        <TextView
-            android:id="@+id/txtStatus"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/fromto"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:text="Test"
-            android:textSize="16sp" />
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_below="@+id/txtExamName"
+                    android:layout_marginLeft="10dp"
+                    android:padding="3dp"
+                    android:src="@drawable/ic_date" />
 
-        <ImageView
-            android:id="@+id/imgStatus"
-            android:layout_alignTop="@id/txtStatus"
-            android:layout_alignBottom="@id/txtStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/fromto"
-            android:layout_marginLeft="20dp"/>
+                <TextView
+                    android:id="@+id/txtFromDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
 
+                    android:layout_marginLeft="10dp"
+                    android:gravity="bottom"
+                    android:text="  16 June 2017"
+                    android:textAllCaps="true"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" - "
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/txtToDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom"
+                    android:text="16 June 2017"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/fromto"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toRightOf="@+id/imgStatus"
+                android:text="Test"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/imgStatus"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_below="@+id/fromto"
+                android:layout_alignTop="@id/txtStatus"
+                android:layout_alignBottom="@id/txtStatus"
+                android:layout_marginLeft="10dp" />
+
+
+        </RelativeLayout>
 
     </RelativeLayout>
+
 </LinearLayout>

@@ -9,12 +9,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin ="10dp"
+        android:elevation="6dp"
         android:background="@color/approve">
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:elevation="6dp"
             android:layout_marginLeft="2dp"
             android:background="@color/white">
 
@@ -34,14 +34,15 @@
                 android:id="@+id/fromto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:layout_below="@+id/txtLeaveTitle">
 
                 <ImageView
                     android:id="@+id/date_icon"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
+
                     android:layout_below="@+id/holiday_reason"
-                    android:layout_marginBottom="10dp"
                     android:layout_marginLeft="10dp"
                     android:padding="3dp"
                     android:src="@drawable/ic_date" />
@@ -50,7 +51,7 @@
                     android:id="@+id/txtFromLeaveDate"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
-                    android:gravity="bottom"
+                    android:gravity="center"
                     android:text="  16 June 2017"
                     android:textAllCaps="true"
                     android:textColor="@color/black"
@@ -71,10 +72,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:visibility="gone"
                 android:layout_below="@+id/fromto">
 
                 <ImageView
-                    android:id="@+id/date_icon"
+                    android:id="@+id/time_icon"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_below="@+id/holiday_reason"
@@ -108,8 +110,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/fromtotime"
-                android:layout_marginLeft="50dp"
-                android:layout_marginTop="15dp"
+                android:layout_toRightOf="@+id/imgStatus"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
                 android:text="Test"
                 android:textSize="16sp" />
@@ -118,10 +121,10 @@
                 android:id="@+id/imgStatus"
                 android:layout_alignTop="@id/txtStatus"
                 android:layout_alignBottom="@id/txtStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_below="@+id/fromto"
-                android:layout_marginLeft="20dp"/>
+                android:layout_marginLeft="10dp"/>
 
 
         </RelativeLayout>

@@ -19,7 +19,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String TAG = "SQLiteHelper.java";
 
     private static final String DATABASE_NAME = "ENSYFI.db";
-    private static final int DATABASE_VERSION = 37;
+    private static final int DATABASE_VERSION = 38;
 
     private static final String table_create_student = "Create table IF NOT EXISTS studentInfo(_id integer primary key autoincrement,"
             + "registered_id text,"
@@ -47,7 +47,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             + "class_name text,"
             + "from_time text,"
             + "to_time text,"
-            + "is_break text);";
+            + "is_break text,"
+            + "break_name text);";
 
     private static final String table_create_teacher_student_details = "Create table IF NOT EXISTS teachersStudentDetails(_id integer primary key autoincrement,"
             + "enroll_id text,"
@@ -376,7 +377,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     /*
      *   Teacher's TimeTable Store & Retrieve Functionality
      */
-    public long teacher_timetable_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7, String val8, String val9, String val10, String val11, String val12, String val13) {
+    public long teacher_timetable_insert(String val1, String val2, String val3, String val4, String val5, String val6, String val7, String val8, String val9, String val10, String val11, String val12, String val13, String val14) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues initialValues = new ContentValues();
         initialValues.put("table_id", val1);
@@ -390,8 +391,9 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         initialValues.put("from_time", val9);
         initialValues.put("to_time", val10);
         initialValues.put("is_break", val11);
-        initialValues.put("sec_name", val12);
-        initialValues.put("class_name", val13);
+        initialValues.put("break_name", val12);
+        initialValues.put("sec_name", val13);
+        initialValues.put("class_name", val14);
         long l = db.insert("teacherTimeTable", null, initialValues);
         db.close();
         return l;
@@ -409,7 +411,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     public Cursor getTeacherTimeTableValueNew(String dayId) throws SQLException {
         SQLiteDatabase db = this.getWritableDatabase();
-        String fetch = "Select class_name,sec_name,subject_name,class_id,subject_id,name,subject_name,from_time,to_time,is_break FROM teacherTimeTable WHERE day = '" + dayId + "';";
+        String fetch = "Select class_name,sec_name,subject_name,class_id,subject_id,name,period,from_time,to_time,is_break,break_name from teacherTimeTable where day = '" + dayId + "';";
         Cursor c = db.rawQuery(fetch, null);
         if (c != null) {
             c.moveToFirst();

@@ -115,7 +115,9 @@ public class CaldroidFragment extends DialogFragment {
      * To customize the disabled background drawable and text color
      */
     public static int disabledBackgroundDrawable = -1;
-    public static int disabledTextColor = Color.GRAY;
+    public static int odBackgroundDrawable = -1;
+    public static int leaveBackgroundDrawable = -1;
+    public static int disabledTextColor = Color.WHITE;
 
     /**
      * Caldroid view components
@@ -140,6 +142,7 @@ public class CaldroidFragment extends DialogFragment {
             SHOW_NAVIGATION_ARROWS = "showNavigationArrows",
             DISABLE_DATES = "disableDates",
             LEAVE_DATES = "leaveDates",
+            OD_DATES = "odDates",
             SELECTED_DATES = "selectedDates",
             MIN_DATE = "minDate",
             MAX_DATE = "maxDate",
@@ -167,6 +170,7 @@ public class CaldroidFragment extends DialogFragment {
     protected int year = -1;
     protected ArrayList<DateTime> disableDates = new ArrayList<DateTime>();
     protected ArrayList<DateTime> leaveDates = new ArrayList<DateTime>();
+    protected ArrayList<DateTime> odDates = new ArrayList<DateTime>();
     protected ArrayList<DateTime> selectedDates = new ArrayList<DateTime>();
     protected DateTime minDateTime;
     protected DateTime maxDateTime;
@@ -358,6 +362,7 @@ public class CaldroidFragment extends DialogFragment {
         caldroidData.clear();
         caldroidData.put(DISABLE_DATES, disableDates);
         caldroidData.put(LEAVE_DATES, leaveDates);
+        caldroidData.put(OD_DATES, odDates);
         caldroidData.put(SELECTED_DATES, selectedDates);
         caldroidData.put(_MIN_DATE_TIME, minDateTime);
         caldroidData.put(_MAX_DATE_TIME, maxDateTime);
@@ -526,6 +531,11 @@ public class CaldroidFragment extends DialogFragment {
         if (leaveDates != null && leaveDates.size() > 0) {
             bundle.putStringArrayList(LEAVE_DATES,
                     CalendarHelper.convertToStringList(leaveDates));
+        }
+
+        if (odDates != null && odDates.size() > 0) {
+            bundle.putStringArrayList(OD_DATES,
+                    CalendarHelper.convertToStringList(odDates));
         }
 
         if (minDateTime != null) {
@@ -756,6 +766,25 @@ public class CaldroidFragment extends DialogFragment {
                     dateString, dateFormat);
             disableDates.add(dateTime);
         }
+    }
+
+    /**
+     * Set odDates from ArrayList of Date
+     *
+     * @param odDateList
+     */
+    public void setOdDates(ArrayList<Date> odDateList) {
+        if (odDates == null || odDateList.size() == 0) {
+            return;
+        }
+
+        odDates.clear();
+
+        for (Date date : odDateList) {
+            DateTime dateTime = CalendarHelper.convertDateToDateTime(date);
+            odDates.add(dateTime);
+        }
+
     }
 
     /**
@@ -1216,6 +1245,17 @@ public class CaldroidFragment extends DialogFragment {
                     DateTime dt = CalendarHelper.getDateTimeFromString(
                             dateString, null);
                     leaveDates.add(dt);
+                }
+            }
+
+            // Get leave dates
+            ArrayList<String> odDateStrings = args.getStringArrayList(OD_DATES);
+            if (leaveDateStrings != null && leaveDateStrings.size() > 0) {
+                odDates.clear();
+                for (String dateString : leaveDateStrings) {
+                    DateTime dt = CalendarHelper.getDateTimeFromString(
+                            dateString, null);
+                    odDates.add(dt);
                 }
             }
 

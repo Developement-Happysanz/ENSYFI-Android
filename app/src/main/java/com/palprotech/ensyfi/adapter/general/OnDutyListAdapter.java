@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.palprotech.ensyfi.R;
@@ -83,6 +84,7 @@ public class OnDutyListAdapter extends BaseAdapter {
             holder.txtToDate = (TextView) convertView.findViewById(R.id.txtToDate);
             holder.txtStatus = (TextView) convertView.findViewById(R.id.txtStatus);
             holder.imgStatus = (ImageView) convertView.findViewById(R.id.imgStatus);
+            holder.statusColorBG = (RelativeLayout) convertView.findViewById(R.id.status_color);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -95,12 +97,15 @@ public class OnDutyListAdapter extends BaseAdapter {
         }
 
         if (onDuty.get(position).getStatus().contentEquals("Approved")) {
+            holder.statusColorBG.setBackgroundColor(ContextCompat.getColor(context, R.color.approve));
             holder.txtStatus.setTextColor(ContextCompat.getColor(context, R.color.approve));
             holder.imgStatus.setImageResource(R.drawable.od_approved);
         } else if (onDuty.get(position).getStatus().contentEquals("Rejected")) {
+            holder.statusColorBG.setBackgroundColor(ContextCompat.getColor(context, R.color.reject));
             holder.txtStatus.setTextColor(ContextCompat.getColor(context, R.color.reject));
             holder.imgStatus.setImageResource(R.drawable.od_rejected);
         } else {
+            holder.statusColorBG.setBackgroundColor(ContextCompat.getColor(context, R.color.pending));
             holder.txtStatus.setTextColor(ContextCompat.getColor(context, R.color.pending));
             holder.imgStatus.setImageResource(R.drawable.od_pending);
         }
@@ -146,6 +151,8 @@ public class OnDutyListAdapter extends BaseAdapter {
     }
 
     public class ViewHolder {
+        public RelativeLayout statusColorBG;
+
         public TextView txtOdFor, txtFromDate, txtToDate, txtStatus;
         public ImageView imgStatus;
     }

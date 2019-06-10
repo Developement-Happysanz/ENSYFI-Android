@@ -48,6 +48,8 @@ public class AttendanceActivity extends AppCompatActivity implements IServiceLis
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
     ArrayList<String> dateStrings;
+    ArrayList<String> leaveDateStrings = new ArrayList<String>();
+    ArrayList<String> oDdateStrings = new ArrayList<String>();
     private TextView txtWorkingDays, txtPresentDays, txtODDays, txtLeaveDays, txtAbsentDays;
 
     @Override
@@ -64,7 +66,7 @@ public class AttendanceActivity extends AppCompatActivity implements IServiceLis
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(this);
-        dateStrings = new ArrayList<String>();  // ArrayList of strings
+        dateStrings = new ArrayList<String>();  // ArrayList of strings // ArrayList of strings
 
         if (savedInstanceState != null) {
             caldroidFragment.restoreStatesFromKey(savedInstanceState,
@@ -243,10 +245,26 @@ public class AttendanceActivity extends AppCompatActivity implements IServiceLis
                 }
 
                 for (int l = 0; l < getData.length(); l++) {
-                    dateStrings.add(getData.getJSONObject(l).getString("abs_date"));
+                    if (getData.getJSONObject(l).getString("a_status").equalsIgnoreCase("A")) {
+                        dateStrings.add(getData.getJSONObject(l).getString("abs_date"));
+                    }
+                }
+                for (int l = 0; l < getData.length(); l++) {
+                    if (getData.getJSONObject(l).getString("a_status").equalsIgnoreCase("OD")) {
+                        oDdateStrings.add(getData.getJSONObject(l).getString("abs_date"));
+
+                    }
                 }
 
-                ArrayList<Date> dates = new ArrayList<>(dateStrings.size()); // ArrayList of dates
+                for (int l = 0; l < getData.length(); l++) {
+                    if (getData.getJSONObject(l).getString("a_status").equalsIgnoreCase("L")) {
+                        leaveDateStrings.add(getData.getJSONObject(l).getString("abs_date"));
+                    }
+                }
+
+                ArrayList<Date> dates = new ArrayList<>(dateStrings.size()); // ArrayList of leave dates
+                ArrayList<Date> dates1 = new ArrayList<>(oDdateStrings.size()); // ArrayList of dates
+                ArrayList<Date> dates2 = new ArrayList<>(leaveDateStrings.size()); // ArrayList of dates
 
                 for (String s : dateStrings) {
 
@@ -265,9 +283,45 @@ public class AttendanceActivity extends AppCompatActivity implements IServiceLis
                     System.out.println(str);
                 }
 
+                for (String s : oDdateStrings) {
+
+                    try {
+                        Date dateObj = new SimpleDateFormat("yyyy-MM-dd").parse(s);
+
+                        dates1.add(dateObj);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                for (Date d : dates1) {
+                    String str = new SimpleDateFormat("yyyy-MM-dd").format(d);
+
+                    System.out.println(str);
+                }
+
+                for (String s : leaveDateStrings) {
+
+                    try {
+                        Date dateObj = new SimpleDateFormat("yyyy-MM-dd").parse(s);
+
+                        dates2.add(dateObj);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                for (Date d : dates2) {
+                    String str = new SimpleDateFormat("yyyy-MM-dd").format(d);
+
+                    System.out.println(str);
+                }
+
                 // Customize
 
                 caldroidFragment.setDisableDates(dates);
+                caldroidFragment.setOdDates(dates1);
+                caldroidFragment.setLeaveDates(dates2);
                 caldroidFragment.refreshView();
 
             } catch (Exception ex) {
