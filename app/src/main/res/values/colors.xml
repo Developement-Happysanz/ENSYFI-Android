@@ -65,6 +65,7 @@
     <color name="pending">#f7941e</color>
     <!---->
 
+
     <!--Attendance colors-->
     <color name="present">#88C540</color>
     <color name="absent">#EF434D</color>

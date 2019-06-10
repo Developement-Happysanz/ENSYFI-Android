@@ -13,6 +13,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -52,7 +53,7 @@ public class GroupingSendActivity extends AppCompatActivity implements IServiceL
     private String checkSpinner = "", storeGroupId;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
-    TextView sms, mail, notification;
+    CheckBox sms, mail, notification;
     Boolean smsSelect = false, mailSelect = false, notificationSelect = false;
     Button sendNotification;
     EditText notes;
@@ -70,12 +71,12 @@ public class GroupingSendActivity extends AppCompatActivity implements IServiceL
         progressDialogHelper = new ProgressDialogHelper(this);
         spnGroupList = (Spinner) findViewById(R.id.group_select_list_spinner);
 
-        sms = (TextView) findViewById(R.id.sms);
-        sms.setOnClickListener(this);
-        mail = (TextView) findViewById(R.id.mail);
-        mail.setOnClickListener(this);
-        notification = (TextView) findViewById(R.id.notification);
-        notification.setOnClickListener(this);
+        sms = (CheckBox) findViewById(R.id.sms_check);
+//        sms.setOnClickListener(this);
+        mail = (CheckBox) findViewById(R.id.mail_check);
+//        mail.setOnClickListener(this);
+        notification = (CheckBox) findViewById(R.id.notification_check);
+//        notification.setOnClickListener(this);
 
         sendNotification = (Button) findViewById(R.id.send_message);
         sendNotification.setOnClickListener(this);
@@ -241,49 +242,60 @@ public class GroupingSendActivity extends AppCompatActivity implements IServiceL
 
     @Override
     public void onClick(View v) {
-        if (v == sms) {
-            if (smsSelect) {
-                sms.setCompoundDrawablesWithIntrinsicBounds(R.drawable.grouping_unchecked, 0, 0, 0);
-                smsSelect = false;
-                notificationTypes.remove(message_type_sms);
-            } else {
-                sms.setCompoundDrawablesWithIntrinsicBounds(R.drawable.grouping_checked, 0, 0, 0);
-                smsSelect = true;
-                notificationTypes.add(message_type_sms);
-
-            }
-        }
-        if (v == mail) {
-            if (mailSelect) {
-                mail.setCompoundDrawablesWithIntrinsicBounds(R.drawable.grouping_unchecked, 0, 0, 0);
-                mailSelect = false;
-                notificationTypes.remove(message_type_mail);
-            } else {
-                mail.setCompoundDrawablesWithIntrinsicBounds(R.drawable.grouping_checked, 0, 0, 0);
-                mailSelect = true;
-                notificationTypes.add(message_type_mail);
-            }
-        }
-        if (v == notification) {
-            if (notificationSelect) {
-                notification.setCompoundDrawablesWithIntrinsicBounds(R.drawable.grouping_unchecked, 0, 0, 0);
-                notificationSelect = false;
-                notificationTypes.remove(message_type_notification);
-            } else {
-                notification.setCompoundDrawablesWithIntrinsicBounds(R.drawable.grouping_checked, 0, 0, 0);
-                notificationSelect = true;
-                notificationTypes.add(message_type_notification);
-            }
-        }
+//        if (v == sms) {
+//            if (smsSelect) {
+//                sms.setCompoundDrawablesWithIntrinsicBounds(R.drawable.grouping_unchecked, 0, 0, 0);
+//                smsSelect = false;
+//                notificationTypes.remove(message_type_sms);
+//            } else {
+//                sms.setCompoundDrawablesWithIntrinsicBounds(R.drawable.grouping_checked, 0, 0, 0);
+//                smsSelect = true;
+//                notificationTypes.add(message_type_sms);
+//
+//            }
+//        }
+//        if (v == mail) {
+//            if (mailSelect) {
+//                mail.setCompoundDrawablesWithIntrinsicBounds(R.drawable.grouping_unchecked, 0, 0, 0);
+//                mailSelect = false;
+//                notificationTypes.remove(message_type_mail);
+//            } else {
+//                mail.setCompoundDrawablesWithIntrinsicBounds(R.drawable.grouping_checked, 0, 0, 0);
+//                mailSelect = true;
+//                notificationTypes.add(message_type_mail);
+//            }
+//        }
+//        if (v == notification) {
+//            if (notificationSelect) {
+//                notification.setCompoundDrawablesWithIntrinsicBounds(R.drawable.grouping_unchecked, 0, 0, 0);
+//                notificationSelect = false;
+//                notificationTypes.remove(message_type_notification);
+//            } else {
+//                notification.setCompoundDrawablesWithIntrinsicBounds(R.drawable.grouping_checked, 0, 0, 0);
+//                notificationSelect = true;
+//                notificationTypes.add(message_type_notification);
+//            }
+//        }
         if (v == sendNotification) {
             checkSpinner = "send";
             callGetStudentInfoService();
         }
     }
 
+    private void getNoti() {
+        if (sms.isChecked()){
+            notificationTypes.add(message_type_sms);
+        }if (mail.isChecked()){
+            notificationTypes.add(message_type_mail);
+        }if (notification.isChecked()){
+            notificationTypes.add(message_type_notification);
+        }
+    }
+
     private void callGetStudentInfoService() {
         try {
 
+            getNoti();
             message = notes.getText().toString();
 
             if (validateFields()) {

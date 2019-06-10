@@ -188,6 +188,7 @@
                                 android:layout_marginTop="20dp"
                                 android:text="Test Date "
                                 android:textColor="@color/appColor"
+                                android:textStyle="bold"
                                 android:textSize="16sp" />
 
                             <LinearLayout
@@ -227,7 +228,8 @@
                                 android:layout_height="wrap_content"
                                 android:text="Homework Submission Date "
                                 android:textColor="@color/appColor"
-                                android:textSize="22dp" />
+                                android:textStyle="bold"
+                                android:textSize="16sp" />
 
                             <LinearLayout
                                 android:id="@+id/toDatee"
@@ -246,7 +248,7 @@
                                     android:gravity="center"
                                     android:text="Select date"
                                     android:textColor="@color/appColor"
-                                    android:textSize="20dp" />
+                                    android:textSize="16sp" />
                             </LinearLayout>
 
                         </LinearLayout>
