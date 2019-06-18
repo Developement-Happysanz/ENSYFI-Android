@@ -29,6 +29,7 @@ import com.palprotech.ensyfi.activity.general.LeaveCalendarActivity;
 import com.palprotech.ensyfi.activity.general.OnDutyActivity;
 import com.palprotech.ensyfi.activity.loginmodule.ChangePasswordActivity;
 import com.palprotech.ensyfi.activity.loginmodule.ProfileActivity;
+import com.palprotech.ensyfi.activity.loginmodule.ProfileActivityNew;
 import com.palprotech.ensyfi.activity.loginmodule.SplashScreenActivity;
 import com.palprotech.ensyfi.activity.studentmodule.AttendanceActivity;
 import com.palprotech.ensyfi.activity.studentmodule.ClassTestHomeworkActivity;
@@ -239,7 +240,7 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
     private void onNavigationMenuSelected(int position) {
 
         if (position == 0) {
-            Intent navigationIntent = new Intent(this, ProfileActivity.class);
+            Intent navigationIntent = new Intent(this, ProfileActivityNew.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 1) {
@@ -255,7 +256,7 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 4) {
-            Intent navigationIntent = new Intent(this, StudentTimeTableActivity.class);
+            Intent navigationIntent = new Intent(this, StudentTimeTableAcitivityNew.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 5) {

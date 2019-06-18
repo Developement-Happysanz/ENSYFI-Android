@@ -59,7 +59,9 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -73,7 +75,7 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
     private TextView txtUsrName, txtUserType;
     private Button txtPassword;
 
-    private TextView  TeacherProfile;
+    private TextView TeacherProfile;
 
     private ServiceHelper serviceHelper;
     private SaveStudentData studentData;
@@ -396,6 +398,24 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
 
     }
 
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_DCIM), "Camera");
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".png",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        mActualFilePath = "file:" + image.getAbsolutePath();
+        return image;
+    }
+
+
     private void openImageIntent() {
 
 // Determine Uri of camera image to save.
@@ -479,7 +499,7 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
                 if (selectedImageUri != null) {
                     Log.d(TAG, "image URI is" + selectedImageUri);
 //                    setPic(selectedImageUri);
-                    performCrop(mActualFilePath);
+                    performCrop(selectedImageUri);
                 }
             }
             if (requestCode == RESULT_CROP ) {
@@ -489,32 +509,25 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
                     // Set The Bitmap Data To ImageView
                     mProfileImage.setImageBitmap(selectedBitmap);
                     mProfileImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
-//                    setPic(selectedImageUri);
-                    saveUserProfile();
+                    saveUserImage();
                 }
             }
         }
     }
 
-    private void performCrop(String picUri) {
+    private void performCrop(Uri picUri) {
         try {
-            //Start Crop Activity
-
             Intent cropIntent = new Intent("com.android.camera.action.CROP");
             // indicate image type and Uri
-            File f = new File(picUri);
-            Uri contentUri = Uri.fromFile(f);
-
-            cropIntent.setDataAndType(contentUri, "image/*");
-            // set crop properties
-            cropIntent.putExtra("crop", "true");
+            cropIntent.setDataAndType(picUri, "image/*");
+            // set crop properties here
+            cropIntent.putExtra("crop", true);
             // indicate aspect of desired crop
             cropIntent.putExtra("aspectX", 1);
             cropIntent.putExtra("aspectY", 1);
             // indicate output X and Y
-            cropIntent.putExtra("outputX", 280);
-            cropIntent.putExtra("outputY", 280);
-
+            cropIntent.putExtra("outputX", 128);
+            cropIntent.putExtra("outputY", 128);
             // retrieve data on return
             cropIntent.putExtra("return-data", true);
             // start the activity - we handle returning in onActivityResult
@@ -523,7 +536,7 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
         // respond to users whose devices do not support the crop action
         catch (ActivityNotFoundException anfe) {
             // display an error message
-            String errorMessage = "your device doesn't support the crop action!";
+            String errorMessage = "Whoops - your device doesn't support the crop action!";
             Toast toast = Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT);
             toast.show();
         }

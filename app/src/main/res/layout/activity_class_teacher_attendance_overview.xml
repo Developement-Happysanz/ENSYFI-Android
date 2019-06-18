@@ -165,79 +165,57 @@
             android:textColor="@color/new_gray"
             android:textSize="16sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/taken_by_name"
-            android:layout_alignLeft="@+id/taken_by"
-            android:layout_marginRight="10dp"
-            android:weightSum="1"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:id="@+id/view_attendance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="0.5"
-                android:layout_marginRight="5dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/ic_calender" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:text="View Attendance"
-                    android:textColor="@color/new_gray"
-                    android:textSize="16sp" />
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="1dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center"
-                android:background="@color/new_gray_bg"/>
-
-            <LinearLayout
-                android:id="@+id/send_attendance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:layout_marginLeft="5dp"
-                android:layout_gravity="center"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:padding="3dp"
-                    android:src="@drawable/ic_send_report" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:text="Send Attendance"
-                    android:textColor="@color/new_gray"
-                    android:textSize="16sp" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
     </RelativeLayout>
 
+    <LinearLayout
+        android:id="@+id/view_attendance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/class_attendance_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
 
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_view_attendance" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:text="View Attendance"
+            android:textColor="@color/new_gray"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/send_attendance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view_attendance"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_send_report" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:text="Send Attendance"
+            android:textColor="@color/new_gray"
+            android:textSize="16sp" />
+
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/report_popup"
@@ -246,7 +224,8 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:visibility="gone"
-        android:background="@drawable/popup_btn"
+        android:elevation="12dp"
+        android:background="@drawable/shadow_round"
         android:layout_centerInParent="true">
 
         <ImageView
@@ -257,12 +236,49 @@
             android:layout_marginTop="5dp"
             android:layout_marginRight="5dp"
             android:src="@drawable/ic_close"
+            android:elevation="12dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/sms_check"
+                android:layout_weight="0.3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/approve"
+                android:layout_marginLeft="20dp"
+                android:text="SMS"/>
+            <CheckBox
+                android:id="@+id/mail_check"
+                android:layout_width="wrap_content"
+                android:layout_weight="0.3"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/pending"
+                android:layout_centerHorizontal="true"
+                android:text="Mail"/>
+            <CheckBox
+                android:id="@+id/notification_check"
+                android:layout_width="wrap_content"
+                android:layout_weight="0.4"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/reject"
+                android:layout_marginRight="20dp"
+                android:layout_alignParentRight="true"
+                android:text="Notification"/>
+
+        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_centerVertical="true">
 
             <TextView

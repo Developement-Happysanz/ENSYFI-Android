@@ -34,6 +34,7 @@ import com.palprotech.ensyfi.activity.general.OnDutyActivity;
 import com.palprotech.ensyfi.activity.general.SyncRecordsActivity;
 import com.palprotech.ensyfi.activity.loginmodule.ChangePasswordActivity;
 import com.palprotech.ensyfi.activity.loginmodule.ProfileActivity;
+import com.palprotech.ensyfi.activity.loginmodule.ProfileActivityNew;
 import com.palprotech.ensyfi.activity.loginmodule.SplashScreenActivity;
 import com.palprotech.ensyfi.activity.parentsmodule.ParentDashBoardActivity;
 import com.palprotech.ensyfi.adapter.NavDrawerAdapter;
@@ -259,7 +260,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
     private void onNavigationMenuSelected(int position) {
 
         if (position == 0) {
-            Intent navigationIntent = new Intent(this, ProfileActivity.class);
+            Intent navigationIntent = new Intent(this, ProfileActivityNew.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 1) {

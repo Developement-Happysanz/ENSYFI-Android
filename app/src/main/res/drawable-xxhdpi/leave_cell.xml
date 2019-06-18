@@ -7,7 +7,8 @@
         android:right="0dp"
         android:top="0dp">
         <shape android:shape="rectangle">
-            <solid android:color="@color/approve" />
+            <solid android:color="@color/pending" />
+            <!--<solid android:color="#FFDDDDDD" />-->
         </shape>
     </item>
 

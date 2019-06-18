@@ -141,7 +141,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="Attach file"
-                        android:textColor="@color/black"
+                        android:textColor="@color/new_gray"
                         android:textSize="14sp" />
                 </LinearLayout>
 
@@ -161,7 +161,7 @@
                         android:layout_height="wrap_content"
                         android:checked="true"
                         android:text="Active"
-                        android:textColor="@color/black"
+                        android:textColor="@color/new_gray"
                         android:textSize="14sp" />
                 </LinearLayout>
 

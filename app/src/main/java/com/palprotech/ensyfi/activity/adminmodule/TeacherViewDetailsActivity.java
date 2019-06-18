@@ -144,16 +144,17 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
         progressDialogHelper.hideProgressDialog();
         if (validateSignInResponse(response)) {
             try {
-                JSONObject getTimeTable = response.getJSONObject("timeTable");
-                if (validateSignInResponse(getTimeTable)) {
-                    JSONArray getTimeTableDaysArray = getTimeTable.getJSONArray("data");
+//                JSONObject getTimeTable = response.getJSONObject("timeTable");
+                JSONArray getTimeTableDaysArray = response.getJSONArray("timeTable");
+//                if (getTimeTableDaysArray.get(0).) {
+//                    JSONArray getTimeTableDaysArray = getTimeTable.getJSONArray("data");
                     if (getTimeTableDaysArray != null && getTimeTableDaysArray.length() > 0) {
                         teacherData.saveTeacherTimeTable(getTimeTableDaysArray);
+                        checkTimeTable = true;
                     }
-                    checkTimeTable = true;
-                } else {
-                    checkTimeTable = false;
-                }
+//                } else {
+//                    checkTimeTable = false;
+//                }
 
                 JSONArray getClassSubject = response.getJSONArray("class_name");
                 if (getClassSubject != null && getClassSubject.length() > 0) {

@@ -47,7 +47,6 @@
         android:id="@+id/rl_mapview"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@color/nav_back_ground_color"
         android:orientation="vertical">
 
         <TextView
@@ -56,27 +55,27 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:textAllCaps="true"
-            android:textColor="@color/white"
+            android:textColor="@color/new_gray"
             android:textSize="30dp" />
 
-        <ImageView
-            android:id="@+id/loc"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_below="@+id/eventname"
-            android:layout_marginLeft="125dp"
-            android:src="@drawable/eventplaceicon" />
+        <!--<ImageView-->
+            <!--android:id="@+id/loc"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="20dp"-->
+            <!--android:layout_below="@+id/eventname"-->
+            <!--android:layout_marginLeft="125dp"-->
+            <!--android:src="@drawable/eventplaceicon" />-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/eventname"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center"
-            android:layout_toRightOf="@+id/loc"
-            android:paddingLeft="14sp"
-            android:text="Location"
-            android:textColor="@color/white" />
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/eventname"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_toRightOf="@+id/loc"-->
+            <!--android:paddingLeft="14sp"-->
+            <!--android:text="Location"-->
+            <!--android:textColor="@color/white" />-->
 
     </RelativeLayout>
 
@@ -137,6 +136,7 @@
                 android:layout_gravity="center"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="15dp"
                 android:background="@drawable/round_btn_color"
                 android:text="View Event Organiser"

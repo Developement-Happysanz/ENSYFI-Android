@@ -160,12 +160,13 @@ public class SyncRecordsActivity extends AppCompatActivity implements IServiceLi
                 }
             }
             if (v == btnSyncClassTestMarksRecords) {
-                int ClassTestMark = Integer.parseInt(db.isClassTestMarkStatusFlag());
-                if (ClassTestMark > 0) {
-                    syncClassTestMark.syncClassTestMarkToServer();
-                } else {
-                    AlertDialogHelper.showSimpleAlertDialog(this, "Nothing to sync");
-                }
+//                int ClassTestMark = Integer.parseInt(db.isClassTestMarkStatusFlag());
+//                if (ClassTestMark > 0) {
+//                    syncClassTestMark.syncClassTestMarkToServer();
+//                } else {
+//                    AlertDialogHelper.showSimpleAlertDialog(this, "Nothing to sync");
+//                }
+                syncClassTestMark.syncClassTestMarkToServer();
             }
             if (v == btnSyncExamMarks) {
                 syncAcademicExamMarks.SyncAcademicMarks();

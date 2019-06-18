@@ -79,8 +79,8 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/shadow_round"
                 android:elevation="12dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:paddingBottom="20dp">
 
                 <TextView
@@ -769,8 +769,9 @@
 
                 <LinearLayout
                     android:id="@+id/exam_homework"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:weightSum="1"
                     android:layout_below="@id/txtStudentRegistered"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
@@ -780,6 +781,9 @@
                         android:id="@+id/btnClassTestHomework"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="0.5"
                         android:background="@drawable/btn_square_fill_color"
                         android:text="ClassTest &amp; Homework "
                         android:textColor="@color/white" />
@@ -788,7 +792,9 @@
                         android:id="@+id/btnFees"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
+                        android:layout_weight="0.5"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="10dp"
                         android:background="@drawable/btn_square_fill_color"
                         android:text="Fee"
                         android:textColor="@color/white" />
@@ -796,8 +802,9 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:weightSum="1"
                     android:layout_below="@id/exam_homework"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
@@ -805,18 +812,23 @@
 
                     <Button
                         android:id="@+id/btnAttendance"
-                        android:layout_width="150dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/btn_square_fill_color"
                         android:text="Attendance"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="0.5"
                         android:textColor="@color/white" />
 
                     <Button
                         android:id="@+id/btnExams"
-                        android:layout_width="150dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="10dp"
                         android:background="@drawable/btn_square_fill_color"
+                        android:layout_weight="0.5"
                         android:text="Exam &amp; Result"
                         android:textColor="@color/white" />
 

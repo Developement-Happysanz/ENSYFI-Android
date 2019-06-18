@@ -69,14 +69,13 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:elevation="12dp"
-            android:layout_margin="40dp"
+            android:layout_margin="20dp"
             android:layout_below="@id/userimage2">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:padding="20dp"
                 android:background="@drawable/shadow_round">
 
                 <TextView
@@ -87,7 +86,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Admission ID              :"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="16sp"
                     android:visibility="gone"/>
 
@@ -100,7 +99,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/studentadminid"
                     android:paddingTop="2dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="16sp"
                     android:visibility="gone"/>
 
@@ -112,7 +111,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Admission Number   :"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textStyle="bold"
                     android:textSize="16sp" />
 
@@ -125,7 +124,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/studentadminnum"
                     android:paddingTop="2dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="16sp" />
 
                 <TextView
@@ -137,7 +136,7 @@
                     android:layout_marginTop="10dp"
                     android:textStyle="bold"
                     android:text="Admission Year          :"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="16sp" />
 
                 <TextView
@@ -149,7 +148,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/studentadminyear"
                     android:paddingTop="2dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
 
                     android:textSize="16sp" />
 
@@ -161,7 +160,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="EMSI Number              :"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textStyle="bold"
                     android:textSize="16sp" />
 
@@ -174,7 +173,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/studentemsinum"
                     android:paddingTop="2dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="16sp" />
 
                 <TextView
@@ -185,7 +184,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Admission Date          :"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textStyle="bold"
                     android:textSize="16sp" />
 
@@ -197,7 +196,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/StudentAdmissionDate"
                     android:paddingTop="2dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="16sp" />
 
                 <TextView
@@ -207,7 +206,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Name                           :"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textStyle="bold"
                     android:textSize="16sp" />
 
@@ -219,7 +218,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/StudentName"
                     android:paddingTop="2dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="16sp" />
 
                 <TextView
@@ -230,7 +229,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Gender                         :"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textStyle="bold"
                     android:textSize="16sp" />
 
@@ -242,7 +241,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/StudentGender"
                     android:paddingTop="2dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="16sp" />
 
                 <TextView
@@ -253,7 +252,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Date Of Birth               :"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textStyle="bold"
                     android:textSize="16sp" />
 
@@ -265,7 +264,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/StudentDateOfBirth"
                     android:paddingTop="2dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="16sp" />
 
                 <TextView
@@ -276,7 +275,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Age                               :"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textStyle="bold"
                     android:textSize="16sp" />
 
@@ -289,7 +288,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/StudentAge"
                     android:paddingTop="2dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="16sp" />
 
                 <TextView
@@ -300,7 +299,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Nationality                   :"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textStyle="bold"
                     android:textSize="16sp" />
 
@@ -313,7 +312,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/StudentNationality"
                     android:paddingTop="2dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="16sp" />
 
                 <TextView
@@ -324,7 +323,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Religion                        :"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textStyle="bold"
                     android:textSize="16sp" />
 
@@ -337,7 +336,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/StudentReligion"
                     android:paddingTop="2dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="16sp" />
 
                 <TextView
@@ -348,7 +347,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Caste                            :"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textStyle="bold"
                     android:textSize="16sp" />
 
@@ -361,7 +360,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/StudentCaste"
                     android:paddingTop="2dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="16sp" />
 
                 <TextView
@@ -372,7 +371,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Community                  :"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textStyle="bold"
                     android:textSize="16sp" />
 
@@ -385,7 +384,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/StudentCommunity"
                     android:paddingTop="2dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="16sp" />
 
                 <TextView
@@ -396,7 +395,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Parent Or Guardian     :"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textStyle="bold"
                     android:textSize="16sp"
                     android:visibility="gone"/>
@@ -410,7 +409,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/StudentParentOrGuardian"
                     android:paddingTop="2dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="16sp"
                     android:visibility="gone"/>
 
@@ -422,7 +421,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Parent Or Guardian Id :"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textStyle="bold"
                     android:textSize="16sp"
                     android:visibility="gone"/>
@@ -436,7 +435,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/StudentParentOrGuardianId"
                     android:paddingTop="2dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="16sp"
                     android:visibility="gone"/>
 
@@ -448,7 +447,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Mother Tongue            :"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textStyle="bold"
                     android:textSize="16sp" />
 
@@ -460,7 +459,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/StudentMotherTongue"
                     android:paddingTop="2dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="16sp" />
 
                 <TextView
@@ -471,7 +470,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Language                     :"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textStyle="bold"
                     android:textSize="16sp" />
 
@@ -483,7 +482,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/StudentLanguage"
                     android:paddingTop="2dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="16sp" />
 
                 <TextView
@@ -494,7 +493,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Mobile                          :"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textStyle="bold"
                     android:textSize="16sp" />
 
@@ -506,7 +505,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/StudentMobile"
                     android:paddingTop="2dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="16sp" />
 
                 <TextView
@@ -517,7 +516,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Secondary Mobile       :"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textStyle="bold"
                     android:textSize="16sp" />
 
@@ -529,7 +528,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/StudentSecondaryMobile"
                     android:paddingTop="2dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="16sp" />
 
                 <TextView
@@ -540,7 +539,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Mail                               :"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textStyle="bold"
                     android:textSize="16sp" />
 
@@ -553,7 +552,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/StudentMail"
                     android:paddingTop="2dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="16sp" />
 
                 <TextView
@@ -565,7 +564,7 @@
                     android:layout_marginTop="10dp"
                     android:textStyle="bold"
                     android:text="Secondary Mail           :"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="16sp" />
 
 
@@ -577,7 +576,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/StudentSecondaryMail"
                     android:paddingTop="2dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="16sp" />
 
                 <TextView
@@ -588,7 +587,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Previous School          :"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textStyle="bold"
                     android:textSize="16sp" />
 
@@ -601,7 +600,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/StudentPreviousSchool"
                     android:paddingTop="2dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="16sp" />
 
                 <TextView
@@ -612,7 +611,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Previous Class            :"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textStyle="bold"
                     android:textSize="16sp" />
 
@@ -625,7 +624,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/StudentPreviousClass"
                     android:paddingTop="2dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="16sp" />
 
                 <TextView
@@ -636,7 +635,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Promotion Status       :"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textStyle="bold"
                     android:textSize="16sp"
                     android:visibility="gone"/>
@@ -650,7 +649,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/StudentPromotionStatus"
                     android:paddingTop="2dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="16sp"
                     android:visibility="gone"/>
 
@@ -662,7 +661,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Transfer Certificate    :"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textStyle="bold"
                     android:textSize="16sp" />
 
@@ -675,7 +674,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/StudentTransferCertificate"
                     android:paddingTop="2dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="16sp" />
 
                 <TextView
@@ -686,7 +685,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Record Sheet               :"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textStyle="bold"
                     android:textSize="16sp" />
 
@@ -699,7 +698,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/StudentRecordSheet"
                     android:paddingTop="2dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="16sp" />
 
                 <TextView
@@ -710,7 +709,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Status                           :"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textStyle="bold"
                     android:textSize="16sp"
                     android:visibility="gone"/>
@@ -723,7 +722,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/StudentStatus"
                     android:paddingTop="2dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="16sp"
                     android:visibility="gone"/>
 
@@ -735,7 +734,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Parent Status              :"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textStyle="bold"
                     android:textSize="16sp"
                     android:visibility="gone"/>
@@ -748,7 +747,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/StudentParentStatus"
                     android:paddingTop="2dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="16sp"
                     android:visibility="gone"/>
 
@@ -760,7 +759,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Registered                    :"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:visibility="gone"/>
@@ -773,7 +772,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/StudentRegistered"
                     android:paddingTop="2dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="16sp"
                     android:visibility="gone"/>
 

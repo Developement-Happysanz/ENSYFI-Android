@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -66,6 +67,23 @@ public class TeacherTimeTableNew extends AppCompatActivity implements DialogClic
         progressDialogHelper = new ProgressDialogHelper(this);
 //        getTimeTableDays();
         getDaysfromDB();
+
+        ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
+        bckbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        ImageView viewExamMark = (ImageView) findViewById(R.id.view_reviews);
+        viewExamMark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), TimeTableReview.class);
+                startActivity(intent);
+            }
+        });
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         for (int i = 0; i < dayCount; i++) {

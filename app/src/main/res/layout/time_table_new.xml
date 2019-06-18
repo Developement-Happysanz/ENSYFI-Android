@@ -42,6 +42,17 @@
             android:textSize="@dimen/menuTextSize"
             android:textStyle="bold" />
 
+        <ImageView
+            android:id="@+id/view_reviews"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:src="@drawable/ic_view2"
+            android:visibility="visible" />
+
       </RelativeLayout>
 
     <LinearLayout

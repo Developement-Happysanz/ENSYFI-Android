@@ -31,6 +31,7 @@ import com.palprotech.ensyfi.activity.general.LeaveCalendarActivity;
 import com.palprotech.ensyfi.activity.general.LeaveStatusActivity;
 import com.palprotech.ensyfi.activity.loginmodule.ChangePasswordActivity;
 import com.palprotech.ensyfi.activity.loginmodule.ProfileActivity;
+import com.palprotech.ensyfi.activity.loginmodule.ProfileActivityNew;
 import com.palprotech.ensyfi.activity.loginmodule.SplashScreenActivity;
 import com.palprotech.ensyfi.adapter.NavDrawerAdapter;
 import com.palprotech.ensyfi.bean.general.support.DeleteTableRecords;
@@ -250,7 +251,7 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
     private void onNavigationMenuSelected(int position) {
 
         if (position == 0) {
-            Intent navigationIntent = new Intent(this, ProfileActivity.class);
+            Intent navigationIntent = new Intent(this, ProfileActivityNew.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 1) {

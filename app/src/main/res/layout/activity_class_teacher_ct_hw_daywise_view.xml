@@ -71,7 +71,8 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:visibility="gone"
-            android:background="@drawable/popup_btn"
+            android:elevation="12dp"
+            android:background="@drawable/shadow_round"
             android:layout_centerInParent="true">
 
             <ImageView
@@ -82,12 +83,49 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="5dp"
                 android:src="@drawable/ic_close"
+                android:elevation="12dp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/sms_check"
+                    android:layout_weight="0.3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/approve"
+                    android:layout_marginLeft="20dp"
+                    android:text="SMS"/>
+                <CheckBox
+                    android:id="@+id/mail_check"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="0.3"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/pending"
+                    android:layout_centerHorizontal="true"
+                    android:text="Mail"/>
+                <CheckBox
+                    android:id="@+id/notification_check"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="0.4"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/reject"
+                    android:layout_marginRight="20dp"
+                    android:layout_alignParentRight="true"
+                    android:text="Notification"/>
+
+            </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:layout_centerVertical="true">
 
                 <TextView
@@ -99,7 +137,7 @@
                     android:text="SMS"
                     android:drawablePadding="10dp"
                     android:textSize="16sp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/new_gray"/>
 
                 <TextView
                     android:id="@+id/mail"
@@ -112,7 +150,7 @@
                     android:drawableLeft="@drawable/grouping_unchecked"
                     android:text="Mail"
                     android:textSize="16sp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/new_gray"/>
 
                 <TextView
                     android:id="@+id/notification"
@@ -125,7 +163,7 @@
                     android:drawableLeft="@drawable/grouping_unchecked"
                     android:text="Notification"
                     android:textSize="16sp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/new_gray"/>
 
             </RelativeLayout>
 

@@ -89,7 +89,7 @@ public class SyncClassTestMark implements IServiceListener {
         progressDialogHelper = new ProgressDialogHelper(context);
         db = new SQLiteHelper(context);
         try {
-            Cursor c = db.getLoadOneByOneClassTestMarkListView();
+            Cursor c = db.getClassTestMarkListView();
             if (c.getCount() > 0) {
                 if (c.moveToFirst()) {
                     do {
@@ -160,14 +160,14 @@ public class SyncClassTestMark implements IServiceListener {
         progressDialogHelper.hideProgressDialog();
         if (validateSignInResponse(response)) {
             try {
-                String classTestMarksServerId = response.getString("mark_id");
+                String classTestMarksServerId = response.getString("last_id");
                 if (!classTestMarksServerId.isEmpty()) {
                     db.updateClassTestSyncStatus(classTestMarkId);
                 }
-                int ClassTestMark = Integer.parseInt(db.isClassTestMarkStatusFlag());
-                if (ClassTestMark > 0) {
-                    syncClassTestMarkToServer();
-                }
+//                int ClassTestMark = Integer.parseInt(db.isClassTestMarkStatusFlag());
+//                if (ClassTestMark > 0) {
+//                    syncClassTestMarkToServer();
+//                }
             } catch (Exception ex) {
                 ex.printStackTrace();
             }

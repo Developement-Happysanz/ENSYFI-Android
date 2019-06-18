@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -55,7 +56,7 @@ public class ClassTeacherCtHwDaywiseView extends AppCompatActivity implements IS
     private RelativeLayout reportPopup;
     private ImageView close, openPopup;
     private String checkSpinner = "";
-    TextView sms, mail, notification;
+    CheckBox sms, mail, notification;
     Boolean smsSelect = false, mailSelect = false, notificationSelect = false;
     Button sendNotification;
     EditText notes;
@@ -106,12 +107,12 @@ public class ClassTeacherCtHwDaywiseView extends AppCompatActivity implements IS
             }
         });
 
-        sms = (TextView) findViewById(R.id.sms);
-        sms.setOnClickListener(this);
-        mail = (TextView) findViewById(R.id.mail);
-        mail.setOnClickListener(this);
-        notification = (TextView) findViewById(R.id.notification);
-        notification.setOnClickListener(this);
+        sms = (CheckBox) findViewById(R.id.sms_check);
+//        sms.setOnClickListener(this);
+        mail = (CheckBox) findViewById(R.id.mail_check);
+//        mail.setOnClickListener(this);
+        notification = (CheckBox) findViewById(R.id.notification_check);
+//        notification.setOnClickListener(this);
 
         sendNotification = (Button) findViewById(R.id.send_message);
         sendNotification.setOnClickListener(this);
@@ -254,50 +255,51 @@ public class ClassTeacherCtHwDaywiseView extends AppCompatActivity implements IS
 
     @Override
     public void onClick(View v) {
-        if (v == sms) {
-            if (smsSelect) {
-                sms.setCompoundDrawablesWithIntrinsicBounds(R.drawable.grouping_unchecked, 0, 0, 0);
-                smsSelect = false;
-                notificationTypes.remove(message_type_sms);
-            } else {
-                sms.setCompoundDrawablesWithIntrinsicBounds(R.drawable.grouping_checked, 0, 0, 0);
-                smsSelect = true;
-                notificationTypes.add(message_type_sms);
-
-            }
-        }
-        if (v == mail) {
-            if (mailSelect) {
-                mail.setCompoundDrawablesWithIntrinsicBounds(R.drawable.grouping_unchecked, 0, 0, 0);
-                mailSelect = false;
-                notificationTypes.remove(message_type_mail);
-            } else {
-                mail.setCompoundDrawablesWithIntrinsicBounds(R.drawable.grouping_checked, 0, 0, 0);
-                mailSelect = true;
-                notificationTypes.add(message_type_mail);
-            }
-        }
-        if (v == notification) {
-            if (notificationSelect) {
-                notification.setCompoundDrawablesWithIntrinsicBounds(R.drawable.grouping_unchecked, 0, 0, 0);
-                notificationSelect = false;
-                notificationTypes.remove(message_type_notification);
-            } else {
-                notification.setCompoundDrawablesWithIntrinsicBounds(R.drawable.grouping_checked, 0, 0, 0);
-                notificationSelect = true;
-                notificationTypes.add(message_type_notification);
-            }
-        }
+//        if (v == sms) {
+//            if (smsSelect) {
+//                sms.setCompoundDrawablesWithIntrinsicBounds(R.drawable.grouping_unchecked, 0, 0, 0);
+//                smsSelect = false;
+//                notificationTypes.remove(message_type_sms);
+//            } else {
+//                sms.setCompoundDrawablesWithIntrinsicBounds(R.drawable.grouping_checked, 0, 0, 0);
+//                smsSelect = true;
+//                notificationTypes.add(message_type_sms);
+//
+//            }
+//        }
+//        if (v == mail) {
+//            if (mailSelect) {
+//                mail.setCompoundDrawablesWithIntrinsicBounds(R.drawable.grouping_unchecked, 0, 0, 0);
+//                mailSelect = false;
+//                notificationTypes.remove(message_type_mail);
+//            } else {
+//                mail.setCompoundDrawablesWithIntrinsicBounds(R.drawable.grouping_checked, 0, 0, 0);
+//                mailSelect = true;
+//                notificationTypes.add(message_type_mail);
+//            }
+//        }
+//        if (v == notification) {
+//            if (notificationSelect) {
+//                notification.setCompoundDrawablesWithIntrinsicBounds(R.drawable.grouping_unchecked, 0, 0, 0);
+//                notificationSelect = false;
+//                notificationTypes.remove(message_type_notification);
+//            } else {
+//                notification.setCompoundDrawablesWithIntrinsicBounds(R.drawable.grouping_checked, 0, 0, 0);
+//                notificationSelect = true;
+//                notificationTypes.add(message_type_notification);
+//            }
+//        }
         if (v == sendNotification) {
             checkSpinner = "send";
             if (validateFields()) {
                 sendReportService();
+
             }
         }
     }
 
     private boolean validateFields() {
-        if (!(smsSelect || mailSelect || notificationSelect)) {
+        if (!(sms.isChecked() || mail.isChecked() || notification.isChecked())) {
             AlertDialogHelper.showSimpleAlertDialog(this, "Select at least one mode");
             return false;
         } else {
@@ -305,8 +307,21 @@ public class ClassTeacherCtHwDaywiseView extends AppCompatActivity implements IS
         }
     }
 
+    private void getNoti() {
+        if (sms.isChecked()) {
+            notificationTypes.add(message_type_sms);
+        }
+        if (mail.isChecked()) {
+            notificationTypes.add(message_type_mail);
+        }
+        if (notification.isChecked()) {
+            notificationTypes.add(message_type_notification);
+        }
+    }
+
     private void sendReportService() {
         checkSpinner = "send";
+        getNoti();
         if (CommonUtils.isNetworkAvailable(this)) {
 
             JSONObject jsonObject = new JSONObject();

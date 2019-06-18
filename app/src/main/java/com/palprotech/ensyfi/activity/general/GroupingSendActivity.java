@@ -58,8 +58,8 @@ public class GroupingSendActivity extends AppCompatActivity implements IServiceL
     Button sendNotification;
     EditText notes;
     private String message = "";
-    ArrayList <String> notificationTypes = new ArrayList<>();
-  private String message_type_sms = "SMS", message_type_mail = "Mail", message_type_notification = "Notification";
+    ArrayList<String> notificationTypes = new ArrayList<>();
+    private String message_type_sms = "SMS", message_type_mail = "Mail", message_type_notification = "Notification";
 
 
     @Override
@@ -283,11 +283,13 @@ public class GroupingSendActivity extends AppCompatActivity implements IServiceL
     }
 
     private void getNoti() {
-        if (sms.isChecked()){
+        if (sms.isChecked()) {
             notificationTypes.add(message_type_sms);
-        }if (mail.isChecked()){
+        }
+        if (mail.isChecked()) {
             notificationTypes.add(message_type_mail);
-        }if (notification.isChecked()){
+        }
+        if (notification.isChecked()) {
             notificationTypes.add(message_type_notification);
         }
     }
