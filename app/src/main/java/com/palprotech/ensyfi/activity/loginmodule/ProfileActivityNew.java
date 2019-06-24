@@ -576,45 +576,6 @@ public class ProfileActivityNew extends AppCompatActivity implements IServiceLis
 
     }
 
-//    private void openCamera() {
-//        Intent pictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        File file;
-//        try {
-//            file = getImageFile(); // 1
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            Toast.makeText(this, "Please take another image", Toast.LENGTH_SHORT);
-//            return;
-//        }
-//        Uri uri;
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) // 2
-//            uri = FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID.concat(".provider"), file);
-//        else
-//            uri = Uri.fromFile(file); // 3
-//        pictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri); // 4
-//        startActivityForResult(pictureIntent, 1);
-//    }
-
-    private void openCamera() {
-        Intent pictureIntent = new Intent(
-                MediaStore.ACTION_IMAGE_CAPTURE);
-//        if(pictureIntent.resolveActivity(getPackageManager()) != null){
-            //Create a file to store the image
-            File photoFile = null;
-            try {
-                photoFile = getImageFile();
-            } catch (IOException ex) {
-                Toast.makeText(this, "Please take another image", Toast.LENGTH_SHORT);
-            }
-            if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(this,                                                                                                    "com.example.android.provider", photoFile);
-                pictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
-                        photoURI);
-                startActivityForResult(pictureIntent, 1);
-            }
-//        }
-    }
-
     private void openImagesDocument() {
         Intent pictureIntent = new Intent(Intent.ACTION_GET_CONTENT);
         pictureIntent.setType("image/*");
@@ -627,7 +588,7 @@ public class ProfileActivityNew extends AppCompatActivity implements IServiceLis
     }
 
     private void selectImage() {
-        final CharSequence[] options = {"Take Photo", "Choose from Gallery", "Cancel"};
+        final CharSequence[] options = {"Take Photo", "Choose from Gallery", "Remove Photo", "Cancel"};
         AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivityNew.this);
         builder.setTitle("Add Photo!");
         builder.setItems(options, new DialogInterface.OnClickListener() {
@@ -642,6 +603,12 @@ public class ProfileActivityNew extends AppCompatActivity implements IServiceLis
                             createImageFile());
                     intent.putExtra(MediaStore.EXTRA_OUTPUT, f);
                     startActivityForResult(intent, 1);
+                } else if (options[item].equals("Remove Photo")) {
+                    PreferenceStorage.saveUserPicture(ProfileActivityNew.this, "");
+                    mProfileImage.setImageDrawable(ContextCompat.getDrawable(ProfileActivityNew.this, R.drawable.ic_profile));
+                    mSelectedImageUri = Uri.parse("android.resource://com.palprotech.ensyfi/drawable/ic_default_profile");
+                    mActualFilePath = mSelectedImageUri.getPath();
+                    saveUserImage();
                 } else if (options[item].equals("Choose from Gallery")) {
                     openImagesDocument();
                 } else if (options[item].equals("Cancel")) {
@@ -697,24 +664,6 @@ public class ProfileActivityNew extends AppCompatActivity implements IServiceLis
             }
         }
     }
-//    private File getImageFile() throws IOException {
-//        String imageFileName = "JPEG_" + System.currentTimeMillis() + "_";
-//        File storageDir = new File(
-//                Environment.getExternalStoragePublicDirectory(
-//                        Environment.DIRECTORY_DCIM
-//                ), "Camera"
-//        );
-//        System.out.println(storageDir.getAbsolutePath());
-//        if (storageDir.exists())
-//            System.out.println("File exists");
-//        else
-//            System.out.println("File not exists");
-//        File file = File.createTempFile(
-//                imageFileName, ".png", storageDir
-//        );
-//        mActualFilePath = "" + file.getAbsolutePath();
-//        return file;
-//    }
 
     private File getImageFile() throws IOException {
         String timeStamp =
@@ -763,42 +712,6 @@ public class ProfileActivityNew extends AppCompatActivity implements IServiceLis
                 .withMaxResultSize(100, 100)
                 .withAspectRatio(5f, 5f)
                 .start(this);
-    }
-
-    private void performCrop(Uri picUri) {
-        try {
-            Intent intent = new Intent("com.android.camera.action.CROP");
-            intent.setType("image/*");
-            List<ResolveInfo> list = getPackageManager().queryIntentActivities(intent, 0);
-            int size = list.size();
-            if (size == 0) {
-                Toast.makeText(this, "Can not find image crop app", Toast.LENGTH_SHORT).show();
-
-                return;
-            } else {
-                mSelectedImageUri = picUri;
-                intent.setData(mSelectedImageUri);
-                intent.putExtra("outputX", 300);
-                intent.putExtra("outputY", 300);
-                intent.putExtra("aspectX", 1);
-                intent.putExtra("aspectY", 1);
-                intent.putExtra("scale", true);
-                intent.putExtra("return-data", true);
-                Intent i = new Intent(intent);
-                ResolveInfo res = list.get(0);
-
-                i.setComponent(new ComponentName(res.activityInfo.packageName, res.activityInfo.name));
-
-                startActivityForResult(i, RESULT_CROP);
-            }
-        }
-        // respond to users whose devices do not support the crop action
-        catch (ActivityNotFoundException anfe) {
-            // display an error message
-            String errorMessage = "Whoops - your device doesn't support the crop action!";
-            Toast toast = Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT);
-            toast.show();
-        }
     }
 
     private void callGetStudentInfoService() {

@@ -115,7 +115,7 @@ public class CaldroidFragment extends DialogFragment {
    * To customize the disabled background drawable and text color
    */
   public static int disabledBackgroundDrawable = -1;
-  public static int disabledTextColor = Color.WHITE;
+  public static int disabledTextColor = Color.BLACK;
 
   /**
    * Caldroid view components

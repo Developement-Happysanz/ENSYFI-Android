@@ -31,7 +31,8 @@ public class StudentTimeTableAcitivityNew  extends AppCompatActivity implements 
                 finish();
             }
         });
-
+        ImageView review = (ImageView) findViewById(R.id.view_reviews);
+        review.setVisibility(View.GONE);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
 
         tabLayout.addTab(tabLayout.newTab().setText("Monday"));
