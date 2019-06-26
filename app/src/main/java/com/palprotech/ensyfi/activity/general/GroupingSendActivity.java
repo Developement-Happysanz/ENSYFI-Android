@@ -330,7 +330,7 @@ public class GroupingSendActivity extends AppCompatActivity implements IServiceL
         if (!AppValidator.checkNullString(this.notes.getText().toString().trim())) {
             AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid message");
             return false;
-        } else if (!(smsSelect || mailSelect || notificationSelect)) {
+        } else if (!(sms.isChecked() || mail.isChecked() || notification.isChecked())) {
             AlertDialogHelper.showSimpleAlertDialog(this, "Select at least one mode");
             return false;
         } else {
