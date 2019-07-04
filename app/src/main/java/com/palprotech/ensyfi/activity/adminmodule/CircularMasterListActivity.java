@@ -35,6 +35,5 @@ public class CircularMasterListActivity extends AppCompatActivity {
                 startActivity(navigationIntent);
             }
         });
-
     }
 }

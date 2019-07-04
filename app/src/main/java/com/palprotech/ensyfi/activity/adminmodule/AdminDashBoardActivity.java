@@ -156,7 +156,8 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
         communication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CircularActivity.class);
+//                Intent intent = new Intent(getApplicationContext(), CircularActivity.class);
+                Intent intent = new Intent(getApplicationContext(), CircularMasterListActivity.class);
                 startActivity(intent);
             }
         });
@@ -283,7 +284,7 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 8) {
-            Intent navigationIntent = new Intent(this, CircularActivity.class);
+            Intent navigationIntent = new Intent(this, CircularMasterListActivity.class);
 //            Intent navigationIntent = new Intent(this, CircularActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);

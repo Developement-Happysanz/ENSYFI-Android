@@ -11,6 +11,7 @@ public class EnsyfiConstants {
     public static final String BASE_URL = "http://ensyfi.com/";
 //    public static final String BASE_URL = "http://happysanz.net/";
 
+
     // ADMIN URL
     private static final String ADMIN_BASE_URL = BASE_URL + "admin/admin_api/";
     private static final String ADMIN_BASE_API = "api.php";
@@ -36,7 +37,6 @@ public class EnsyfiConstants {
     //HOLIDAY LIST URL
     public static final String GET_ALL_HOLIDAY_API = "/apimain/disp_Leaves/";
     public static final String GET_UPCOMING_HOLIDAY_API = "/apimain/disp_upcomingLeaves/";
-
 
     //EVENT ORGANISER URL
     public static final String GET_EVENT_ORGANISER_API = "/apimain/disp_subEvents/";
@@ -101,7 +101,7 @@ public class EnsyfiConstants {
     // STUDENT ATTENDANCE URL
     public static final String GET_STUDENT_ATTENDANCE_API = "/apiteacher/disp_Attendence/";
 
-// CLASS TEACHER ATTENDANCE URL
+    // CLASS TEACHER ATTENDANCE URL
     public static final String GET_CLASS_TEACHER_ATTENDANCE_VIEW = "/apiteacher/disp_Attendence_classteacher/";
     public static final String GET_CLASS_TEACHER_ATTENEE_VIEW = "/apiteacher/list_Studentattend_classteacher/";
     public static final String SEND_ATTENDANCE_VIEW = "/apiteacher/send_attendance_parents/";
@@ -324,7 +324,6 @@ public class EnsyfiConstants {
     public static final String MOTHER_MOBILE = "mother_mobile";
     public static final String MOTHER_RELATIONSHIP = "mother_relationship";
     public static final String MOTHER_IMAGE = "mother_user_pic";
-
 
     //Guardian details
     public static final String GUARDIAN_ID = "guardian_id";
