@@ -40,7 +40,7 @@
         </provider>
 
         <activity
-            android:name="com.yalantis.ucrop.UCropActivity"
+            android:name=".UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 

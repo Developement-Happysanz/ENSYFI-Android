@@ -12,11 +12,11 @@ android {
     }
 
     compileSdkVersion 26
-    buildToolsVersion '28.0.3'
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "com.palprotech.ensyfi"
-        minSdkVersion 16
+        minSdkVersion 15
         versionCode 29
         versionName "1.0.28"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -106,7 +106,7 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.1'
 
     //This line is added
-    implementation 'com.google.android.gms:play-services-gcm:17.0.0'
+    implementation 'com.google.android.gms:play-services-gcm:11.0.4'
     implementation 'com.google.firebase:firebase-messaging:11.0.4'
 
     implementation files('libs/apache-mime4j-0.6.jar')
@@ -121,9 +121,9 @@ dependencies {
     implementation "com.android.support:percent:26+"
     implementation "com.android.support:cardview-v7:26+"
     implementation "com.android.support:gridlayout-v7:26+"
-    implementation 'com.google.android.gms:play-services-auth:17.0.0'
-
+    implementation 'com.google.android.gms:play-services-auth:11.0.4'
     implementation 'com.github.yalantis:ucrop:2.2.2'
+
 }
 
 apply plugin: 'com.google.gms.google-services'
