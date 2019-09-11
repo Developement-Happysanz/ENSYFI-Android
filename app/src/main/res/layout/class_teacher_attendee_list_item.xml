@@ -22,8 +22,9 @@
                 android:id="@+id/student_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
+                android:gravity="center_vertical"
                 android:text="Name"
+                android:paddingStart="10dp"
                 android:layout_toLeftOf="@id/student_status"
                 android:background="@color/white"
                 android:layout_alignParentLeft="true"
@@ -38,6 +39,7 @@
                 android:background="@color/white"
                 android:layout_alignParentRight="true"
                 android:gravity="center"
+                android:textAllCaps="false"
                 android:text="Board student"
                 android:textColor="@color/new_gray"
                 android:textSize="14sp"/>

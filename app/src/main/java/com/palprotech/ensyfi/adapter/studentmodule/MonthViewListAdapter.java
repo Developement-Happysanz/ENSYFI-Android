@@ -98,7 +98,7 @@ public class MonthViewListAdapter extends BaseAdapter {
             Log.d("Event List Adapter", "getview pos called" + position);
         }
 
-        holder.txtEnrollId.setText(""+(position+1));
+        holder.txtEnrollId.setText((position+1)+".");
         holder.txtStudentName.setText(monthViews.get(position).getName());
         Double leave = Double.parseDouble(monthViews.get(position).getLeaves());
         double roundOff = (double) Math.round(leave * 100) / 100;

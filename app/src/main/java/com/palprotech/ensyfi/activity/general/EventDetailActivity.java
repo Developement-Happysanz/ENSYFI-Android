@@ -80,12 +80,12 @@ public class EventDetailActivity extends AppCompatActivity implements DialogClic
                 startActivity(intent);*/
                 //11.013488, 76.944050
 //                String strUri = "http://maps.google.c?om/maps?q=loc:" + 11.013488 + "," + 76.944050 + " (" + "Label which you want" + ")";
-                String strUri = "http://maps.google.com/maps?q=loc:" + event.getLatitude() + "," + event.getLongitude() + " (" + event.getEvent_name() + ")";
-                Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(strUri));
-
-                intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
-
-                startActivity(intent);
+//                String strUri = "http://maps.google.com/maps?q=loc:" + event.getLatitude() + "," + event.getLongitude() + " (" + event.getEvent_name() + ")";
+//                Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(strUri));
+//
+//                intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+//
+//                startActivity(intent);
             }
         });
     }

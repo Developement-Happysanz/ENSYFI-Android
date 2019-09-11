@@ -10,7 +10,6 @@
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/appColor"
@@ -42,23 +41,34 @@
 
     </RelativeLayout>
 
-
-    <RelativeLayout
-        android:id="@+id/rl_mapview"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:layout_margin="20dp"
+        android:elevation="6dp"
+        android:background="@drawable/shadow_round">
 
-        <TextView
-            android:id="@+id/eventname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:textAllCaps="true"
-            android:textColor="@color/new_gray"
-            android:textSize="30dp" />
+        <RelativeLayout
+            android:id="@+id/rl_mapview"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:clickable="false"
+            android:focusable="false"
+            android:orientation="vertical">
 
-        <!--<ImageView-->
+            <TextView
+                android:id="@+id/eventname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textAllCaps="true"
+                android:textColor="@color/new_gray"
+                android:textSize="30dp" />
+
+            <!--<ImageView-->
             <!--android:id="@+id/loc"-->
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="20dp"-->
@@ -66,7 +76,7 @@
             <!--android:layout_marginLeft="125dp"-->
             <!--android:src="@drawable/eventplaceicon" />-->
 
-        <!--<TextView-->
+            <!--<TextView-->
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="wrap_content"-->
             <!--android:layout_below="@+id/eventname"-->
@@ -77,76 +87,83 @@
             <!--android:text="Location"-->
             <!--android:textColor="@color/white" />-->
 
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Date: "
-            android:layout_marginLeft="10dp"
-            android:textSize="16sp"
-            android:textColor="@color/appColor"/>
-
-        <TextView
-            android:id="@+id/eventdate"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
-
-    </LinearLayout>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="50dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Date: "
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:text="DESCRIPTION"
-                android:textColor="@color/appColor"
+                android:textSize="16sp"
+                android:textColor="@color/appColor"/>
+
+            <TextView
+                android:id="@+id/eventdate"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:gravity="center"
+                android:textColor="@color/new_gray"
                 android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/eventdetail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:text="Test" />
-
-            <Button
-                android:id="@+id/eventorg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/round_btn_color"
-                android:text="View Event Organiser"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
 
         </LinearLayout>
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    </ScrollView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Description"
+                    android:textColor="@color/appColor"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/eventdetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="Test" />
+
+                <Button
+                    android:id="@+id/eventorg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginRight="15dp"
+                    android:textAllCaps="false"
+                    android:background="@drawable/round_btn_color"
+                    android:text="View Event Organiser"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+        </ScrollView>
+
+    </LinearLayout>
+
+
 
 
 </LinearLayout>

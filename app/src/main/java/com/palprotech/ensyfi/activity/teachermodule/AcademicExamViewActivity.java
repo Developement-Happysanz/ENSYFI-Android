@@ -21,7 +21,10 @@ import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.TreeSet;
@@ -43,7 +46,9 @@ public class AcademicExamViewActivity extends AppCompatActivity implements Dialo
     AcademicExamsListBaseAdapter cadapter;
     ListView loadMoreListView;
     String subjectName = "", getClassSubjectId;
-
+    String examId, examName, isInternalExternal, classMasterId, sectionName, className, fromDate, toDate,
+            markStatus, isInternalExternalSubject;
+    int isInternalExternalForTheSubject;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,6 +104,7 @@ public class AcademicExamViewActivity extends AppCompatActivity implements Dialo
 
             }
         });
+
     }
 
     private void getSubjectId(String subjectName, String classId) {
@@ -228,11 +234,110 @@ public class AcademicExamViewActivity extends AppCompatActivity implements Dialo
     }
 
     public void viewAcademicExamsDetailPage(long id) {
-        Intent intent = new Intent(this, AcademicExamDetailPage.class);
-        intent.putExtra("id", id);
-        intent.putExtra("subject_id", getClassSubjectId);
-        startActivityForResult(intent, 0);
+        GetAcademicExamInfo(String.valueOf(id));
+//        Date Date2 = new Date();
+        Date Date2  = null;
+//        Date date1 = new Date();
+        Date date12 = null;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yy");
+        if (!toDate.isEmpty()) {
+            try {
+                Date2 = sdf.parse(toDate);
+                date12 = sdf.parse(sdf.format(new Date() ));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        if ((Date2.compareTo(date12) > 0) || (Date2.compareTo(date12) == 0)) {
+            Intent intent = new Intent(this, AcademicExamDetailPage.class);
+            intent.putExtra("id", id);
+            intent.putExtra("subject_id", getClassSubjectId);
+            startActivityForResult(intent, 0);
+        }
+        else {
+            isInternalExternalForTheSubject = Integer.parseInt(db.getAcademicExamsInternalExternalMarkStatus(classMasterId, examId, getClassSubjectId));
+            String AcademicExamSubjectMarksStatus = db.isAcademicExamSubjectMarksStatusFlag(examId, PreferenceStorage.getTeacherId(getApplicationContext()), PreferenceStorage.getTeacherSubject(getApplicationContext()));
+            int checkAcademicExamSubjectMarksStatus = Integer.parseInt(AcademicExamSubjectMarksStatus);
+            int checkMarkStatus = Integer.parseInt(markStatus);
+            if (checkMarkStatus == 0) {
+                if (checkAcademicExamSubjectMarksStatus == 0) {
+                    if (isInternalExternalForTheSubject == 1) {
+                        Intent intent = new Intent(getApplicationContext(), AddAcademicExamMarksActivity.class);
+                        intent.putExtra("id", id);
+                        intent.putExtra("subject_id", getClassSubjectId);
+                        intent.putExtra("classMasterId", classMasterId);
+                        intent.putExtra("examId", examId);
+                        startActivity(intent);
+                    } else {
+                        Intent intent = new Intent(getApplicationContext(), AddAcademicExamMarksOnlyTotalActivity.class);
+                        intent.putExtra("id", id);
+                        intent.putExtra("subject_id", getClassSubjectId);
+                        intent.putExtra("classMasterId", classMasterId);
+                        intent.putExtra("examId", examId);
+                        startActivity(intent);
+                    }
+                } else {
+                    if (isInternalExternalForTheSubject == 1) {
+                        Intent intent = new Intent(getApplicationContext(), AcademicExamResultView.class);
+                        intent.putExtra("id", id);
+                        intent.putExtra("subject_id", getClassSubjectId);
+                        intent.putExtra("classMasterId", classMasterId);
+                        intent.putExtra("examId", examId);
+                        startActivity(intent);
+                    } else {
+                        Intent intent = new Intent(getApplicationContext(), AcademicExamOnlyTotalResultView.class);
+                        intent.putExtra("id", id);
+                        intent.putExtra("subject_id", getClassSubjectId);
+                        intent.putExtra("classMasterId", classMasterId);
+                        intent.putExtra("examId", examId);
+                        startActivity(intent);
+                    }
+                }
+            } else {
+                if (isInternalExternalForTheSubject == 1) {
+                    Intent intent = new Intent(getApplicationContext(), AcademicExamResultView.class);
+                    intent.putExtra("id", id);
+                    intent.putExtra("subject_id", getClassSubjectId);
+                    intent.putExtra("classMasterId", classMasterId);
+                    intent.putExtra("examId", examId);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(getApplicationContext(), AcademicExamOnlyTotalResultView.class);
+                    intent.putExtra("id", id);
+                    intent.putExtra("subject_id", getClassSubjectId);
+                    intent.putExtra("classMasterId", classMasterId);
+                    intent.putExtra("examId", examId);
+                    startActivity(intent);
+                }
+            }
+        }
     }
+
+
+    private void GetAcademicExamInfo(String examIdLocal) {
+        try {
+            Cursor c = db.getAcademicExamInfo(examIdLocal);
+            if (c.getCount() > 0) {
+                if (c.moveToFirst()) {
+                    do {
+                        examId = c.getString(1);
+//                        examName = c.getString(2);
+//                        isInternalExternal = c.getString(3);
+//                        classMasterId = c.getString(4);
+//                        sectionName = c.getString(5);
+//                        className = c.getString(6);
+//                        fromDate = c.getString(7);
+                        toDate = c.getString(8);
+                        markStatus = c.getString(9);
+                    } while (c.moveToNext());
+                }
+            }
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
+    }
+
 
     @Override
     public void onAlertPositiveClicked(int tag) {

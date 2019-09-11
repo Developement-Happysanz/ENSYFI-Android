@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
@@ -239,17 +240,17 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
 
         myList.clear();
         try {
-            TableLayout layout = new TableLayout(this);
-            layout.setLayoutParams(new TableLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.MATCH_PARENT));
-            layout_all.setScrollbarFadingEnabled(false);
-            layout.setPadding(0, 50, 0, 50);
-
-            TableRow.LayoutParams cellLp = new TableRow.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.MATCH_PARENT);
-
-            cellLp.setMargins(2, 2, 2, 2);
+//            TableLayout layout = new TableLayout(this);
+//            layout.setLayoutParams(new TableLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+//                    ViewGroup.LayoutParams.MATCH_PARENT));
+//            layout_all.setScrollbarFadingEnabled(false);
+//            layout.setPadding(0, 50, 0, 50);
+//
+//            TableRow.LayoutParams cellLp = new TableRow.LayoutParams(
+//                    ViewGroup.LayoutParams.MATCH_PARENT,
+//                    ViewGroup.LayoutParams.MATCH_PARENT);
+//
+//            cellLp.setMargins(2, 2, 2, 2);
             int i = 1;
             Cursor c = db.getStudentsOfClass(className);
             if (c.getCount() > 0) {
@@ -266,10 +267,12 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
 
                         for (int c1 = 0; c1 <= 0; c1++) {
 
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 100);
+                            params.setMargins(0,2,0,2);
                             LinearLayout cell = new LinearLayout(this);
-                            cell.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 100));
+                            cell.setLayoutParams(params);
                             cell.setOrientation(LinearLayout.HORIZONTAL);
-                            cell.setPadding(20, 5, 20, 5);
+                            cell.setPadding(20, 2, 20, 2);
                             cell.setBackgroundColor(Color.parseColor("#FFFFFF"));
 
 
@@ -299,7 +302,7 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
                             t1.setText(c.getString(1));
                             t1.setVisibility(View.GONE);
 //                            t1.setText(""+i);
-                            t1.setTextColor(Color.parseColor("#FF68358E"));
+                            t1.setTextColor(ContextCompat.getColor(this, R.color.new_gray));
                             t1.setHeight(120);
                             t1.setWidth(80);
                             t1.setPadding(1, 0, 2, 0);
@@ -307,14 +310,14 @@ public class TeacherAttendanceInsertActivity extends AppCompatActivity implement
 
 //                            t3.setText(c.getString(1));
                             t3.setText("" + i);
-                            t3.setTextColor(Color.parseColor("#FF68358E"));
+                            t3.setTextColor(ContextCompat.getColor(this, R.color.new_gray));
                             t3.setHeight(120);
                             t3.setWidth(80);
                             t3.setPadding(1, 0, 2, 0);
 //                            t1.setId(R.id.my_text_1);
 
                             t2.setText(c.getString(4));
-                            t2.setTextColor(Color.parseColor("#FF68358E"));
+                            t2.setTextColor(ContextCompat.getColor(this, R.color.new_gray));
                             t2.setHeight(120);
                             t2.setWidth(100);
                             t2.setPadding(1, 0, 2, 0);

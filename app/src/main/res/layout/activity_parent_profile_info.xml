@@ -11,7 +11,6 @@
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/appColor"
@@ -44,7 +43,6 @@
     </RelativeLayout>
 
     <FrameLayout
-        android:id="@+id/popup_parent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/tlbar">
@@ -69,7 +67,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="40dp"
-                    android:text="Name               :"
+                    android:text="Name"
                     android:textColor="@color/new_gray"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -81,7 +79,7 @@
                     android:layout_alignTop="@+id/fathername"
                     android:layout_centerHorizontal="true"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/fathername"
+                    android:layout_toRightOf="@+id/fatherofficephone"
                     android:paddingTop="2dp"
                     android:textColor="@color/new_gray"
                     android:textSize="16sp" />
@@ -93,7 +91,7 @@
                     android:layout_below="@+id/txtfathername"
                     android:layout_alignLeft="@id/fathername"
                     android:layout_marginTop="10dp"
-                    android:text="Address           :"
+                    android:text="Address"
                     android:textColor="@color/new_gray"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -104,7 +102,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/fatheraddress"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/fatheraddress"
+                    android:layout_toRightOf="@+id/fatherofficephone"
                     android:paddingTop="2dp"
                     android:textColor="@color/new_gray"
                     android:textSize="16sp" />
@@ -116,7 +114,7 @@
                     android:layout_below="@+id/txtfatheraddress"
                     android:layout_alignLeft="@id/fathername"
                     android:layout_marginTop="10dp"
-                    android:text="Mail                  :"
+                    android:text="Mail"
                     android:textColor="@color/new_gray"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -127,7 +125,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/fathermail"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/fathermail"
+                    android:layout_toRightOf="@+id/fatherofficephone"
                     android:paddingTop="2dp"
                     android:textColor="@color/new_gray"
                     android:textSize="16sp" />
@@ -139,7 +137,7 @@
                     android:layout_below="@+id/txtfathermail"
                     android:layout_alignLeft="@id/fathername"
                     android:layout_marginTop="10dp"
-                    android:text="Occupation     :"
+                    android:text="Occupation"
                     android:textColor="@color/new_gray"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -150,7 +148,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/fatheroccupation"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/fatheroccupation"
+                    android:layout_toRightOf="@+id/fatherofficephone"
                     android:paddingTop="2dp"
                     android:textColor="@color/new_gray"
                     android:textSize="16sp" />
@@ -162,7 +160,7 @@
                     android:layout_below="@+id/txtfatheroccupation"
                     android:layout_alignLeft="@id/fathername"
                     android:layout_marginTop="10dp"
-                    android:text="Income            :"
+                    android:text="Income"
                     android:textColor="@color/new_gray"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -173,7 +171,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/income"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/income"
+                    android:layout_toRightOf="@+id/fatherofficephone"
                     android:paddingTop="2dp"
                     android:textColor="@color/new_gray"
                     android:textSize="16sp" />
@@ -185,7 +183,7 @@
                     android:layout_below="@+id/txtincome"
                     android:layout_alignLeft="@id/fathername"
                     android:layout_marginTop="10dp"
-                    android:text="Mobile             :"
+                    android:text="Mobile"
                     android:textColor="@color/new_gray"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -196,7 +194,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@id/fathermobile"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/fathermobile"
+                    android:layout_toRightOf="@+id/fatherofficephone"
                     android:paddingTop="2dp"
                     android:textColor="@color/new_gray"
                     android:textSize="16sp" />
@@ -208,7 +206,7 @@
                     android:layout_below="@+id/txtfathermobile"
                     android:layout_alignLeft="@id/fathername"
                     android:layout_marginTop="10dp"
-                    android:text="Home Phone  :"
+                    android:text="Home Phone"
                     android:textColor="@color/new_gray"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -219,7 +217,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@id/fatherhomephone"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/fatherhomephone"
+                    android:layout_toRightOf="@+id/fatherofficephone"
                     android:paddingTop="2dp"
                     android:textColor="@color/new_gray"
                     android:textSize="16sp" />
@@ -232,7 +230,7 @@
                     android:layout_alignLeft="@id/fathername"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="20dp"
-                    android:text="Office Phone  :"
+                    android:text="Office Phone"
                     android:textColor="@color/new_gray"
                     android:textSize="16sp"
                     android:textStyle="bold" />

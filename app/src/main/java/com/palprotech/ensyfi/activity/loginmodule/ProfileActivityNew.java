@@ -84,6 +84,7 @@ import java.util.Locale;
 public class ProfileActivityNew extends AppCompatActivity implements IServiceListener, DialogClickListener, View.OnClickListener {
     public static final int MY_PERMISSIONS_REQUEST_CAMERA = 100;
     public static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 101;
+    public static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 12;
     public static final String ALLOW_KEY = "ALLOWED";
     public static final String CAMERA_PREF = "camera_pref";
 
@@ -186,34 +187,81 @@ public class ProfileActivityNew extends AppCompatActivity implements IServiceLis
 
 
     @Override
-    public void onRequestPermissionsResult
-            (int requestCode, String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode,
+                                           String[] permissions, int[] grantResults) {
         switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_CAMERA: {
-                for (int i = 0, len = permissions.length; i < len; i++) {
-                    String permission = permissions[i];
-                    if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
-                        boolean showRationale =
-                                ActivityCompat.shouldShowRequestPermissionRationale
-                                        (this, permission);
-                        if (showRationale) {
-                            showAlert();
-                        } else if (!showRationale) {
-                            // user denied flagging NEVER ASK AGAIN
-                            // you can either enable some fall back,
-                            // disable features of your app
-                            // or open another dialog explaining
-                            // again the permission and directing to
-                            // the app setting
-                            saveToPreferences(ProfileActivityNew.this, ALLOW_KEY, true);
-                        }
+            case 123:
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                            == PackageManager.PERMISSION_DENIED) {
+
+                        Log.d("permission", "permission denied to SEND_SMS - requesting it");
+                        String[] perm = {Manifest.permission.READ_EXTERNAL_STORAGE};
+
+                        ActivityCompat.requestPermissions(ProfileActivityNew.this, perm, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+
+                    } else if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                            == PackageManager.PERMISSION_DENIED) {
+
+                        Log.d("permission", "permission denied to SEND_SMS - requesting it");
+                        String[] perm = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
+                        ActivityCompat.requestPermissions(ProfileActivityNew.this, perm, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+
+                    } else {
+                        selectImage();
                     }
+                } else {
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
                 }
-            }
+                break;
 
-            // other 'case' lines to check for other
-            // permissions this app might request
+            case 1:
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                            == PackageManager.PERMISSION_DENIED) {
 
+                        Log.d("permission", "permission denied to SEND_SMS - requesting it");
+                        String[] perm = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
+                        ActivityCompat.requestPermissions(ProfileActivityNew.this, perm, MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+
+                    } else {
+                        selectImage();
+                    }
+                } else {
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                break;
+
+            case 12:
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+                    selectImage();
+                } else {
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                break;
+
+            default:
+                selectImage();
+
+                // other 'case' lines to check for other
+                // permissions this app might request.
         }
     }
 
@@ -238,7 +286,7 @@ public class ProfileActivityNew extends AppCompatActivity implements IServiceLis
         String url = PreferenceStorage.getUserPicture(this);
 
         if (((url != null) && !(url.isEmpty()))) {
-            Picasso.with(this).load(url).placeholder(R.drawable.ic_profile).error(R.drawable.ic_profile).into(mProfileImage);
+            Picasso.get().load(url).placeholder(R.drawable.ic_profile).error(R.drawable.ic_profile).into(mProfileImage);
         }
 
         String userTypeString = PreferenceStorage.getUserType(getApplicationContext());
@@ -266,52 +314,64 @@ public class ProfileActivityNew extends AppCompatActivity implements IServiceLis
         }
         if (v == mProfileImage) {
 
-            if (ContextCompat.checkSelfPermission(this,
-                    Manifest.permission.CAMERA)
-                    != PackageManager.PERMISSION_GRANTED) {
+//            if (ContextCompat.checkSelfPermission(this,
+//                    Manifest.permission.CAMERA)
+//                    != PackageManager.PERMISSION_GRANTED) {
+//
+//                if (getFromPref(this, ALLOW_KEY)) {
+//
+//                    showSettingsAlert();
+//
+//                } else if (ContextCompat.checkSelfPermission(this,
+//                        Manifest.permission.CAMERA)
+//                        != PackageManager.PERMISSION_GRANTED) {
+//                    // Should we show an explanation?
+//                    if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+//                            Manifest.permission.CAMERA)) {
+//                        showAlert();
+//                    } else {
+//                        // No explanation needed, we can request the permission.
+//                        ActivityCompat.requestPermissions(this,
+//                                new String[]{Manifest.permission.CAMERA},
+//                                MY_PERMISSIONS_REQUEST_CAMERA);
+//                    }
+//                }
+//            }
+//             else if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+//                    != PackageManager.PERMISSION_GRANTED) {
+//
+//                // Should we show an explanation?
+//                if (getFromPref(this, ALLOW_KEY)) {
+//
+//                    showSettingsAlert();
+//
+//                }
+//                else if (ContextCompat.checkSelfPermission(this,
+//                        Manifest.permission.READ_EXTERNAL_STORAGE)
+//                        != PackageManager.PERMISSION_GRANTED) {
+//                    // Should we show an explanation?
+//                    if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+//                            Manifest.permission.READ_EXTERNAL_STORAGE)) {
+//                        showAlert();
+//                    } else {
+//                        // No explanation needed, we can request the permission.
+//                        ActivityCompat.requestPermissions(this,
+//                                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+//                                MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+//                    }
+//                }
+//            }
+//            else {
+//                selectImage();
+//            }
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_DENIED) {
 
-                if (getFromPref(this, ALLOW_KEY)) {
+                Log.d("permission", "permission denied to SEND_SMS - requesting it");
+                String[] perm = {Manifest.permission.READ_EXTERNAL_STORAGE};
 
-                    showSettingsAlert();
+                ActivityCompat.requestPermissions(ProfileActivityNew.this, perm, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
 
-                } else if (ContextCompat.checkSelfPermission(this,
-                        Manifest.permission.CAMERA)
-                        != PackageManager.PERMISSION_GRANTED) {
-                    // Should we show an explanation?
-                    if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                            Manifest.permission.CAMERA)) {
-                        showAlert();
-                    } else {
-                        // No explanation needed, we can request the permission.
-                        ActivityCompat.requestPermissions(this,
-                                new String[]{Manifest.permission.CAMERA},
-                                MY_PERMISSIONS_REQUEST_CAMERA);
-                    }
-                }
-            }
-             else if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-                    != PackageManager.PERMISSION_GRANTED) {
-
-                // Should we show an explanation?
-                if (getFromPref(this, ALLOW_KEY)) {
-
-                    showSettingsAlert();
-
-                }
-                else if (ContextCompat.checkSelfPermission(this,
-                        Manifest.permission.READ_EXTERNAL_STORAGE)
-                        != PackageManager.PERMISSION_GRANTED) {
-                    // Should we show an explanation?
-                    if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                            Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                        showAlert();
-                    } else {
-                        // No explanation needed, we can request the permission.
-                        ActivityCompat.requestPermissions(this,
-                                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                                MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
-                    }
-                }
             }
             else {
                 selectImage();
@@ -589,8 +649,8 @@ public class ProfileActivityNew extends AppCompatActivity implements IServiceLis
 
     private void selectImage() {
         final CharSequence[] options = {"Take Photo", "Choose from Gallery", "Remove Photo", "Cancel"};
-        AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivityNew.this);
-        builder.setTitle("Add Photo!");
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(ProfileActivityNew.this);
+        builder.setTitle("Change Profile Picture");
         builder.setItems(options, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int item) {
@@ -603,15 +663,16 @@ public class ProfileActivityNew extends AppCompatActivity implements IServiceLis
                             createImageFile());
                     intent.putExtra(MediaStore.EXTRA_OUTPUT, f);
                     startActivityForResult(intent, 1);
+                } else if (options[item].equals("Choose from Gallery")) {
+                    openImagesDocument();
                 } else if (options[item].equals("Remove Photo")) {
                     PreferenceStorage.saveUserPicture(ProfileActivityNew.this, "");
-                    mProfileImage.setImageDrawable(ContextCompat.getDrawable(ProfileActivityNew.this, R.drawable.ic_profile));
+                    mProfileImage.setBackground(ContextCompat.getDrawable(ProfileActivityNew.this, R.drawable.ic_profile));
                     mSelectedImageUri = Uri.parse("android.resource://com.palprotech.ensyfi/drawable/ic_default_profile");
                     mActualFilePath = mSelectedImageUri.getPath();
                     saveUserImage();
-                } else if (options[item].equals("Choose from Gallery")) {
-                    openImagesDocument();
                 } else if (options[item].equals("Cancel")) {
+
                     dialog.dismiss();
                 }
             }

@@ -101,14 +101,13 @@ public class GroupingActivity extends AppCompatActivity implements IServiceListe
             Log.d(TAG, "while searching");
             int actualindex = groupListAdapter.getActualGroupPos(position);
             Log.d(TAG, "actual index" + actualindex);
-//            groupList = groupListAdapter.get(actualindex);
+            groupList = groupListArrayList.get(actualindex);
         } else {
-//            groupList = groupListAdapter.get(position);
+            groupList = groupListArrayList.get(position);
         }
-//        Intent intent = new Intent(this, GroupingDetailActivity.class);
-//        intent.putExtra("eventObj", groupList);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-//        startActivity(intent);
+        Intent intent = new Intent(this, GroupingDetailActivity.class);
+        intent.putExtra("eventObj", groupList);
+        startActivity(intent);
     }
 
     private boolean validateSignInResponse(JSONObject response) {

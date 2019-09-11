@@ -10,7 +10,6 @@
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/appColor"
@@ -50,5 +49,273 @@
             android:src="@drawable/ab_logo" />
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shadow_round"
+        android:elevation="12dp"
+        android:orientation="vertical"
+        android:layout_margin="20dp">
+
+        <LinearLayout
+            android:id="@+id/profile_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp"
+            android:gravity="center_vertical"
+            android:weightSum="1"
+            android:background="@color/white">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_weight="0.4"
+                android:src="@drawable/ic_guardian"
+                android:padding="5dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_weight="0.2"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="50dp"
+                android:text="Profile"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_right_arrow_app_color"
+                android:padding="10dp"
+                android:layout_weight="0.4"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/password_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp"
+            android:gravity="center_vertical"
+            android:weightSum="1"
+            android:background="@color/white">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_weight="0.4"
+                android:src="@drawable/ic_password"
+                android:padding="5dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_weight="0.2"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="50dp"
+                android:text="Change Password"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_right_arrow_app_color"
+                android:padding="10dp"
+                android:layout_weight="0.4"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/notification_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp"
+            android:gravity="center_vertical"
+            android:weightSum="1"
+            android:background="@color/white">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_weight="0.4"
+                android:src="@drawable/ic_notification"
+                android:padding="5dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_weight="0.2"
+                android:layout_marginLeft="20dp"
+                android:text="Notification Preference"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_right_arrow_app_color"
+                android:padding="10dp"
+                android:layout_weight="0.4"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/sub_notification_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"
+                android:weightSum="1"
+                android:background="@color/white">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="0.4"
+                    android:visibility="invisible"
+                    android:src="@drawable/ic_notification"
+                    android:padding="5dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_weight="0.2"
+                    android:layout_marginLeft="20dp"
+                    android:text="Push Notification"/>
+
+                <Switch
+                    android:id="@+id/push_noti_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:theme="@style/MySwitchTheme"
+                    android:padding="10dp"
+                    android:checked="true"
+                    android:layout_weight="0.4"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"
+                android:weightSum="1"
+                android:background="@color/white">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="0.4"
+                    android:visibility="invisible"
+                    android:src="@drawable/ic_notification"
+                    android:padding="5dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_weight="0.2"
+                    android:layout_marginLeft="20dp"
+                    android:text="SMS "/>
+
+                <Switch
+                    android:id="@+id/sms_noti_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:theme="@style/MySwitchTheme"
+                    android:checked="true"
+                    android:padding="10dp"
+                    android:layout_weight="0.4"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"
+                android:weightSum="1"
+                android:background="@color/white">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="0.4"
+                    android:visibility="invisible"
+                    android:src="@drawable/ic_notification"
+                    android:padding="5dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_weight="0.2"
+                    android:layout_marginLeft="20dp"
+                    android:text="Mail"/>
+
+                <Switch
+                    android:id="@+id/mail_noti_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:theme="@style/MySwitchTheme"
+                    android:checked="true"
+                    android:padding="10dp"
+                    android:layout_weight="0.4"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/about_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp"
+            android:gravity="center_vertical"
+            android:weightSum="1"
+            android:background="@color/white">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_weight="0.4"
+                android:src="@drawable/ic_about_us"
+                android:padding="5dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_weight="0.2"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="50dp"
+                android:text="About ENSYFI"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_right_arrow_app_color"
+                android:padding="10dp"
+                android:layout_weight="0.4"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -41,7 +41,7 @@
             android:layout_height="1dp"
             android:layout_below="@id/classtest_date_img"
             android:layout_marginTop="10dp"
-            android:background="@color/new_gray"
+            android:background="@color/background_grey"
             android:gravity="center_vertical" />
 
         <TextView
@@ -51,6 +51,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/hz_line"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginLeft="10dp"/>
 
         <TextView
@@ -70,7 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_below="@id/hz_line"
+            android:layout_alignTop="@+id/classtest"
             android:layout_marginRight="10dp"/>
 
         <TextView

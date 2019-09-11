@@ -11,7 +11,6 @@
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/appColor"
@@ -91,10 +90,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:textColor="@color/reject"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"
+        android:layout_marginLeft="10dp"
+        android:textStyle="bold"
+        android:textSize="16sp"
         android:text="Select student to view more information"/>
 
     <LinearLayout
@@ -122,7 +123,6 @@
                 android:textSize="16sp"/>
 
             <TextView
-                android:id="@+id/ClassStudentName"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:layout_toRightOf="@+id/ClassStudentRegId"
@@ -159,7 +159,6 @@
     </LinearLayout>
 
     <ScrollView
-        android:id="@+id/ScrollView01"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="20dp"
@@ -171,12 +170,10 @@
         android:scrollbars="horizontal|vertical">
 
         <HorizontalScrollView
-            android:id="@+id/horizon"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
 
             <LinearLayout
-                android:id="@+id/layout_classes"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical" />

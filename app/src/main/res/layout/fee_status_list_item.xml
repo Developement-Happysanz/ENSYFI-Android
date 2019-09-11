@@ -5,63 +5,69 @@
     android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/status_color"
         android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:layout_margin="10dp"
+        android:layout_height="wrap_content"
+        android:layout_margin ="10dp"
         android:elevation="6dp"
-        android:background="@drawable/shadow_round">
+        android:background="@color/approve">
 
-        <TextView
-            android:id="@+id/txtTermName"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_marginLeft="10dp"
-            android:gravity="center"
-            android:text="Test"
-            android:textAllCaps="true"
-            android:textColor="@color/appColor"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/txtStatus"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/txtTermName"
-            android:layout_alignTop="@id/txtTermName"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/txtTermName"
-            android:gravity="center"
-            android:text="Test"
-            android:textAllCaps="true"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/txtDueDateFrom"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/txtTermName"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:gravity="center"
-            android:text="Test OK"
-            android:textAllCaps="true"
-            android:textSize="14sp" />
+            android:layout_marginRight="5dp"
+            android:background="@color/white">
 
-        <TextView
-            android:id="@+id/txtDueDateTo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/txtTermName"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@+id/txtDueDateFrom"
-            android:gravity="center"
-            android:text="Test OK"
-            android:textAllCaps="true"
-            android:textSize="14sp" />
+            <TextView
+                android:id="@+id/txtTermName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="Test"
+                android:textColor="@color/appColor"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:layout_marginRight="20dp"
+                android:text="Test"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/txtDueDateFrom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/txtDueDateTo"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:text="Test OK"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/txtDueDateTo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtTermName"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_toRightOf="@+id/txtDueDateFrom"
+                android:gravity="center"
+                android:text="Test OK"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
 
     </RelativeLayout>
+
+
 </LinearLayout>

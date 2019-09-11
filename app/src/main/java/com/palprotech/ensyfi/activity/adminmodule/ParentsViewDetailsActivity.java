@@ -68,6 +68,7 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
         callEmptyData();
         populateData();
         callFatherInfoPreferences();
+        info.setVisibility(View.VISIBLE);
     }
 
     private void populateData() {
@@ -198,7 +199,13 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
         String url = PreferenceStorage.getFatherImg(this);
 
         if (((url != null) && !(url.isEmpty()))) {
-            Picasso.with(this).load(url).placeholder(R.drawable.ic_father).error(R.drawable.ic_father).into(fatherInfo);
+            Picasso.get().load(url).placeholder(R.drawable.ic_father).error(R.drawable.ic_father).into(fatherInfo);
+        }
+        if (((url != null) && !(url.isEmpty()))) {
+            Picasso.get().load(url).placeholder(R.drawable.ic_mother_deselect).error(R.drawable.ic_mother_deselect).into(motherInfo);
+        }
+        if (((url != null) && !(url.isEmpty()))) {
+            Picasso.get().load(url).placeholder(R.drawable.ic_guardian_deselect).error(R.drawable.ic_guardian_deselect).into(guardianImg);
         }
     }
 
@@ -223,7 +230,13 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
         String url = PreferenceStorage.getMotherImg(this);
 
         if (((url != null) && !(url.isEmpty()))) {
-            Picasso.with(this).load(url).placeholder(R.drawable.ic_mother).error(R.drawable.ic_mother).into(motherInfo);
+            Picasso.get().load(url).placeholder(R.drawable.ic_father_deselect).error(R.drawable.ic_father_deselect).into(fatherInfo);
+        }
+        if (((url != null) && !(url.isEmpty()))) {
+            Picasso.get().load(url).placeholder(R.drawable.ic_mother).error(R.drawable.ic_mother).into(motherInfo);
+        }
+        if (((url != null) && !(url.isEmpty()))) {
+            Picasso.get().load(url).placeholder(R.drawable.ic_guardian_deselect).error(R.drawable.ic_guardian_deselect).into(guardianImg);
         }
     }
 
@@ -248,7 +261,13 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
         String url = PreferenceStorage.getGuardianImg(this);
 
         if (((url != null) && !(url.isEmpty()))) {
-            Picasso.with(this).load(url).placeholder(R.drawable.ic_profile).error(R.drawable.ic_profile).into(guardianImg);
+            Picasso.get().load(url).placeholder(R.drawable.ic_father_deselect).error(R.drawable.ic_father_deselect).into(fatherInfo);
+        }
+        if (((url != null) && !(url.isEmpty()))) {
+            Picasso.get().load(url).placeholder(R.drawable.ic_mother_deselect).error(R.drawable.ic_mother_deselect).into(motherInfo);
+        }
+        if (((url != null) && !(url.isEmpty()))) {
+            Picasso.get().load(url).placeholder(R.drawable.ic_guardian_1).error(R.drawable.ic_guardian_1).into(guardianImg);
         }
     }
 
@@ -290,6 +309,7 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
     }
 
     private void callEmptyData() {
+
         PreferenceStorage.saveFatherID(getApplicationContext(), "");
         PreferenceStorage.saveFatherName(getApplicationContext(), "");
         PreferenceStorage.saveFatherEmail(getApplicationContext(), "");
@@ -301,6 +321,7 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
         PreferenceStorage.saveFatherOfficePhone(getApplicationContext(), "");
         PreferenceStorage.saveFatherRelationship(getApplicationContext(), "");
         PreferenceStorage.saveFatherImg(getApplicationContext(), "");
+
         PreferenceStorage.saveMotherID(getApplicationContext(), "");
         PreferenceStorage.saveMotherName(getApplicationContext(), "");
         PreferenceStorage.saveMotherHomePhone(getApplicationContext(), "");
@@ -313,6 +334,7 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
         PreferenceStorage.saveMotherOfficePhone(getApplicationContext(), "");
         PreferenceStorage.saveMotherRelationship(getApplicationContext(), "");
         PreferenceStorage.saveMotherImg(getApplicationContext(), "");
+
         PreferenceStorage.saveGuardianID(getApplicationContext(), "");
         PreferenceStorage.saveGuardianName(getApplicationContext(), "");
         PreferenceStorage.saveGuardianHomePhone(getApplicationContext(), "");

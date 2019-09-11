@@ -43,7 +43,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginTop="10dp"
-            android:background="@color/new_gray"
+            android:background="@color/background_grey"
             android:gravity="center_vertical" />
 
         <TextView
@@ -79,7 +79,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
-            android:src="@drawable/ic_date_time" />
+            android:src="@drawable/ic_date" />
 
     </RelativeLayout>
 </LinearLayout>

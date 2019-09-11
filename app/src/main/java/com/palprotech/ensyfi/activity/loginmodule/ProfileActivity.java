@@ -110,7 +110,7 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
         String url = PreferenceStorage.getUserPicture(this);
 
         if (((url != null) && !(url.isEmpty()))) {
-            Picasso.with(this).load(url).placeholder(R.drawable.ic_profile).error(R.drawable.ic_profile).into(mProfileImage);
+            Picasso.get().load(url).placeholder(R.drawable.ic_profile).error(R.drawable.ic_profile).into(mProfileImage);
         }
 
         String userTypeString = PreferenceStorage.getUserType(getApplicationContext());

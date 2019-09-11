@@ -7,8 +7,6 @@
     <string name="alert_button_ok">OK</string>
     <string name="alert_button_cancel">Cancel</string>
     <string name="progress_loading">Loading&#8230;</string>
-    <string name="no_connectivity">Please check your internet connectivity and try again.</string>
-    <string name="app_name_display">Ensyfi</string>
     <string name="drawer_open">Drawer open</string>
     <string name="drawer_close">Drawer close</string>
     <string name="arrow_back">Back to activity</string>
@@ -23,7 +21,6 @@
     <string name="password">Password</string>
     <string name="new_password">New Password</string>
     <string name="con_password">Confirm Password</string>
-    <string name="forgot">Forgot Password</string>
     <string name="forgot_content">We will send a code to your registered EMAIL or MOBILE, using which you can login to create a new password.</string>
     <string name="sign_in">Sign In</string>
     <string name="institute_Id">Institute Id cannot be empty</string>
@@ -49,21 +46,9 @@
 
     <!--Edit Profile-->
     <!---->
-    <string name="mail">E-mail ID</string>
-    <string name="address">Address</string>
-    <string name="phone">Phone</string>
 
     <!--Create or Review Test-->
     <!---->
-    <string name="create">Create Class Test / Homework</string>
-    <string name="view">View Class Test / Homework</string>
-    <string name="class_t">Class Test</string>
-    <string name="homework">Homework</string>
-    <string name="student_class">Class</string>
-    <string name="date">Date</string>
-    <string name="sub">Subject</string>
-    <string name="save">Save</string>
-    <string name="cancel">Cancel</string>
 
     <!--Group Notification-->
     <!---->
@@ -72,9 +57,6 @@
 
     <!--Custom calendar view-->
     <!---->
-    <string name="customize">Customize</string>
-    <string name="show_dialog">Show Dialog</string>
-    <string name="undo">Undo</string>
 
     <string-array name="attendance">
         <item>Present</item>
@@ -83,24 +65,7 @@
         <item>OD</item>
     </string-array>
 
-    <string-array name="months">
-        <item>Select Month</item>
-        <item>January</item>
-        <item>February</item>
-        <item>March</item>
-        <item>April</item>
-        <item>May</item>
-        <item>June</item>
-        <item>July</item>
-        <item>August</item>
-        <item>September</item>
-        <item>October</item>
-        <item>November</item>
-        <item>December</item>
-    </string-array>
-
     <!--live-->
-    <string name="google_maps_key">AIzaSyDuPQ0xxNwxMc9zRe9mxVEbQdUSMTHkCOo</string>
     <!--live-->
 
     <!--academic_exam_detail_views_list_item-->
@@ -135,7 +100,6 @@
     <!---->
 
     <!--activity_academic_exam_details-->
-    <string name="title_exam_detail">Exam Detail</string>
     <string name="title_date">Date</string>
     <string name="title_time">Time</string>
     <string name="title_subject">Subject</string>

@@ -10,7 +10,6 @@
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/appColor"
@@ -43,7 +42,6 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/popup_guardian"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/tlbar"
@@ -62,7 +60,7 @@
                 android:layout_height="80dp"
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_profile" />
+                android:src="@drawable/ic_guardian_1" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -92,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="30dp"
-                android:text="Name               :"
+                android:text="Name"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="16sp"/>
@@ -104,7 +102,7 @@
                 android:layout_alignTop="@+id/mothername"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/mothername"
+                android:layout_toRightOf="@+id/motherofficephone"
                 android:paddingTop="2dp"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
@@ -116,7 +114,7 @@
                 android:layout_below="@+id/txtmothername"
                 android:layout_alignLeft="@id/mothername"
                 android:layout_marginTop="10dp"
-                android:text="Address           :"
+                android:text="Address"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="16sp"/>
@@ -127,7 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/motheraddress"
                 android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/motheraddress"
+                android:layout_toRightOf="@+id/motherofficephone"
                 android:paddingTop="2dp"
                 android:textColor="@color/black"
                 android:textSize="16sp"/>
@@ -139,7 +137,7 @@
                 android:layout_below="@+id/txtmotheraddress"
                 android:layout_alignLeft="@id/mothername"
                 android:layout_marginTop="10dp"
-                android:text="Mail                  :"
+                android:text="Mail"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="16sp"/>
@@ -150,7 +148,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/mothermail"
                 android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/mothermail"
+                android:layout_toRightOf="@+id/motherofficephone"
                 android:paddingTop="2dp"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
@@ -162,7 +160,7 @@
                 android:layout_below="@+id/txtmothermail"
                 android:layout_alignLeft="@id/mothername"
                 android:layout_marginTop="10dp"
-                android:text="Occupation     :"
+                android:text="Occupation"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="16sp"/>
@@ -173,7 +171,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/motheroccupation"
                 android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/motheroccupation"
+                android:layout_toRightOf="@+id/motherofficephone"
                 android:paddingTop="2dp"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
@@ -185,7 +183,7 @@
                 android:layout_below="@+id/txtmotheroccupation"
                 android:layout_alignLeft="@id/mothername"
                 android:layout_marginTop="10dp"
-                android:text="Income            :"
+                android:text="Income"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="16sp"/>
@@ -196,7 +194,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/motherincome"
                 android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/motherincome"
+                android:layout_toRightOf="@+id/motherofficephone"
                 android:paddingTop="2dp"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
@@ -208,7 +206,7 @@
                 android:layout_below="@+id/txtmotherincome"
                 android:layout_alignLeft="@id/mothername"
                 android:layout_marginTop="10dp"
-                android:text="Mobile             :"
+                android:text="Mobile"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="16sp"/>
@@ -219,7 +217,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@id/mothermobile"
                 android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/mothermobile"
+                android:layout_toRightOf="@+id/motherofficephone"
                 android:paddingTop="2dp"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
@@ -231,7 +229,7 @@
                 android:layout_below="@+id/txtmothermobile"
                 android:layout_alignLeft="@id/mothername"
                 android:layout_marginTop="10dp"
-                android:text="Home Phone  :"
+                android:text="Home Phone"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="16sp" />
@@ -242,7 +240,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@id/motherhomephone"
                 android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/motherhomephone"
+                android:layout_toRightOf="@+id/motherofficephone"
                 android:paddingTop="2dp"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
@@ -255,7 +253,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_alignLeft="@id/mothername"
                 android:layout_marginTop="10dp"
-                android:text="Office Phone  :"
+                android:text="Office Phone"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="16sp"/>

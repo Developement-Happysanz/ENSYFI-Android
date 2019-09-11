@@ -10,7 +10,6 @@
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/appColor"
@@ -54,7 +53,6 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/classList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone">
@@ -160,7 +158,6 @@
     </RelativeLayout>
 
     <ScrollView
-        android:id="@+id/ScrollView01"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="20dp"

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/ic_background"
     android:orientation="vertical">
 
@@ -10,7 +11,6 @@
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/appColor"
@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/group_title"
             android:layout_below="@+id/group_title"
-            android:textColor="@color/black"
+            android:textColor="@color/new_gray"
             android:layout_marginRight="20dp"
             android:textSize="14sp" />
 
@@ -99,6 +99,8 @@
             android:layout_height="50dp"
             android:layout_alignLeft="@id/group_title_txt"
             android:layout_below="@id/lead_type"
+            style="@style/spinner_style"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
             android:textSize="14sp" />
 
@@ -106,12 +108,11 @@
             android:id="@+id/swStatus"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            style="@style/MySwitchTheme"
+            android:layout_marginTop="10dp"
+            android:theme="@style/MySwitchTheme"
             android:layout_centerHorizontal="true"
-            android:layout_alignTop="@id/group_status_txt"
             android:layout_below="@+id/group_lead_spinner"
-            android:layout_toRightOf="@id/group_status_txt"
-            android:checked="false"
+            android:checked="true"
             android:text="Active"
             android:textColor="@color/appColor"
             android:textSize="16sp" />

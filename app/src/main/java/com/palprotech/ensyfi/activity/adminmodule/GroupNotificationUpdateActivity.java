@@ -7,12 +7,14 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -52,7 +54,7 @@ public class GroupNotificationUpdateActivity extends AppCompatActivity implement
     String groupRes = "";
     String groupLead = "";
     String storeGroupId;
-    TextView groupTitleDisp, groupLeadDisp, groupStatusDisp;
+    TextView groupTitleDisp, groupLeadDisp, groupStatusDisp, leadType, statusTxt;
     ImageView groupUpdate, groupMemberAdd, groupNotification;
     Boolean update = false;
 
@@ -92,6 +94,18 @@ public class GroupNotificationUpdateActivity extends AppCompatActivity implement
             viewMembers.setVisibility(View.VISIBLE);
         } else {
             txtGroupTitle.setVisibility(View.VISIBLE);
+
+            RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            params1.setMargins(40, 40, 0, 0);
+            params1.addRule(RelativeLayout.BELOW, txtGroupTitle.getId());
+            leadType.setLayoutParams(params1);
+            leadType.setPadding(0,20,0,20);
+
+            RelativeLayout.LayoutParams params2 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            params2.setMargins(40, 40, 0, 0);
+            params2.addRule(RelativeLayout.BELOW, spnGroupLeadList.getId());
+            statusTxt.setLayoutParams(params2);
+
             spnGroupLeadList.setVisibility(View.VISIBLE);
             swStatus.setVisibility(View.VISIBLE);
             btnSend.setVisibility(View.VISIBLE);
@@ -103,6 +117,10 @@ public class GroupNotificationUpdateActivity extends AppCompatActivity implement
     }
 
     private void initializeViews() {
+
+        leadType = findViewById(R.id.lead_type);
+        statusTxt = findViewById(R.id.group_status_txt);
+
         groupTitleDisp = findViewById(R.id.group_title_txt_disp);
         groupTitleDisp.setText(groups.getGroup_title());
         groupLeadDisp = findViewById(R.id.group_lead_spinner_txt);

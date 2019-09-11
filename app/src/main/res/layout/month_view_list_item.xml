@@ -7,8 +7,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:layout_margin="10dp"
-        android:elevation="6dp"
         android:background="@drawable/shadow_round"
         android:gravity="center">
 
@@ -21,7 +19,6 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="5dp"
             android:gravity="center"
-
             android:layout_marginTop="3dp"
             android:layout_marginBottom="3dp"
             android:text="2"
@@ -38,6 +35,7 @@
             android:layout_toRightOf="@+id/txtEnrollId"
             android:gravity="center"
             android:text="-"
+            android:visibility="gone"
             android:textSize="16sp" />
 
         <TextView
@@ -56,7 +54,6 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/hyphen1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/txtLeaves"
@@ -64,6 +61,7 @@
             android:layout_marginRight="10dp"
             android:layout_toRightOf="@+id/txtStudentName"
             android:gravity="center"
+            android:visibility="gone"
             android:text="-"
             android:textSize="16sp" />
 

@@ -25,7 +25,7 @@
         android:fullBackupContent="false"
         android:icon="@mipmap/ic_ensyfi"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_ensyfi_round"
+        android:roundIcon="@mipmap/ic_ensyfi"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
@@ -40,7 +40,7 @@
         </provider>
 
         <activity
-            android:name=".UCropActivity"
+            android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
@@ -607,6 +607,30 @@
 
         <activity
             android:name=".activity.adminmodule.CircularMasterListActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarGrey" />
+
+        <activity
+            android:name=".activity.adminmodule.ClassAttendanceActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarGrey" />
+
+        <activity
+            android:name=".activity.adminmodule.ClassAttendanceListActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarGrey" />
+
+        <activity
+            android:name=".activity.adminmodule.ClassAttendanceDetailActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarGrey" />
+
+        <activity
+            android:name=".activity.general.GroupingDetailActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarGrey" />

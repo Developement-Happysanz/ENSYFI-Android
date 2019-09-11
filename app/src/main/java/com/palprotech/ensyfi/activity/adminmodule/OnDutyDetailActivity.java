@@ -51,7 +51,8 @@ public class OnDutyDetailActivity extends AppCompatActivity implements IServiceL
             @Override
             public void onClick(View v) {
                 finish();
-            }
+                Intent intent = new Intent(getApplicationContext(), OnDutyViewActivity.class);
+                startActivity(intent);}
         });
     }
 
@@ -100,8 +101,8 @@ public class OnDutyDetailActivity extends AppCompatActivity implements IServiceL
     private void populateData() {
         txtOnDutyReason.setText(onDuty.getOdFor());
         txtOnDutyNotes.setText(onDuty.getNotes());
-        txtOnDutyStartDate.setText("From : " + onDuty.getFromDate());
-        txtOnDutyEndDate.setText("To : " + onDuty.getToDate());
+        txtOnDutyStartDate.setText(onDuty.getFromDate());
+        txtOnDutyEndDate.setText(onDuty.getToDate());
     }
 
     @Override

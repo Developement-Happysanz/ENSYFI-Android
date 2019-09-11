@@ -16,7 +16,6 @@
             android:layout_height="wrap_content">
 
             <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar_result"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/appColor"
@@ -48,87 +47,14 @@
 
         </RelativeLayout>
 
-        <LinearLayout
-            android:id="@+id/pic_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tlbar"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"
-                android:layout_marginRight="5dp"
-                android:orientation="vertical">
-
-                <com.palprotech.ensyfi.customview.CircleImageView
-                    android:id="@+id/image_profile_pic"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:fitsSystemWindows="true"
-                    android:layout_gravity="center"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_profile" />
-
-                <Button
-                    android:id="@+id/btnSave"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="Save"
-                    android:visibility="gone" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"
-                android:gravity="center"
-                android:layout_marginLeft="5dp"
-                android:orientation="vertical">
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_gravity="left"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="bhuganeshwaren"
-                        android:textColor="@color/new_gray"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:id="@+id/typename"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/name"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="5dp"
-                        android:textColor="@color/new_gray" />
-
-                </RelativeLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-
         <!--End-->
 
         <!--User Info-->
 
         <RelativeLayout
-            android:id="@+id/user_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/pic_layout"
+            android:layout_below="@+id/tlbar"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
@@ -137,20 +63,93 @@
             android:elevation="12dp">
 
             <LinearLayout
+                android:id="@+id/pic_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:weightSum="1"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.7"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="5dp"
+                    android:orientation="vertical">
+
+                    <com.palprotech.ensyfi.customview.CircleImageView
+                        android:id="@+id/image_profile_pic"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:fitsSystemWindows="true"
+                        android:layout_gravity="center"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_profile" />
+
+                    <Button
+                        android:id="@+id/btnSave"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="Save"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="bhuganeshwaren"
+                            android:textColor="@color/new_gray"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/typename"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/name"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="5dp"
+                            android:textColor="@color/new_gray" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/userdetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/pic_layout"
                 android:layout_marginBottom="10dp"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:text="@string/user_name"
-                    android:textColor="@color/appColor"
+                    android:textColor="@color/new_gray"
                     android:textSize="16sp" />
 
                 <EditText
@@ -225,7 +224,6 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
                             android:text="Parents"
                             android:layout_gravity="center_vertical"
                             android:textColor="@color/new_gray"
@@ -286,7 +284,6 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
                             android:text="Student"
                             android:layout_gravity="center_vertical"
                             android:textColor="@color/new_gray"
@@ -313,7 +310,6 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
                             android:text="Fees"
                             android:layout_gravity="center_vertical"
                             android:textColor="@color/new_gray"
@@ -325,47 +321,66 @@
 
             </LinearLayout>
 
-        </RelativeLayout>
-
-
-        <Button
-            android:id="@+id/password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/user_layout"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:text="Change Password"
-            android:background="@drawable/round_btn_color"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
-
-        <!--End-->
-
-        <!--Teacher Info-->
-        <RelativeLayout
-            android:id="@+id/teacherprofile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="10dp"
-            android:visibility="gone">
-
-            <TextView
-                android:id="@+id/ic_teacherprofile"
+            <Button
+                android:id="@+id/password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:layout_centerHorizontal="true"
-                android:drawableTop="@drawable/ic_teachers"
-                android:gravity="center"
-                android:text="Personal Info"
-                android:textColor="@color/new_gray"
-                android:textSize="14sp" />
+                android:layout_below="@+id/parentStudentView"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Change Password"
+                android:visibility="gone"
+                android:background="@drawable/round_btn_color"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <!--Teacher Info-->
+            <RelativeLayout
+                android:id="@+id/teacherprofile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/userdetails"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/btn_round_grey"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/profile_info_img"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentStart="true"
+                    android:src="@drawable/ic_personal_info"/>
+
+                <TextView
+                    android:id="@+id/ic_teacherprofile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_toRightOf="@+id/profile_info_img"
+                    android:gravity="center"
+                    android:text="Personal Info"
+                    android:layout_alignTop="@+id/profile_info_img"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_alignBottom="@+id/profile_info_img"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+            </RelativeLayout>
 
         </RelativeLayout>
+
+
+        <!--End-->
 
 
     </RelativeLayout>

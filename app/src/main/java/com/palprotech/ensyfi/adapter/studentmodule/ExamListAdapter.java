@@ -7,14 +7,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 //import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.bean.student.viewlist.Exams;
+import com.palprotech.ensyfi.bean.teacher.viewlist.AcademicExams;
 import com.squareup.picasso.Transformation;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Admin on 17-05-2017.
@@ -28,6 +33,7 @@ public class ExamListAdapter extends BaseAdapter {
     private boolean mSearching = false;
     private boolean mAnimateSearch = false;
     private ArrayList<Integer> mValidSearchIndices = new ArrayList<Integer>();
+    ViewHolder holder;
 
     public ExamListAdapter(Context context, ArrayList<Exams> exams) {
         this.context = context;
@@ -66,15 +72,12 @@ public class ExamListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
         if (convertView == null) {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
             convertView = inflater.inflate(R.layout.exam_list_item, parent, false);
 
             holder = new ViewHolder();
-            holder.txtExamName = (TextView) convertView.findViewById(R.id.txtExamName);
-            holder.txtStartDate = (TextView) convertView.findViewById(R.id.txtStartDate);
-            holder.txtEndDate = (TextView) convertView.findViewById(R.id.txtEndDate);
+
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -86,34 +89,45 @@ public class ExamListAdapter extends BaseAdapter {
             Log.d("Event List Adapter", "getview pos called" + position);
         }
 
+        holder.txtExamName = (TextView) convertView.findViewById(R.id.txtExamName);
+        holder.txtStartDate = (TextView) convertView.findViewById(R.id.txtFromDate);
+        holder.txtEndDate = (TextView) convertView.findViewById(R.id.txtToDate);
+        holder.tstStatus = (TextView) convertView.findViewById(R.id.status);
+        holder.status = (ImageView) convertView.findViewById(R.id.imgStatus);
+
         holder.txtExamName.setText(exams.get(position).getExamName());
         holder.txtStartDate.setText(exams.get(position).getFromDate());
         holder.txtEndDate.setText(exams.get(position).getToDate());
 
-
+        viewAcademicExamsDetailPage(exams.get(position));
         return convertView;
     }
-
-    //helper for parsing the date from string. Expected format "10-28-2015 00:00:00"
-    public static String getDate(String dateTime) {
-        String dateVal = null;
-        try {
-            if ((dateTime != null) && !dateTime.isEmpty() && dateTime.length() >= 10) {
-                dateVal = dateTime.substring(0, 10);
-                String month = getMonthName(Integer.parseInt(dateVal.substring(0, 2)));
-                String day = dateVal.substring(3, 5);
-                String year = dateVal.substring(6, 10);
-                if ((month != null) && (day != null) && (year != null)) {
-                    dateVal = month + "  " + day + "," + year + " ";
-                }
+    public void viewAcademicExamsDetailPage(Exams id) {
+//        Date Date2 = new Date();
+        Date Date2  = null;
+        String toDate = id.getToDate();
+//        Date date1 = new Date();
+        Date date12 = null;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yy");
+        if (!toDate.isEmpty()) {
+            try {
+                Date2 = sdf.parse(toDate);
+                date12 = sdf.parse(sdf.format(new Date() ));
+            } catch (ParseException e) {
+                e.printStackTrace();
             }
-        } catch (NumberFormatException numE) {
-            numE.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
+            if ((Date2.compareTo(date12) > 0) || (Date2.compareTo(date12) == 0)) {
+                holder.tstStatus.setVisibility(View.GONE);
+                holder.status.setVisibility(View.GONE);
+            }
+            else {
+                holder.tstStatus.setVisibility(View.VISIBLE);
+                holder.status.setVisibility(View.VISIBLE);
+            }
+        } else {
+
         }
 
-        return dateVal;
     }
 
     public void startSearch(String eventName) {
@@ -144,6 +158,8 @@ public class ExamListAdapter extends BaseAdapter {
 
     public class ViewHolder {
         public TextView txtExamName, txtEndDate, txtStartDate;
+        TextView tstStatus;
+        ImageView status;
     }
 
     public boolean ismSearching() {
@@ -156,49 +172,5 @@ public class ExamListAdapter extends BaseAdapter {
         } else {
             return 0;
         }
-    }
-
-    private static String getMonthName(int month) {
-        String monthVal = null;
-        switch (month) {
-            case 1:
-                monthVal = "Jan";
-                break;
-            case 2:
-                monthVal = "Feb";
-                break;
-            case 3:
-                monthVal = "Mar";
-                break;
-            case 4:
-                monthVal = "Apr";
-                break;
-            case 5:
-                monthVal = "May";
-                break;
-            case 6:
-                monthVal = "Jun";
-                break;
-            case 7:
-                monthVal = "Jul";
-                break;
-            case 8:
-                monthVal = "Aug";
-                break;
-            case 9:
-                monthVal = "Sep";
-                break;
-            case 10:
-                monthVal = "Oct";
-                break;
-            case 11:
-                monthVal = "Nov";
-                break;
-            case 12:
-                monthVal = "Dec";
-                break;
-        }
-
-        return monthVal;
     }
 }

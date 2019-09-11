@@ -5,7 +5,6 @@
     android:background="@color/background_grey">
 
     <RelativeLayout
-        android:id="@+id/layout_frame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/new_gray">
@@ -51,7 +50,6 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/txt_tblPKey"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

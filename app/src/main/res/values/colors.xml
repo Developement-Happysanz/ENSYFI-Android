@@ -12,20 +12,16 @@
     <color name="appColorBase">#642160</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
-    <color name="light_font">#85f4f4f4</color>
     <color name="text_gray">#9B9B9B</color>
     <color name="new_gray">#58595b</color>
     <color name="new_gray_bg">#6358595B</color>
     <!---->
-    <color name="nav_row_color">#1b1b1b</color>
     <color name="nav_back_ground_color">#202630</color>
     <!---->
     <color name="transparent">#00000000</color>
-    <color name="text_shadow">#000000</color>
     <!---->
     <color name="background_grey">#e5e6e9</color>
     <!---->
-    <color name="actionbar_color">#252122</color>
     <!---->
     <color name="nav_list_color">#bc3a1557</color>
     <!---->
@@ -37,23 +33,16 @@
     <!---->
     <color name="caldroid_white">#FFFFFF</color>
     <color name="caldroid_black">#000000</color>
-    <color name="caldroid_transparent">#00000000</color>
     <!-- For settings framework -->
     <color name="caldroid_lighter_gray">#ddd</color>
-    <color name="caldroid_gray">#CCC</color>
     <color name="caldroid_darker_gray">#aaa</color>
     <color name="caldroid_middle_gray">#888</color>
     <!-- A light Holo shade of blue -->
     <color name="caldroid_holo_blue_light">#ff33b5e5</color>
     <!-- A dark Holo shade of blue -->
-    <color name="caldroid_holo_blue_dark">#ff0099cc</color>
     <!-- A really bright Holo shade of blue -->
     <color name="caldroid_sky_blue">#FFA3E8F7</color>
     <!---->
-    <color name="caldroid_333">#333</color>
-    <color name="caldroid_555">#555</color>
-    <color name="caldroid_444">#b90202</color>
-    <color name="caldroid_light_red">#ff7f7f</color>
     <!---->
     <color name="green">#8FCC85</color>
     <color name="blue">#ff33b5e5</color>
@@ -72,14 +61,11 @@
     <color name="leave">#FAA436</color>
     <color name="OD">#8368AD</color>
     <color name="text_grey">#5D5E5E</color>
-    <color name="break_yellow">#f2ae53</color>
     <!---->
 
     <!--Sync colors-->
     <color name="disabled_text">#A7A9AC</color>
     <!---->
-
-    <color name="popup_bg">#464c48</color>
 
 
 </resources>

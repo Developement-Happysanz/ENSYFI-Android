@@ -559,7 +559,7 @@ public class GroupNotificationAddMemberActivity extends AppCompatActivity implem
                 line1.setBackgroundColor(Color.parseColor("#FFFFFF"));
                 line1.setSingleLine(true);
                 line1.setTextColor(Color.parseColor("#000000"));
-                line1.setGravity(Gravity.CENTER);
+                line1.setGravity(Gravity.CENTER_VERTICAL);
                 line1.setPadding(15, 0, 15, 0);
                 line1.setLayoutParams(params);
 
@@ -594,7 +594,7 @@ public class GroupNotificationAddMemberActivity extends AppCompatActivity implem
                 if (gnStaffList.getGroups().get(c1).getStatus().equalsIgnoreCase("1")) {
                     line3.setImageResource(R.drawable.ic_select);
                 } else {
-                    line3.setImageResource(R.drawable.ic_de_select);
+                    line3.setImageResource(R.drawable.ic_unselect);
                 }
                 line3.setPadding(50, 0, 50, 0);
                 line3.setLayoutParams(params2);
@@ -603,7 +603,7 @@ public class GroupNotificationAddMemberActivity extends AppCompatActivity implem
                     @Override
                     public void onClick(View v) {
                         if (gnStaffList.getGroups().get(finalC).getStatus().equalsIgnoreCase("1")) {
-                            line3.setImageResource(R.drawable.ic_de_select);
+                            line3.setImageResource(R.drawable.ic_unselect);
                             gnStaffList.getGroups().get(finalC).setStatus("0");
                         } else {
                             line3.setImageResource(R.drawable.ic_select);

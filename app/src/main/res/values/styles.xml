@@ -24,25 +24,8 @@
         <item name="android:popupBackground">#ffffff</item>
     </style>
 
-    <style name="spinner_style_button">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/bg_advanced_filter_properties</item>
-
-        <item name="android:popupBackground">#ffffff</item>
-    </style>
-
-    <style name="attendance_spinner_style">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/attendance_spinner</item>
-
-        <item name="android:popupBackground">#ffffff</item>
-    </style>
-
     <style name="MySwitchTheme" parent="Theme.AppCompat.Light">
         <item name="colorControlActivated">@color/appColor</item>
-
     </style>
 
     <style name="datePickerTheme" parent="Theme.AppCompat.Light.Dialog">
@@ -131,47 +114,6 @@
         <item name="android:paddingBottom">5dp</item>
     </style>
 
-    <style name="ThemeOverlay.MyApp.ActionBarSameColor" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <!-- Parent theme sets colorControlNormal to textColorPrimary. -->
-        <item name="titleTextColor">@color/appColorBase</item>
-        <!--<item name="logo">@drawable/ab_hobbistan_logo</item>-->
-    </style>
-
-    <style name="ToolBarStyle.EventWithOutTitle" parent="ToolBarStyle">
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <!--<item name="titleTextAppearance">@style/TextAppearance.Widget.Event.Toolbar.Title</item>-->
-    </style>
-
     <!-- Dark theme. -->
-    <style name="CaldroidDefaultDark" parent="CaldroidDefault">
-        <item name="styleCaldroidViewLayout">@style/CaldroidDefaultDarkCalendarViewLayout</item>
-        <item name="styleCaldroidMonthName">@style/CaldroidDefaultDarkMonthName</item>
-        <item name="styleCaldroidNormalCell">@style/CaldroidDefaultDarkNormalCell</item>
-        <item name="styleCaldroidSquareCell">@style/CaldroidDefaultDarkSquareCell</item>
-        <item name="styleCaldroidGridView">@style/CaldroidDefaultDarkGridView</item>
-    </style>
-
-    <style name="CaldroidDefaultDarkCalendarViewLayout" parent="CaldroidDefaultCalendarViewLayout">
-        <item name="android:background">@android:color/black</item>
-    </style>
-
-    <style name="CaldroidDefaultDarkMonthName" parent="CaldroidDefaultMonthName">
-        <item name="android:textColor">@color/caldroid_white</item>
-    </style>
-
-    <style name="CaldroidDefaultDarkGridView" parent="CaldroidDefaultGridView">
-        <item name="android:background">@color/caldroid_middle_gray</item>
-    </style>
-
-    <style name="CaldroidDefaultDarkCell" parent="CaldroidDefaultCell">
-        <item name="android:textColor">@color/cell_text_color_dark</item>
-        <item name="android:background">@drawable/cell_bg_dark</item>
-    </style>
-
-    <style name="CaldroidDefaultDarkNormalCell" parent="CaldroidDefaultDarkCell">
-        <item name="android:padding">5dp</item>
-    </style>
-
-    <style name="CaldroidDefaultDarkSquareCell" parent="CaldroidDefaultDarkCell" />
 
 </resources>

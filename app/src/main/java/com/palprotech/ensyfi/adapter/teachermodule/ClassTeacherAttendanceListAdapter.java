@@ -74,6 +74,7 @@ public class ClassTeacherAttendanceListAdapter  extends BaseAdapter {
             holder.txtAttendanceDate = (TextView) convertView.findViewById(R.id.attendance_date);
             holder.txtNoPresent = (TextView) convertView.findViewById(R.id.txt_no_present);
             holder.txtNoAbsent = (TextView) convertView.findViewById(R.id.txt_no_absent);
+            holder.txtSep = (TextView) convertView.findViewById(R.id.sep);
             holder.sentLayout = (RelativeLayout) convertView.findViewById(R.id.sent_layout);
             convertView.setTag(holder);
         } else {
@@ -106,7 +107,9 @@ public class ClassTeacherAttendanceListAdapter  extends BaseAdapter {
 
         if (classTeacherAttendance.get(position).getSent_status().equalsIgnoreCase("1")) {
             holder.sentLayout.setVisibility(View.VISIBLE);
+            holder.txtSep.setVisibility(View.VISIBLE);
         } else {
+            holder.txtSep.setVisibility(View.GONE);
             holder.sentLayout.setVisibility(View.GONE);
         }
 
@@ -140,7 +143,7 @@ public class ClassTeacherAttendanceListAdapter  extends BaseAdapter {
     }
 
     public class ViewHolder {
-        public TextView txtAttendanceDate, txtClassStrength, txtNoPresent, txtNoAbsent;
+        public TextView txtAttendanceDate, txtClassStrength, txtNoPresent, txtNoAbsent, txtSep;
         public RelativeLayout sentLayout;
     }
 

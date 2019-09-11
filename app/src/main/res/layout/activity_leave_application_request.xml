@@ -11,7 +11,6 @@
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/appColor"
@@ -90,7 +89,6 @@
                     android:visibility="gone">
 
                     <LinearLayout
-                        android:id="@+id/layoutDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -101,7 +99,7 @@
                             android:layout_marginLeft="20dp"
                             android:layout_marginTop="20dp"
                             android:text="From Date"
-                            android:textColor="@color/black"
+                            android:textColor="@color/new_gray"
                             android:textSize="16sp" />
 
                         <LinearLayout
@@ -115,7 +113,7 @@
 
                             <TextView
                                 android:id="@+id/dateFrom"
-                                android:layout_width="140dp"
+                                android:layout_width="150dp"
                                 android:layout_height="75dp"
                                 android:background="@color/white"
                                 android:drawableLeft="@drawable/od_from_date_unselected"
@@ -139,7 +137,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="To Date"
-                            android:textColor="@color/black"
+                            android:textColor="@color/new_gray"
                             android:textSize="16sp" />
 
                         <LinearLayout
@@ -153,7 +151,7 @@
 
                             <TextView
                                 android:id="@+id/dateTo"
-                                android:layout_width="140dp"
+                                android:layout_width="150dp"
                                 android:layout_height="75dp"
                                 android:background="@color/white"
                                 android:drawableLeft="@drawable/od_from_date_unselected"
@@ -183,7 +181,7 @@
                             android:layout_marginLeft="20dp"
                             android:layout_marginTop="20dp"
                             android:text="From Time"
-                            android:textColor="@color/black"
+                            android:textColor="@color/new_gray"
                             android:textSize="16sp" />
 
                         <LinearLayout
@@ -197,7 +195,7 @@
 
                             <TextView
                                 android:id="@+id/dateFromTime"
-                                android:layout_width="140dp"
+                                android:layout_width="150dp"
                                 android:layout_height="75dp"
                                 android:background="@color/white"
                                 android:drawableLeft="@drawable/od_from_date_unselected"
@@ -210,7 +208,6 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/layoutTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -222,7 +219,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="To Time"
-                            android:textColor="@color/black"
+                            android:textColor="@color/new_gray"
                             android:textSize="16sp" />
 
                         <LinearLayout
@@ -236,7 +233,7 @@
 
                             <TextView
                                 android:id="@+id/timeTo"
-                                android:layout_width="140dp"
+                                android:layout_width="150dp"
                                 android:layout_height="75dp"
                                 android:background="@color/white"
                                 android:drawableLeft="@drawable/od_from_date_unselected"
@@ -260,7 +257,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="20dp"
                         android:text="Details :"
-                        android:textColor="@color/black"
+                        android:textColor="@color/new_gray"
                         android:textSize="16sp" />
 
                     <EditText
@@ -275,7 +272,7 @@
                         android:gravity="top"
                         android:hint="Description"
                         android:inputType="textVisiblePassword"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/new_gray" />
 
                 </LinearLayout>
 
@@ -285,8 +282,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="30dp"
+                    android:layout_marginBottom="20dp"
                     android:background="@drawable/btn_square_fill_color"
                     android:text="Request"
+                    android:textAllCaps="false"
                     android:textColor="@color/white" />
 
             </LinearLayout>

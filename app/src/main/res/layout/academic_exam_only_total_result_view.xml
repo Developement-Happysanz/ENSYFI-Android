@@ -10,7 +10,6 @@
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/appColor"
@@ -60,7 +59,6 @@
             android:layout_marginTop="2dp">
 
             <TextView
-                android:id="@+id/txtSubject"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginLeft="2dp"
@@ -73,7 +71,6 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/txtMarks"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginLeft="2dp"

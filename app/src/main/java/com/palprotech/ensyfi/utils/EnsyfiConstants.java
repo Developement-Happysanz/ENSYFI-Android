@@ -14,6 +14,7 @@ public class EnsyfiConstants {
 
     // ADMIN URL
     private static final String ADMIN_BASE_URL = BASE_URL + "admin/admin_api/";
+//    private static final String ADMIN_BASE_URL = BASE_URL + "inst_code_validation/";
     private static final String ADMIN_BASE_API = "api.php";
     public static final String INSTITUTE_LOGIN_API = ADMIN_BASE_URL + ADMIN_BASE_API;
     public static final String GET_SCHOOL_LOGO = BASE_URL + "institute_logo/";
@@ -172,6 +173,18 @@ public class EnsyfiConstants {
 
     //Exam duty
     public static final String GET_EXAM_DUTY = "/apiteacher/view_Examduty/";
+
+    //Class and sec List
+    public static final String GET_CLASS_SECTION = "/apimain/list_class_section/";
+
+    //Class and sec List
+    public static final String SEND_CLASS_SECTION = "/apimain/view_class_day_attendence/";
+
+    //Class and sec List
+    public static final String USER_NOTIFICATION = "/apimain/update_notification_status/";
+
+    //Class and sec List
+    public static final String USER_NOTIFICATION_STATUS = "/apimain/notification_status/";
 
     // PARAMETERS
     //Service Params
@@ -392,6 +405,8 @@ public class EnsyfiConstants {
     public static final String PARAMS_OD_FOR = "od_for";
     public static final String PARAMS_OD_FROM_DATE = "from_date";
     public static final String PARAMS_OD_TO_DATE = "to_date";
+    public static final String PARAMS_DATE = "date";
+    public static final String PARAMS_CLASS_IDS = "class_ids";
     public static final String PARAMS_OD_NOTES = "notes";
     public static final String PARAMS_OD_STATUS = "status";
     public static final String PARAMS_OD_CREATED_BY = "created_by";
@@ -527,6 +542,7 @@ public class EnsyfiConstants {
 
     public static final String GCM_KEY = "gcm_key";
     public static final String MOBILE_TYPE = "mobile_type";
+    public static final String NOTIFICATION_TYPE = "type";
 
     public static final long TWENTY4HOURS = 24 * 60 * 60 * 1000;//24 hours in milli seconds format
 

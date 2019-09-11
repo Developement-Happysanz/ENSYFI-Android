@@ -33,8 +33,8 @@ public class ParentInfoActivity extends AppCompatActivity implements DialogClick
     private void SetUI() {
 
         findViewById();
-        callMotherInfoPreferences();
         callFatherInfoPreferences();
+//        callMotherInfoPreferences();
     }
 
     private void findViewById() {
@@ -81,7 +81,10 @@ public class ParentInfoActivity extends AppCompatActivity implements DialogClick
         String url = PreferenceStorage.getFatherImg(this);
 
         if (((url != null) && !(url.isEmpty()))) {
-            Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(fatherInfo);
+            Picasso.get().load(url).placeholder(R.drawable.ic_father).error(R.drawable.ic_father).into(fatherInfo);
+        }
+        if (((url != null) && !(url.isEmpty()))) {
+            Picasso.get().load(url).placeholder(R.drawable.ic_mother_deselect).error(R.drawable.ic_mother_deselect).into(motherInfo);
         }
     }
 
@@ -106,7 +109,10 @@ public class ParentInfoActivity extends AppCompatActivity implements DialogClick
         String url = PreferenceStorage.getMotherImg(this);
 
         if (((url != null) && !(url.isEmpty()))) {
-            Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(motherInfo);
+            Picasso.get().load(url).placeholder(R.drawable.ic_mother).error(R.drawable.ic_mother).into(motherInfo);
+        }
+        if (((url != null) && !(url.isEmpty()))) {
+            Picasso.get().load(url).placeholder(R.drawable.ic_father_deselect).error(R.drawable.ic_father_deselect).into(fatherInfo);
         }
     }
 

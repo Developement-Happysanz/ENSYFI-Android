@@ -75,9 +75,9 @@ public class ClassTestDetailActivity extends AppCompatActivity implements IServi
         txtHomeWorkSubject.setText(classTest.getHwSubjectName());
         txtHomeWorkType = (classTest.getHwType());
         if (txtHomeWorkType.equalsIgnoreCase("HW")) {
-            tvTitleText.setText("HOMEWORK");
+            tvTitleText.setText("Homework");
         } else {
-            tvTitleText.setText("CLASS TEST");
+            tvTitleText.setText("Class Test");
         }
 
         mStatus = classTest.getHwMarkStatus();

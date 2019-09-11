@@ -10,7 +10,6 @@
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/appColor"
@@ -97,7 +96,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:text="Aksldfjksdlfnsd,nslckjsdl;ckjaskc,znc,xnc,ad"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="14sp" />
 
                 <TextView
@@ -108,7 +107,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
-                    android:background="@color/text_grey"/>
+                    android:background="@color/background_grey"/>
 
                 <TextView
                     android:id="@+id/describ"
@@ -131,11 +130,10 @@
                     android:layout_marginRight="10dp"
                     android:text="Description :"
                     android:layout_marginTop="10dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/underlinedescription"
                     android:layout_below="@+id/txthomeworkdetails"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -143,7 +141,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginBottom="10dp"
-                    android:background="@color/text_grey"/>
+                    android:background="@color/background_grey"/>
 
                 <LinearLayout
                     android:id="@+id/llMarkView"
@@ -159,9 +157,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="10dp"
-                        android:text="MARKS :"
+                        android:text="Marks :"
                         android:textColor="@color/appColor"
-                        android:textSize="23sp"
+                        android:textSize="16sp"
                         android:textStyle="bold"/>
 
                     <TextView
@@ -170,18 +168,17 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:gravity="center"
-                        android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textColor="@color/new_gray"
+                        android:textSize="14sp" />
 
                     <TextView
-                        android:id="@+id/underlinemarks"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="@color/text_grey"/>
+                        android:background="@color/background_grey"/>
 
                 </LinearLayout>
 
@@ -190,19 +187,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/llMarkView"
-                    android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
                     android:orientation="vertical"
                     android:visibility="gone">
 
                     <TextView
-                        android:id="@+id/remarks"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="10dp"
-                        android:text="REMARKS :"
+                        android:text="Remarks :"
                         android:textColor="@color/appColor"
-                        android:textSize="23sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -210,20 +205,18 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginTop="20dp"
                         android:gravity="center"
-                        android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textColor="@color/new_gray"
+                        android:textSize="14sp" />
 
                     <TextView
-                        android:id="@+id/underlineremarks"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="@color/text_grey"/>
+                        android:background="@color/background_grey"/>
 
                 </LinearLayout>
 

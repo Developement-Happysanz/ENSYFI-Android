@@ -4,9 +4,12 @@
     <item name="my_edit_text_2" type="id" />
     <item name="my_text_1" type="id" />
     <item name="my_text_2" type="id" />
-    <item name="my_button_1" type="id" />
-    <item name="my_time_picker_1" type="id" />
     <item name="member_name_txt" type="id" />
     <item name="member_id_txt" type="id" />
     <item name="member_status" type="id" />
+
+    <!--   Clas List   -->
+    <item name="class_section_name" type="id" />
+    <item name="class_section_status" type="id" />
+    <item name="class_section_go" type="id" />
 </resources>

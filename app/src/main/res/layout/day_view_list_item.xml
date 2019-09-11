@@ -6,9 +6,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:elevation="6dp"
+        android:layout_height="match_parent"
+        android:padding="6dp"
         android:background="@drawable/shadow_round"
         android:gravity="center">
 
@@ -37,6 +36,7 @@
             android:layout_toRightOf="@+id/txtEnrollId"
             android:gravity="center"
             android:text="-"
+            android:visibility="gone"
             android:textSize="16sp" />
 
         <TextView

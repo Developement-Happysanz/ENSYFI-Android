@@ -32,6 +32,7 @@ import com.palprotech.ensyfi.activity.general.LeaveStatusActivity;
 import com.palprotech.ensyfi.activity.loginmodule.ChangePasswordActivity;
 import com.palprotech.ensyfi.activity.loginmodule.ProfileActivity;
 import com.palprotech.ensyfi.activity.loginmodule.ProfileActivityNew;
+import com.palprotech.ensyfi.activity.loginmodule.SettingsActivity;
 import com.palprotech.ensyfi.activity.loginmodule.SplashScreenActivity;
 import com.palprotech.ensyfi.adapter.NavDrawerAdapter;
 import com.palprotech.ensyfi.bean.general.support.DeleteTableRecords;
@@ -54,7 +55,7 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
     boolean doubleBackToExitPressedOnce = false;
     private ImageView imgNavProfileImage;
     private ArrayAdapter<String> navListAdapter;
-    private String[] values = {"Profile", "Students", "Teachers", "Parents", "Classes", "Exam", "Result", "Events", "Circular", "Fee Status", "On Duty", "Notifications", "Leave Requests", "Settings", "Sign Out"};
+    private String[] values = {"Profile", "Students", "Teachers", "Parents", "Classes", "Exam", "Result", "Events", "Circular", "Fee Status", "On Duty", "Notifications", "Leave Requests", "Settings", "Sign Out", "Attendance"};
     TextView navUserProfileName = null;
     LinearLayout students, teachers, parents, classes, exams, results, events, communication;
     private String mCurrentUserProfileUrl = "";
@@ -156,8 +157,8 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
         communication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), CircularActivity.class);
-                Intent intent = new Intent(getApplicationContext(), CircularMasterListActivity.class);
+                Intent intent = new Intent(getApplicationContext(), CircularActivity.class);
+//                Intent intent = new Intent(getApplicationContext(), CircularMasterListActivity.class);
                 startActivity(intent);
             }
         });
@@ -173,27 +174,7 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
 
         if (((url != null) && !(url.isEmpty()))) {
             Log.d(TAG, "image url is " + url);
-            Picasso.with(this).load(url).placeholder(R.drawable.ab_logo).error(R.drawable.ab_logo).into(imgNavProfileImage,
-                    new Callback() {
-                        @Override
-                        public void onSuccess() {
-                            Log.d(TAG, "Image uploaded successfully using picasso");
-                            try {
-                              /*  if (shouldUploadSocialNetworkPic()) {
-                                    mUpdatedImageUrl = null;
-                                    mBitmapToLoad = ((BitmapDrawable) imgNavProfileImage.getDrawable()).getBitmap();
-                                    new UploadFileToServer().execute();
-                                } */
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-                        @Override
-                        public void onError() {
-
-                        }
-                    });
+            Picasso.get().load(url).placeholder(R.drawable.ab_logo).error(R.drawable.ab_logo).into(imgNavProfileImage);
         }
         Log.d(TAG, "Set the selected page to 0");//default page
     }
@@ -225,7 +206,7 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
                 if (((url != null) && !(url.isEmpty())) && !(url.equalsIgnoreCase(mCurrentUserProfileUrl))) {
                     Log.d(TAG, "image url is " + url);
                     mCurrentUserProfileUrl = url;
-                    Picasso.with(AdminDashBoardActivity.this).load(url).noPlaceholder().error(R.drawable.ab_logo).into(imgNavProfileImage);
+                    Picasso.get().load(url).noPlaceholder().error(R.drawable.ab_logo).into(imgNavProfileImage);
                 }
             }
         };
@@ -284,8 +265,8 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 8) {
-            Intent navigationIntent = new Intent(this, CircularMasterListActivity.class);
-//            Intent navigationIntent = new Intent(this, CircularActivity.class);
+//            Intent navigationIntent = new Intent(this, CircularMasterListActivity.class);
+            Intent navigationIntent = new Intent(this, CircularActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 9) {
@@ -311,12 +292,16 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
 //            startActivity(navigationIntent);
 //        }
         else if (position == 13) {
-            Intent navigationIntent = new Intent(this, ChangePasswordActivity.class);
+            Intent navigationIntent = new Intent(this, SettingsActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 14) {
             Log.d(TAG, "Perform Logout");
             doLogout();
+        } else if (position == 15) {
+            Intent navigationIntent = new Intent(this, ClassAttendanceActivity.class);
+            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(navigationIntent);
         }
     }
 

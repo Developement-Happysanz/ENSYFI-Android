@@ -69,7 +69,7 @@ public class GuardianInfoActivity extends AppCompatActivity implements DialogCli
         String url = PreferenceStorage.getGuardianImg(this);
 
         if (((url != null) && !(url.isEmpty()))) {
-            Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(guardianImg);
+            Picasso.get().load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(guardianImg);
         }
     }
 

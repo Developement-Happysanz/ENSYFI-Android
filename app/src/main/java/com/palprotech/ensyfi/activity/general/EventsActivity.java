@@ -128,13 +128,13 @@ public class EventsActivity extends AppCompatActivity implements IServiceListene
 
     @Override
     public void onResponse(final JSONObject response) {
+        progressDialogHelper.hideProgressDialog();
         if (validateSignInResponse(response)) {
             Log.d("ajazFilterresponse : ", response.toString());
 
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    progressDialogHelper.hideProgressDialog();
 
                     Gson gson = new Gson();
                     EventList eventList = gson.fromJson(response.toString(), EventList.class);

@@ -15,7 +15,6 @@
             android:layout_height="wrap_content">
 
             <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar_result"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/appColor"
@@ -119,7 +118,7 @@
 
                             <TextView
                                 android:id="@+id/dateFrom"
-                                android:layout_width="140dp"
+                                android:layout_width="150dp"
                                 android:layout_height="75dp"
                                 android:background="@color/white"
                                 android:drawableLeft="@drawable/od_from_date_unselected"
@@ -157,7 +156,7 @@
 
                             <TextView
                                 android:id="@+id/dateTo"
-                                android:layout_width="140dp"
+                                android:layout_width="150dp"
                                 android:layout_height="75dp"
                                 android:background="@color/white"
                                 android:drawableLeft="@drawable/od_from_date_unselected"
@@ -211,6 +210,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="30dp"
+                    android:layout_marginBottom="20dp"
                     android:background="@drawable/btn_square_fill_color"
                     android:text="Request"
                     android:textAllCaps="false"

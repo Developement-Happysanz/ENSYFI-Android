@@ -11,7 +11,6 @@
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/appColor"
@@ -130,7 +129,7 @@
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="10dp"
                         android:text=""
-                        android:textColor="@color/black"
+                        android:textColor="@color/new_gray"
                         android:textSize="14sp" />
                 </LinearLayout>
                 <!--End of Topic portion-->
@@ -144,7 +143,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="10dp"
-                    android:background="@color/text_grey" />
+                    android:background="@color/background_grey" />
                 <!--End of Topic portion underline-->
 
                 <!---->
@@ -172,7 +171,7 @@
                             android:layout_marginTop="20dp"
                             android:text="Test Date :"
                             android:textColor="@color/appColor"
-                            android:textSize="14sp"
+                            android:textSize="16sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -183,8 +182,8 @@
                             android:layout_below="@+id/txtTestDateTitle"
                             android:layout_marginTop="10dp"
                             android:text=""
-                            android:textColor="@color/black"
-                            android:textSize="18sp" />
+                            android:textColor="@color/new_gray"
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/underlineTestDate"
@@ -192,7 +191,7 @@
                             android:layout_height="1dp"
                             android:layout_below="@+id/txtTestDate"
                             android:layout_marginTop="10dp"
-                            android:background="@color/text_grey"
+                            android:background="@color/background_grey"
                             android:visibility="gone" />
 
                     </LinearLayout>
@@ -227,7 +226,7 @@
                             android:layout_below="@+id/txtDueDateTitle"
                             android:layout_marginTop="10dp"
                             android:text=""
-                            android:textColor="@color/black"
+                            android:textColor="@color/new_gray"
                             android:textSize="14sp" />
 
                         <TextView
@@ -237,7 +236,7 @@
                             android:layout_below="@+id/txtDueDate"
                             android:layout_marginRight="30dp"
                             android:layout_marginTop="10dp"
-                            android:background="@color/text_grey"
+                            android:background="@color/background_grey"
                             android:visibility="gone" />
 
                     </LinearLayout>
@@ -253,7 +252,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="10dp"
-                    android:background="@color/text_grey" />
+                    android:background="@color/background_grey" />
 
                 <LinearLayout
                     android:id="@+id/descriptionLayout"
@@ -281,12 +280,11 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:text="Description :"
-                        android:textColor="@color/black"
+                        android:textColor="@color/new_gray"
                         android:textSize="14sp" />
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/underlinedescription"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/descriptionLayout"
@@ -294,7 +292,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="10dp"
-                    android:background="@color/text_grey" />
+                    android:background="@color/background_grey" />
 
             </RelativeLayout>
             <!--End of ScrollView Base Layout-->

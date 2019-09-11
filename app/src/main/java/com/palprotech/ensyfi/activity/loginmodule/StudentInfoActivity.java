@@ -112,7 +112,7 @@ public class StudentInfoActivity extends AppCompatActivity implements DialogClic
         String url = PreferenceStorage.getStudentImg(this);
 
         if (((url != null) && !(url.isEmpty()))) {
-            Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(studentImg);
+            Picasso.get().load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(studentImg);
         }
     }
 

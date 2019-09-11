@@ -10,7 +10,6 @@
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/appColor"
@@ -59,6 +58,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:background="@drawable/shadow_round"
+            android:elevation="6dp"
             android:orientation="vertical">
 
             <TextView
@@ -89,7 +91,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="14sp" />
 
                 <TextView
@@ -97,7 +99,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:text="-"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="14sp" />
 
 
@@ -106,7 +108,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="14sp" />
 
             </LinearLayout>
@@ -117,7 +119,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp"
-                android:background="@color/black" />
+                android:background="@color/background_grey" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -134,7 +136,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
-                android:textColor="@color/black"
+                android:textColor="@color/new_gray"
                 android:textSize="14sp" />
 
             <TextView
@@ -143,7 +145,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp"
-                android:background="@color/black" />
+                android:background="@color/background_grey" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -166,7 +168,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="14sp" />
 
                 <TextView
@@ -175,7 +177,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="14sp" />
 
             </LinearLayout>
@@ -186,7 +188,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp"
-                android:background="@color/black" />
+                android:background="@color/background_grey" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -204,7 +206,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp"
-                android:textColor="@color/black"
+                android:textColor="@color/new_gray"
                 android:textSize="14sp" />
 
             <TextView
@@ -213,7 +215,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp"
-                android:background="@color/black" />
+                android:background="@color/background_grey" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -231,7 +233,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp"
-                android:textColor="@color/black"
+                android:textColor="@color/new_gray"
                 android:textSize="14sp" />
 
             <TextView
@@ -240,7 +242,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp"
-                android:background="@color/black"
+                android:background="@color/background_grey"
                 android:layout_marginBottom="30dp"/>
 
 

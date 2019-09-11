@@ -149,10 +149,14 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
                 }
 
                 if (classStudentTeacher.equalsIgnoreCase("Student")) {
+                    findViewById(R.id.alert_student).setVisibility(View.VISIBLE);
+                    findViewById(R.id.alert_teacher).setVisibility(View.GONE);
                     StudentList.setVisibility(View.VISIBLE);
                     TeacherList.setVisibility(View.GONE);
                     GetStudentData();
                 } else {
+                    findViewById(R.id.alert_student).setVisibility(View.GONE);
+                    findViewById(R.id.alert_teacher).setVisibility(View.VISIBLE);
                     TeacherList.setVisibility(View.VISIBLE);
                     StudentList.setVisibility(View.GONE);
                     GetTeacherData();

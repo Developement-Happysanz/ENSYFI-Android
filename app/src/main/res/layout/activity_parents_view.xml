@@ -11,7 +11,6 @@
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/appColor"
@@ -87,10 +86,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:textColor="@color/reject"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
         android:text="Select student to view parent information"/>
 
     <LinearLayout
@@ -99,7 +100,6 @@
         android:orientation="vertical">
 
         <RelativeLayout
-            android:id="@+id/layout_frame"
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:layout_marginTop="2dp"
@@ -147,7 +147,6 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/txt_tblPKey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

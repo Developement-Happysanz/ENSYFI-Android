@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 //import com.makeramen.roundedimageview.RoundedTransformationBuilder;
@@ -79,6 +80,7 @@ public class FeeStatusListAdapter extends BaseAdapter {
             holder.txtStatus = (TextView) convertView.findViewById(R.id.txtStatus);
             holder.txtDueDateFrom = (TextView) convertView.findViewById(R.id.txtDueDateFrom);
             holder.txtDueDateTo = (TextView) convertView.findViewById(R.id.txtDueDateTo);
+            holder.statusBg = (RelativeLayout) convertView.findViewById(R.id.status_color);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -97,8 +99,10 @@ public class FeeStatusListAdapter extends BaseAdapter {
 
         if ((feeStatuses.get(position).getStatus()).contentEquals("Paid")) {
             holder.txtStatus.setTextColor(ContextCompat.getColor(context, R.color.approve));
+            holder.statusBg.setBackgroundColor(ContextCompat.getColor(context, R.color.approve));
         } else {
             holder.txtStatus.setTextColor(ContextCompat.getColor(context, R.color.reject));
+            holder.statusBg.setBackgroundColor(ContextCompat.getColor(context, R.color.reject));
         }
         return convertView;
     }
@@ -131,6 +135,7 @@ public class FeeStatusListAdapter extends BaseAdapter {
 
     public class ViewHolder {
         public TextView txtTermName, txtStatus, txtDueDateFrom, txtDueDateTo;
+        private RelativeLayout statusBg;
     }
 
     public boolean ismSearching() {

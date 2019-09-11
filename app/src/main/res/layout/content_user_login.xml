@@ -76,7 +76,6 @@
                 android:gravity="center">
 
                 <LinearLayout
-                    android:id="@+id/login_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="2dp"
@@ -107,7 +106,6 @@
                         android:textAllCaps="true" />
 
                     <android.support.design.widget.TextInputLayout
-                        android:id="@+id/ti_confirm_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
@@ -134,7 +132,6 @@
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
-                        android:id="@+id/ti_inputPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"

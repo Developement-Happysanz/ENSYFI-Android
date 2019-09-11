@@ -10,7 +10,6 @@
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/appColor"
@@ -65,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="70dp"
-                android:text="Name                  :"
+                android:text="Name"
                 android:textColor="@color/new_gray"
                 android:textSize="16sp" />
 
@@ -76,7 +75,7 @@
                 android:layout_alignTop="@+id/studname"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/studname"
+                android:layout_toRightOf="@+id/admissid"
                 android:paddingTop="2dp"
                 android:textColor="@color/new_gray"
                 android:textSize="16sp" />
@@ -88,7 +87,7 @@
                 android:layout_below="@+id/studname"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:text="Student Id           :"
+                android:text="Student Id"
                 android:textColor="@color/new_gray"
                 android:visibility="gone"
                 android:textSize="16sp" />
@@ -112,7 +111,7 @@
                 android:layout_below="@+id/studid"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
-                android:text="Admission No    :"
+                android:text="Admission No"
                 android:textColor="@color/new_gray"
                 android:textSize="16sp" />
 
@@ -134,7 +133,7 @@
                 android:layout_below="@+id/txtadmissid"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
-                android:text="Class                   :"
+                android:text="Class"
                 android:textColor="@color/new_gray"
                 android:textSize="16sp" />
 
@@ -173,13 +172,13 @@
                 android:layout_below="@+id/txtsec"
                 android:background="@drawable/round_btn_color"
                 android:text="Continue"
+                android:textAllCaps="false"
                 android:fontFamily="sans-serif-condensed"
                 android:textSize="16sp"
                 android:textColor="@color/white" />
         </RelativeLayout>
 
         <com.palprotech.ensyfi.customview.CircleImageView
-            android:id="@+id/stud_pic"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_below="@+id/eventtypespinner"
@@ -188,7 +187,7 @@
             android:fitsSystemWindows="true"
             android:scaleType="centerCrop"
             android:elevation="12dp"
-            android:src="@drawable/ic_profile" />
+            android:src="@drawable/ic_profile_picture_student" />
 
     </RelativeLayout>
 

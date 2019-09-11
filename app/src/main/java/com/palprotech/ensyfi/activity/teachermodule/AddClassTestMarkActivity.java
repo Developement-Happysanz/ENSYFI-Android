@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.text.method.DigitsKeyListener;
@@ -141,7 +142,7 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
                             b.setInputType(InputType.TYPE_CLASS_TEXT);
                             b.setAllCaps(true);
                             b.setSingleLine(true);
-                            b.setTextColor(Color.parseColor("#FF68358E"));
+                            b.setTextColor(ContextCompat.getColor(this, R.color.new_gray));
                             b.setPressed(true);
                             b.setHeight(120);
                             b.setWidth(50);
@@ -150,7 +151,7 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
                             t1.setText(c.getString(1));
                             t1.setVisibility(View.GONE);
 //                            t1.setText(""+i);
-                            t1.setTextColor(Color.parseColor("#FF68358E"));
+                            t1.setTextColor(ContextCompat.getColor(this, R.color.new_gray));
                             t1.setHeight(120);
                             t1.setWidth(80);
                             t1.setPadding(1, 0, 2, 0);
@@ -158,14 +159,14 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
 
 //                            t3.setText(c.getString(1));
                             t3.setText("" + i);
-                            t3.setTextColor(Color.parseColor("#FF68358E"));
+                            t3.setTextColor(ContextCompat.getColor(this, R.color.new_gray));
                             t3.setHeight(120);
                             t3.setWidth(80);
                             t3.setPadding(1, 0, 2, 0);
 //                            t1.setId(R.id.my_text_1);
 
                             t2.setText(c.getString(4));
-                            t2.setTextColor(Color.parseColor("#FF68358E"));
+                            t2.setTextColor(ContextCompat.getColor(this, R.color.new_gray));
                             t2.setHeight(120);
                             t2.setWidth(120);
                             t2.setPadding(1, 0, 2, 0);

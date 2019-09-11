@@ -10,7 +10,6 @@
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/appColor"
@@ -49,34 +48,65 @@
         android:background="@drawable/shadow_round">
 
         <TextView
-            android:id="@+id/txtOdFor"
-            android:layout_width="match_parent"
+            android:id="@+id/LeaveType"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:paddingBottom="3dp"
             android:paddingTop="3dp"
-            android:text="REASON ON DUTY"
-            android:textAllCaps="true"
-            android:textColor="@color/black"
+            android:text="Type :"
+            android:textColor="@color/appColorBase"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txtOdFor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/LeaveType"
+            android:paddingBottom="3dp"
+            android:paddingTop="3dp"
+            android:text="Reason on Duty"
+            android:textColor="@color/new_gray"
             android:textSize="16sp" />
 
         <LinearLayout
             android:id="@+id/fromto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtOdFor"
+            android:layout_below="@+id/LeaveType"
             android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:paddingBottom="3dp"
+                android:paddingTop="3dp"
+                android:text="From :"
+                android:textColor="@color/appColorBase"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/txtFromDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="10dp"
                 android:gravity="bottom"
                 android:text="16 June 2017"
                 android:textAllCaps="true"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textColor="@color/new_gray"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:paddingBottom="3dp"
+                android:paddingTop="3dp"
+                android:text="To :"
+                android:textColor="@color/appColorBase"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/txtToDate"
@@ -85,8 +115,8 @@
                 android:layout_marginLeft="15dp"
                 android:gravity="bottom"
                 android:text="16 June 2017"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textColor="@color/new_gray"
+                android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -94,8 +124,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/fromto"
+            android:layout_marginTop="10dp"
             android:orientation="vertical">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/appColorBase"
+                android:textSize="18sp"
+                android:text="Description :"/>
+            
             <TextView
                 android:id="@+id/txtOdNotes"
                 android:layout_width="match_parent"
@@ -103,14 +142,14 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/black"
+                android:textColor="@color/new_gray"
                 android:textSize="14sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="5dp"
-                android:background="@color/text_gray" />
+                android:background="@color/background_grey" />
 
         </LinearLayout>
 

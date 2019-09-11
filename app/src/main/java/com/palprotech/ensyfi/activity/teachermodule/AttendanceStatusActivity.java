@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -17,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -211,7 +213,9 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
             if (validateSignInResponse(response)) {
                 Log.d("ajazFilterresponse : ", response.toString());
                 if (checkDayMonthType.equalsIgnoreCase("day")) {
-
+                    LinearLayout lisLay = findViewById(R.id.lis_layout);
+                    lisLay.setBackground(ContextCompat.getDrawable(this, R.drawable.shadow_round));
+                    lisLay.setElevation(6.0f);
                     JSONArray getData = response.getJSONArray("attendenceDetails");
                     if (getData != null && getData.length() > 0) {
 
@@ -236,7 +240,9 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
                         }
                     }
                 } else {
-
+                    LinearLayout lisLay = findViewById(R.id.lis_layout);
+                    lisLay.setBackground(ContextCompat.getDrawable(this, R.drawable.shadow_round));
+                    lisLay.setElevation(6.0f);
                     JSONArray getData = response.getJSONArray("attendenceDetails");
                     if (getData != null && getData.length() > 0) {
 

@@ -11,7 +11,6 @@
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/appColor"
@@ -90,11 +89,9 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/listOfStudents"
         android:layout_width="match_parent"
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginBottom="5dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/classListSpinner"
         android:background="@color/new_gray">
@@ -113,7 +110,6 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/attendstudname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/attendstud"
@@ -144,13 +140,11 @@
 
 
     <ScrollView
-        android:id="@+id/ScrollView01"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:layout_marginTop="5dp"
         android:layout_weight="1"
         android:fadeScrollbars="false"
         android:scrollbars="horizontal|vertical">
@@ -159,6 +153,7 @@
             android:id="@+id/layout_timetable"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/background_grey"
             android:orientation="vertical">
 
         </LinearLayout>

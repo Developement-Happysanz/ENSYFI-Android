@@ -10,7 +10,6 @@
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/appColor"
@@ -48,7 +47,7 @@
             android:layout_marginTop="5dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:src="@drawable/ic_group_add_send" />
+            android:src="@drawable/ic_notification_send" />
 
     </RelativeLayout>
 

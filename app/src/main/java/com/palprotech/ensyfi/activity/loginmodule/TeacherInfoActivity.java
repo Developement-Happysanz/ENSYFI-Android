@@ -146,7 +146,7 @@ public class TeacherInfoActivity extends AppCompatActivity implements DialogClic
 
 
         if (((url != null) && !(url.isEmpty()))) {
-            Picasso.with(this).load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(teacherImg);
+            Picasso.get().load(url).placeholder(R.drawable.ic_profile).error(R.drawable.ic_profile).into(teacherImg);
         }
     }
 

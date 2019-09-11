@@ -15,7 +15,7 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="2dp"
+            android:layout_marginRight="5dp"
             android:background="@color/white">
 
             <TextView
@@ -23,11 +23,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:paddingTop="3dp"
+                android:paddingTop="5dp"
                 android:paddingBottom="3dp"
-                android:text="REASON ON DUTY"
-                android:textAllCaps="true"
-                android:textColor="@color/black"
+                android:text="Reason on duty"
+                android:textColor="@color/new_gray"
                 android:textSize="16sp" />
 
             <LinearLayout
@@ -35,13 +34,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txtOdFor"
+                android:layout_marginTop="10dp"
                 android:gravity="center">
 
 
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:layout_below="@+id/txtExamName"
+                    android:layout_below="@+id/txtOdFor"
                     android:layout_marginLeft="10dp"
                     android:padding="3dp"
                     android:src="@drawable/ic_date" />
@@ -55,7 +55,7 @@
                     android:gravity="bottom"
                     android:text="  16 June 2017"
                     android:textAllCaps="true"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="14sp" />
 
                 <TextView
@@ -70,19 +70,18 @@
                     android:layout_height="wrap_content"
                     android:gravity="bottom"
                     android:text="16 June 2017"
-                    android:textColor="@color/black"
+                    android:textColor="@color/new_gray"
                     android:textSize="14sp" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/txtStatus"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/fromto"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_toRightOf="@+id/imgStatus"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
                 android:text="Test"
                 android:textSize="16sp" />
 
@@ -90,10 +89,12 @@
                 android:id="@+id/imgStatus"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_below="@+id/fromto"
-                android:layout_alignTop="@id/txtStatus"
-                android:layout_alignBottom="@id/txtStatus"
-                android:layout_marginLeft="10dp" />
+                android:layout_alignBottom="@+id/txtStatus"
+                android:layout_marginRight="5dp"
+                android:padding="3dp"
+                android:layout_marginTop="10dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/txtStatus"/>
 
 
         </RelativeLayout>

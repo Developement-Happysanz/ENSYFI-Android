@@ -52,6 +52,8 @@ public class LeaveStatusDetailActivity extends AppCompatActivity implements ISer
             @Override
             public void onClick(View v) {
                 finish();
+                Intent intent = new Intent(getApplicationContext(), LeaveStatusActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -68,8 +70,7 @@ public class LeaveStatusDetailActivity extends AppCompatActivity implements ISer
         txtLeaveStartDate = (TextView) findViewById(R.id.txtFromDate);
         txtLeaveEndDate = (TextView) findViewById(R.id.txtToDate);
         approve = findViewById(R.id.status_layout);
-        approve.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
-        {
+        approve.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
 
@@ -102,12 +103,11 @@ public class LeaveStatusDetailActivity extends AppCompatActivity implements ISer
         txtLeaveType.setText(leaveStatus.getLeaveTitle());
         String leaveType = leaveStatus.getLeaveType();
         if (leaveType.equals("0")) {
-            txtLeaveStartDate.setText("From : " + leaveStatus.getFromTime());
-            txtLeaveEndDate.setText("To : " + leaveStatus.getToTime());
-        }
-        else {
-            txtLeaveStartDate.setText("From : " + leaveStatus.getFromLeaveDate());
-            txtLeaveEndDate.setText("To : " + leaveStatus.getToLeaveDate());
+            txtLeaveStartDate.setText(leaveStatus.getFromTime());
+            txtLeaveEndDate.setText(leaveStatus.getToTime());
+        } else {
+            txtLeaveStartDate.setText(leaveStatus.getFromLeaveDate());
+            txtLeaveEndDate.setText(leaveStatus.getToLeaveDate());
         }
         txtLeaveReason.setText(leaveStatus.getLeaveDescription());
     }

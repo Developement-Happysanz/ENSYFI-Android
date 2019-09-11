@@ -30,6 +30,7 @@ import com.palprotech.ensyfi.activity.general.OnDutyActivity;
 import com.palprotech.ensyfi.activity.loginmodule.ChangePasswordActivity;
 import com.palprotech.ensyfi.activity.loginmodule.ProfileActivity;
 import com.palprotech.ensyfi.activity.loginmodule.ProfileActivityNew;
+import com.palprotech.ensyfi.activity.loginmodule.SettingsActivity;
 import com.palprotech.ensyfi.activity.loginmodule.SplashScreenActivity;
 import com.palprotech.ensyfi.activity.studentmodule.AttendanceActivity;
 import com.palprotech.ensyfi.activity.studentmodule.ClassTestHomeworkActivity;
@@ -166,23 +167,7 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
 
         if (((url != null) && !(url.isEmpty()))) {
             Log.d(TAG, "image url is " + url);
-            Picasso.with(this).load(url).placeholder(R.drawable.ab_logo).error(R.drawable.ab_logo).into(imgNavProfileImage,
-                    new Callback() {
-                        @Override
-                        public void onSuccess() {
-                            Log.d(TAG, "Image uploaded successfully using picasso");
-                            try {
-
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-                        @Override
-                        public void onError() {
-
-                        }
-                    });
+            Picasso.get().load(url).placeholder(R.drawable.ab_logo).error(R.drawable.ab_logo).into(imgNavProfileImage);
         }
         Log.d(TAG, "Set the selected page to 0");//default page
     }
@@ -214,7 +199,7 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
                 if (((url != null) && !(url.isEmpty())) && !(url.equalsIgnoreCase(mCurrentUserProfileUrl))) {
                     Log.d(TAG, "image url is " + url);
                     mCurrentUserProfileUrl = url;
-                    Picasso.with(ParentDashBoardActivity.this).load(url).noPlaceholder().error(R.drawable.ab_logo).into(imgNavProfileImage);
+                    Picasso.get().load(url).noPlaceholder().error(R.drawable.ab_logo).into(imgNavProfileImage);
                 }
             }
         };
@@ -282,7 +267,7 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
 //            startActivity(navigationIntent);
 //        }
         else if (position == 9) {
-            Intent navigationIntent = new Intent(this, ChangePasswordActivity.class);
+            Intent navigationIntent = new Intent(this, SettingsActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 10) {

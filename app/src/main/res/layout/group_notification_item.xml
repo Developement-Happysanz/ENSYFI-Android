@@ -8,18 +8,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:elevation="6dp"
         android:background="@drawable/shadow_round"
         android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="@drawable/btn_square_fill_color"
+            android:background="@color/appColorBase"
             android:gravity="center"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/organiser_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -67,6 +67,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:textColor="@color/black"
+                android:maxLines="3"
                 android:textSize="18dp" />
 
 

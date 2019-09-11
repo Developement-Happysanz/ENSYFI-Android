@@ -11,7 +11,6 @@
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/appColor"
@@ -44,7 +43,6 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/popup_teacher"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/tlbar"
@@ -90,7 +88,7 @@
                     android:layout_below="@+id/TeacherName"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Id                                :"
+                    android:text="Id"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -102,7 +100,7 @@
                     android:layout_alignTop="@+id/Teacherid"
                     android:layout_centerHorizontal="true"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/Teacherid"
+                    android:layout_toRightOf="@+id/TeacherSecondaryMobile"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -113,7 +111,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Name                        :"
+                    android:text="Name"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -124,7 +122,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/TeacherName"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/TeacherName"
+                    android:layout_toRightOf="@+id/TeacherSecondaryMobile"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -136,7 +134,7 @@
                     android:layout_below="@+id/Teacherid"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Gender                      :"
+                    android:text="Gender"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -147,7 +145,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/TeacherGender"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/TeacherGender"
+                    android:layout_toRightOf="@+id/TeacherSecondaryMobile"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -159,7 +157,7 @@
                     android:layout_below="@+id/TeacherGender"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Address                    :"
+                    android:text="Address"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -170,7 +168,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/TeacherAddress"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/TeacherAddress"
+                    android:layout_toRightOf="@+id/TeacherSecondaryMobile"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -182,7 +180,7 @@
                     android:layout_below="@+id/txtTeacherAddress"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Age                            :"
+                    android:text="Age"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -194,7 +192,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@id/TeacherAge"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/TeacherAge"
+                    android:layout_toRightOf="@+id/TeacherSecondaryMobile"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -206,7 +204,7 @@
                     android:layout_below="@+id/TeacherAge"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Nationality                :"
+                    android:text="Nationality"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -218,7 +216,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@id/TeacherNationality"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/TeacherNationality"
+                    android:layout_toRightOf="@+id/TeacherSecondaryMobile"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -230,7 +228,7 @@
                     android:layout_below="@+id/txtTeacherNationality"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Religion                     :"
+                    android:text="Religion"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -242,7 +240,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@id/TeacherReligion"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/TeacherReligion"
+                    android:layout_toRightOf="@+id/TeacherSecondaryMobile"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -254,7 +252,7 @@
                     android:layout_below="@+id/TeacherReligion"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Caste                         :"
+                    android:text="Caste"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -266,7 +264,7 @@
                     android:layout_alignTop="@+id/TeacherCaste"
                     android:layout_centerHorizontal="true"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/TeacherCaste"
+                    android:layout_toRightOf="@+id/TeacherSecondaryMobile"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -278,7 +276,7 @@
                     android:layout_below="@+id/TeacherCaste"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Community              :"
+                    android:text="Community"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -290,7 +288,7 @@
                     android:layout_alignTop="@+id/TeacherCommunity"
                     android:layout_centerHorizontal="true"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/TeacherCommunity"
+                    android:layout_toRightOf="@+id/TeacherSecondaryMobile"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -302,7 +300,7 @@
                     android:layout_below="@+id/TeacherCommunity"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Handling Subject    :"
+                    android:text="Handling Subject"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -314,7 +312,7 @@
                     android:layout_alignTop="@+id/TeacherSubject"
                     android:layout_centerHorizontal="true"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/TeacherSubject"
+                    android:layout_toRightOf="@+id/TeacherSecondaryMobile"
                     android:paddingTop="2dp"
                     android:text=""
                     android:textColor="@color/black"
@@ -328,7 +326,7 @@
                     android:layout_below="@+id/TeacherSubject"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Class Teacher          :"
+                    android:text="Class Teacher"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -340,7 +338,7 @@
                     android:layout_alignTop="@+id/ClassTeacher"
                     android:layout_centerHorizontal="true"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/ClassTeacher"
+                    android:layout_toRightOf="@+id/TeacherSecondaryMobile"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -352,7 +350,7 @@
                     android:layout_below="@+id/ClassTeacher"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Class Section           :"
+                    android:text="Class Section"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -363,7 +361,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/TeacherSectionName"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/TeacherSectionName"
+                    android:layout_toRightOf="@+id/TeacherSecondaryMobile"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -375,7 +373,7 @@
                     android:layout_below="@+id/TeacherSectionName"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Class Name              :"
+                    android:text="Class Name"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -386,7 +384,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/TeacherClassName"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/TeacherClassName"
+                    android:layout_toRightOf="@+id/TeacherSecondaryMobile"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -398,7 +396,7 @@
                     android:layout_below="@+id/TeacherClassName"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Mobile                       :"
+                    android:text="Mobile"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -409,7 +407,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/TeacherMobile"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/TeacherMobile"
+                    android:layout_toRightOf="@+id/TeacherSecondaryMobile"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -421,7 +419,7 @@
                     android:layout_below="@+id/TeacherMobile"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Secondary Mobile   :"
+                    android:text="Secondary Mobile"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -444,7 +442,7 @@
                     android:layout_below="@+id/TeacherSecondaryMobile"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Mail                            :"
+                    android:text="Mail"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -456,7 +454,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@id/TeacherMail"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/TeacherMail"
+                    android:layout_toRightOf="@+id/TeacherSecondaryMobile"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -468,7 +466,7 @@
                     android:layout_below="@+id/TeacherMail"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Secondary Mail        :"
+                    android:text="Secondary Mail"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -479,7 +477,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@id/TeacherSecondaryMail"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/TeacherSecondaryMail"
+                    android:layout_toRightOf="@+id/TeacherSecondaryMobile"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -491,7 +489,7 @@
                     android:layout_below="@+id/TeacherSecondaryMail"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Class Taken              :"
+                    android:text="Class Taken"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -503,7 +501,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@id/TeacherClassTaken"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/TeacherClassTaken"
+                    android:layout_toRightOf="@+id/TeacherSecondaryMobile"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -515,7 +513,7 @@
                     android:layout_below="@+id/txtTeacherClassTaken"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Skill Set            :"
+                    android:text="Skill Set"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -526,7 +524,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@id/TeacherSkillSet"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/TeacherSkillSet"
+                    android:layout_toRightOf="@+id/TeacherSecondaryMobile"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -538,7 +536,7 @@
                     android:layout_below="@+id/txtTeacherSkillSet"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Previous Exp         :"
+                    android:text="Previous Exp"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -549,7 +547,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@id/TeacherPreviousExp"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/TeacherPreviousExp"
+                    android:layout_toRightOf="@+id/TeacherSecondaryMobile"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -561,7 +559,7 @@
                     android:layout_below="@+id/txtTeacherPreviousExp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Total Exp         :"
+                    android:text="Total Exp"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -572,7 +570,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@id/TeacherTotalExp"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/TeacherTotalExp"
+                    android:layout_toRightOf="@+id/TeacherSecondaryMobile"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
                     android:textSize="16sp" />

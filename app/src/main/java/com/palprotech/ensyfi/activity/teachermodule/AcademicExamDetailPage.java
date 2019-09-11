@@ -60,15 +60,15 @@ public class AcademicExamDetailPage extends AppCompatActivity implements DialogC
         int checkMarkStatus = Integer.parseInt(markStatus);
         if (checkMarkStatus == 0) {
             if (checkAcademicExamSubjectMarksStatus == 0) {
-                addExamMark.setVisibility(View.VISIBLE);
+                addExamMark.setVisibility(View.GONE);
                 viewExamMark.setVisibility(View.GONE);
             } else {
                 addExamMark.setVisibility(View.GONE);
-                viewExamMark.setVisibility(View.VISIBLE);
+                viewExamMark.setVisibility(View.GONE);
             }
         } else {
             addExamMark.setVisibility(View.GONE);
-            viewExamMark.setVisibility(View.VISIBLE);
+            viewExamMark.setVisibility(View.GONE);
         }
 
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);

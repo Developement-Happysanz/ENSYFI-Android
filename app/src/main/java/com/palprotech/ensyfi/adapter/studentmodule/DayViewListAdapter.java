@@ -97,7 +97,7 @@ public class DayViewListAdapter extends BaseAdapter {
             Log.d("Event List Adapter", "getview pos called" + position);
         }
 
-        holder.txtEnrollId.setText(""+(position+1));
+        holder.txtEnrollId.setText((position+1)+".");
         holder.txtStudentName.setText(dayViews.get(position).getName());
         if ((dayViews.get(position).getAStatus()).contentEquals("A")) {
             holder.txtAttendanceStatus.setBackgroundResource(R.drawable.btn_attendance_absent);

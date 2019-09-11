@@ -10,7 +10,6 @@
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/appColor"
@@ -81,6 +80,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="2dp"
                         android:layout_marginTop="2dp"
+                        android:padding="10dp"
                         android:layout_weight="0.50"
                         android:background="@color/appColor"
                         android:text="No. of Working Days"
@@ -90,6 +90,7 @@
                         android:id="@+id/txtWorkingDays"
                         android:layout_width="20dp"
                         android:layout_height="wrap_content"
+                        android:padding="10dp"
                         android:layout_marginLeft="2dp"
                         android:layout_marginRight="2dp"
                         android:layout_marginTop="2dp"
@@ -109,6 +110,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="2dp"
                         android:layout_marginTop="1dp"
+                        android:padding="10dp"
                         android:layout_weight="0.50"
                         android:background="@color/appColor"
                         android:text="Present Days"
@@ -117,6 +119,7 @@
                     <TextView
                         android:id="@+id/txtPresentDays"
                         android:layout_width="20dp"
+                        android:padding="10dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="2dp"
                         android:layout_marginRight="2dp"
@@ -137,6 +140,7 @@
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="2dp"
+                        android:padding="10dp"
                         android:layout_marginTop="1dp"
                         android:layout_weight="0.50"
                         android:background="@color/appColor"
@@ -150,6 +154,7 @@
                         android:layout_marginLeft="2dp"
                         android:layout_marginRight="2dp"
                         android:layout_marginTop="1dp"
+                        android:padding="10dp"
                         android:layout_weight="0.50"
                         android:background="@color/new_gray"
                         android:text=""
@@ -170,12 +175,14 @@
                         android:layout_weight="0.50"
                         android:background="@color/appColor"
                         android:text="Leave Days"
+                        android:padding="10dp"
                         android:textColor="@color/white" />
 
                     <TextView
                         android:id="@+id/txtLeaveDays"
                         android:layout_width="20dp"
                         android:layout_height="wrap_content"
+                        android:padding="10dp"
                         android:layout_marginLeft="2dp"
                         android:layout_marginRight="2dp"
                         android:layout_marginTop="1dp"
@@ -196,6 +203,7 @@
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="2dp"
+                        android:padding="10dp"
                         android:layout_marginLeft="2dp"
                         android:layout_marginTop="1dp"
                         android:layout_weight="0.50"
@@ -209,6 +217,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="2dp"
                         android:layout_marginRight="2dp"
+                        android:padding="10dp"
                         android:layout_marginTop="1dp"
                         android:layout_weight="0.50"
                         android:background="@color/new_gray"

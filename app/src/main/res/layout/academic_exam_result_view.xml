@@ -10,7 +10,6 @@
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/appColor"
@@ -49,7 +48,6 @@
         android:layout_marginTop="40dp">
 
         <TextView
-            android:id="@+id/teachsub"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -77,7 +75,6 @@
             android:layout_marginTop="2dp">
 
             <TextView
-                android:id="@+id/txtSubject"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
@@ -90,7 +87,6 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/txtIntMarks"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="2dp"
@@ -103,7 +99,6 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/txtExtMarks"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="2dp"
@@ -116,7 +111,6 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/txtMarks"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="2dp"

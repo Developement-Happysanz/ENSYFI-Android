@@ -17,9 +17,9 @@ public class CircularMasterListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_circular_master_list);
 
-        ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
         ImageView addCircular = (ImageView) findViewById(R.id.add_circular);
 
+        ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
         bckbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

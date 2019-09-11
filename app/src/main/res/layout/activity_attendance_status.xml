@@ -12,7 +12,6 @@
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/appColor"
@@ -98,6 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Month View"
+                android:layout_marginLeft="20dp"
                 android:textColor="@color/new_gray"
                 android:textSize="16sp"
                 android:theme="@style/MySwitchTheme" />
@@ -110,14 +110,13 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/radioDayMonthView"
             android:layout_centerInParent="true"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="20dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/round_btn_plain"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:text="Select Date"
             android:textSize="14sp"
-            android:textStyle="bold"
             android:textColor="@color/new_gray" />
 
         <ImageView
@@ -132,11 +131,11 @@
         <Spinner
             android:id="@+id/btnMonth"
             style="@style/spinner_style"
-            android:layout_width="150dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/btnDateMonth"
             android:layout_centerInParent="true"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="20dp"
             android:layout_marginTop="10dp"
             android:ellipsize="end"
             android:fontFamily="sans-serif"
@@ -152,15 +151,17 @@
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/lis_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
 
         <ListView
             android:id="@+id/listView_events"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:divider="@color/background_grey"
-            android:dividerHeight="0dp" />
+            android:dividerHeight="1dp" />
 
     </LinearLayout>
 

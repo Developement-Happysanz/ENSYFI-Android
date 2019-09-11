@@ -5,13 +5,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.activity.teachermodule.AcademicExamViewActivity;
 import com.palprotech.ensyfi.bean.teacher.viewlist.AcademicExams;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Admin on 15-07-2017.
@@ -23,6 +27,7 @@ public class AcademicExamsListBaseAdapter extends BaseAdapter {
     LayoutInflater inflater;
     Context context;
     int[] result;
+    MyViewHolder mViewHolder;
 
     public AcademicExamsListBaseAdapter(Context context, ArrayList<AcademicExams> myList) {
         this.myList = myList;
@@ -50,7 +55,6 @@ public class AcademicExamsListBaseAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        MyViewHolder mViewHolder;
 
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.academic_exams_list_view, parent, false);
@@ -76,7 +80,34 @@ public class AcademicExamsListBaseAdapter extends BaseAdapter {
             }
         });
 
+        viewAcademicExamsDetailPage(currentListData);
+
         return convertView;
+    }
+
+    public void viewAcademicExamsDetailPage(AcademicExams id) {
+//        Date Date2 = new Date();
+        Date Date2  = null;
+        String toDate = id.getToDate();
+//        Date date1 = new Date();
+        Date date12 = null;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yy");
+        if (!toDate.isEmpty()) {
+            try {
+                Date2 = sdf.parse(toDate);
+                date12 = sdf.parse(sdf.format(new Date() ));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        if ((Date2.compareTo(date12) > 0) || (Date2.compareTo(date12) == 0)) {
+            mViewHolder.tstStatus.setVisibility(View.GONE);
+            mViewHolder.status.setVisibility(View.GONE);
+        }
+        else {
+            mViewHolder.tstStatus.setVisibility(View.VISIBLE);
+            mViewHolder.status.setVisibility(View.VISIBLE);
+        }
     }
 
     private class MyViewHolder {
@@ -85,6 +116,8 @@ public class AcademicExamsListBaseAdapter extends BaseAdapter {
         TextView txtFromDate;
         TextView txtToDate;
         TextView txtExamIdLocal;
+        TextView tstStatus;
+        ImageView status;
 
 
         public MyViewHolder(View item) {
@@ -92,6 +125,8 @@ public class AcademicExamsListBaseAdapter extends BaseAdapter {
             txtFromDate = (TextView) item.findViewById(R.id.txtFromDate);
             txtToDate = (TextView) item.findViewById(R.id.txtToDate);
             txtExamIdLocal = (TextView) item.findViewById(R.id.txtExamIdLocal);
+            tstStatus = (TextView) item.findViewById(R.id.status);
+            status = (ImageView) item.findViewById(R.id.imgStatus);
         }
     }
 }

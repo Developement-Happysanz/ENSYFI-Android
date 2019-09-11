@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.palprotech.ensyfi.customview.caldroid_calendar.customcalendar.SquareTextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/calendar_tv"
     style="?styleCaldroidSquareCell"
     android:layout_width="match_parent"
     android:layout_height="match_parent" />

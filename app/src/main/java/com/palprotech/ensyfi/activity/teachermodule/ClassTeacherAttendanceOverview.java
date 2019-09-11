@@ -42,7 +42,7 @@ public class ClassTeacherAttendanceOverview extends AppCompatActivity implements
 
     private static final String TAG = ClassTeacherAttendanceOverview.class.getName();
     private ClassTeacherAttendance classTeacherAttendance;
-    private TextView txtAttendanceDate, txtClassStrength, txtNoPresent, txtNoAbsent, txtName;
+    private TextView txtAttendanceDate, txtClassStrength, txtNoPresent, txtNoAbsent, txtName, txtSep;
     private LinearLayout sendReport, viewAttendance;
     private ProgressDialogHelper progressDialogHelper;
     private ServiceHelper serviceHelper;
@@ -86,6 +86,7 @@ public class ClassTeacherAttendanceOverview extends AppCompatActivity implements
         txtNoPresent = (TextView) findViewById(R.id.txt_no_present);
         txtNoAbsent = (TextView) findViewById(R.id.txt_no_absent);
         txtName = (TextView) findViewById(R.id.taken_by_name);
+        txtSep = (TextView) findViewById(R.id.sep);
         sendReport = (LinearLayout) findViewById(R.id.send_attendance);
         sendReport.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,6 +96,7 @@ public class ClassTeacherAttendanceOverview extends AppCompatActivity implements
         });
         if (classTeacherAttendance.getSent_status().equalsIgnoreCase("1")) {
             sendReport.setVisibility(View.GONE);
+            txtSep.setVisibility(View.GONE);
         } else {
             sendReport.setVisibility(View.VISIBLE);
         }
@@ -128,7 +130,7 @@ public class ClassTeacherAttendanceOverview extends AppCompatActivity implements
     }
 
     private void populateData() {
-        txtClassStrength.setText(": " + classTeacherAttendance.getClass_total());
+        txtClassStrength.setText(classTeacherAttendance.getClass_total());
 
         String start = classTeacherAttendance.getCreated_at();
         try {
@@ -137,17 +139,17 @@ public class ClassTeacherAttendanceOverview extends AppCompatActivity implements
             SimpleDateFormat sent_date = new SimpleDateFormat("dd-MM-yyyy");
             String sent_date_name = sent_date.format(date.getTime());
             if (start != null) {
-                txtAttendanceDate.setText(": " + sent_date_name);
+                txtAttendanceDate.setText(sent_date_name);
             } else {
-                txtAttendanceDate.setText(": N/A");
+                txtAttendanceDate.setText("N/A");
             }
         } catch (final ParseException e) {
             e.printStackTrace();
         }
 
-        txtNoPresent.setText(": " + classTeacherAttendance.getNoOfPresent());
-        txtNoAbsent.setText(": " + classTeacherAttendance.getNoOfAbsent());
-        txtName.setText(": " + classTeacherAttendance.getName());
+        txtNoPresent.setText(classTeacherAttendance.getNoOfPresent());
+        txtNoAbsent.setText(classTeacherAttendance.getNoOfAbsent());
+        txtName.setText(classTeacherAttendance.getName());
     }
 
     @Override
