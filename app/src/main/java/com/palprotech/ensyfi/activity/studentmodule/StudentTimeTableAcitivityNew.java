@@ -2,12 +2,14 @@ package com.palprotech.ensyfi.activity.studentmodule;
 
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+
 import android.view.View;
 import android.widget.ImageView;
 
+import com.google.android.material.tabs.TabLayout;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.adapter.teachermodule.TeacherTimeTableAdapter;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;

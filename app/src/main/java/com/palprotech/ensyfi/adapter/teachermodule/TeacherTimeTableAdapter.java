@@ -1,10 +1,12 @@
 package com.palprotech.ensyfi.adapter.teachermodule;
 
 import android.content.Context;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+
+import com.google.android.material.tabs.TabLayout;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 
 
@@ -35,20 +37,20 @@ public class TeacherTimeTableAdapter  extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
 //        return TimeTableDayOneFragment.newInstance(position + 1);
         switch (position) {
-            case 0:
-                return new TimeTableDayOneFragment();
-            case 1:
-                return new TimeTableDayTwoFragment();
-            case 2:
-                return new TimeTableDayThreeFragment();
-            case 3:
-                return new TimeTableDayFourFragment();
-            case 4:
-                return new TimeTableDayFiveFragment();
-            case 5:
-                return new TimeTableDaySixFragment();
-            case 6:
-                return new TimeTableDaySevenFragment();
+//            case 0:
+//                return new TimeTableDayOneFragment();
+//            case 1:
+//                return new TimeTableDayTwoFragment();
+//            case 2:
+//                return new TimeTableDayThreeFragment();
+//            case 3:
+//                return new TimeTableDayFourFragment();
+//            case 4:
+//                return new TimeTableDayFiveFragment();
+//            case 5:
+//                return new TimeTableDaySixFragment();
+//            case 6:
+//                return new TimeTableDaySevenFragment();
         }
         return null;
     }

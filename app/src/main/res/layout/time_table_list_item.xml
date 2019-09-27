@@ -13,29 +13,53 @@
         android:elevation="6dp"
         android:background="@drawable/shadow_round">
 
-        <TextView
-            android:id="@+id/subject_name"
+        <LinearLayout
+            android:id="@+id/ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_toLeftOf="@id/vr_line"
-            android:paddingBottom="3dp"
-            android:paddingTop="3dp"
-            android:text="Computer Science"
-            android:textColor="@color/new_gray"
-            android:textSize="16sp" />
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <TextView
+                android:id="@+id/subject_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toLeftOf="@id/vr_line"
+                android:paddingBottom="3dp"
+                android:layout_weight="0.5"
+                android:paddingTop="3dp"
+                android:text="Computer Science"
+                android:textColor="@color/new_gray"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/teacher_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/section_name"
+                android:layout_weight="0.5"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:gravity="end"
+                android:layout_toLeftOf="@id/vr_line"
+                android:text="Balamuralikrishna"
+                android:textColor="@color/new_gray"
+                android:textSize="18sp" />
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/class_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/subject_name"
+            android:layout_below="@+id/ll"
             android:layout_marginLeft="10dp"
             android:paddingBottom="3dp"
             android:paddingTop="3dp"
             android:text="XII"
             android:textAllCaps="true"
+            android:visibility="gone"
             android:textColor="@color/new_gray"
             android:textSize="16sp" />
 
@@ -43,25 +67,14 @@
             android:id="@+id/section_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/subject_name"
+            android:layout_below="@+id/ll"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/class_name"
             android:paddingBottom="3dp"
             android:paddingTop="3dp"
+            android:visibility="gone"
             android:text="A1"
             android:textAllCaps="true"
-            android:textColor="@color/new_gray"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/teacher_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/section_name"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_toLeftOf="@id/vr_line"
-            android:text="Balamuralikrishna"
             android:textColor="@color/new_gray"
             android:textSize="16sp" />
 
@@ -69,7 +82,7 @@
             android:id="@+id/hz_line"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@id/teacher_name"
+            android:layout_below="@id/ll"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginTop="10dp"

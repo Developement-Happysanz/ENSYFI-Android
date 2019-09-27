@@ -7,9 +7,10 @@ import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -18,7 +19,9 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.activity.adminmodule.AdminDashBoardActivity;
 import com.palprotech.ensyfi.activity.parentsmodule.ParentDashBoardActivity;
@@ -48,9 +51,16 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         String GCMKey = PreferenceStorage.getGCM(getApplicationContext());
         if (GCMKey.equalsIgnoreCase("")) {
-            String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-            PreferenceStorage.saveGCM(getApplicationContext(), refreshedToken);
+            FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(SplashScreenActivity.this, new OnSuccessListener<InstanceIdResult>() {
+                @Override
+                public void onSuccess(InstanceIdResult instanceIdResult) {
+                    String newToken = instanceIdResult.getToken();
+                    Log.e("newToken", newToken);
+                    PreferenceStorage.saveGCM(getApplicationContext(), newToken);
+                }
+            });
         }
+
 
 //        WebView wView = (WebView) findViewById(R.id.web);
 //        wView.getSettings();

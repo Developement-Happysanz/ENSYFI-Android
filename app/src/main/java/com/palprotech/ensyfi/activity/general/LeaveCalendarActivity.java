@@ -1,11 +1,14 @@
 package com.palprotech.ensyfi.activity.general;
 
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+
 import android.view.View;
 import android.widget.ImageView;
+
+import com.google.android.material.tabs.TabLayout;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.adapter.general.HolidayFragmentAdapter;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;

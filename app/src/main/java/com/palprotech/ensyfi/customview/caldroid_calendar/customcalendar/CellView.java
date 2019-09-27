@@ -3,6 +3,8 @@ package com.palprotech.ensyfi.customview.caldroid_calendar.customcalendar;
 import android.content.Context;
 import android.util.AttributeSet;
 
+import androidx.appcompat.widget.AppCompatTextView;
+
 import com.palprotech.ensyfi.R;
 
 import java.util.ArrayList;
@@ -10,7 +12,7 @@ import java.util.ArrayList;
 /**
  * Created by crocodile2u on 3/30/15.
  */
-public class CellView extends android.support.v7.widget.AppCompatTextView {
+public class CellView extends AppCompatTextView {
 
     public static final int STATE_TODAY = R.attr.state_date_today;
     public static final int STATE_SELECTED = R.attr.state_date_selected;

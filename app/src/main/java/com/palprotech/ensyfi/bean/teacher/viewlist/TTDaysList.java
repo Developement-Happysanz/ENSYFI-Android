@@ -10,7 +10,7 @@ public class TTDaysList {
     @SerializedName("count")
     @Expose
     private int count;
-    @SerializedName("reviewDetails")
+    @SerializedName("timetableDays")
     @Expose
     private ArrayList<TTDays> dayDetails = new ArrayList<TTDays>();
 

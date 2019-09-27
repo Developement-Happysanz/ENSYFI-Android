@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/new_gray">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/new_gray">
+
+        <TextView
+            android:id="@+id/txtTeacherId"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="1dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="Roll No."
+            android:textColor="@color/new_gray"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/txtTeacherName"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginStart="1dp"
+            android:layout_toLeftOf="@+id/txtTeacherMainSubject"
+            android:layout_toRightOf="@+id/txtTeacherId"
+            android:background="@color/white"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:text="Teacher Name"
+            android:textColor="@color/new_gray"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+</FrameLayout>
+
+

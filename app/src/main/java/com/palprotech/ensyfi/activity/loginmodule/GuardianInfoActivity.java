@@ -1,7 +1,8 @@
 package com.palprotech.ensyfi.activity.loginmodule;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;

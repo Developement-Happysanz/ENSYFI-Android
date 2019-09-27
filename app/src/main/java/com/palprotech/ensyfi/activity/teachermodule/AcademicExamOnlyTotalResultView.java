@@ -3,8 +3,8 @@ package com.palprotech.ensyfi.activity.teachermodule;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -168,32 +168,20 @@ public class AcademicExamOnlyTotalResultView extends AppCompatActivity implement
         progressDialogHelper.hideProgressDialog();
 
         if (validateSignInResponse(response)) {
-            mHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    progressDialogHelper.hideProgressDialog();
-
-                    Gson gson = new Gson();
-                    ExamResultList examResultList = gson.fromJson(response.toString(), ExamResultList.class);
-                    if (examResultList.getExamResult() != null && examResultList.getExamResult().size() > 0) {
-                        totalCount = examResultList.getCount();
-                        isLoadingForFirstTime = false;
-                        updateListAdapter(examResultList.getExamResult());
-                    }
-                }
-            });
+            Gson gson = new Gson();
+            ExamResultList examResultList = gson.fromJson(response.toString(), ExamResultList.class);
+            if (examResultList.getExamResult() != null && examResultList.getExamResult().size() > 0) {
+                totalCount = examResultList.getCount();
+                isLoadingForFirstTime = false;
+                updateListAdapter(examResultList.getExamResult());
+            }
         }
     }
 
     @Override
     public void onError(final String error) {
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                progressDialogHelper.hideProgressDialog();
-                AlertDialogHelper.showSimpleAlertDialog(getApplicationContext(), error);
-            }
-        });
+        progressDialogHelper.hideProgressDialog();
+        AlertDialogHelper.showSimpleAlertDialog(this, error);
     }
 
     protected void updateListAdapter(ArrayList<ExamResult> examResultArrayList) {

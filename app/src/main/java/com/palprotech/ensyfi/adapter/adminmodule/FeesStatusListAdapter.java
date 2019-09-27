@@ -2,7 +2,6 @@ package com.palprotech.ensyfi.adapter.adminmodule;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +11,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 //import com.makeramen.roundedimageview.RoundedTransformationBuilder;
+import androidx.core.content.ContextCompat;
+
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.bean.admin.viewlist.FeesStatus;
 import com.squareup.picasso.Transformation;

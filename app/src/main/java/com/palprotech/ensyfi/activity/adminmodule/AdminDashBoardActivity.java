@@ -7,11 +7,6 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -22,6 +17,12 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.activity.general.CircularActivity;
@@ -55,7 +56,9 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
     boolean doubleBackToExitPressedOnce = false;
     private ImageView imgNavProfileImage;
     private ArrayAdapter<String> navListAdapter;
-    private String[] values = {"Profile", "Students", "Teachers", "Parents", "Classes", "Exam", "Result", "Events", "Circular", "Fee Status", "On Duty", "Notifications", "Leave Requests", "Settings", "Sign Out", "Attendance"};
+    private String[] values = {"Profile", "Students", "Teachers", "Parents", "Classes", "Exam",
+            "Result", "Events", "Circular", "Fee Status", "On Duty", "Notifications", "Leave Requests",
+            "Settings", "Sign Out", "Attendance", "Board Members"};
     TextView navUserProfileName = null;
     LinearLayout students, teachers, parents, classes, exams, results, events, communication;
     private String mCurrentUserProfileUrl = "";
@@ -300,6 +303,10 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
             doLogout();
         } else if (position == 15) {
             Intent navigationIntent = new Intent(this, ClassAttendanceActivity.class);
+            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(navigationIntent);
+        } else if (position == 16) {
+            Intent navigationIntent = new Intent(this, BoardMembersListActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         }
