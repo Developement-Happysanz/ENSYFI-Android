@@ -167,12 +167,6 @@
             android:theme="@style/AppThemeNoActionBarPink" />
 
         <activity
-            android:name=".activity.studentmodule.StudentTimeTableAcitivityNew"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeNoActionBarPink" />
-
-        <activity
             android:name=".activity.studentmodule.StudentTimeTableAcitivityNewnew"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
@@ -360,7 +354,7 @@
             android:theme="@style/AppThemeNoActionBarGrey" />
 
         <activity
-            android:name=".activity.teachermodule.TeacherTimeTableNew"
+            android:name=".activity.teachermodule.TeacherTimeTableNewnew"
             android:label="@string/app_name"
 
             android:theme="@style/AppThemeNoActionBarGrey" />
@@ -457,6 +451,18 @@
 
         <activity
             android:name=".activity.teachermodule.TeacherAttendanceInsertActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarPink" />
+
+        <activity
+            android:name=".activity.teachermodule.SpecialClassActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarPink" />
+
+        <activity
+            android:name=".activity.teachermodule.SubstitutionActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarPink" />
@@ -678,12 +684,6 @@
                 <action android:name="com.google.android.gms.iid.InstanceID" />
             </intent-filter>
         </service>-->
-
-        <service android:name=".servicehelpers.fcm.MyFirebaseInstanceIDService">
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-            </intent-filter>
-        </service>
 
         <service android:name=".servicehelpers.fcm.MyFirebaseMessagingService">
             <intent-filter>

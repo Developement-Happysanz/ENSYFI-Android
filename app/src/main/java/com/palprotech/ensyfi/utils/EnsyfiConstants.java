@@ -95,7 +95,7 @@ public class EnsyfiConstants {
     public static final String GET_EXAM_MARK_API = "/apistudent/disp_Exammarks/";
 
     // STUDENT TIMETABLE URL
-    public static final String GET_STUDENT_TIME_TABLE_API = "/apistudent/disp_Timetable/";
+    public static final String GET_STUDENT_TIME_TABLE_API = "/apimain/view_time_table_for_class";
     public static final String GET_TIME_TABLE_DAYS_API = "/apimain/disp_timetabledays/";
     public static final String GET_TIME_TABLE_API = "/apimain/disp_timetable/";
 
@@ -122,11 +122,13 @@ public class EnsyfiConstants {
     // CLASS TEST & HOMEWORK
     public static final String GET_CLASS_TEST_HOMEWORK_API = "/apiteacher/add_Homework/";
     public static final String GET_CLASS_TEST_MARK_API = "/apiteacher/add_HWmarks/";
+    public static final String EDIT_CLASS_TEST_MARK_API = "/apiteacher/update_class_test_marks/";
     public static final String LOAD_STUDENT_CLASSTEST_AND_HOMEWORK = "/apiteacher/reloadHomework/";
     public static final String LOAD_STUDENT_EXAM_AND_EXAM_DETAILS = "/apiteacher/reloadExam/";
 
     // EXAM & RESULT
     public static final String GET_ACADEMIC_EXAM_MARK_API = "/apiteacher/add_Exammarks/";
+    public static final String EDIT_ACADEMIC_EXAM_MARK_API = "/apiteacher/update_exam_marks/";
 
     // USER LEAVES
     public static final String GET_USER_LEAVES_API = "/apiteacher/disp_Userleaves/";
@@ -161,6 +163,10 @@ public class EnsyfiConstants {
 
     public static final String GET_ACADEMIC_EXAM_MARK = "/apiteacher/disp_Exammarks/";
 
+    public static final String GET_ACADEMIC_EXAM_MARK_STATUS = "/apiteacher/view_exam_mark_status/";
+
+    public static final String GET_ACADEMIC_EXAM_MARK_DETAILS = "/apiteacher/view_exam_details/";
+
     public static final String GET_PARENT_INFO = "/apiadmin/get_parent_details/";
 
     public static final String GET_VIEW_STUDENT_INFO = "/apiadmin/get_parent_student_list/";
@@ -175,6 +181,12 @@ public class EnsyfiConstants {
 
     //Exam duty
     public static final String GET_EXAM_DUTY = "/apiteacher/view_Examduty/";
+
+    //Exam duty
+    public static final String GET_SPECIAL_CLASS = "/apiteacher/view_special_class/";
+
+    //Exam duty
+    public static final String GET_SUBSTITUTION_CLASS = "/apiteacher/view_substitution/";
 
     //Class and sec List
     public static final String GET_CLASS_SECTION = "/apimain/list_class_section/";
@@ -526,6 +538,10 @@ public class EnsyfiConstants {
     // Timetable Review
     public static final String GET_ON_TIME_TABLE_REVIEW_ADD = "/apiteacher/add_Timetablereview/";
     public static final String GET_ON_TIME_TABLE_REVIEW_ = "/apiteacher/disp_Timetablereview/";
+
+    // Timetable Review
+    public static final String GET_TEACHER_TIME_TABLE = "/apiteacher/view_timetable_for_teacher/";
+    public static final String GET_TEACHER_TIME_TABLE_DAYS = "/apiteacher/view_timetable_days/";
 
     // Circular Params
     public static final String PARAMS_CIRCULAR_TITLE = "circular_title";

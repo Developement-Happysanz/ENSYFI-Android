@@ -1,5 +1,6 @@
 package com.palprotech.ensyfi.activity.teachermodule;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +16,7 @@ import com.google.gson.Gson;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.adapter.teachermodule.ExamResultListAdapter;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
+import com.palprotech.ensyfi.bean.teacher.support.SaveTeacherData;
 import com.palprotech.ensyfi.bean.teacher.viewlist.ExamResult;
 import com.palprotech.ensyfi.bean.teacher.viewlist.ExamResultList;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
@@ -38,6 +40,9 @@ import java.util.ArrayList;
 public class AcademicExamResultView extends AppCompatActivity implements IServiceListener, DialogClickListener {
 
     long hwId;
+    String classSubjectId;
+    String classId;
+    String examsId;
     String homeWorkId;
     private static final String TAG = ViewClassTestMarkActivity.class.getName();
     private ProgressDialogHelper progressDialogHelper;
@@ -50,6 +55,8 @@ public class AcademicExamResultView extends AppCompatActivity implements IServic
     Handler mHandler = new Handler();
     SQLiteHelper db;
     String examId, examName, isInternalExternal, classMasterId, sectionName, className, fromDate, toDate, markStatus;
+    String resString = "";
+    SaveTeacherData tchDat = new SaveTeacherData(this);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,6 +64,9 @@ public class AcademicExamResultView extends AppCompatActivity implements IServic
         setContentView(R.layout.academic_exam_result_view);
 
         hwId = getIntent().getExtras().getLong("id");
+        classSubjectId = getIntent().getExtras().getString("subject_id");
+        classId = getIntent().getExtras().getString("classMasterId");
+        examsId = getIntent().getExtras().getString("examId");
         homeWorkId = String.valueOf(hwId);
         String examId = String.valueOf(hwId);
         serviceHelper = new ServiceHelper(this);
@@ -66,7 +76,6 @@ public class AcademicExamResultView extends AppCompatActivity implements IServic
         loadMoreListView = (ListView) findViewById(R.id.listView_events);
         examResultArrayList = new ArrayList<>();
         GetAcademicExamInfo(examId);
-        GetClassTestMarkData();
 
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
         bckbtn.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +84,22 @@ public class AcademicExamResultView extends AppCompatActivity implements IServic
                 finish();
             }
         });
+        findViewById(R.id.edit_mark).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AddAcademicExamMarksActivity.class);
+                intent.putExtra("id", hwId);
+                intent.putExtra("subject_id", classSubjectId);
+                intent.putExtra("classMasterId", classId);
+                intent.putExtra("examId", examsId);
+                intent.putExtra("type", "edit");
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        GetMarkStatus();
+
     }
 
     private void GetAcademicExamInfo(String examIdLocal) {
@@ -101,8 +126,51 @@ public class AcademicExamResultView extends AppCompatActivity implements IServic
         }
     }
 
-    private void GetClassTestMarkData() {
+    private void GetMarkStatus() {
+        resString = "status";
+        if (CommonUtils.isNetworkAvailable(this)) {
 
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put(EnsyfiConstants.KEY_USER_ID, classMasterId);
+                jsonObject.put(EnsyfiConstants.PARAM_EXAM_ID, examId);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_ACADEMIC_EXAM_MARK_STATUS;
+            serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
+        } else {
+            AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
+        }
+    }
+
+    private void GetMarkDataDB() {
+        resString = "markDataDB";
+        if (CommonUtils.isNetworkAvailable(this)) {
+
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put(EnsyfiConstants.KEY_USER_ID, PreferenceStorage.getUserId(this));
+                jsonObject.put(EnsyfiConstants.PARAMS_ACADEMIC_EXAM_MARKS_CLASS_MASTER_ID, classMasterId);
+                jsonObject.put(EnsyfiConstants.PARAM_EXAM_ID, examId);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_ACADEMIC_EXAM_MARK_DETAILS;
+            serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
+        } else {
+            AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
+        }
+    }
+
+    private void GetClassTestMarkData() {
+        resString = "data";
 
         if (examResultArrayList != null)
             examResultArrayList.clear();
@@ -171,20 +239,25 @@ public class AcademicExamResultView extends AppCompatActivity implements IServic
         progressDialogHelper.hideProgressDialog();
 
         if (validateSignInResponse(response)) {
-            mHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    progressDialogHelper.hideProgressDialog();
-
-                    Gson gson = new Gson();
-                    ExamResultList examResultList = gson.fromJson(response.toString(), ExamResultList.class);
-                    if (examResultList.getExamResult() != null && examResultList.getExamResult().size() > 0) {
-                        totalCount = examResultList.getCount();
-                        isLoadingForFirstTime = false;
-                        updateListAdapter(examResultList.getExamResult());
-                    }
+            if (resString.equalsIgnoreCase("status")) {
+                findViewById(R.id.edit_mark).setVisibility(View.VISIBLE);
+                GetClassTestMarkData();
+            } else if (resString.equalsIgnoreCase("data")) {
+                Gson gson = new Gson();
+                ExamResultList examResultList = gson.fromJson(response.toString(), ExamResultList.class);
+                if (examResultList.getExamResult() != null && examResultList.getExamResult().size() > 0) {
+                    totalCount = examResultList.getCount();
+                    isLoadingForFirstTime = false;
+                    updateListAdapter(examResultList.getExamResult());
                 }
-            });
+                GetMarkDataDB();
+            } else if (resString.equalsIgnoreCase("markDataDB")) {
+                try {
+                    tchDat.saveExamsDetails(response.getJSONArray("data"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 

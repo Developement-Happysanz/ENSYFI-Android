@@ -39,6 +39,7 @@ import com.palprotech.ensyfi.activity.loginmodule.ProfileActivityNew;
 import com.palprotech.ensyfi.activity.loginmodule.SettingsActivity;
 import com.palprotech.ensyfi.activity.loginmodule.SplashScreenActivity;
 import com.palprotech.ensyfi.activity.parentsmodule.ParentDashBoardActivity;
+import com.palprotech.ensyfi.activity.studentmodule.StudentTimeTableAcitivityNewnew;
 import com.palprotech.ensyfi.adapter.NavDrawerAdapter;
 import com.palprotech.ensyfi.bean.general.support.DeleteTableRecords;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
@@ -60,7 +61,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
     boolean doubleBackToExitPressedOnce = false;
     private ImageView imgNavProfileImage;
     private ArrayAdapter<String> navListAdapter;
-    private String[] values = {"Profile", "Attendance", "Class Test & Homework", "Exam & Result", "Exam Duty", "Time Table", "Events", "Circular", "On Duty", "Notification", "Apply Leave", "Settings", "Sync", "Sign Out"};
+    private String[] values = {"Profile", "Attendance", "Class Test & Homework", "Exam & Result", "Exam Duty", "Time Table", "Events", "Circular", "On Duty", "Notification", "Apply Leave", "Settings", "Sync", "Sign Out", "Special Class"};
     TextView navUserProfileName = null, classAttendanceInfo, classWorkInfo;
     LinearLayout dashAttendance, dashTimeTable, dashClassTest, dashExam, dashEvent, dashCommunication, classinfo;
     private String mCurrentUserProfileUrl = "";
@@ -156,7 +157,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
         dashTimeTable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), TeacherTimeTableNew.class);
+                Intent intent = new Intent(getApplicationContext(), TeacherTimeTableNewnew.class);
                 startActivity(intent);
             }
         });
@@ -266,7 +267,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 5) {
-            Intent navigationIntent = new Intent(this, TeacherTimeTableNew.class);
+            Intent navigationIntent = new Intent(this, TeacherTimeTableNewnew.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 6) {
@@ -306,6 +307,10 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
         } else if (position == 13) {
             Log.d(TAG, "Perform Logout");
             doLogout();
+        } else if (position == 14) {
+            Intent navigationIntent = new Intent(this, SpecialClassActivity.class);
+            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(navigationIntent);
         }
     }
 

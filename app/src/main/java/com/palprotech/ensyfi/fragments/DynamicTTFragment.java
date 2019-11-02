@@ -2,6 +2,7 @@ package com.palprotech.ensyfi.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +19,8 @@ import androidx.fragment.app.Fragment;
 import com.google.gson.Gson;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.adapter.studentmodule.StudentTimeTableListAdapter;
+import com.palprotech.ensyfi.adapter.teachermodule.TeacherTimetableListAdapter;
+import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 import com.palprotech.ensyfi.bean.student.viewlist.StudentTimeTable;
 import com.palprotech.ensyfi.bean.student.viewlist.StudentTimeTableList;
 import com.palprotech.ensyfi.bean.teacher.viewlist.TTDays;
@@ -34,6 +38,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static android.util.Log.d;
 import static com.android.volley.VolleyLog.TAG;
@@ -46,6 +51,7 @@ public class DynamicTTFragment extends Fragment implements IServiceListener, Ada
     ArrayList<StudentTimeTable> studentTTArrayList = new ArrayList<>();
     private int val;
     private StudentTimeTableListAdapter studentTimeTableListAdapter;
+    private TeacherTimetableListAdapter teacherTimetableListAdapter;
     private static final String TAG = DynamicTTFragment.class.getName();
     private String subCatId = "";
     private ServiceHelper serviceHelper;
@@ -57,6 +63,10 @@ public class DynamicTTFragment extends Fragment implements IServiceListener, Ada
     private Boolean noService = false;
     private String res = "";
     private String id = "";
+    SQLiteHelper db;
+    List<String> list = new ArrayList<String>();
+    List<String> list1 = new ArrayList<String>();
+    int dayCount = 0;
 
     private static boolean _hasLoadedOnce = false; // your boolean field
 
@@ -78,6 +88,7 @@ public class DynamicTTFragment extends Fragment implements IServiceListener, Ada
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_timetable, container, false);
+        db = new SQLiteHelper(view.getContext());
         serviceHelper = new ServiceHelper(view.getContext());
         serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(view.getContext());
@@ -91,7 +102,19 @@ public class DynamicTTFragment extends Fragment implements IServiceListener, Ada
 //        summary.setOnClickListener(this);
 //        c = view.findViewById(R.id.c);
 //        c.setText("" + subCatId);
-        getHolsList();
+        if (PreferenceStorage.getUserType(getActivity()).equalsIgnoreCase("2") ||
+                PreferenceStorage.getUserType(getActivity()).equalsIgnoreCase("1")) {
+            loadTimeTable();
+
+            if (teacherTimetableListAdapter == null) {
+                teacherTimetableListAdapter = new TeacherTimetableListAdapter(getActivity(), this.ttArrayList);
+                loadMoreListView.setAdapter(teacherTimetableListAdapter);
+            } else {
+                teacherTimetableListAdapter.notifyDataSetChanged();
+            }
+        } else {
+            getHolsList();
+        }
         loadMoreListView = view.findViewById(R.id.time_table_list);
         loadMoreListView.setOnItemClickListener(this);
         return view;
@@ -173,6 +196,43 @@ public class DynamicTTFragment extends Fragment implements IServiceListener, Ada
     @Override
     public void onError(String error) {
 
+    }
+
+    private void loadTimeTable() {
+        ttArrayList.clear();
+        try {
+            Cursor c = db.getTeacherTimeTableValueNew("1");
+            if (c.getCount() > 0) {
+                if (c.moveToFirst()) {
+                    do {
+
+                        TimeTable lde = new TimeTable();
+                        lde.setClassName(c.getString(0));
+                        lde.setSecName(c.getString(1));
+                        lde.setSubjectName(c.getString(2));
+                        lde.setClassId(c.getString(3));
+                        lde.setSubjectId(c.getString(4));
+                        lde.setName(c.getString(5));
+                        lde.setPeriod(c.getString(6));
+                        lde.setFromTime(c.getString(7));
+                        lde.setToTime(c.getString(8));
+                        lde.setIsBreak(c.getString(9));
+                        lde.setBreakName(c.getString(10));
+
+                        // Add this object into the ArrayList myList
+                        ttArrayList.add(lde);
+                    } while (c.moveToNext());
+                }
+            } else {
+                Toast.makeText(getActivity(), "No records found", Toast.LENGTH_LONG).show();
+            }
+            db.close();
+
+        } catch (Exception e) {
+            Toast.makeText(getActivity(), "Error", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
+//        setval = true;
     }
 
     public void getHolsList() {

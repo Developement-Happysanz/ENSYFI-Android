@@ -321,12 +321,12 @@ public class AcademicExamViewActivity extends AppCompatActivity implements Dialo
                 if (c.moveToFirst()) {
                     do {
                         examId = c.getString(1);
-//                        examName = c.getString(2);
-//                        isInternalExternal = c.getString(3);
-//                        classMasterId = c.getString(4);
-//                        sectionName = c.getString(5);
-//                        className = c.getString(6);
-//                        fromDate = c.getString(7);
+                        examName = c.getString(2);
+                        isInternalExternal = c.getString(3);
+                        classMasterId = c.getString(4);
+                        sectionName = c.getString(5);
+                        className = c.getString(6);
+                        fromDate = c.getString(7);
                         toDate = c.getString(8);
                         markStatus = c.getString(9);
                     } while (c.moveToNext());

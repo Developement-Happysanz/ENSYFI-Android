@@ -7,7 +7,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import androidx.annotation.Nullable;
+
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -27,10 +27,7 @@ import android.widget.Toast;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.activity.general.CircularActivity;
 import com.palprotech.ensyfi.activity.general.EventsActivity;
-import com.palprotech.ensyfi.activity.general.LeaveCalendarActivity;
 import com.palprotech.ensyfi.activity.general.OnDutyActivity;
-import com.palprotech.ensyfi.activity.loginmodule.ChangePasswordActivity;
-import com.palprotech.ensyfi.activity.loginmodule.ProfileActivity;
 import com.palprotech.ensyfi.activity.loginmodule.ProfileActivityNew;
 import com.palprotech.ensyfi.activity.loginmodule.SettingsActivity;
 import com.palprotech.ensyfi.activity.loginmodule.SplashScreenActivity;
@@ -38,14 +35,13 @@ import com.palprotech.ensyfi.activity.studentmodule.AttendanceActivity;
 import com.palprotech.ensyfi.activity.studentmodule.ClassTestHomeworkActivity;
 import com.palprotech.ensyfi.activity.studentmodule.ExamsResultActivity;
 import com.palprotech.ensyfi.activity.studentmodule.StudentInfoActivity;
-import com.palprotech.ensyfi.activity.studentmodule.StudentTimeTableAcitivityNew;
 import com.palprotech.ensyfi.activity.studentmodule.StudentTimeTableAcitivityNewnew;
-import com.palprotech.ensyfi.activity.studentmodule.StudentTimeTableActivity;
+import com.palprotech.ensyfi.activity.teachermodule.TeacherTimeTableNewnew;
 import com.palprotech.ensyfi.adapter.NavDrawerAdapter;
 import com.palprotech.ensyfi.bean.general.support.DeleteTableRecords;
+import com.palprotech.ensyfi.bean.teacher.viewlist.SpecialClass;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 public class ParentDashBoardActivity extends AppCompatActivity implements DialogClickListener {
@@ -138,7 +134,7 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
         dashTimeTable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), StudentTimeTableAcitivityNewnew.class);
+                Intent intent = new Intent(getApplicationContext(), TeacherTimeTableNewnew.class);
                 startActivity(intent);
             }
         });
@@ -244,7 +240,7 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 4) {
-            Intent navigationIntent = new Intent(this, StudentTimeTableAcitivityNew.class);
+            Intent navigationIntent = new Intent(this, TeacherTimeTableNewnew.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 5) {
@@ -277,6 +273,11 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
             Log.d(TAG, "Perform Logout");
             doLogout();
         }
+//        else if (position == 11) {
+//            Intent navigationIntent = new Intent(this, SpecialClass.class);
+//            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            startActivity(navigationIntent);
+//        }
     }
 
     @Override

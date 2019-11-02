@@ -183,7 +183,7 @@ public class SchoolIdLoginActivity extends AppCompatActivity implements View.OnC
     @Override
     public void onResponse(JSONObject response) {
         progressDialogHelper.hideProgressDialog();
-        if (validateSignInResponse(response)) {
+         if (validateSignInResponse(response)) {
             try {
                 JSONObject userData = response.getJSONObject("userData");
                 String ins_id = null;

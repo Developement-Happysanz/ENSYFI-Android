@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/period_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/shadow_round"
+        android:elevation="6dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toLeftOf="@id/vr_line"
+                    android:layout_weight="0.5"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:text="Class"
+                    android:textColor="@color/appColorBase"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/class_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ll"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="10dp"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:text="XII"
+                    android:textAllCaps="true"
+                    android:textColor="@color/new_gray"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@id/vr_line"
+                    android:layout_weight="0.5"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:text="Teacher"
+                    android:textColor="@color/appColorBase"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/teacher_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/section_name"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="0.5"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:text="Balamuralikrishna"
+                    android:textColor="@color/new_gray"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/hz_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/section_name"
+            android:layout_marginTop="10dp"
+            android:background="@color/background_grey"
+            android:gravity="center_vertical" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toLeftOf="@id/vr_line"
+                    android:layout_weight="0.5"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:text="Subject"
+                    android:textColor="@color/appColorBase"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/subject_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="0.5"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:text="Computer Science"
+                    android:textColor="@color/new_gray"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@id/vr_line"
+                    android:layout_weight="0.5"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:text="Date"
+                    android:textColor="@color/appColorBase"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/section_name"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="0.5"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:text="DD-MM-YYYY"
+                    android:textColor="@color/new_gray"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/hz_line1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/section_name"
+            android:layout_marginTop="10dp"
+            android:background="@color/background_grey"
+            android:gravity="center_vertical" />
+
+
+        <TextView
+            android:id="@+id/period_number"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/hz_line"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:paddingBottom="20dp"
+            android:text="01"
+            android:textColor="@color/new_gray"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/period_number"
+            android:layout_alignRight="@id/period_number"
+            android:layout_alignBottom="@id/hz_line"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="5dp"
+            android:gravity="bottom|center_horizontal"
+            android:text="Period"
+            android:textColor="@color/new_gray"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toLeftOf="@id/vr_line"
+                    android:layout_weight="0.5"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:text="Start Time"
+                    android:textColor="@color/appColorBase"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/period_start_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="0.5"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:text="9:00"
+                    android:textColor="@color/new_gray"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@id/vr_line"
+                    android:layout_weight="0.5"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:text="End Time"
+                    android:textColor="@color/appColorBase"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/period_end_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/section_name"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="0.5"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:text="10:00"
+                    android:textColor="@color/new_gray"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

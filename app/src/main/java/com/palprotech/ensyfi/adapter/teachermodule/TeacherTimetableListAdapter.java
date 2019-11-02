@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 import com.palprotech.ensyfi.bean.teacher.viewlist.TimeTable;
+import com.palprotech.ensyfi.utils.PreferenceStorage;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -73,6 +74,13 @@ public class TeacherTimetableListAdapter extends BaseAdapter {
             holder.txtBreakName = (TextView) convertView.findViewById(R.id.break_name);
             holder.txtBreakStartTime = (TextView) convertView.findViewById(R.id.break_start_time);
             holder.txtBreakEndTime = (TextView) convertView.findViewById(R.id.break_end_time);
+            if (PreferenceStorage.getUserType(context).equalsIgnoreCase("2")) {
+                holder.txtClassName.setVisibility(View.VISIBLE);
+                holder.txtClassName.setVisibility(View.VISIBLE);
+            } else {
+                holder.txtClassName.setVisibility(View.GONE);
+                holder.txtClassName.setVisibility(View.GONE);
+            }
             convertView.setTag(holder);
         } else {
             holder = (TeacherTimetableListAdapter.ViewHolder) convertView.getTag();
