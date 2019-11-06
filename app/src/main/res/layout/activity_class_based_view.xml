@@ -188,7 +188,7 @@
                 android:layout_marginLeft="2dp"
                 android:background="@color/new_gray"
                 android:gravity="center"
-                android:text="S.No."
+                android:text="S.No"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 
@@ -203,7 +203,7 @@
                 android:background="@color/new_gray"
                 android:gravity="center"
                 android:paddingLeft="5dp"
-                android:text="Teacher Name"
+                android:text="Teacher"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 
@@ -250,7 +250,7 @@
                 android:layout_marginLeft="2dp"
                 android:background="@color/new_gray"
                 android:gravity="center"
-                android:text="S.No."
+                android:text="S.No"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 
@@ -264,7 +264,7 @@
                 android:layout_toRightOf="@+id/ClassStudentRegId"
                 android:background="@color/new_gray"
                 android:gravity="center"
-                android:text="Student Name"
+                android:text="Student"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 

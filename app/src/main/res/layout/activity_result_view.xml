@@ -35,7 +35,7 @@
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:minHeight="?android:attr/actionBarSize"
-            android:text="Result"
+            android:text="Exam Results"
             android:textColor="@color/white"
             android:textSize="@dimen/menuTextSize"
             android:textStyle="bold" />

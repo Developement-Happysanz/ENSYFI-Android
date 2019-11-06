@@ -56,9 +56,9 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
     boolean doubleBackToExitPressedOnce = false;
     private ImageView imgNavProfileImage;
     private ArrayAdapter<String> navListAdapter;
-    private String[] values = {"Profile", "Students", "Teachers", "Parents", "Classes", "Exam",
-            "Result", "Events", "Circular", "Fee Status", "On Duty", "Notifications", "Leave Requests",
-            "Settings", "Sign Out", "Attendance", "Board Members"};
+    private String[] values = {"Profile", "Students", "Teachers", "Parents", "Board Members", "Attendance", "Classes", "Examinations",
+            "Results", "Events", "Circulars", "Fee Status", "On Duty", "Notifications", "Leaves",
+            "Settings", "Sign Out"};
     TextView navUserProfileName = null;
     LinearLayout students, teachers, parents, classes, exams, results, events, communication;
     private String mCurrentUserProfileUrl = "";
@@ -72,7 +72,7 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
         String userTypeString = PreferenceStorage.getUserType(getApplicationContext());
         int userType = Integer.parseInt(userTypeString);
         if (userType == 1) {
-            setTitle("ENSYFI - Admin");
+            setTitle("ENSYFI Admin");
         }
         toolbar = (Toolbar) findViewById(R.id.activity_toolbar);
         setSupportActionBar(toolbar);
@@ -252,39 +252,47 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 4) {
-            Intent navigationIntent = new Intent(this, ClassBasedViewActivity.class);
+            Intent navigationIntent = new Intent(this, BoardMembersListActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 5) {
-            Intent navigationIntent = new Intent(this, ExamViewActivity.class);
+            Intent navigationIntent = new Intent(this, ClassAttendanceActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 6) {
-            Intent navigationIntent = new Intent(this, ResultViewActivity.class);
+            Intent navigationIntent = new Intent(this, ClassBasedViewActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 7) {
+            Intent navigationIntent = new Intent(this, ExamViewActivity.class);
+            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(navigationIntent);
+        }else if (position == 8) {
+            Intent navigationIntent = new Intent(this, ResultViewActivity.class);
+            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(navigationIntent);
+        } else if (position == 9) {
             Intent navigationIntent = new Intent(this, EventsActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 8) {
+        } else if (position == 10) {
 //            Intent navigationIntent = new Intent(this, CircularMasterListActivity.class);
             Intent navigationIntent = new Intent(this, CircularActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 9) {
+        } else if (position == 11) {
             Intent navigationIntent = new Intent(this, FeesViewActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 10) {
+        } else if (position == 12) {
             Intent navigationIntent = new Intent(this, OnDutyViewActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 11) {
+        } else if (position == 13) {
             Intent navigationIntent = new Intent(this, GroupNotificationAdminViewActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 12) {
+        } else if (position == 14) {
             Intent navigationIntent = new Intent(this, LeaveStatusActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
@@ -294,21 +302,13 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
 //            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //            startActivity(navigationIntent);
 //        }
-        else if (position == 13) {
+        else if (position == 15) {
             Intent navigationIntent = new Intent(this, SettingsActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 14) {
+        } else if (position == 16) {
             Log.d(TAG, "Perform Logout");
             doLogout();
-        } else if (position == 15) {
-            Intent navigationIntent = new Intent(this, ClassAttendanceActivity.class);
-            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(navigationIntent);
-        } else if (position == 16) {
-            Intent navigationIntent = new Intent(this, BoardMembersListActivity.class);
-            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(navigationIntent);
         }
     }
 

@@ -63,7 +63,9 @@ public class TeacherTimeTableNewnew extends AppCompatActivity implements IServic
         });
         tab = (TabLayout) findViewById(R.id.tab_layout);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
-        if (PreferenceStorage.getUserType(this).equalsIgnoreCase("2")) {
+        if (PreferenceStorage.getUserType(this).equalsIgnoreCase("1")) {
+            getDaysAdmin();
+        }else if (PreferenceStorage.getUserType(this).equalsIgnoreCase("2")) {
             getDays();
         } else {
             loadday();
@@ -119,11 +121,32 @@ public class TeacherTimeTableNewnew extends AppCompatActivity implements IServic
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 
+    private void getDaysAdmin() {
+        resString = "days";
+        JSONObject jsonObject = new JSONObject();
+        String id = "";
+        id = PreferenceStorage.getTeacherId(this);
+        try {
+            jsonObject.put(EnsyfiConstants.KEY_USER_ID, id);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_TEACHER_TIME_TABLE_DAYS;
+        serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
+    }
+
     private void getTimeTable() {
         resString = "TTT";
         JSONObject jsonObject = new JSONObject();
         String id = "";
-        id = PreferenceStorage.getUserId(this);
+        if (PreferenceStorage.getUserType(this).equalsIgnoreCase("1")) {
+            id = PreferenceStorage.getTeacherId(this);
+        } else {
+            id = PreferenceStorage.getUserId(this);
+        }
         try {
             jsonObject.put(EnsyfiConstants.KEY_USER_ID, id);
 

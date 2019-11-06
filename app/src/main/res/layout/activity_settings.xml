@@ -151,7 +151,7 @@
                 android:textSize="16sp"
                 android:layout_weight="0.2"
                 android:layout_marginLeft="20dp"
-                android:text="Notification Preference"/>
+                android:text="Notification Settings"/>
 
             <ImageView
                 android:layout_width="match_parent"
@@ -266,7 +266,7 @@
                     android:textSize="16sp"
                     android:layout_weight="0.2"
                     android:layout_marginLeft="20dp"
-                    android:text="Mail"/>
+                    android:text="EMail"/>
 
                 <Switch
                     android:id="@+id/mail_noti_switch"

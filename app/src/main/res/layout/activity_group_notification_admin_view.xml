@@ -34,7 +34,7 @@
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:minHeight="?android:attr/actionBarSize"
-            android:text="Group list"
+            android:text="Notifications"
             android:textColor="@color/white"
             android:textSize="@dimen/menuTextSize"
             android:textStyle="bold" />
@@ -80,7 +80,7 @@
             android:layout_height="match_parent"
             android:background="@color/new_gray"
             android:gravity="center"
-            android:text="Title"
+            android:text="Group"
             android:layout_alignParentLeft="true"
             android:layout_toLeftOf="@+id/group_lead"
             android:textColor="@color/white"

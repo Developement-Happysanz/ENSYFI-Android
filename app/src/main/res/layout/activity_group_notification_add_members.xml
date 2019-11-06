@@ -38,7 +38,7 @@
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:minHeight="?android:attr/actionBarSize"
-            android:text="Add member"
+            android:text="Add Member"
             android:textColor="@color/white"
             android:textSize="@dimen/menuTextSize"
             android:textStyle="bold" />
@@ -69,7 +69,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
                     android:gravity="center"
-                    android:text="Title"
+                    android:text="Group"
                     android:textColor="@color/new_gray"
                     android:textSize="16sp" />
 
@@ -96,7 +96,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
-                    android:text="Group Lead"
+                    android:text="Group Admin"
                     android:textColor="@color/new_gray"
                     android:textSize="16sp" />
 

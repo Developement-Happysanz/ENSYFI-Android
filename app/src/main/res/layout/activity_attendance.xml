@@ -83,7 +83,7 @@
                         android:padding="10dp"
                         android:layout_weight="0.50"
                         android:background="@color/appColor"
-                        android:text="No. of Working Days"
+                        android:text="Working Days"
                         android:textColor="@color/white" />
 
                     <TextView
@@ -113,7 +113,7 @@
                         android:padding="10dp"
                         android:layout_weight="0.50"
                         android:background="@color/appColor"
-                        android:text="Present Days"
+                        android:text="Days Present"
                         android:textColor="@color/white" />
 
                     <TextView
@@ -144,7 +144,7 @@
                         android:layout_marginTop="1dp"
                         android:layout_weight="0.50"
                         android:background="@color/appColor"
-                        android:text="OD Days"
+                        android:text="On Duty"
                         android:textColor="@color/white" />
 
                     <TextView
@@ -174,7 +174,7 @@
                         android:layout_marginTop="1dp"
                         android:layout_weight="0.50"
                         android:background="@color/appColor"
-                        android:text="Leave Days"
+                        android:text="Leaves"
                         android:padding="10dp"
                         android:textColor="@color/white" />
 
@@ -208,7 +208,7 @@
                         android:layout_marginTop="1dp"
                         android:layout_weight="0.50"
                         android:background="@color/appColor"
-                        android:text="Absent Days"
+                        android:text="Days Absent"
                         android:textColor="@color/white" />
 
                     <TextView
@@ -256,7 +256,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Absent Days"
+                        android:text="Days Absent"
                         android:textColor="@color/new_gray"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -277,7 +277,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Leave Days"
+                        android:text="Leaves"
                         android:textColor="@color/new_gray"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -298,7 +298,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="OD Days"
+                        android:text="On Duty"
                         android:textColor="@color/new_gray"
                         android:textStyle="bold" />
                 </LinearLayout>

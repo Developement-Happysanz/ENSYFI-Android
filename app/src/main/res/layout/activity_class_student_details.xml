@@ -346,7 +346,7 @@
                     android:layout_below="@+id/txtStudentReligion"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Caste"
+                    android:text="Communal Class"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -488,7 +488,7 @@
                     android:layout_below="@+id/txtStudentLanguage"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Mobile"
+                    android:text="Mobile No"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -511,7 +511,7 @@
                     android:layout_below="@+id/txtStudentMobile"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Secondary Mobile"
+                    android:text="Secondary Mobile No"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -534,7 +534,7 @@
                     android:layout_below="@+id/txtStudentSecondaryMobile"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Mail"
+                    android:text="EMail ID"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -558,7 +558,7 @@
                     android:layout_below="@+id/txtStudentMail"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Secondary Mail"
+                    android:text="Secondary EMail ID"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -783,7 +783,7 @@
                         android:layout_weight="0.5"
                         android:textAllCaps="false"
                         android:background="@drawable/btn_square_fill_color"
-                        android:text="ClassTest &amp; Homework "
+                        android:text="Homeworks/Tests "
                         android:textColor="@color/white" />
 
                     <Button
@@ -795,7 +795,7 @@
                         android:textAllCaps="false"
                         android:layout_marginRight="10dp"
                         android:background="@drawable/btn_square_fill_color"
-                        android:text="Fee"
+                        android:text="Fees"
                         android:textColor="@color/white" />
 
                 </LinearLayout>
@@ -830,7 +830,7 @@
                         android:background="@drawable/btn_square_fill_color"
                         android:textAllCaps="false"
                         android:layout_weight="0.5"
-                        android:text="Exam &amp; Result"
+                        android:text="Exam Results"
                         android:textColor="@color/white" />
 
                 </LinearLayout>

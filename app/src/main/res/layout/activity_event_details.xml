@@ -34,7 +34,7 @@
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:minHeight="?android:attr/actionBarSize"
-            android:text="Event Detail"
+            android:text="Event Details"
             android:textColor="@color/white"
             android:textSize="@dimen/menuTextSize"
             android:textStyle="bold" />
@@ -152,7 +152,7 @@
                     android:layout_marginRight="15dp"
                     android:textAllCaps="false"
                     android:background="@drawable/round_btn_color"
-                    android:text="View Event Organiser"
+                    android:text="View Organiser"
                     android:textColor="@color/white"
                     android:textStyle="bold" />
 

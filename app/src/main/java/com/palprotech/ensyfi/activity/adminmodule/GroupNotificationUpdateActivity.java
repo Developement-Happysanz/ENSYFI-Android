@@ -305,7 +305,7 @@ public class GroupNotificationUpdateActivity extends AppCompatActivity implement
                     ArrayAdapter<StoreTeacherId> adapter = new ArrayAdapter<StoreTeacherId>(getApplicationContext(), R.layout.spinner_item_ns, classesList);
                     spnGroupLeadList.setAdapter(adapter);
                 } else if (groupRes.equalsIgnoreCase("groupdata")) {
-                    Toast.makeText(this,"Group Updated!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this,"Changes made have been saved", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(), GroupNotificationAdminViewActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     startActivity(intent);

@@ -328,7 +328,7 @@ public class GroupingSendActivity extends AppCompatActivity implements IServiceL
 
     private boolean validateFields() {
         if (!AppValidator.checkNullString(this.notes.getText().toString().trim())) {
-            AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid message");
+            AlertDialogHelper.showSimpleAlertDialog(this, "Type a message to send!");
             return false;
         } else if (!(sms.isChecked() || mail.isChecked() || notification.isChecked())) {
             AlertDialogHelper.showSimpleAlertDialog(this, "Select at least one mode");

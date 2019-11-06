@@ -35,7 +35,7 @@
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:minHeight="?android:attr/actionBarSize"
-            android:text="Send message"
+            android:text="Send Message"
             android:textColor="@color/white"
             android:textSize="@dimen/menuTextSize"
             android:textStyle="bold" />
@@ -94,7 +94,7 @@
                     android:layout_height="wrap_content"
 
                     android:layout_marginLeft="20dp"
-                    android:text="Description :"
+                    android:text="Message :"
                     android:textColor="@color/new_gray"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -112,7 +112,7 @@
                     android:digits="aãâáàbcçdeéfghiíjklmnoõôóòpqrstuvwxyzAÃÂÁÀBCÇDEÉFGHIÍJKLMNOÕÔÓÒPQRSTUVWXYZ1234567890@-_'+=(){}[]*%$₹£¢€¥#!?,.;\n: /?\\¡¿[]•∆π™℅¶♂♀°℃®©\◆●【】&lt;&gt;&amp;"
                     android:gravity="top"
                     android:textSize="14sp"
-                    android:hint="Description"
+                    android:hint="Type your message"
                     android:inputType="textVisiblePassword"
                     android:textColor="@color/new_gray" />
 

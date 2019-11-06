@@ -58,6 +58,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:background="@drawable/shadow_round"
+            android:layout_margin="20dp"
+            android:elevation="12dp"
             android:paddingBottom="10dp">
 
             <RelativeLayout
@@ -118,7 +121,7 @@
                     android:layout_marginLeft="20dp"
                     android:textStyle="bold"
                     android:layout_marginTop="10dp"
-                    android:text="Period              :"
+                    android:text="Period Timings:"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -159,7 +162,7 @@
                     android:background="@drawable/btn_square_fill_white"
                     android:digits="aãâáàbcçdeéfghiíjklmnoõôóòpqrstuvwxyzAÃÂÁÀBCÇDEÉFGHIÍJKLMNOÕÔÓÒPQRSTUVWXYZ1234567890@-_'+=(){}[]*%$₹£¢€¥#!?,.;: /?\\¡¿[]•∆π™℅¶♂♀°℃®©\◆●【】&lt;&gt;&amp;"
                     android:gravity="top"
-                    android:hint="Description"
+                    android:hint="Comments"
                     android:inputType="textVisiblePassword"
                     android:textColor="@color/black"
                     android:textSize="14sp"/>
