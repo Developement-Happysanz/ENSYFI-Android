@@ -54,7 +54,7 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
     boolean doubleBackToExitPressedOnce = false;
     private ImageView imgNavProfileImage;
     private ArrayAdapter<String> navListAdapter;
-    private String[] values = {"Profile", "Attendance", "Class Test & Homework", "Exam & Result", "Time Table", "Events", "Circular", "Student Info", "On Duty", "Settings", "Sign Out"};
+    private String[] values = {"Profile", "Attendance", "Homeworks/Class Tests", "Exams & Results", "Time Table", "Events", "Circulars", "Student Info", "On Duty", "Settings", "Sign Out"};
     TextView navUserProfileName = null;
     LinearLayout dashAttendance, dashTimeTable, dashClassTest, dashExam, dashEvent, dashCommunication;
     private String mCurrentUserProfileUrl = "";

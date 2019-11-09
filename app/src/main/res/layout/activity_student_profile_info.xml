@@ -344,7 +344,7 @@
                     android:layout_below="@+id/txtStudentReligion"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Caste"
+                    android:text="Communal Category"
                     android:textColor="@color/new_gray"
                     android:textStyle="bold"
                     android:textSize="16sp" />

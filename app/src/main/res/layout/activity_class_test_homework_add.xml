@@ -40,7 +40,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center"
                 android:minHeight="?android:attr/actionBarSize"
-                android:text="Class Test"
+                android:text="Assign Class Test/Homework"
                 android:textColor="@color/white"
                 android:textSize="@dimen/menuTextSize"
                 android:textStyle="bold" />
@@ -225,7 +225,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Homework Submission Date "
+                                android:text="Due Date "
                                 android:textColor="@color/appColor"
                                 android:textStyle="bold"
                                 android:textSize="16sp" />
@@ -259,7 +259,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
-                        android:text="Description"
+                        android:text="Details"
                         android:textColor="@color/appColor"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -283,7 +283,7 @@
                         android:layout_marginBottom="10dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/round_btn_color"
-                        android:text="Submit"
+                        android:text="Assign"
                         android:textColor="@color/white"
                         android:textSize="16sp" />
                 </LinearLayout>

@@ -262,7 +262,11 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements D
                     createdBy, createdAt, updatedBy, updatedAt, syncStatus);
 
             System.out.println("Stored Id : " + x);
-
+            if (homeWorkType.equalsIgnoreCase("HW")) {
+                Toast.makeText(this, "Homework assigned for " + classSection, Toast.LENGTH_SHORT).show();
+            } else if (homeWorkType.equalsIgnoreCase("HT")) {
+                Toast.makeText(this, "Test assigned for " + classSection, Toast.LENGTH_SHORT).show();
+            }
             Intent navigationIntent = new Intent(getApplicationContext(), ClassTestHomeWorkTeacherViewActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
@@ -273,10 +277,10 @@ public class ClassTestHomeWorkAddActivity extends AppCompatActivity implements D
     private boolean validateFields() {
 
         if (!AppValidator.checkNullString(this.edtSetTitle.getText().toString().trim())) {
-            AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid title");
+            AlertDialogHelper.showSimpleAlertDialog(this, "Title cannot be empty!");
             return false;
         } else if (!AppValidator.checkNullString(this.edtDescription.getText().toString().trim())) {
-            AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid details");
+            AlertDialogHelper.showSimpleAlertDialog(this, "Details cannot be empty!");
             return false;
         } else {
             return true;

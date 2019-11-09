@@ -35,7 +35,7 @@
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:minHeight="?android:attr/actionBarSize"
-            android:text="Work Assignment View"
+            android:text="Assignment"
             android:textColor="@color/white"
             android:textSize="@dimen/menuTextSize"
             android:textStyle="bold" />

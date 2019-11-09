@@ -36,9 +36,9 @@
     <!--Dashboard-->
     <!---->
     <string name="attendance">ATTENDANCE</string>
-    <string name="class_test">CLASS TEST &amp; HOMEWORK</string>
-    <string name="exam">EXAM &amp; RESULT</string>
-    <string name="time_table">TIME TABLE</string>
+    <string name="class_test">HOMEWORKS/CLASS TESTS</string>
+    <string name="exam">EXAMS &amp; RESULTS</string>
+    <string name="time_table">TIMETABLE</string>
     <string name="events">EVENTS</string>
     <string name="students">STUDENTS</string>
     <string name="teachers">TEACHERS</string>
@@ -46,7 +46,7 @@
     <string name="classes">CLASSES</string>
     <string name="result">RESULT</string>
 
-    <string name="communication">CIRCULAR</string>
+    <string name="communication">CIRCULARS</string>
 
     <!--Edit Profile-->
     <!---->

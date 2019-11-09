@@ -50,7 +50,7 @@ public class GroupingSendActivity extends AppCompatActivity implements IServiceL
     private ProgressDialogHelper progressDialogHelper;
     private ServiceHelper serviceHelper;
     private Spinner spnGroupList;
-    private String checkSpinner = "", storeGroupId;
+    private String checkSpinner = "", storeGroupId, storeGroupName;
     protected boolean isLoadingForFirstTime = true;
     Handler mHandler = new Handler();
     CheckBox sms, mail, notification;
@@ -98,6 +98,7 @@ public class GroupingSendActivity extends AppCompatActivity implements IServiceL
 
                 StoreGroup groupList = (StoreGroup) parent.getSelectedItem();
                 storeGroupId = groupList.getGroupId();
+                storeGroupName = groupList.getGroupTitle();
             }
 
             @Override
@@ -216,7 +217,7 @@ public class GroupingSendActivity extends AppCompatActivity implements IServiceL
                     String status = response.getString("status");
                     String msg = response.getString(EnsyfiConstants.PARAM_MESSAGE);
                     if (status.equalsIgnoreCase("sucess") && msg.equalsIgnoreCase("Group Notification Send Sucessfully")) {
-                        Toast.makeText(this, "Notification sent!!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Notification sent to " + storeGroupName, Toast.LENGTH_SHORT).show();
                         finish();
                     }
                 } catch (JSONException e) {
