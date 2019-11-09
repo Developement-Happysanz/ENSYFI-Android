@@ -679,11 +679,11 @@
             </intent-filter>
         </service>-->
 
-        <service android:name=".servicehelpers.fcm.MyFirebaseInstanceIDService">
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-            </intent-filter>
-        </service>
+<!--        <service android:name=".servicehelpers.fcm.MyFirebaseInstanceIDService">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />-->
+<!--            </intent-filter>-->
+<!--        </service>-->
 
         <service android:name=".servicehelpers.fcm.MyFirebaseMessagingService">
             <intent-filter>
