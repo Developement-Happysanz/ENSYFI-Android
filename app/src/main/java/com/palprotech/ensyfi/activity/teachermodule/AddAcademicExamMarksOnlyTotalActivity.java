@@ -385,11 +385,11 @@ public class AddAcademicExamMarksOnlyTotalActivity extends AppCompatActivity imp
         TextView et, et1;
         int count = 0;
         int validMark ;
-        if (Pagetype.equalsIgnoreCase("edit")) {
+//        if (Pagetype.equalsIgnoreCase("edit")) {
             validMark = Integer.parseInt(db.totalMark(classIdSend, examsIdSend, classSubjectId));
-        } else {
-            validMark = Integer.parseInt(db.totalMark(classId, examsId, classSubjectId));
-        }
+//        } else {
+//            validMark = Integer.parseInt(db.totalMark(classId, examsId, classSubjectId));
+//        }
         int nViews = layout_all.getChildCount();
 
         for (int i = 0; i < nViews; i++) {
@@ -403,7 +403,7 @@ public class AddAcademicExamMarksOnlyTotalActivity extends AppCompatActivity imp
             String Marks = edtMarks.getText().toString().trim();
 
             if (!AppValidator.checkNullString(edtMarks.getText().toString().trim())) {
-                AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid internal marks for student - " + String.valueOf(et1.getText()));
+                AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid marks for student - " + String.valueOf(et1.getText()));
             } else if ((AppValidator.checkEditTextValid100AndA(Marks, validMark)).equalsIgnoreCase("NotValidMark") || (AppValidator.checkEditTextValid100AndA(Marks, validMark)).equalsIgnoreCase("NotValidAbsent")) {
                 if (((AppValidator.checkEditTextValid100AndA(Marks, validMark)).equalsIgnoreCase("NotValidMark"))) {
                     AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid marks for student - " + String.valueOf(et1.getText()) + " between 0 to " + validMark);
@@ -491,7 +491,7 @@ public class AddAcademicExamMarksOnlyTotalActivity extends AppCompatActivity imp
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+//                        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
                         String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.EDIT_ACADEMIC_EXAM_MARK_API;
                         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
                     }

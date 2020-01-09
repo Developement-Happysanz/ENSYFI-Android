@@ -34,12 +34,10 @@ import com.palprotech.ensyfi.activity.loginmodule.SplashScreenActivity;
 import com.palprotech.ensyfi.activity.studentmodule.AttendanceActivity;
 import com.palprotech.ensyfi.activity.studentmodule.ClassTestHomeworkActivity;
 import com.palprotech.ensyfi.activity.studentmodule.ExamsResultActivity;
-import com.palprotech.ensyfi.activity.studentmodule.StudentInfoActivity;
-import com.palprotech.ensyfi.activity.studentmodule.StudentTimeTableAcitivityNewnew;
+import com.palprotech.ensyfi.activity.loginmodule.StudentInfoActivity;
 import com.palprotech.ensyfi.activity.teachermodule.TeacherTimeTableNewnew;
 import com.palprotech.ensyfi.adapter.NavDrawerAdapter;
 import com.palprotech.ensyfi.bean.general.support.DeleteTableRecords;
-import com.palprotech.ensyfi.bean.teacher.viewlist.SpecialClass;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 import com.squareup.picasso.Picasso;
@@ -166,7 +164,7 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
 
         if (((url != null) && !(url.isEmpty()))) {
             Log.d(TAG, "image url is " + url);
-            Picasso.get().load(url).placeholder(R.drawable.ab_logo).error(R.drawable.ab_logo).into(imgNavProfileImage);
+            Picasso.get().load(url).placeholder(R.drawable.ic_profile_default).error(R.drawable.ic_profile_default).into(imgNavProfileImage);
         }
         Log.d(TAG, "Set the selected page to 0");//default page
     }
@@ -198,7 +196,7 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
                 if (((url != null) && !(url.isEmpty())) && !(url.equalsIgnoreCase(mCurrentUserProfileUrl))) {
                     Log.d(TAG, "image url is " + url);
                     mCurrentUserProfileUrl = url;
-                    Picasso.get().load(url).noPlaceholder().error(R.drawable.ab_logo).into(imgNavProfileImage);
+                    Picasso.get().load(url).noPlaceholder().error(R.drawable.ic_profile_default).into(imgNavProfileImage);
                 }
             }
         };

@@ -41,17 +41,32 @@ import com.palprotech.ensyfi.activity.loginmodule.SplashScreenActivity;
 import com.palprotech.ensyfi.activity.parentsmodule.ParentDashBoardActivity;
 import com.palprotech.ensyfi.activity.studentmodule.StudentTimeTableAcitivityNewnew;
 import com.palprotech.ensyfi.adapter.NavDrawerAdapter;
+import com.palprotech.ensyfi.adapter.adminmodule.ClassAttendanceListAdapter;
+import com.palprotech.ensyfi.bean.admin.viewlist.AttendanceClass;
 import com.palprotech.ensyfi.bean.general.support.DeleteTableRecords;
+import com.palprotech.ensyfi.bean.teacher.support.SaveTeacherData;
+import com.palprotech.ensyfi.helper.AlertDialogHelper;
+import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
+import com.palprotech.ensyfi.servicehelpers.ServiceHelper;
+import com.palprotech.ensyfi.serviceinterfaces.IServiceListener;
+import com.palprotech.ensyfi.utils.CommonUtils;
+import com.palprotech.ensyfi.utils.EnsyfiConstants;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 /**
  * Created by Admin on 04-07-2017.
  */
 
-public class TeacherDashBoardActivity extends AppCompatActivity implements DialogClickListener {
+public class TeacherDashBoardActivity extends AppCompatActivity implements DialogClickListener, IServiceListener {
 
     private static final String TAG = ParentDashBoardActivity.class.getName();
     Toolbar toolbar;
@@ -62,13 +77,16 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
     private ImageView imgNavProfileImage;
     private ArrayAdapter<String> navListAdapter;
     private String[] values = {"Profile", "Attendance", "Homeworks/Class Tests", "Special Class", "Exams & Results",
-            "Exam Duty", "Timetable", "Events", "Circulars", "On Duty", "Notifications", "Apply Leave",
+            "Exam Duty", "Timetable", "Events", "Circulars", "On Duty", "Groups", "Apply Leave",
             "Settings", "Sync", "Sign Out"};
     TextView navUserProfileName = null, classAttendanceInfo, classWorkInfo;
     LinearLayout dashAttendance, dashTimeTable, dashClassTest, dashExam, dashEvent, dashCommunication, classinfo;
     private String mCurrentUserProfileUrl = "";
     Context context;
     private DeleteTableRecords deleteTableRecords;
+    protected ProgressDialogHelper progressDialogHelper;
+    private ServiceHelper serviceHelper;
+    private SaveTeacherData teacherData;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -82,6 +100,10 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
         initializeNavigationDrawer();
         initializeViews();
         context = getApplicationContext();
+        serviceHelper = new ServiceHelper(this);
+        serviceHelper.setServiceListener(this);
+        teacherData = new SaveTeacherData(this);
+        progressDialogHelper = new ProgressDialogHelper(this);
     }
 
     @Override
@@ -151,6 +173,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
         dashExam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getExamDetails();
                 Intent intent = new Intent(getApplicationContext(), AcademicExamViewActivity.class);
                 startActivity(intent);
             }
@@ -191,7 +214,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
 
         if (((url != null) && !(url.isEmpty()))) {
             Log.d(TAG, "image url is " + url);
-            Picasso.get().load(url).placeholder(R.drawable.ab_logo).error(R.drawable.ab_logo).into(imgNavProfileImage);
+            Picasso.get().load(url).placeholder(R.drawable.ic_profile_default).error(R.drawable.ic_profile_default).into(imgNavProfileImage);
         }
         Log.d(TAG, "Set the selected page to 0");//default page
     }
@@ -223,7 +246,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
                 if (((url != null) && !(url.isEmpty())) && !(url.equalsIgnoreCase(mCurrentUserProfileUrl))) {
                     Log.d(TAG, "image url is " + url);
                     mCurrentUserProfileUrl = url;
-                    Picasso.get().load(url).noPlaceholder().error(R.drawable.ab_logo).into(imgNavProfileImage);
+                    Picasso.get().load(url).noPlaceholder().error(R.drawable.profile_pic).into(imgNavProfileImage);
                 }
             }
         };
@@ -261,11 +284,12 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 3) {
-            Intent navigationIntent = new Intent(this, AcademicExamViewActivity.class);
+            Intent navigationIntent = new Intent(this, SpecialClassActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 4) {
-            Intent navigationIntent = new Intent(this, SpecialClassActivity.class);
+            getExamDetails();
+            Intent navigationIntent = new Intent(this, AcademicExamViewActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 5) {
@@ -372,6 +396,66 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
 
     @Override
     public void onAlertNegativeClicked(int tag) {
+
+    }
+
+    private void getExamDetails() {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put(EnsyfiConstants.TEACHER_ID, PreferenceStorage.getTeacherId(this));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+//        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_EXAM_TEACHER_API;
+        serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
+    }
+
+    private boolean validateSignInResponse(JSONObject response) {
+        boolean signInsuccess = false;
+        if ((response != null)) {
+            try {
+                String status = response.getString("status");
+                String msg = response.getString(EnsyfiConstants.PARAM_MESSAGE);
+                Log.d(TAG, "status val" + status + "msg" + msg);
+
+                if ((status != null)) {
+                    if (((status.equalsIgnoreCase("activationError")) || (status.equalsIgnoreCase("alreadyRegistered")) ||
+                            (status.equalsIgnoreCase("notRegistered")) || (status.equalsIgnoreCase("error")))) {
+                        signInsuccess = false;
+                        Log.d(TAG, "Show error dialog");
+                        AlertDialogHelper.showSimpleAlertDialog(this, msg);
+                    } else {
+                        signInsuccess = true;
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return signInsuccess;
+    }
+    
+    @Override
+    public void onResponse(JSONObject response) {
+//        progressDialogHelper.hideProgressDialog();
+        if (validateSignInResponse(response)) {
+            JSONArray getExamsOfClassArray = null;
+            try {
+                getExamsOfClassArray = response.getJSONArray("data");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            if (getExamsOfClassArray != null && getExamsOfClassArray.length() > 0) {
+                teacherData.saveExamsOfClass(getExamsOfClassArray);
+            }
+        }
+    }
+
+    @Override
+    public void onError(String error) {
 
     }
 }

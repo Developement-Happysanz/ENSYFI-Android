@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,12 +16,22 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
+import com.palprotech.ensyfi.activity.parentsmodule.ParentDashBoardActivity;
 import com.palprotech.ensyfi.adapter.teachermodule.AcademicExamsListBaseAdapter;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
+import com.palprotech.ensyfi.bean.teacher.support.SaveTeacherData;
 import com.palprotech.ensyfi.bean.teacher.viewlist.AcademicExams;
+import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
+import com.palprotech.ensyfi.servicehelpers.ServiceHelper;
+import com.palprotech.ensyfi.serviceinterfaces.IServiceListener;
+import com.palprotech.ensyfi.utils.EnsyfiConstants;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -34,10 +46,13 @@ import java.util.Vector;
  * Created by Admin on 14-07-2017.
  */
 
-public class AcademicExamViewActivity extends AppCompatActivity implements DialogClickListener {
+public class AcademicExamViewActivity extends AppCompatActivity implements DialogClickListener, IServiceListener {
 
+    private static final String TAG = AcademicExamViewActivity.class.getName();
     private Spinner spnClassList, spnSubjectList;
     protected ProgressDialogHelper progressDialogHelper;
+    private ServiceHelper serviceHelper;
+    private SaveTeacherData teacherData;
     List<String> lsClassList = new ArrayList<String>();
     SQLiteHelper db;
     Vector<String> vecClassList;
@@ -58,6 +73,9 @@ public class AcademicExamViewActivity extends AppCompatActivity implements Dialo
         vecClassList = new Vector<String>();
 
         progressDialogHelper = new ProgressDialogHelper(this);
+        serviceHelper = new ServiceHelper(this);
+        serviceHelper.setServiceListener(this);
+        teacherData = new SaveTeacherData(this);
 
         spnClassList = (Spinner) findViewById(R.id.class_list_spinner);
         spnSubjectList = (Spinner) findViewById(R.id.subject_list_spinner);
@@ -104,6 +122,8 @@ public class AcademicExamViewActivity extends AppCompatActivity implements Dialo
 
             }
         });
+
+        getExamDetails();
 
     }
 
@@ -267,6 +287,7 @@ public class AcademicExamViewActivity extends AppCompatActivity implements Dialo
                         intent.putExtra("subject_id", getClassSubjectId);
                         intent.putExtra("classMasterId", classMasterId);
                         intent.putExtra("examId", examId);
+                        intent.putExtra("type", "add");
                         startActivity(intent);
                     } else {
                         Intent intent = new Intent(getApplicationContext(), AddAcademicExamMarksOnlyTotalActivity.class);
@@ -274,6 +295,7 @@ public class AcademicExamViewActivity extends AppCompatActivity implements Dialo
                         intent.putExtra("subject_id", getClassSubjectId);
                         intent.putExtra("classMasterId", classMasterId);
                         intent.putExtra("examId", examId);
+                        intent.putExtra("type", "add");
                         startActivity(intent);
                     }
                 } else {
@@ -346,6 +368,66 @@ public class AcademicExamViewActivity extends AppCompatActivity implements Dialo
 
     @Override
     public void onAlertNegativeClicked(int tag) {
+
+    }
+
+    private void getExamDetails() {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put(EnsyfiConstants.TEACHER_ID, PreferenceStorage.getTeacherId(this));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+//        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_EXAM_DETAIL_TEACHER_API;
+        serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
+    }
+
+    private boolean validateSignInResponse(JSONObject response) {
+        boolean signInsuccess = false;
+        if ((response != null)) {
+            try {
+                String status = response.getString("status");
+                String msg = response.getString(EnsyfiConstants.PARAM_MESSAGE);
+                Log.d(TAG, "status val" + status + "msg" + msg);
+
+                if ((status != null)) {
+                    if (((status.equalsIgnoreCase("activationError")) || (status.equalsIgnoreCase("alreadyRegistered")) ||
+                            (status.equalsIgnoreCase("notRegistered")) || (status.equalsIgnoreCase("error")))) {
+                        signInsuccess = false;
+                        Log.d(TAG, "Show error dialog");
+                        AlertDialogHelper.showSimpleAlertDialog(this, msg);
+                    } else {
+                        signInsuccess = true;
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return signInsuccess;
+    }
+
+    @Override
+    public void onResponse(JSONObject response) {
+//        progressDialogHelper.hideProgressDialog();
+        if (validateSignInResponse(response)) {
+            JSONArray getExamsOfClassArray = null;
+            try {
+                getExamsOfClassArray = response.getJSONArray("data");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            if (getExamsOfClassArray != null && getExamsOfClassArray.length() > 0) {
+                teacherData.saveExamsDetails(getExamsOfClassArray);
+            }
+        }
+    }
+
+    @Override
+    public void onError(String error) {
 
     }
 }

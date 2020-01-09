@@ -1,136 +1,184 @@
 package com.palprotech.ensyfi.activity.loginmodule;
 
+import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.helper.ProgressDialogHelper;
-import com.palprotech.ensyfi.interfaces.DialogClickListener;
+import com.palprotech.ensyfi.activity.parentsmodule.ParentDashBoardActivity;
+import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
-import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.TreeSet;
+import java.util.Vector;
 
 /**
- * Created by Narendar on 19/07/17.
+ * Created by Admin on 27-05-2017.
  */
 
-public class StudentInfoActivity extends AppCompatActivity implements DialogClickListener, View.OnClickListener {
+public class StudentInfoActivity extends AppCompatActivity {
 
-    private ImageView btnBack;
-
-    protected ProgressDialogHelper progressDialogHelper;
-
-    private ImageView studentImg;
-
-    private TextView studentAdmissionId, studentAdmissionYear, studentAdmissionNumber, studentEmsiNumber, studentAdmissionDate,
-            studentName, studentGender, studentDateOfBirth, studentAge, studentNationality, studentReligion, studentCaste,
-            studentCommunity, studentParentOrGuardian, studentParentOrGuardianId, studentMotherTongue, studentLanguage,
-            studentMobile, studentSecondaryMobile, studentMail, studentSecondaryMail, studentPreviousSchool,
-            studentPreviousClass, studentPromotionStatus, studentTransferCertificate, studentRecordSheet, studentStatus,
-            studentParentStatus, studentRegistered;
+    private Spinner spnStudentInfo;
+    SQLiteHelper db;
+    Vector<String> vecStudent;
+    List<String> lsStudent = new ArrayList<String>();
+    String StudentName, StudentId, AdmissionId, Class, Section, AdmissionNo, ClassId;
+    TextView txtstudname, txtstudid, txtadmissid, txtclass, txtsec;
+    Button btnContinue;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_profile_info);
-        SetUI();
-        callStudentInfoPreferences();
+        setContentView(R.layout.student_info_activity);
+        db = new SQLiteHelper(getApplicationContext());
+        vecStudent = new Vector<String>();
+        spnStudentInfo = (Spinner) findViewById(R.id.eventtypespinner);
+        txtstudname = (TextView) findViewById(R.id.txtstudname);
+        txtstudid = (TextView) findViewById(R.id.txtstudid);
+        txtadmissid = (TextView) findViewById(R.id.txtadmissid);
+        txtclass = (TextView) findViewById(R.id.txtclass);
+        txtsec = (TextView) findViewById(R.id.txtsec);
+        btnContinue = (Button) findViewById(R.id.btnContinue);
+        getStudentList();
+
+        spnStudentInfo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String studentName = parent.getItemAtPosition(position).toString();
+                StudentName = studentName;
+                GetStudentDetails(studentName);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        btnContinue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //
+                // Student Preference - EnrollId
+                if ((StudentId != null) && !(StudentId.isEmpty()) && !StudentId.equalsIgnoreCase("null")) {
+                    PreferenceStorage.saveStudentRegisteredIdPreference(getApplicationContext(), StudentId);
+                }
+                // Student Preference - AdmissionId
+                if ((AdmissionId != null) && !(AdmissionId.isEmpty()) && !AdmissionId.equalsIgnoreCase("null")) {
+                    PreferenceStorage.saveStudentAdmissionIdPreference(getApplicationContext(), AdmissionId);
+                }
+
+                // Student Preference - AdmissionNo
+                if ((AdmissionNo != null) && !(AdmissionNo.isEmpty()) && !AdmissionNo.equalsIgnoreCase("null")) {
+                    PreferenceStorage.saveStudentAdmissionNoPreference(getApplicationContext(), AdmissionNo);
+                }
+
+                // Student Preference - ClassId
+                if ((ClassId != null) && !(ClassId.isEmpty()) && !ClassId.equalsIgnoreCase("null")) {
+                    PreferenceStorage.saveStudentClassIdPreference(getApplicationContext(), ClassId);
+                }
+
+                // Student Preference - Name
+                if ((StudentName != null) && !(StudentName.isEmpty()) && !StudentName.equalsIgnoreCase("null")) {
+                    PreferenceStorage.saveStudentNamePreference(getApplicationContext(), StudentName);
+                }
+
+                // Student Preference - ClassName
+                if ((Class != null) && !(Class.isEmpty()) && !Class.equalsIgnoreCase("null")) {
+                    PreferenceStorage.saveStudentClassNamePreference(getApplicationContext(), Class);
+                }
+
+                // Student Preference - SectionName
+                if ((Section != null) && !(Section.isEmpty()) && !Section.equalsIgnoreCase("null")) {
+                    PreferenceStorage.saveStudentSectionNamePreference(getApplicationContext(), Section);
+                }
+
+                Intent intent = new Intent(getApplicationContext(), ParentDashBoardActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
-    private void SetUI() {
-        btnBack = (ImageView) findViewById(R.id.back_res);
-        btnBack.setOnClickListener(this);
+    private void GetStudentDetails(String studentname) {
+        try {
+            Cursor c = db.selectStudentDtls(studentname);
+            if (c.getCount() > 0) {
+                if (c.moveToFirst()) {
+                    do {
+                        StudentId = c.getString(0);
+                        AdmissionId = c.getString(1);
+                        AdmissionNo = c.getString(2);
+                        ClassId = c.getString(3);
+                        StudentName = c.getString(4);
+                        Class = c.getString(5);
+                        Section = c.getString(6);
+                    } while (c.moveToNext());
+                }
+            }
+            db.close();
+            txtstudname.setText(StudentName);
+            txtstudid.setText(StudentId);
+            txtadmissid.setText(AdmissionNo);
+            txtclass.setText(Class);
+            txtsec.setText("-" + Section);
 
-        studentImg = (ImageView) findViewById(R.id.img_student_profile);
-
-        ////// For Student ///////
-        studentAdmissionId = (TextView) findViewById(R.id.txtstudentadminid);
-        studentAdmissionYear = (TextView) findViewById(R.id.txtstudentadminyear);
-        studentAdmissionNumber = (TextView) findViewById(R.id.txtstudentadminnum);
-        studentEmsiNumber = (TextView) findViewById(R.id.txtstudentemsinum);
-        studentAdmissionDate = (TextView) findViewById(R.id.txtStudentAdmissionDate);
-        studentName = (TextView) findViewById(R.id.txtStudentName);
-        studentGender = (TextView) findViewById(R.id.txtStudentGender);
-        studentDateOfBirth = (TextView) findViewById(R.id.txtStudentDateOfBirth);
-        studentAge = (TextView) findViewById(R.id.txtStudentAge);
-        studentNationality = (TextView) findViewById(R.id.txtStudentNationality);
-        studentReligion = (TextView) findViewById(R.id.txtStudentReligion);
-        studentCaste = (TextView) findViewById(R.id.txtStudentCaste);
-        studentCommunity = (TextView) findViewById(R.id.txtStudentCommunity);
-        studentParentOrGuardian = (TextView) findViewById(R.id.txtStudentParentOrGuardian);
-        studentParentOrGuardianId = (TextView) findViewById(R.id.txtStudentParentOrGuardianId);
-        studentMotherTongue = (TextView) findViewById(R.id.txtStudentMotherTongue);
-        studentLanguage = (TextView) findViewById(R.id.txtStudentLanguage);
-        studentMobile = (TextView) findViewById(R.id.txtStudentMobile);
-        studentSecondaryMobile = (TextView) findViewById(R.id.txtStudentSecondaryMobile);
-        studentMail = (TextView) findViewById(R.id.txtStudentMail);
-        studentSecondaryMail = (TextView) findViewById(R.id.txtStudentSecondaryMail);
-        studentPreviousSchool = (TextView) findViewById(R.id.txtStudentPreviousSchool);
-        studentPreviousClass = (TextView) findViewById(R.id.txtStudentPreviousClass);
-        studentPromotionStatus = (TextView) findViewById(R.id.txtStudentPromotionStatus);
-        studentTransferCertificate = (TextView) findViewById(R.id.txtStudentTransferCertificate);
-        studentRecordSheet = (TextView) findViewById(R.id.txtStudentRecordSheet);
-        studentStatus = (TextView) findViewById(R.id.txtStudentStatus);
-        studentParentStatus = (TextView) findViewById(R.id.txtStudentParentStatus);
-        studentRegistered = (TextView) findViewById(R.id.txtStudentRegistered);
-
-        progressDialogHelper = new ProgressDialogHelper(this);
-    }
-
-    private void callStudentInfoPreferences() {
-        studentAdmissionId.setText(PreferenceStorage.getStudentAdmissionID(getApplicationContext()));
-        studentAdmissionYear.setText(PreferenceStorage.getStudentAdmissionYear(getApplicationContext()));
-        studentAdmissionNumber.setText(PreferenceStorage.getStudentAdmissionNumber(getApplicationContext()));
-        studentEmsiNumber.setText(PreferenceStorage.getStudentEmsiNumber(getApplicationContext()));
-        studentAdmissionDate.setText(PreferenceStorage.getStudentAdmissionDate(getApplicationContext()));
-        studentName.setText(PreferenceStorage.getStudentName(getApplicationContext()));
-        studentGender.setText(PreferenceStorage.getStudentGender(getApplicationContext()));
-        studentDateOfBirth.setText(PreferenceStorage.getStudentDateOfBirth(getApplicationContext()));
-        studentAge.setText(PreferenceStorage.getStudentAge(getApplicationContext()));
-        studentNationality.setText(PreferenceStorage.getStudentNationality(getApplicationContext()));
-        studentReligion.setText(PreferenceStorage.getStudentReligion(getApplicationContext()));
-        studentCaste.setText(PreferenceStorage.getStudentCaste(getApplicationContext()));
-        studentCommunity.setText(PreferenceStorage.getStudentCommunity(getApplicationContext()));
-        studentParentOrGuardian.setText(PreferenceStorage.getStudentParentOrGuardian(getApplicationContext()));
-        studentParentOrGuardianId.setText(PreferenceStorage.getStudentParentOrGuardianID(getApplicationContext()));
-        studentMotherTongue.setText(PreferenceStorage.getStudentMotherTongue(getApplicationContext()));
-        studentLanguage.setText(PreferenceStorage.getStudentLanguage(getApplicationContext()));
-        studentMobile.setText(PreferenceStorage.getStudentMobile(getApplicationContext()));
-        studentSecondaryMobile.setText(PreferenceStorage.getStudentSecondaryMobile(getApplicationContext()));
-        studentMail.setText(PreferenceStorage.getStudentMail(getApplicationContext()));
-        studentSecondaryMail.setText(PreferenceStorage.getStudentSecondaryMail(getApplicationContext()));
-        studentPreviousSchool.setText(PreferenceStorage.getStudentPreviousSchool(getApplicationContext()));
-        studentPreviousClass.setText(PreferenceStorage.getStudentPreviousClass(getApplicationContext()));
-        studentPromotionStatus.setText(PreferenceStorage.getStudentPromotionStatus(getApplicationContext()));
-        studentTransferCertificate.setText(PreferenceStorage.getStudentTransferCertificate(getApplicationContext()));
-        studentRecordSheet.setText(PreferenceStorage.getStudentRecordSheet(getApplicationContext()));
-        studentStatus.setText(PreferenceStorage.getStudentStatus(getApplicationContext()));
-        studentParentStatus.setText(PreferenceStorage.getStudentParentStatus(getApplicationContext()));
-        studentRegistered.setText(PreferenceStorage.getStudentRegistered(getApplicationContext()));
-        String url = PreferenceStorage.getStudentImg(this);
-
-        if (((url != null) && !(url.isEmpty()))) {
-            Picasso.get().load(url).placeholder(R.drawable.profile_pic).error(R.drawable.profile_pic).into(studentImg);
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "Get Student Details", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
         }
     }
 
-    @Override
-    public void onClick(View v) {
-        if (v == btnBack) {
-            finish();
+    private void getStudentList() {
+        try {
+            Cursor c = db.selectStudent();
+            if (c.getCount() > 0) {
+                if (c.moveToFirst()) {
+                    do {
+                        vecStudent.add(c.getString(4));
+                    } while (c.moveToNext());
+                }
+            }
+            for (int i = 0; i < vecStudent.size(); i++) {
+                lsStudent.add(vecStudent.get(i));
+            }
+            HashSet hs = new HashSet();
+            TreeSet ts = new TreeSet(hs);
+            ts.addAll(lsStudent);
+            lsStudent.clear();
+//            lsStudent.add("Select");
+            lsStudent.addAll(ts);
+            db.close();
+            ArrayAdapter<String> dataAdapter3 = new ArrayAdapter<String>(this, R.layout.spinner_item_ns, lsStudent);
+//            adptStudent = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, lsStudent);
+//            adptStudent.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spnStudentInfo.setAdapter(dataAdapter3);
+            spnStudentInfo.setWillNotDraw(false);
+            if (lsStudent.size()==1) {
+                spnStudentInfo.setVisibility(View.GONE);
+                String studentName = lsStudent.get(0);
+                StudentName = studentName;
+                GetStudentDetails(studentName);
+            } else {
+                spnStudentInfo.setVisibility(View.VISIBLE);
+            }
+        } catch (
+                Exception e) {
+            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
         }
-    }
-
-    @Override
-    public void onAlertPositiveClicked(int tag) {
-
-    }
-
-    @Override
-    public void onAlertNegativeClicked(int tag) {
-
     }
 }

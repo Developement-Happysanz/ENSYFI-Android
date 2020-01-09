@@ -89,6 +89,7 @@
                     android:text="ID"
                     android:textColor="@color/black"
                     android:textStyle="bold"
+                    android:visibility="gone"
                     android:textSize="16sp"/>
 
                 <TextView
@@ -99,6 +100,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/TeacherSecondaryMobile"
+                    android:visibility="gone"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
                     android:textSize="15dp" />
@@ -350,6 +352,7 @@
                     android:text="Class"
                     android:textColor="@color/black"
                     android:textStyle="bold"
+                    android:visibility="gone"
                     android:textSize="16sp" />
 
                 <TextView
@@ -359,6 +362,7 @@
                     android:layout_alignTop="@+id/TeacherSectionName"
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/TeacherSecondaryMobile"
+                    android:visibility="gone"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -370,6 +374,7 @@
                     android:layout_below="@+id/TeacherSectionName"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
+                    android:visibility="gone"
                     android:text="Section"
                     android:textColor="@color/black"
                     android:textStyle="bold"
@@ -382,6 +387,7 @@
                     android:layout_alignTop="@+id/TeacherClassName"
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/TeacherSecondaryMobile"
+                    android:visibility="gone"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
                     android:textSize="16sp" />

@@ -4,16 +4,11 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.ActivityNotFoundException;
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaScannerConnection;
@@ -22,10 +17,9 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.provider.Settings;
-import androidx.annotation.Nullable;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -44,6 +38,7 @@ import android.widget.Toast;
 import com.palprotech.ensyfi.BuildConfig;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.activity.studentmodule.FeeStatusActivity;
+import com.palprotech.ensyfi.activity.studentmodule.StudentDetailActivity;
 import com.palprotech.ensyfi.bean.student.support.SaveStudentData;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
@@ -73,14 +68,10 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 public class ProfileActivityNew extends AppCompatActivity implements IServiceListener, DialogClickListener, View.OnClickListener {
@@ -288,7 +279,7 @@ public class ProfileActivityNew extends AppCompatActivity implements IServiceLis
         String url = PreferenceStorage.getUserPicture(this);
 
         if (((url != null) && !(url.isEmpty()))) {
-            Picasso.get().load(url).placeholder(R.drawable.ic_profile).error(R.drawable.ic_profile).into(mProfileImage);
+            Picasso.get().load(url).placeholder(R.drawable.ic_profile_default).error(R.drawable.ic_profile_default).into(mProfileImage);
         }
 
         String userTypeString = PreferenceStorage.getUserType(getApplicationContext());
@@ -412,7 +403,7 @@ public class ProfileActivityNew extends AppCompatActivity implements IServiceLis
 //            GbtnCancel.setVisibility(View.INVISIBLE);
         }
         if (v == StudentProfile) {
-            Intent intent = new Intent(getApplicationContext(), StudentInfoActivity.class);
+            Intent intent = new Intent(getApplicationContext(), StudentDetailActivity.class);
             startActivity(intent);
 //            studentInfoPopup.setVisibility(View.VISIBLE);
 //            SbtnCancel.setVisibility(View.VISIBLE);
@@ -669,7 +660,7 @@ public class ProfileActivityNew extends AppCompatActivity implements IServiceLis
                     openImagesDocument();
                 } else if (options[item].equals("Remove Photo")) {
                     PreferenceStorage.saveUserPicture(ProfileActivityNew.this, "");
-                    mProfileImage.setBackground(ContextCompat.getDrawable(ProfileActivityNew.this, R.drawable.ic_profile));
+                    mProfileImage.setBackground(ContextCompat.getDrawable(ProfileActivityNew.this, R.drawable.ic_profile_default));
                     mSelectedImageUri = Uri.parse("android.resource://com.palprotech.ensyfi/drawable/ic_default_profile");
                     mActualFilePath = mSelectedImageUri.getPath();
                     saveUserImage();

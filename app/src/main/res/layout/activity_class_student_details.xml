@@ -90,6 +90,7 @@
                     android:text="Admission ID"
                     android:textColor="@color/black"
                     android:textSize="16sp"
+                    android:visibility="gone"
                     android:textStyle="bold" />
 
                 <TextView
@@ -100,7 +101,8 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/StudentParentOrGuardianId"
-                    
+                    android:visibility="gone"
+
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -108,7 +110,7 @@
                     android:id="@+id/studentadminnum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtstudentadminid"
+                    android:layout_below="@+id/txtStudentName"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Admission Number"
@@ -132,7 +134,7 @@
                     android:id="@+id/studentadminyear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtstudentadminnum"
+                    android:layout_below="@+id/studentemsinum"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Admission Year"
@@ -156,7 +158,7 @@
                     android:id="@+id/studentemsinum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtstudentadminyear"
+                    android:layout_below="@+id/studentadminnum"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="EMSI Number"
@@ -180,7 +182,7 @@
                     android:id="@+id/StudentAdmissionDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/studentemsinum"
+                    android:layout_below="@+id/studentadminyear"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Admission Date"
@@ -751,6 +753,7 @@
                     android:text="Registered"
                     android:textColor="@color/black"
                     android:textSize="16sp"
+                    android:visibility="gone"
                     android:textStyle="bold" />
 
                 <TextView
@@ -760,7 +763,8 @@
                     android:layout_alignTop="@+id/StudentRegistered"
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/StudentParentOrGuardianId"
-                    
+                    android:visibility="gone"
+
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -769,7 +773,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:weightSum="1"
-                    android:layout_below="@id/txtStudentRegistered"
+                    android:layout_below="@id/StudentParentStatus"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
                     android:gravity="center">

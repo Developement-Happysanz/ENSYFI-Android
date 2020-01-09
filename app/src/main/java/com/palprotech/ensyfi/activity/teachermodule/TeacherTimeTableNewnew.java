@@ -1,5 +1,6 @@
 package com.palprotech.ensyfi.activity.teachermodule;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -61,14 +62,24 @@ public class TeacherTimeTableNewnew extends AppCompatActivity implements IServic
                 finish();
             }
         });
+        findViewById(R.id.view_reviews).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), TimeTableReview.class);
+                startActivity(i);
+            }
+        });
         tab = (TabLayout) findViewById(R.id.tab_layout);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         if (PreferenceStorage.getUserType(this).equalsIgnoreCase("1")) {
-            getDaysAdmin();
+            getDaysfromDB();
+            initialiseTabs();
+            findViewById(R.id.view_reviews).setVisibility(View.GONE);
         }else if (PreferenceStorage.getUserType(this).equalsIgnoreCase("2")) {
             getDays();
         } else {
             loadday();
+            findViewById(R.id.view_reviews).setVisibility(View.GONE);
         }
     }
 

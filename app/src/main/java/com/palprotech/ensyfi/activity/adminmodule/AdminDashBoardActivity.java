@@ -57,7 +57,7 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
     private ImageView imgNavProfileImage;
     private ArrayAdapter<String> navListAdapter;
     private String[] values = {"Profile", "Students", "Teachers", "Parents", "Board Members", "Attendance", "Classes", "Examinations",
-            "Results", "Events", "Circulars", "Fee Status", "On Duty", "Notifications", "Leaves",
+            "Results", "Events", "Circulars", "Fee Status", "On Duty", "Groups", "Leaves",
             "Settings", "Sign Out"};
     TextView navUserProfileName = null;
     LinearLayout students, teachers, parents, classes, exams, results, events, communication;
@@ -177,7 +177,7 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
 
         if (((url != null) && !(url.isEmpty()))) {
             Log.d(TAG, "image url is " + url);
-            Picasso.get().load(url).placeholder(R.drawable.ab_logo).error(R.drawable.ab_logo).into(imgNavProfileImage);
+            Picasso.get().load(url).placeholder(R.drawable.ic_profile_default).error(R.drawable.ic_profile_default).into(imgNavProfileImage);
         }
         Log.d(TAG, "Set the selected page to 0");//default page
     }
@@ -209,7 +209,7 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
                 if (((url != null) && !(url.isEmpty())) && !(url.equalsIgnoreCase(mCurrentUserProfileUrl))) {
                     Log.d(TAG, "image url is " + url);
                     mCurrentUserProfileUrl = url;
-                    Picasso.get().load(url).noPlaceholder().error(R.drawable.ab_logo).into(imgNavProfileImage);
+                    Picasso.get().load(url).noPlaceholder().error(R.drawable.ic_profile_default).into(imgNavProfileImage);
                 }
             }
         };

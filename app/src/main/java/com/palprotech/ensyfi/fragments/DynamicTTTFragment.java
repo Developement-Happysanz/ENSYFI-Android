@@ -1,6 +1,7 @@
 package com.palprotech.ensyfi.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +18,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.gson.Gson;
 import com.palprotech.ensyfi.R;
+import com.palprotech.ensyfi.activity.teachermodule.TimeTableReviewAddActivity;
 import com.palprotech.ensyfi.adapter.studentmodule.StudentTimeTableListAdapter;
 import com.palprotech.ensyfi.adapter.teachermodule.TeacherTimetableListAdapter;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
@@ -52,7 +54,7 @@ public class DynamicTTTFragment extends Fragment implements AdapterView.OnItemCl
     private String subCatId = "";
     private ServiceHelper serviceHelper;
     private int totalCount = 0, checkrun = 0;
-    private  boolean isLoadingForFirstTime = true;
+    private boolean isLoadingForFirstTime = true;
     private ProgressDialogHelper progressDialogHelper;
     private ListView loadMoreListView;
     private Boolean msgErr = false;
@@ -119,7 +121,6 @@ public class DynamicTTTFragment extends Fragment implements AdapterView.OnItemCl
         loadMoreListView.setOnItemClickListener(this);
 
 
-
         if (teacherTimetableListAdapter == null) {
             teacherTimetableListAdapter = new TeacherTimetableListAdapter(getActivity(), this.ttArrayList);
             loadMoreListView.setAdapter(teacherTimetableListAdapter);
@@ -169,7 +170,18 @@ public class DynamicTTTFragment extends Fragment implements AdapterView.OnItemCl
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Log.d(TAG, "onEvent list item click" + position);
 
+        if ((ttArrayList != null) && (!ttArrayList.isEmpty())) {
+
+            String name1 = ttArrayList.get(position).getClassName() + "-" + ttArrayList.get(position).getSecName() +
+                    "," + ttArrayList.get(position).getClassId() + "," + ttArrayList.get(position).getSubjectName() +
+                    "," + ttArrayList.get(position).getSubjectId() + "," + ttArrayList.get(position).getPeriod();
+
+            Intent navigationIntent = new Intent(getActivity(), TimeTableReviewAddActivity.class);
+            navigationIntent.putExtra("timeTableValue", name1);
+            startActivity(navigationIntent);
+        }
     }
 
     @Override

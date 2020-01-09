@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.activity.adminmodule.AdminDashBoardActivity;
-import com.palprotech.ensyfi.activity.studentmodule.StudentInfoActivity;
 import com.palprotech.ensyfi.activity.teachermodule.TeacherDashBoardActivity;
 import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 import com.palprotech.ensyfi.bean.parents.Support.SaveParentData;

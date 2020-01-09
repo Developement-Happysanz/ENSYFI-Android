@@ -74,7 +74,7 @@ public class TeacherTimetableListAdapter extends BaseAdapter {
             holder.txtBreakName = (TextView) convertView.findViewById(R.id.break_name);
             holder.txtBreakStartTime = (TextView) convertView.findViewById(R.id.break_start_time);
             holder.txtBreakEndTime = (TextView) convertView.findViewById(R.id.break_end_time);
-            if (PreferenceStorage.getUserType(context).equalsIgnoreCase("2")) {
+            if (PreferenceStorage.getUserType(context).equalsIgnoreCase("2") || PreferenceStorage.getUserType(context).equalsIgnoreCase("1")) {
                 holder.txtClassName.setVisibility(View.VISIBLE);
                 holder.txtClassName.setVisibility(View.VISIBLE);
             } else {

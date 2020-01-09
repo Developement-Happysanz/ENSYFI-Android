@@ -118,7 +118,7 @@
             android:theme="@style/AppThemeNoActionBarGrey" />
 
         <activity
-            android:name=".activity.loginmodule.StudentInfoActivity"
+            android:name=".activity.studentmodule.StudentDetailActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarGrey" />
@@ -149,7 +149,7 @@
         <!---->
         <!--Student Module-->
         <activity
-            android:name=".activity.studentmodule.StudentInfoActivity"
+            android:name=".activity.loginmodule.StudentInfoActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarGrey" />

@@ -77,6 +77,7 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
         progressDialogHelper = new ProgressDialogHelper(this);
         hwId = getIntent().getExtras().getLong("hw_id");
         db = new SQLiteHelper(getApplicationContext());
+        layout_all = (LinearLayout) findViewById(R.id.layout_student_list);
         homeWorkId = String.valueOf(hwId);
         pageEdit = getIntent().getStringExtra("mark_array");
         if (pageEdit != null && pageEdit.equalsIgnoreCase("edit")) {
@@ -93,7 +94,6 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
         btnSave = (ImageView) findViewById(R.id.btnSave);
         btnSave.setOnClickListener(this);
 
-        layout_all = (LinearLayout) findViewById(R.id.layout_timetable);
 
         SimpleDateFormat serverDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         formattedServerDate = serverDF.format(c.getTime());

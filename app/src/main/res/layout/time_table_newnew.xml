@@ -49,8 +49,9 @@
             android:layout_marginTop="5dp"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:src="@drawable/ic_notes"
+            android:src="@drawable/ic_view2"
             android:visibility="visible" />
+
 
     </RelativeLayout>
 

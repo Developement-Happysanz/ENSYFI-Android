@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.activity.teachermodule.TeacherTimeTableNewnew;
 import com.palprotech.ensyfi.bean.admin.viewlist.TeacherView;
+import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 import com.palprotech.ensyfi.bean.teacher.support.SaveTeacherData;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
@@ -35,6 +36,7 @@ import org.json.JSONObject;
 public class TeacherViewDetailsActivity extends AppCompatActivity implements IServiceListener, DialogClickListener, View.OnClickListener {
 
     private ImageView teacherImg, btnBack;
+    SQLiteHelper database;
 
     private static final String TAG = TeacherViewDetailsActivity.class.getName();
     private TeacherView teacherView;
@@ -166,6 +168,12 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
                     teacherData.saveTeacherProfile(getTeacherProfile);
                 }
 
+                JSONObject getTeacherDays = response.getJSONObject("timeTabledays");
+                JSONArray getTeacherDaysData = getTeacherDays.getJSONArray("data");
+                if (getTeacherDaysData != null && getTeacherDaysData.length() > 0) {
+                    saveTimeTableDays(getTeacherDaysData);
+                }
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -252,4 +260,31 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
 //        teacherClassName.clearComposingText();
         teacherClassTaken.clearComposingText();
     }
+
+    public void saveTimeTableDays(JSONArray timetableDays) {
+        database = new SQLiteHelper(this);
+        try {
+            database.deleteTimeTableDays();
+
+            for (int i = 0; i < timetableDays.length(); i++) {
+                JSONObject jsonObject = timetableDays.getJSONObject(i);
+
+                String dayId = "";
+                String dayName = "";
+
+                dayId = jsonObject.getString("day_id");
+                dayName = jsonObject.getString("list_day");
+
+                System.out.println("Day Id :" + dayId);
+                System.out.println("Day Name :" + dayName);
+
+                String v1 = dayId, v2 = dayName;
+
+                database.timetable_days_insert(v1, v2);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
 }

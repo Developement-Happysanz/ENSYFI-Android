@@ -8,8 +8,8 @@ public class EnsyfiConstants {
 
     // URLS
     // BASE URL
-    public static final String BASE_URL = "https://ensyfi.com/";
-//    public static final String BASE_URL = "https://happysanz.net/";
+//    public static final String BASE_URL = "https://ensyfi.com/";
+    public static final String BASE_URL = "https://happysanz.in/ensyfi";
 
 
     // ADMIN URL
@@ -92,6 +92,8 @@ public class EnsyfiConstants {
     // EXAM & RESULT URL
     public static final String GET_EXAM_API = "/apistudent/disp_Exams/";
     public static final String GET_EXAM_DETAIL_API = "/apistudent/disp_Examdetails/";
+    public static final String GET_EXAM_TEACHER_API = "/apiteacher/exam_for_teacher/";
+    public static final String GET_EXAM_DETAIL_TEACHER_API = "/apiteacher/exam_details_for_teacher/";
     public static final String GET_EXAM_MARK_API = "/apistudent/disp_Exammarks/";
 
     // STUDENT TIMETABLE URL

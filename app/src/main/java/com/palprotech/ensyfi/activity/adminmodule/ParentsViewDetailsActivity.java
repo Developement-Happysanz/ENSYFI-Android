@@ -69,7 +69,7 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
         callEmptyData();
         populateData();
         callFatherInfoPreferences();
-        info.setVisibility(View.VISIBLE);
+//        info.setVisibility(View.VISIBLE);
     }
 
     private void populateData() {
