@@ -63,9 +63,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:layout_alignTop="@id/LeaveType"
+            android:layout_alignBottom="@id/LeaveType"
             android:layout_toRightOf="@id/LeaveType"
-            android:paddingBottom="3dp"
-            android:paddingTop="3dp"
             android:text="Reason on Duty"
             android:textColor="@color/new_gray"
             android:textSize="16sp" />
@@ -169,7 +169,7 @@
                 android:layout_marginBottom="15dp"
                 android:layout_marginRight="25dp"
                 android:layout_marginTop="25dp"
-                android:text="Decline"
+                android:text="Deny"
                 android:buttonTint="@color/reject"
                 android:textSize="16sp" />
 
@@ -193,7 +193,8 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
-            android:text="ok"
+            android:text="Save"
+            android:textAllCaps="false"
             android:background="@drawable/round_btn_color"
             android:textColor="@color/white" />
 

@@ -219,7 +219,7 @@ public class SaveTeacherData {
                 String dayName = "";
 
                 dayId = jsonObject.getString("day_id");
-                dayName = jsonObject.getString("list_day");
+                dayName = jsonObject.getString("day_name");
 
                 System.out.println("Day Id :" + dayId);
                 System.out.println("Day Name :" + dayName);
@@ -510,7 +510,7 @@ public class SaveTeacherData {
         database = new SQLiteHelper(context);
 
         try {
-//            database.deleteExamDetails();
+            database.deleteExamDetails();
             for (int i = 0; i < academicExamsDetails.length(); i++) {
                 HashMap<String, String> map = new HashMap<String, String>();
                 JSONObject jsonobj = academicExamsDetails.getJSONObject(i);

@@ -38,7 +38,7 @@
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:minHeight="?android:attr/actionBarSize"
-            android:text="Add member"
+            android:text="Add Member"
             android:textColor="@color/white"
             android:textSize="@dimen/menuTextSize"
             android:textStyle="bold" />
@@ -47,15 +47,16 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:elevation="12dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/shadow_round">
 
         <RelativeLayout
             android:id="@+id/first_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="40dp"
-            android:elevation="12dp"
-            android:background="@drawable/shadow_round">
+            android:layout_margin="20dp">
 
             <RelativeLayout
                 android:id="@+id/info_layout"
@@ -69,7 +70,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
                     android:gravity="center"
-                    android:text="Title"
+                    android:text="Group"
                     android:textColor="@color/new_gray"
                     android:textSize="16sp" />
 
@@ -96,7 +97,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
-                    android:text="Group Lead"
+                    android:text="Group Admin"
                     android:textColor="@color/new_gray"
                     android:textSize="16sp" />
 
@@ -152,8 +153,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:padding="10dp"
+            android:layout_margin="10dp"
             android:paddingBottom="10dp"
             android:elevation="12dp"
             android:layout_below="@id/first_layout"

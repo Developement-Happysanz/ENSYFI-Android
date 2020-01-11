@@ -147,6 +147,7 @@ public class AcademicExamDetailPage extends AppCompatActivity implements DialogC
                 intent.putExtra("subject_id", subjectId);
                 intent.putExtra("classMasterId", classMasterId);
                 intent.putExtra("examId", examId);
+                intent.putExtra("type", "add");
                 startActivity(intent);
             } else {
                 Intent intent = new Intent(getApplicationContext(), AddAcademicExamMarksOnlyTotalActivity.class);
@@ -154,6 +155,7 @@ public class AcademicExamDetailPage extends AppCompatActivity implements DialogC
                 intent.putExtra("subject_id", subjectId);
                 intent.putExtra("classMasterId", classMasterId);
                 intent.putExtra("examId", examId);
+                intent.putExtra("type", "add");
                 startActivity(intent);
             }
         }

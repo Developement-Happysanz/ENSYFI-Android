@@ -39,7 +39,7 @@ import org.json.JSONObject;
 public class ChangePasswordActivity extends AppCompatActivity implements View.OnClickListener, IServiceListener, DialogClickListener {
 
     private static final String TAG = ChangePasswordActivity.class.getName();
-    EditText edtCurrentName, edtNewPassword, edtConfirmPassword;
+    EditText edtCurrentPassword, edtNewPassword, edtConfirmPassword;
     Button btnConfirm;
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper progressDialogHelper;
@@ -48,7 +48,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
-        edtCurrentName = (EditText) findViewById(R.id.edtcurrentpassword);
+        edtCurrentPassword = (EditText) findViewById(R.id.edtcurrentpassword);
         edtNewPassword = (EditText) findViewById(R.id.edtnewpassword);
         edtConfirmPassword = (EditText) findViewById(R.id.edtconfirmpassword);
         btnConfirm = (Button) findViewById(R.id.confirm);
@@ -112,7 +112,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
                     JSONObject jsonObject = new JSONObject();
                     try {
                         jsonObject.put(EnsyfiConstants.PARAMS_FP_USER_ID, PreferenceStorage.getUserId(this));
-                        jsonObject.put(EnsyfiConstants.PARAMS_CP_CURRENT_PASSWORD, edtCurrentName.getText().toString());
+                        jsonObject.put(EnsyfiConstants.PARAMS_CP_CURRENT_PASSWORD, edtCurrentPassword.getText().toString());
                         jsonObject.put(EnsyfiConstants.PARAMS_PASSWORD, edtNewPassword.getText().toString());
 
                     } catch (JSONException e) {
@@ -130,14 +130,14 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
 
     private boolean validateFields() {
         int minChar = 8;
-        if (!AppValidator.checkNullString(this.edtCurrentName.getText().toString().trim())) {
+        if (!AppValidator.checkNullString(this.edtCurrentPassword.getText().toString().trim())) {
             AlertDialogHelper.showSimpleAlertDialog(this, this.getResources().getString(R.string.enter_password));
             return false;
         } else if (!AppValidator.checkNullString(this.edtNewPassword.getText().toString().trim())) {
-            AlertDialogHelper.showSimpleAlertDialog(this, this.getResources().getString(R.string.enter_password));
+            AlertDialogHelper.showSimpleAlertDialog(this, this.getResources().getString(R.string.enter_new_password));
             return false;
         } else if (!AppValidator.checkNullString(this.edtConfirmPassword.getText().toString().trim())) {
-            AlertDialogHelper.showSimpleAlertDialog(this, this.getResources().getString(R.string.enter_password));
+            AlertDialogHelper.showSimpleAlertDialog(this, this.getResources().getString(R.string.enter_confirm_password));
             return false;
         } else if (!AppValidator.checkStringMinLength(minChar, this.edtNewPassword.getText().toString().trim())) {
             AlertDialogHelper.showSimpleAlertDialog(this, this.getResources().getString(R.string.min_pass_length));
@@ -166,7 +166,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
         if (validateForgotPasswordResponse(response)) {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
             alertDialogBuilder.setTitle("Password changed");
-            alertDialogBuilder.setMessage("Password changed successfully");
+            alertDialogBuilder.setMessage("Your password has been reset");
             alertDialogBuilder.setPositiveButton("OK",
                     new DialogInterface.OnClickListener() {
 

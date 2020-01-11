@@ -105,7 +105,7 @@ public class ClassTestHomeWorkTeacherViewActivity extends AppCompatActivity impl
 //        callSpinner();
 
         mClassTestHomeWorkList.add("Class Test");
-        mClassTestHomeWorkList.add("Home Work");
+        mClassTestHomeWorkList.add("Homework");
 
         ArrayAdapter<String> dataAdapter3 = new ArrayAdapter<String>(this, R.layout.spinner_item_ns, mClassTestHomeWorkList);
 

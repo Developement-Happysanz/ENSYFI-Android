@@ -47,6 +47,10 @@ public class ExamResult implements Serializable {
     @Expose
     private String total_grade;
 
+    @SerializedName("enroll_id")
+    @Expose
+    private String enroll_id;
+
     /**
      * @return The exam_name
      */
@@ -171,5 +175,19 @@ public class ExamResult implements Serializable {
      */
     public void setTotalGrade(String total_grade) {
         this.total_grade = total_grade;
+    }
+
+    /**
+     * @return The enroll_id
+     */
+    public String getEnroll_id() {
+        return enroll_id;
+    }
+
+    /**
+     * @param enroll_id The enroll_id
+     */
+    public void setEnroll_id(String enroll_id) {
+        this.enroll_id = enroll_id;
     }
 }

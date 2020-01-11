@@ -40,7 +40,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center"
                 android:minHeight="?android:attr/actionBarSize"
-                android:text="Profile"
+                android:text="My Profile"
                 android:textColor="@color/white"
                 android:textSize="@dimen/menuTextSize"
                 android:textStyle="bold" />
@@ -85,7 +85,7 @@
                         android:fitsSystemWindows="true"
                         android:layout_gravity="center"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/ic_profile" />
+                        android:src="@drawable/ic_profile_default" />
 
                     <Button
                         android:id="@+id/btnSave"
@@ -150,18 +150,18 @@
                     android:layout_marginTop="10dp"
                     android:text="@string/user_name"
                     android:textColor="@color/new_gray"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/userid"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginRight="25dp"
                     android:digits="aãâáàbcçdeéfghiíjklmnoõôóòpqrstuvwxyzAÃÂÁÀBCÇDEÉFGHIÍJKLMNOÕÔÓÒPQRSTUVWXYZ1234567890@-_'+=(){}[]*%$₹£¢€¥#!?,.;: /?\\¡¿[]•∆π™℅¶♂♀°℃®©\◆●【】&lt;&gt;&amp;"
                     android:focusableInTouchMode="true"
                     android:inputType="textEmailAddress"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
 
 
                 <Button

@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.bean.general.viewlist.LeaveStatus;
@@ -145,7 +146,13 @@ public class LeaveStatusDetailActivity extends AppCompatActivity implements ISer
 
     @Override
     public void onResponse(JSONObject response) {
-
+        try {
+            if (response.getString("status").equalsIgnoreCase("success")) {
+                Toast.makeText(this, "Leave " + leaveApprovalStatus, Toast.LENGTH_SHORT).show();
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

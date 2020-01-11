@@ -21,20 +21,24 @@
     <string name="password">Password</string>
     <string name="new_password">New Password</string>
     <string name="con_password">Confirm Password</string>
-    <string name="forgot_content">We will send a code to your registered EMAIL or MOBILE, using which you can login to create a new password.</string>
+    <string name="forgot_content">No problems. Please enter your username and \n we\'ll reset the password for you.</string>
     <string name="sign_in">Sign In</string>
     <string name="institute_Id">Institute Id cannot be empty</string>
-    <string name="enter_user_name">User name cannot be empty</string>
+    <string name="enter_user_name">Username cannot be empty</string>
+    <string name="enter_user_name_forgot">Username is required to reset your password!</string>
     <string name="enter_password">Password cannot be empty</string>
+    <string name="enter_password_reset">Current password is required!</string>
+    <string name="enter_new_password"> Enter new password</string>
+    <string name="enter_confirm_password">Confirm the password please!</string>
     <string name="min_pass_length">Short passwords are easy to guess! Try one with at least 8 characters&#8230;</string>
-    <string name="password_mismatch">Password mismatch</string>
+    <string name="password_mismatch">Password doesn\'t match new password!</string>
 
     <!--Dashboard-->
     <!---->
     <string name="attendance">ATTENDANCE</string>
-    <string name="class_test">CLASS TEST &amp; HOMEWORK</string>
-    <string name="exam">EXAM &amp; RESULT</string>
-    <string name="time_table">TIME TABLE</string>
+    <string name="class_test">HOMEWORKS/CLASS TESTS</string>
+    <string name="exam">EXAMS &amp; RESULTS</string>
+    <string name="time_table">TIMETABLE</string>
     <string name="events">EVENTS</string>
     <string name="students">STUDENTS</string>
     <string name="teachers">TEACHERS</string>
@@ -42,7 +46,7 @@
     <string name="classes">CLASSES</string>
     <string name="result">RESULT</string>
 
-    <string name="communication">CIRCULAR</string>
+    <string name="communication">CIRCULARS</string>
 
     <!--Edit Profile-->
     <!---->
@@ -53,6 +57,7 @@
     <!--Group Notification-->
     <!---->
     <string name="group_title">Group title cannot be empty</string>
+    <string name="group_admin">Please choose an admin!</string>
 
 
     <!--Custom calendar view-->

@@ -1,6 +1,7 @@
 package com.palprotech.ensyfi.activity.studentmodule;
 
 import android.content.DialogInterface;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,6 +13,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.adapter.studentmodule.StudentTimeTableAdapter;
+import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 import com.palprotech.ensyfi.bean.teacher.viewlist.TTDays;
 import com.palprotech.ensyfi.bean.teacher.viewlist.TTDaysList;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
@@ -27,6 +29,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static android.util.Log.d;
 
@@ -37,6 +40,9 @@ public class StudentTimeTableAcitivityNewnew extends AppCompatActivity implement
     private ProgressDialogHelper progressDialogHelper;
     TabLayout tab;
     ViewPager viewPager;
+    List<String> list = new ArrayList<String>();
+    List<String> list1 = new ArrayList<String>();
+    int dayCount = 0;
     ArrayList<TTDays> dayArrayList = new ArrayList<>();;
 
     @Override
@@ -153,11 +159,18 @@ public class StudentTimeTableAcitivityNewnew extends AppCompatActivity implement
 
     private void initialiseTabs(JSONArray subCategory) {
 //        startTimer();
-        for (int k = 0; k < subCategory.length(); k++) {
-            try {
-                tab.addTab(tab.newTab().setText(String.valueOf(subCategory.getJSONObject(k).get("list_day"))));
-            } catch (JSONException e) {
-                e.printStackTrace();
+        if (PreferenceStorage.getUserType(this).equalsIgnoreCase("2") ||
+                PreferenceStorage.getUserType(this).equalsIgnoreCase("1")) {
+            for (int i = 0; i < dayCount; i++) {
+                tab.addTab(tab.newTab().setText(list1.get(i)));
+            }
+        } else {
+            for (int k = 0; k < subCategory.length(); k++) {
+                try {
+                    tab.addTab(tab.newTab().setText(String.valueOf(subCategory.getJSONObject(k).get("list_day"))));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }
         StudentTimeTableAdapter adapter = new StudentTimeTableAdapter

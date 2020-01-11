@@ -483,7 +483,7 @@ public class GroupNotificationAddMemberActivity extends AppCompatActivity implem
                     String status = response.getString("status");
                     String msg = response.getString(EnsyfiConstants.PARAM_MESSAGE);
                     if (status.equalsIgnoreCase("success") && msg.equalsIgnoreCase("Group Members Added")) {
-                        Toast.makeText(this, "Group Members Added!!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "New member(s) added to the group", Toast.LENGTH_SHORT).show();
                         finish();
                     }
                 }

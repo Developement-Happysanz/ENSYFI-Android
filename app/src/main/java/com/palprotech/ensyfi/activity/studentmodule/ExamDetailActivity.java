@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
@@ -48,7 +49,7 @@ public class ExamDetailActivity extends AppCompatActivity implements IServiceLis
     Handler mHandler = new Handler();
     private Exams exams;
     String ExamId;
-
+    LinearLayout llTitle;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,6 +72,7 @@ public class ExamDetailActivity extends AppCompatActivity implements IServiceLis
             }
         });
 
+        llTitle = findViewById(R.id.llTitle);
     }
 
     private void callGetExamDetailViewService() {
@@ -144,7 +146,7 @@ public class ExamDetailActivity extends AppCompatActivity implements IServiceLis
                         signInsuccess = false;
                         Log.d(TAG, "Show error dialog");
                         AlertDialogHelper.showSimpleAlertDialog(this, msg);
-
+                        llTitle.setVisibility(View.GONE);
                     } else {
                         signInsuccess = true;
                     }
@@ -197,6 +199,7 @@ public class ExamDetailActivity extends AppCompatActivity implements IServiceLis
             public void run() {
                 progressDialogHelper.hideProgressDialog();
                 AlertDialogHelper.showSimpleAlertDialog(ExamDetailActivity.this, error);
+                llTitle.setVisibility(View.GONE);
             }
         });
     }

@@ -7,7 +7,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import androidx.annotation.Nullable;
+
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -27,25 +27,19 @@ import android.widget.Toast;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.activity.general.CircularActivity;
 import com.palprotech.ensyfi.activity.general.EventsActivity;
-import com.palprotech.ensyfi.activity.general.LeaveCalendarActivity;
 import com.palprotech.ensyfi.activity.general.OnDutyActivity;
-import com.palprotech.ensyfi.activity.loginmodule.ChangePasswordActivity;
-import com.palprotech.ensyfi.activity.loginmodule.ProfileActivity;
 import com.palprotech.ensyfi.activity.loginmodule.ProfileActivityNew;
 import com.palprotech.ensyfi.activity.loginmodule.SettingsActivity;
 import com.palprotech.ensyfi.activity.loginmodule.SplashScreenActivity;
 import com.palprotech.ensyfi.activity.studentmodule.AttendanceActivity;
 import com.palprotech.ensyfi.activity.studentmodule.ClassTestHomeworkActivity;
 import com.palprotech.ensyfi.activity.studentmodule.ExamsResultActivity;
-import com.palprotech.ensyfi.activity.studentmodule.StudentInfoActivity;
-import com.palprotech.ensyfi.activity.studentmodule.StudentTimeTableAcitivityNew;
-import com.palprotech.ensyfi.activity.studentmodule.StudentTimeTableAcitivityNewnew;
-import com.palprotech.ensyfi.activity.studentmodule.StudentTimeTableActivity;
+import com.palprotech.ensyfi.activity.loginmodule.StudentInfoActivity;
+import com.palprotech.ensyfi.activity.teachermodule.TeacherTimeTableNewnew;
 import com.palprotech.ensyfi.adapter.NavDrawerAdapter;
 import com.palprotech.ensyfi.bean.general.support.DeleteTableRecords;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 public class ParentDashBoardActivity extends AppCompatActivity implements DialogClickListener {
@@ -58,7 +52,7 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
     boolean doubleBackToExitPressedOnce = false;
     private ImageView imgNavProfileImage;
     private ArrayAdapter<String> navListAdapter;
-    private String[] values = {"Profile", "Attendance", "Class Test & Homework", "Exam & Result", "Time Table", "Events", "Circular", "Student Info", "On Duty", "Settings", "Sign Out"};
+    private String[] values = {"Profile", "Attendance", "Homeworks/Class Tests", "Exams & Results", "Time Table", "Events", "Circulars", "Student Info", "On Duty", "Settings", "Sign Out"};
     TextView navUserProfileName = null;
     LinearLayout dashAttendance, dashTimeTable, dashClassTest, dashExam, dashEvent, dashCommunication;
     private String mCurrentUserProfileUrl = "";
@@ -138,7 +132,7 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
         dashTimeTable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), StudentTimeTableAcitivityNewnew.class);
+                Intent intent = new Intent(getApplicationContext(), TeacherTimeTableNewnew.class);
                 startActivity(intent);
             }
         });
@@ -170,7 +164,7 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
 
         if (((url != null) && !(url.isEmpty()))) {
             Log.d(TAG, "image url is " + url);
-            Picasso.get().load(url).placeholder(R.drawable.ab_logo).error(R.drawable.ab_logo).into(imgNavProfileImage);
+            Picasso.get().load(url).placeholder(R.drawable.ic_profile_default).error(R.drawable.ic_profile_default).into(imgNavProfileImage);
         }
         Log.d(TAG, "Set the selected page to 0");//default page
     }
@@ -202,7 +196,7 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
                 if (((url != null) && !(url.isEmpty())) && !(url.equalsIgnoreCase(mCurrentUserProfileUrl))) {
                     Log.d(TAG, "image url is " + url);
                     mCurrentUserProfileUrl = url;
-                    Picasso.get().load(url).noPlaceholder().error(R.drawable.ab_logo).into(imgNavProfileImage);
+                    Picasso.get().load(url).noPlaceholder().error(R.drawable.ic_profile_default).into(imgNavProfileImage);
                 }
             }
         };
@@ -244,7 +238,7 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 4) {
-            Intent navigationIntent = new Intent(this, StudentTimeTableAcitivityNew.class);
+            Intent navigationIntent = new Intent(this, TeacherTimeTableNewnew.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 5) {
@@ -277,6 +271,11 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
             Log.d(TAG, "Perform Logout");
             doLogout();
         }
+//        else if (position == 11) {
+//            Intent navigationIntent = new Intent(this, SpecialClass.class);
+//            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            startActivity(navigationIntent);
+//        }
     }
 
     @Override

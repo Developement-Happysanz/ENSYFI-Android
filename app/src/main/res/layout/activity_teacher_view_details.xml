@@ -86,9 +86,10 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_below="@+id/TeacherName"
-                    android:text="Id"
+                    android:text="ID"
                     android:textColor="@color/black"
                     android:textStyle="bold"
+                    android:visibility="gone"
                     android:textSize="16sp"/>
 
                 <TextView
@@ -99,6 +100,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/TeacherSecondaryMobile"
+                    android:visibility="gone"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
                     android:textSize="15dp" />
@@ -251,7 +253,7 @@
                     android:layout_below="@+id/TeacherReligion"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Caste"
+                    android:text="Community Class"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:textSize="16sp"/>
@@ -323,7 +325,7 @@
                     android:layout_below="@+id/TeacherSubject"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Class Teacher"
+                    android:text="Class Teacher For"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:textSize="16sp"/>
@@ -347,9 +349,10 @@
                     android:layout_below="@+id/ClassTeacher"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Class Section"
+                    android:text="Class"
                     android:textColor="@color/black"
                     android:textStyle="bold"
+                    android:visibility="gone"
                     android:textSize="16sp" />
 
                 <TextView
@@ -359,6 +362,7 @@
                     android:layout_alignTop="@+id/TeacherSectionName"
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/TeacherSecondaryMobile"
+                    android:visibility="gone"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -370,7 +374,8 @@
                     android:layout_below="@+id/TeacherSectionName"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Class Name"
+                    android:visibility="gone"
+                    android:text="Section"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:textSize="16sp"/>
@@ -382,6 +387,7 @@
                     android:layout_alignTop="@+id/TeacherClassName"
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/TeacherSecondaryMobile"
+                    android:visibility="gone"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -393,7 +399,7 @@
                     android:layout_below="@+id/TeacherClassName"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Mobile"
+                    android:text="Mobile No"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:textSize="16sp"/>
@@ -416,7 +422,7 @@
                     android:layout_below="@+id/TeacherMobile"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Secondary Mobile"
+                    android:text="Alternate Mobile No"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:textSize="16sp"/>
@@ -439,7 +445,7 @@
                     android:layout_below="@+id/TeacherSecondaryMobile"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Mail"
+                    android:text="EMail ID"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:textSize="16sp"/>
@@ -463,7 +469,7 @@
                     android:layout_below="@+id/TeacherMail"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Secondary Mail"
+                    android:text="Alternate EMail ID"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:textSize="16sp"/>
@@ -486,7 +492,7 @@
                     android:layout_below="@+id/TeacherSecondaryMail"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Class Taken"
+                    android:text="Handling Classes"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:textSize="16sp"/>

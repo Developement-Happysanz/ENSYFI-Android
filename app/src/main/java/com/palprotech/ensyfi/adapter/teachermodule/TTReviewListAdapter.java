@@ -96,8 +96,8 @@ public class TTReviewListAdapter extends BaseAdapter {
         } else {
             Log.d("Event List Adapter", "getview pos called" + position);
         }
-        holder.txtClassName.setText(ttReviews.get(position).getClassName() + "-" + ttReviews.get(position).getSectionName());
-        holder.txtSubjectName.setText(ttReviews.get(position).getSubjectName());
+        holder.txtClassName.setText("Class: " +ttReviews.get(position).getClassName() + "-" + ttReviews.get(position).getSectionName());
+        holder.txtSubjectName.setText("Subject: " +ttReviews.get(position).getSubjectName());
         holder.txtDay.setText(ttReviews.get(position).getDay());
         holder.txtTimeDate.setText(ttReviews.get(position).getTimeDate());
         return convertView;

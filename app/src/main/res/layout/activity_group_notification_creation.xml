@@ -35,7 +35,7 @@
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:minHeight="?android:attr/actionBarSize"
-            android:text="New Group"
+            android:text="Create Group"
             android:textColor="@color/white"
             android:textSize="@dimen/menuTextSize"
             android:textStyle="bold" />
@@ -88,7 +88,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
             android:gravity="center"
-            android:text="Group Lead"
+            android:text="Group Admin"
             android:textColor="@color/appColor"
             android:textSize="16sp" />
 

@@ -2,7 +2,7 @@ package com.palprotech.ensyfi.activity.adminmodule;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.IdRes;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
@@ -12,9 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.palprotech.ensyfi.R;
-import com.palprotech.ensyfi.activity.teachermodule.TeacherTimeTableActivity;
-import com.palprotech.ensyfi.activity.teachermodule.TeacherTimeTableNew;
+import com.palprotech.ensyfi.activity.teachermodule.TeacherTimeTableNewnew;
 import com.palprotech.ensyfi.bean.admin.viewlist.TeacherView;
+import com.palprotech.ensyfi.bean.database.SQLiteHelper;
 import com.palprotech.ensyfi.bean.teacher.support.SaveTeacherData;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
@@ -36,6 +36,7 @@ import org.json.JSONObject;
 public class TeacherViewDetailsActivity extends AppCompatActivity implements IServiceListener, DialogClickListener, View.OnClickListener {
 
     private ImageView teacherImg, btnBack;
+    SQLiteHelper database;
 
     private static final String TAG = TeacherViewDetailsActivity.class.getName();
     private TeacherView teacherView;
@@ -120,7 +121,7 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
         if (v == btnTeacherTimeTable) {
             if (checkTimeTable) {
                 PreferenceStorage.saveTeacherId(this, teacherId.getText().toString());
-                Intent intent = new Intent(this, TeacherTimeTableNew.class);
+                Intent intent = new Intent(this, TeacherTimeTableNewnew.class);
                 startActivity(intent);
             }
         }
@@ -165,6 +166,12 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
                 JSONArray getTeacherProfile = response.getJSONArray("teacherProfile");
                 if (getTeacherProfile != null && getTeacherProfile.length() > 0) {
                     teacherData.saveTeacherProfile(getTeacherProfile);
+                }
+
+                JSONObject getTeacherDays = response.getJSONObject("timeTabledays");
+                JSONArray getTeacherDaysData = getTeacherDays.getJSONArray("data");
+                if (getTeacherDaysData != null && getTeacherDaysData.length() > 0) {
+                    saveTimeTableDays(getTeacherDaysData);
                 }
 
             } catch (JSONException e) {
@@ -253,4 +260,31 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
 //        teacherClassName.clearComposingText();
         teacherClassTaken.clearComposingText();
     }
+
+    public void saveTimeTableDays(JSONArray timetableDays) {
+        database = new SQLiteHelper(this);
+        try {
+            database.deleteTimeTableDays();
+
+            for (int i = 0; i < timetableDays.length(); i++) {
+                JSONObject jsonObject = timetableDays.getJSONObject(i);
+
+                String dayId = "";
+                String dayName = "";
+
+                dayId = jsonObject.getString("day_id");
+                dayName = jsonObject.getString("list_day");
+
+                System.out.println("Day Id :" + dayId);
+                System.out.println("Day Name :" + dayName);
+
+                String v1 = dayId, v2 = dayName;
+
+                database.timetable_days_insert(v1, v2);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
 }

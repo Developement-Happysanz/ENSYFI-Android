@@ -18,7 +18,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
 import android.provider.MediaStore;
-import androidx.annotation.Nullable;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -32,6 +32,7 @@ import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.activity.studentmodule.FeeStatusActivity;
+import com.palprotech.ensyfi.activity.studentmodule.StudentDetailActivity;
 import com.palprotech.ensyfi.bean.student.support.SaveStudentData;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
@@ -173,7 +174,7 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
 //            GbtnCancel.setVisibility(View.INVISIBLE);
         }
         if (v == StudentProfile) {
-            Intent intent = new Intent(getApplicationContext(), StudentInfoActivity.class);
+            Intent intent = new Intent(getApplicationContext(), StudentDetailActivity.class);
             startActivity(intent);
 //            studentInfoPopup.setVisibility(View.VISIBLE);
 //            SbtnCancel.setVisibility(View.VISIBLE);

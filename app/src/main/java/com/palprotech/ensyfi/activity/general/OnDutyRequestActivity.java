@@ -335,10 +335,10 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
         }
 
         if (!AppValidator.checkNullString(this.edtOnDutyRequestFor.getText().toString().trim())) {
-            AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid reason");
+            AlertDialogHelper.showSimpleAlertDialog(this, "Purpose cannot be empty!");
             return false;
         } else if (!AppValidator.checkNullString(this.edtOnDutyRequestDetails.getText().toString().trim())) {
-            AlertDialogHelper.showSimpleAlertDialog(this, "Enter valid reason details");
+            AlertDialogHelper.showSimpleAlertDialog(this, "Description cannot be empty!");
             return false;
         } else if (getDate1 > 0) {
             AlertDialogHelper.showSimpleAlertDialog(this, "ToDate should not lesser than FromDate");
@@ -435,7 +435,7 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
                     if (((status.equalsIgnoreCase("success")))) {
 
                         Log.d(TAG, "Show error dialog");
-                        Toast.makeText(getApplicationContext(), "On Duty request submitted...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "On duty application submitted", Toast.LENGTH_SHORT).show();
 //                        AlertDialogHelper.showSimpleAlertDialog(this, msg);
 
                         /*Intent intent = new Intent(this, OnDutyActivity.class);

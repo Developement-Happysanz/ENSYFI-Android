@@ -40,6 +40,16 @@
             android:textSize="@dimen/menuTextSize"
             android:textStyle="bold" />
 
+        <ImageView
+            android:id="@+id/edit_mark"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:layout_alignParentEnd="true"
+            android:contentDescription="@string/title_exam_mark_entry"
+            android:minHeight="?android:attr/actionBarSize"
+            android:padding="13dp"
+            android:src="@drawable/ic_edit" />
+
     </RelativeLayout>
 
     <LinearLayout

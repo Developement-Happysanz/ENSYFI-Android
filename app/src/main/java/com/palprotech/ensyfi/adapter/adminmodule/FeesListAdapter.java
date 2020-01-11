@@ -95,6 +95,7 @@ public class FeesListAdapter extends BaseAdapter {
             Log.d("Event List Adapter", "getview pos called" + position);
         }
         holder.txtTermName.setText(fees.get(position).getTermName());
+        holder.txtTermName.setAllCaps(false);
         holder.txtDueDateFrom.setText(fees.get(position).getDueDateFrom());
         holder.txtDueDateTo.setText(fees.get(position).getDueDateTo());
 

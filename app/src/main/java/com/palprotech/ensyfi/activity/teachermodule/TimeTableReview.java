@@ -83,17 +83,6 @@ public class TimeTableReview extends AppCompatActivity implements IServiceListen
             tTReviewArrayList.clear();
 
         if (CommonUtils.isNetworkAvailable(this)) {
-            progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            new HttpAsyncTask().execute("");
-        } else {
-            AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
-        }
-    }
-
-    private class HttpAsyncTask extends AsyncTask<String, Void, Void> {
-        @Override
-        protected Void doInBackground(String... urls) {
-
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_CTHW_TEACHER_ID, PreferenceStorage.getTeacherId(getApplicationContext()));
@@ -106,13 +95,8 @@ public class TimeTableReview extends AppCompatActivity implements IServiceListen
             String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_ON_TIME_TABLE_REVIEW_;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
-            return null;
-        }
-
-        // onPostExecute displays the results of the AsyncTask.
-        @Override
-        protected void onPostExecute(Void result) {
-            progressDialogHelper.cancelProgressDialog();
+        } else {
+            AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
         }
     }
 
@@ -173,23 +157,17 @@ public class TimeTableReview extends AppCompatActivity implements IServiceListen
 
     @Override
     public void onResponse(final JSONObject response) {
+        progressDialogHelper.cancelProgressDialog();
         if (validateSignInResponse(response)) {
             Log.d("ajazFilterresponse : ", response.toString());
 
-            mHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    progressDialogHelper.hideProgressDialog();
-
-                    Gson gson = new Gson();
-                    TTReviewList tTReviewList = gson.fromJson(response.toString(), TTReviewList.class);
-                    if (tTReviewList.getTTReview() != null && tTReviewList.getTTReview().size() > 0) {
-                        totalCount = tTReviewList.getCount();
-                        isLoadingForFirstTime = false;
-                        updateListAdapter(tTReviewList.getTTReview());
-                    }
-                }
-            });
+            Gson gson = new Gson();
+            TTReviewList tTReviewList = gson.fromJson(response.toString(), TTReviewList.class);
+            if (tTReviewList.getTTReview() != null && tTReviewList.getTTReview().size() > 0) {
+                totalCount = tTReviewList.getCount();
+                isLoadingForFirstTime = false;
+                updateListAdapter(tTReviewList.getTTReview());
+            }
         } else {
             Log.d(TAG, "Error while sign In");
         }
@@ -207,12 +185,7 @@ public class TimeTableReview extends AppCompatActivity implements IServiceListen
 
     @Override
     public void onError(final String error) {
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                progressDialogHelper.hideProgressDialog();
-                AlertDialogHelper.showSimpleAlertDialog(TimeTableReview.this, error);
-            }
-        });
+        progressDialogHelper.hideProgressDialog();
+        AlertDialogHelper.showSimpleAlertDialog(TimeTableReview.this, error);
     }
 }

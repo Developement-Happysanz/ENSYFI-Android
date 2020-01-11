@@ -19,6 +19,10 @@ public class ClassTestMark implements Serializable {
     @Expose
     private String marks;
 
+    @SerializedName("enroll_id")
+    @Expose
+    private String enroll_id;
+
     /**
      * @return The name
      */
@@ -45,5 +49,19 @@ public class ClassTestMark implements Serializable {
      */
     public void setMarks(String marks) {
         this.marks = marks;
+    }
+
+    /**
+     * @return The enroll_id
+     */
+    public String getEnroll_id() {
+        return enroll_id;
+    }
+
+    /**
+     * @param enroll_id The enroll_id
+     */
+    public void setEnroll_id(String enroll_id) {
+        this.enroll_id = enroll_id;
     }
 }

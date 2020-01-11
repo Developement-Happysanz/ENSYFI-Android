@@ -89,6 +89,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Id"
+                    android:visibility="gone"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -99,6 +100,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/Teacherid"
                     android:layout_centerHorizontal="true"
+                    android:visibility="gone"
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/TeacherSecondaryMobile"
                     android:paddingTop="2dp"
@@ -374,6 +376,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Class Name"
+                    android:visibility="gone"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -384,6 +387,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/TeacherClassName"
                     android:layout_marginLeft="5dp"
+                    android:visibility="gone"
                     android:layout_toRightOf="@+id/TeacherSecondaryMobile"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
@@ -489,6 +493,7 @@
                     android:layout_below="@+id/TeacherSecondaryMail"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
+                    android:visibility="gone"
                     android:text="Class Taken"
                     android:textColor="@color/black"
                     android:textSize="16sp"
@@ -500,6 +505,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@id/TeacherClassTaken"
+                    android:visibility="gone"
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/TeacherSecondaryMobile"
                     android:paddingTop="2dp"
@@ -514,6 +520,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Skill Set"
+                    android:visibility="gone"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -525,6 +532,7 @@
                     android:layout_alignTop="@id/TeacherSkillSet"
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/TeacherSecondaryMobile"
+                    android:visibility="gone"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -537,6 +545,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Previous Exp"
+                    android:visibility="gone"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -548,6 +557,7 @@
                     android:layout_alignTop="@id/TeacherPreviousExp"
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/TeacherSecondaryMobile"
+                    android:visibility="gone"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -560,6 +570,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Total Exp"
+                    android:visibility="gone"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -570,6 +581,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@id/TeacherTotalExp"
                     android:layout_marginLeft="5dp"
+                    android:visibility="gone"
                     android:layout_toRightOf="@+id/TeacherSecondaryMobile"
                     android:paddingTop="2dp"
                     android:textColor="@color/black"

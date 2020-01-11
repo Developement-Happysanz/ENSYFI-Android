@@ -35,7 +35,7 @@
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:minHeight="?android:attr/actionBarSize"
-            android:text="Parent Profile"
+            android:text="Parent Details"
             android:textColor="@color/white"
             android:textSize="@dimen/menuTextSize"
             android:textStyle="bold" />
@@ -57,7 +57,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:layout_marginTop="150dp">
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="100dp">
 
                 <RelativeLayout
                     android:id="@+id/iid"
@@ -122,7 +123,7 @@
                         android:layout_below="@+id/txtfatheraddress"
                         android:layout_alignLeft="@id/fathername"
                         android:layout_marginTop="10dp"
-                        android:text="Mail"
+                        android:text="EMail ID"
                         android:textColor="@color/new_gray"
                         android:textStyle="bold"
                         android:textSize="16sp"/>
@@ -214,7 +215,7 @@
                         android:layout_below="@+id/txtfathermobile"
                         android:layout_alignLeft="@id/fathername"
                         android:layout_marginTop="10dp"
-                        android:text="Home Phone"
+                        android:text="Telephone"
                         android:textColor="@color/new_gray"
                         android:textStyle="bold"
                         android:textSize="16sp"/>
@@ -271,7 +272,7 @@
                             android:textColor="@color/white"
                             android:textAllCaps="false"
                             android:background="@drawable/round_btn_color"
-                            android:text="View Students Info" />
+                            android:text="Student Details" />
                     </LinearLayout>
 
                 </RelativeLayout>
@@ -282,7 +283,7 @@
                 android:id="@+id/userimage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="10dp"
                 android:gravity="center">
 
                 <com.palprotech.ensyfi.customview.CircleImageView
@@ -293,7 +294,7 @@
                     android:fitsSystemWindows="true"
                     android:scaleType="centerCrop"
                     android:elevation="12dp"
-                    android:src="@drawable/ic_father" />
+                    android:src="@drawable/ic_father_deselect" />
 
                 <com.palprotech.ensyfi.customview.CircleImageView
                     android:id="@+id/img_mother_profile"

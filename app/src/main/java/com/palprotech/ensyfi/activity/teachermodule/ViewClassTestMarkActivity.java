@@ -1,5 +1,6 @@
 package com.palprotech.ensyfi.activity.teachermodule;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import androidx.annotation.Nullable;
@@ -65,6 +66,16 @@ public class ViewClassTestMarkActivity extends AppCompatActivity implements ISer
         bckbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                finish();
+            }
+        });
+        findViewById(R.id.edit_mark).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AddClassTestMarkActivity.class);
+                intent.putExtra("hw_id", hwId);
+                intent.putExtra("mark_array", "edit");
+                startActivity(intent);
                 finish();
             }
         });

@@ -35,7 +35,7 @@
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:minHeight="?android:attr/actionBarSize"
-            android:text="Student list"
+            android:text="Exam Results"
             android:textColor="@color/white"
             android:textSize="@dimen/menuTextSize"
             android:textStyle="bold" />
@@ -77,7 +77,7 @@
                 android:layout_marginLeft="2dp"
                 android:background="@color/new_gray"
                 android:gravity="center"
-                android:text="S.No."
+                android:text="S.No"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 
@@ -91,7 +91,7 @@
                 android:layout_toRightOf="@+id/ClassStudentRegId"
                 android:background="@color/new_gray"
                 android:gravity="center"
-                android:text="Student Name"
+                android:text="Student"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 

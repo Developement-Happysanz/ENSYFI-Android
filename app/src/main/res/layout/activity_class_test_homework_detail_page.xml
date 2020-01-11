@@ -115,7 +115,7 @@
                         android:layout_below="@+id/txthomeworksubject"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="20dp"
-                        android:text="Topic :"
+                        android:text="Topic:"
                         android:textColor="@color/appColor"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -169,7 +169,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="20dp"
-                            android:text="Test Date :"
+                            android:text="Test Date:"
                             android:textColor="@color/appColor"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -213,7 +213,7 @@
                             android:layout_below="@+id/underlinetopic"
                             android:layout_marginRight="30dp"
                             android:layout_marginTop="20dp"
-                            android:text="Due Date :"
+                            android:text="Due Date:"
                             android:textColor="@color/appColor"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -267,7 +267,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="20dp"
-                        android:text="Description : "
+                        android:text="Description:"
                         android:textColor="@color/appColor"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -279,7 +279,7 @@
                         android:layout_below="@+id/describ"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
-                        android:text="Description :"
+                        android:text="Description:"
                         android:textColor="@color/new_gray"
                         android:textSize="14sp" />
                 </LinearLayout>

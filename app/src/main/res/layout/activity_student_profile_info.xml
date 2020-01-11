@@ -344,7 +344,7 @@
                     android:layout_below="@+id/txtStudentReligion"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Caste"
+                    android:text="Communal Category"
                     android:textColor="@color/new_gray"
                     android:textStyle="bold"
                     android:textSize="16sp" />
@@ -467,7 +467,7 @@
                     android:layout_below="@+id/txtStudentMotherTongue"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Language"
+                    android:text="Language Proposed"
                     android:textColor="@color/new_gray"
                     android:textStyle="bold"
                     android:textSize="16sp" />
@@ -610,6 +610,7 @@
                     android:layout_marginTop="10dp"
                     android:text="Previous Class"
                     android:textColor="@color/new_gray"
+                    android:visibility="gone"
                     android:textStyle="bold"
                     android:textSize="16sp" />
 
@@ -623,6 +624,7 @@
                     android:layout_toRightOf="@+id/studentadminnum"
                     android:paddingTop="2dp"
                     android:textColor="@color/new_gray"
+                    android:visibility="gone"
                     android:textSize="16sp" />
 
                 <TextView
@@ -655,7 +657,7 @@
                     android:id="@+id/StudentTransferCertificate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtStudentPreviousClass"
+                    android:layout_below="@+id/StudentPreviousSchool"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Transfer Certificate"

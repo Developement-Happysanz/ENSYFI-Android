@@ -219,7 +219,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 } else if (res.equalsIgnoreCase("update")){
                     String msg = response.getString("msg");
 
-                    Toast.makeText(this, tt+" "+msg, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(this, tt+" "+msg, Toast.LENGTH_SHORT).show();
                 }
             }
         }catch (JSONException e) {

@@ -66,8 +66,7 @@
             android:layout_alignTop="@id/LeaveType"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/LeaveType"
-            android:paddingBottom="3dp"
-            android:paddingTop="3dp"
+            android:layout_alignBottom="@+id/LeaveType"
             android:text=""
             android:textColor="@color/new_gray"
             android:textSize="16sp" />
@@ -172,7 +171,7 @@
                 android:layout_marginRight="25dp"
                 android:layout_marginTop="25dp"
                 android:buttonTint="@color/reject"
-                android:text="Decline"
+                android:text="Deny"
                 android:textSize="16sp" />
 
             <RadioButton

@@ -59,14 +59,14 @@ public class TimeTableReviewAddActivity extends AppCompatActivity implements ISe
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
 
-        String[] animalsArray = getTimeTableValue.split(",");
-        sClassName = animalsArray[0];
+        String[] ttArray = getTimeTableValue.split(",");
+        sClassName = ttArray[0];
         txtClassName.setText(sClassName);
-        sClassId = animalsArray[1];
-        sSubjectName = animalsArray[2];
+        sClassId = ttArray[1];
+        sSubjectName = ttArray[2];
         txtSubjectName.setText(sSubjectName);
-        sSubjectId = animalsArray[3];
-        sPeriodId = animalsArray[4];
+        sSubjectId = ttArray[3];
+        sPeriodId = ttArray[4];
         txtPeriodId.setText(sPeriodId);
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {

@@ -94,8 +94,8 @@ public class FeeStatusListAdapter extends BaseAdapter {
 
         holder.txtTermName.setText(feeStatuses.get(position).getTermName());
         holder.txtStatus.setText(feeStatuses.get(position).getStatus());
-        holder.txtDueDateFrom.setText("Due From : " + feeStatuses.get(position).getDueDateFrom());
-        holder.txtDueDateTo.setText("Due To : " + feeStatuses.get(position).getDueDateTo());
+        holder.txtDueDateFrom.setText("Issued on : " + feeStatuses.get(position).getDueDateFrom());
+        holder.txtDueDateTo.setText("Due Date : " + feeStatuses.get(position).getDueDateTo());
 
         if ((feeStatuses.get(position).getStatus()).contentEquals("Paid")) {
             holder.txtStatus.setTextColor(ContextCompat.getColor(context, R.color.approve));

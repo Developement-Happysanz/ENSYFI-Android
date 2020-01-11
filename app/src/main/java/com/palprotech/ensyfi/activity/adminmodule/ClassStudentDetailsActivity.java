@@ -282,11 +282,31 @@ public class ClassStudentDetailsActivity extends AppCompatActivity implements IS
         studentSecondaryMail.setText(PreferenceStorage.getStudentSecondaryMail(getApplicationContext()));
         studentPreviousSchool.setText(PreferenceStorage.getStudentPreviousSchool(getApplicationContext()));
         studentPreviousClass.setText(PreferenceStorage.getStudentPreviousClass(getApplicationContext()));
-        studentPromotionStatus.setText(PreferenceStorage.getStudentPromotionStatus(getApplicationContext()));
-        studentTransferCertificate.setText(PreferenceStorage.getStudentTransferCertificate(getApplicationContext()));
-        studentRecordSheet.setText(PreferenceStorage.getStudentRecordSheet(getApplicationContext()));
-        studentStatus.setText(PreferenceStorage.getStudentStatus(getApplicationContext()));
-        studentParentStatus.setText(PreferenceStorage.getStudentParentStatus(getApplicationContext()));
+        if (PreferenceStorage.getStudentPromotionStatus(getApplicationContext()).equalsIgnoreCase("1")) {
+            studentPromotionStatus.setText("Yes");
+        } else {
+            studentPromotionStatus.setText("No");
+        }
+        if (PreferenceStorage.getStudentTransferCertificate(getApplicationContext()).equalsIgnoreCase("1")) {
+            studentTransferCertificate.setText("Yes");
+        } else {
+            studentTransferCertificate.setText("No");
+        }
+        if (PreferenceStorage.getStudentRecordSheet(getApplicationContext()).equalsIgnoreCase("1")) {
+            studentRecordSheet.setText("Yes");
+        } else {
+            studentRecordSheet.setText("No");
+        }
+        if (PreferenceStorage.getStudentStatus(getApplicationContext()).equalsIgnoreCase("1")) {
+            studentStatus.setText("Active");
+        } else {
+            studentStatus.setText("Deactivated");
+        }
+        if (PreferenceStorage.getStudentParentStatus(getApplicationContext()).equalsIgnoreCase("1")) {
+            studentParentStatus.setText("Active");
+        } else {
+            studentParentStatus.setText("Deactivated");
+        }
         studentRegistered.setText(PreferenceStorage.getStudentRegistered(getApplicationContext()));
     }
 
