@@ -1159,7 +1159,19 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.close();
         return l;
     }
-
+    public String isExamMarkStatusFlag() {
+        String examMarkStatusFlag = "0";
+        SQLiteDatabase database = this.getReadableDatabase();
+        String selectQuery = "Select count(*) from academicExamMarks where sync_status = 'NS' order by _id;";
+        Cursor cursor = database.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                examMarkStatusFlag = cursor.getString(0);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return examMarkStatusFlag;
+    }
     public Cursor getAcademicExamMarksList() throws SQLException {
         SQLiteDatabase db = this.getWritableDatabase();
         String fetch = "Select * from academicExamMarks where sync_status = 'NS' order by _id;";

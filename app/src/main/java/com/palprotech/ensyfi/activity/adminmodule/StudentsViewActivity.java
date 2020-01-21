@@ -3,9 +3,11 @@ package com.palprotech.ensyfi.activity.adminmodule;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
 import androidx.annotation.IdRes;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -80,10 +82,11 @@ public class StudentsViewActivity extends AppCompatActivity implements IServiceL
         spnClassList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                StoreClass classList = (StoreClass) parent.getSelectedItem();
-                storeClassId = classList.getClassId();
-                GetSectionData();
+                if (position != 0) {
+                    StoreClass classList = (StoreClass) parent.getSelectedItem();
+                    storeClassId = classList.getClassId();
+                    GetSectionData();
+                }
             }
 
             @Override
@@ -95,9 +98,11 @@ public class StudentsViewActivity extends AppCompatActivity implements IServiceL
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                StoreSection sectionList = (StoreSection) parent.getSelectedItem();
-                storeSectionId = sectionList.getSectionId();
-                GetStudentData();
+                if (position != 0) {
+                    StoreSection sectionList = (StoreSection) parent.getSelectedItem();
+                    storeSectionId = sectionList.getSectionId();
+                    GetStudentData();
+                }
             }
 
             @Override
@@ -222,9 +227,10 @@ public class StudentsViewActivity extends AppCompatActivity implements IServiceL
                     int getLength = getData.length();
                     Log.d(TAG, "userData dictionary" + userData.toString());
 
-                    String classId = "";
-                    String className = "";
+                    String classId = "Default id";
+                    String className = "Select Class";
                     ArrayList<StoreClass> classesList = new ArrayList<>();
+                    classesList.add(new StoreClass(classId, className));
 
                     for (int i = 0; i < getLength; i++) {
 
@@ -243,9 +249,10 @@ public class StudentsViewActivity extends AppCompatActivity implements IServiceL
                     int getLength = getData.length();
                     Log.d(TAG, "userData dictionary" + userData.toString());
 
-                    String sectionId = "";
-                    String sectionclass = "";
+                    String sectionId = "Default id";
+                    String sectionclass = "Select Section";
                     ArrayList<StoreSection> sectionList = new ArrayList<>();
+                    sectionList.add(new StoreSection(sectionId, sectionclass));
 
                     for (int i = 0; i < getLength; i++) {
 

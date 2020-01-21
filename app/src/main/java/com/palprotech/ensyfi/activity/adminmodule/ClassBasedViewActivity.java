@@ -101,19 +101,21 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
         spnClassList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position != 0) {
 
-                StoreClass classList = (StoreClass) parent.getSelectedItem();
+                    StoreClass classList = (StoreClass) parent.getSelectedItem();
 
-                if (classStudentArrayList != null) {
-                    classStudentArrayList.clear();
-                    loadMoreListView.setAdapter(classStudentListAdapter);
+                    if (classStudentArrayList != null) {
+                        classStudentArrayList.clear();
+                        loadMoreListView.setAdapter(classStudentListAdapter);
+                    }
+                    if (teacherViewArrayList != null) {
+                        teacherViewArrayList.clear();
+                        loadMoreListView.setAdapter(teacherViewListAdapter);
+                    }
+                    storeClassId = classList.getClassId();
+                    GetSectionData();
                 }
-                if (teacherViewArrayList != null) {
-                    teacherViewArrayList.clear();
-                    loadMoreListView.setAdapter(teacherViewListAdapter);
-                }
-                storeClassId = classList.getClassId();
-                GetSectionData();
             }
 
             @Override
@@ -124,42 +126,45 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
         spnSectionList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position != 0) {
 
-                StoreSection sectionList = (StoreSection) parent.getSelectedItem();
-                storeSectionId = sectionList.getSectionId();
+                    StoreSection sectionList = (StoreSection) parent.getSelectedItem();
+                    storeSectionId = sectionList.getSectionId();
 
-                if (checkSpin.equalsIgnoreCase("no")) {
-                    mClassStudentTeacherList.add("Student");
-                    mClassStudentTeacherList.add("Teacher");
+                    if (checkSpin.equalsIgnoreCase("no")) {
+                        mClassStudentTeacherList.add("Select Category");
+                        mClassStudentTeacherList.add("Student");
+                        mClassStudentTeacherList.add("Teacher");
 
-                    dataAdapter3 = new ArrayAdapter<String>(getApplicationContext(), R.layout.spinner_item_ns, mClassStudentTeacherList);
+                        dataAdapter3 = new ArrayAdapter<String>(getApplicationContext(), R.layout.spinner_item_ns, mClassStudentTeacherList);
 
-                    spnClassStudentTeacher.setAdapter(dataAdapter3);
-                    spnClassStudentTeacher.setWillNotDraw(false);
-                    checkSpin = "yes";
-                }
+                        spnClassStudentTeacher.setAdapter(dataAdapter3);
+                        spnClassStudentTeacher.setWillNotDraw(false);
+                        checkSpin = "yes";
+                    }
 
-                if (classStudentArrayList != null) {
-                    classStudentArrayList.clear();
-                    loadMoreListView.setAdapter(classStudentListAdapter);
-                }
-                if (teacherViewArrayList != null) {
-                    teacherViewArrayList.clear();
-                    loadMoreListView.setAdapter(teacherViewListAdapter);
-                }
+                    if (classStudentArrayList != null) {
+                        classStudentArrayList.clear();
+                        loadMoreListView.setAdapter(classStudentListAdapter);
+                    }
+                    if (teacherViewArrayList != null) {
+                        teacherViewArrayList.clear();
+                        loadMoreListView.setAdapter(teacherViewListAdapter);
+                    }
 
-                if (classStudentTeacher.equalsIgnoreCase("Student")) {
-                    findViewById(R.id.alert_student).setVisibility(View.VISIBLE);
-                    findViewById(R.id.alert_teacher).setVisibility(View.GONE);
-                    StudentList.setVisibility(View.VISIBLE);
-                    TeacherList.setVisibility(View.GONE);
-                    GetStudentData();
-                } else {
-                    findViewById(R.id.alert_student).setVisibility(View.GONE);
-                    findViewById(R.id.alert_teacher).setVisibility(View.VISIBLE);
-                    TeacherList.setVisibility(View.VISIBLE);
-                    StudentList.setVisibility(View.GONE);
-                    GetTeacherData();
+                    if (classStudentTeacher.equalsIgnoreCase("Student")) {
+                        findViewById(R.id.alert_student).setVisibility(View.VISIBLE);
+                        findViewById(R.id.alert_teacher).setVisibility(View.GONE);
+                        StudentList.setVisibility(View.VISIBLE);
+                        TeacherList.setVisibility(View.GONE);
+                        GetStudentData();
+                    } else {
+                        findViewById(R.id.alert_student).setVisibility(View.GONE);
+                        findViewById(R.id.alert_teacher).setVisibility(View.VISIBLE);
+                        TeacherList.setVisibility(View.VISIBLE);
+                        StudentList.setVisibility(View.GONE);
+                        GetTeacherData();
+                    }
                 }
             }
 
@@ -175,21 +180,23 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
         spnClassStudentTeacher.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                classStudentTeacher = parent.getItemAtPosition(position).toString();
+                if (position != 0) {
+                    classStudentTeacher = parent.getItemAtPosition(position).toString();
 
-                if (checkSpin.equalsIgnoreCase("yes")) {
-                    if (classStudentTeacher.equalsIgnoreCase("Student")) {
-                        findViewById(R.id.alert_student).setVisibility(View.VISIBLE);
-                        findViewById(R.id.alert_teacher).setVisibility(View.GONE);
-                        StudentList.setVisibility(View.VISIBLE);
-                        TeacherList.setVisibility(View.GONE);
-                        GetStudentData();
-                    } else {
-                        findViewById(R.id.alert_student).setVisibility(View.GONE);
-                        findViewById(R.id.alert_teacher).setVisibility(View.VISIBLE);
-                        TeacherList.setVisibility(View.VISIBLE);
-                        StudentList.setVisibility(View.GONE);
-                        GetTeacherData();
+                    if (checkSpin.equalsIgnoreCase("yes")) {
+                        if (classStudentTeacher.equalsIgnoreCase("Student")) {
+                            findViewById(R.id.alert_student).setVisibility(View.VISIBLE);
+                            findViewById(R.id.alert_teacher).setVisibility(View.GONE);
+                            StudentList.setVisibility(View.VISIBLE);
+                            TeacherList.setVisibility(View.GONE);
+                            GetStudentData();
+                        } else {
+                            findViewById(R.id.alert_student).setVisibility(View.GONE);
+                            findViewById(R.id.alert_teacher).setVisibility(View.VISIBLE);
+                            TeacherList.setVisibility(View.VISIBLE);
+                            StudentList.setVisibility(View.GONE);
+                            GetTeacherData();
+                        }
                     }
                 }
             }
@@ -393,12 +400,12 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
                     JSONArray getData = response.getJSONArray("data");
                     JSONObject userData = getData.getJSONObject(0);
                     int getLength = getData.length();
-                    String subjectName = null;
                     Log.d(TAG, "userData dictionary" + userData.toString());
 
-                    String classId = "";
-                    String className = "";
+                    String classId = "Default id";
+                    String className = "Select Class";
                     ArrayList<StoreClass> classesList = new ArrayList<>();
+                    classesList.add(new StoreClass(classId, className));
 
                     for (int i = 0; i < getLength; i++) {
 
@@ -417,14 +424,16 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
                     int getLength = getData.length();
                     Log.d(TAG, "userData dictionary" + userData.toString());
 
-                    String sectionId = "";
-                    String sectionclass = "";
+                    String sectionId = "Default id";
+                    String sectionclass = "Select section";
                     ArrayList<StoreSection> sectionList = new ArrayList<>();
+                    sectionList.add(new StoreSection(sectionId, sectionclass));
 
                     for (int i = 0; i < getLength; i++) {
 
                         sectionId = getData.getJSONObject(i).getString("sec_id");
                         sectionclass = getData.getJSONObject(i).getString("sec_name");
+
                         sectionList.add(new StoreSection(sectionId, sectionclass));
                     }
 

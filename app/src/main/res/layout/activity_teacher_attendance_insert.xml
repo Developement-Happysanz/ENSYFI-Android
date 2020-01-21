@@ -58,7 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="130dp"
         android:background="@drawable/shadow_round"
-        android:layout_margin="40dp"
+        android:layout_margin="30dp"
         android:elevation="12dp"
         android:layout_below="@+id/tlbar">
 
@@ -88,11 +88,20 @@
 
     </RelativeLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/reject"
+        android:text="*Please ensure to sync the attendance"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
         android:layout_height="wrap_content"
+
         android:layout_below="@+id/classListSpinner"
         android:background="@color/new_gray">
 

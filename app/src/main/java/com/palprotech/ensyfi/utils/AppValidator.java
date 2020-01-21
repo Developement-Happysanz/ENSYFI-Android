@@ -19,6 +19,12 @@ public class AppValidator {
         return value.trim().length() >= minValue;
     }
 
+    public static boolean checkStringMaxLength(int maxValue, String value) {
+        if (value == null)
+            return false;
+        return value.trim().length() <= maxValue;
+    }
+
     public static String checkEditTextValid100AndA(String value,int totalMark) {
         boolean check = value.matches("\\d+");
         String EditTextValid;
