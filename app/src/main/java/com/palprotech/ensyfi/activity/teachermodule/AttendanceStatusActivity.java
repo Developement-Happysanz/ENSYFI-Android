@@ -334,6 +334,7 @@ public class AttendanceStatusActivity extends AppCompatActivity implements Dialo
         spnClassList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ((Button) findViewById(R.id.btnDateMonth)).setText("Select Date");
 
                 String className = parent.getItemAtPosition(position).toString();
                 GetClassId(className);

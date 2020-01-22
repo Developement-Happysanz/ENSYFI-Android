@@ -79,10 +79,12 @@ public class FeesViewActivity extends AppCompatActivity implements IServiceListe
         spnClassList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position != 0) {
 
-                StoreClass classList = (StoreClass) parent.getSelectedItem();
-                storeClassId = classList.getClassId();
-                GetSectionData();
+                    StoreClass classList = (StoreClass) parent.getSelectedItem();
+                    storeClassId = classList.getClassId();
+                    GetSectionData();
+                }
             }
 
             @Override
@@ -93,10 +95,12 @@ public class FeesViewActivity extends AppCompatActivity implements IServiceListe
         spnSectionList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position != 0) {
 
-                StoreSection sectionList = (StoreSection) parent.getSelectedItem();
-                storeSectionId = sectionList.getSectionId();
-                GetFeesData();
+                    StoreSection sectionList = (StoreSection) parent.getSelectedItem();
+                    storeSectionId = sectionList.getSectionId();
+                    GetFeesData();
+                }
             }
 
             @Override
@@ -249,9 +253,10 @@ public class FeesViewActivity extends AppCompatActivity implements IServiceListe
                     int getLength = getData.length();
                     Log.d(TAG, "userData dictionary" + userData.toString());
 
-                    String classId = "";
-                    String className = "";
+                    String classId = "Default id";
+                    String className = "Select Class";
                     ArrayList<StoreClass> classesList = new ArrayList<>();
+                    classesList.add(new StoreClass(classId, className));
 
                     for (int i = 0; i < getLength; i++) {
 
@@ -270,9 +275,10 @@ public class FeesViewActivity extends AppCompatActivity implements IServiceListe
                     int getLength = getData.length();
                     Log.d(TAG, "userData dictionary" + userData.toString());
 
-                    String sectionId = "";
-                    String sectionclass = "";
+                    String sectionId = "Default id";
+                    String sectionclass = "Select section";
                     ArrayList<StoreSection> sectionList = new ArrayList<>();
+                    sectionList.add(new StoreSection(sectionId, sectionclass));
 
                     for (int i = 0; i < getLength; i++) {
 
