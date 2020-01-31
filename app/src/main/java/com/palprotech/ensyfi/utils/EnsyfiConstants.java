@@ -8,8 +8,8 @@ public class EnsyfiConstants {
 
     // URLS
     // BASE URL
-//    public static final String BASE_URL = "https://ensyfi.com/";
-    public static final String BASE_URL = "https://happysanz.in/ensyfi";
+//    public static final String BASE_URL = "https://demo.ensyfi.com/";
+    public static final String BASE_URL = "https://happysanz.in/ensyfi/";
 
 
     // ADMIN URL
