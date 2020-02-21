@@ -1,10 +1,14 @@
 package com.palprotech.ensyfi.activity.adminmodule;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,7 +48,7 @@ public class GroupNotificationUpdateActivity extends AppCompatActivity implement
     private static final String TAG = GroupNotificationUpdateActivity.class.getName();
     private Groups groups;
     private EditText txtGroupTitle;
-    private Spinner spnGroupLeadList;
+    private EditText spnGroupLeadList;
     private Button btnSend, viewMembers;
     protected ProgressDialogHelper progressDialogHelper;
     private ProgressDialog mProgressDialog = null;
@@ -57,6 +61,8 @@ public class GroupNotificationUpdateActivity extends AppCompatActivity implement
     TextView groupTitleDisp, groupLeadDisp, groupStatusDisp, leadType, statusTxt;
     ImageView groupUpdate, groupMemberAdd, groupNotification;
     Boolean update = false;
+    ArrayList<StoreTeacherId> classesList = new ArrayList<>();
+    ArrayAdapter<StoreTeacherId> adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,6 +77,8 @@ public class GroupNotificationUpdateActivity extends AppCompatActivity implement
         bckbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), GroupNotificationAdminViewActivity.class);
+                startActivity(intent);
                 finish();
             }
         });
@@ -99,7 +107,7 @@ public class GroupNotificationUpdateActivity extends AppCompatActivity implement
             params1.setMargins(40, 40, 0, 0);
             params1.addRule(RelativeLayout.BELOW, txtGroupTitle.getId());
             leadType.setLayoutParams(params1);
-            leadType.setPadding(0,20,0,20);
+            leadType.setPadding(0, 20, 0, 20);
 
             RelativeLayout.LayoutParams params2 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             params2.setMargins(40, 40, 0, 0);
@@ -139,18 +147,16 @@ public class GroupNotificationUpdateActivity extends AppCompatActivity implement
         txtGroupTitle = findViewById(R.id.group_title_txt);
         txtGroupTitle.setText(groups.getGroup_title());
         spnGroupLeadList = findViewById(R.id.group_lead_spinner);
-        spnGroupLeadList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                groupLead = parent.getSelectedItem().toString();
-                StoreTeacherId teacherName = (StoreTeacherId) parent.getSelectedItem();
-                storeGroupId = teacherName.getTeacherId();
-            }
+        spnGroupLeadList.setText(groups.getLead_name());
+        storeGroupId = groups.getGroup_lead_id();
 
+        spnGroupLeadList.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void onClick(View v) {
+                showBloodGroups();
             }
         });
+
 
         viewMembers = findViewById(R.id.view_group_members);
         viewMembers.setOnClickListener(this);
@@ -164,6 +170,11 @@ public class GroupNotificationUpdateActivity extends AppCompatActivity implement
                 }
             }
         });
+        if (groups.getStatus().equalsIgnoreCase("Active")) {
+            swStatus.setChecked(true);
+        } else {
+            swStatus.setChecked(false);
+        }
         btnSend = (Button) findViewById(R.id.update_group);
 
         btnSend.setOnClickListener(new View.OnClickListener() {
@@ -175,6 +186,30 @@ public class GroupNotificationUpdateActivity extends AppCompatActivity implement
             }
         });
         getVisibileViews();
+    }
+
+    private void showBloodGroups() {
+        Log.d(TAG, "Show blood group lists");
+        AlertDialog.Builder builderSingle = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.gender_header_layout, null);
+        TextView header = (TextView) view.findViewById(R.id.gender_header);
+        header.setText("Select Blood Group");
+        builderSingle.setCustomTitle(view);
+
+        builderSingle.setAdapter(adapter,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+//                        StoreBloodGroup bloodGroup = bloodGroupList.get(which);
+//                        etCandidateBloodGroup.setText(bloodGroup.getBloodGroupName());
+//                        bloodGroupId = bloodGroup.getBloodGroupId();
+//                        groupLead = parent.getSelectedItem().toString();
+                        StoreTeacherId teacherName = classesList.get(which);
+                        storeGroupId = teacherName.getTeacherId();
+                        groupLead = teacherName.getTeacherName();
+                    }
+                });
+        builderSingle.show();
     }
 
     @Override
@@ -291,7 +326,6 @@ public class GroupNotificationUpdateActivity extends AppCompatActivity implement
 
                     String classId = "";
                     String className = "";
-                    ArrayList<StoreTeacherId> classesList = new ArrayList<>();
 
                     for (int i = 0; i < getLength; i++) {
 
@@ -302,10 +336,9 @@ public class GroupNotificationUpdateActivity extends AppCompatActivity implement
                     }
 
                     //fill data in spinner
-                    ArrayAdapter<StoreTeacherId> adapter = new ArrayAdapter<StoreTeacherId>(getApplicationContext(), R.layout.spinner_item_ns, classesList);
-                    spnGroupLeadList.setAdapter(adapter);
+                    adapter = new ArrayAdapter<StoreTeacherId>(getApplicationContext(), R.layout.spinner_item_ns, classesList);
                 } else if (groupRes.equalsIgnoreCase("groupdata")) {
-                    Toast.makeText(this,"Changes made have been saved", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Changes made have been saved", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(), GroupNotificationAdminViewActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     startActivity(intent);
@@ -314,9 +347,7 @@ public class GroupNotificationUpdateActivity extends AppCompatActivity implement
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        } else
-
-        {
+        } else {
             Log.d(TAG, "Error while sign In");
         }
 
@@ -329,7 +360,7 @@ public class GroupNotificationUpdateActivity extends AppCompatActivity implement
 
     @Override
     public void onClick(View v) {
-        if ( v == groupUpdate) {
+        if (v == groupUpdate) {
             update = !update;
             getVisibileViews();
         } else if (v == groupMemberAdd) {

@@ -177,6 +177,7 @@ public class GroupingActivity extends AppCompatActivity implements IServiceListe
             public void run() {
                 progressDialogHelper.hideProgressDialog();
                 AlertDialogHelper.showSimpleAlertDialog(GroupingActivity.this, error);
+                CreateNotification.setVisibility(View.GONE);
             }
         });
     }

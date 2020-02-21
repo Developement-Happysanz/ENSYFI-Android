@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -98,7 +100,7 @@ public class AcademicExamOnlyTotalResultView extends AppCompatActivity implement
                 finish();
             }
         });
-        GetMarkStatus();
+        GetClassTestMarkData();
     }
 
     private void GetAcademicExamInfo(String examIdLocal) {
@@ -155,6 +157,7 @@ public class AcademicExamOnlyTotalResultView extends AppCompatActivity implement
             try {
                 jsonObject.put(EnsyfiConstants.KEY_USER_ID, PreferenceStorage.getUserId(this));
                 jsonObject.put(EnsyfiConstants.PARAM_EXAM_ID, examId);
+                jsonObject.put(EnsyfiConstants.CT_HW_CLASS_ID, classId);
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -208,8 +211,11 @@ public class AcademicExamOnlyTotalResultView extends AppCompatActivity implement
                             (status.equalsIgnoreCase("notRegistered")) || (status.equalsIgnoreCase("error")))) {
                         signInsuccess = false;
                         Log.d(TAG, "Show error dialog");
-                        AlertDialogHelper.showSimpleAlertDialog(this, msg);
+                        if (resString.equalsIgnoreCase("status")) {
 
+                        } else {
+                            AlertDialogHelper.showSimpleAlertDialog(this, msg);
+                        }
                     } else {
                         signInsuccess = true;
                     }
@@ -239,7 +245,6 @@ public class AcademicExamOnlyTotalResultView extends AppCompatActivity implement
         if (validateSignInResponse(response)) {
             if (resString.equalsIgnoreCase("status")) {
                 findViewById(R.id.edit_mark).setVisibility(View.VISIBLE);
-                GetClassTestMarkData();
             } else if (resString.equalsIgnoreCase("data")) {
                 Gson gson = new Gson();
                 ExamResultList examResultList = gson.fromJson(response.toString(), ExamResultList.class);
@@ -252,6 +257,7 @@ public class AcademicExamOnlyTotalResultView extends AppCompatActivity implement
             } else if (resString.equalsIgnoreCase("markDataDB")) {
                 try {
                     tchDat.saveExamsDetails(response.getJSONArray("data"));
+                    GetMarkStatus();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

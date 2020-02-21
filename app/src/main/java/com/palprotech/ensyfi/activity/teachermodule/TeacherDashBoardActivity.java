@@ -76,7 +76,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
     boolean doubleBackToExitPressedOnce = false;
     private ImageView imgNavProfileImage;
     private ArrayAdapter<String> navListAdapter;
-    private String[] values = {"Profile", "Attendance", "Homeworks/Class Tests", "Special Class", "Exams & Results",
+    private String[] values = {"Profile", "Attendance", "Homeworks/Class Tests", "Substitution", "Special Class", "Exams & Results",
             "Exam Duty", "Timetable", "Events", "Circulars", "On Duty", "Groups", "Apply Leave",
             "Settings", "Sync", "Sign Out"};
     TextView navUserProfileName = null, classAttendanceInfo, classWorkInfo;
@@ -284,35 +284,39 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 3) {
-            Intent navigationIntent = new Intent(this, SpecialClassActivity.class);
+            Intent navigationIntent = new Intent(this, SubstitutionActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 4) {
+            Intent navigationIntent = new Intent(this, SpecialClassActivity.class);
+            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(navigationIntent);
+        } else if (position == 5) {
             getExamDetails();
             Intent navigationIntent = new Intent(this, AcademicExamViewActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 5) {
+        } else if (position == 6) {
             Intent navigationIntent = new Intent(this, ExamDutyActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 6) {
+        } else if (position == 7) {
             Intent navigationIntent = new Intent(this, TeacherTimeTableNewnew.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 7) {
+        } else if (position == 8) {
             Intent navigationIntent = new Intent(this, EventsActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 8) {
+        } else if (position == 9) {
             Intent navigationIntent = new Intent(this, CircularActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 9) {
+        } else if (position == 10) {
             Intent navigationIntent = new Intent(this, OnDutyActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 10) {
+        } else if (position == 11) {
             Intent navigationIntent = new Intent(this, GroupingActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
@@ -322,19 +326,19 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
 //            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //            startActivity(navigationIntent);
 //        }
-        else if (position == 11) {
+        else if (position == 12) {
             Intent navigationIntent = new Intent(this, LeaveStatusActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 12) {
+        } else if (position == 13) {
             Intent navigationIntent = new Intent(this, SettingsActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 13) {
+        } else if (position == 14) {
             Intent navigationIntent = new Intent(this, SyncRecordsActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 14) {
+        } else if (position == 15) {
             Log.d(TAG, "Perform Logout");
             doLogout();
         }

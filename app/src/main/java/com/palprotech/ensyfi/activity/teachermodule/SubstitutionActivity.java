@@ -13,8 +13,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.gson.Gson;
 import com.palprotech.ensyfi.R;
 import com.palprotech.ensyfi.adapter.teachermodule.SpecialClassListAdapter;
+import com.palprotech.ensyfi.adapter.teachermodule.SubstitutionClassListAdapter;
 import com.palprotech.ensyfi.bean.teacher.viewlist.SpecialClass;
 import com.palprotech.ensyfi.bean.teacher.viewlist.SpecialClassList;
+import com.palprotech.ensyfi.bean.teacher.viewlist.SubstitutionClass;
+import com.palprotech.ensyfi.bean.teacher.viewlist.SubstitutionClassList;
 import com.palprotech.ensyfi.helper.AlertDialogHelper;
 import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
@@ -34,9 +37,9 @@ public class SubstitutionActivity extends AppCompatActivity implements IServiceL
     private static final String TAG = "SubstitutionActivity";
     ListView loadMoreListView;
     View view;
-    SpecialClassListAdapter circularListAdapter;
+    SubstitutionClassListAdapter circularListAdapter;
     ServiceHelper serviceHelper;
-    ArrayList<SpecialClass> circularArrayList;
+    ArrayList<SubstitutionClass> circularArrayList;
     int totalCount = 0;
     protected ProgressDialogHelper progressDialogHelper;
     protected boolean isLoadingForFirstTime = true;
@@ -44,8 +47,8 @@ public class SubstitutionActivity extends AppCompatActivity implements IServiceL
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_circular);
-        loadMoreListView = (ListView) findViewById(R.id.listView_events);
+        setContentView(R.layout.activity_substitution);
+        loadMoreListView = (ListView) findViewById(R.id.list_classes);
         loadMoreListView.setOnItemClickListener(this);
         circularArrayList = new ArrayList<>();
         serviceHelper = new ServiceHelper(this);
@@ -80,7 +83,7 @@ public class SubstitutionActivity extends AppCompatActivity implements IServiceL
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
             String url = "";
-            url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_SPECIAL_CLASS;
+            url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_SUBSTITUTION_CLASS;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
@@ -136,7 +139,7 @@ public class SubstitutionActivity extends AppCompatActivity implements IServiceL
         if (validateSignInResponse(response)) {
             Log.d("ajazFilterresponse : ", response.toString());
             Gson gson = new Gson();
-            SpecialClassList circularList = gson.fromJson(response.toString(), SpecialClassList.class);
+            SubstitutionClassList circularList = gson.fromJson(response.toString(), SubstitutionClassList.class);
             if (circularList.getClassTestMark() != null && circularList.getClassTestMark().size() > 0) {
                 totalCount = circularList.getCount();
                 isLoadingForFirstTime = false;
@@ -147,10 +150,10 @@ public class SubstitutionActivity extends AppCompatActivity implements IServiceL
         }
     }
 
-    protected void updateListAdapter(ArrayList<SpecialClass> circularArrayList) {
+    protected void updateListAdapter(ArrayList<SubstitutionClass> circularArrayList) {
         this.circularArrayList.addAll(circularArrayList);
         if (circularListAdapter == null) {
-            circularListAdapter = new SpecialClassListAdapter(this, this.circularArrayList);
+            circularListAdapter = new SubstitutionClassListAdapter(this, this.circularArrayList);
             loadMoreListView.setAdapter(circularListAdapter);
         } else {
             circularListAdapter.notifyDataSetChanged();

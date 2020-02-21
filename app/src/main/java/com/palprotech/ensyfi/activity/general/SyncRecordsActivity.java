@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palprotech.ensyfi.R;
@@ -54,6 +55,7 @@ public class SyncRecordsActivity extends AppCompatActivity implements IServiceLi
     SQLiteHelper db;
     String localAttendanceId, ac_year, class_id, class_total, no_of_present, no_of_absent,
             attendance_period, created_by, created_at, status;
+    TextView attendRecords;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -77,6 +79,9 @@ public class SyncRecordsActivity extends AppCompatActivity implements IServiceLi
 
 //        btnRefreshSyncExamMarks = (LinearLayout) findViewById(R.id.btnRefreshSyncExamMarks);
 //        btnRefreshSyncExamMarks.setOnClickListener(this);
+
+        attendRecords = findViewById(R.id.text_attendance_count);
+        attendRecords.setText(db.isAttendanceSynced());
 
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
         bckbtn.setOnClickListener(new View.OnClickListener() {
@@ -249,6 +254,8 @@ public class SyncRecordsActivity extends AppCompatActivity implements IServiceLi
                     db.updateAttendanceHistoryServerId(latestAttendanceInsertedServerId, localAttendanceId);
                     syncAttendanceHistoryRecordsActivity.syncAttendanceHistoryRecords(latestAttendanceInsertedServerId);
                     Toast.makeText(getApplicationContext(), "Attendance synced to the server...", Toast.LENGTH_LONG).show();
+                    startActivity(getIntent());
+                    finish();
                 } else {
                     Toast.makeText(getApplicationContext(), "Insert Error..", Toast.LENGTH_LONG).show();
                 }

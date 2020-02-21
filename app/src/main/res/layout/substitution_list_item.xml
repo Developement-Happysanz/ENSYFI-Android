@@ -13,74 +13,27 @@
         android:elevation="6dp"
         android:background="@drawable/shadow_round">
 
-        <LinearLayout
-            android:id="@+id/ll"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="1">
-            <TextView
-                android:id="@+id/subject_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_toLeftOf="@id/vr_line"
-                android:paddingBottom="3dp"
-                android:layout_weight="0.5"
-                android:paddingTop="3dp"
-                android:text="Computer Science"
-                android:textColor="@color/new_gray"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/teacher_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/section_name"
-                android:layout_weight="0.5"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:gravity="end"
-                android:layout_toLeftOf="@id/vr_line"
-                android:text="Balamuralikrishna"
-                android:textColor="@color/new_gray"
-                android:textSize="18sp" />
-
-        </LinearLayout>
-
         <TextView
             android:id="@+id/class_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/ll"
+            android:layout_alignParentTop="true"
+            android:layout_alignBottom="@id/hz_line"
             android:layout_marginLeft="10dp"
             android:paddingBottom="3dp"
-            android:paddingTop="3dp"
+            android:gravity="center"
             android:text="XII"
             android:textAllCaps="true"
+            android:textStyle="bold"
             android:textColor="@color/new_gray"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/section_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/ll"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/class_name"
-            android:paddingBottom="3dp"
-            android:paddingTop="3dp"
-            android:text="A1"
-            android:textAllCaps="true"
-            android:textColor="@color/new_gray"
-            android:textSize="16sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/hz_line"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@id/section_name"
+            android:layout_below="@id/period_txt"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginTop="10dp"
@@ -93,30 +46,27 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/hz_line"
             android:layout_alignParentTop="true"
-            android:visibility="gone"
             android:layout_toLeftOf="@id/period_number"
-            android:background="@color/new_gray" />
+            android:background="@color/background_grey" />
 
         <TextView
             android:id="@+id/period_number"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/hz_line"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:gravity="center"
-            android:visibility="gone"
-            android:paddingBottom="20dp"
+            android:paddingBottom="10dp"
             android:text="01"
             android:textColor="@color/new_gray"
             android:textStyle="bold"
             android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/period_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/hz_line"
-            android:visibility="gone"
+            android:layout_below="@id/period_number"
             android:layout_alignLeft="@id/period_number"
             android:layout_alignParentRight="true"
             android:layout_alignRight="@id/period_number"
@@ -139,18 +89,6 @@
             android:textColor="@color/new_gray"
             android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/period_end_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/period_duration"
-            android:layout_alignTop="@id/period_duration"
-            android:layout_toRightOf="@id/period_start_time"
-            android:gravity="center_vertical"
-            android:text="10:00"
-            android:textColor="@color/new_gray"
-            android:textSize="14sp" />
-
         <ImageView
             android:id="@+id/period_duration"
             android:layout_width="25dp"
@@ -163,6 +101,5 @@
             android:src="@drawable/ic_clock" />
 
     </RelativeLayout>
-
 
 </LinearLayout>

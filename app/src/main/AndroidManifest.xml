@@ -92,6 +92,13 @@
             android:theme="@style/AppThemeNoActionBarGrey" />
 
         <activity
+            android:name=".activity.loginmodule.AboutEnsyfiActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarGrey"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
             android:name=".activity.loginmodule.ProfileActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
@@ -457,6 +464,12 @@
 
         <activity
             android:name=".activity.teachermodule.SpecialClassActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarPink" />
+
+        <activity
+            android:name=".activity.adminmodule.SpecialClassAdminActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarPink" />
