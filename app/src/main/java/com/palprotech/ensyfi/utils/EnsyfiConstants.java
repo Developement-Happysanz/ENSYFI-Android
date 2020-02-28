@@ -188,7 +188,7 @@ public class EnsyfiConstants {
     public static final String GET_SPECIAL_CLASS = "/apiteacher/view_special_class/";
 
     //Exam duty
-    public static final String GET_SPECIAL_CLASS_LIST_ADMIN = "/apiteacher/view_special_class/";
+    public static final String GET_SPECIAL_CLASS_LIST_ADMIN = "/apiadmin/get_special_list/";
 
     //Exam duty
     public static final String GET_SUBSTITUTION_CLASS = "/apiteacher/view_substitution/";
