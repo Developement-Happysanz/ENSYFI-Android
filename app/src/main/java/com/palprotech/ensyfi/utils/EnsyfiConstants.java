@@ -9,12 +9,12 @@ public class EnsyfiConstants {
     // URLS
     // BASE URL
     public static final String BASE_URL = "https://ensyfi.com/";
-//    public static final String BASE_URL = "https://happysanz.in/ensyfi";
+//    public static final String BASE_URL = "https://happysanz.in/";
 
 
     // ADMIN URL
-//    private static final String ADMIN_BASE_URL = BASE_URL + "admin/admin_api/";
-    private static final String ADMIN_BASE_URL = BASE_URL + "inst_code_validation/";
+    private static final String ADMIN_BASE_URL = BASE_URL + "admin/admin_api/";
+//    private static final String ADMIN_BASE_URL = BASE_URL + "inst_code_validation/";
     private static final String ADMIN_BASE_API = "api.php";
     public static final String INSTITUTE_LOGIN_API = ADMIN_BASE_URL + ADMIN_BASE_API;
     public static final String GET_SCHOOL_LOGO = BASE_URL + "institute_logo/";
