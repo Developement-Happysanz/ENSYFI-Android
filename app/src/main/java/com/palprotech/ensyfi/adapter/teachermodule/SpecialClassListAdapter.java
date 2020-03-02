@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-public class SpecialClassListAdapter  extends BaseAdapter {
+public class SpecialClassListAdapter extends BaseAdapter {
 
     //    private final Transformation transformation;
     private Context context;
@@ -70,13 +70,13 @@ public class SpecialClassListAdapter  extends BaseAdapter {
             holder.txtBreakName = (TextView) convertView.findViewById(R.id.break_name);
             holder.txtBreakStartTime = (TextView) convertView.findViewById(R.id.break_start_time);
             holder.txtBreakEndTime = (TextView) convertView.findViewById(R.id.break_end_time);
-            if (PreferenceStorage.getUserType(context).equalsIgnoreCase("2")) {
-                holder.txtClassName.setVisibility(View.VISIBLE);
-                holder.txtClassName.setVisibility(View.VISIBLE);
-            } else {
-                holder.txtClassName.setVisibility(View.GONE);
-                holder.txtClassName.setVisibility(View.GONE);
-            }
+//            if (PreferenceStorage.getUserType(context).equalsIgnoreCase("2")) {
+//                holder.txtClassName.setVisibility(View.VISIBLE);
+//                holder.txtClassName.setVisibility(View.VISIBLE);
+//            } else {
+//                holder.txtClassName.setVisibility(View.GONE);
+//                holder.txtClassName.setVisibility(View.GONE);
+//            }
             convertView.setTag(holder);
         } else {
             holder = (SpecialClassListAdapter.ViewHolder) convertView.getTag();

@@ -177,10 +177,11 @@ public class DynamicTTTFragment extends Fragment implements AdapterView.OnItemCl
             String name1 = ttArrayList.get(position).getClassName() + "-" + ttArrayList.get(position).getSecName() +
                     "," + ttArrayList.get(position).getClassId() + "," + ttArrayList.get(position).getSubjectName() +
                     "," + ttArrayList.get(position).getSubjectId() + "," + ttArrayList.get(position).getPeriod();
-
-            Intent navigationIntent = new Intent(getActivity(), TimeTableReviewAddActivity.class);
-            navigationIntent.putExtra("timeTableValue", name1);
-            startActivity(navigationIntent);
+            if (PreferenceStorage.getUserType(getActivity()).equalsIgnoreCase("2")) {
+                Intent navigationIntent = new Intent(getActivity(), TimeTableReviewAddActivity.class);
+                navigationIntent.putExtra("timeTableValue", name1);
+                startActivity(navigationIntent);
+            }
         }
     }
 

@@ -113,13 +113,33 @@
 
     </RelativeLayout>
 
-    <ListView
-        android:id="@+id/listView_groups"
+<!--    <ListView-->
+<!--        android:id="@+id/listView_groups"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginLeft="2dp"-->
+<!--        android:layout_marginRight="2dp"-->
+<!--        android:divider="@color/white"-->
+<!--        android:dividerHeight="0dp" />-->
+
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:fadeScrollbars="false"
         android:layout_marginLeft="2dp"
-        android:layout_marginRight="2dp"
-        android:divider="@color/white"
-        android:dividerHeight="0dp" />
+        android:layout_marginRight="2dp">
+
+
+        <LinearLayout
+            android:id="@+id/layout_member_list"
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/new_gray"
+            android:orientation="vertical" />
+
+    </ScrollView>
+
 
 </LinearLayout>

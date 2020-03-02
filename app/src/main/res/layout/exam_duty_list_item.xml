@@ -25,10 +25,23 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/txtDutyClass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@+id/txtExamName"
+            android:paddingBottom="3dp"
+            android:paddingTop="3dp"
+            android:text="Event"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/txtExamDateTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtExamName"
+            android:layout_below="@+id/txtDutyClass"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="5dp"
             android:text="Event"
@@ -38,7 +51,7 @@
         <ImageView
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/txtExamName"
+            android:layout_below="@+id/txtDutyClass"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:padding="3dp"

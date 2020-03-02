@@ -12,4 +12,9 @@
     <item name="class_section_name" type="id" />
     <item name="class_section_status" type="id" />
     <item name="class_section_go" type="id" />
+
+    <!--   Group List   -->
+    <item name="group_name_s" type="id" />
+    <item name="lead_name_s" type="id" />
+    <item name="status_s" type="id" />
 </resources>

@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -60,6 +61,8 @@ public class StudentTimeTableAcitivityNewnew extends AppCompatActivity implement
         });
         tab = (TabLayout) findViewById(R.id.tab_layout);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
+        ImageView abc = findViewById(R.id.view_reviews);
+        abc.setVisibility(View.GONE);
         loadCat();
     }
 

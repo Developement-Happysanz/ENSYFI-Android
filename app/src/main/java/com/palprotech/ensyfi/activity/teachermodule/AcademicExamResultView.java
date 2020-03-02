@@ -98,7 +98,7 @@ public class AcademicExamResultView extends AppCompatActivity implements IServic
             }
         });
 
-        GetMarkStatus();
+        GetClassTestMarkData();
 
     }
 
@@ -134,6 +134,7 @@ public class AcademicExamResultView extends AppCompatActivity implements IServic
             try {
                 jsonObject.put(EnsyfiConstants.KEY_USER_ID, classMasterId);
                 jsonObject.put(EnsyfiConstants.PARAM_EXAM_ID, examId);
+                jsonObject.put(EnsyfiConstants.CT_HW_CLASS_ID, classId);
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -241,7 +242,6 @@ public class AcademicExamResultView extends AppCompatActivity implements IServic
         if (validateSignInResponse(response)) {
             if (resString.equalsIgnoreCase("status")) {
                 findViewById(R.id.edit_mark).setVisibility(View.VISIBLE);
-                GetClassTestMarkData();
             } else if (resString.equalsIgnoreCase("data")) {
                 Gson gson = new Gson();
                 ExamResultList examResultList = gson.fromJson(response.toString(), ExamResultList.class);
@@ -254,6 +254,7 @@ public class AcademicExamResultView extends AppCompatActivity implements IServic
             } else if (resString.equalsIgnoreCase("markDataDB")) {
                 try {
                     tchDat.saveExamsDetails(response.getJSONArray("data"));
+                    GetMarkStatus();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

@@ -124,6 +124,7 @@ public class GroupingActivity extends AppCompatActivity implements IServiceListe
                         signInsuccess = false;
                         Log.d(TAG, "Show error dialog");
                         AlertDialogHelper.showSimpleAlertDialog(this, msg);
+                        CreateNotification.setVisibility(View.GONE);
 
                     } else {
                         signInsuccess = true;
@@ -177,6 +178,7 @@ public class GroupingActivity extends AppCompatActivity implements IServiceListe
             public void run() {
                 progressDialogHelper.hideProgressDialog();
                 AlertDialogHelper.showSimpleAlertDialog(GroupingActivity.this, error);
+                CreateNotification.setVisibility(View.GONE);
             }
         });
     }

@@ -8,8 +8,8 @@ public class EnsyfiConstants {
 
     // URLS
     // BASE URL
-//    public static final String BASE_URL = "https://demo.ensyfi.com/";
-    public static final String BASE_URL = "https://happysanz.in/ensyfi/";
+    public static final String BASE_URL = "https://ensyfi.com/";
+//    public static final String BASE_URL = "https://happysanz.in/";
 
 
     // ADMIN URL
@@ -26,6 +26,16 @@ public class EnsyfiConstants {
     public static final String USER_IMAGE_API_STUDENTS = "/assets/students/profile/";
     public static final String USER_IMAGE_API_TEACHERS = "/assets/teachers/profile/";
     public static final String USER_IMAGE_API_ADMIN = "/assets/admin/profile/";
+
+
+    //CHECK URL
+    public static final String CHECK_VERSION_ADMIN = "/apimain/version_check/";
+    public static final String CHECK_VERSION_TEACHER = "/apiteacher/version_check/";
+    public static final String CHECK_VERSION_STUDENT = "/apistudent/version_check/";
+    public static final String DAILY_LOGIN = "/apimain/last_login_update/";
+
+    public static String KEY_APP_VERSION = "version_code";
+    public static String KEY_APP_VERSION_VALUE = "1";
 
     //FORGOT PASSWORD URL
     public static final String FORGOT_PASSWORD = "/apimain/forgot_Password/";
@@ -186,6 +196,9 @@ public class EnsyfiConstants {
 
     //Exam duty
     public static final String GET_SPECIAL_CLASS = "/apiteacher/view_special_class/";
+
+    //Exam duty
+    public static final String GET_SPECIAL_CLASS_LIST_ADMIN = "/apiadmin/get_special_list/";
 
     //Exam duty
     public static final String GET_SUBSTITUTION_CLASS = "/apiteacher/view_substitution/";

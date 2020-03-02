@@ -1,9 +1,11 @@
 package com.palprotech.ensyfi.activity.teachermodule;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -50,6 +52,7 @@ import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
 import com.palprotech.ensyfi.servicehelpers.ServiceHelper;
 import com.palprotech.ensyfi.serviceinterfaces.IServiceListener;
+import com.palprotech.ensyfi.syncadapter.UploadDataSyncAdapter;
 import com.palprotech.ensyfi.utils.CommonUtils;
 import com.palprotech.ensyfi.utils.EnsyfiConstants;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
@@ -76,7 +79,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
     boolean doubleBackToExitPressedOnce = false;
     private ImageView imgNavProfileImage;
     private ArrayAdapter<String> navListAdapter;
-    private String[] values = {"Profile", "Attendance", "Homeworks/Class Tests", "Special Class", "Exams & Results",
+    private String[] values = {"Profile", "Attendance", "Homeworks/Class Tests", "Substitution", "Special Class", "Exams & Results",
             "Exam Duty", "Timetable", "Events", "Circulars", "On Duty", "Groups", "Apply Leave",
             "Settings", "Sync", "Sign Out"};
     TextView navUserProfileName = null, classAttendanceInfo, classWorkInfo;
@@ -88,6 +91,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
     private ServiceHelper serviceHelper;
     private SaveTeacherData teacherData;
 
+    String checkRes = "";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,6 +108,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
         serviceHelper.setServiceListener(this);
         teacherData = new SaveTeacherData(this);
         progressDialogHelper = new ProgressDialogHelper(this);
+        checkLogg();
     }
 
     @Override
@@ -217,6 +222,9 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
             Picasso.get().load(url).placeholder(R.drawable.ic_profile_default).error(R.drawable.ic_profile_default).into(imgNavProfileImage);
         }
         Log.d(TAG, "Set the selected page to 0");//default page
+
+        UploadDataSyncAdapter.initializeSyncAdapter(this);
+
     }
 
     private void initializeNavigationDrawer() {
@@ -284,35 +292,39 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 3) {
-            Intent navigationIntent = new Intent(this, SpecialClassActivity.class);
+            Intent navigationIntent = new Intent(this, SubstitutionActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 4) {
+            Intent navigationIntent = new Intent(this, SpecialClassActivity.class);
+            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(navigationIntent);
+        } else if (position == 5) {
             getExamDetails();
             Intent navigationIntent = new Intent(this, AcademicExamViewActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 5) {
+        } else if (position == 6) {
             Intent navigationIntent = new Intent(this, ExamDutyActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 6) {
+        } else if (position == 7) {
             Intent navigationIntent = new Intent(this, TeacherTimeTableNewnew.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 7) {
+        } else if (position == 8) {
             Intent navigationIntent = new Intent(this, EventsActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 8) {
+        } else if (position == 9) {
             Intent navigationIntent = new Intent(this, CircularActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 9) {
+        } else if (position == 10) {
             Intent navigationIntent = new Intent(this, OnDutyActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 10) {
+        } else if (position == 11) {
             Intent navigationIntent = new Intent(this, GroupingActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
@@ -322,19 +334,19 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
 //            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //            startActivity(navigationIntent);
 //        }
-        else if (position == 11) {
+        else if (position == 12) {
             Intent navigationIntent = new Intent(this, LeaveStatusActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 12) {
+        } else if (position == 13) {
             Intent navigationIntent = new Intent(this, SettingsActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 13) {
+        } else if (position == 14) {
             Intent navigationIntent = new Intent(this, SyncRecordsActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 14) {
+        } else if (position == 15) {
             Log.d(TAG, "Perform Logout");
             doLogout();
         }
@@ -400,6 +412,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
     }
 
     private void getExamDetails() {
+        checkRes = "examData";
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put(EnsyfiConstants.TEACHER_ID, PreferenceStorage.getTeacherId(this));
@@ -410,6 +423,36 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
 
 //        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
         String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_EXAM_TEACHER_API;
+        serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
+    }
+
+    private void checkLogg() {
+        checkRes = "checkVersion";
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put(EnsyfiConstants.KEY_APP_VERSION, EnsyfiConstants.KEY_APP_VERSION_VALUE);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+//        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+        String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.CHECK_VERSION_TEACHER;
+        serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
+    }
+
+    private void sendLogi() {
+        checkRes = "sendLogin";
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put(EnsyfiConstants.KEY_USER_ID, PreferenceStorage.getUserId(this));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+//        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+        String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.DAILY_LOGIN;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 
@@ -441,16 +484,45 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
     @Override
     public void onResponse(JSONObject response) {
 //        progressDialogHelper.hideProgressDialog();
-        if (validateSignInResponse(response)) {
-            JSONArray getExamsOfClassArray = null;
+        if (checkRes.equalsIgnoreCase("checkRes")) {
+            if (validateSignInResponse(response)) {
+                JSONArray getExamsOfClassArray = null;
+                try {
+                    getExamsOfClassArray = response.getJSONArray("data");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                if (getExamsOfClassArray != null && getExamsOfClassArray.length() > 0) {
+                    teacherData.saveExamsOfClass(getExamsOfClassArray);
+                }
+            }
+        } else if (checkRes.equalsIgnoreCase("checkVersion")) {
             try {
-                getExamsOfClassArray = response.getJSONArray("data");
+                if (response.getString("status").equalsIgnoreCase("success")) {
+                    String ab = "success";
+                } else {
+                    android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(TeacherDashBoardActivity.this);
+                    alertDialogBuilder.setTitle("Update");
+                    alertDialogBuilder.setMessage("A new version of SkilEx is available!");
+                    alertDialogBuilder.setPositiveButton("Get it", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
+                            try {
+                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                                finish();
+                            } catch (android.content.ActivityNotFoundException anfe) {
+                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                            }
+                        }
+                    });
+                    alertDialogBuilder.setCancelable(false);
+                    alertDialogBuilder.show();
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            if (getExamsOfClassArray != null && getExamsOfClassArray.length() > 0) {
-                teacherData.saveExamsOfClass(getExamsOfClassArray);
-            }
+            sendLogi();
         }
     }
 

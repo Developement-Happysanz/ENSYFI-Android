@@ -1,9 +1,11 @@
 package com.palprotech.ensyfi.activity.adminmodule;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -35,18 +37,26 @@ import com.palprotech.ensyfi.activity.loginmodule.ProfileActivity;
 import com.palprotech.ensyfi.activity.loginmodule.ProfileActivityNew;
 import com.palprotech.ensyfi.activity.loginmodule.SettingsActivity;
 import com.palprotech.ensyfi.activity.loginmodule.SplashScreenActivity;
+import com.palprotech.ensyfi.activity.teachermodule.SpecialClassActivity;
 import com.palprotech.ensyfi.adapter.NavDrawerAdapter;
 import com.palprotech.ensyfi.bean.general.support.DeleteTableRecords;
+import com.palprotech.ensyfi.helper.ProgressDialogHelper;
 import com.palprotech.ensyfi.interfaces.DialogClickListener;
+import com.palprotech.ensyfi.servicehelpers.ServiceHelper;
+import com.palprotech.ensyfi.serviceinterfaces.IServiceListener;
+import com.palprotech.ensyfi.utils.EnsyfiConstants;
 import com.palprotech.ensyfi.utils.PreferenceStorage;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Created by Admin on 11-07-2017.
  */
 
-public class AdminDashBoardActivity extends AppCompatActivity implements DialogClickListener {
+public class AdminDashBoardActivity extends AppCompatActivity implements DialogClickListener, IServiceListener {
 
     private static final String TAG = AdminDashBoardActivity.class.getName();
     Toolbar toolbar;
@@ -57,13 +67,17 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
     private ImageView imgNavProfileImage;
     private ArrayAdapter<String> navListAdapter;
     private String[] values = {"Profile", "Students", "Teachers", "Parents", "Board Members", "Attendance", "Classes", "Examinations",
-            "Results", "Events", "Circulars", "Fee Status", "On Duty", "Groups", "Leaves",
+            "Results", "Special Class", "Events", "Circulars", "Fee Status", "On Duty", "Groups", "Leaves",
             "Settings", "Sign Out"};
     TextView navUserProfileName = null;
     LinearLayout students, teachers, parents, classes, exams, results, events, communication;
     private String mCurrentUserProfileUrl = "";
     Context context;
     private DeleteTableRecords deleteTableRecords;
+
+    String checkRes = "";
+    private ServiceHelper serviceHelper;
+    protected ProgressDialogHelper progressDialogHelper;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -82,6 +96,11 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
         initializeNavigationDrawer();
         initializeViews();
         context = getApplicationContext();
+        serviceHelper = new ServiceHelper(this);
+        serviceHelper.setServiceListener(this);
+        progressDialogHelper = new ProgressDialogHelper(this);
+
+        checkLogg();
     }
 
     private void initializeViews() {
@@ -267,32 +286,37 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
             Intent navigationIntent = new Intent(this, ExamViewActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        }else if (position == 8) {
+        } else if (position == 8) {
             Intent navigationIntent = new Intent(this, ResultViewActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 9) {
-            Intent navigationIntent = new Intent(this, EventsActivity.class);
+            Intent navigationIntent = new Intent(this, SpecialClassAdminActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 10) {
 //            Intent navigationIntent = new Intent(this, CircularMasterListActivity.class);
-            Intent navigationIntent = new Intent(this, CircularActivity.class);
+            Intent navigationIntent = new Intent(this, EventsActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 11) {
-            Intent navigationIntent = new Intent(this, FeesViewActivity.class);
+//            Intent navigationIntent = new Intent(this, CircularMasterListActivity.class);
+            Intent navigationIntent = new Intent(this, CircularActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 12) {
-            Intent navigationIntent = new Intent(this, OnDutyViewActivity.class);
+            Intent navigationIntent = new Intent(this, FeesViewActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 13) {
-            Intent navigationIntent = new Intent(this, GroupNotificationAdminViewActivity.class);
+            Intent navigationIntent = new Intent(this, OnDutyViewActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 14) {
+            Intent navigationIntent = new Intent(this, GroupNotificationAdminViewActivity.class);
+            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(navigationIntent);
+        } else if (position == 15) {
             Intent navigationIntent = new Intent(this, LeaveStatusActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
@@ -302,11 +326,11 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
 //            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //            startActivity(navigationIntent);
 //        }
-        else if (position == 15) {
+        else if (position == 16) {
             Intent navigationIntent = new Intent(this, SettingsActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 16) {
+        } else if (position == 17) {
             Log.d(TAG, "Perform Logout");
             doLogout();
         }
@@ -337,6 +361,36 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
         homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(homeIntent);
         this.finish();
+    }
+
+    private void checkLogg() {
+        checkRes = "checkVersion";
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put(EnsyfiConstants.KEY_APP_VERSION, EnsyfiConstants.KEY_APP_VERSION_VALUE);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+//        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+        String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.CHECK_VERSION_ADMIN;
+        serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
+    }
+
+    private void sendLogi() {
+        checkRes = "sendLogin";
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put(EnsyfiConstants.KEY_USER_ID, PreferenceStorage.getUserId(this));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+//        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+        String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.DAILY_LOGIN;
+        serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 
     @Override
@@ -379,6 +433,43 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
 
     @Override
     public void onAlertNegativeClicked(int tag) {
+
+    }
+
+    @Override
+    public void onResponse(JSONObject response) {
+        if (checkRes.equalsIgnoreCase("checkVersion")) {
+            try {
+                if (response.getString("status").equalsIgnoreCase("success")) {
+                    String ab = "success";
+                } else {
+                    android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(AdminDashBoardActivity.this);
+                    alertDialogBuilder.setTitle("Update");
+                    alertDialogBuilder.setMessage("A new version of SkilEx is available!");
+                    alertDialogBuilder.setPositiveButton("Get it", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
+                            try {
+                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                                finish();
+                            } catch (android.content.ActivityNotFoundException anfe) {
+                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                            }
+                        }
+                    });
+                    alertDialogBuilder.setCancelable(false);
+                    alertDialogBuilder.show();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            sendLogi();
+        }
+    }
+
+    @Override
+    public void onError(String error) {
 
     }
 }

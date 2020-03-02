@@ -19,7 +19,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String TAG = "SQLiteHelper.java";
 
     private static final String DATABASE_NAME = "ENSYFI.db";
-    private static final int DATABASE_VERSION = 38;
+    private static final int DATABASE_VERSION = 39;
 
     private static final String table_create_student = "Create table IF NOT EXISTS studentInfo(_id integer primary key autoincrement,"
             + "registered_id text,"
@@ -537,7 +537,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     public Cursor getAttendanceList() throws SQLException {
         SQLiteDatabase db = this.getWritableDatabase();
-        String fetch = "Select _id,ac_year,class_id,class_total,no_of_present,no_of_absent,attendance_period,created_by,created_at,status from attendance where sync_status = 'NS' order by _id;";
+        String fetch = "Select _id,ac_year,class_id,class_total,no_of_present,no_of_absent,attendance_period,created_by,created_at,status from attendance where sync_status = 'NS' order by _id LIMIT 1;";
         Cursor c = db.rawQuery(fetch, null);
         if (c != null) {
             c.moveToFirst();

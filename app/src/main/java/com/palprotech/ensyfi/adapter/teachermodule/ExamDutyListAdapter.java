@@ -66,6 +66,7 @@ public class ExamDutyListAdapter extends BaseAdapter {
             holder = new ViewHolder();
             holder.txtExamName = (TextView) convertView.findViewById(R.id.txtExamName);
             holder.txtExamDateTime = (TextView) convertView.findViewById(R.id.txtExamDateTime);
+            holder.txtClassSection = (TextView) convertView.findViewById(R.id.txtDutyClass);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -78,7 +79,8 @@ public class ExamDutyListAdapter extends BaseAdapter {
         }
 
         holder.txtExamName.setText(examDuties.get(position).getExam_name());
-        holder.txtExamDateTime.setText(examDuties.get(position).getClass_datetime());
+        holder.txtExamDateTime.setText(examDuties.get(position).getExam_datetime());
+        holder.txtClassSection.setText(examDuties.get(position).getClass_datetime());
 
         return convertView;
     }
