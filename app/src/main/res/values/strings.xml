@@ -122,5 +122,15 @@
 
     <string name="about_content">All-in-one integrated application for modern schools and colleges.\n\nThe endeavour of managing schools and colleges isn’t easy. Connecting the stakeholders – the administration, teachers, students and parents is a time-consuming process and can gobble up a lot of time. This we seek to ease. ENSYFi is a solution that aims to simplify administrative and managerial process of schools and colleges, which include gathering, storing and processing information. The integrated web and mobile applications connect teachers with students and parents for a seamless productivity round the clock. ENSYFi is a culmination of our deep understanding of how educational institutions work and the blending of relevant technologies for delivering a world-class product.</string>
 
+    <!-- SyncAdapter related -->
+    <string name="sync_account_type">com.palprotech.ensyfi</string>
+    <string name="content_authority">com.palprotech.ensyfi.syncadapter</string>
+
+    <string name="launch_activity">Launch activity</string>
+    <string name="location_unknown">Location unknown</string>
+    <string name="location_updates_label">Location Updates</string>
+
+    <string name="permission_rationale">Location permission is needed for core functionality</string>
+    <string name="permission_denied_explanation">Permission was denied, but is needed for core functionality.</string>
 
 </resources>

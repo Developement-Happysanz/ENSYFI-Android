@@ -8,13 +8,13 @@ public class EnsyfiConstants {
 
     // URLS
     // BASE URL
-//    public static final String BASE_URL = "https://ensyfi.com/";
-    public static final String BASE_URL = "https://happysanz.in/ensyfi";
+    public static final String BASE_URL = "https://ensyfi.com/";
+//    public static final String BASE_URL = "https://happysanz.in/ensyfi";
 
 
     // ADMIN URL
-    private static final String ADMIN_BASE_URL = BASE_URL + "admin/admin_api/";
-//    private static final String ADMIN_BASE_URL = BASE_URL + "inst_code_validation/";
+//    private static final String ADMIN_BASE_URL = BASE_URL + "admin/admin_api/";
+    private static final String ADMIN_BASE_URL = BASE_URL + "inst_code_validation/";
     private static final String ADMIN_BASE_API = "api.php";
     public static final String INSTITUTE_LOGIN_API = ADMIN_BASE_URL + ADMIN_BASE_API;
     public static final String GET_SCHOOL_LOGO = BASE_URL + "institute_logo/";
@@ -26,6 +26,16 @@ public class EnsyfiConstants {
     public static final String USER_IMAGE_API_STUDENTS = "/assets/students/profile/";
     public static final String USER_IMAGE_API_TEACHERS = "/assets/teachers/profile/";
     public static final String USER_IMAGE_API_ADMIN = "/assets/admin/profile/";
+
+
+    //CHECK URL
+    public static final String CHECK_VERSION_ADMIN = "/apimain/version_check/";
+    public static final String CHECK_VERSION_TEACHER = "/apiteacher/version_check/";
+    public static final String CHECK_VERSION_STUDENT = "/apistudent/version_check/";
+    public static final String DAILY_LOGIN = "/apimain/last_login_update/";
+
+    public static String KEY_APP_VERSION = "version_code";
+    public static String KEY_APP_VERSION_VALUE = "1";
 
     //FORGOT PASSWORD URL
     public static final String FORGOT_PASSWORD = "/apimain/forgot_Password/";
