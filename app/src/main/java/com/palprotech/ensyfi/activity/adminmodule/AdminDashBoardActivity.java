@@ -374,7 +374,7 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
         }
 
 //        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.CHECK_VERSION_ADMIN;
+        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.CHECK_VERSION_ADMIN;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 
@@ -389,7 +389,7 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
         }
 
 //        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.DAILY_LOGIN;
+        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.DAILY_LOGIN;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 

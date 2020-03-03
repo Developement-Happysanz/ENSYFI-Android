@@ -437,7 +437,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
         }
 
 //        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.CHECK_VERSION_TEACHER;
+        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.CHECK_VERSION_TEACHER;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 
@@ -452,7 +452,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
         }
 
 //        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.DAILY_LOGIN;
+        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.DAILY_LOGIN;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 
