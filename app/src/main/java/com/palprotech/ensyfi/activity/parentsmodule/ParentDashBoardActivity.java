@@ -89,9 +89,14 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.new_navi);
 
+        serviceHelper = new ServiceHelper(this);
+        serviceHelper.setServiceListener(this);
+        progressDialogHelper = new ProgressDialogHelper(this);
+
         initializeNavigationDrawer();
         initializeViews();
         context = getApplicationContext();
+
         checkLogg();
     }
 
@@ -106,7 +111,7 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
         }
 
 //        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.CHECK_VERSION_STUDENT;
+        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.CHECK_VERSION_STUDENT;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 
@@ -121,7 +126,7 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
         }
 
 //        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.DAILY_LOGIN;
+        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.DAILY_LOGIN;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 
