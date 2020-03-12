@@ -58,9 +58,11 @@ public class SpecialClassActivity extends AppCompatActivity implements IServiceL
         serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(this);
         if (PreferenceStorage.getUserType(this).equalsIgnoreCase("1")) {
-
+            callGetClassListAdmin();
+        } else if (PreferenceStorage.getUserType(this).equalsIgnoreCase("2")) {
+            callGetClassListTeacher();
         } else {
-            callGetCircularService();
+            callGetClassListParent();
         }
         ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
         bckbtn.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +73,7 @@ public class SpecialClassActivity extends AppCompatActivity implements IServiceL
         });
     }
 
-    public void callGetCircularService() {
+    public void callGetClassListTeacher() {
 
         if (circularArrayList != null) {
             circularArrayList.clear();
@@ -97,7 +99,7 @@ public class SpecialClassActivity extends AppCompatActivity implements IServiceL
 
     }
 
-    public void callGetClassList() {
+    public void callGetClassListAdmin() {
 
         if (circularArrayList != null) {
             circularArrayList.clear();
@@ -116,6 +118,32 @@ public class SpecialClassActivity extends AppCompatActivity implements IServiceL
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
             String url = "";
             url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_SPECIAL_CLASS_LIST_ADMIN;
+            serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
+        } else {
+            AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
+        }
+
+    }
+
+    public void callGetClassListParent() {
+
+        if (circularArrayList != null) {
+            circularArrayList.clear();
+        }
+
+        if (CommonUtils.isNetworkAvailable(this)) {
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put(EnsyfiConstants.PARAMS_ACADEMIC_EXAM_MARKS_CLASS_MASTER_ID, PreferenceStorage.getStudentClassIdPreference(getApplicationContext()));
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
+            String url = "";
+            url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_SPECIAL_CLASS_STUDENT;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");

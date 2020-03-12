@@ -175,7 +175,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 vis = true;
             }
         } else if (view == aboutLayout) {
-            Intent navigationIntent = new Intent(this, ChangePasswordActivity.class);
+            Intent navigationIntent = new Intent(this, AboutEnsyfiActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         }

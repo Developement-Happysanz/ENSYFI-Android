@@ -291,7 +291,7 @@ public class AdminDashBoardActivity extends AppCompatActivity implements DialogC
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 9) {
-            Intent navigationIntent = new Intent(this, SpecialClassAdminActivity.class);
+            Intent navigationIntent = new Intent(this, SpecialClassActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 10) {

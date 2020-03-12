@@ -38,6 +38,7 @@ import com.palprotech.ensyfi.activity.studentmodule.AttendanceActivity;
 import com.palprotech.ensyfi.activity.studentmodule.ClassTestHomeworkActivity;
 import com.palprotech.ensyfi.activity.studentmodule.ExamsResultActivity;
 import com.palprotech.ensyfi.activity.loginmodule.StudentInfoActivity;
+import com.palprotech.ensyfi.activity.teachermodule.SpecialClassActivity;
 import com.palprotech.ensyfi.activity.teachermodule.TeacherTimeTableNewnew;
 import com.palprotech.ensyfi.adapter.NavDrawerAdapter;
 import com.palprotech.ensyfi.bean.general.support.DeleteTableRecords;
@@ -62,7 +63,7 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
     boolean doubleBackToExitPressedOnce = false;
     private ImageView imgNavProfileImage;
     private ArrayAdapter<String> navListAdapter;
-    private String[] values = {"Profile", "Attendance", "Homeworks/Class Tests", "Exams & Results", "Time Table", "Events", "Circulars", "Student Info", "On Duty", "Settings", "Sign Out"};
+    private String[] values = {"Profile", "Attendance", "Homeworks/Class Tests", "Exams & Results", "Special Class", "Time Table", "Events", "Circulars", "Student Info", "On Duty", "Settings", "Sign Out"};
     TextView navUserProfileName = null;
     LinearLayout dashAttendance, dashTimeTable, dashClassTest, dashExam, dashEvent, dashCommunication;
     private String mCurrentUserProfileUrl = "";
@@ -288,22 +289,26 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 4) {
-            Intent navigationIntent = new Intent(this, TeacherTimeTableNewnew.class);
+            Intent navigationIntent = new Intent(this, SpecialClassActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 5) {
-            Intent navigationIntent = new Intent(this, EventsActivity.class);
+            Intent navigationIntent = new Intent(this, TeacherTimeTableNewnew.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 6) {
-            Intent navigationIntent = new Intent(this, CircularActivity.class);
+            Intent navigationIntent = new Intent(this, EventsActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 7) {
-            Intent navigationIntent = new Intent(this, StudentInfoActivity.class);
+            Intent navigationIntent = new Intent(this, CircularActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
         } else if (position == 8) {
+            Intent navigationIntent = new Intent(this, StudentInfoActivity.class);
+            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(navigationIntent);
+        } else if (position == 9) {
             Intent navigationIntent = new Intent(this, OnDutyActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
@@ -313,11 +318,11 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
 //            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //            startActivity(navigationIntent);
 //        }
-        else if (position == 9) {
+        else if (position == 10) {
             Intent navigationIntent = new Intent(this, SettingsActivity.class);
             navigationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(navigationIntent);
-        } else if (position == 10) {
+        } else if (position == 11) {
             Log.d(TAG, "Perform Logout");
             doLogout();
         }
