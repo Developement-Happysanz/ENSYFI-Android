@@ -8,15 +8,17 @@ public class EnsyfiConstants {
 
     // URLS
     // BASE URL
-//    public static final String BASE_URL = "https://ensyfi.com/";
-    public static final String BASE_URL = "https://happysanz.in/";
+    public static final String BASE_URL = "https://ensyfi.com/";
+//    public static final String BASE_URL = "https://happysanz.in/";
 
 
     // ADMIN URL
     private static final String ADMIN_BASE_URL = BASE_URL + "admin/admin_api/";
 //    private static final String ADMIN_BASE_URL = BASE_URL + "inst_code_validation/";
     private static final String ADMIN_BASE_API = "api.php";
-    public static final String INSTITUTE_LOGIN_API = ADMIN_BASE_URL + ADMIN_BASE_API;
+
+//    public static final String INSTITUTE_LOGIN_API = ADMIN_BASE_URL + ADMIN_BASE_API;
+    public static final String INSTITUTE_LOGIN_API = "https://ensyfi.com/new_site/apimain/chk_institute_code";
     public static final String GET_SCHOOL_LOGO = BASE_URL + "institute_logo/";
 
     // GENERAL URL
@@ -226,6 +228,7 @@ public class EnsyfiConstants {
     public static final String PARAMS_FUNC_NAME = "func_name";
     public static final String SIGN_IN_PARAMS_FUNC_NAME = "chkInstid";
     public static final String PARAMS_INSTITUTE_ID = "InstituteID";
+    public static final String PARAMS_INSTITUTE_ID_NEW = "institute_code";
 
     // User login params
     public static final String PARAMS_USER_NAME = "username";
