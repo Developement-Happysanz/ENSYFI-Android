@@ -18,8 +18,8 @@ android {
         applicationId "com.palprotech.ensyfi"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 34
-        versionName "1.0.283"
+        versionCode 35
+        versionName "1.0.284"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
