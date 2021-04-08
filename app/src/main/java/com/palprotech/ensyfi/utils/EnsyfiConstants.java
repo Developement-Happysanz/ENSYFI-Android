@@ -17,8 +17,8 @@ public class EnsyfiConstants {
 //    private static final String ADMIN_BASE_URL = BASE_URL + "inst_code_validation/";
     private static final String ADMIN_BASE_API = "api.php";
 
-//    public static final String INSTITUTE_LOGIN_API = ADMIN_BASE_URL + ADMIN_BASE_API;
-    public static final String INSTITUTE_LOGIN_API = "https://ensyfi.com/new_site/apimain/chk_institute_code";
+    public static final String INSTITUTE_LOGIN_API = ADMIN_BASE_URL + ADMIN_BASE_API;
+//    public static final String INSTITUTE_LOGIN_API = "https://ensyfi.com/new_site/apimain/chk_institute_code";
     public static final String GET_SCHOOL_LOGO = BASE_URL + "institute_logo/";
 
     // GENERAL URL
