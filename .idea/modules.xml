@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Ensyfi.iml" filepath="$PROJECT_DIR$/Ensyfi.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Ensyfi.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Ensyfi.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ENSYFI.iml" filepath="$PROJECT_DIR$/.idea/modules/ENSYFI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ENSYFI.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ENSYFI.app.iml" />
     </modules>
   </component>
 </project>
