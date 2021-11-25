@@ -102,12 +102,13 @@ public class TimeTableReviewAddActivity extends AppCompatActivity implements ISe
                     jsonObject.put(EnsyfiConstants.PARAMS_REVIEW_USER_ID, PreferenceStorage.getUserId(this));
                     jsonObject.put(EnsyfiConstants.PARAMS_REVIEW_COMMENTS, edtTimetableReviewDetails.getText().toString());
                     jsonObject.put(EnsyfiConstants.PARAMS_REVIEW_CREATED_AT, formattedServerDate);
+                    jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-                String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.GET_ON_TIME_TABLE_REVIEW_ADD;
+                String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_ON_TIME_TABLE_REVIEW_ADD;
                 serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
             } else {
 

@@ -177,7 +177,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                     }
                 } else {
                     Intent i = new Intent(SplashScreenActivity.this, SchoolIdLoginActivity.class);
-                    PreferenceStorage.saveInstituteCode(getApplicationContext(), "");
+                    PreferenceStorage.saveEnsyfiInstituteCode(getApplicationContext(), "");
 //                    Intent i = new Intent(SplashScreenActivity.this, UserLoginActivity.class);
                     startActivity(i);
                     finish();

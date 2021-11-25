@@ -77,13 +77,14 @@ public class ClassAttendanceDetailActivity extends AppCompatActivity implements 
                 jsonObject.put(EnsyfiConstants.PARAM_CLASS_ID, selectedclassesList);
                 jsonObject.put(EnsyfiConstants.PARAMS_DISPLAY_TYPE, checkDayMonthType);
                 jsonObject.put(EnsyfiConstants.PARAMS_DISPLAY_DATE, sendDate);
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_STUDENT_ATTENDANCE_API;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_STUDENT_ATTENDANCE_API;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");

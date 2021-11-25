@@ -242,13 +242,14 @@ public class DynamicTTFragment extends Fragment implements IServiceListener, Ada
         try {
             jsonObject.put(EnsyfiConstants.PARAMS_CLASS_ID, id);
             jsonObject.put(EnsyfiConstants.PARAMS_DAY_ID, subCatId);
+            jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(getActivity()));
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getActivity()) + EnsyfiConstants.GET_TIME_TABLE_API;
+        String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_TIME_TABLE_API;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 

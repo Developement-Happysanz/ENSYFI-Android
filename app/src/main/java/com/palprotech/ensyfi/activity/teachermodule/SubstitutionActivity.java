@@ -75,7 +75,7 @@ public class SubstitutionActivity extends AppCompatActivity implements IServiceL
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.KEY_USER_ID, PreferenceStorage.getUserId(getApplicationContext()));
-
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -83,7 +83,7 @@ public class SubstitutionActivity extends AppCompatActivity implements IServiceL
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
             String url = "";
-            url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_SUBSTITUTION_CLASS;
+            url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_SUBSTITUTION_CLASS;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");

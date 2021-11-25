@@ -183,7 +183,7 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
                 (InputMethodManager) activity.getSystemService(
                         Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(
-                activity.getCurrentFocus().getWindowToken(), 0);
+                activity.getWindow().getDecorView().getWindowToken(), 0);
     }
 
     public void setupUI(View view) {
@@ -314,7 +314,7 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
             e.printStackTrace();
         }
         progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_USER_LEAVES_TYPE_API;
+        String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_USER_LEAVES_TYPE_API;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 
@@ -527,12 +527,13 @@ public class LeaveApplyActivity extends AppCompatActivity implements View.OnClic
                         jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_FROM_TIME, mFromTimeVal);
                         jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_TO_TIME, mToTimeVal);
                         jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_DESCRIPTION, description);
+                        jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                     progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-                    String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_USER_LEAVES_APPLY_API;
+                    String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_USER_LEAVES_APPLY_API;
                     serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
                 } else {
 

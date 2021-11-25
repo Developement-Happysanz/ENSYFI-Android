@@ -63,7 +63,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
     public boolean onTouchEvent(MotionEvent event) {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.
                 INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
         return true;
     }
 
@@ -82,11 +82,13 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
                     JSONObject jsonObject = new JSONObject();
                     try {
                         jsonObject.put(EnsyfiConstants.PARAMS_FP_USER_NAME, edtUsername.getText().toString());
+                        jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                     progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-                    String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.FORGOT_PASSWORD;
+                    String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.FORGOT_PASSWORD;
                     serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
                 }
             }

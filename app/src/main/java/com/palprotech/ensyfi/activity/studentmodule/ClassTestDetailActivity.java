@@ -92,13 +92,14 @@ public class ClassTestDetailActivity extends AppCompatActivity implements IServi
                 try {
                     jsonObject.put(EnsyfiConstants.PARAM_HOMEWORK_ID, classTest.getHwId());
                     jsonObject.put(EnsyfiConstants.PARM_ENROLL_ID, PreferenceStorage.getStudentRegisteredIdPreference(getApplicationContext()));
+                    jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
                 progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-                String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_STUDENT_CLASSTEST_MARK_API;
+                String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_STUDENT_CLASSTEST_MARK_API;
                 serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
             } else {
                 AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");

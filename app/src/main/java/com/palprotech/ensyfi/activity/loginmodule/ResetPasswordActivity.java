@@ -55,7 +55,7 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
     public boolean onTouchEvent(MotionEvent event) {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.
                 INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(this.getWindow().getDecorView().getWindowToken(), 0);
         return true;
     }
 
@@ -80,12 +80,13 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
                     try {
                         jsonObject.put(EnsyfiConstants.PARAMS_FP_USER_ID, PreferenceStorage.getUserId(this));
                         jsonObject.put(EnsyfiConstants.PARAMS_PASSWORD, edtNewPassword.getText().toString());
+                        jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                     progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-                    String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.RESET_PASSWORD;
+                    String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.RESET_PASSWORD;
                     serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
                 }
             }
@@ -95,7 +96,7 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
     }
 
     private boolean validateFields() {
-        int minChar = 8;
+        int minChar = 6;
         if (!AppValidator.checkNullString(this.edtNewPassword.getText().toString().trim())) {
             AlertDialogHelper.showSimpleAlertDialog(this, this.getResources().getString(R.string.enter_password));
             return false;

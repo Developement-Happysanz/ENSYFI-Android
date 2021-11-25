@@ -250,13 +250,14 @@ public class ClassTestHomeworkActivity extends AppCompatActivity implements ISer
             try {
                 jsonObject.put(EnsyfiConstants.PARAM_CLASS_ID, PreferenceStorage.getStudentClassIdPreference(getApplicationContext()));
                 jsonObject.put(EnsyfiConstants.PARM_HOME_WORK_TYPE, isHomeWorkType);
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(getApplicationContext()));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_STUDENT_CLASSTEST_AND_HOMEWORK_API;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_STUDENT_CLASSTEST_AND_HOMEWORK_API;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
             return null;

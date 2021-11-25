@@ -135,13 +135,14 @@ public class AcademicExamResultView extends AppCompatActivity implements IServic
                 jsonObject.put(EnsyfiConstants.KEY_USER_ID, classMasterId);
                 jsonObject.put(EnsyfiConstants.PARAM_EXAM_ID, examId);
                 jsonObject.put(EnsyfiConstants.CT_HW_CLASS_ID, classId);
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_ACADEMIC_EXAM_MARK_STATUS;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_ACADEMIC_EXAM_MARK_STATUS;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
@@ -157,13 +158,14 @@ public class AcademicExamResultView extends AppCompatActivity implements IServic
                 jsonObject.put(EnsyfiConstants.KEY_USER_ID, PreferenceStorage.getUserId(this));
                 jsonObject.put(EnsyfiConstants.PARAMS_ACADEMIC_EXAM_MARKS_CLASS_MASTER_ID, classMasterId);
                 jsonObject.put(EnsyfiConstants.PARAM_EXAM_ID, examId);
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_ACADEMIC_EXAM_MARK_DETAILS;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_ACADEMIC_EXAM_MARK_DETAILS;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
@@ -184,13 +186,14 @@ public class AcademicExamResultView extends AppCompatActivity implements IServic
                 jsonObject.put(EnsyfiConstants.PARAM_EXAM_ID, examId);
                 jsonObject.put(EnsyfiConstants.PARAMS_SUBJECT_ID_SHOW, PreferenceStorage.getTeacherSubject(getApplicationContext()));
                 jsonObject.put(EnsyfiConstants.PARAM_IS_INTERNAL_EXTERNAL, isInternalExternal);
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_ACADEMIC_EXAM_MARK;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_ACADEMIC_EXAM_MARK;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
         } else {

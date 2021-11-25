@@ -46,6 +46,23 @@ public class PreferenceStorage {
     }
 
     // InstituteCode
+
+    public static void saveEnsyfiInstituteCode(Context context, String instituteCode) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.KEY_ENSYFI_INSTITUTE_CODE, instituteCode);
+        editor.apply();
+    }
+
+    public static String getEnsyfiInstituteCode(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String instituteCode;
+        instituteCode = sharedPreferences.getString(EnsyfiConstants.KEY_ENSYFI_INSTITUTE_CODE, "");
+        return instituteCode;
+    }
+
     public static void saveInstituteCode(Context context, String instituteCode) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
@@ -83,6 +100,23 @@ public class PreferenceStorage {
 
     // User Login Preferences
     // User Dynamic API
+
+    public static void saveUserDynamicDB(Context context, String userDynamicAPI) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.KEY_USER_DYNAMIC_DB, userDynamicAPI);
+        editor.apply();
+    }
+
+    public static String getUserDynamicDB(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String userDynamicAPI;
+        userDynamicAPI = sharedPreferences.getString(EnsyfiConstants.KEY_USER_DYNAMIC_DB, "");
+        return userDynamicAPI;
+    }
+
     public static void saveUserDynamicAPI(Context context, String userDynamicAPI) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
@@ -1413,6 +1447,22 @@ public class PreferenceStorage {
                 .getDefaultSharedPreferences(context);
         String teacherId;
         teacherId = sharedPreferences.getString(EnsyfiConstants.TEACHER_ID, "");
+        return teacherId;
+    }
+
+    public static void saveTeacherUserId(Context context, String name) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EnsyfiConstants.KEY_USER_ID, name);
+        editor.apply();
+    }
+
+    public static String getTeacherUserId(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String teacherId;
+        teacherId = sharedPreferences.getString(EnsyfiConstants.KEY_USER_ID, "");
         return teacherId;
     }
 

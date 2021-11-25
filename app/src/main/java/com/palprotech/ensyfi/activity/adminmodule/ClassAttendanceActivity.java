@@ -118,13 +118,14 @@ public class ClassAttendanceActivity extends AppCompatActivity implements Dialog
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.KEY_USER_ID, PreferenceStorage.getUserId(this));
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_CLASS_SECTION;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_CLASS_SECTION;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
 

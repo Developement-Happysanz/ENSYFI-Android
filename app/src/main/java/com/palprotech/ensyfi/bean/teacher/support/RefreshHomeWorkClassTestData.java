@@ -55,7 +55,7 @@ public class RefreshHomeWorkClassTestData implements IServiceListener {
             }
 
             progressDialogHelper.showProgressDialog(context.getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(context) + EnsyfiConstants.LOAD_STUDENT_CLASSTEST_AND_HOMEWORK;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.LOAD_STUDENT_CLASSTEST_AND_HOMEWORK;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
         } else {
             AlertDialogHelper.showSimpleAlertDialog(context, "No Network connection");

@@ -83,6 +83,7 @@ public class SpecialClassActivity extends AppCompatActivity implements IServiceL
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.KEY_USER_ID, PreferenceStorage.getUserId(getApplicationContext()));
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
 
             } catch (JSONException e) {
@@ -91,7 +92,7 @@ public class SpecialClassActivity extends AppCompatActivity implements IServiceL
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
             String url = "";
-            url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_SPECIAL_CLASS;
+            url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_SPECIAL_CLASS;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
@@ -109,6 +110,7 @@ public class SpecialClassActivity extends AppCompatActivity implements IServiceL
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.KEY_USER_ID, PreferenceStorage.getUserId(getApplicationContext()));
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
 
             } catch (JSONException e) {
@@ -117,7 +119,7 @@ public class SpecialClassActivity extends AppCompatActivity implements IServiceL
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
             String url = "";
-            url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_SPECIAL_CLASS_LIST_ADMIN;
+            url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_SPECIAL_CLASS_LIST_ADMIN;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
@@ -135,7 +137,7 @@ public class SpecialClassActivity extends AppCompatActivity implements IServiceL
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_ACADEMIC_EXAM_MARKS_CLASS_MASTER_ID, PreferenceStorage.getStudentClassIdPreference(getApplicationContext()));
-
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -143,7 +145,7 @@ public class SpecialClassActivity extends AppCompatActivity implements IServiceL
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
             String url = "";
-            url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_SPECIAL_CLASS_STUDENT;
+            url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_SPECIAL_CLASS_STUDENT;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");

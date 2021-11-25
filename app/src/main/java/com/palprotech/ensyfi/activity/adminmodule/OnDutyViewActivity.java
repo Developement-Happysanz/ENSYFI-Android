@@ -111,6 +111,8 @@ public class OnDutyViewActivity extends AppCompatActivity implements IServiceLis
             String url = "";
             try {
                 jsonObject.put(EnsyfiConstants.KEY_USER_TYPE, "1");
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(getApplicationContext()
+                ));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -118,9 +120,9 @@ public class OnDutyViewActivity extends AppCompatActivity implements IServiceLis
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
 
             if (checkStudentTeacher.equalsIgnoreCase("student")) {
-                url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_OD_STUDENT_API;
+                url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_OD_STUDENT_API;
             } else {
-                url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_OD_TEACHER_API;
+                url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_OD_TEACHER_API;
             }
 
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);

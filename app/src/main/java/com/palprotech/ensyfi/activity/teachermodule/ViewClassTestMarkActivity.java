@@ -92,14 +92,14 @@ public class ViewClassTestMarkActivity extends AppCompatActivity implements ISer
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAM_HOMEWORK_ID, homeWorkId);
-
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_CLASS_TEST_MARK;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_CLASS_TEST_MARK;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
 

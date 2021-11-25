@@ -80,7 +80,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
                 (InputMethodManager) activity.getSystemService(
                         Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(
-                activity.getCurrentFocus().getWindowToken(), 0);
+                activity.getWindow().getDecorView().getWindowToken(), 0);
     }
 
     public void setupUI(View view) {
@@ -114,12 +114,13 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
                         jsonObject.put(EnsyfiConstants.PARAMS_FP_USER_ID, PreferenceStorage.getUserId(this));
                         jsonObject.put(EnsyfiConstants.PARAMS_CP_CURRENT_PASSWORD, edtCurrentPassword.getText().toString());
                         jsonObject.put(EnsyfiConstants.PARAMS_PASSWORD, edtNewPassword.getText().toString());
+                        jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                     progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-                    String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.CHANGE_PASSWORD;
+                    String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.CHANGE_PASSWORD;
                     serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
                 }
             } else {

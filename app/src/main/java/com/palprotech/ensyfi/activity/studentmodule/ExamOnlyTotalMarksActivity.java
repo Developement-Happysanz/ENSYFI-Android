@@ -193,13 +193,14 @@ public class ExamOnlyTotalMarksActivity extends AppCompatActivity implements ISe
                 jsonObject.put(EnsyfiConstants.PARAM_EXAM_ID, ExamId);
                 jsonObject.put(EnsyfiConstants.PARAM_STUDENT_ID, PreferenceStorage.getStudentRegisteredIdPreference(getApplicationContext()));
                 jsonObject.put(EnsyfiConstants.PARAM_IS_INTERNAL_EXTERNAL, IsInternalExternal);
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(getApplicationContext()));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_EXAM_MARK_API;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_EXAM_MARK_API;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
             return null;

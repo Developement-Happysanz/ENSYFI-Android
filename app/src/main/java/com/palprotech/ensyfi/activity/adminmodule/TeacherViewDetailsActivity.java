@@ -101,13 +101,14 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_TEACHER_ID_SHOW, teacherView.getTeacherId());
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_TEACHERS_INFO;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_TEACHERS_INFO;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
 
@@ -119,7 +120,7 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
     @Override
     public void onClick(View v) {
         if (v == btnTeacherTimeTable) {
-            if (checkTimeTable) {
+            if (!checkTimeTable) {
                 PreferenceStorage.saveTeacherId(this, teacherId.getText().toString());
                 Intent intent = new Intent(this, TeacherTimeTableNewnew.class);
                 startActivity(intent);
@@ -147,13 +148,13 @@ public class TeacherViewDetailsActivity extends AppCompatActivity implements ISe
         if (validateSignInResponse(response)) {
             try {
 //                JSONObject getTimeTable = response.getJSONObject("timeTable");
-                JSONArray getTimeTableDaysArray = response.getJSONArray("timeTable");
+//                JSONArray getTimeTableDaysArray = response.getJSONArray("timeTable");
 //                if (getTimeTableDaysArray.get(0).) {
 //                    JSONArray getTimeTableDaysArray = getTimeTable.getJSONArray("data");
-                    if (getTimeTableDaysArray != null && getTimeTableDaysArray.length() > 0) {
-                        teacherData.saveTeacherTimeTable(getTimeTableDaysArray);
-                        checkTimeTable = true;
-                    }
+//                    if (getTimeTableDaysArray != null && getTimeTableDaysArray.length() > 0) {
+//                        teacherData.saveTeacherTimeTable(getTimeTableDaysArray);
+//                        checkTimeTable = true;
+//                    }
 //                } else {
 //                    checkTimeTable = false;
 //                }

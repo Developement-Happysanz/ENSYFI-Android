@@ -253,7 +253,7 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
 
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.
                     INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            imm.hideSoftInputFromWindow(this.getWindow().getDecorView().getWindowToken(), 0);
         }
 
         if (v == dateTo) {
@@ -369,13 +369,14 @@ public class OnDutyRequestActivity extends AppCompatActivity implements IService
                         jsonObject.put(EnsyfiConstants.PARAMS_OD_STATUS, "Pending");
                         jsonObject.put(EnsyfiConstants.PARAMS_OD_CREATED_BY, PreferenceStorage.getUserType(this));
                         jsonObject.put(EnsyfiConstants.PARAMS_OD_CREATED_AT, formattedServerDate);
+                        jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
 
                     progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-                    String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.GET_ON_DUTY_REQUEST;
+                    String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_ON_DUTY_REQUEST;
                     serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
                 } else {
 

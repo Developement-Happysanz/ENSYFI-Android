@@ -79,13 +79,14 @@ public class ParentsViewDetailsActivity extends AppCompatActivity implements ISe
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_PARENT_ID_SHOW_NEW, parentStudent.getAdmnNo());
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_PARENT_INFO;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_PARENT_INFO;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
         } else {

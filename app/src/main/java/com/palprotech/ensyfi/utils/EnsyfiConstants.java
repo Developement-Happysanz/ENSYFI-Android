@@ -8,16 +8,16 @@ public class EnsyfiConstants {
 
     // URLS
     // BASE URL
-    public static final String BASE_URL = "https://ensyfi.com/";
+    public static final String BASE_URL = "https://ensyfi.com/liveapp";
 //    public static final String BASE_URL = "https://happysanz.in/";
 
 
     // ADMIN URL
-    private static final String ADMIN_BASE_URL = BASE_URL + "admin/admin_api/";
+    private static final String ADMIN_BASE_URL = BASE_URL + "/apimain/";
 //    private static final String ADMIN_BASE_URL = BASE_URL + "inst_code_validation/";
     private static final String ADMIN_BASE_API = "api.php";
 
-    public static final String INSTITUTE_LOGIN_API = ADMIN_BASE_URL + ADMIN_BASE_API;
+    public static final String INSTITUTE_LOGIN_API = ADMIN_BASE_URL + "chk_institute_code";
 //    public static final String INSTITUTE_LOGIN_API = "https://ensyfi.com/new_site/apimain/chk_institute_code";
     public static final String GET_SCHOOL_LOGO = BASE_URL + "institute_logo/";
 
@@ -30,7 +30,7 @@ public class EnsyfiConstants {
     public static final String USER_IMAGE_API_ADMIN = "/assets/admin/profile/";
 
 
-    //CHECK URL
+    //CHECK URL 
     public static final String CHECK_VERSION_ADMIN = "/apimain/version_check/";
     public static final String CHECK_VERSION_TEACHER = "/apiteacher/version_check/";
     public static final String CHECK_VERSION_STUDENT = "/apistudent/version_check/";
@@ -254,9 +254,11 @@ public class EnsyfiConstants {
     public static final String KEY_INSTITUTE_ID = "institute_id";
     public static final String KEY_INSTITUTE_NAME = "institute_name";
     public static final String KEY_INSTITUTE_CODE = "institute_code";
+    public static final String KEY_ENSYFI_INSTITUTE_CODE = "enc_institute_code";
     public static final String KEY_INSTITUTE_LOGO = "institute_logo";
 
     // User Login Preferences
+    public static final String KEY_USER_DYNAMIC_DB = "dynamic_db";
     public static final String KEY_USER_DYNAMIC_API = "user_dynamic_api";
     public static final String KEY_USER_ID = "user_id";
     public static final String KEY_NAME = "name";

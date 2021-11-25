@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -107,9 +108,10 @@ public class SchoolIdLoginActivity extends AppCompatActivity implements View.OnC
     public boolean onTouchEvent(MotionEvent event) {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.
                 INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(this.getWindow().getDecorView().getWindowToken(), 0);
         return true;
     }
+
 
     @Override
     public void onClick(View v) {
@@ -120,7 +122,7 @@ public class SchoolIdLoginActivity extends AppCompatActivity implements View.OnC
                     try {
 //                        jsonObject.put(EnsyfiConstants.PARAMS_FUNC_NAME, EnsyfiConstants.SIGN_IN_PARAMS_FUNC_NAME);
 //                        jsonObject.put(EnsyfiConstants.PARAMS_INSTITUTE_ID, inputInstituteId.getText().toString());
-                        jsonObject.put(EnsyfiConstants.PARAMS_INSTITUTE_ID, inputInstituteId.getText().toString());
+                        jsonObject.put(EnsyfiConstants.KEY_INSTITUTE_CODE, inputInstituteId.getText().toString());
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -184,31 +186,37 @@ public class SchoolIdLoginActivity extends AppCompatActivity implements View.OnC
     @Override
     public void onResponse(JSONObject response) {
         progressDialogHelper.hideProgressDialog();
-         if (validateSignInResponse(response)) {
+        if (validateSignInResponse(response)) {
             try {
-                JSONObject userData = response.getJSONObject("userData");
+                JSONObject userData = response.getJSONObject("instituteData");
 //                JSONObject userData = response.getJSONArray("userData").getJSONObject(0);
                 String ins_id = null;
-
+                String dynamicDB = null;
+//                if(instData != null) {
+//                    dynamicDB = instData.getString("dynamic_db");
+//                    PreferenceStorage.saveUserDynamicDB(this, dynamicDB);
+//                }
                 Log.d(TAG, "userData dictionary" + userData.toString());
                 if (userData != null) {
-//                    ins_id = userData.getString("institute_id") + "";
-
-//                    PreferenceStorage.saveInstituteId(this, ins_id);
-
 //                    Log.d(TAG, "created user id" + ins_id);
+                    dynamicDB = userData.getString("dynamic_db");
+                    PreferenceStorage.saveUserDynamicDB(this, dynamicDB);
 
                     //need to re do this
                     Log.d(TAG, "sign in response is" + response.toString());
-
-                    String instituteName = userData.getString("institute_name");
-                    String instituteCode = userData.getString("institute_code");
-                    String instituteLogo = userData.getString("institute_logo");
+//                    JSONObject instData = response.getJSONObject("0");
+                    String instituteName = userData.getJSONObject("0").getString("institute_name");
+                    String instituteCode = userData.getJSONObject("0").getString("institute_code");
+                    String ensyfiInstituteCode = userData.getJSONObject("0").getString("enc_institute_code");
+                    String instituteLogo = userData.getJSONObject("0").getString("institute_logo");
                     String instituteLogoPicUrl = EnsyfiConstants.GET_SCHOOL_LOGO + instituteLogo;
-                    String userDynamicAPI = EnsyfiConstants.BASE_URL + instituteCode;
+//                    String userDynamicAPI = EnsyfiConstants.BASE_URL + instituteCode;
 
                     if ((instituteName != null) && !(instituteName.isEmpty()) && !instituteName.equalsIgnoreCase("null")) {
                         PreferenceStorage.saveInstituteName(this, instituteName);
+                    }
+                    if ((ensyfiInstituteCode != null) && !(ensyfiInstituteCode.isEmpty()) && !ensyfiInstituteCode.equalsIgnoreCase("null")) {
+                        PreferenceStorage.saveEnsyfiInstituteCode(this, ensyfiInstituteCode);
                     }
                     if ((instituteCode != null) && !(instituteCode.isEmpty()) && !instituteCode.equalsIgnoreCase("null")) {
                         PreferenceStorage.saveInstituteCode(this, instituteCode);
@@ -216,9 +224,12 @@ public class SchoolIdLoginActivity extends AppCompatActivity implements View.OnC
                     if ((instituteLogoPicUrl != null) && !(instituteLogoPicUrl.isEmpty()) && !instituteLogoPicUrl.equalsIgnoreCase("null")) {
                         PreferenceStorage.saveInstituteLogoPic(this, instituteLogoPicUrl);
                     }
-                    if ((userDynamicAPI != null) && !(userDynamicAPI.isEmpty()) && !userDynamicAPI.equalsIgnoreCase("null")) {
-                        PreferenceStorage.saveUserDynamicAPI(this, userDynamicAPI);
-                    }
+//                    if ((userDynamicAPI != null) && !(userDynamicAPI.isEmpty()) && !userDynamicAPI.equalsIgnoreCase("null")) {
+//                        PreferenceStorage.saveUserDynamicAPI(this, userDynamicAPI);
+//                    }
+//                    if ((dynamicDB != null) && !(dynamicDB.isEmpty()) && !dynamicDB.equalsIgnoreCase("null")){
+//                        PreferenceStorage.saveUserDynamicDB(this, dynamicDB);
+//                    }
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

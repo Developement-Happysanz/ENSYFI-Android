@@ -86,13 +86,14 @@ public class TimeTableReview extends AppCompatActivity implements IServiceListen
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_CTHW_TEACHER_ID, PreferenceStorage.getTeacherId(getApplicationContext()));
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_ON_TIME_TABLE_REVIEW_;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_ON_TIME_TABLE_REVIEW_;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
         } else {

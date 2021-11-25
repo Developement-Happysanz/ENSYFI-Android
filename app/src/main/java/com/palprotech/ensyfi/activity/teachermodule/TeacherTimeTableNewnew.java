@@ -72,8 +72,8 @@ public class TeacherTimeTableNewnew extends AppCompatActivity implements IServic
         tab = (TabLayout) findViewById(R.id.tab_layout);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         if (PreferenceStorage.getUserType(this).equalsIgnoreCase("1")) {
-            getDaysfromDB();
-            initialiseTabs();
+//            getDaysfromDB();
+            getDays();
             findViewById(R.id.view_reviews).setVisibility(View.GONE);
         }else if (PreferenceStorage.getUserType(this).equalsIgnoreCase("2")) {
             getDays();
@@ -81,6 +81,7 @@ public class TeacherTimeTableNewnew extends AppCompatActivity implements IServic
             loadday();
             findViewById(R.id.view_reviews).setVisibility(View.GONE);
         }
+//        getDays();
     }
 
     private void getDaysfromDB() {
@@ -105,13 +106,13 @@ public class TeacherTimeTableNewnew extends AppCompatActivity implements IServic
         id = PreferenceStorage.getStudentClassIdPreference(this);
         try {
             jsonObject.put(EnsyfiConstants.CT_HW_CLASS_ID, id);
-
+            jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_TIME_TABLE_DAYS_API;
+        String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_TIME_TABLE_DAYS_API;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 
@@ -119,16 +120,21 @@ public class TeacherTimeTableNewnew extends AppCompatActivity implements IServic
         resString = "days";
         JSONObject jsonObject = new JSONObject();
         String id = "";
-        id = PreferenceStorage.getUserId(this);
+        if (PreferenceStorage.getUserType(this).equalsIgnoreCase("1")) {
+            id = PreferenceStorage.getTeacherUserId(this);
+        } else {
+            id = PreferenceStorage.getUserId(this);
+        }
         try {
             jsonObject.put(EnsyfiConstants.KEY_USER_ID, id);
+            jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_TEACHER_TIME_TABLE_DAYS;
+        String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_TEACHER_TIME_TABLE_DAYS;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 
@@ -139,13 +145,14 @@ public class TeacherTimeTableNewnew extends AppCompatActivity implements IServic
         id = PreferenceStorage.getTeacherId(this);
         try {
             jsonObject.put(EnsyfiConstants.KEY_USER_ID, id);
+            jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_TEACHER_TIME_TABLE_DAYS;
+        String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_TEACHER_TIME_TABLE_DAYS;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 
@@ -154,19 +161,20 @@ public class TeacherTimeTableNewnew extends AppCompatActivity implements IServic
         JSONObject jsonObject = new JSONObject();
         String id = "";
         if (PreferenceStorage.getUserType(this).equalsIgnoreCase("1")) {
-            id = PreferenceStorage.getTeacherId(this);
+            id = PreferenceStorage.getTeacherUserId(this);
         } else {
             id = PreferenceStorage.getUserId(this);
         }
         try {
             jsonObject.put(EnsyfiConstants.KEY_USER_ID, id);
+            jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_TEACHER_TIME_TABLE;
+        String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_TEACHER_TIME_TABLE;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 
@@ -177,13 +185,14 @@ public class TeacherTimeTableNewnew extends AppCompatActivity implements IServic
         id = PreferenceStorage.getStudentClassIdPreference(this);
         try {
             jsonObject.put(EnsyfiConstants.PARAMS_CLASS_ID, id);
+            jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.GET_STUDENT_TIME_TABLE_API;
+        String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_STUDENT_TIME_TABLE_API;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 
@@ -281,6 +290,7 @@ public class TeacherTimeTableNewnew extends AppCompatActivity implements IServic
                     if (getTimeTableDaysArray != null && getTimeTableDaysArray.length() > 0) {
                         teacherData.saveTimeTableDays(getTimeTableDaysArray);
                     }
+//                    getDaysfromDB();
                     getTimeTable();
                 } else if (resString.equalsIgnoreCase("TTT")) {
                     JSONArray getTimeTableArray = response.getJSONArray("timetableDetails");

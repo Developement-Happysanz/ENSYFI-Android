@@ -106,13 +106,14 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put(EnsyfiConstants.KEY_APP_VERSION, EnsyfiConstants.KEY_APP_VERSION_VALUE);
+            jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
 //        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.CHECK_VERSION_STUDENT;
+        String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.CHECK_VERSION_STUDENT;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 
@@ -121,13 +122,14 @@ public class ParentDashBoardActivity extends AppCompatActivity implements Dialog
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put(EnsyfiConstants.KEY_USER_ID, PreferenceStorage.getUserId(this));
+            jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
 //        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.DAILY_LOGIN;
+        String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.DAILY_LOGIN;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 

@@ -123,13 +123,14 @@ public class ClassStudentDetailsActivity extends AppCompatActivity implements IS
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_STUDENT_ID_SHOW, classStudent.getEnrollId());
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_STUDENT_INFO;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_STUDENT_INFO;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
         } else {
@@ -297,7 +298,7 @@ public class ClassStudentDetailsActivity extends AppCompatActivity implements IS
         } else {
             studentRecordSheet.setText("No");
         }
-        if (PreferenceStorage.getStudentStatus(getApplicationContext()).equalsIgnoreCase("1")) {
+        if (PreferenceStorage.getStudentStatus(getApplicationContext()).equalsIgnoreCase("Active")) {
             studentStatus.setText("Active");
         } else {
             studentStatus.setText("Deactivated");

@@ -74,13 +74,14 @@ public class TeachersViewActivity extends AppCompatActivity implements IServiceL
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_CLASS_ID_LIST, "1");
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_TEACHERS_LIST;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_TEACHERS_LIST;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
         } else {
@@ -127,9 +128,11 @@ public class TeachersViewActivity extends AppCompatActivity implements IServiceL
         } else {
             teacherView = teacherViewArrayList.get(position);
         }
-        Intent intent = new Intent(this, TeacherViewDetailsActivity.class);
-        intent.putExtra("eventObj", teacherView);
-        startActivity(intent);
+        if (PreferenceStorage.getUserType(this).equalsIgnoreCase("2")) {
+            Intent intent = new Intent(this, TeacherViewDetailsActivity.class);
+            intent.putExtra("eventObj", teacherView);
+            startActivity(intent);
+        }
     }
 
     @Override
@@ -152,7 +155,6 @@ public class TeachersViewActivity extends AppCompatActivity implements IServiceL
                 @Override
                 public void run() {
                     progressDialogHelper.hideProgressDialog();
-
                     Gson gson = new Gson();
                     TeacherViewList teacherViewList = gson.fromJson(response.toString(), TeacherViewList.class);
                     if (teacherViewList.getTeacherView() != null && teacherViewList.getTeacherView().size() > 0) {
@@ -185,6 +187,7 @@ public class TeachersViewActivity extends AppCompatActivity implements IServiceL
             teacherViewListAdapter = new TeacherViewListAdapter(this, this.teacherViewArrayList);
             loadMoreListView.setAdapter(teacherViewListAdapter);
         } else {
+//            teacherViewArrayList.clear();
             teacherViewListAdapter.notifyDataSetChanged();
         }
     }

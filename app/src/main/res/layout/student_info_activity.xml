@@ -52,11 +52,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
             android:layout_marginTop="165dp"
+            android:layout_marginRight="20dp"
             android:layout_marginBottom="15dp"
-            android:elevation="12dp"
-            android:background="@drawable/shadow_round">
+            android:background="@drawable/shadow_round"
+            android:elevation="12dp">
 
             <TextView
                 android:id="@+id/studname"
@@ -89,8 +89,8 @@
                 android:layout_marginTop="10dp"
                 android:text="Student Id"
                 android:textColor="@color/new_gray"
-                android:visibility="gone"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/txtstudid"
@@ -100,9 +100,9 @@
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/studid"
                 android:paddingTop="2dp"
-                android:visibility="gone"
                 android:textColor="@color/new_gray"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/admissid"
@@ -120,8 +120,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/admissid"
-                android:layout_toRightOf="@+id/admissid"
                 android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/admissid"
                 android:paddingTop="2dp"
                 android:textColor="@color/new_gray"
                 android:textSize="16sp" />
@@ -155,27 +155,27 @@
                 android:layout_alignTop="@id/txtclass"
                 android:layout_centerHorizontal="true"
                 android:layout_toRightOf="@id/txtclass"
-                android:textColor="@color/new_gray"
                 android:paddingTop="2dp"
+                android:textColor="@color/new_gray"
                 android:textSize="16sp" />
 
             <Button
                 android:id="@+id/btnContinue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
+                android:layout_below="@+id/txtsec"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
-                android:layout_below="@+id/txtsec"
                 android:background="@drawable/round_btn_color"
+                android:fontFamily="sans-serif-condensed"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
                 android:text="Continue"
                 android:textAllCaps="false"
-                android:fontFamily="sans-serif-condensed"
-                android:textSize="16sp"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
         </RelativeLayout>
 
         <com.palprotech.ensyfi.customview.CircleImageView

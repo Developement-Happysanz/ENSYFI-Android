@@ -1257,7 +1257,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     /*
      *   Homework Class Test Store & Retrieve Functionality
      */
-    public long teacher_handling_subject_insert(String val1, String val2, String val3, String val4, String val5, String val6) {
+    public long teacher_handling_subject_insert(String val1, String val2, String val3, String val4, String val5) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues initialValues = new ContentValues();
         initialValues.put("class_master_id", val1);
@@ -1265,7 +1265,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         initialValues.put("class_name", val3);
         initialValues.put("sec_name", val4);
         initialValues.put("subject_name", val5);
-        initialValues.put("subject_id", val6);
+//        initialValues.put("subject_id", val6);
         long l = db.insert("teacherHandlingSubject", "_id", initialValues);
         db.close();
         return l;

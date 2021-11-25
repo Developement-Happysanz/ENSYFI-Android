@@ -53,7 +53,7 @@ public class RefreshExamAndExamDetails implements IServiceListener {
             }
 
             progressDialogHelper.showProgressDialog(context.getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(context) + EnsyfiConstants.LOAD_STUDENT_EXAM_AND_EXAM_DETAILS;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.LOAD_STUDENT_EXAM_AND_EXAM_DETAILS;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
         } else {
             AlertDialogHelper.showSimpleAlertDialog(context, "No Network connection");

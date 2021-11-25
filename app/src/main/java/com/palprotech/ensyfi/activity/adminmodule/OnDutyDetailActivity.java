@@ -123,12 +123,14 @@ public class OnDutyDetailActivity extends AppCompatActivity implements IServiceL
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_OD_APPROVAL_STATUS, onDutyApprovalStatus);
                 jsonObject.put(EnsyfiConstants.PARAMS_OD_ID, onDuty.getId());
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.APPROVE_OD_API;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.APPROVE_OD_API;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
         } else {

@@ -102,13 +102,14 @@ public class GroupNotificationViewMemberActivity extends AppCompatActivity imple
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_ID, groups.getId());
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.VIEW_GROUP_MEMBERS;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.VIEW_GROUP_MEMBERS;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
 

@@ -95,7 +95,7 @@ public class CircularMasterCreationActivity extends AppCompatActivity implements
                 (InputMethodManager) activity.getSystemService(
                         Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(
-                activity.getCurrentFocus().getWindowToken(), 0);
+                activity.getWindow().getDecorView().getWindowToken(), 0);
     }
 
     public void setupUI(View view) {
@@ -148,13 +148,14 @@ public class CircularMasterCreationActivity extends AppCompatActivity implements
                         jsonObject.put(EnsyfiConstants.PARAMS_CIRCULAR_TITLE, CircularTitle);
                         jsonObject.put(EnsyfiConstants.PARAMS_CIRCUALR_DETAILS, CircularDetails);
                         jsonObject.put(EnsyfiConstants.PARAMS_CIRCULAR_STATUS, CircularStatus);
+                        jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
 
                     progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-                    String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_CIRCULAR_MASTER_ADD;
+                    String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_CIRCULAR_MASTER_ADD;
                     serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
                 }

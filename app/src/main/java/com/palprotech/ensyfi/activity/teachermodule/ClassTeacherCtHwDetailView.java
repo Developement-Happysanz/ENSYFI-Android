@@ -277,15 +277,14 @@ public class ClassTeacherCtHwDetailView extends AppCompatActivity implements ISe
                 jsonObject.put(EnsyfiConstants.CT_HW_CLASS_ID, PreferenceStorage.getClassTeacher(getApplicationContext()));
                 jsonObject.put(EnsyfiConstants.CT_HW_HOMEWORK_SEND_TYPE,
                         notificationTypes.toString().replace("[", "").replace("]", ""));
-
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) +
-                    EnsyfiConstants.GET_CLASS_TEACHER_CT_HW_SEND_SINGLE;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_CLASS_TEACHER_CT_HW_SEND_SINGLE;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
 

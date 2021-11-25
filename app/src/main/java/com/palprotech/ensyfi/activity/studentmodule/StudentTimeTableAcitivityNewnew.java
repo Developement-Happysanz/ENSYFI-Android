@@ -72,13 +72,14 @@ public class StudentTimeTableAcitivityNewnew extends AppCompatActivity implement
         id = PreferenceStorage.getStudentClassIdPreference(this);
         try {
             jsonObject.put(EnsyfiConstants.CT_HW_CLASS_ID, id);
+            jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(getApplicationContext()));
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_TIME_TABLE_DAYS_API;
+        String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_TIME_TABLE_DAYS_API;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 

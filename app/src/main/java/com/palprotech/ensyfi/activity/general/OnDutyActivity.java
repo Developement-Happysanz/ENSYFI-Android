@@ -121,12 +121,15 @@ public class OnDutyActivity extends AppCompatActivity implements View.OnClickLis
                 } else if (userType == 2) {
                     jsonObject.put(EnsyfiConstants.PARAMS_FP_USER_ID, PreferenceStorage.getUserId(getApplicationContext()));
                     jsonObject.put(EnsyfiConstants.KEY_USER_TYPE, PreferenceStorage.getUserType(getApplicationContext()));
+                    jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(getApplicationContext()));
                 } else if (userType == 3) {
                     jsonObject.put(EnsyfiConstants.PARAMS_FP_USER_ID, PreferenceStorage.getUserId(getApplicationContext()));
                     jsonObject.put(EnsyfiConstants.KEY_USER_TYPE, PreferenceStorage.getUserType(getApplicationContext()));
+                    jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(getApplicationContext()));
                 } else {
                     jsonObject.put(EnsyfiConstants.PARAMS_FP_USER_ID, PreferenceStorage.getStudentAdmissionIdPreference(getApplicationContext()));
                     jsonObject.put(EnsyfiConstants.KEY_USER_TYPE, PreferenceStorage.getUserType(getApplicationContext()));
+                    jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(getApplicationContext()));
                 }
 
             } catch (JSONException e) {
@@ -134,7 +137,7 @@ public class OnDutyActivity extends AppCompatActivity implements View.OnClickLis
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_ON_DUTY_VIEW;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_ON_DUTY_VIEW;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
             return null;

@@ -168,13 +168,14 @@ public class AllHolidayListFragment extends Fragment implements AdapterView.OnIt
             jsonObject.put(EnsyfiConstants.PARAMS_HDAY_CLASS_ID, classId);
             jsonObject.put(EnsyfiConstants.PARAMS_HDAY_SEC_ID, sectionId);
             jsonObject.put(EnsyfiConstants.PARAMS_HDAY_CLASS_SEC_ID, classSectionId);
+            jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(getActivity()));
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getActivity()) + EnsyfiConstants.GET_ALL_HOLIDAY_API;
+        String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_ALL_HOLIDAY_API;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 
@@ -185,13 +186,14 @@ public class AllHolidayListFragment extends Fragment implements AdapterView.OnIt
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_CLASS_ID, "1");
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(getActivity()));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getActivity()) + EnsyfiConstants.GET_CLASS_LISTS;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_CLASS_LISTS;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
 
@@ -207,12 +209,14 @@ public class AllHolidayListFragment extends Fragment implements AdapterView.OnIt
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_CLASS_ID_LIST, storeClassId);
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(getActivity()));
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getActivity()) + EnsyfiConstants.GET_SECTION_LISTS;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_SECTION_LISTS;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
         } else {

@@ -86,12 +86,14 @@ public class FeeStatusActivity extends AppCompatActivity implements IServiceList
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAM_STUDENT_ID, PreferenceStorage.getStudentRegisteredIdPreference(getApplicationContext()));
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(getApplicationContext()));
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_FEES_STATUS;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_FEES_STATUS;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
             return null;

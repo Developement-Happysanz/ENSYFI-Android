@@ -141,13 +141,14 @@ public class SyncRecordsActivity extends AppCompatActivity implements IServiceLi
                                 jsonObject.put(EnsyfiConstants.KEY_ATTENDANCE_CREATED_BY, created_by);
                                 jsonObject.put(EnsyfiConstants.KEY_ATTENDANCE_CREATED_AT, created_at);
                                 jsonObject.put(EnsyfiConstants.KEY_ATTENDANCE_STATUS, status);
+                                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
 
                             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-                            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.GET_TEACHERS_CLASS_ATTENDANCE_API;
+                            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_TEACHERS_CLASS_ATTENDANCE_API;
                             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
                         } while (c.moveToNext());

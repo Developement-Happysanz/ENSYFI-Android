@@ -237,13 +237,14 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_CLASS_ID, PreferenceStorage.getStudentClassIdPreference(getApplicationContext()));
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_CLASS_LISTS;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_CLASS_LISTS;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
 
@@ -261,13 +262,14 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_CLASS_ID_LIST, storeClassId);
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_SECTION_LISTS;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_SECTION_LISTS;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
         } else {
@@ -288,13 +290,14 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_CLASS_ID_NEW, storeClassId);
                 jsonObject.put(EnsyfiConstants.PARAMS_SECTION_ID, storeSectionId);
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_VIEW_TEACHERS_INFO_LIST;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_VIEW_TEACHERS_INFO_LIST;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
         } else {
@@ -315,13 +318,14 @@ public class ClassBasedViewActivity extends AppCompatActivity implements IServic
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_CLASS_ID_LIST, storeClassId);
                 jsonObject.put(EnsyfiConstants.PARAMS_SECTION_ID_LIST, storeSectionId);
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_STUDENT_LISTS;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_STUDENT_LISTS;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
         } else {

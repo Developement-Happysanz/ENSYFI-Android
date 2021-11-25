@@ -72,13 +72,14 @@ public class SyncAttendanceHistoryRecordsActivity implements IServiceListener {
                             jsonObject.put(EnsyfiConstants.KEY_ATTENDANCE_HISTORY_A_TAKEN_BY, history_a_taken_by);
                             jsonObject.put(EnsyfiConstants.KEY_ATTENDANCE_HISTORY_CREATED_AT, history_created_at);
                             jsonObject.put(EnsyfiConstants.KEY_ATTENDANCE_HISTORY_STATUS, history_status);
+                            jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(context.getApplicationContext()));
 
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                         if (!history_a_status.equalsIgnoreCase("P")) {
                             progressDialogHelper.showProgressDialog(context.getString(R.string.progress_loading));
-                            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(context) + EnsyfiConstants.GET_TEACHERS_CLASS_ATTENDANCE_HISTORY_API;
+                            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_TEACHERS_CLASS_ATTENDANCE_HISTORY_API;
                             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
                         } else {
                             db.updateAttendanceHistorySyncStatus(localAttendanceHistoryId);

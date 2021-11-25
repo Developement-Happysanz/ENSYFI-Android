@@ -55,13 +55,13 @@ public class GroupingDetailActivity extends AppCompatActivity {
         txtnotes = (TextView) findViewById(R.id.mini_notes);
         txtDateTime = (TextView) findViewById(R.id.sent_time_date);
 
-        ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
-        bckbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+//        ImageView bckbtn = (ImageView) findViewById(R.id.back_res);
+//        bckbtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                finish();
+//            }
+//        });
 
         String start = groupList.getCreated_at();
         try {

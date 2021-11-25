@@ -276,7 +276,7 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
             String responseString = null;
 
             httpclient = new DefaultHttpClient();
-            httppost = new HttpPost(String.format(EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.UPLOAD_PROFILE_IMAGE + Integer.parseInt(PreferenceStorage.getUserId(ProfileActivity.this)) + "/" + PreferenceStorage.getUserType(ProfileActivity.this)));
+            httppost = new HttpPost(String.format(EnsyfiConstants.BASE_URL + EnsyfiConstants.UPLOAD_PROFILE_IMAGE + Integer.parseInt(PreferenceStorage.getUserId(ProfileActivity.this)) + "/" + PreferenceStorage.getUserType(ProfileActivity.this)));
 
             try {
                 AndroidMultiPartEntity entity = new AndroidMultiPartEntity(
@@ -466,6 +466,7 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+        super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
 
             if (requestCode == REQUEST_IMAGE_GET) {
@@ -480,7 +481,7 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
                     if (action == null) {
                         isCamera = false;
                     } else {
-                        isCamera = action.equals(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                        isCamera = action.equals(MediaStore.ACTION_IMAGE_CAPTURE);
                     }
                 }
 
@@ -504,8 +505,8 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
                     performCrop(selectedImageUri);
                 }
             }
-            if (requestCode == RESULT_CROP ) {
-                if(resultCode == Activity.RESULT_OK){
+            if (requestCode == RESULT_CROP) {
+                if (resultCode == Activity.RESULT_OK) {
                     Bundle extras = data.getExtras();
                     Bitmap selectedBitmap = extras.getParcelable("data");
                     // Set The Bitmap Data To ImageView
@@ -627,7 +628,7 @@ public class ProfileActivity extends AppCompatActivity implements IServiceListen
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.GET_STUDENT_INFO_DETAILS_API;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_STUDENT_INFO_DETAILS_API;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
         } else {
 

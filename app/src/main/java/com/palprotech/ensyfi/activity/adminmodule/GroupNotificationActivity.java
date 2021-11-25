@@ -237,11 +237,12 @@ public class GroupNotificationActivity extends AppCompatActivity implements ISer
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_ID, groups.getId());
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(getApplicationContext()));
                 } catch (JSONException e) {
                 e.printStackTrace();
             }
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.VIEW_GROUP_MESSAGE_HISTORY;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.VIEW_GROUP_MESSAGE_HISTORY;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
             return null;
         }

@@ -109,14 +109,14 @@ public class ClassTeacherAttendanceView extends AppCompatActivity implements ISe
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAM_CLASS_ID, PreferenceStorage.getClassTeacher(getApplicationContext()));
-
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(getApplicationContext()));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_CLASS_TEACHER_ATTENDANCE_VIEW;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_CLASS_TEACHER_ATTENDANCE_VIEW;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
             return null;

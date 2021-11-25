@@ -107,12 +107,14 @@ public class AttendanceMonthViewActivity extends AppCompatActivity implements Di
                 jsonObject.put(EnsyfiConstants.PARAM_CLASS_ID, monthView.getClassId());
                 jsonObject.put(EnsyfiConstants.KEY_ATTENDANCE_HISTORY_STUDENT_ID, monthView.getEnrollId());
                 jsonObject.put(EnsyfiConstants.PARAMS_DISPLAY_MONTH_YEAR, getMonthYear);
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(getApplicationContext()));
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_STUDENT_ATTENDANCD_MONTH_VIEW_API;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_STUDENT_ATTENDANCD_MONTH_VIEW_API;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
             return null;

@@ -75,13 +75,14 @@ public class ClassAttendanceListActivity extends AppCompatActivity implements Di
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_DATE, sendDate);
                 jsonObject.put(EnsyfiConstants.PARAMS_CLASS_IDS, selectedclassesList.toString().replace("[", "").replace("]", ""));
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.SEND_CLASS_SECTION;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.SEND_CLASS_SECTION;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");

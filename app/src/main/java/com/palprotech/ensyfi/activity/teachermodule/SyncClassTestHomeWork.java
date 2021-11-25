@@ -86,13 +86,13 @@ public class SyncClassTestHomeWork implements IServiceListener {
                             jsonObject.put(EnsyfiConstants.PARAMS_CTHW_HOMEWORK_DETAILS, homeWorkDetails);
                             jsonObject.put(EnsyfiConstants.PARAMS_CTHW_CREATED_BY, createdBy);
                             jsonObject.put(EnsyfiConstants.PARAMS_CTHW_CREATED_AT, createdAt);
-
+                            jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(context.getApplicationContext()));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
 
                         progressDialogHelper.showProgressDialog(context.getString(R.string.progress_loading));
-                        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(context) + EnsyfiConstants.GET_CLASS_TEST_HOMEWORK_API;
+                        String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_CLASS_TEST_HOMEWORK_API;
                         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
                     } while (c.moveToNext());

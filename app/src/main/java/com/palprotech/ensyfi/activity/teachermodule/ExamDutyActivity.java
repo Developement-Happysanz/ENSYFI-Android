@@ -112,14 +112,14 @@ public class ExamDutyActivity extends AppCompatActivity implements IServiceListe
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.TEACHER_ID, PreferenceStorage.getTeacherId(getApplicationContext()));
-
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(getApplicationContext()));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_EXAM_DUTY;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_EXAM_DUTY;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
             return null;

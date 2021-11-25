@@ -375,13 +375,14 @@ public class AcademicExamViewActivity extends AppCompatActivity implements Dialo
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put(EnsyfiConstants.TEACHER_ID, PreferenceStorage.getTeacherId(this));
+            jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
 //        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_EXAM_DETAIL_TEACHER_API;
+        String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_EXAM_DETAIL_TEACHER_API;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 

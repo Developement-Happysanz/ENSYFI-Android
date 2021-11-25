@@ -34,6 +34,7 @@ public class SaveTeacherData {
             String imageURL = "";
             imageURL = EnsyfiConstants.USER_IMAGE_API_TEACHERS; // Teacher user image url
             String TeacherId = "";
+            String TeacherUserId = "";
             String TeacherName = "";
             String TeacherGender = "";
             String TeacherAge = "";
@@ -59,6 +60,7 @@ public class SaveTeacherData {
 //            String TeacherTotalExp = "";
 
             TeacherId = getTeacherProfile.getString("teacher_id");
+            TeacherUserId = getTeacherProfile.getString("user_id");
             TeacherName = getTeacherProfile.getString("name");
             TeacherGender = getTeacherProfile.getString("sex");
             TeacherAge = getTeacherProfile.getString("age");
@@ -90,6 +92,10 @@ public class SaveTeacherData {
             // Parents Preference - Student Admission Id
             if ((TeacherId != null) && !(TeacherId.isEmpty()) && !TeacherId.equalsIgnoreCase("null")) {
                 PreferenceStorage.saveTeacherId(context, TeacherId);
+            }
+
+            if ((TeacherUserId != null) && !(TeacherUserId.isEmpty()) && !TeacherUserId.equalsIgnoreCase("null")) {
+                PreferenceStorage.saveTeacherUserId(context, TeacherUserId);
             }
 
             // Parents Preference - Student Admission Year
@@ -601,30 +607,30 @@ public class SaveTeacherData {
                 String class_name = "";
                 String sec_name = "";
                 String subject_name = "";
-                String subject_id = "";
+//                String subject_id = "";
 
                 class_master_id = jsonobj.getString("class_master_id");
                 teacher_id = jsonobj.getString("teacher_id");
                 class_name = jsonobj.getString("class_name");
                 sec_name = jsonobj.getString("sec_name");
                 subject_name = jsonobj.getString("subject_name");
-                subject_id = jsonobj.getString("subject_id");
+//                subject_id = jsonobj.getString("subject_id");
 
                 System.out.println("class_master_id : " + i + " = " + class_master_id);
                 System.out.println("teacher_id : " + i + " = " + teacher_id);
                 System.out.println("class_name : " + i + " = " + class_name);
                 System.out.println("sec_name : " + i + " = " + sec_name);
                 System.out.println("subject_name : " + i + " = " + subject_name);
-                System.out.println("subject_id : " + i + " = " + subject_id);
+//                System.out.println("subject_id : " + i + " = " + subject_id);
 
                 String v1 = class_master_id,
                         v2 = teacher_id,
                         v3 = class_name,
                         v4 = sec_name,
-                        v5 = subject_name,
-                        v6 = subject_id;
+                        v5 = subject_name;
+//                        v6 = subject_id;
 
-                long l = database.teacher_handling_subject_insert(v1, v2, v3, v4, v5, v6);
+                long l = database.teacher_handling_subject_insert(v1, v2, v3, v4, v5);
 
                 System.out.println("" + l);
             }

@@ -95,15 +95,15 @@ public class ParentsCommunicationActivity extends AppCompatActivity implements I
 
             JSONObject jsonObject = new JSONObject();
             try {
-
                 jsonObject.put(EnsyfiConstants.KEY_USER_ID, PreferenceStorage.getUserId(getApplicationContext()));
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(getApplicationContext()));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_COMMUNICATION_CIRCULAR_API;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_COMMUNICATION_CIRCULAR_API;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
             return null;

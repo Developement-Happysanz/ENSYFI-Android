@@ -116,13 +116,14 @@ public class ResultViewActivity extends AppCompatActivity implements IServiceLis
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_CLASS_ID_LIST, storeClassId);
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_SECTION_LISTS;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_SECTION_LISTS;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
         } else {
@@ -137,13 +138,14 @@ public class ResultViewActivity extends AppCompatActivity implements IServiceLis
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_CLASS_ID, PreferenceStorage.getStudentClassIdPreference(getApplicationContext()));
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_CLASS_LISTS;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_CLASS_LISTS;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
@@ -342,12 +344,14 @@ public class ResultViewActivity extends AppCompatActivity implements IServiceLis
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_CLASS_ID_NEW, storeClassId);
                 jsonObject.put(EnsyfiConstants.PARAMS_SECTION_ID, storeSectionId);
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(getApplicationContext()));
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_VIEW_EXAMS;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_VIEW_EXAMS;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
             return null;

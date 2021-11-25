@@ -72,7 +72,7 @@ public class SpecialClassAdminActivity  extends AppCompatActivity implements ISe
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.KEY_USER_ID, PreferenceStorage.getUserId(getApplicationContext()));
-
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -80,7 +80,7 @@ public class SpecialClassAdminActivity  extends AppCompatActivity implements ISe
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
             String url = "";
-            url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_SPECIAL_CLASS_LIST_ADMIN;
+            url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_SPECIAL_CLASS_LIST_ADMIN;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");

@@ -67,7 +67,7 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
     public boolean onTouchEvent(MotionEvent event) {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.
                 INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(this.getWindow().getDecorView().getWindowToken(), 0);
         return true;
     }
 
@@ -111,6 +111,7 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                         jsonObject.put(EnsyfiConstants.PARAMS_PASSWORD, inputPassword.getText().toString());
                         String GCMKey = PreferenceStorage.getGCM(getApplicationContext());
                         jsonObject.put(EnsyfiConstants.GCM_KEY, GCMKey);
+                        jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
                         jsonObject.put(EnsyfiConstants.MOBILE_TYPE, "1");
 
                     } catch (JSONException e) {
@@ -118,7 +119,7 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                     }
 
                     progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-                    String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.USER_LOGIN_API;
+                    String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.USER_LOGIN_API;
                     serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
                 }
             }

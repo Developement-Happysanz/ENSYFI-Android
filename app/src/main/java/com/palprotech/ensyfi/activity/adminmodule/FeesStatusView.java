@@ -89,13 +89,14 @@ public class FeesStatusView extends AppCompatActivity implements IServiceListene
                 jsonObject.put(EnsyfiConstants.PARAMS_CLASS_ID_NEW, storeClassId);
                 jsonObject.put(EnsyfiConstants.PARAMS_SECTION_ID, storeSectionId);
                 jsonObject.put(EnsyfiConstants.PARAMS_FEES_ID_SHOW, fees.getFeesId());
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_VIEW_FEES_STATUS;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_VIEW_FEES_STATUS;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
         } else {

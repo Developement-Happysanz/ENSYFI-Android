@@ -111,7 +111,7 @@ public class GroupingSendActivity extends AppCompatActivity implements IServiceL
     public boolean onTouchEvent(MotionEvent event) {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.
                 INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(this.getWindow().getDecorView().getWindowToken(), 0);
         return true;
     }
 
@@ -123,13 +123,14 @@ public class GroupingSendActivity extends AppCompatActivity implements IServiceL
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_USER_TYPE, PreferenceStorage.getUserType(this));
                 jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_USER_ID, PreferenceStorage.getUserId(this));
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_GROUP_LIST;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_GROUP_LIST;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
 
@@ -309,13 +310,14 @@ public class GroupingSendActivity extends AppCompatActivity implements IServiceL
                         jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_TYPE_NOTIFICATION, notificationTypes.toString().replace("[", "").replace("]", ""));
                         jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_MESSAGE_DETAILS, message);
                         jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_USER_ID, PreferenceStorage.getUserId(this));
+                        jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
 
                     progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-                    String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.SEND_GROUP_MESSAGE;
+                    String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.SEND_GROUP_MESSAGE;
                     serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
                 } else {
 

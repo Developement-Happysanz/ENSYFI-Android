@@ -84,13 +84,14 @@ public class StudentsInfoActivity extends AppCompatActivity implements IServiceL
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_PARENT_ID_SHOW, parentStudent.getParentId());
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_VIEW_STUDENT_INFO;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_VIEW_STUDENT_INFO;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
 

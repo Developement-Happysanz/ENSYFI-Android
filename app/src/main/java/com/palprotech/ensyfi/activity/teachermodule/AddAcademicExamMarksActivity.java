@@ -114,7 +114,7 @@ public class AddAcademicExamMarksActivity extends AppCompatActivity implements V
     public boolean onTouchEvent(MotionEvent event) {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.
                 INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(this.getWindow().getDecorView().getWindowToken(), 0);
         return true;
     }
 
@@ -132,13 +132,14 @@ public class AddAcademicExamMarksActivity extends AppCompatActivity implements V
                 jsonObject.put(EnsyfiConstants.PARAM_EXAM_ID, examsIdSend);
                 jsonObject.put(EnsyfiConstants.PARAMS_SUBJECT_ID_SHOW, PreferenceStorage.getTeacherSubject(getApplicationContext()));
                 jsonObject.put(EnsyfiConstants.PARAM_IS_INTERNAL_EXTERNAL, "1");
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_ACADEMIC_EXAM_MARK;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_ACADEMIC_EXAM_MARK;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");
@@ -541,12 +542,13 @@ public class AddAcademicExamMarksActivity extends AppCompatActivity implements V
                                 jsonObject.put(EnsyfiConstants.PARAMS_ACADEMIC_EXAM_MARKS_TOTAL_MARK, totalMarks);
                                 jsonObject.put(EnsyfiConstants.PARAMS_ACADEMIC_INTERNAL_EXTERNAL_MARK_STATUS, "1");
                                 jsonObject.put(EnsyfiConstants.PARAMS_ACADEMIC_EXAM_MARKS_CREATED_BY, createdBy);
+                                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-                            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.EDIT_ACADEMIC_EXAM_MARK_API;
+                            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.EDIT_ACADEMIC_EXAM_MARK_API;
                             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
                         }
 

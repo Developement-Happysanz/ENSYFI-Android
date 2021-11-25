@@ -131,12 +131,14 @@ public class LeaveStatusDetailActivity extends AppCompatActivity implements ISer
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_APPROVAL_STATUS, leaveApprovalStatus);
                 jsonObject.put(EnsyfiConstants.PARAMS_LEAVE_ID, leaveStatus.getLeaveId());
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.APPROVE_LEAVES_API;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.APPROVE_LEAVES_API;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
         } else {

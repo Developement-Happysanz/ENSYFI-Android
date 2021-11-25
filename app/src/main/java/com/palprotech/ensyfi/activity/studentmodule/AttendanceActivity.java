@@ -129,12 +129,14 @@ public class AttendanceActivity extends AppCompatActivity implements IServiceLis
             try {
                 jsonObject.put(EnsyfiConstants.PARAM_CLASS_ID, PreferenceStorage.getStudentClassIdPreference(getApplicationContext()));
                 jsonObject.put(EnsyfiConstants.PARAM_STUDENT_ID, PreferenceStorage.getStudentRegisteredIdPreference(getApplicationContext()));
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(getApplicationContext()));
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_STUDENT_ATTENDANCD_API;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_STUDENT_ATTENDANCD_API;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
             return null;

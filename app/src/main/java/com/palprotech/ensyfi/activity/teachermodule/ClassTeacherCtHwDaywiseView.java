@@ -157,13 +157,13 @@ public class ClassTeacherCtHwDaywiseView extends AppCompatActivity implements IS
             try {
                 jsonObject.put(EnsyfiConstants.CT_HW_CLASS_ID, PreferenceStorage.getClassTeacher(getApplicationContext()));
                 jsonObject.put(EnsyfiConstants.CT_HW_HOMEWORK_DATE, classTeacherCtHwOverall.getHw_date());
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(getApplicationContext()));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext())
-                    + EnsyfiConstants.GET_CLASS_TEACHER_CT_HW_DAYWISE;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_CLASS_TEACHER_CT_HW_DAYWISE;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
             return null;
@@ -331,15 +331,14 @@ public class ClassTeacherCtHwDaywiseView extends AppCompatActivity implements IS
                 jsonObject.put(EnsyfiConstants.CT_HW_CLASS_ID, PreferenceStorage.getClassTeacher(getApplicationContext()));
                 jsonObject.put(EnsyfiConstants.CT_HW_HOMEWORK_SEND_TYPE,
                         notificationTypes.toString().replace("[", "").replace("]", ""));
-
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) +
-                    EnsyfiConstants.GET_CLASS_TEACHER_CT_HW_SEND_ALL;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_CLASS_TEACHER_CT_HW_SEND_ALL;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
 

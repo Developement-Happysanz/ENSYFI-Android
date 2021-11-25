@@ -228,15 +228,14 @@ public class ClassTeacherAttendanceOverview extends AppCompatActivity implements
                 jsonObject.put(EnsyfiConstants.KEY_ATTENDANCE_ID, classTeacherAttendance.getAtId());
                 jsonObject.put(EnsyfiConstants.KEY_ATTENDANCE_MESSAGE_TYPE,
                         notificationTypes.toString().replace("[", "").replace("]", ""));
-
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) +
-                    EnsyfiConstants.SEND_ATTENDANCE_VIEW;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.SEND_ATTENDANCE_VIEW;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
 

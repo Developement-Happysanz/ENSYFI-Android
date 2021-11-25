@@ -128,6 +128,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
             jsonObject.put(EnsyfiConstants.KEY_USER_ID, PreferenceStorage.getUserId(this));
             jsonObject.put(EnsyfiConstants.NOTIFICATION_TYPE, notifytype);
             jsonObject.put(EnsyfiConstants.PARAMS_OD_STATUS, stt);
+            jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
 
         } catch (JSONException e) {
@@ -135,7 +136,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         }
 
         progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.USER_NOTIFICATION;
+        String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.USER_NOTIFICATION;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 
@@ -145,14 +146,14 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         try {
 
             jsonObject.put(EnsyfiConstants.KEY_USER_ID, PreferenceStorage.getUserId(this));
-
+            jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.USER_NOTIFICATION_STATUS;
+        String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.USER_NOTIFICATION_STATUS;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 

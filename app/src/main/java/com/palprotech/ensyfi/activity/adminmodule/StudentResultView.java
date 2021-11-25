@@ -89,11 +89,13 @@ public class StudentResultView extends AppCompatActivity implements IServiceList
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_CLASS_ID_LIST, storeClassId);
                 jsonObject.put(EnsyfiConstants.PARAMS_SECTION_ID_LIST, storeSectionId);
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_STUDENT_LISTS;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_STUDENT_LISTS;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
         } else {
             AlertDialogHelper.showSimpleAlertDialog(this, "No Network connection");

@@ -76,12 +76,13 @@ public class SyncAcademicExamMarks implements IServiceListener {
                             jsonObject.put(EnsyfiConstants.PARAMS_ACADEMIC_EXAM_MARKS_TOTAL_MARK, totalMarks);
                             jsonObject.put(EnsyfiConstants.PARAMS_ACADEMIC_INTERNAL_EXTERNAL_MARK_STATUS, isInternalExternalForTheSubject);
                             jsonObject.put(EnsyfiConstants.PARAMS_ACADEMIC_EXAM_MARKS_CREATED_BY, createdBy);
+                            jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(context.getApplicationContext()));
 
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                         progressDialogHelper.showProgressDialog(context.getString(R.string.progress_loading));
-                        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(context) + EnsyfiConstants.GET_ACADEMIC_EXAM_MARK_API;
+                        String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_ACADEMIC_EXAM_MARK_API;
                         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
                     } while (c.moveToNext());
                 }

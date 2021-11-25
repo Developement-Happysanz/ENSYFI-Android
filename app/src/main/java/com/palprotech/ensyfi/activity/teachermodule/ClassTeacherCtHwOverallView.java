@@ -109,15 +109,14 @@ public class ClassTeacherCtHwOverallView extends AppCompatActivity implements IS
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAM_CLASS_ID, PreferenceStorage.getClassTeacher(getApplicationContext()));
-
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(getApplicationContext()));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext())
-                    + EnsyfiConstants.GET_CLASS_TEACHER_CT_HW_OVERVIEW;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_CLASS_TEACHER_CT_HW_OVERVIEW;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
             return null;

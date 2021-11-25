@@ -108,13 +108,14 @@ public class ExamDetailActivity extends AppCompatActivity implements IServiceLis
             try {
                 jsonObject.put(EnsyfiConstants.PARAM_CLASS_ID, exams.getCassMasterId());
                 jsonObject.put(EnsyfiConstants.PARAM_EXAM_ID, ExamId);
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(getApplicationContext()));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_EXAM_DETAIL_API;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_EXAM_DETAIL_API;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
             return null;

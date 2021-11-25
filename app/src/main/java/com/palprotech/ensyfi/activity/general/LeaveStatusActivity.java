@@ -102,6 +102,7 @@ public class LeaveStatusActivity extends AppCompatActivity implements View.OnCli
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_FP_USER_ID, PreferenceStorage.getUserId(getApplicationContext()));
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(getApplicationContext()));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -111,9 +112,9 @@ public class LeaveStatusActivity extends AppCompatActivity implements View.OnCli
             String userTypeString = PreferenceStorage.getUserType(getApplicationContext());
             int userType = Integer.parseInt(userTypeString);
             if (userType == 1) {
-                url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_USER_LEAVES_STATUS_ADMIN_API;
+                url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_USER_LEAVES_STATUS_ADMIN_API;
             } else {
-                url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_USER_LEAVES_API;
+                url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_USER_LEAVES_API;
             }
 
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);

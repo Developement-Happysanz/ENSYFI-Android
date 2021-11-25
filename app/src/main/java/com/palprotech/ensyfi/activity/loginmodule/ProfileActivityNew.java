@@ -1,5 +1,9 @@
 package com.palprotech.ensyfi.activity.loginmodule;
 
+import static android.Manifest.permission.CAMERA;
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -109,6 +113,7 @@ public class ProfileActivityNew extends AppCompatActivity implements IServiceLis
 
     private File destFile;
     File image = null;
+    public String[] permission = {CAMERA, READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -176,6 +181,35 @@ public class ProfileActivityNew extends AppCompatActivity implements IServiceLis
                     }
                 });
         alertDialog.show();
+    }
+
+    public boolean checkPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            return Environment.isExternalStorageManager();
+        } else {
+            int readCheck = ContextCompat.checkSelfPermission(getApplicationContext(), READ_EXTERNAL_STORAGE);
+            int writeCheck = ContextCompat.checkSelfPermission(getApplicationContext(), WRITE_EXTERNAL_STORAGE);
+            return readCheck == PackageManager.PERMISSION_GRANTED && writeCheck == PackageManager.PERMISSION_GRANTED;
+        }
+    }
+
+    public void requestPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            try {
+                Intent reqInt = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+                reqInt.addCategory(Intent.CATEGORY_DEFAULT);
+                reqInt.setData(Uri.parse(String.format("package:%s", getApplicationContext().getPackageName())));
+                startActivityForResult(reqInt, REQUEST_IMAGE_GET);
+
+            } catch (Exception e) {
+                Intent reqInt = new Intent();
+                reqInt.setAction(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+                startActivityForResult(reqInt, REQUEST_IMAGE_GET);
+
+            }
+        } else {
+            ActivityCompat.requestPermissions(this, permission, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+        }
     }
 
 
@@ -357,17 +391,19 @@ public class ProfileActivityNew extends AppCompatActivity implements IServiceLis
 //            else {
 //                selectImage();
 //            }
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-                    == PackageManager.PERMISSION_DENIED) {
+            if (checkPermission()) {
+                if (ContextCompat.checkSelfPermission(this, CAMERA)
+                        == PackageManager.PERMISSION_DENIED) {
 
-                Log.d("permission", "permission denied to SEND_SMS - requesting it");
-                String[] perm = {Manifest.permission.READ_EXTERNAL_STORAGE};
+                    Log.d("permission", "permission denied to SEND_SMS - requesting it");
+//                String[] perm = {Manifest.permission.READ_EXTERNAL_STORAGE};
 
-                ActivityCompat.requestPermissions(ProfileActivityNew.this, perm, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
-
-            }
-            else {
-                selectImage();
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+                } else {
+                    selectImage();
+                }
+            }else {
+                requestPermission();
             }
         }
         if (v == txtPassword) {
@@ -505,7 +541,7 @@ public class ProfileActivityNew extends AppCompatActivity implements IServiceLis
             String responseString = null;
 
             httpclient = new DefaultHttpClient();
-            httppost = new HttpPost(String.format(EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.UPLOAD_PROFILE_IMAGE + Integer.parseInt(PreferenceStorage.getUserId(ProfileActivityNew.this)) + "/" + PreferenceStorage.getUserType(ProfileActivityNew.this)));
+            httppost = new HttpPost(String.format(EnsyfiConstants.BASE_URL + EnsyfiConstants.UPLOAD_PROFILE_IMAGE + Integer.parseInt(PreferenceStorage.getUserId(ProfileActivityNew.this)) + "/" + PreferenceStorage.getUserType(ProfileActivityNew.this)));
 
             try {
                 AndroidMultiPartEntity entity = new AndroidMultiPartEntity(
@@ -528,7 +564,7 @@ public class ProfileActivityNew extends AppCompatActivity implements IServiceLis
                     // Extra parameters if you want to pass to server
                     entity.addPart("user_id", new StringBody(PreferenceStorage.getUserId(ProfileActivityNew.this)));
                     entity.addPart("user_type", new StringBody(PreferenceStorage.getUserType(ProfileActivityNew.this)));
-
+                    entity.addPart("dynamic_db", new StringBody(PreferenceStorage.getUserDynamicDB(ProfileActivityNew.this)));
                     totalSize = entity.getContentLength();
                     httppost.setEntity(entity);
 
@@ -774,13 +810,14 @@ public class ProfileActivityNew extends AppCompatActivity implements IServiceLis
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.STUDENT_ADMISSION_ID, PreferenceStorage.getStudentAdmissionIdPreference(this));
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.GET_STUDENT_INFO_DETAILS_API;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_STUDENT_INFO_DETAILS_API;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
         } else {
 

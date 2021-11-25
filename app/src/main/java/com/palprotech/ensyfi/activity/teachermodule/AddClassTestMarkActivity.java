@@ -123,14 +123,14 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAM_HOMEWORK_ID, homeWorkId);
-
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_CLASS_TEST_MARK;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_CLASS_TEST_MARK;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
 
@@ -437,12 +437,13 @@ public class AddClassTestMarkActivity extends AppCompatActivity implements View.
 //                                jsonObject.put(EnsyfiConstants.PARAMS_CTMARKS_REMARKS, remarks);
                                 jsonObject.put(EnsyfiConstants.KEY_USER_ID, PreferenceStorage.getUserId(this));
                                 jsonObject.put(EnsyfiConstants.PARAMS_CTMARKS_CREATED_AT, formattedServerDate);
+                                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-                            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.EDIT_CLASS_TEST_MARK_API;
+                            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.EDIT_CLASS_TEST_MARK_API;
                             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
                         }
 

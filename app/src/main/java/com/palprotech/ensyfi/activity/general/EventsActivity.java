@@ -190,6 +190,7 @@ public class EventsActivity extends AppCompatActivity implements IServiceListene
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAM_CLASS_ID, "1");
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(getApplicationContext()));
 
 
             } catch (JSONException e) {
@@ -197,7 +198,7 @@ public class EventsActivity extends AppCompatActivity implements IServiceListene
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_EVENTS_API;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_EVENTS_API;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
             return null;

@@ -129,6 +129,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
         navUserProfileName = (TextView) findViewById(R.id.user_profile_name);
 
         classinfo = (LinearLayout) findViewById(R.id.class_info);
+//        classinfo.setVisibility(View.VISIBLE);
         classAttendanceInfo = (TextView) findViewById(R.id.class_attendance_info);
         classAttendanceInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,7 +147,7 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
             }
         });
 
-        if (PreferenceStorage.getClassTeacher(this).equalsIgnoreCase("1")) {
+        if (!PreferenceStorage.getClassTeacher(this).equalsIgnoreCase("")) {
             classinfo.setVisibility(View.VISIBLE);
         }
 
@@ -416,13 +417,13 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put(EnsyfiConstants.TEACHER_ID, PreferenceStorage.getTeacherId(this));
-
+            jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
 //        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_EXAM_TEACHER_API;
+        String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_EXAM_TEACHER_API;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 
@@ -431,13 +432,14 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put(EnsyfiConstants.KEY_APP_VERSION, EnsyfiConstants.KEY_APP_VERSION_VALUE);
+            jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
 //        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.CHECK_VERSION_TEACHER;
+        String url = EnsyfiConstants.BASE_URL+ EnsyfiConstants.CHECK_VERSION_TEACHER;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 
@@ -446,13 +448,14 @@ public class TeacherDashBoardActivity extends AppCompatActivity implements Dialo
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put(EnsyfiConstants.KEY_USER_ID, PreferenceStorage.getUserId(this));
+            jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
 //        progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-        String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.DAILY_LOGIN;
+        String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.DAILY_LOGIN;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
     }
 

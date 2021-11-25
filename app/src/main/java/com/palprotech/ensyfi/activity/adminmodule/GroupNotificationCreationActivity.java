@@ -131,13 +131,14 @@ public class GroupNotificationCreationActivity extends AppCompatActivity impleme
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_USER_ID, PreferenceStorage.getUserId(this));
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_ADMIN_GROUP_LEAD_TEACHER_VIEW;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_ADMIN_GROUP_LEAD_TEACHER_VIEW;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
 
 
@@ -165,11 +166,13 @@ public class GroupNotificationCreationActivity extends AppCompatActivity impleme
                     jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_TITLE, txtGroupTitle.getText().toString());
                     jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_CREATION_GROUP_LEAD_ID, storeGroupId);
                     jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_CREATION_STATUS, groupStatus);
+                    jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(this));
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
-                String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(this) + EnsyfiConstants.CREATE_GROUP;
+                String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.CREATE_GROUP;
                 serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
             }
 

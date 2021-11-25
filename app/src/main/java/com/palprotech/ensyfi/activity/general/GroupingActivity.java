@@ -233,12 +233,13 @@ public class GroupingActivity extends AppCompatActivity implements IServiceListe
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_USER_TYPE, PreferenceStorage.getUserType(getApplicationContext()));
+                jsonObject.put(EnsyfiConstants.KEY_USER_DYNAMIC_DB, PreferenceStorage.getUserDynamicDB(getApplicationContext()));
                 jsonObject.put(EnsyfiConstants.PARAMS_GROUP_NOTIFICATIONS_USER_ID, PreferenceStorage.getUserId(getApplicationContext()));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
             progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = EnsyfiConstants.BASE_URL + PreferenceStorage.getInstituteCode(getApplicationContext()) + EnsyfiConstants.GET_GROUP_MESSAGE_VIEW;
+            String url = EnsyfiConstants.BASE_URL + EnsyfiConstants.GET_GROUP_MESSAGE_VIEW;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
             return null;
         }
